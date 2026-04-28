@@ -1,0 +1,20 @@
+#nullable enable
+
+namespace Speechify
+{
+    public partial interface ISubpackageTtsSubpackageTtsAgentsClient
+    {
+        /// <summary>
+        /// List Test Runs<br/>
+        /// List the run history for a test, newest first.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
+        /// <param name="cancellationToken">The token to cancel the operation with</param>
+        /// <exception cref="global::Speechify.ApiException"></exception>
+        global::System.Threading.Tasks.Task<global::Speechify.TtsListAgentTestRunsResponse> ListTestRunsAsync(
+            string id,
+            global::Speechify.AutoSDKRequestOptions? requestOptions = default,
+            global::System.Threading.CancellationToken cancellationToken = default);
+    }
+}

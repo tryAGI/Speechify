@@ -1,0 +1,59 @@
+#nullable enable
+
+namespace Speechify
+{
+    public partial interface ISubpackageTtsSubpackageTtsAudioClient
+    {
+        /// <summary>
+        /// Stream<br/>
+        /// Gets the stream speech for the given input
+        /// </summary>
+        /// <param name="accept"></param>
+        /// <param name="request"></param>
+        /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
+        /// <param name="cancellationToken">The token to cancel the operation with</param>
+        /// <exception cref="global::Speechify.ApiException"></exception>
+        global::System.Threading.Tasks.Task<global::Speechify.TtsAudioStreamResponse200> StreamAsync(
+            global::Speechify.TtsV1AudioStreamPostParametersAccept accept,
+
+            global::Speechify.TtsGetStreamRequest request,
+            global::Speechify.AutoSDKRequestOptions? requestOptions = default,
+            global::System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Stream<br/>
+        /// Gets the stream speech for the given input
+        /// </summary>
+        /// <param name="accept"></param>
+        /// <param name="input">
+        /// Plain text or SSML to be synthesized to speech.<br/>
+        /// Refer to https://docs.speechify.ai/docs/api-limits for the input size limits.<br/>
+        /// Emotion, Pitch and Speed Rate are configured in the ssml input, please refer to the ssml documentation for more information: https://docs.speechify.ai/docs/ssml#prosody
+        /// </param>
+        /// <param name="language">
+        /// Language of the input. Follow the format of an ISO 639-1 language code and an ISO 3166-1 region code, separated by a hyphen, e.g. en-US.<br/>
+        /// Please refer to the list of the supported languages and recommendations regarding this parameter: https://docs.speechify.ai/docs/language-support.
+        /// </param>
+        /// <param name="model">
+        /// Model used for audio synthesis. `simba-base` and `simba-turbo` are deprecated. Use `simba-english` or `simba-multilingual` instead.<br/>
+        /// Default Value: simba-english
+        /// </param>
+        /// <param name="options">
+        /// GetStreamOptionsRequest is the wrapper for request parameters to the client
+        /// </param>
+        /// <param name="voiceId">
+        /// Id of the voice to be used for synthesizing speech. Refer to /v1/voices endpoint for available voices
+        /// </param>
+        /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
+        /// <param name="cancellationToken">The token to cancel the operation with</param>
+        /// <exception cref="global::System.InvalidOperationException"></exception>
+        global::System.Threading.Tasks.Task<global::Speechify.TtsAudioStreamResponse200> StreamAsync(
+            global::Speechify.TtsV1AudioStreamPostParametersAccept accept,
+            string input,
+            string voiceId,
+            string? language = default,
+            global::Speechify.TtsGetStreamRequestModel? model = default,
+            global::Speechify.TtsGetStreamOptionsRequest? options = default,
+            global::Speechify.AutoSDKRequestOptions? requestOptions = default,
+            global::System.Threading.CancellationToken cancellationToken = default);
+    }
+}
