@@ -127,7 +127,7 @@ namespace Speechify
                 PrepareAcceptInviteRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
-                    token: token);
+                    token: token!);
 
                 return __httpRequest;
             }

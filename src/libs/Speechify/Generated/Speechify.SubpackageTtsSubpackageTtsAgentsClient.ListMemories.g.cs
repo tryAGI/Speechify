@@ -145,7 +145,7 @@ namespace Speechify
                 PrepareListMemoriesRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
-                    id: id,
+                    id: id!,
                     limit: limit,
                     offset: offset);
 

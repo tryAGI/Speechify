@@ -122,7 +122,7 @@ namespace Speechify
                 PrepareRemoveMemberRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
-                    userUid: userUid);
+                    userUid: userUid!);
 
                 return __httpRequest;
             }

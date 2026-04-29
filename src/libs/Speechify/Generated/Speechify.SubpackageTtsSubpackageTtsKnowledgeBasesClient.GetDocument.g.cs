@@ -125,7 +125,7 @@ namespace Speechify
                 PrepareGetDocumentRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
-                    docId: docId);
+                    docId: docId!);
 
                 return __httpRequest;
             }

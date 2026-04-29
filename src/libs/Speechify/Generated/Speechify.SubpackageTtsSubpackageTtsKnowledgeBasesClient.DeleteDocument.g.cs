@@ -120,7 +120,7 @@ namespace Speechify
                 PrepareDeleteDocumentRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
-                    docId: docId);
+                    docId: docId!);
 
                 return __httpRequest;
             }

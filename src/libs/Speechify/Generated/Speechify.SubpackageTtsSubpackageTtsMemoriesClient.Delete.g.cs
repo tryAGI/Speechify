@@ -120,7 +120,7 @@ namespace Speechify
                 PrepareDeleteRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
-                    memoryId: memoryId);
+                    memoryId: memoryId!);
 
                 return __httpRequest;
             }

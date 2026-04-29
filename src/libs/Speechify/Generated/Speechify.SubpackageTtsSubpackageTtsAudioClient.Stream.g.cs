@@ -142,7 +142,7 @@ namespace Speechify
                 PrepareStreamRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
-                    accept: accept,
+                    accept: accept!,
                     request: request);
 
                 return __httpRequest;

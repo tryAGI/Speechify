@@ -127,8 +127,8 @@ namespace Speechify
                 PrepareAttachKnowledgeBaseRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
-                    id: id,
-                    kbId: kbId);
+                    id: id!,
+                    kbId: kbId!);
 
                 return __httpRequest;
             }
