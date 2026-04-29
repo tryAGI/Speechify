@@ -127,8 +127,8 @@ namespace Speechify
                 PrepareDetachTestRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
-                    id: id,
-                    agentId: agentId);
+                    id: id!,
+                    agentId: agentId!);
 
                 return __httpRequest;
             }

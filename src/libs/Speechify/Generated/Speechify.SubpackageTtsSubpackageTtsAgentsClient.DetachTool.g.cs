@@ -125,8 +125,8 @@ namespace Speechify
                 PrepareDetachToolRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
-                    id: id,
-                    toolId: toolId);
+                    id: id!,
+                    toolId: toolId!);
 
                 return __httpRequest;
             }

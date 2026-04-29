@@ -141,7 +141,7 @@ namespace Speechify
                 PrepareUpdateMemberRoleRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
-                    userUid: userUid,
+                    userUid: userUid!,
                     request: request);
 
                 return __httpRequest;
