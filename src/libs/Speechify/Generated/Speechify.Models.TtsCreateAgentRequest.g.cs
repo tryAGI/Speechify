@@ -16,7 +16,7 @@ namespace Speechify
         public required string Name { get; set; }
 
         /// <summary>
-        /// Optional; auto-generated from name if omitted.
+        /// Optional. Server derives slug from name with a random suffix when omitted; if you supply your own, a collision returns 400 'slug already taken'.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("slug")]
         public string? Slug { get; set; }
@@ -108,7 +108,7 @@ namespace Speechify
         /// Voice slug from the VMS catalog (see GET /v1/voices). Required — the server rejects writes with an unknown or empty slug.
         /// </param>
         /// <param name="slug">
-        /// Optional; auto-generated from name if omitted.
+        /// Optional. Server derives slug from name with a random suffix when omitted; if you supply your own, a collision returns 400 'slug already taken'.
         /// </param>
         /// <param name="prompt"></param>
         /// <param name="firstMessage">
