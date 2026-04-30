@@ -393,7 +393,7 @@ namespace Speechify
         /// </summary>
         /// <param name="name"></param>
         /// <param name="slug">
-        /// Optional; auto-generated from name if omitted.
+        /// Optional. Server derives slug from name with a random suffix when omitted; if you supply your own, a collision returns 400 'slug already taken'.
         /// </param>
         /// <param name="prompt"></param>
         /// <param name="firstMessage">
