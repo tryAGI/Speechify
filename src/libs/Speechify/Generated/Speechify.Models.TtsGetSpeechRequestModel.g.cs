@@ -4,7 +4,7 @@
 namespace Speechify
 {
     /// <summary>
-    /// Model used for audio synthesis. `simba-base` and `simba-turbo` are deprecated. Use `simba-english` or `simba-multilingual` instead.<br/>
+    /// Model used for audio synthesis. `simba-english` is optimized for English, `simba-multilingual` for non-English or mixed input. `simba-3.0` is the streaming-native model with lower TTFB and richer expressivity. Currently English only; multilingual coming soon. Non-English voices return 400 until multilingual support ships.<br/>
     /// Default Value: simba-english
     /// </summary>
     public enum TtsGetSpeechRequestModel
@@ -12,7 +12,7 @@ namespace Speechify
         /// <summary>
         /// 
         /// </summary>
-        SimbaBase,
+        Simba30,
         /// <summary>
         /// 
         /// </summary>
@@ -21,10 +21,6 @@ namespace Speechify
         /// 
         /// </summary>
         SimbaMultilingual,
-        /// <summary>
-        /// 
-        /// </summary>
-        SimbaTurbo,
     }
 
     /// <summary>
@@ -39,10 +35,9 @@ namespace Speechify
         {
             return value switch
             {
-                TtsGetSpeechRequestModel.SimbaBase => "simba-base",
+                TtsGetSpeechRequestModel.Simba30 => "simba-3.0",
                 TtsGetSpeechRequestModel.SimbaEnglish => "simba-english",
                 TtsGetSpeechRequestModel.SimbaMultilingual => "simba-multilingual",
-                TtsGetSpeechRequestModel.SimbaTurbo => "simba-turbo",
                 _ => throw new global::System.ArgumentOutOfRangeException(nameof(value), value, null),
             };
         }
@@ -53,10 +48,9 @@ namespace Speechify
         {
             return value switch
             {
-                "simba-base" => TtsGetSpeechRequestModel.SimbaBase,
+                "simba-3.0" => TtsGetSpeechRequestModel.Simba30,
                 "simba-english" => TtsGetSpeechRequestModel.SimbaEnglish,
                 "simba-multilingual" => TtsGetSpeechRequestModel.SimbaMultilingual,
-                "simba-turbo" => TtsGetSpeechRequestModel.SimbaTurbo,
                 _ => null,
             };
         }

@@ -70,5 +70,6 @@ namespace Speechify
         public TtsGetSpeechOptionsRequest()
         {
         }
+
     }
 }

@@ -5,8 +5,10 @@ namespace Speechify
     public partial interface ISubpackageTtsSubpackageTtsAudioClient
     {
         /// <summary>
-        /// Speech<br/>
-        /// Gets the speech data for the given input
+        /// Create Speech<br/>
+        /// Synthesize speech audio from text or SSML. Returns the complete audio<br/>
+        /// file plus billing and speech-mark metadata in a single response. For<br/>
+        /// low-latency playback or long-form text, use POST /v1/audio/stream.
         /// </summary>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
@@ -18,8 +20,25 @@ namespace Speechify
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
-        /// Speech<br/>
-        /// Gets the speech data for the given input
+        /// Create Speech<br/>
+        /// Synthesize speech audio from text or SSML. Returns the complete audio<br/>
+        /// file plus billing and speech-mark metadata in a single response. For<br/>
+        /// low-latency playback or long-form text, use POST /v1/audio/stream.
+        /// </summary>
+        /// <param name="request"></param>
+        /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
+        /// <param name="cancellationToken">The token to cancel the operation with</param>
+        /// <exception cref="global::Speechify.ApiException"></exception>
+        global::System.Threading.Tasks.Task<global::Speechify.AutoSDKHttpResponse<global::Speechify.TtsGetSpeechResponse>> SpeechAsResponseAsync(
+
+            global::Speechify.TtsGetSpeechRequest request,
+            global::Speechify.AutoSDKRequestOptions? requestOptions = default,
+            global::System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Create Speech<br/>
+        /// Synthesize speech audio from text or SSML. Returns the complete audio<br/>
+        /// file plus billing and speech-mark metadata in a single response. For<br/>
+        /// low-latency playback or long-form text, use POST /v1/audio/stream.
         /// </summary>
         /// <param name="audioFormat">
         /// The format for the output audio. Note, that the current default is "wav", but there's no guarantee it will not change in the future. We recommend always passing the specific param you expect.<br/>
@@ -35,7 +54,7 @@ namespace Speechify
         /// Please refer to the list of the supported languages and recommendations regarding this parameter: https://docs.speechify.ai/docs/language-support.
         /// </param>
         /// <param name="model">
-        /// Model used for audio synthesis. `simba-base` and `simba-turbo` are deprecated. Use `simba-english` or `simba-multilingual` instead.<br/>
+        /// Model used for audio synthesis. `simba-english` is optimized for English, `simba-multilingual` for non-English or mixed input. `simba-3.0` is the streaming-native model with lower TTFB and richer expressivity. Currently English only; multilingual coming soon. Non-English voices return 400 until multilingual support ships.<br/>
         /// Default Value: simba-english
         /// </param>
         /// <param name="options">

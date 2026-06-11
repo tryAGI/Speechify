@@ -10,7 +10,7 @@ namespace Speechify
     public sealed partial class SpeechifyClient : global::Speechify.ISpeechifyClient, global::System.IDisposable
     {
         /// <summary>
-        /// 
+        /// https://api.speechify.ai
         /// </summary>
         public const string DefaultBaseUrl = "https://api.speechify.ai/";
 
@@ -42,7 +42,7 @@ namespace Speechify
         /// <summary>
         /// 
         /// </summary>
-        public SubpackageTtsSubpackageTtsAgentsClient SubpackageTtsSubpackageTtsAgents => new SubpackageTtsSubpackageTtsAgentsClient(HttpClient, authorizations: Authorizations, options: Options)
+        public SubpackageTtsSubpackageTtsAudioClient SubpackageTtsSubpackageTtsAudio => new SubpackageTtsSubpackageTtsAudioClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
         {
             ReadResponseAsString = ReadResponseAsString,
             JsonSerializerContext = JsonSerializerContext,
@@ -51,97 +51,7 @@ namespace Speechify
         /// <summary>
         /// 
         /// </summary>
-        public SubpackageTtsSubpackageTtsAudioClient SubpackageTtsSubpackageTtsAudio => new SubpackageTtsSubpackageTtsAudioClient(HttpClient, authorizations: Authorizations, options: Options)
-        {
-            ReadResponseAsString = ReadResponseAsString,
-            JsonSerializerContext = JsonSerializerContext,
-        };
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public SubpackageTtsSubpackageTtsAuthClient SubpackageTtsSubpackageTtsAuth => new SubpackageTtsSubpackageTtsAuthClient(HttpClient, authorizations: Authorizations, options: Options)
-        {
-            ReadResponseAsString = ReadResponseAsString,
-            JsonSerializerContext = JsonSerializerContext,
-        };
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public SubpackageTtsSubpackageTtsConversationsClient SubpackageTtsSubpackageTtsConversations => new SubpackageTtsSubpackageTtsConversationsClient(HttpClient, authorizations: Authorizations, options: Options)
-        {
-            ReadResponseAsString = ReadResponseAsString,
-            JsonSerializerContext = JsonSerializerContext,
-        };
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public SubpackageTtsSubpackageTtsKnowledgeBasesClient SubpackageTtsSubpackageTtsKnowledgeBases => new SubpackageTtsSubpackageTtsKnowledgeBasesClient(HttpClient, authorizations: Authorizations, options: Options)
-        {
-            ReadResponseAsString = ReadResponseAsString,
-            JsonSerializerContext = JsonSerializerContext,
-        };
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public SubpackageTtsSubpackageTtsMemoriesClient SubpackageTtsSubpackageTtsMemories => new SubpackageTtsSubpackageTtsMemoriesClient(HttpClient, authorizations: Authorizations, options: Options)
-        {
-            ReadResponseAsString = ReadResponseAsString,
-            JsonSerializerContext = JsonSerializerContext,
-        };
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public SubpackageTtsSubpackageTtsOutboundCallsClient SubpackageTtsSubpackageTtsOutboundCalls => new SubpackageTtsSubpackageTtsOutboundCallsClient(HttpClient, authorizations: Authorizations, options: Options)
-        {
-            ReadResponseAsString = ReadResponseAsString,
-            JsonSerializerContext = JsonSerializerContext,
-        };
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public SubpackageTtsSubpackageTtsPhoneNumbersClient SubpackageTtsSubpackageTtsPhoneNumbers => new SubpackageTtsSubpackageTtsPhoneNumbersClient(HttpClient, authorizations: Authorizations, options: Options)
-        {
-            ReadResponseAsString = ReadResponseAsString,
-            JsonSerializerContext = JsonSerializerContext,
-        };
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public SubpackageTtsSubpackageTtsSipTrunksClient SubpackageTtsSubpackageTtsSipTrunks => new SubpackageTtsSubpackageTtsSipTrunksClient(HttpClient, authorizations: Authorizations, options: Options)
-        {
-            ReadResponseAsString = ReadResponseAsString,
-            JsonSerializerContext = JsonSerializerContext,
-        };
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public SubpackageTtsSubpackageTtsToolsClient SubpackageTtsSubpackageTtsTools => new SubpackageTtsSubpackageTtsToolsClient(HttpClient, authorizations: Authorizations, options: Options)
-        {
-            ReadResponseAsString = ReadResponseAsString,
-            JsonSerializerContext = JsonSerializerContext,
-        };
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public SubpackageTtsSubpackageTtsVoicesClient SubpackageTtsSubpackageTtsVoices => new SubpackageTtsSubpackageTtsVoicesClient(HttpClient, authorizations: Authorizations, options: Options)
-        {
-            ReadResponseAsString = ReadResponseAsString,
-            JsonSerializerContext = JsonSerializerContext,
-        };
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public SubpackageTtsSubpackageTtsWorkspacesClient SubpackageTtsSubpackageTtsWorkspaces => new SubpackageTtsSubpackageTtsWorkspacesClient(HttpClient, authorizations: Authorizations, options: Options)
+        public SubpackageTtsSubpackageTtsVoicesClient SubpackageTtsSubpackageTtsVoices => new SubpackageTtsSubpackageTtsVoicesClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
         {
             ReadResponseAsString = ReadResponseAsString,
             JsonSerializerContext = JsonSerializerContext,
@@ -170,6 +80,27 @@ namespace Speechify
         }
 
         /// <summary>
+        /// Creates a new instance of the SpeechifyClient with explicit options but no base URL override.
+        /// Skips passing <c>baseUri</c> so the default base URL from the OpenAPI spec applies.
+        /// </summary>
+        /// <param name="httpClient">The HttpClient instance. If not provided, a new one will be created.</param>
+        /// <param name="authorizations">The authorizations to use for the requests.</param>
+        /// <param name="options">Client-wide request defaults such as headers, query parameters, retries, and timeout.</param>
+        /// <param name="disposeHttpClient">Dispose the HttpClient when the instance is disposed. True by default.</param>
+        public SpeechifyClient(
+            global::System.Net.Http.HttpClient? httpClient,
+            global::System.Collections.Generic.List<global::Speechify.EndPointAuthorization>? authorizations,
+            global::Speechify.AutoSDKClientOptions? options,
+            bool disposeHttpClient = true) : this(
+                httpClient,
+                baseUri: null,
+                authorizations,
+                options,
+                disposeHttpClient: disposeHttpClient)
+        {
+        }
+
+        /// <summary>
         /// Creates a new instance of the SpeechifyClient.
         /// If no httpClient is provided, a new one will be created.
         /// If no baseUri is provided, the default baseUri from OpenAPI spec will be used.
@@ -180,10 +111,10 @@ namespace Speechify
         /// <param name="options">Client-wide request defaults such as headers, query parameters, retries, and timeout.</param>
         /// <param name="disposeHttpClient">Dispose the HttpClient when the instance is disposed. True by default.</param>
         public SpeechifyClient(
-            global::System.Net.Http.HttpClient? httpClient = null,
-            global::System.Uri? baseUri = null,
-            global::System.Collections.Generic.List<global::Speechify.EndPointAuthorization>? authorizations = null,
-            global::Speechify.AutoSDKClientOptions? options = null,
+            global::System.Net.Http.HttpClient? httpClient,
+            global::System.Uri? baseUri,
+            global::System.Collections.Generic.List<global::Speechify.EndPointAuthorization>? authorizations,
+            global::Speechify.AutoSDKClientOptions? options,
             bool disposeHttpClient = true)
         {
 

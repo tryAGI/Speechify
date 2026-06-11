@@ -47,62 +47,12 @@ namespace Speechify
         /// <summary>
         /// 
         /// </summary>
-        public SubpackageTtsSubpackageTtsAgentsClient SubpackageTtsSubpackageTtsAgents { get; }
-
-        /// <summary>
-        /// 
-        /// </summary>
         public SubpackageTtsSubpackageTtsAudioClient SubpackageTtsSubpackageTtsAudio { get; }
 
         /// <summary>
         /// 
         /// </summary>
-        public SubpackageTtsSubpackageTtsAuthClient SubpackageTtsSubpackageTtsAuth { get; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public SubpackageTtsSubpackageTtsConversationsClient SubpackageTtsSubpackageTtsConversations { get; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public SubpackageTtsSubpackageTtsKnowledgeBasesClient SubpackageTtsSubpackageTtsKnowledgeBases { get; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public SubpackageTtsSubpackageTtsMemoriesClient SubpackageTtsSubpackageTtsMemories { get; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public SubpackageTtsSubpackageTtsOutboundCallsClient SubpackageTtsSubpackageTtsOutboundCalls { get; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public SubpackageTtsSubpackageTtsPhoneNumbersClient SubpackageTtsSubpackageTtsPhoneNumbers { get; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public SubpackageTtsSubpackageTtsSipTrunksClient SubpackageTtsSubpackageTtsSipTrunks { get; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public SubpackageTtsSubpackageTtsToolsClient SubpackageTtsSubpackageTtsTools { get; }
-
-        /// <summary>
-        /// 
-        /// </summary>
         public SubpackageTtsSubpackageTtsVoicesClient SubpackageTtsSubpackageTtsVoices { get; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public SubpackageTtsSubpackageTtsWorkspacesClient SubpackageTtsSubpackageTtsWorkspaces { get; }
 
     }
 }

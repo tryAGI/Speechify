@@ -11,7 +11,7 @@ namespace Speechify
         /// <summary>
         /// 
         /// </summary>
-        SimbaBase,
+        Simba30,
         /// <summary>
         /// 
         /// </summary>
@@ -20,10 +20,6 @@ namespace Speechify
         /// 
         /// </summary>
         SimbaMultilingual,
-        /// <summary>
-        /// 
-        /// </summary>
-        SimbaTurbo,
     }
 
     /// <summary>
@@ -38,10 +34,9 @@ namespace Speechify
         {
             return value switch
             {
-                TtsGetVoicesModelName.SimbaBase => "simba-base",
+                TtsGetVoicesModelName.Simba30 => "simba-3.0",
                 TtsGetVoicesModelName.SimbaEnglish => "simba-english",
                 TtsGetVoicesModelName.SimbaMultilingual => "simba-multilingual",
-                TtsGetVoicesModelName.SimbaTurbo => "simba-turbo",
                 _ => throw new global::System.ArgumentOutOfRangeException(nameof(value), value, null),
             };
         }
@@ -52,10 +47,9 @@ namespace Speechify
         {
             return value switch
             {
-                "simba-base" => TtsGetVoicesModelName.SimbaBase,
+                "simba-3.0" => TtsGetVoicesModelName.Simba30,
                 "simba-english" => TtsGetVoicesModelName.SimbaEnglish,
                 "simba-multilingual" => TtsGetVoicesModelName.SimbaMultilingual,
-                "simba-turbo" => TtsGetVoicesModelName.SimbaTurbo,
                 _ => null,
             };
         }
