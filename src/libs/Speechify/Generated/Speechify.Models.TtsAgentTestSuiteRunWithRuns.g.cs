@@ -24,6 +24,14 @@ namespace Speechify
         public string? AgentId { get; set; }
 
         /// <summary>
+        /// Display name of `agent_id`'s agent, resolved at read time.<br/>
+        /// Null whenever `agent_id` is null, and on the suite run<br/>
+        /// embedded in run/resubmit creation responses.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("agent_name")]
+        public string? AgentName { get; set; }
+
+        /// <summary>
         /// Which entry point created a suite run.<br/>
         /// - `run_all`  - POST /v1/agents/{id}/tests/runs.<br/>
         /// - `batch`    - POST /v1/agents/tests/runs/batch.<br/>
@@ -173,6 +181,11 @@ namespace Speechify
         /// was run. Set for the `run_all` trigger; null for `batch`,<br/>
         /// which can span many agents.
         /// </param>
+        /// <param name="agentName">
+        /// Display name of `agent_id`'s agent, resolved at read time.<br/>
+        /// Null whenever `agent_id` is null, and on the suite run<br/>
+        /// embedded in run/resubmit creation responses.
+        /// </param>
         /// <param name="parentSuiteRunId">
         /// Set on a `resubmit`: the prefixed `srun_&lt;crockford&gt;` id of<br/>
         /// the suite run whose failed/errored tests this one re-ran.<br/>
@@ -207,6 +220,7 @@ namespace Speechify
             global::System.DateTime createdAt,
             global::System.Collections.Generic.IList<global::Speechify.TtsSuiteChildRun> runs,
             string? agentId,
+            string? agentName,
             string? parentSuiteRunId,
             global::System.DateTime? completedAt,
             global::Speechify.OneOf<global::Speechify.TtsTestRunConfigOverride, object>? configOverride,
@@ -215,6 +229,7 @@ namespace Speechify
         {
             this.Id = id ?? throw new global::System.ArgumentNullException(nameof(id));
             this.AgentId = agentId;
+            this.AgentName = agentName;
             this.Trigger = trigger;
             this.ParentSuiteRunId = parentSuiteRunId;
             this.Status = status;
