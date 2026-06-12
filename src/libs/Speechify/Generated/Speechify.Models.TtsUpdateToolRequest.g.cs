@@ -58,5 +58,6 @@ namespace Speechify
         public TtsUpdateToolRequest()
         {
         }
+
     }
 }

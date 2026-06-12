@@ -5,10 +5,9 @@ namespace Speechify
 {
     /// <summary>
     /// A canned response returned when the agent calls `tool_name`. If<br/>
-    /// `args_match` is set the mock only triggers when its value appears<br/>
-    /// as a substring of the JSON-serialised call arguments (a deliberately<br/>
-    /// simple v1 matcher — full expression support is planned). A mock<br/>
-    /// without `args_match` always matches for its tool.
+    /// `args_match` is set the mock only triggers when the call arguments<br/>
+    /// deep-contain it (a structured subset match). A mock without<br/>
+    /// `args_match` always matches for its tool.
     /// </summary>
     public sealed partial class TtsToolMock
     {
@@ -20,11 +19,15 @@ namespace Speechify
         public required string ToolName { get; set; }
 
         /// <summary>
-        /// Optional substring of the JSON-serialised call arguments. When<br/>
-        /// absent the mock matches unconditionally for this tool.
+        /// Optional structured argument matcher. When set, the mock fires<br/>
+        /// only if the tool call's arguments deep-contain every key/value<br/>
+        /// in this object: nested objects match recursively as subsets,<br/>
+        /// arrays and scalar leaves match by deep equality. An empty<br/>
+        /// object matches unconditionally. When absent the mock matches<br/>
+        /// unconditionally for this tool.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("args_match")]
-        public string? ArgsMatch { get; set; }
+        public object? ArgsMatch { get; set; }
 
         /// <summary>
         /// JSON value returned to the agent as the tool result.
@@ -49,8 +52,12 @@ namespace Speechify
         /// JSON value returned to the agent as the tool result.
         /// </param>
         /// <param name="argsMatch">
-        /// Optional substring of the JSON-serialised call arguments. When<br/>
-        /// absent the mock matches unconditionally for this tool.
+        /// Optional structured argument matcher. When set, the mock fires<br/>
+        /// only if the tool call's arguments deep-contain every key/value<br/>
+        /// in this object: nested objects match recursively as subsets,<br/>
+        /// arrays and scalar leaves match by deep equality. An empty<br/>
+        /// object matches unconditionally. When absent the mock matches<br/>
+        /// unconditionally for this tool.
         /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
@@ -58,7 +65,7 @@ namespace Speechify
         public TtsToolMock(
             string toolName,
             object response,
-            string? argsMatch)
+            object? argsMatch)
         {
             this.ToolName = toolName ?? throw new global::System.ArgumentNullException(nameof(toolName));
             this.ArgsMatch = argsMatch;
@@ -71,5 +78,6 @@ namespace Speechify
         public TtsToolMock()
         {
         }
+
     }
 }

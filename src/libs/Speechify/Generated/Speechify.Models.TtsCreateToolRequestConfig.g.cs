@@ -10,7 +10,10 @@ namespace Speechify
     public readonly partial struct TtsCreateToolRequestConfig : global::System.IEquatable<TtsCreateToolRequestConfig>
     {
         /// <summary>
-        /// Config shape for `kind=system`.
+        /// Config shape for `kind=system`. The `builtin` value names the<br/>
+        /// worker-resident capability; the catalogue served by<br/>
+        /// `GET /v1/agents/tools/system-builtins` is the runtime source of truth<br/>
+        /// for valid names plus their console-facing labels.
         /// </summary>
 #if NET6_0_OR_GREATER
         public global::Speechify.TtsSystemToolConfig? SystemToolConfig { get; init; }
@@ -25,6 +28,26 @@ namespace Speechify
         [global::System.Diagnostics.CodeAnalysis.MemberNotNullWhen(true, nameof(SystemToolConfig))]
 #endif
         public bool IsSystemToolConfig => SystemToolConfig != null;
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public bool TryPickSystemToolConfig(
+#if NET6_0_OR_GREATER
+            [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
+#endif
+            out global::Speechify.TtsSystemToolConfig? value)
+        {
+            value = SystemToolConfig;
+            return IsSystemToolConfig;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public global::Speechify.TtsSystemToolConfig PickSystemToolConfig() => IsSystemToolConfig
+            ? SystemToolConfig!
+            : throw new global::System.InvalidOperationException($"Expected union variant 'SystemToolConfig' but the value was {ToString()}.");
 
         /// <summary>
         /// Config shape for `kind=webhook`.
@@ -44,6 +67,26 @@ namespace Speechify
         public bool IsWebhookToolConfig => WebhookToolConfig != null;
 
         /// <summary>
+        /// 
+        /// </summary>
+        public bool TryPickWebhookToolConfig(
+#if NET6_0_OR_GREATER
+            [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
+#endif
+            out global::Speechify.TtsWebhookToolConfig? value)
+        {
+            value = WebhookToolConfig;
+            return IsWebhookToolConfig;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public global::Speechify.TtsWebhookToolConfig PickWebhookToolConfig() => IsWebhookToolConfig
+            ? WebhookToolConfig!
+            : throw new global::System.InvalidOperationException($"Expected union variant 'WebhookToolConfig' but the value was {ToString()}.");
+
+        /// <summary>
         /// Config shape for `kind=client`. Execution happens in the caller's browser / SDK.
         /// </summary>
 #if NET6_0_OR_GREATER
@@ -59,6 +102,67 @@ namespace Speechify
         [global::System.Diagnostics.CodeAnalysis.MemberNotNullWhen(true, nameof(ClientToolConfig))]
 #endif
         public bool IsClientToolConfig => ClientToolConfig != null;
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public bool TryPickClientToolConfig(
+#if NET6_0_OR_GREATER
+            [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
+#endif
+            out global::Speechify.TtsClientToolConfig? value)
+        {
+            value = ClientToolConfig;
+            return IsClientToolConfig;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public global::Speechify.TtsClientToolConfig PickClientToolConfig() => IsClientToolConfig
+            ? ClientToolConfig!
+            : throw new global::System.InvalidOperationException($"Expected union variant 'ClientToolConfig' but the value was {ToString()}.");
+
+        /// <summary>
+        /// Config shape for `kind=mcp` (AIS-3056). The worker opens the<br/>
+        /// configured transport at session start, runs `initialize` +<br/>
+        /// `list_tools`, and registers each discovered remote tool as a<br/>
+        /// livekit-agents function_tool proxying through the long-lived<br/>
+        /// ClientSession.
+        /// </summary>
+#if NET6_0_OR_GREATER
+        public global::Speechify.TtsMCPToolConfig? MCPToolConfig { get; init; }
+#else
+        public global::Speechify.TtsMCPToolConfig? MCPToolConfig { get; }
+#endif
+
+        /// <summary>
+        /// 
+        /// </summary>
+#if NET6_0_OR_GREATER
+        [global::System.Diagnostics.CodeAnalysis.MemberNotNullWhen(true, nameof(MCPToolConfig))]
+#endif
+        public bool IsMCPToolConfig => MCPToolConfig != null;
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public bool TryPickMCPToolConfig(
+#if NET6_0_OR_GREATER
+            [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
+#endif
+            out global::Speechify.TtsMCPToolConfig? value)
+        {
+            value = MCPToolConfig;
+            return IsMCPToolConfig;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public global::Speechify.TtsMCPToolConfig PickMCPToolConfig() => IsMCPToolConfig
+            ? MCPToolConfig!
+            : throw new global::System.InvalidOperationException($"Expected union variant 'MCPToolConfig' but the value was {ToString()}.");
         /// <summary>
         /// 
         /// </summary>
@@ -76,6 +180,11 @@ namespace Speechify
         {
             SystemToolConfig = value;
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public static TtsCreateToolRequestConfig FromSystemToolConfig(global::Speechify.TtsSystemToolConfig? value) => new TtsCreateToolRequestConfig(value);
 
         /// <summary>
         /// 
@@ -98,6 +207,11 @@ namespace Speechify
         /// <summary>
         /// 
         /// </summary>
+        public static TtsCreateToolRequestConfig FromWebhookToolConfig(global::Speechify.TtsWebhookToolConfig? value) => new TtsCreateToolRequestConfig(value);
+
+        /// <summary>
+        /// 
+        /// </summary>
         public static implicit operator TtsCreateToolRequestConfig(global::Speechify.TtsClientToolConfig value) => new TtsCreateToolRequestConfig((global::Speechify.TtsClientToolConfig?)value);
 
         /// <summary>
@@ -116,21 +230,52 @@ namespace Speechify
         /// <summary>
         /// 
         /// </summary>
+        public static TtsCreateToolRequestConfig FromClientToolConfig(global::Speechify.TtsClientToolConfig? value) => new TtsCreateToolRequestConfig(value);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public static implicit operator TtsCreateToolRequestConfig(global::Speechify.TtsMCPToolConfig value) => new TtsCreateToolRequestConfig((global::Speechify.TtsMCPToolConfig?)value);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public static implicit operator global::Speechify.TtsMCPToolConfig?(TtsCreateToolRequestConfig @this) => @this.MCPToolConfig;
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public TtsCreateToolRequestConfig(global::Speechify.TtsMCPToolConfig? value)
+        {
+            MCPToolConfig = value;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public static TtsCreateToolRequestConfig FromMCPToolConfig(global::Speechify.TtsMCPToolConfig? value) => new TtsCreateToolRequestConfig(value);
+
+        /// <summary>
+        /// 
+        /// </summary>
         public TtsCreateToolRequestConfig(
             global::Speechify.TtsSystemToolConfig? systemToolConfig,
             global::Speechify.TtsWebhookToolConfig? webhookToolConfig,
-            global::Speechify.TtsClientToolConfig? clientToolConfig
+            global::Speechify.TtsClientToolConfig? clientToolConfig,
+            global::Speechify.TtsMCPToolConfig? mCPToolConfig
             )
         {
             SystemToolConfig = systemToolConfig;
             WebhookToolConfig = webhookToolConfig;
             ClientToolConfig = clientToolConfig;
+            MCPToolConfig = mCPToolConfig;
         }
 
         /// <summary>
         /// 
         /// </summary>
         public object? Object =>
+            MCPToolConfig as object ??
             ClientToolConfig as object ??
             WebhookToolConfig as object ??
             SystemToolConfig as object 
@@ -142,7 +287,8 @@ namespace Speechify
         public override string? ToString() =>
             SystemToolConfig?.ToString() ??
             WebhookToolConfig?.ToString() ??
-            ClientToolConfig?.ToString() 
+            ClientToolConfig?.ToString() ??
+            MCPToolConfig?.ToString() 
             ;
 
         /// <summary>
@@ -150,16 +296,17 @@ namespace Speechify
         /// </summary>
         public bool Validate()
         {
-            return IsSystemToolConfig && !IsWebhookToolConfig && !IsClientToolConfig || !IsSystemToolConfig && IsWebhookToolConfig && !IsClientToolConfig || !IsSystemToolConfig && !IsWebhookToolConfig && IsClientToolConfig;
+            return IsSystemToolConfig && !IsWebhookToolConfig && !IsClientToolConfig && !IsMCPToolConfig || !IsSystemToolConfig && IsWebhookToolConfig && !IsClientToolConfig && !IsMCPToolConfig || !IsSystemToolConfig && !IsWebhookToolConfig && IsClientToolConfig && !IsMCPToolConfig || !IsSystemToolConfig && !IsWebhookToolConfig && !IsClientToolConfig && IsMCPToolConfig;
         }
 
         /// <summary>
         /// 
         /// </summary>
         public TResult? Match<TResult>(
-            global::System.Func<global::Speechify.TtsSystemToolConfig?, TResult>? systemToolConfig = null,
-            global::System.Func<global::Speechify.TtsWebhookToolConfig?, TResult>? webhookToolConfig = null,
-            global::System.Func<global::Speechify.TtsClientToolConfig?, TResult>? clientToolConfig = null,
+            global::System.Func<global::Speechify.TtsSystemToolConfig, TResult>? systemToolConfig = null,
+            global::System.Func<global::Speechify.TtsWebhookToolConfig, TResult>? webhookToolConfig = null,
+            global::System.Func<global::Speechify.TtsClientToolConfig, TResult>? clientToolConfig = null,
+            global::System.Func<global::Speechify.TtsMCPToolConfig, TResult>? mCPToolConfig = null,
             bool validate = true)
         {
             if (validate)
@@ -179,6 +326,10 @@ namespace Speechify
             {
                 return clientToolConfig(ClientToolConfig!);
             }
+            else if (IsMCPToolConfig && mCPToolConfig != null)
+            {
+                return mCPToolConfig(MCPToolConfig!);
+            }
 
             return default(TResult);
         }
@@ -187,9 +338,13 @@ namespace Speechify
         /// 
         /// </summary>
         public void Match(
-            global::System.Action<global::Speechify.TtsSystemToolConfig?>? systemToolConfig = null,
-            global::System.Action<global::Speechify.TtsWebhookToolConfig?>? webhookToolConfig = null,
-            global::System.Action<global::Speechify.TtsClientToolConfig?>? clientToolConfig = null,
+            global::System.Action<global::Speechify.TtsSystemToolConfig>? systemToolConfig = null,
+
+            global::System.Action<global::Speechify.TtsWebhookToolConfig>? webhookToolConfig = null,
+
+            global::System.Action<global::Speechify.TtsClientToolConfig>? clientToolConfig = null,
+
+            global::System.Action<global::Speechify.TtsMCPToolConfig>? mCPToolConfig = null,
             bool validate = true)
         {
             if (validate)
@@ -209,6 +364,43 @@ namespace Speechify
             {
                 clientToolConfig?.Invoke(ClientToolConfig!);
             }
+            else if (IsMCPToolConfig)
+            {
+                mCPToolConfig?.Invoke(MCPToolConfig!);
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public void Switch(
+            global::System.Action<global::Speechify.TtsSystemToolConfig>? systemToolConfig = null,
+            global::System.Action<global::Speechify.TtsWebhookToolConfig>? webhookToolConfig = null,
+            global::System.Action<global::Speechify.TtsClientToolConfig>? clientToolConfig = null,
+            global::System.Action<global::Speechify.TtsMCPToolConfig>? mCPToolConfig = null,
+            bool validate = true)
+        {
+            if (validate)
+            {
+                Validate();
+            }
+
+            if (IsSystemToolConfig)
+            {
+                systemToolConfig?.Invoke(SystemToolConfig!);
+            }
+            else if (IsWebhookToolConfig)
+            {
+                webhookToolConfig?.Invoke(WebhookToolConfig!);
+            }
+            else if (IsClientToolConfig)
+            {
+                clientToolConfig?.Invoke(ClientToolConfig!);
+            }
+            else if (IsMCPToolConfig)
+            {
+                mCPToolConfig?.Invoke(MCPToolConfig!);
+            }
         }
 
         /// <summary>
@@ -224,6 +416,8 @@ namespace Speechify
                 typeof(global::Speechify.TtsWebhookToolConfig),
                 ClientToolConfig,
                 typeof(global::Speechify.TtsClientToolConfig),
+                MCPToolConfig,
+                typeof(global::Speechify.TtsMCPToolConfig),
             };
             const int offset = unchecked((int)2166136261);
             const int prime = 16777619;
@@ -242,7 +436,8 @@ namespace Speechify
             return
                 global::System.Collections.Generic.EqualityComparer<global::Speechify.TtsSystemToolConfig?>.Default.Equals(SystemToolConfig, other.SystemToolConfig) &&
                 global::System.Collections.Generic.EqualityComparer<global::Speechify.TtsWebhookToolConfig?>.Default.Equals(WebhookToolConfig, other.WebhookToolConfig) &&
-                global::System.Collections.Generic.EqualityComparer<global::Speechify.TtsClientToolConfig?>.Default.Equals(ClientToolConfig, other.ClientToolConfig) 
+                global::System.Collections.Generic.EqualityComparer<global::Speechify.TtsClientToolConfig?>.Default.Equals(ClientToolConfig, other.ClientToolConfig) &&
+                global::System.Collections.Generic.EqualityComparer<global::Speechify.TtsMCPToolConfig?>.Default.Equals(MCPToolConfig, other.MCPToolConfig) 
                 ;
         }
 

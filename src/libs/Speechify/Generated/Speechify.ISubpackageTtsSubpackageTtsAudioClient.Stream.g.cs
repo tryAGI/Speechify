@@ -5,23 +5,65 @@ namespace Speechify
     public partial interface ISubpackageTtsSubpackageTtsAudioClient
     {
         /// <summary>
-        /// Stream<br/>
-        /// Gets the stream speech for the given input
+        /// Stream Speech<br/>
+        /// Synthesize speech and stream the audio back as it is generated, for<br/>
+        /// low-latency playback. The Accept header selects the audio container.<br/>
+        /// For short text where receiving the whole file at once is fine, use<br/>
+        /// POST /v1/audio/speech.
         /// </summary>
         /// <param name="accept"></param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
-        global::System.Threading.Tasks.Task<global::Speechify.TtsAudioStreamResponse200> StreamAsync(
+        global::System.Threading.Tasks.Task<byte[]> StreamAsync(
             global::Speechify.TtsV1AudioStreamPostParametersAccept accept,
 
             global::Speechify.TtsGetStreamRequest request,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
-        /// Stream<br/>
-        /// Gets the stream speech for the given input
+        /// Stream Speech<br/>
+        /// Synthesize speech and stream the audio back as it is generated, for<br/>
+        /// low-latency playback. The Accept header selects the audio container.<br/>
+        /// For short text where receiving the whole file at once is fine, use<br/>
+        /// POST /v1/audio/speech.
+        /// </summary>
+        /// <param name="accept"></param>
+        /// <param name="request"></param>
+        /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
+        /// <param name="cancellationToken">The token to cancel the operation with</param>
+        /// <exception cref="global::Speechify.ApiException"></exception>
+        global::System.Threading.Tasks.Task<global::System.IO.Stream> StreamAsStreamAsync(
+            global::Speechify.TtsV1AudioStreamPostParametersAccept accept,
+
+            global::Speechify.TtsGetStreamRequest request,
+            global::Speechify.AutoSDKRequestOptions? requestOptions = default,
+            global::System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Stream Speech<br/>
+        /// Synthesize speech and stream the audio back as it is generated, for<br/>
+        /// low-latency playback. The Accept header selects the audio container.<br/>
+        /// For short text where receiving the whole file at once is fine, use<br/>
+        /// POST /v1/audio/speech.
+        /// </summary>
+        /// <param name="accept"></param>
+        /// <param name="request"></param>
+        /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
+        /// <param name="cancellationToken">The token to cancel the operation with</param>
+        /// <exception cref="global::Speechify.ApiException"></exception>
+        global::System.Threading.Tasks.Task<global::Speechify.AutoSDKHttpResponse<byte[]>> StreamAsResponseAsync(
+            global::Speechify.TtsV1AudioStreamPostParametersAccept accept,
+
+            global::Speechify.TtsGetStreamRequest request,
+            global::Speechify.AutoSDKRequestOptions? requestOptions = default,
+            global::System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Stream Speech<br/>
+        /// Synthesize speech and stream the audio back as it is generated, for<br/>
+        /// low-latency playback. The Accept header selects the audio container.<br/>
+        /// For short text where receiving the whole file at once is fine, use<br/>
+        /// POST /v1/audio/speech.
         /// </summary>
         /// <param name="accept"></param>
         /// <param name="input">
@@ -34,7 +76,7 @@ namespace Speechify
         /// Please refer to the list of the supported languages and recommendations regarding this parameter: https://docs.speechify.ai/docs/language-support.
         /// </param>
         /// <param name="model">
-        /// Model used for audio synthesis. `simba-base` and `simba-turbo` are deprecated. Use `simba-english` or `simba-multilingual` instead.<br/>
+        /// Model used for audio synthesis. `simba-english` is optimized for English, `simba-multilingual` for non-English or mixed input. `simba-3.0` is the streaming-native model with lower TTFB and richer expressivity. Currently English only; multilingual coming soon. Non-English voices return 400 until multilingual support ships.<br/>
         /// Default Value: simba-english
         /// </param>
         /// <param name="options">
@@ -46,7 +88,7 @@ namespace Speechify
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::System.InvalidOperationException"></exception>
-        global::System.Threading.Tasks.Task<global::Speechify.TtsAudioStreamResponse200> StreamAsync(
+        global::System.Threading.Tasks.Task<byte[]> StreamAsync(
             global::Speechify.TtsV1AudioStreamPostParametersAccept accept,
             string input,
             string voiceId,

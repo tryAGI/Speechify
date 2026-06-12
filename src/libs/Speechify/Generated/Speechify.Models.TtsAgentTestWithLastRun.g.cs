@@ -6,21 +6,25 @@ namespace Speechify
     /// <summary>
     /// List-view projection of a test that includes the most recent run<br/>
     /// so the console can display pass/fail badges without an extra<br/>
-    /// round-trip. On the global `/v1/tests` surface, also carries<br/>
+    /// round-trip. On the global `/v1/agents/tests` surface, also carries<br/>
     /// `attached_agent_ids` so the row can render agent chips without a<br/>
     /// follow-up request.
     /// </summary>
     public sealed partial class TtsAgentTestWithLastRun
     {
         /// <summary>
-        /// 
+        /// Prefixed wire identifier (`test_&lt;26 char Crockford base32&gt;`).<br/>
+        /// ADR 0015 Cluster 3 hard-break: URL paths accept only this<br/>
+        /// prefixed form; legacy UUID path parameters are rejected with<br/>
+        /// 404 as of Cluster 3.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("id")]
         [global::System.Text.Json.Serialization.JsonRequired]
         public required string Id { get; set; }
 
         /// <summary>
-        /// 
+        /// Prefixed wire identifier (`agent_&lt;26 char Crockford base32&gt;`)<br/>
+        /// of the owning agent. ADR 0015 FK consistency.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("agent_id")]
         [global::System.Text.Json.Serialization.JsonRequired]
@@ -42,7 +46,7 @@ namespace Speechify
 
         /// <summary>
         /// Discriminates the shape of `AgentTest.config`.<br/>
-        /// - `scenario` - send one message to the agent and judge the response with an LLM.<br/>
+        /// - `reply` - send one message to the agent and judge the response with an LLM.<br/>
         /// - `tool` - assert that the agent calls a specific tool given a context.<br/>
         /// - `simulation` - run a multi-turn conversation between the agent and an AI caller.
         /// </summary>
@@ -74,7 +78,9 @@ namespace Speechify
         public object? Variables { get; set; }
 
         /// <summary>
-        /// Folder the test belongs to; null = root (unfiled).
+        /// When set, prefixed wire identifier<br/>
+        /// (`folder_&lt;26 char Crockford base32&gt;`) of the containing folder.<br/>
+        /// Null means root (unfiled). ADR 0015 FK consistency.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("folder_id")]
         public string? FolderId { get; set; }
@@ -115,13 +121,21 @@ namespace Speechify
         /// <summary>
         /// Initializes a new instance of the <see cref="TtsAgentTestWithLastRun" /> class.
         /// </summary>
-        /// <param name="id"></param>
-        /// <param name="agentId"></param>
+        /// <param name="id">
+        /// Prefixed wire identifier (`test_&lt;26 char Crockford base32&gt;`).<br/>
+        /// ADR 0015 Cluster 3 hard-break: URL paths accept only this<br/>
+        /// prefixed form; legacy UUID path parameters are rejected with<br/>
+        /// 404 as of Cluster 3.
+        /// </param>
+        /// <param name="agentId">
+        /// Prefixed wire identifier (`agent_&lt;26 char Crockford base32&gt;`)<br/>
+        /// of the owning agent. ADR 0015 FK consistency.
+        /// </param>
         /// <param name="name"></param>
         /// <param name="description"></param>
         /// <param name="type">
         /// Discriminates the shape of `AgentTest.config`.<br/>
-        /// - `scenario` - send one message to the agent and judge the response with an LLM.<br/>
+        /// - `reply` - send one message to the agent and judge the response with an LLM.<br/>
         /// - `tool` - assert that the agent calls a specific tool given a context.<br/>
         /// - `simulation` - run a multi-turn conversation between the agent and an AI caller.
         /// </param>
@@ -139,7 +153,9 @@ namespace Speechify
         /// render as empty string, matching session dispatch behaviour.
         /// </param>
         /// <param name="folderId">
-        /// Folder the test belongs to; null = root (unfiled).
+        /// When set, prefixed wire identifier<br/>
+        /// (`folder_&lt;26 char Crockford base32&gt;`) of the containing folder.<br/>
+        /// Null means root (unfiled). ADR 0015 FK consistency.
         /// </param>
         /// <param name="lastRun">
         /// The most recent run, or null if the test has never been run.
@@ -186,5 +202,6 @@ namespace Speechify
         public TtsAgentTestWithLastRun()
         {
         }
+
     }
 }

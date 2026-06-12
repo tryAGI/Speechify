@@ -32,6 +32,7 @@ namespace Speechify.JsonConverters
             if (__jsonProps.Contains("builtin_config")) __score0++;
             if (__jsonProps.Contains("params")) __score0++;
             var __score1 = 0;
+            if (__jsonProps.Contains("fire_and_forget")) __score1++;
             if (__jsonProps.Contains("headers")) __score1++;
             if (__jsonProps.Contains("method")) __score1++;
             if (__jsonProps.Contains("params")) __score1++;
@@ -40,15 +41,21 @@ namespace Speechify.JsonConverters
             var __score2 = 0;
             if (__jsonProps.Contains("params")) __score2++;
             if (__jsonProps.Contains("timeout_ms")) __score2++;
+            var __score3 = 0;
+            if (__jsonProps.Contains("auth")) __score3++;
+            if (__jsonProps.Contains("endpoint")) __score3++;
+            if (__jsonProps.Contains("transport")) __score3++;
             var __bestScore = 0;
             var __bestIndex = -1;
             if (__score0 > __bestScore) { __bestScore = __score0; __bestIndex = 0; }
             if (__score1 > __bestScore) { __bestScore = __score1; __bestIndex = 1; }
             if (__score2 > __bestScore) { __bestScore = __score2; __bestIndex = 2; }
+            if (__score3 > __bestScore) { __bestScore = __score3; __bestIndex = 3; }
 
             global::Speechify.TtsSystemToolConfig? systemToolConfig = default;
             global::Speechify.TtsWebhookToolConfig? webhookToolConfig = default;
             global::Speechify.TtsClientToolConfig? clientToolConfig = default;
+            global::Speechify.TtsMCPToolConfig? mCPToolConfig = default;
             if (__bestIndex >= 0)
             {
                 if (__bestIndex == 0)
@@ -96,12 +103,28 @@ namespace Speechify.JsonConverters
                     {
                     }
                 }
+                else if (__bestIndex == 3)
+                {
+                    try
+                    {
+                        var typeInfo = typeInfoResolver.GetTypeInfo(typeof(global::Speechify.TtsMCPToolConfig), options) as global::System.Text.Json.Serialization.Metadata.JsonTypeInfo<global::Speechify.TtsMCPToolConfig> ??
+                                       throw new global::System.InvalidOperationException($"Cannot get type info for {typeof(global::Speechify.TtsMCPToolConfig).Name}");
+                        mCPToolConfig = global::System.Text.Json.JsonSerializer.Deserialize(__rawJson, typeInfo);
+                    }
+                    catch (global::System.Text.Json.JsonException)
+                    {
+                    }
+                    catch (global::System.InvalidOperationException)
+                    {
+                    }
+                }
             }
 
-            if (systemToolConfig == null && webhookToolConfig == null && clientToolConfig == null)
+            if (systemToolConfig == null && webhookToolConfig == null && clientToolConfig == null && mCPToolConfig == null)
             {
                 try
                 {
+
                     var typeInfo = typeInfoResolver.GetTypeInfo(typeof(global::Speechify.TtsSystemToolConfig), options) as global::System.Text.Json.Serialization.Metadata.JsonTypeInfo<global::Speechify.TtsSystemToolConfig> ??
                                    throw new global::System.InvalidOperationException($"Cannot get type info for {typeof(global::Speechify.TtsSystemToolConfig).Name}");
                     systemToolConfig = global::System.Text.Json.JsonSerializer.Deserialize(__rawJson, typeInfo);
@@ -112,9 +135,13 @@ namespace Speechify.JsonConverters
                 catch (global::System.InvalidOperationException)
                 {
                 }
+            }
 
+            if (systemToolConfig == null && webhookToolConfig == null && clientToolConfig == null && mCPToolConfig == null)
+            {
                 try
                 {
+
                     var typeInfo = typeInfoResolver.GetTypeInfo(typeof(global::Speechify.TtsWebhookToolConfig), options) as global::System.Text.Json.Serialization.Metadata.JsonTypeInfo<global::Speechify.TtsWebhookToolConfig> ??
                                    throw new global::System.InvalidOperationException($"Cannot get type info for {typeof(global::Speechify.TtsWebhookToolConfig).Name}");
                     webhookToolConfig = global::System.Text.Json.JsonSerializer.Deserialize(__rawJson, typeInfo);
@@ -125,12 +152,33 @@ namespace Speechify.JsonConverters
                 catch (global::System.InvalidOperationException)
                 {
                 }
+            }
 
+            if (systemToolConfig == null && webhookToolConfig == null && clientToolConfig == null && mCPToolConfig == null)
+            {
                 try
                 {
+
                     var typeInfo = typeInfoResolver.GetTypeInfo(typeof(global::Speechify.TtsClientToolConfig), options) as global::System.Text.Json.Serialization.Metadata.JsonTypeInfo<global::Speechify.TtsClientToolConfig> ??
                                    throw new global::System.InvalidOperationException($"Cannot get type info for {typeof(global::Speechify.TtsClientToolConfig).Name}");
                     clientToolConfig = global::System.Text.Json.JsonSerializer.Deserialize(__rawJson, typeInfo);
+                }
+                catch (global::System.Text.Json.JsonException)
+                {
+                }
+                catch (global::System.InvalidOperationException)
+                {
+                }
+            }
+
+            if (systemToolConfig == null && webhookToolConfig == null && clientToolConfig == null && mCPToolConfig == null)
+            {
+                try
+                {
+
+                    var typeInfo = typeInfoResolver.GetTypeInfo(typeof(global::Speechify.TtsMCPToolConfig), options) as global::System.Text.Json.Serialization.Metadata.JsonTypeInfo<global::Speechify.TtsMCPToolConfig> ??
+                                   throw new global::System.InvalidOperationException($"Cannot get type info for {typeof(global::Speechify.TtsMCPToolConfig).Name}");
+                    mCPToolConfig = global::System.Text.Json.JsonSerializer.Deserialize(__rawJson, typeInfo);
                 }
                 catch (global::System.Text.Json.JsonException)
                 {
@@ -145,7 +193,9 @@ namespace Speechify.JsonConverters
 
                 webhookToolConfig,
 
-                clientToolConfig
+                clientToolConfig,
+
+                mCPToolConfig
                 );
 
             return __value;
@@ -177,6 +227,12 @@ namespace Speechify.JsonConverters
                 var typeInfo = typeInfoResolver.GetTypeInfo(typeof(global::Speechify.TtsClientToolConfig), options) as global::System.Text.Json.Serialization.Metadata.JsonTypeInfo<global::Speechify.TtsClientToolConfig?> ??
                                throw new global::System.InvalidOperationException($"Cannot get type info for {typeof(global::Speechify.TtsClientToolConfig).Name}");
                 global::System.Text.Json.JsonSerializer.Serialize(writer, value.ClientToolConfig!, typeInfo);
+            }
+            else if (value.IsMCPToolConfig)
+            {
+                var typeInfo = typeInfoResolver.GetTypeInfo(typeof(global::Speechify.TtsMCPToolConfig), options) as global::System.Text.Json.Serialization.Metadata.JsonTypeInfo<global::Speechify.TtsMCPToolConfig?> ??
+                               throw new global::System.InvalidOperationException($"Cannot get type info for {typeof(global::Speechify.TtsMCPToolConfig).Name}");
+                global::System.Text.Json.JsonSerializer.Serialize(writer, value.MCPToolConfig!, typeInfo);
             }
         }
     }

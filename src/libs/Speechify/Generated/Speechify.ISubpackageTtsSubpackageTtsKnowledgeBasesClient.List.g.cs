@@ -5,13 +5,37 @@ namespace Speechify
     public partial interface ISubpackageTtsSubpackageTtsKnowledgeBasesClient
     {
         /// <summary>
-        /// List<br/>
-        /// List knowledge bases owned by the caller.
+        /// List Knowledge Bases<br/>
+        /// List knowledge bases owned by the caller. Cursor-paginated:<br/>
+        /// omit `cursor` to fetch the first page. The default page size is<br/>
+        /// 50 and the max is 200; values outside that range are clamped.<br/>
+        /// Walk pages while `has_more` is true.
         /// </summary>
+        /// <param name="cursor"></param>
+        /// <param name="limit"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
         global::System.Threading.Tasks.Task<global::Speechify.TtsListKnowledgeBasesResponse> ListAsync(
+            string? cursor = default,
+            int? limit = default,
+            global::Speechify.AutoSDKRequestOptions? requestOptions = default,
+            global::System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// List Knowledge Bases<br/>
+        /// List knowledge bases owned by the caller. Cursor-paginated:<br/>
+        /// omit `cursor` to fetch the first page. The default page size is<br/>
+        /// 50 and the max is 200; values outside that range are clamped.<br/>
+        /// Walk pages while `has_more` is true.
+        /// </summary>
+        /// <param name="cursor"></param>
+        /// <param name="limit"></param>
+        /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
+        /// <param name="cancellationToken">The token to cancel the operation with</param>
+        /// <exception cref="global::Speechify.ApiException"></exception>
+        global::System.Threading.Tasks.Task<global::Speechify.AutoSDKHttpResponse<global::Speechify.TtsListKnowledgeBasesResponse>> ListAsResponseAsync(
+            string? cursor = default,
+            int? limit = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
     }

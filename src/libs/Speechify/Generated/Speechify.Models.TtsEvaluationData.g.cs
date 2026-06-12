@@ -4,7 +4,7 @@
 namespace Speechify
 {
     /// <summary>
-    /// Any type
+    /// Structured data-collection payload (present only on `kind=data` rows).
     /// </summary>
     public sealed partial class TtsEvaluationData
     {
@@ -14,5 +14,6 @@ namespace Speechify
         /// </summary>
         [global::System.Text.Json.Serialization.JsonExtensionData]
         public global::System.Collections.Generic.IDictionary<string, object> AdditionalProperties { get; set; } = new global::System.Collections.Generic.Dictionary<string, object>();
+
     }
 }

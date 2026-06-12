@@ -50,5 +50,6 @@ namespace Speechify
         public TtsEvaluationConfig()
         {
         }
+
     }
 }

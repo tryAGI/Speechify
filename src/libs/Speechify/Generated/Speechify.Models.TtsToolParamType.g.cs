@@ -4,7 +4,7 @@
 namespace Speechify
 {
     /// <summary>
-    /// 
+    /// Permitted JSON-Schema primitive types for tool params.
     /// </summary>
     public enum TtsToolParamType
     {

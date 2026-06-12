@@ -5,9 +5,10 @@ namespace Speechify
 {
     /// <summary>
     /// Where the tool executes.<br/>
-    /// - `system`:  worker-resident built-in (e.g. end_call, transfer_to_number)<br/>
+    /// - `system`:  worker-resident built-in (e.g. end_call, play_audio)<br/>
     /// - `webhook`: worker signs a payload and POSTs it to your URL<br/>
-    /// - `client`:  worker dispatches to the caller's browser/SDK via data channel
+    /// - `client`:  worker dispatches to the caller's browser/SDK via data channel<br/>
+    /// - `mcp`:     worker connects to a customer-hosted MCP server and proxies tool calls (AIS-3056)
     /// </summary>
     public enum TtsToolKind
     {
@@ -16,7 +17,11 @@ namespace Speechify
         /// </summary>
         Client,
         /// <summary>
-        /// worker-resident built-in (e.g. end_call, transfer_to_number)
+        /// worker connects to a customer-hosted MCP server and proxies tool calls (AIS-3056)
+        /// </summary>
+        Mcp,
+        /// <summary>
+        /// worker-resident built-in (e.g. end_call, play_audio)
         /// </summary>
         System,
         /// <summary>
@@ -38,6 +43,7 @@ namespace Speechify
             return value switch
             {
                 TtsToolKind.Client => "client",
+                TtsToolKind.Mcp => "mcp",
                 TtsToolKind.System => "system",
                 TtsToolKind.Webhook => "webhook",
                 _ => throw new global::System.ArgumentOutOfRangeException(nameof(value), value, null),
@@ -51,6 +57,7 @@ namespace Speechify
             return value switch
             {
                 "client" => TtsToolKind.Client,
+                "mcp" => TtsToolKind.Mcp,
                 "system" => TtsToolKind.System,
                 "webhook" => TtsToolKind.Webhook,
                 _ => null,

@@ -5,7 +5,7 @@ namespace Speechify
 {
     /// <summary>
     /// Discriminates the shape of `AgentTest.config`.<br/>
-    /// - `scenario` - send one message to the agent and judge the response with an LLM.<br/>
+    /// - `reply` - send one message to the agent and judge the response with an LLM.<br/>
     /// - `tool` - assert that the agent calls a specific tool given a context.<br/>
     /// - `simulation` - run a multi-turn conversation between the agent and an AI caller.
     /// </summary>
@@ -14,7 +14,7 @@ namespace Speechify
         /// <summary>
         /// 
         /// </summary>
-        Scenario,
+        Reply,
         /// <summary>
         /// 
         /// </summary>
@@ -37,7 +37,7 @@ namespace Speechify
         {
             return value switch
             {
-                TtsTestType.Scenario => "scenario",
+                TtsTestType.Reply => "reply",
                 TtsTestType.Simulation => "simulation",
                 TtsTestType.Tool => "tool",
                 _ => throw new global::System.ArgumentOutOfRangeException(nameof(value), value, null),
@@ -50,7 +50,7 @@ namespace Speechify
         {
             return value switch
             {
-                "scenario" => TtsTestType.Scenario,
+                "reply" => TtsTestType.Reply,
                 "simulation" => TtsTestType.Simulation,
                 "tool" => TtsTestType.Tool,
                 _ => null,

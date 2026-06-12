@@ -10,14 +10,17 @@ namespace Speechify
     public sealed partial class TtsBatchRunEntry
     {
         /// <summary>
-        /// 
+        /// Prefixed wire identifier (`test_&lt;26 char Crockford base32&gt;`)<br/>
+        /// of the test to run.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("test_id")]
         [global::System.Text.Json.Serialization.JsonRequired]
         public required string TestId { get; set; }
 
         /// <summary>
-        /// 
+        /// Prefixed wire identifier (`agent_&lt;26 char Crockford base32&gt;`)<br/>
+        /// of the agent to run the test against. Omit to fan out to<br/>
+        /// every agent the test is attached to.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("agent_id")]
         public string? AgentId { get; set; }
@@ -31,8 +34,15 @@ namespace Speechify
         /// <summary>
         /// Initializes a new instance of the <see cref="TtsBatchRunEntry" /> class.
         /// </summary>
-        /// <param name="testId"></param>
-        /// <param name="agentId"></param>
+        /// <param name="testId">
+        /// Prefixed wire identifier (`test_&lt;26 char Crockford base32&gt;`)<br/>
+        /// of the test to run.
+        /// </param>
+        /// <param name="agentId">
+        /// Prefixed wire identifier (`agent_&lt;26 char Crockford base32&gt;`)<br/>
+        /// of the agent to run the test against. Omit to fan out to<br/>
+        /// every agent the test is attached to.
+        /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
 #endif
@@ -50,5 +60,6 @@ namespace Speechify
         public TtsBatchRunEntry()
         {
         }
+
     }
 }

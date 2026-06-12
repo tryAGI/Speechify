@@ -22,7 +22,9 @@ namespace Speechify
         public required string Id { get; set; }
 
         /// <summary>
-        /// 
+        /// Prefixed wire identifier (`conv_&lt;26 char Crockford base32&gt;`)<br/>
+        /// of the conversation this evaluation is attached to. ADR 0015<br/>
+        /// FK consistency.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("conversation_id")]
         [global::System.Text.Json.Serialization.JsonRequired]
@@ -98,7 +100,11 @@ namespace Speechify
         /// Initializes a new instance of the <see cref="TtsEvaluation" /> class.
         /// </summary>
         /// <param name="id"></param>
-        /// <param name="conversationId"></param>
+        /// <param name="conversationId">
+        /// Prefixed wire identifier (`conv_&lt;26 char Crockford base32&gt;`)<br/>
+        /// of the conversation this evaluation is attached to. ADR 0015<br/>
+        /// FK consistency.
+        /// </param>
         /// <param name="kind"></param>
         /// <param name="name"></param>
         /// <param name="rationale"></param>
@@ -147,5 +153,6 @@ namespace Speechify
         public TtsEvaluation()
         {
         }
+
     }
 }

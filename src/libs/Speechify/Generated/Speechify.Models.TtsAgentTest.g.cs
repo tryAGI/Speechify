@@ -5,20 +5,24 @@ namespace Speechify
 {
     /// <summary>
     /// A configured test against a voice agent. `config` is a<br/>
-    /// type-specific document - see `ScenarioConfig`, `ToolCallConfig`,<br/>
+    /// type-specific document - see `ReplyConfig`, `ToolCallConfig`,<br/>
     /// and `SimulationConfig` for the per-type shapes (discriminated by `type`).
     /// </summary>
     public sealed partial class TtsAgentTest
     {
         /// <summary>
-        /// 
+        /// Prefixed wire identifier (`test_&lt;26 char Crockford base32&gt;`).<br/>
+        /// ADR 0015 Cluster 3 hard-break: URL paths accept only this<br/>
+        /// prefixed form; legacy UUID path parameters are rejected with<br/>
+        /// 404 as of Cluster 3.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("id")]
         [global::System.Text.Json.Serialization.JsonRequired]
         public required string Id { get; set; }
 
         /// <summary>
-        /// 
+        /// Prefixed wire identifier (`agent_&lt;26 char Crockford base32&gt;`)<br/>
+        /// of the owning agent. ADR 0015 FK consistency.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("agent_id")]
         [global::System.Text.Json.Serialization.JsonRequired]
@@ -40,7 +44,7 @@ namespace Speechify
 
         /// <summary>
         /// Discriminates the shape of `AgentTest.config`.<br/>
-        /// - `scenario` - send one message to the agent and judge the response with an LLM.<br/>
+        /// - `reply` - send one message to the agent and judge the response with an LLM.<br/>
         /// - `tool` - assert that the agent calls a specific tool given a context.<br/>
         /// - `simulation` - run a multi-turn conversation between the agent and an AI caller.
         /// </summary>
@@ -72,7 +76,9 @@ namespace Speechify
         public object? Variables { get; set; }
 
         /// <summary>
-        /// Folder the test belongs to; null = root (unfiled).
+        /// When set, prefixed wire identifier<br/>
+        /// (`folder_&lt;26 char Crockford base32&gt;`) of the containing folder.<br/>
+        /// Null means root (unfiled). ADR 0015 FK consistency.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("folder_id")]
         public string? FolderId { get; set; }
@@ -100,13 +106,21 @@ namespace Speechify
         /// <summary>
         /// Initializes a new instance of the <see cref="TtsAgentTest" /> class.
         /// </summary>
-        /// <param name="id"></param>
-        /// <param name="agentId"></param>
+        /// <param name="id">
+        /// Prefixed wire identifier (`test_&lt;26 char Crockford base32&gt;`).<br/>
+        /// ADR 0015 Cluster 3 hard-break: URL paths accept only this<br/>
+        /// prefixed form; legacy UUID path parameters are rejected with<br/>
+        /// 404 as of Cluster 3.
+        /// </param>
+        /// <param name="agentId">
+        /// Prefixed wire identifier (`agent_&lt;26 char Crockford base32&gt;`)<br/>
+        /// of the owning agent. ADR 0015 FK consistency.
+        /// </param>
         /// <param name="name"></param>
         /// <param name="description"></param>
         /// <param name="type">
         /// Discriminates the shape of `AgentTest.config`.<br/>
-        /// - `scenario` - send one message to the agent and judge the response with an LLM.<br/>
+        /// - `reply` - send one message to the agent and judge the response with an LLM.<br/>
         /// - `tool` - assert that the agent calls a specific tool given a context.<br/>
         /// - `simulation` - run a multi-turn conversation between the agent and an AI caller.
         /// </param>
@@ -124,7 +138,9 @@ namespace Speechify
         /// render as empty string, matching session dispatch behaviour.
         /// </param>
         /// <param name="folderId">
-        /// Folder the test belongs to; null = root (unfiled).
+        /// When set, prefixed wire identifier<br/>
+        /// (`folder_&lt;26 char Crockford base32&gt;`) of the containing folder.<br/>
+        /// Null means root (unfiled). ADR 0015 FK consistency.
         /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
@@ -161,5 +177,6 @@ namespace Speechify
         public TtsAgentTest()
         {
         }
+
     }
 }

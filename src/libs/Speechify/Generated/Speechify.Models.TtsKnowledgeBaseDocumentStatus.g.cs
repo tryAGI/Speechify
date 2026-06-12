@@ -4,7 +4,10 @@
 namespace Speechify
 {
     /// <summary>
-    /// 
+    /// Document lifecycle. `fetching` is the pre-scrape state used<br/>
+    /// only by url-sourced rows; file and text docs skip straight<br/>
+    /// to `embedding` because their content is available<br/>
+    /// synchronously. Terminal states are `ready` and `failed`.
     /// </summary>
     public enum TtsKnowledgeBaseDocumentStatus
     {
@@ -16,6 +19,10 @@ namespace Speechify
         /// 
         /// </summary>
         Failed,
+        /// <summary>
+        /// 
+        /// </summary>
+        Fetching,
         /// <summary>
         /// 
         /// </summary>
@@ -36,6 +43,7 @@ namespace Speechify
             {
                 TtsKnowledgeBaseDocumentStatus.Embedding => "embedding",
                 TtsKnowledgeBaseDocumentStatus.Failed => "failed",
+                TtsKnowledgeBaseDocumentStatus.Fetching => "fetching",
                 TtsKnowledgeBaseDocumentStatus.Ready => "ready",
                 _ => throw new global::System.ArgumentOutOfRangeException(nameof(value), value, null),
             };
@@ -49,6 +57,7 @@ namespace Speechify
             {
                 "embedding" => TtsKnowledgeBaseDocumentStatus.Embedding,
                 "failed" => TtsKnowledgeBaseDocumentStatus.Failed,
+                "fetching" => TtsKnowledgeBaseDocumentStatus.Fetching,
                 "ready" => TtsKnowledgeBaseDocumentStatus.Ready,
                 _ => null,
             };

@@ -1,0 +1,151 @@
+
+#nullable enable
+
+namespace Speechify
+{
+    /// <summary>
+    /// Body for `POST /v1/agents/phone-numbers`. The required fields vary by<br/>
+    /// `source` - see the individual source descriptions.
+    /// </summary>
+    public sealed partial class TtsImportPhoneNumberRequest
+    {
+        /// <summary>
+        /// The phone number in E.164 format. For `source=livekit` this<br/>
+        /// is the number you want LiveKit to purchase. For `source=twilio`<br/>
+        /// and `source=byoc` it is the number you already own.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("e164")]
+        [global::System.Text.Json.Serialization.JsonRequired]
+        public required string E164 { get; set; }
+
+        /// <summary>
+        /// Where the number came from. Determines the provisioning and<br/>
+        /// portability path.<br/>
+        /// - `livekit` - LiveKit owns the carrier relationship; US inbound only.<br/>
+        /// - `twilio` - Customer's own Twilio number bridged via Elastic SIP Trunk.<br/>
+        /// - `byoc` - Any SIP provider using a customer-supplied trunk.<br/>
+        /// - `twilio_purchased` - Bought through `POST /v1/agents/phone-numbers/purchase` on Speechify's master Twilio account; billed to Speechify.<br/>
+        /// - `verified_caller_id` - Customer-verified outbound caller ID on<br/>
+        ///   their own Twilio account (Twilio's OutgoingCallerIds resource).<br/>
+        ///   Server-determined at import time: when an `e164` submitted with<br/>
+        ///   `source=twilio` is not a full DID on the customer's account but<br/>
+        ///   IS a verified caller ID, the resulting row gets this source.<br/>
+        ///   Outbound-only, never agent-bindable, rides the customer's<br/>
+        ///   existing shared Twilio trunk for outbound routing. Requires a<br/>
+        ///   prior `twilio` full-DID import from the same account; without<br/>
+        ///   it the import returns 400.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("source")]
+        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Speechify.JsonConverters.TtsPhoneNumberSourceJsonConverter))]
+        [global::System.Text.Json.Serialization.JsonRequired]
+        public required global::Speechify.TtsPhoneNumberSource Source { get; set; }
+
+        /// <summary>
+        /// Optional human-readable label.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("label")]
+        public string? Label { get; set; }
+
+        /// <summary>
+        /// For `source=byoc`: the SIP trunk to bind this number to.<br/>
+        /// Prefixed wire identifier (`trunk_&lt;26 char Crockford base32&gt;`).<br/>
+        /// Not required for `source=livekit` or `source=twilio`.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("trunk_id")]
+        public string? TrunkId { get; set; }
+
+        /// <summary>
+        /// Optional agent to bind on import. Prefixed wire identifier<br/>
+        /// (`agent_&lt;26 char Crockford base32&gt;`).
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("agent_id")]
+        public string? AgentId { get; set; }
+
+        /// <summary>
+        /// Twilio credentials for the one-click import flow. Used only when<br/>
+        /// `source=twilio`. The Account SID and Auth Token are used to<br/>
+        /// provision an Elastic SIP Trunk on the customer's Twilio account<br/>
+        /// pointing at LiveKit's SIP endpoint, then stored for future trunk<br/>
+        /// management operations.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("twilio")]
+        public global::Speechify.TtsTwilioImportSpec? Twilio { get; set; }
+
+        /// <summary>
+        /// Additional properties that are not explicitly defined in the schema
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonExtensionData]
+        public global::System.Collections.Generic.IDictionary<string, object> AdditionalProperties { get; set; } = new global::System.Collections.Generic.Dictionary<string, object>();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="TtsImportPhoneNumberRequest" /> class.
+        /// </summary>
+        /// <param name="e164">
+        /// The phone number in E.164 format. For `source=livekit` this<br/>
+        /// is the number you want LiveKit to purchase. For `source=twilio`<br/>
+        /// and `source=byoc` it is the number you already own.
+        /// </param>
+        /// <param name="source">
+        /// Where the number came from. Determines the provisioning and<br/>
+        /// portability path.<br/>
+        /// - `livekit` - LiveKit owns the carrier relationship; US inbound only.<br/>
+        /// - `twilio` - Customer's own Twilio number bridged via Elastic SIP Trunk.<br/>
+        /// - `byoc` - Any SIP provider using a customer-supplied trunk.<br/>
+        /// - `twilio_purchased` - Bought through `POST /v1/agents/phone-numbers/purchase` on Speechify's master Twilio account; billed to Speechify.<br/>
+        /// - `verified_caller_id` - Customer-verified outbound caller ID on<br/>
+        ///   their own Twilio account (Twilio's OutgoingCallerIds resource).<br/>
+        ///   Server-determined at import time: when an `e164` submitted with<br/>
+        ///   `source=twilio` is not a full DID on the customer's account but<br/>
+        ///   IS a verified caller ID, the resulting row gets this source.<br/>
+        ///   Outbound-only, never agent-bindable, rides the customer's<br/>
+        ///   existing shared Twilio trunk for outbound routing. Requires a<br/>
+        ///   prior `twilio` full-DID import from the same account; without<br/>
+        ///   it the import returns 400.
+        /// </param>
+        /// <param name="label">
+        /// Optional human-readable label.
+        /// </param>
+        /// <param name="trunkId">
+        /// For `source=byoc`: the SIP trunk to bind this number to.<br/>
+        /// Prefixed wire identifier (`trunk_&lt;26 char Crockford base32&gt;`).<br/>
+        /// Not required for `source=livekit` or `source=twilio`.
+        /// </param>
+        /// <param name="agentId">
+        /// Optional agent to bind on import. Prefixed wire identifier<br/>
+        /// (`agent_&lt;26 char Crockford base32&gt;`).
+        /// </param>
+        /// <param name="twilio">
+        /// Twilio credentials for the one-click import flow. Used only when<br/>
+        /// `source=twilio`. The Account SID and Auth Token are used to<br/>
+        /// provision an Elastic SIP Trunk on the customer's Twilio account<br/>
+        /// pointing at LiveKit's SIP endpoint, then stored for future trunk<br/>
+        /// management operations.
+        /// </param>
+#if NET7_0_OR_GREATER
+        [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
+#endif
+        public TtsImportPhoneNumberRequest(
+            string e164,
+            global::Speechify.TtsPhoneNumberSource source,
+            string? label,
+            string? trunkId,
+            string? agentId,
+            global::Speechify.TtsTwilioImportSpec? twilio)
+        {
+            this.E164 = e164 ?? throw new global::System.ArgumentNullException(nameof(e164));
+            this.Source = source;
+            this.Label = label;
+            this.TrunkId = trunkId;
+            this.AgentId = agentId;
+            this.Twilio = twilio;
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="TtsImportPhoneNumberRequest" /> class.
+        /// </summary>
+        public TtsImportPhoneNumberRequest()
+        {
+        }
+
+    }
+}

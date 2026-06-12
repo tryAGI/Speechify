@@ -42,7 +42,7 @@ namespace Speechify
             ref string content);
 
         /// <summary>
-        /// Create<br/>
+        /// Create Agent<br/>
         /// Create a voice agent.
         /// </summary>
         /// <param name="request"></param>
@@ -50,6 +50,29 @@ namespace Speechify
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
         public async global::System.Threading.Tasks.Task<global::Speechify.TtsAgent> CreateAsync(
+
+            global::Speechify.TtsCreateAgentRequest request,
+            global::Speechify.AutoSDKRequestOptions? requestOptions = default,
+            global::System.Threading.CancellationToken cancellationToken = default)
+        {
+            var __response = await CreateAsResponseAsync(
+
+                request: request,
+                requestOptions: requestOptions,
+                cancellationToken: cancellationToken
+            ).ConfigureAwait(false);
+
+            return __response.Body;
+        }
+        /// <summary>
+        /// Create Agent<br/>
+        /// Create a voice agent.
+        /// </summary>
+        /// <param name="request"></param>
+        /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
+        /// <param name="cancellationToken">The token to cancel the operation with</param>
+        /// <exception cref="global::Speechify.ApiException"></exception>
+        public async global::System.Threading.Tasks.Task<global::Speechify.AutoSDKHttpResponse<global::Speechify.TtsAgent>> CreateAsResponseAsync(
 
             global::Speechify.TtsCreateAgentRequest request,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
@@ -85,6 +108,7 @@ namespace Speechify
 
             global::System.Net.Http.HttpRequestMessage __CreateHttpRequest()
             {
+
                             var __pathBuilder = new global::Speechify.PathBuilder(
                                 path: "/v1/agents",
                                 baseUri: HttpClient.BaseAddress);
@@ -164,6 +188,8 @@ namespace Speechify
                                 attempt: __attempt,
                                 maxAttempts: __maxAttempts,
                                 willRetry: false,
+                                retryDelay: null,
+                                retryReason: global::System.String.Empty,
                                 cancellationToken: __effectiveCancellationToken)).ConfigureAwait(false);
                     try
                     {
@@ -174,6 +200,11 @@ namespace Speechify
                     }
                     catch (global::System.Net.Http.HttpRequestException __exception)
                     {
+                        var __retryDelay = global::Speechify.AutoSDKRequestOptionsSupport.GetRetryDelay(
+                            clientOptions: Options,
+                            requestOptions: requestOptions,
+                            response: null,
+                            attempt: __attempt);
                         var __willRetry = __attempt < __maxAttempts && !__effectiveCancellationToken.IsCancellationRequested;
                         await global::Speechify.AutoSDKRequestOptionsSupport.OnAfterErrorAsync(
                             clientOptions: Options,
@@ -191,6 +222,8 @@ namespace Speechify
                                 attempt: __attempt,
                                 maxAttempts: __maxAttempts,
                                 willRetry: __willRetry,
+                                retryDelay: __willRetry ? __retryDelay : (global::System.TimeSpan?)null,
+                                retryReason: "exception",
                                 cancellationToken: __effectiveCancellationToken)).ConfigureAwait(false);
                         if (!__willRetry)
                         {
@@ -200,8 +233,7 @@ namespace Speechify
                         __httpRequest.Dispose();
                         __httpRequest = null;
                         await global::Speechify.AutoSDKRequestOptionsSupport.DelayBeforeRetryAsync(
-                            clientOptions: Options,
-                            requestOptions: requestOptions,
+                            retryDelay: __retryDelay,
                             cancellationToken: __effectiveCancellationToken).ConfigureAwait(false);
                         continue;
                     }
@@ -210,6 +242,11 @@ namespace Speechify
                         __attempt < __maxAttempts &&
                         global::Speechify.AutoSDKRequestOptionsSupport.ShouldRetryStatusCode(__response.StatusCode))
                     {
+                        var __retryDelay = global::Speechify.AutoSDKRequestOptionsSupport.GetRetryDelay(
+                            clientOptions: Options,
+                            requestOptions: requestOptions,
+                            response: __response,
+                            attempt: __attempt);
                         await global::Speechify.AutoSDKRequestOptionsSupport.OnAfterErrorAsync(
                             clientOptions: Options,
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
@@ -226,14 +263,15 @@ namespace Speechify
                                 attempt: __attempt,
                                 maxAttempts: __maxAttempts,
                                 willRetry: true,
+                                retryDelay: __retryDelay,
+                                retryReason: "status:" + ((int)__response.StatusCode).ToString(global::System.Globalization.CultureInfo.InvariantCulture),
                                 cancellationToken: __effectiveCancellationToken)).ConfigureAwait(false);
                         __response.Dispose();
                         __response = null;
                         __httpRequest.Dispose();
                         __httpRequest = null;
                         await global::Speechify.AutoSDKRequestOptionsSupport.DelayBeforeRetryAsync(
-                            clientOptions: Options,
-                            requestOptions: requestOptions,
+                            retryDelay: __retryDelay,
                             cancellationToken: __effectiveCancellationToken).ConfigureAwait(false);
                         continue;
                     }
@@ -273,6 +311,8 @@ namespace Speechify
                                 attempt: __attemptNumber,
                                 maxAttempts: __maxAttempts,
                                 willRetry: false,
+                                retryDelay: null,
+                                retryReason: global::System.String.Empty,
                                 cancellationToken: __effectiveCancellationToken)).ConfigureAwait(false);
                 }
                 else
@@ -293,8 +333,84 @@ namespace Speechify
                                 attempt: __attemptNumber,
                                 maxAttempts: __maxAttempts,
                                 willRetry: false,
+                                retryDelay: null,
+                                retryReason: global::System.String.Empty,
                                 cancellationToken: __effectiveCancellationToken)).ConfigureAwait(false);
                 }
+                            // The request was malformed or failed validation. The response body is the standard `Error` envelope; for validation failures `error.fields` enumerates the offending fields as a `path -> message` map (code = `validation_failed`). 
+                            if ((int)__response.StatusCode == 400)
+                            {
+                                string? __content_400 = null;
+                                global::System.Exception? __exception_400 = null;
+                                global::Speechify.TtsError? __value_400 = null;
+                                try
+                                {
+                                    if (__effectiveReadResponseAsString)
+                                    {
+                                        __content_400 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+                                        __value_400 = global::Speechify.TtsError.FromJson(__content_400, JsonSerializerContext);
+                                    }
+                                    else
+                                    {
+                                        __content_400 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+
+                                        __value_400 = global::Speechify.TtsError.FromJson(__content_400, JsonSerializerContext);
+                                    }
+                                }
+                                catch (global::System.Exception __ex)
+                                {
+                                    __exception_400 = __ex;
+                                }
+
+
+                                throw global::Speechify.ApiException<global::Speechify.TtsError>.Create(
+                                    statusCode: __response.StatusCode,
+                                    message: __content_400 ?? __response.ReasonPhrase ?? string.Empty,
+                                    innerException: __exception_400,
+                                    responseBody: __content_400,
+                                    responseObject: __value_400,
+                                    responseHeaders: global::System.Linq.Enumerable.ToDictionary(
+                                        __response.Headers,
+                                        h => h.Key,
+                                        h => h.Value));
+                            }
+                            // Authentication is missing or invalid. The request did not carry a recognised credential (Firebase ID token, API key, or worker JWT). 
+                            if ((int)__response.StatusCode == 401)
+                            {
+                                string? __content_401 = null;
+                                global::System.Exception? __exception_401 = null;
+                                global::Speechify.TtsError? __value_401 = null;
+                                try
+                                {
+                                    if (__effectiveReadResponseAsString)
+                                    {
+                                        __content_401 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+                                        __value_401 = global::Speechify.TtsError.FromJson(__content_401, JsonSerializerContext);
+                                    }
+                                    else
+                                    {
+                                        __content_401 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+
+                                        __value_401 = global::Speechify.TtsError.FromJson(__content_401, JsonSerializerContext);
+                                    }
+                                }
+                                catch (global::System.Exception __ex)
+                                {
+                                    __exception_401 = __ex;
+                                }
+
+
+                                throw global::Speechify.ApiException<global::Speechify.TtsError>.Create(
+                                    statusCode: __response.StatusCode,
+                                    message: __content_401 ?? __response.ReasonPhrase ?? string.Empty,
+                                    innerException: __exception_401,
+                                    responseBody: __content_401,
+                                    responseObject: __value_401,
+                                    responseHeaders: global::System.Linq.Enumerable.ToDictionary(
+                                        __response.Headers,
+                                        h => h.Key,
+                                        h => h.Value));
+                            }
 
                             if (__effectiveReadResponseAsString)
                             {
@@ -317,23 +433,25 @@ namespace Speechify
                                 {
                                     __response.EnsureSuccessStatusCode();
 
-                                    return
-                                        global::Speechify.TtsAgent.FromJson(__content, JsonSerializerContext) ??
+                                    var __value = global::Speechify.TtsAgent.FromJson(__content, JsonSerializerContext) ??
                                         throw new global::System.InvalidOperationException($"Response deserialization failed for \"{__content}\" ");
+                                    return new global::Speechify.AutoSDKHttpResponse<global::Speechify.TtsAgent>(
+                                        statusCode: __response.StatusCode,
+                                        headers: global::Speechify.AutoSDKHttpResponse.CreateHeaders(__response),
+                                        requestUri: __response.RequestMessage?.RequestUri,
+                                        body: __value);
                                 }
                                 catch (global::System.Exception __ex)
                                 {
-                                    throw new global::Speechify.ApiException(
+                                    throw global::Speechify.ApiException.Create(
+                                        statusCode: __response.StatusCode,
                                         message: __content ?? __response.ReasonPhrase ?? string.Empty,
                                         innerException: __ex,
-                                        statusCode: __response.StatusCode)
-                                    {
-                                        ResponseBody = __content,
-                                        ResponseHeaders = global::System.Linq.Enumerable.ToDictionary(
+                                        responseBody: __content,
+                                        responseHeaders: global::System.Linq.Enumerable.ToDictionary(
                                             __response.Headers,
                                             h => h.Key,
-                                            h => h.Value),
-                                    };
+                                            h => h.Value));
                                 }
                             }
                             else
@@ -347,9 +465,13 @@ namespace Speechify
                 #endif
                                     ).ConfigureAwait(false);
 
-                                    return
-                                        await global::Speechify.TtsAgent.FromJsonStreamAsync(__content, JsonSerializerContext).ConfigureAwait(false) ??
+                                    var __value = await global::Speechify.TtsAgent.FromJsonStreamAsync(__content, JsonSerializerContext).ConfigureAwait(false) ??
                                         throw new global::System.InvalidOperationException("Response deserialization failed.");
+                                    return new global::Speechify.AutoSDKHttpResponse<global::Speechify.TtsAgent>(
+                                        statusCode: __response.StatusCode,
+                                        headers: global::Speechify.AutoSDKHttpResponse.CreateHeaders(__response),
+                                        requestUri: __response.RequestMessage?.RequestUri,
+                                        body: __value);
                                 }
                                 catch (global::System.Exception __ex)
                                 {
@@ -366,17 +488,15 @@ namespace Speechify
                                     {
                                     }
 
-                                    throw new global::Speechify.ApiException(
+                                    throw global::Speechify.ApiException.Create(
+                                        statusCode: __response.StatusCode,
                                         message: __content ?? __response.ReasonPhrase ?? string.Empty,
                                         innerException: __ex,
-                                        statusCode: __response.StatusCode)
-                                    {
-                                        ResponseBody = __content,
-                                        ResponseHeaders = global::System.Linq.Enumerable.ToDictionary(
+                                        responseBody: __content,
+                                        responseHeaders: global::System.Linq.Enumerable.ToDictionary(
                                             __response.Headers,
                                             h => h.Key,
-                                            h => h.Value),
-                                    };
+                                            h => h.Value));
                                 }
                             }
 
@@ -388,7 +508,7 @@ namespace Speechify
             }
         }
         /// <summary>
-        /// Create<br/>
+        /// Create Agent<br/>
         /// Create a voice agent.
         /// </summary>
         /// <param name="name"></param>
@@ -397,31 +517,112 @@ namespace Speechify
         /// </param>
         /// <param name="prompt"></param>
         /// <param name="firstMessage">
-        /// Spoken verbatim at session start — no LLM round trip.
+        /// Greeting spoken verbatim at session start when included in the agent's flow graph.
         /// </param>
         /// <param name="language">
-        /// Default Value: en
+        /// ISO 639-1 code. Defaults to 'en' when omitted.
+        /// </param>
+        /// <param name="llmProvider">
+        /// LLM backend. Leave empty (or omit both `llm_provider` and<br/>
+        /// `llm_model`) to use the platform default (today: Speechify<br/>
+        /// Kimi K2.6, resolved server-side at dispatch). When set,<br/>
+        /// must be paired with a non-empty `llm_model`; mixing a<br/>
+        /// populated provider with an empty model is rejected as a<br/>
+        /// 400. `custom` additionally requires `llm_base_url`.
         /// </param>
         /// <param name="llmModel">
-        /// Optional chat model slug. Leave empty to use the Speechify default.
+        /// Chat model slug. Leave empty to use the platform default.<br/>
+        /// For `openai` / `speechify` the (provider, model) pair must<br/>
+        /// be in the allowed table; for `custom` it is free-form.
+        /// </param>
+        /// <param name="llmBaseUrl">
+        /// Custom OpenAI/vLLM-compatible endpoint base URL. Required<br/>
+        /// when `llm_provider` is `custom`, rejected otherwise.
+        /// </param>
+        /// <param name="llmApiKey">
+        /// Bearer key for the custom endpoint. Write-only - stored<br/>
+        /// encrypted, never returned (GET exposes `llm_api_key_set`).<br/>
+        /// Optional even for `custom` (keyless endpoints); rejected<br/>
+        /// for any other provider.
+        /// </param>
+        /// <param name="llmExtraBody">
+        /// Optional JSON object forwarded verbatim to the custom<br/>
+        /// endpoint as the chat.completions `extra_body` (reasoning /<br/>
+        /// sampling knobs). Valid only when `llm_provider` is<br/>
+        /// `custom`.
         /// </param>
         /// <param name="voiceId">
         /// Voice slug from the VMS catalog (see GET /v1/voices). Required — the server rejects writes with an unknown or empty slug.
         /// </param>
-        /// <param name="temperature"></param>
-        /// <param name="config"></param>
+        /// <param name="temperature">
+        /// 0.0..1.0. Defaults to 0.7 when omitted.
+        /// </param>
+        /// <param name="widgetConfig">
+        /// Customer-editable appearance + behaviour payload for the<br/>
+        /// embedded `&lt;speechify-agent&gt;` pill: button text, avatar style,<br/>
+        /// orb colours, terms-and-conditions markdown, transcript display.<br/>
+        /// Every field is optional - empty fields fall back to the<br/>
+        /// widget's compile-time defaults.
+        /// </param>
         /// <param name="isPublic">
-        /// Default Value: false
+        /// Defaults to false when omitted.
         /// </param>
         /// <param name="allowedOrigins"></param>
         /// <param name="hostnameAllowlist">
         /// Optional per-agent hostname allowlist (see Agent schema).
         /// </param>
         /// <param name="memoryEnabled">
-        /// Default Value: false
+        /// Defaults to false when omitted.
         /// </param>
         /// <param name="memoryRetentionDays">
-        /// Default Value: 90
+        /// Defaults to 90 when omitted.
+        /// </param>
+        /// <param name="webhookUrl">
+        /// Customer-facing post-call webhook URL.
+        /// </param>
+        /// <param name="webhookSecret">
+        /// HMAC-SHA256 secret seed. Write-only — never echoed back on<br/>
+        /// reads; clients see `webhook_secret_set: true` instead.
+        /// </param>
+        /// <param name="amd">
+        /// AMD routing config. Optional on create; omitted means AMD off. See AMDConfig schema.
+        /// </param>
+        /// <param name="saveAudioRecording">
+        /// When set, opts the agent into per-conversation audio recording. Defaults to false when omitted.
+        /// </param>
+        /// <param name="navigatorMode">
+        /// When set, opts the agent into IVR-tuned turn handling. Defaults to false when omitted.
+        /// </param>
+        /// <param name="ivrMemoryEnabled">
+        /// When omitted, defaults to true. Set to false to opt-out of the IVR-memory cache lookup for this agent.
+        /// </param>
+        /// <param name="ttsSpeakingRate"></param>
+        /// <param name="ttsPlaybackRate">
+        /// Post-process pitch-preserving time-stretch on the synthesized<br/>
+        /// audio. See the field on Agent for semantics.
+        /// </param>
+        /// <param name="responseDelaySeconds">
+        /// Per-agent override for the worker's endpointing min_delay on<br/>
+        /// the VAD path (seconds). See the field on Agent for semantics.<br/>
+        /// Range 0.0..5.0; null means use the stack default.
+        /// </param>
+        /// <param name="inactivityTimeoutSeconds">
+        /// Per-agent silence-tolerance override in seconds. Send `0`<br/>
+        /// to clear the override and fall back to the platform<br/>
+        /// default. Negative values are rejected.
+        /// </param>
+        /// <param name="backgroundNoisePreset">
+        /// Pre-mixed ambient bed slug. Send empty string ("") to<br/>
+        /// disable the bed, which also clears `background_noise_volume`.
+        /// </param>
+        /// <param name="backgroundNoiseVolume">
+        /// Volume of the background-noise bed (0..1). Ignored when<br/>
+        /// `background_noise_preset` is empty.
+        /// </param>
+        /// <param name="sttOverride">
+        /// Optional non-default streaming-STT stack for this agent.<br/>
+        /// Omit to use the worker's default stack (today: whisper-v3).<br/>
+        /// See the Agent schema for the full option semantics.
         /// </param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -433,14 +634,31 @@ namespace Speechify
             string? prompt = default,
             string? firstMessage = default,
             string? language = default,
+            global::Speechify.TtsCreateAgentRequestLlmProvider? llmProvider = default,
             string? llmModel = default,
+            string? llmBaseUrl = default,
+            string? llmApiKey = default,
+            object? llmExtraBody = default,
             double? temperature = default,
-            object? config = default,
+            global::Speechify.TtsWidgetConfig? widgetConfig = default,
             bool? isPublic = default,
             global::System.Collections.Generic.IList<string>? allowedOrigins = default,
             global::System.Collections.Generic.IList<string>? hostnameAllowlist = default,
             bool? memoryEnabled = default,
             int? memoryRetentionDays = default,
+            string? webhookUrl = default,
+            string? webhookSecret = default,
+            global::Speechify.TtsAMDConfig? amd = default,
+            bool? saveAudioRecording = default,
+            bool? navigatorMode = default,
+            bool? ivrMemoryEnabled = default,
+            double? ttsSpeakingRate = default,
+            double? ttsPlaybackRate = default,
+            double? responseDelaySeconds = default,
+            int? inactivityTimeoutSeconds = default,
+            string? backgroundNoisePreset = default,
+            double? backgroundNoiseVolume = default,
+            global::Speechify.TtsCreateAgentRequestSttOverride? sttOverride = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
@@ -451,15 +669,32 @@ namespace Speechify
                 Prompt = prompt,
                 FirstMessage = firstMessage,
                 Language = language,
+                LlmProvider = llmProvider,
                 LlmModel = llmModel,
+                LlmBaseUrl = llmBaseUrl,
+                LlmApiKey = llmApiKey,
+                LlmExtraBody = llmExtraBody,
                 VoiceId = voiceId,
                 Temperature = temperature,
-                Config = config,
+                WidgetConfig = widgetConfig,
                 IsPublic = isPublic,
                 AllowedOrigins = allowedOrigins,
                 HostnameAllowlist = hostnameAllowlist,
                 MemoryEnabled = memoryEnabled,
                 MemoryRetentionDays = memoryRetentionDays,
+                WebhookUrl = webhookUrl,
+                WebhookSecret = webhookSecret,
+                Amd = amd,
+                SaveAudioRecording = saveAudioRecording,
+                NavigatorMode = navigatorMode,
+                IvrMemoryEnabled = ivrMemoryEnabled,
+                TtsSpeakingRate = ttsSpeakingRate,
+                TtsPlaybackRate = ttsPlaybackRate,
+                ResponseDelaySeconds = responseDelaySeconds,
+                InactivityTimeoutSeconds = inactivityTimeoutSeconds,
+                BackgroundNoisePreset = backgroundNoisePreset,
+                BackgroundNoiseVolume = backgroundNoiseVolume,
+                SttOverride = sttOverride,
             };
 
             return await CreateAsync(

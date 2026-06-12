@@ -5,7 +5,7 @@ namespace Speechify
     public partial interface ISubpackageTtsSubpackageTtsAgentsClient
     {
         /// <summary>
-        /// Create Test<br/>
+        /// Create Agent Test<br/>
         /// Create a new test for the agent.
         /// </summary>
         /// <param name="id"></param>
@@ -20,7 +20,22 @@ namespace Speechify
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
-        /// Create Test<br/>
+        /// Create Agent Test<br/>
+        /// Create a new test for the agent.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="request"></param>
+        /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
+        /// <param name="cancellationToken">The token to cancel the operation with</param>
+        /// <exception cref="global::Speechify.ApiException"></exception>
+        global::System.Threading.Tasks.Task<global::Speechify.AutoSDKHttpResponse<global::Speechify.TtsAgentTest>> CreateTestAsResponseAsync(
+            string id,
+
+            global::Speechify.TtsCreateAgentTestRequest request,
+            global::Speechify.AutoSDKRequestOptions? requestOptions = default,
+            global::System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Create Agent Test<br/>
         /// Create a new test for the agent.
         /// </summary>
         /// <param name="id"></param>
@@ -32,7 +47,7 @@ namespace Speechify
         /// </param>
         /// <param name="type">
         /// Discriminates the shape of `AgentTest.config`.<br/>
-        /// - `scenario` - send one message to the agent and judge the response with an LLM.<br/>
+        /// - `reply` - send one message to the agent and judge the response with an LLM.<br/>
         /// - `tool` - assert that the agent calls a specific tool given a context.<br/>
         /// - `simulation` - run a multi-turn conversation between the agent and an AI caller.
         /// </param>
@@ -48,7 +63,8 @@ namespace Speechify
         /// `DynamicVariable` keys.
         /// </param>
         /// <param name="folderId">
-        /// Folder to place the test in. Omit for root.
+        /// Prefixed wire identifier (`folder_&lt;26 char Crockford base32&gt;`)<br/>
+        /// of the folder to place the test in. Omit / null for root.
         /// </param>
         /// <param name="attachedAgentIds">
         /// Optional list of additional agents this test should also run<br/>

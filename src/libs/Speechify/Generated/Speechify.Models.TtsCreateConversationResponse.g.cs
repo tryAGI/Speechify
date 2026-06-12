@@ -77,5 +77,6 @@ namespace Speechify
         public TtsCreateConversationResponse()
         {
         }
+
     }
 }

@@ -11,7 +11,8 @@ namespace Speechify
     public sealed partial class TtsKnowledgeBase
     {
         /// <summary>
-        /// 
+        /// Prefixed wire identifier (`kb_&lt;26 char Crockford base32&gt;`).<br/>
+        /// ADR 0015 Cluster 1 hard-break.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("id")]
         [global::System.Text.Json.Serialization.JsonRequired]
@@ -61,7 +62,10 @@ namespace Speechify
         /// <summary>
         /// Initializes a new instance of the <see cref="TtsKnowledgeBase" /> class.
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="id">
+        /// Prefixed wire identifier (`kb_&lt;26 char Crockford base32&gt;`).<br/>
+        /// ADR 0015 Cluster 1 hard-break.
+        /// </param>
         /// <param name="name">
         /// Human-readable label, shown in the console.
         /// </param>
@@ -98,5 +102,6 @@ namespace Speechify
         public TtsKnowledgeBase()
         {
         }
+
     }
 }

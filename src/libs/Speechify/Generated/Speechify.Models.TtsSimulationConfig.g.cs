@@ -6,10 +6,11 @@ namespace Speechify
     /// <summary>
     /// Configuration for a `simulation` test. An AI caller drives a<br/>
     /// multi-turn conversation with the agent according to `scenario`.<br/>
-    /// After `max_turns` exchanges (or when the agent ends the call), an<br/>
-    /// LLM judge evaluates whether `success_condition` was met.<br/>
-    /// Use `initial_chat_history` to seed the conversation at a specific<br/>
-    /// mid-flow state.
+    /// After `max_turns` exchanges (or when the agent ends the call),<br/>
+    /// the unified post-call evaluator scores the synthetic transcript<br/>
+    /// against the agent's configured evaluation criteria + data<br/>
+    /// collection fields. A test passes when no configured criterion<br/>
+    /// fails and every `data_assertions` entry passes.
     /// </summary>
     public sealed partial class TtsSimulationConfig
     {
@@ -21,19 +22,11 @@ namespace Speechify
         public required string Scenario { get; set; }
 
         /// <summary>
-        /// Natural-language description of what a passing conversation looks like.
-        /// </summary>
-        [global::System.Text.Json.Serialization.JsonPropertyName("success_condition")]
-        [global::System.Text.Json.Serialization.JsonRequired]
-        public required string SuccessCondition { get; set; }
-
-        /// <summary>
         /// Maximum agent turns before the simulation is cut off and judged.<br/>
         /// Default Value: 5
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("max_turns")]
-        [global::System.Text.Json.Serialization.JsonRequired]
-        public required int MaxTurns { get; set; }
+        public int? MaxTurns { get; set; }
 
         /// <summary>
         /// Optional seed conversation that precedes the AI caller's first generated message.
@@ -42,13 +35,28 @@ namespace Speechify
         public global::System.Collections.Generic.IList<global::Speechify.TtsSimulationMessage>? InitialChatHistory { get; set; }
 
         /// <summary>
-        /// Replaces the agent's system prompt for this run only.
+        /// Optional assertions on the LLM-extracted data-collection<br/>
+        /// map. Each entry references a key from the agent's<br/>
+        /// data_collection config and validates the extracted value.<br/>
+        /// The test fails if any assertion fails.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("data_assertions")]
+        public global::System.Collections.Generic.IList<global::Speechify.TtsDataAssertion>? DataAssertions { get; set; }
+
+        /// <summary>
+        /// Deprecated (AIS-3443). Prefer the run-level `config_override`<br/>
+        /// on `POST /v1/agents/{id}/tests/runs`. Still honoured; the<br/>
+        /// run-level override wins when both are set. Replaces the<br/>
+        /// agent's system prompt for this run only.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("system_prompt_override")]
         public string? SystemPromptOverride { get; set; }
 
         /// <summary>
-        /// Overrides the LLM model used by the agent for this run only.
+        /// Deprecated (AIS-3443). Prefer the run-level `config_override`<br/>
+        /// on `POST /v1/agents/{id}/tests/runs`. Still honoured; the<br/>
+        /// run-level override wins when both are set. Overrides the LLM<br/>
+        /// model used by the agent for this run only.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("model_override")]
         public string? ModelOverride { get; set; }
@@ -65,9 +73,6 @@ namespace Speechify
         /// <param name="scenario">
         /// Instructions for the AI caller describing who they are and what they want.
         /// </param>
-        /// <param name="successCondition">
-        /// Natural-language description of what a passing conversation looks like.
-        /// </param>
         /// <param name="maxTurns">
         /// Maximum agent turns before the simulation is cut off and judged.<br/>
         /// Default Value: 5
@@ -75,27 +80,39 @@ namespace Speechify
         /// <param name="initialChatHistory">
         /// Optional seed conversation that precedes the AI caller's first generated message.
         /// </param>
+        /// <param name="dataAssertions">
+        /// Optional assertions on the LLM-extracted data-collection<br/>
+        /// map. Each entry references a key from the agent's<br/>
+        /// data_collection config and validates the extracted value.<br/>
+        /// The test fails if any assertion fails.
+        /// </param>
         /// <param name="systemPromptOverride">
-        /// Replaces the agent's system prompt for this run only.
+        /// Deprecated (AIS-3443). Prefer the run-level `config_override`<br/>
+        /// on `POST /v1/agents/{id}/tests/runs`. Still honoured; the<br/>
+        /// run-level override wins when both are set. Replaces the<br/>
+        /// agent's system prompt for this run only.
         /// </param>
         /// <param name="modelOverride">
-        /// Overrides the LLM model used by the agent for this run only.
+        /// Deprecated (AIS-3443). Prefer the run-level `config_override`<br/>
+        /// on `POST /v1/agents/{id}/tests/runs`. Still honoured; the<br/>
+        /// run-level override wins when both are set. Overrides the LLM<br/>
+        /// model used by the agent for this run only.
         /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
 #endif
         public TtsSimulationConfig(
             string scenario,
-            string successCondition,
-            int maxTurns,
+            int? maxTurns,
             global::System.Collections.Generic.IList<global::Speechify.TtsSimulationMessage>? initialChatHistory,
+            global::System.Collections.Generic.IList<global::Speechify.TtsDataAssertion>? dataAssertions,
             string? systemPromptOverride,
             string? modelOverride)
         {
             this.Scenario = scenario ?? throw new global::System.ArgumentNullException(nameof(scenario));
-            this.SuccessCondition = successCondition ?? throw new global::System.ArgumentNullException(nameof(successCondition));
             this.MaxTurns = maxTurns;
             this.InitialChatHistory = initialChatHistory;
+            this.DataAssertions = dataAssertions;
             this.SystemPromptOverride = systemPromptOverride;
             this.ModelOverride = modelOverride;
         }
@@ -106,5 +123,6 @@ namespace Speechify
         public TtsSimulationConfig()
         {
         }
+
     }
 }

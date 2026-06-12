@@ -44,11 +44,11 @@ namespace Speechify.JsonConverters
             if (__jsonProps.Contains("parameter_checks")) __score1++;
             if (__jsonProps.Contains("system_prompt_override")) __score1++;
             var __score2 = 0;
+            if (__jsonProps.Contains("data_assertions")) __score2++;
             if (__jsonProps.Contains("initial_chat_history")) __score2++;
             if (__jsonProps.Contains("max_turns")) __score2++;
             if (__jsonProps.Contains("model_override")) __score2++;
             if (__jsonProps.Contains("scenario")) __score2++;
-            if (__jsonProps.Contains("success_condition")) __score2++;
             if (__jsonProps.Contains("system_prompt_override")) __score2++;
             var __bestScore = 0;
             var __bestIndex = -1;
@@ -56,7 +56,7 @@ namespace Speechify.JsonConverters
             if (__score1 > __bestScore) { __bestScore = __score1; __bestIndex = 1; }
             if (__score2 > __bestScore) { __bestScore = __score2; __bestIndex = 2; }
 
-            global::Speechify.TtsScenarioConfig? scenarioConfig = default;
+            global::Speechify.TtsReplyConfig? replyConfig = default;
             global::Speechify.TtsToolCallConfig? toolCallConfig = default;
             global::Speechify.TtsSimulationConfig? simulationConfig = default;
             if (__bestIndex >= 0)
@@ -65,9 +65,9 @@ namespace Speechify.JsonConverters
                 {
                     try
                     {
-                        var typeInfo = typeInfoResolver.GetTypeInfo(typeof(global::Speechify.TtsScenarioConfig), options) as global::System.Text.Json.Serialization.Metadata.JsonTypeInfo<global::Speechify.TtsScenarioConfig> ??
-                                       throw new global::System.InvalidOperationException($"Cannot get type info for {typeof(global::Speechify.TtsScenarioConfig).Name}");
-                        scenarioConfig = global::System.Text.Json.JsonSerializer.Deserialize(__rawJson, typeInfo);
+                        var typeInfo = typeInfoResolver.GetTypeInfo(typeof(global::Speechify.TtsReplyConfig), options) as global::System.Text.Json.Serialization.Metadata.JsonTypeInfo<global::Speechify.TtsReplyConfig> ??
+                                       throw new global::System.InvalidOperationException($"Cannot get type info for {typeof(global::Speechify.TtsReplyConfig).Name}");
+                        replyConfig = global::System.Text.Json.JsonSerializer.Deserialize(__rawJson, typeInfo);
                     }
                     catch (global::System.Text.Json.JsonException)
                     {
@@ -108,13 +108,14 @@ namespace Speechify.JsonConverters
                 }
             }
 
-            if (scenarioConfig == null && toolCallConfig == null && simulationConfig == null)
+            if (replyConfig == null && toolCallConfig == null && simulationConfig == null)
             {
                 try
                 {
-                    var typeInfo = typeInfoResolver.GetTypeInfo(typeof(global::Speechify.TtsScenarioConfig), options) as global::System.Text.Json.Serialization.Metadata.JsonTypeInfo<global::Speechify.TtsScenarioConfig> ??
-                                   throw new global::System.InvalidOperationException($"Cannot get type info for {typeof(global::Speechify.TtsScenarioConfig).Name}");
-                    scenarioConfig = global::System.Text.Json.JsonSerializer.Deserialize(__rawJson, typeInfo);
+
+                    var typeInfo = typeInfoResolver.GetTypeInfo(typeof(global::Speechify.TtsReplyConfig), options) as global::System.Text.Json.Serialization.Metadata.JsonTypeInfo<global::Speechify.TtsReplyConfig> ??
+                                   throw new global::System.InvalidOperationException($"Cannot get type info for {typeof(global::Speechify.TtsReplyConfig).Name}");
+                    replyConfig = global::System.Text.Json.JsonSerializer.Deserialize(__rawJson, typeInfo);
                 }
                 catch (global::System.Text.Json.JsonException)
                 {
@@ -122,9 +123,13 @@ namespace Speechify.JsonConverters
                 catch (global::System.InvalidOperationException)
                 {
                 }
+            }
 
+            if (replyConfig == null && toolCallConfig == null && simulationConfig == null)
+            {
                 try
                 {
+
                     var typeInfo = typeInfoResolver.GetTypeInfo(typeof(global::Speechify.TtsToolCallConfig), options) as global::System.Text.Json.Serialization.Metadata.JsonTypeInfo<global::Speechify.TtsToolCallConfig> ??
                                    throw new global::System.InvalidOperationException($"Cannot get type info for {typeof(global::Speechify.TtsToolCallConfig).Name}");
                     toolCallConfig = global::System.Text.Json.JsonSerializer.Deserialize(__rawJson, typeInfo);
@@ -135,9 +140,13 @@ namespace Speechify.JsonConverters
                 catch (global::System.InvalidOperationException)
                 {
                 }
+            }
 
+            if (replyConfig == null && toolCallConfig == null && simulationConfig == null)
+            {
                 try
                 {
+
                     var typeInfo = typeInfoResolver.GetTypeInfo(typeof(global::Speechify.TtsSimulationConfig), options) as global::System.Text.Json.Serialization.Metadata.JsonTypeInfo<global::Speechify.TtsSimulationConfig> ??
                                    throw new global::System.InvalidOperationException($"Cannot get type info for {typeof(global::Speechify.TtsSimulationConfig).Name}");
                     simulationConfig = global::System.Text.Json.JsonSerializer.Deserialize(__rawJson, typeInfo);
@@ -151,7 +160,7 @@ namespace Speechify.JsonConverters
             }
 
             var __value = new global::Speechify.TtsUpdateAgentTestRequestConfig(
-                scenarioConfig,
+                replyConfig,
 
                 toolCallConfig,
 
@@ -170,11 +179,11 @@ namespace Speechify.JsonConverters
             options = options ?? throw new global::System.ArgumentNullException(nameof(options));
             var typeInfoResolver = options.TypeInfoResolver ?? throw new global::System.InvalidOperationException("TypeInfoResolver is not set.");
 
-            if (value.IsScenarioConfig)
+            if (value.IsReplyConfig)
             {
-                var typeInfo = typeInfoResolver.GetTypeInfo(typeof(global::Speechify.TtsScenarioConfig), options) as global::System.Text.Json.Serialization.Metadata.JsonTypeInfo<global::Speechify.TtsScenarioConfig?> ??
-                               throw new global::System.InvalidOperationException($"Cannot get type info for {typeof(global::Speechify.TtsScenarioConfig).Name}");
-                global::System.Text.Json.JsonSerializer.Serialize(writer, value.ScenarioConfig!, typeInfo);
+                var typeInfo = typeInfoResolver.GetTypeInfo(typeof(global::Speechify.TtsReplyConfig), options) as global::System.Text.Json.Serialization.Metadata.JsonTypeInfo<global::Speechify.TtsReplyConfig?> ??
+                               throw new global::System.InvalidOperationException($"Cannot get type info for {typeof(global::Speechify.TtsReplyConfig).Name}");
+                global::System.Text.Json.JsonSerializer.Serialize(writer, value.ReplyConfig!, typeInfo);
             }
             else if (value.IsToolCallConfig)
             {

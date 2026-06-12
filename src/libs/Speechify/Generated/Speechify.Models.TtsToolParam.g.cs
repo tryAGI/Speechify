@@ -16,7 +16,7 @@ namespace Speechify
         public required string Name { get; set; }
 
         /// <summary>
-        /// 
+        /// Permitted JSON-Schema primitive types for tool params.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("type")]
         [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Speechify.JsonConverters.TtsToolParamTypeJsonConverter))]
@@ -53,7 +53,9 @@ namespace Speechify
         /// Initializes a new instance of the <see cref="TtsToolParam" /> class.
         /// </summary>
         /// <param name="name"></param>
-        /// <param name="type"></param>
+        /// <param name="type">
+        /// Permitted JSON-Schema primitive types for tool params.
+        /// </param>
         /// <param name="description"></param>
         /// <param name="required"></param>
         /// <param name="enum"></param>
@@ -80,5 +82,6 @@ namespace Speechify
         public TtsToolParam()
         {
         }
+
     }
 }

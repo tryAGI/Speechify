@@ -4,7 +4,7 @@
 namespace Speechify
 {
     /// <summary>
-    /// Default Value: POST
+    /// 
     /// </summary>
     public enum TtsWebhookToolConfigMethod
     {

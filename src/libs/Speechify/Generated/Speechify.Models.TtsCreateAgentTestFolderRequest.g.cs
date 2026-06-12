@@ -16,7 +16,8 @@ namespace Speechify
         public required string Name { get; set; }
 
         /// <summary>
-        /// 
+        /// Prefixed wire identifier (`folder_&lt;26 char Crockford base32&gt;`)<br/>
+        /// of the parent folder. Omit / null for a root-level folder.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("parent_folder_id")]
         public string? ParentFolderId { get; set; }
@@ -31,7 +32,10 @@ namespace Speechify
         /// Initializes a new instance of the <see cref="TtsCreateAgentTestFolderRequest" /> class.
         /// </summary>
         /// <param name="name"></param>
-        /// <param name="parentFolderId"></param>
+        /// <param name="parentFolderId">
+        /// Prefixed wire identifier (`folder_&lt;26 char Crockford base32&gt;`)<br/>
+        /// of the parent folder. Omit / null for a root-level folder.
+        /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
 #endif
@@ -49,5 +53,6 @@ namespace Speechify
         public TtsCreateAgentTestFolderRequest()
         {
         }
+
     }
 }

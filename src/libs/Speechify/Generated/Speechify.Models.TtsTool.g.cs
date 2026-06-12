@@ -9,7 +9,8 @@ namespace Speechify
     public sealed partial class TtsTool
     {
         /// <summary>
-        /// 
+        /// Prefixed wire identifier (`tool_&lt;26 char Crockford base32&gt;`).<br/>
+        /// ADR 0015 Cluster 1 hard-break.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("id")]
         [global::System.Text.Json.Serialization.JsonRequired]
@@ -31,9 +32,10 @@ namespace Speechify
 
         /// <summary>
         /// Where the tool executes.<br/>
-        /// - `system`:  worker-resident built-in (e.g. end_call, transfer_to_number)<br/>
+        /// - `system`:  worker-resident built-in (e.g. end_call, play_audio)<br/>
         /// - `webhook`: worker signs a payload and POSTs it to your URL<br/>
-        /// - `client`:  worker dispatches to the caller's browser/SDK via data channel
+        /// - `client`:  worker dispatches to the caller's browser/SDK via data channel<br/>
+        /// - `mcp`:     worker connects to a customer-hosted MCP server and proxies tool calls (AIS-3056)
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("kind")]
         [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Speechify.JsonConverters.TtsToolKindJsonConverter))]
@@ -41,7 +43,7 @@ namespace Speechify
         public required global::Speechify.TtsToolKind Kind { get; set; }
 
         /// <summary>
-        /// One of `SystemToolConfig`, `WebhookToolConfig`, or `ClientToolConfig` depending on `kind`.
+        /// One of `SystemToolConfig`, `WebhookToolConfig`, `ClientToolConfig`, or `MCPToolConfig` depending on `kind`.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("config")]
         [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Speechify.JsonConverters.TtsToolConfigJsonConverter))]
@@ -79,17 +81,21 @@ namespace Speechify
         /// <summary>
         /// Initializes a new instance of the <see cref="TtsTool" /> class.
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="id">
+        /// Prefixed wire identifier (`tool_&lt;26 char Crockford base32&gt;`).<br/>
+        /// ADR 0015 Cluster 1 hard-break.
+        /// </param>
         /// <param name="name"></param>
         /// <param name="description"></param>
         /// <param name="kind">
         /// Where the tool executes.<br/>
-        /// - `system`:  worker-resident built-in (e.g. end_call, transfer_to_number)<br/>
+        /// - `system`:  worker-resident built-in (e.g. end_call, play_audio)<br/>
         /// - `webhook`: worker signs a payload and POSTs it to your URL<br/>
-        /// - `client`:  worker dispatches to the caller's browser/SDK via data channel
+        /// - `client`:  worker dispatches to the caller's browser/SDK via data channel<br/>
+        /// - `mcp`:     worker connects to a customer-hosted MCP server and proxies tool calls (AIS-3056)
         /// </param>
         /// <param name="config">
-        /// One of `SystemToolConfig`, `WebhookToolConfig`, or `ClientToolConfig` depending on `kind`.
+        /// One of `SystemToolConfig`, `WebhookToolConfig`, `ClientToolConfig`, or `MCPToolConfig` depending on `kind`.
         /// </param>
         /// <param name="createdAt"></param>
         /// <param name="updatedAt"></param>
@@ -127,5 +133,6 @@ namespace Speechify
         public TtsTool()
         {
         }
+
     }
 }

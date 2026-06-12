@@ -5,14 +5,30 @@ namespace Speechify
     public partial interface ISubpackageTtsSubpackageTtsKnowledgeBasesClient
     {
         /// <summary>
-        /// Delete Document<br/>
+        /// Delete Knowledge Base Document<br/>
         /// Delete a document and all its chunks.
         /// </summary>
+        /// <param name="id"></param>
         /// <param name="docId"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
-        global::System.Threading.Tasks.Task DeleteDocumentAsync(
+        global::System.Threading.Tasks.Task<string> DeleteDocumentAsync(
+            string id,
+            string docId,
+            global::Speechify.AutoSDKRequestOptions? requestOptions = default,
+            global::System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Delete Knowledge Base Document<br/>
+        /// Delete a document and all its chunks.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="docId"></param>
+        /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
+        /// <param name="cancellationToken">The token to cancel the operation with</param>
+        /// <exception cref="global::Speechify.ApiException"></exception>
+        global::System.Threading.Tasks.Task<global::Speechify.AutoSDKHttpResponse<string>> DeleteDocumentAsResponseAsync(
+            string id,
             string docId,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);

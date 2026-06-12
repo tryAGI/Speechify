@@ -16,6 +16,13 @@ namespace Speechify
         public required global::System.Collections.Generic.IList<global::Speechify.TtsAgentTestRun> Runs { get; set; }
 
         /// <summary>
+        /// The suite run grouping the queued runs.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("suite_run")]
+        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Speechify.JsonConverters.OneOfJsonConverter<global::Speechify.TtsAgentTestSuiteRun, object>))]
+        public global::Speechify.OneOf<global::Speechify.TtsAgentTestSuiteRun, object>? SuiteRun { get; set; }
+
+        /// <summary>
         /// Additional properties that are not explicitly defined in the schema
         /// </summary>
         [global::System.Text.Json.Serialization.JsonExtensionData]
@@ -25,13 +32,18 @@ namespace Speechify
         /// Initializes a new instance of the <see cref="TtsRunBatchResponse" /> class.
         /// </summary>
         /// <param name="runs"></param>
+        /// <param name="suiteRun">
+        /// The suite run grouping the queued runs.
+        /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
 #endif
         public TtsRunBatchResponse(
-            global::System.Collections.Generic.IList<global::Speechify.TtsAgentTestRun> runs)
+            global::System.Collections.Generic.IList<global::Speechify.TtsAgentTestRun> runs,
+            global::Speechify.OneOf<global::Speechify.TtsAgentTestSuiteRun, object>? suiteRun)
         {
             this.Runs = runs ?? throw new global::System.ArgumentNullException(nameof(runs));
+            this.SuiteRun = suiteRun;
         }
 
         /// <summary>
@@ -40,5 +52,6 @@ namespace Speechify
         public TtsRunBatchResponse()
         {
         }
+
     }
 }

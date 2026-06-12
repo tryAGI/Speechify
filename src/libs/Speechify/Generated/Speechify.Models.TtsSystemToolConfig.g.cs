@@ -4,17 +4,24 @@
 namespace Speechify
 {
     /// <summary>
-    /// Config shape for `kind=system`.
+    /// Config shape for `kind=system`. The `builtin` value names the<br/>
+    /// worker-resident capability; the catalogue served by<br/>
+    /// `GET /v1/agents/tools/system-builtins` is the runtime source of truth<br/>
+    /// for valid names plus their console-facing labels.
     /// </summary>
     public sealed partial class TtsSystemToolConfig
     {
         /// <summary>
-        /// 
+        /// Identifier of a worker-resident system builtin. New entries are<br/>
+        /// added together on the server (a new `tool_builtin_&lt;name&gt;.go`<br/>
+        /// file) and worker (`tools/builtins/&lt;name&gt;.py`) - the 2-file rule<br/>
+        /// AIS-3053 pins. Customers read the catalogue from<br/>
+        /// `GET /v1/agents/tools/system-builtins` rather than depending on this<br/>
+        /// string set staying stable across releases.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("builtin")]
-        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Speechify.JsonConverters.TtsSystemToolConfigBuiltinJsonConverter))]
         [global::System.Text.Json.Serialization.JsonRequired]
-        public required global::Speechify.TtsSystemToolConfigBuiltin Builtin { get; set; }
+        public required string Builtin { get; set; }
 
         /// <summary>
         /// 
@@ -37,7 +44,14 @@ namespace Speechify
         /// <summary>
         /// Initializes a new instance of the <see cref="TtsSystemToolConfig" /> class.
         /// </summary>
-        /// <param name="builtin"></param>
+        /// <param name="builtin">
+        /// Identifier of a worker-resident system builtin. New entries are<br/>
+        /// added together on the server (a new `tool_builtin_&lt;name&gt;.go`<br/>
+        /// file) and worker (`tools/builtins/&lt;name&gt;.py`) - the 2-file rule<br/>
+        /// AIS-3053 pins. Customers read the catalogue from<br/>
+        /// `GET /v1/agents/tools/system-builtins` rather than depending on this<br/>
+        /// string set staying stable across releases.
+        /// </param>
         /// <param name="params"></param>
         /// <param name="builtinConfig">
         /// Per-builtin extras (e.g. allowed_numbers for transfer_to_number).
@@ -46,11 +60,11 @@ namespace Speechify
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
 #endif
         public TtsSystemToolConfig(
-            global::Speechify.TtsSystemToolConfigBuiltin builtin,
+            string builtin,
             global::System.Collections.Generic.IList<global::Speechify.TtsToolParam>? @params,
             object? builtinConfig)
         {
-            this.Builtin = builtin;
+            this.Builtin = builtin ?? throw new global::System.ArgumentNullException(nameof(builtin));
             this.Params = @params;
             this.BuiltinConfig = builtinConfig;
         }
@@ -61,5 +75,6 @@ namespace Speechify
         public TtsSystemToolConfig()
         {
         }
+
     }
 }

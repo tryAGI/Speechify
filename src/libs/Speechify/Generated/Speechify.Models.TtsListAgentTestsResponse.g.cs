@@ -40,5 +40,6 @@ namespace Speechify
         public TtsListAgentTestsResponse()
         {
         }
+
     }
 }

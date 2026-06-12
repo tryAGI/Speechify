@@ -4,8 +4,13 @@
 namespace Speechify
 {
     /// <summary>
-    /// Payload for `PATCH /v1/tests/{id}`. All fields are optional;<br/>
-    /// omitting a field leaves it unchanged.
+    /// Payload for `PATCH /v1/agents/tests/{id}`. All fields are optional;<br/>
+    /// omitting a field leaves it unchanged. Set `folder_id` to a target<br/>
+    /// folder id to move the test into that folder; send<br/>
+    /// `clear_folder_id: true` (folder_id omitted or ignored) to move<br/>
+    /// the test back to root. The clear flag is the explicit signal<br/>
+    /// because JSON `null` is indistinguishable from absent for<br/>
+    /// pointer fields in Go's encoding/json.
     /// </summary>
     public sealed partial class TtsUpdateAgentTestRequest
     {
@@ -35,6 +40,20 @@ namespace Speechify
         public global::Speechify.TtsToolMockConfig? ToolMockConfig { get; set; }
 
         /// <summary>
+        /// Prefixed wire identifier (`folder_&lt;26 char Crockford base32&gt;`)<br/>
+        /// of the folder to move the test into.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("folder_id")]
+        public string? FolderId { get; set; }
+
+        /// <summary>
+        /// When `true`, moves the test back to root (clears<br/>
+        /// `folder_id`). Wins over `folder_id` when both are sent.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("clear_folder_id")]
+        public bool? ClearFolderId { get; set; }
+
+        /// <summary>
         /// Additional properties that are not explicitly defined in the schema
         /// </summary>
         [global::System.Text.Json.Serialization.JsonExtensionData]
@@ -51,6 +70,14 @@ namespace Speechify
         /// <param name="toolMockConfig">
         /// Replaces the tool-mock config when present.
         /// </param>
+        /// <param name="folderId">
+        /// Prefixed wire identifier (`folder_&lt;26 char Crockford base32&gt;`)<br/>
+        /// of the folder to move the test into.
+        /// </param>
+        /// <param name="clearFolderId">
+        /// When `true`, moves the test back to root (clears<br/>
+        /// `folder_id`). Wins over `folder_id` when both are sent.
+        /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
 #endif
@@ -58,12 +85,16 @@ namespace Speechify
             string? name,
             string? description,
             global::Speechify.TtsUpdateAgentTestRequestConfig? config,
-            global::Speechify.TtsToolMockConfig? toolMockConfig)
+            global::Speechify.TtsToolMockConfig? toolMockConfig,
+            string? folderId,
+            bool? clearFolderId)
         {
             this.Name = name;
             this.Description = description;
             this.Config = config;
             this.ToolMockConfig = toolMockConfig;
+            this.FolderId = folderId;
+            this.ClearFolderId = clearFolderId;
         }
 
         /// <summary>
@@ -72,5 +103,6 @@ namespace Speechify
         public TtsUpdateAgentTestRequest()
         {
         }
+
     }
 }

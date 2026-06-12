@@ -1,0 +1,40 @@
+#nullable enable
+
+namespace Speechify
+{
+    public partial interface ISubpackageTtsSubpackageTtsAgentsClient
+    {
+        /// <summary>
+        /// List Agent Voices<br/>
+        /// List the curated voice catalogue available for voice agents.<br/>
+        /// Matches the `ai-api-agents` VMS scope one-for-one, so the same<br/>
+        /// slug set is accepted by POST/PATCH /v1/agents. Personal<br/>
+        /// (cloned) voices are NOT included — they stay on<br/>
+        /// `GET /v1/voices`. The JSON layout intentionally mirrors the<br/>
+        /// TTS `/v1/voices` shape so the console feeds both endpoints<br/>
+        /// into the same voice-picker component.
+        /// </summary>
+        /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
+        /// <param name="cancellationToken">The token to cancel the operation with</param>
+        /// <exception cref="global::Speechify.ApiException"></exception>
+        global::System.Threading.Tasks.Task<global::System.Collections.Generic.IList<global::Speechify.TtsAgentVoice>> ListAgentVoicesAsync(
+            global::Speechify.AutoSDKRequestOptions? requestOptions = default,
+            global::System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// List Agent Voices<br/>
+        /// List the curated voice catalogue available for voice agents.<br/>
+        /// Matches the `ai-api-agents` VMS scope one-for-one, so the same<br/>
+        /// slug set is accepted by POST/PATCH /v1/agents. Personal<br/>
+        /// (cloned) voices are NOT included — they stay on<br/>
+        /// `GET /v1/voices`. The JSON layout intentionally mirrors the<br/>
+        /// TTS `/v1/voices` shape so the console feeds both endpoints<br/>
+        /// into the same voice-picker component.
+        /// </summary>
+        /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
+        /// <param name="cancellationToken">The token to cancel the operation with</param>
+        /// <exception cref="global::Speechify.ApiException"></exception>
+        global::System.Threading.Tasks.Task<global::Speechify.AutoSDKHttpResponse<global::System.Collections.Generic.IList<global::Speechify.TtsAgentVoice>>> ListAgentVoicesAsResponseAsync(
+            global::Speechify.AutoSDKRequestOptions? requestOptions = default,
+            global::System.Threading.CancellationToken cancellationToken = default);
+    }
+}

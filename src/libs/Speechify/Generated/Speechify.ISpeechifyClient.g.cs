@@ -47,6 +47,11 @@ namespace Speechify
         /// <summary>
         /// 
         /// </summary>
+        public SubpackageTtsSubpackageTtsAdminClient SubpackageTtsSubpackageTtsAdmin { get; }
+
+        /// <summary>
+        /// 
+        /// </summary>
         public SubpackageTtsSubpackageTtsAgentsClient SubpackageTtsSubpackageTtsAgents { get; }
 
         /// <summary>
@@ -57,12 +62,32 @@ namespace Speechify
         /// <summary>
         /// 
         /// </summary>
-        public SubpackageTtsSubpackageTtsAuthClient SubpackageTtsSubpackageTtsAuth { get; }
+        public SubpackageTtsSubpackageTtsAudioAssetsClient SubpackageTtsSubpackageTtsAudioAssets { get; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public SubpackageTtsSubpackageTtsBatchCallsClient SubpackageTtsSubpackageTtsBatchCalls { get; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public SubpackageTtsSubpackageTtsCallersClient SubpackageTtsSubpackageTtsCallers { get; }
 
         /// <summary>
         /// 
         /// </summary>
         public SubpackageTtsSubpackageTtsConversationsClient SubpackageTtsSubpackageTtsConversations { get; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public SubpackageTtsSubpackageTtsFlowClient SubpackageTtsSubpackageTtsFlow { get; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public SubpackageTtsSubpackageTtsIvrMemoryClient SubpackageTtsSubpackageTtsIvrMemory { get; }
 
         /// <summary>
         /// 
@@ -92,17 +117,17 @@ namespace Speechify
         /// <summary>
         /// 
         /// </summary>
+        public SubpackageTtsSubpackageTtsTestsClient SubpackageTtsSubpackageTtsTests { get; }
+
+        /// <summary>
+        /// 
+        /// </summary>
         public SubpackageTtsSubpackageTtsToolsClient SubpackageTtsSubpackageTtsTools { get; }
 
         /// <summary>
         /// 
         /// </summary>
         public SubpackageTtsSubpackageTtsVoicesClient SubpackageTtsSubpackageTtsVoices { get; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public SubpackageTtsSubpackageTtsWorkspacesClient SubpackageTtsSubpackageTtsWorkspaces { get; }
 
     }
 }

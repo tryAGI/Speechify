@@ -67,5 +67,6 @@ namespace Speechify
         public TtsSearchKnowledgeBasesRequest()
         {
         }
+
     }
 }

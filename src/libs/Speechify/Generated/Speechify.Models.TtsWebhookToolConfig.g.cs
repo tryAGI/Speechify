@@ -16,7 +16,7 @@ namespace Speechify
         public required string Url { get; set; }
 
         /// <summary>
-        /// Default Value: POST
+        /// 
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("method")]
         [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Speechify.JsonConverters.TtsWebhookToolConfigMethodJsonConverter))]
@@ -29,8 +29,7 @@ namespace Speechify
         public global::System.Collections.Generic.Dictionary<string, string>? Headers { get; set; }
 
         /// <summary>
-        /// Per-call timeout in milliseconds.<br/>
-        /// Default Value: 10000
+        /// Per-call timeout in milliseconds. Defaults to 10000 server-side when omitted.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("timeout_ms")]
         public int? TimeoutMs { get; set; }
@@ -42,6 +41,20 @@ namespace Speechify
         public global::System.Collections.Generic.IList<global::Speechify.TtsToolParam>? Params { get; set; }
 
         /// <summary>
+        /// When true the worker dispatches the HTTP request and returns<br/>
+        /// immediately to the LLM with a synthetic "queued" result<br/>
+        /// instead of waiting for the response body. The customer's<br/>
+        /// endpoint is expected to enqueue the work and return any<br/>
+        /// non-error status quickly; errors raised after dispatch are<br/>
+        /// logged but never surfaced to the LLM. Use for long-running<br/>
+        /// customer-side work (job triggers, async ticket creation,<br/>
+        /// etc.) where blocking the call on the response would hurt<br/>
+        /// the conversation. Defaults to false.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("fire_and_forget")]
+        public bool? FireAndForget { get; set; }
+
+        /// <summary>
         /// Additional properties that are not explicitly defined in the schema
         /// </summary>
         [global::System.Text.Json.Serialization.JsonExtensionData]
@@ -51,17 +64,25 @@ namespace Speechify
         /// Initializes a new instance of the <see cref="TtsWebhookToolConfig" /> class.
         /// </summary>
         /// <param name="url"></param>
-        /// <param name="method">
-        /// Default Value: POST
-        /// </param>
+        /// <param name="method"></param>
         /// <param name="headers">
         /// Static headers sent with every call. `Authorization` and `X-Speechify-Signature` are reserved.
         /// </param>
         /// <param name="timeoutMs">
-        /// Per-call timeout in milliseconds.<br/>
-        /// Default Value: 10000
+        /// Per-call timeout in milliseconds. Defaults to 10000 server-side when omitted.
         /// </param>
         /// <param name="params"></param>
+        /// <param name="fireAndForget">
+        /// When true the worker dispatches the HTTP request and returns<br/>
+        /// immediately to the LLM with a synthetic "queued" result<br/>
+        /// instead of waiting for the response body. The customer's<br/>
+        /// endpoint is expected to enqueue the work and return any<br/>
+        /// non-error status quickly; errors raised after dispatch are<br/>
+        /// logged but never surfaced to the LLM. Use for long-running<br/>
+        /// customer-side work (job triggers, async ticket creation,<br/>
+        /// etc.) where blocking the call on the response would hurt<br/>
+        /// the conversation. Defaults to false.
+        /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
 #endif
@@ -70,13 +91,15 @@ namespace Speechify
             global::Speechify.TtsWebhookToolConfigMethod? method,
             global::System.Collections.Generic.Dictionary<string, string>? headers,
             int? timeoutMs,
-            global::System.Collections.Generic.IList<global::Speechify.TtsToolParam>? @params)
+            global::System.Collections.Generic.IList<global::Speechify.TtsToolParam>? @params,
+            bool? fireAndForget)
         {
             this.Url = url ?? throw new global::System.ArgumentNullException(nameof(url));
             this.Method = method;
             this.Headers = headers;
             this.TimeoutMs = timeoutMs;
             this.Params = @params;
+            this.FireAndForget = fireAndForget;
         }
 
         /// <summary>
@@ -85,5 +108,6 @@ namespace Speechify
         public TtsWebhookToolConfig()
         {
         }
+
     }
 }

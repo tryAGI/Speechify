@@ -27,11 +27,11 @@ namespace Speechify
             };
         partial void PrepareCreateArguments(
             global::System.Net.Http.HttpClient httpClient,
-            object request);
+            global::Speechify.TtsCreateOutboundCallRequest request);
         partial void PrepareCreateRequest(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpRequestMessage httpRequestMessage,
-            object request);
+            global::Speechify.TtsCreateOutboundCallRequest request);
         partial void ProcessCreateResponse(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpResponseMessage httpResponseMessage);
@@ -42,13 +42,13 @@ namespace Speechify
             ref string content);
 
         /// <summary>
-        /// Create<br/>
+        /// Create Outbound Call<br/>
         /// Place an outbound call from an agent to a phone number. LiveKit<br/>
         /// originates the SIP INVITE through the outbound trunk bound to the<br/>
         /// agent's workspace; the agent worker is dispatched into the room<br/>
         /// automatically.<br/>
         /// The response is returned as soon as LiveKit accepts the INVITE.<br/>
-        /// Poll `GET /v1/conversations/{conversation_id}` for status<br/>
+        /// Poll `GET /v1/agents/conversations/{conversation_id}` for status<br/>
         /// transitions: `pending` → `active` (answered) → `completed`.<br/>
         /// Requires a Twilio or BYOC trunk. LiveKit-native numbers are<br/>
         /// inbound-only.
@@ -57,9 +57,40 @@ namespace Speechify
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
-        public async global::System.Threading.Tasks.Task<string> CreateAsync(
+        public async global::System.Threading.Tasks.Task<global::Speechify.TtsCreateOutboundCallResponse> CreateAsync(
 
-            object request,
+            global::Speechify.TtsCreateOutboundCallRequest request,
+            global::Speechify.AutoSDKRequestOptions? requestOptions = default,
+            global::System.Threading.CancellationToken cancellationToken = default)
+        {
+            var __response = await CreateAsResponseAsync(
+
+                request: request,
+                requestOptions: requestOptions,
+                cancellationToken: cancellationToken
+            ).ConfigureAwait(false);
+
+            return __response.Body;
+        }
+        /// <summary>
+        /// Create Outbound Call<br/>
+        /// Place an outbound call from an agent to a phone number. LiveKit<br/>
+        /// originates the SIP INVITE through the outbound trunk bound to the<br/>
+        /// agent's workspace; the agent worker is dispatched into the room<br/>
+        /// automatically.<br/>
+        /// The response is returned as soon as LiveKit accepts the INVITE.<br/>
+        /// Poll `GET /v1/agents/conversations/{conversation_id}` for status<br/>
+        /// transitions: `pending` → `active` (answered) → `completed`.<br/>
+        /// Requires a Twilio or BYOC trunk. LiveKit-native numbers are<br/>
+        /// inbound-only.
+        /// </summary>
+        /// <param name="request"></param>
+        /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
+        /// <param name="cancellationToken">The token to cancel the operation with</param>
+        /// <exception cref="global::Speechify.ApiException"></exception>
+        public async global::System.Threading.Tasks.Task<global::Speechify.AutoSDKHttpResponse<global::Speechify.TtsCreateOutboundCallResponse>> CreateAsResponseAsync(
+
+            global::Speechify.TtsCreateOutboundCallRequest request,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
@@ -93,8 +124,9 @@ namespace Speechify
 
             global::System.Net.Http.HttpRequestMessage __CreateHttpRequest()
             {
+
                             var __pathBuilder = new global::Speechify.PathBuilder(
-                                path: "/v1/outbound-calls",
+                                path: "/v1/agents/outbound-calls",
                                 baseUri: HttpClient.BaseAddress);
                             var __path = __pathBuilder.ToString();
                 __path = global::Speechify.AutoSDKRequestOptionsSupport.AppendQueryParameters(
@@ -125,7 +157,7 @@ namespace Speechify
                     __httpRequest.Headers.Add(__authorization.Name, __authorization.Value);
                 } 
             }
-                            var __httpRequestContentBody = global::System.Text.Json.JsonSerializer.Serialize(request, request.GetType(), JsonSerializerContext);
+                            var __httpRequestContentBody = request.ToJson(JsonSerializerContext);
                             var __httpRequestContent = new global::System.Net.Http.StringContent(
                                 content: __httpRequestContentBody,
                                 encoding: global::System.Text.Encoding.UTF8,
@@ -161,7 +193,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "Create",
                                 methodName: "CreateAsync",
-                                pathTemplate: "\"/v1/outbound-calls\"",
+                                pathTemplate: "\"/v1/agents/outbound-calls\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -172,6 +204,8 @@ namespace Speechify
                                 attempt: __attempt,
                                 maxAttempts: __maxAttempts,
                                 willRetry: false,
+                                retryDelay: null,
+                                retryReason: global::System.String.Empty,
                                 cancellationToken: __effectiveCancellationToken)).ConfigureAwait(false);
                     try
                     {
@@ -182,13 +216,18 @@ namespace Speechify
                     }
                     catch (global::System.Net.Http.HttpRequestException __exception)
                     {
+                        var __retryDelay = global::Speechify.AutoSDKRequestOptionsSupport.GetRetryDelay(
+                            clientOptions: Options,
+                            requestOptions: requestOptions,
+                            response: null,
+                            attempt: __attempt);
                         var __willRetry = __attempt < __maxAttempts && !__effectiveCancellationToken.IsCancellationRequested;
                         await global::Speechify.AutoSDKRequestOptionsSupport.OnAfterErrorAsync(
                             clientOptions: Options,
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "Create",
                                 methodName: "CreateAsync",
-                                pathTemplate: "\"/v1/outbound-calls\"",
+                                pathTemplate: "\"/v1/agents/outbound-calls\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -199,6 +238,8 @@ namespace Speechify
                                 attempt: __attempt,
                                 maxAttempts: __maxAttempts,
                                 willRetry: __willRetry,
+                                retryDelay: __willRetry ? __retryDelay : (global::System.TimeSpan?)null,
+                                retryReason: "exception",
                                 cancellationToken: __effectiveCancellationToken)).ConfigureAwait(false);
                         if (!__willRetry)
                         {
@@ -208,8 +249,7 @@ namespace Speechify
                         __httpRequest.Dispose();
                         __httpRequest = null;
                         await global::Speechify.AutoSDKRequestOptionsSupport.DelayBeforeRetryAsync(
-                            clientOptions: Options,
-                            requestOptions: requestOptions,
+                            retryDelay: __retryDelay,
                             cancellationToken: __effectiveCancellationToken).ConfigureAwait(false);
                         continue;
                     }
@@ -218,12 +258,17 @@ namespace Speechify
                         __attempt < __maxAttempts &&
                         global::Speechify.AutoSDKRequestOptionsSupport.ShouldRetryStatusCode(__response.StatusCode))
                     {
+                        var __retryDelay = global::Speechify.AutoSDKRequestOptionsSupport.GetRetryDelay(
+                            clientOptions: Options,
+                            requestOptions: requestOptions,
+                            response: __response,
+                            attempt: __attempt);
                         await global::Speechify.AutoSDKRequestOptionsSupport.OnAfterErrorAsync(
                             clientOptions: Options,
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "Create",
                                 methodName: "CreateAsync",
-                                pathTemplate: "\"/v1/outbound-calls\"",
+                                pathTemplate: "\"/v1/agents/outbound-calls\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -234,14 +279,15 @@ namespace Speechify
                                 attempt: __attempt,
                                 maxAttempts: __maxAttempts,
                                 willRetry: true,
+                                retryDelay: __retryDelay,
+                                retryReason: "status:" + ((int)__response.StatusCode).ToString(global::System.Globalization.CultureInfo.InvariantCulture),
                                 cancellationToken: __effectiveCancellationToken)).ConfigureAwait(false);
                         __response.Dispose();
                         __response = null;
                         __httpRequest.Dispose();
                         __httpRequest = null;
                         await global::Speechify.AutoSDKRequestOptionsSupport.DelayBeforeRetryAsync(
-                            clientOptions: Options,
-                            requestOptions: requestOptions,
+                            retryDelay: __retryDelay,
                             cancellationToken: __effectiveCancellationToken).ConfigureAwait(false);
                         continue;
                     }
@@ -270,7 +316,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "Create",
                                 methodName: "CreateAsync",
-                                pathTemplate: "\"/v1/outbound-calls\"",
+                                pathTemplate: "\"/v1/agents/outbound-calls\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -281,6 +327,8 @@ namespace Speechify
                                 attempt: __attemptNumber,
                                 maxAttempts: __maxAttempts,
                                 willRetry: false,
+                                retryDelay: null,
+                                retryReason: global::System.String.Empty,
                                 cancellationToken: __effectiveCancellationToken)).ConfigureAwait(false);
                 }
                 else
@@ -290,7 +338,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "Create",
                                 methodName: "CreateAsync",
-                                pathTemplate: "\"/v1/outbound-calls\"",
+                                pathTemplate: "\"/v1/agents/outbound-calls\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -301,8 +349,121 @@ namespace Speechify
                                 attempt: __attemptNumber,
                                 maxAttempts: __maxAttempts,
                                 willRetry: false,
+                                retryDelay: null,
+                                retryReason: global::System.String.Empty,
                                 cancellationToken: __effectiveCancellationToken)).ConfigureAwait(false);
                 }
+                            // The request was malformed or failed validation. The response body is the standard `Error` envelope; for validation failures `error.fields` enumerates the offending fields as a `path -> message` map (code = `validation_failed`). 
+                            if ((int)__response.StatusCode == 400)
+                            {
+                                string? __content_400 = null;
+                                global::System.Exception? __exception_400 = null;
+                                global::Speechify.TtsError? __value_400 = null;
+                                try
+                                {
+                                    if (__effectiveReadResponseAsString)
+                                    {
+                                        __content_400 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+                                        __value_400 = global::Speechify.TtsError.FromJson(__content_400, JsonSerializerContext);
+                                    }
+                                    else
+                                    {
+                                        __content_400 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+
+                                        __value_400 = global::Speechify.TtsError.FromJson(__content_400, JsonSerializerContext);
+                                    }
+                                }
+                                catch (global::System.Exception __ex)
+                                {
+                                    __exception_400 = __ex;
+                                }
+
+
+                                throw global::Speechify.ApiException<global::Speechify.TtsError>.Create(
+                                    statusCode: __response.StatusCode,
+                                    message: __content_400 ?? __response.ReasonPhrase ?? string.Empty,
+                                    innerException: __exception_400,
+                                    responseBody: __content_400,
+                                    responseObject: __value_400,
+                                    responseHeaders: global::System.Linq.Enumerable.ToDictionary(
+                                        __response.Headers,
+                                        h => h.Key,
+                                        h => h.Value));
+                            }
+                            // Authentication is missing or invalid. The request did not carry a recognised credential (Firebase ID token, API key, or worker JWT). 
+                            if ((int)__response.StatusCode == 401)
+                            {
+                                string? __content_401 = null;
+                                global::System.Exception? __exception_401 = null;
+                                global::Speechify.TtsError? __value_401 = null;
+                                try
+                                {
+                                    if (__effectiveReadResponseAsString)
+                                    {
+                                        __content_401 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+                                        __value_401 = global::Speechify.TtsError.FromJson(__content_401, JsonSerializerContext);
+                                    }
+                                    else
+                                    {
+                                        __content_401 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+
+                                        __value_401 = global::Speechify.TtsError.FromJson(__content_401, JsonSerializerContext);
+                                    }
+                                }
+                                catch (global::System.Exception __ex)
+                                {
+                                    __exception_401 = __ex;
+                                }
+
+
+                                throw global::Speechify.ApiException<global::Speechify.TtsError>.Create(
+                                    statusCode: __response.StatusCode,
+                                    message: __content_401 ?? __response.ReasonPhrase ?? string.Empty,
+                                    innerException: __exception_401,
+                                    responseBody: __content_401,
+                                    responseObject: __value_401,
+                                    responseHeaders: global::System.Linq.Enumerable.ToDictionary(
+                                        __response.Headers,
+                                        h => h.Key,
+                                        h => h.Value));
+                            }
+                            // The referenced resource does not exist or is not visible to the caller's workspace. 
+                            if ((int)__response.StatusCode == 404)
+                            {
+                                string? __content_404 = null;
+                                global::System.Exception? __exception_404 = null;
+                                global::Speechify.TtsError? __value_404 = null;
+                                try
+                                {
+                                    if (__effectiveReadResponseAsString)
+                                    {
+                                        __content_404 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+                                        __value_404 = global::Speechify.TtsError.FromJson(__content_404, JsonSerializerContext);
+                                    }
+                                    else
+                                    {
+                                        __content_404 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+
+                                        __value_404 = global::Speechify.TtsError.FromJson(__content_404, JsonSerializerContext);
+                                    }
+                                }
+                                catch (global::System.Exception __ex)
+                                {
+                                    __exception_404 = __ex;
+                                }
+
+
+                                throw global::Speechify.ApiException<global::Speechify.TtsError>.Create(
+                                    statusCode: __response.StatusCode,
+                                    message: __content_404 ?? __response.ReasonPhrase ?? string.Empty,
+                                    innerException: __exception_404,
+                                    responseBody: __content_404,
+                                    responseObject: __value_404,
+                                    responseHeaders: global::System.Linq.Enumerable.ToDictionary(
+                                        __response.Headers,
+                                        h => h.Key,
+                                        h => h.Value));
+                            }
 
                             if (__effectiveReadResponseAsString)
                             {
@@ -325,21 +486,25 @@ namespace Speechify
                                 {
                                     __response.EnsureSuccessStatusCode();
 
-                                    return __content;
+                                    var __value = global::Speechify.TtsCreateOutboundCallResponse.FromJson(__content, JsonSerializerContext) ??
+                                        throw new global::System.InvalidOperationException($"Response deserialization failed for \"{__content}\" ");
+                                    return new global::Speechify.AutoSDKHttpResponse<global::Speechify.TtsCreateOutboundCallResponse>(
+                                        statusCode: __response.StatusCode,
+                                        headers: global::Speechify.AutoSDKHttpResponse.CreateHeaders(__response),
+                                        requestUri: __response.RequestMessage?.RequestUri,
+                                        body: __value);
                                 }
                                 catch (global::System.Exception __ex)
                                 {
-                                    throw new global::Speechify.ApiException(
+                                    throw global::Speechify.ApiException.Create(
+                                        statusCode: __response.StatusCode,
                                         message: __content ?? __response.ReasonPhrase ?? string.Empty,
                                         innerException: __ex,
-                                        statusCode: __response.StatusCode)
-                                    {
-                                        ResponseBody = __content,
-                                        ResponseHeaders = global::System.Linq.Enumerable.ToDictionary(
+                                        responseBody: __content,
+                                        responseHeaders: global::System.Linq.Enumerable.ToDictionary(
                                             __response.Headers,
                                             h => h.Key,
-                                            h => h.Value),
-                                    };
+                                            h => h.Value));
                                 }
                             }
                             else
@@ -347,13 +512,19 @@ namespace Speechify
                                 try
                                 {
                                     __response.EnsureSuccessStatusCode();
-                                    var __content = await __response.Content.ReadAsStringAsync(
+                                    using var __content = await __response.Content.ReadAsStreamAsync(
                 #if NET5_0_OR_GREATER
                                         __effectiveCancellationToken
                 #endif
                                     ).ConfigureAwait(false);
 
-                                    return __content;
+                                    var __value = await global::Speechify.TtsCreateOutboundCallResponse.FromJsonStreamAsync(__content, JsonSerializerContext).ConfigureAwait(false) ??
+                                        throw new global::System.InvalidOperationException("Response deserialization failed.");
+                                    return new global::Speechify.AutoSDKHttpResponse<global::Speechify.TtsCreateOutboundCallResponse>(
+                                        statusCode: __response.StatusCode,
+                                        headers: global::Speechify.AutoSDKHttpResponse.CreateHeaders(__response),
+                                        requestUri: __response.RequestMessage?.RequestUri,
+                                        body: __value);
                                 }
                                 catch (global::System.Exception __ex)
                                 {
@@ -370,17 +541,15 @@ namespace Speechify
                                     {
                                     }
 
-                                    throw new global::Speechify.ApiException(
+                                    throw global::Speechify.ApiException.Create(
+                                        statusCode: __response.StatusCode,
                                         message: __content ?? __response.ReasonPhrase ?? string.Empty,
                                         innerException: __ex,
-                                        statusCode: __response.StatusCode)
-                                    {
-                                        ResponseBody = __content,
-                                        ResponseHeaders = global::System.Linq.Enumerable.ToDictionary(
+                                        responseBody: __content,
+                                        responseHeaders: global::System.Linq.Enumerable.ToDictionary(
                                             __response.Headers,
                                             h => h.Key,
-                                            h => h.Value),
-                                    };
+                                            h => h.Value));
                                 }
                             }
 
@@ -392,26 +561,77 @@ namespace Speechify
             }
         }
         /// <summary>
-        /// Create<br/>
+        /// Create Outbound Call<br/>
         /// Place an outbound call from an agent to a phone number. LiveKit<br/>
         /// originates the SIP INVITE through the outbound trunk bound to the<br/>
         /// agent's workspace; the agent worker is dispatched into the room<br/>
         /// automatically.<br/>
         /// The response is returned as soon as LiveKit accepts the INVITE.<br/>
-        /// Poll `GET /v1/conversations/{conversation_id}` for status<br/>
+        /// Poll `GET /v1/agents/conversations/{conversation_id}` for status<br/>
         /// transitions: `pending` → `active` (answered) → `completed`.<br/>
         /// Requires a Twilio or BYOC trunk. LiveKit-native numbers are<br/>
         /// inbound-only.
         /// </summary>
+        /// <param name="agentId">
+        /// ID of the agent that handles the answered call.
+        /// </param>
+        /// <param name="to">
+        /// Destination phone number in E.164 format (e.g. `+12025559876`).
+        /// </param>
+        /// <param name="callerIdNumber">
+        /// The number shown to the callee as caller ID, in E.164 format.<br/>
+        /// Defaults to the first outbound-capable number in the workspace.<br/>
+        /// Useful for multi-number campaigns where you want to rotate<br/>
+        /// caller IDs.
+        /// </param>
+        /// <param name="dtmfPrefix">
+        /// DTMF digits dialed automatically after the call is answered,<br/>
+        /// before the agent begins speaking. Use this for IVR navigation<br/>
+        /// (e.g. `1ww2` presses 1, waits two seconds, presses 2). `w`<br/>
+        /// is a half-second pause; `W` is a one-second pause.
+        /// </param>
+        /// <param name="dynamicVariables">
+        /// Per-call variable overrides merged on top of the agent's stored<br/>
+        /// defaults. Keys must not use the reserved `system__` prefix.<br/>
+        /// Useful for injecting per-call context (customer name, order ID)<br/>
+        /// into the agent prompt.
+        /// </param>
+        /// <param name="ringingTimeoutMs">
+        /// How long to wait for the callee to answer before abandoning,<br/>
+        /// in milliseconds. Defaults to 30000 (30s). Capped at 80000 (80s).
+        /// </param>
+        /// <param name="amd">
+        /// Optional per-call override for the AMD routing config. When<br/>
+        /// set, wholesale-replaces the agent's stored AMD shape for<br/>
+        /// this single call (PATCH-replace, not merge). Unlocks the<br/>
+        /// batch-campaign pattern: one agent dialling many recipients<br/>
+        /// with per-row tailored voicemail messages via the existing<br/>
+        /// dynamic_variables substitution. Validation rules match<br/>
+        /// the agent-update boundary.
+        /// </param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::System.InvalidOperationException"></exception>
-        public async global::System.Threading.Tasks.Task<string> CreateAsync(
+        public async global::System.Threading.Tasks.Task<global::Speechify.TtsCreateOutboundCallResponse> CreateAsync(
+            string agentId,
+            string to,
+            string? callerIdNumber = default,
+            string? dtmfPrefix = default,
+            object? dynamicVariables = default,
+            int? ringingTimeoutMs = default,
+            global::Speechify.TtsAMDConfig? amd = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
-            var __request = new object
+            var __request = new global::Speechify.TtsCreateOutboundCallRequest
             {
+                AgentId = agentId,
+                To = to,
+                CallerIdNumber = callerIdNumber,
+                DtmfPrefix = dtmfPrefix,
+                DynamicVariables = dynamicVariables,
+                RingingTimeoutMs = ringingTimeoutMs,
+                Amd = amd,
             };
 
             return await CreateAsync(

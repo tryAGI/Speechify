@@ -4,7 +4,7 @@
 namespace Speechify
 {
     /// <summary>
-    /// Any type
+    /// Arbitrary JSON value returned by the tool (object, array, string, or primitive).
     /// </summary>
     public sealed partial class TtsMessageToolResult
     {
@@ -14,5 +14,6 @@ namespace Speechify
         /// </summary>
         [global::System.Text.Json.Serialization.JsonExtensionData]
         public global::System.Collections.Generic.IDictionary<string, object> AdditionalProperties { get; set; } = new global::System.Collections.Generic.Dictionary<string, object>();
+
     }
 }

@@ -23,7 +23,9 @@ namespace Speechify
         public required string DocumentId { get; set; }
 
         /// <summary>
-        /// 
+        /// Prefixed wire identifier (`kb_&lt;26 char Crockford base32&gt;`) of<br/>
+        /// the knowledge base the chunk belongs to. ADR 0015 FK<br/>
+        /// consistency.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("kb_id")]
         [global::System.Text.Json.Serialization.JsonRequired]
@@ -54,7 +56,11 @@ namespace Speechify
         /// </summary>
         /// <param name="id"></param>
         /// <param name="documentId"></param>
-        /// <param name="kbId"></param>
+        /// <param name="kbId">
+        /// Prefixed wire identifier (`kb_&lt;26 char Crockford base32&gt;`) of<br/>
+        /// the knowledge base the chunk belongs to. ADR 0015 FK<br/>
+        /// consistency.
+        /// </param>
         /// <param name="chunkIndex"></param>
         /// <param name="content"></param>
 #if NET7_0_OR_GREATER
@@ -80,5 +86,6 @@ namespace Speechify
         public TtsKnowledgeBaseChunk()
         {
         }
+
     }
 }

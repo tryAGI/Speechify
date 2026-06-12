@@ -19,7 +19,9 @@ namespace Speechify
         public string? Context { get; set; }
 
         /// <summary>
-        /// Name of the tool the agent is expected to call.
+        /// Name of the tool the agent is expected to call. Leave empty to<br/>
+        /// invert the assertion: the test passes only when the agent calls<br/>
+        /// no tool at all.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("expected_tool")]
         [global::System.Text.Json.Serialization.JsonRequired]
@@ -38,13 +40,19 @@ namespace Speechify
         public global::System.Collections.Generic.IList<global::Speechify.TtsSimulationMessage>? InitialChatHistory { get; set; }
 
         /// <summary>
-        /// Replaces the agent's system prompt for this run only.
+        /// Deprecated (AIS-3443). Prefer the run-level `config_override`<br/>
+        /// on `POST /v1/agents/{id}/tests/runs`. Still honoured; the<br/>
+        /// run-level override wins when both are set. Replaces the<br/>
+        /// agent's system prompt for this run only.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("system_prompt_override")]
         public string? SystemPromptOverride { get; set; }
 
         /// <summary>
-        /// Overrides the LLM model used by the agent for this run only.
+        /// Deprecated (AIS-3443). Prefer the run-level `config_override`<br/>
+        /// on `POST /v1/agents/{id}/tests/runs`. Still honoured; the<br/>
+        /// run-level override wins when both are set. Overrides the LLM<br/>
+        /// model used by the agent for this run only.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("model_override")]
         public string? ModelOverride { get; set; }
@@ -59,7 +67,9 @@ namespace Speechify
         /// Initializes a new instance of the <see cref="TtsToolCallConfig" /> class.
         /// </summary>
         /// <param name="expectedTool">
-        /// Name of the tool the agent is expected to call.
+        /// Name of the tool the agent is expected to call. Leave empty to<br/>
+        /// invert the assertion: the test passes only when the agent calls<br/>
+        /// no tool at all.
         /// </param>
         /// <param name="context">
         /// User message that should cause the agent to invoke the expected tool. Optional when `initial_chat_history` already ends with a user message.
@@ -71,10 +81,16 @@ namespace Speechify
         /// Optional seed conversation prepended before `context`.
         /// </param>
         /// <param name="systemPromptOverride">
-        /// Replaces the agent's system prompt for this run only.
+        /// Deprecated (AIS-3443). Prefer the run-level `config_override`<br/>
+        /// on `POST /v1/agents/{id}/tests/runs`. Still honoured; the<br/>
+        /// run-level override wins when both are set. Replaces the<br/>
+        /// agent's system prompt for this run only.
         /// </param>
         /// <param name="modelOverride">
-        /// Overrides the LLM model used by the agent for this run only.
+        /// Deprecated (AIS-3443). Prefer the run-level `config_override`<br/>
+        /// on `POST /v1/agents/{id}/tests/runs`. Still honoured; the<br/>
+        /// run-level override wins when both are set. Overrides the LLM<br/>
+        /// model used by the agent for this run only.
         /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
@@ -101,5 +117,6 @@ namespace Speechify
         public TtsToolCallConfig()
         {
         }
+
     }
 }

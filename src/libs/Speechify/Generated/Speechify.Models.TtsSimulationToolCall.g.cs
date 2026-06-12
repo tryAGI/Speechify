@@ -88,5 +88,6 @@ namespace Speechify
         public TtsSimulationToolCall()
         {
         }
+
     }
 }

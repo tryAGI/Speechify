@@ -15,7 +15,7 @@ namespace Speechify
         public global::System.Collections.Generic.IList<global::Speechify.TtsToolParam>? Params { get; set; }
 
         /// <summary>
-        /// Default Value: 10000
+        /// Per-call timeout in milliseconds. Defaults to 10000 server-side when omitted.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("timeout_ms")]
         public int? TimeoutMs { get; set; }
@@ -31,7 +31,7 @@ namespace Speechify
         /// </summary>
         /// <param name="params"></param>
         /// <param name="timeoutMs">
-        /// Default Value: 10000
+        /// Per-call timeout in milliseconds. Defaults to 10000 server-side when omitted.
         /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
@@ -50,5 +50,6 @@ namespace Speechify
         public TtsClientToolConfig()
         {
         }
+
     }
 }

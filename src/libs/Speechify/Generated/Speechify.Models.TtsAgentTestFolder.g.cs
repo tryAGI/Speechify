@@ -9,14 +9,19 @@ namespace Speechify
     public sealed partial class TtsAgentTestFolder
     {
         /// <summary>
-        /// 
+        /// Prefixed wire identifier (`folder_&lt;26 char Crockford base32&gt;`).<br/>
+        /// ADR 0015 Cluster 3 hard-break: URL paths accept only this<br/>
+        /// prefixed form; legacy UUID path parameters are rejected with<br/>
+        /// 404 as of Cluster 3.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("id")]
         [global::System.Text.Json.Serialization.JsonRequired]
         public required string Id { get; set; }
 
         /// <summary>
-        /// 
+        /// When set, prefixed wire identifier<br/>
+        /// (`folder_&lt;26 char Crockford base32&gt;`) of the parent folder.<br/>
+        /// Null means root. ADR 0015 FK consistency.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("parent_folder_id")]
         public string? ParentFolderId { get; set; }
@@ -51,11 +56,20 @@ namespace Speechify
         /// <summary>
         /// Initializes a new instance of the <see cref="TtsAgentTestFolder" /> class.
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="id">
+        /// Prefixed wire identifier (`folder_&lt;26 char Crockford base32&gt;`).<br/>
+        /// ADR 0015 Cluster 3 hard-break: URL paths accept only this<br/>
+        /// prefixed form; legacy UUID path parameters are rejected with<br/>
+        /// 404 as of Cluster 3.
+        /// </param>
         /// <param name="name"></param>
         /// <param name="createdAt"></param>
         /// <param name="updatedAt"></param>
-        /// <param name="parentFolderId"></param>
+        /// <param name="parentFolderId">
+        /// When set, prefixed wire identifier<br/>
+        /// (`folder_&lt;26 char Crockford base32&gt;`) of the parent folder.<br/>
+        /// Null means root. ADR 0015 FK consistency.
+        /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
 #endif
@@ -79,5 +93,6 @@ namespace Speechify
         public TtsAgentTestFolder()
         {
         }
+
     }
 }

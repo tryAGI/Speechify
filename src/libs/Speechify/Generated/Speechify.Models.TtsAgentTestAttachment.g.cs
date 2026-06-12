@@ -4,19 +4,21 @@
 namespace Speechify
 {
     /// <summary>
-    /// One (test, agent) pair. Poll the `attached_agent_ids` field on `AgentTestWithLastRun` or hit `/v1/tests/{id}/attachments` for the authoritative set.
+    /// One (test, agent) pair. Poll the `attached_agent_ids` field on `AgentTestWithLastRun` or hit `/v1/agents/tests/{id}/attachments` for the authoritative set.
     /// </summary>
     public sealed partial class TtsAgentTestAttachment
     {
         /// <summary>
-        /// 
+        /// Prefixed wire identifier (`test_&lt;26 char Crockford base32&gt;`)<br/>
+        /// of the attached test. ADR 0015 FK consistency.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("test_id")]
         [global::System.Text.Json.Serialization.JsonRequired]
         public required string TestId { get; set; }
 
         /// <summary>
-        /// 
+        /// Prefixed wire identifier (`agent_&lt;26 char Crockford base32&gt;`)<br/>
+        /// of the attached agent. ADR 0015 FK consistency.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("agent_id")]
         [global::System.Text.Json.Serialization.JsonRequired]
@@ -38,8 +40,14 @@ namespace Speechify
         /// <summary>
         /// Initializes a new instance of the <see cref="TtsAgentTestAttachment" /> class.
         /// </summary>
-        /// <param name="testId"></param>
-        /// <param name="agentId"></param>
+        /// <param name="testId">
+        /// Prefixed wire identifier (`test_&lt;26 char Crockford base32&gt;`)<br/>
+        /// of the attached test. ADR 0015 FK consistency.
+        /// </param>
+        /// <param name="agentId">
+        /// Prefixed wire identifier (`agent_&lt;26 char Crockford base32&gt;`)<br/>
+        /// of the attached agent. ADR 0015 FK consistency.
+        /// </param>
         /// <param name="createdAt"></param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
@@ -60,5 +68,6 @@ namespace Speechify
         public TtsAgentTestAttachment()
         {
         }
+
     }
 }

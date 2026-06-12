@@ -16,7 +16,8 @@ namespace Speechify
         public required string Id { get; set; }
 
         /// <summary>
-        /// 
+        /// Prefixed wire identifier (`conv_&lt;26 char Crockford base32&gt;`)<br/>
+        /// of the parent conversation. ADR 0015 FK consistency.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("conversation_id")]
         [global::System.Text.Json.Serialization.JsonRequired]
@@ -78,7 +79,10 @@ namespace Speechify
         /// Initializes a new instance of the <see cref="TtsMessage" /> class.
         /// </summary>
         /// <param name="id"></param>
-        /// <param name="conversationId"></param>
+        /// <param name="conversationId">
+        /// Prefixed wire identifier (`conv_&lt;26 char Crockford base32&gt;`)<br/>
+        /// of the parent conversation. ADR 0015 FK consistency.
+        /// </param>
         /// <param name="role"></param>
         /// <param name="content"></param>
         /// <param name="startedAt"></param>
@@ -119,5 +123,6 @@ namespace Speechify
         public TtsMessage()
         {
         }
+
     }
 }

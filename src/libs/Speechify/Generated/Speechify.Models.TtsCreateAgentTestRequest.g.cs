@@ -23,7 +23,7 @@ namespace Speechify
 
         /// <summary>
         /// Discriminates the shape of `AgentTest.config`.<br/>
-        /// - `scenario` - send one message to the agent and judge the response with an LLM.<br/>
+        /// - `reply` - send one message to the agent and judge the response with an LLM.<br/>
         /// - `tool` - assert that the agent calls a specific tool given a context.<br/>
         /// - `simulation` - run a multi-turn conversation between the agent and an AI caller.
         /// </summary>
@@ -55,7 +55,8 @@ namespace Speechify
         public object? Variables { get; set; }
 
         /// <summary>
-        /// Folder to place the test in. Omit for root.
+        /// Prefixed wire identifier (`folder_&lt;26 char Crockford base32&gt;`)<br/>
+        /// of the folder to place the test in. Omit / null for root.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("folder_id")]
         public string? FolderId { get; set; }
@@ -82,7 +83,7 @@ namespace Speechify
         /// </param>
         /// <param name="type">
         /// Discriminates the shape of `AgentTest.config`.<br/>
-        /// - `scenario` - send one message to the agent and judge the response with an LLM.<br/>
+        /// - `reply` - send one message to the agent and judge the response with an LLM.<br/>
         /// - `tool` - assert that the agent calls a specific tool given a context.<br/>
         /// - `simulation` - run a multi-turn conversation between the agent and an AI caller.
         /// </param>
@@ -101,7 +102,8 @@ namespace Speechify
         /// `DynamicVariable` keys.
         /// </param>
         /// <param name="folderId">
-        /// Folder to place the test in. Omit for root.
+        /// Prefixed wire identifier (`folder_&lt;26 char Crockford base32&gt;`)<br/>
+        /// of the folder to place the test in. Omit / null for root.
         /// </param>
         /// <param name="attachedAgentIds">
         /// Optional list of additional agents this test should also run<br/>
@@ -137,5 +139,6 @@ namespace Speechify
         public TtsCreateAgentTestRequest()
         {
         }
+
     }
 }
