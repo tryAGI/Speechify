@@ -6,7 +6,7 @@ namespace Speechify
     {
         /// <summary>
         /// Delete Agent<br/>
-        /// Delete a voice agent. Conversations and attached tools remain.
+        /// Delete a voice agent. Conversations and attached tools remain. Tests whose only agent is this one are deleted with it; tests also attached to other agents survive, minus the attachment.
         /// </summary>
         /// <param name="id"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
@@ -18,7 +18,7 @@ namespace Speechify
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Delete Agent<br/>
-        /// Delete a voice agent. Conversations and attached tools remain.
+        /// Delete a voice agent. Conversations and attached tools remain. Tests whose only agent is this one are deleted with it; tests also attached to other agents survive, minus the attachment.
         /// </summary>
         /// <param name="id"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
