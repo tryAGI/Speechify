@@ -5,7 +5,9 @@ namespace Speechify
 {
     /// <summary>
     /// One child run inside a suite run, carrying the parent test's<br/>
-    /// name so the grouped result view can label each row.
+    /// name and the target agent's name so the grouped result view can<br/>
+    /// label each row. The agent name disambiguates results when the<br/>
+    /// suite spans multiple agents.
     /// </summary>
     public sealed partial class TtsSuiteChildRun
     {
@@ -89,6 +91,13 @@ namespace Speechify
         public required string TestName { get; set; }
 
         /// <summary>
+        /// Display name of the agent this run executed against.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("agent_name")]
+        [global::System.Text.Json.Serialization.JsonRequired]
+        public required string AgentName { get; set; }
+
+        /// <summary>
         /// Additional properties that are not explicitly defined in the schema
         /// </summary>
         [global::System.Text.Json.Serialization.JsonExtensionData]
@@ -124,6 +133,9 @@ namespace Speechify
         /// <param name="testName">
         /// Name of the test this run executed.
         /// </param>
+        /// <param name="agentName">
+        /// Display name of the agent this run executed against.
+        /// </param>
         /// <param name="startedAt"></param>
         /// <param name="completedAt"></param>
         /// <param name="result">
@@ -142,6 +154,7 @@ namespace Speechify
             global::Speechify.TtsTestRunStatus status,
             global::System.DateTime createdAt,
             string testName,
+            string agentName,
             global::System.DateTime? startedAt,
             global::System.DateTime? completedAt,
             global::Speechify.OneOf<global::Speechify.TtsTestRunResult, object>? result,
@@ -157,6 +170,7 @@ namespace Speechify
             this.Error = error;
             this.CreatedAt = createdAt;
             this.TestName = testName ?? throw new global::System.ArgumentNullException(nameof(testName));
+            this.AgentName = agentName ?? throw new global::System.ArgumentNullException(nameof(agentName));
         }
 
         /// <summary>
