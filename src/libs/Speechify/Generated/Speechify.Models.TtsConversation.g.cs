@@ -153,6 +153,28 @@ namespace Speechify
         public string? CallerIdentity { get; set; }
 
         /// <summary>
+        /// E.164 of the phone number that placed the call. For<br/>
+        /// `sip_outbound` this is the workspace number used as the<br/>
+        /// caller ID; for `sip_inbound` it is the external caller's<br/>
+        /// number. Null for `web` conversations and for older<br/>
+        /// outbound rows, where the dialing caller id was not recorded<br/>
+        /// before this field existed.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("from_number")]
+        public string? FromNumber { get; set; }
+
+        /// <summary>
+        /// E.164 of the phone number that received the call. For<br/>
+        /// `sip_outbound` this is the external callee; for<br/>
+        /// `sip_inbound` it is the workspace number the caller<br/>
+        /// dialed. Null for `web` conversations and for legacy<br/>
+        /// inbound rows whose room name did not embed the dialed<br/>
+        /// number.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("to_number")]
+        public string? ToNumber { get; set; }
+
+        /// <summary>
         /// Frozen snapshot of the agent's configuration at create<br/>
         /// time. Populated only on detail responses; list responses<br/>
         /// intentionally skip the column to keep the row small.
@@ -306,6 +328,22 @@ namespace Speechify
         /// pivot memories by `(agent_id, caller_identity)`. Empty<br/>
         /// string for anonymous widget sessions.
         /// </param>
+        /// <param name="fromNumber">
+        /// E.164 of the phone number that placed the call. For<br/>
+        /// `sip_outbound` this is the workspace number used as the<br/>
+        /// caller ID; for `sip_inbound` it is the external caller's<br/>
+        /// number. Null for `web` conversations and for older<br/>
+        /// outbound rows, where the dialing caller id was not recorded<br/>
+        /// before this field existed.
+        /// </param>
+        /// <param name="toNumber">
+        /// E.164 of the phone number that received the call. For<br/>
+        /// `sip_outbound` this is the external callee; for<br/>
+        /// `sip_inbound` it is the workspace number the caller<br/>
+        /// dialed. Null for `web` conversations and for legacy<br/>
+        /// inbound rows whose room name did not embed the dialed<br/>
+        /// number.
+        /// </param>
         /// <param name="agentSnapshot">
         /// Frozen snapshot of the agent's configuration at create<br/>
         /// time. Populated only on detail responses; list responses<br/>
@@ -370,6 +408,8 @@ namespace Speechify
             global::System.DateTime? recordingStartedAt,
             global::Speechify.TtsConversationEndReason? endReason,
             string? callerIdentity,
+            string? fromNumber,
+            string? toNumber,
             global::Speechify.TtsAgentSnapshot? agentSnapshot,
             object? dynamicVariables,
             string? ivrMenuId,
@@ -392,6 +432,8 @@ namespace Speechify
             this.EndReason = endReason;
             this.Metadata = metadata ?? throw new global::System.ArgumentNullException(nameof(metadata));
             this.CallerIdentity = callerIdentity;
+            this.FromNumber = fromNumber;
+            this.ToNumber = toNumber;
             this.AgentSnapshot = agentSnapshot;
             this.DynamicVariables = dynamicVariables;
             this.MessageCount = messageCount;
