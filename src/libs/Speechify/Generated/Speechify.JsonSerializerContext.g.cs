@@ -93,6 +93,10 @@ namespace Speechify
 
             typeof(global::Speechify.JsonConverters.TtsAmdConfigOnUnavailableActionNullableJsonConverter),
 
+            typeof(global::Speechify.JsonConverters.TtsCreateAgentRequestBackgroundNoisePresetJsonConverter),
+
+            typeof(global::Speechify.JsonConverters.TtsCreateAgentRequestBackgroundNoisePresetNullableJsonConverter),
+
             typeof(global::Speechify.JsonConverters.TtsCreateAgentRequestSttOverrideJsonConverter),
 
             typeof(global::Speechify.JsonConverters.TtsCreateAgentRequestSttOverrideNullableJsonConverter),
@@ -101,6 +105,10 @@ namespace Speechify
 
             typeof(global::Speechify.JsonConverters.TtsAgentLlmProviderNullableJsonConverter),
 
+            typeof(global::Speechify.JsonConverters.TtsAgentBackgroundNoisePresetJsonConverter),
+
+            typeof(global::Speechify.JsonConverters.TtsAgentBackgroundNoisePresetNullableJsonConverter),
+
             typeof(global::Speechify.JsonConverters.TtsAgentSttOverrideJsonConverter),
 
             typeof(global::Speechify.JsonConverters.TtsAgentSttOverrideNullableJsonConverter),
@@ -108,6 +116,10 @@ namespace Speechify
             typeof(global::Speechify.JsonConverters.TtsUpdateAgentRequestLlmProviderJsonConverter),
 
             typeof(global::Speechify.JsonConverters.TtsUpdateAgentRequestLlmProviderNullableJsonConverter),
+
+            typeof(global::Speechify.JsonConverters.TtsUpdateAgentRequestBackgroundNoisePresetJsonConverter),
+
+            typeof(global::Speechify.JsonConverters.TtsUpdateAgentRequestBackgroundNoisePresetNullableJsonConverter),
 
             typeof(global::Speechify.JsonConverters.TtsUpdateAgentRequestSttOverrideJsonConverter),
 
@@ -124,6 +136,10 @@ namespace Speechify
             typeof(global::Speechify.JsonConverters.TtsConversationEndReasonJsonConverter),
 
             typeof(global::Speechify.JsonConverters.TtsConversationEndReasonNullableJsonConverter),
+
+            typeof(global::Speechify.JsonConverters.TtsAgentSnapshotBackgroundNoisePresetJsonConverter),
+
+            typeof(global::Speechify.JsonConverters.TtsAgentSnapshotBackgroundNoisePresetNullableJsonConverter),
 
             typeof(global::Speechify.JsonConverters.TtsConversationIvrSurrenderReasonJsonConverter),
 
@@ -394,22 +410,26 @@ namespace Speechify
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.TtsAmdConfigOnUnavailable))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.TtsAmdConfigTuning))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.TtsAMDConfig))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.TtsCreateAgentRequestBackgroundNoisePreset), TypeInfoPropertyName = "TtsCreateAgentRequestBackgroundNoisePreset2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.TtsCreateAgentRequestSttOverride), TypeInfoPropertyName = "TtsCreateAgentRequestSttOverride2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.TtsCreateAgentRequest))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(object))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.TtsAgentLlmProvider), TypeInfoPropertyName = "TtsAgentLlmProvider2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.TtsAgentBackgroundNoisePreset), TypeInfoPropertyName = "TtsAgentBackgroundNoisePreset2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.TtsAgentSttOverride), TypeInfoPropertyName = "TtsAgentSttOverride2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.TtsAgent))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.DateTime))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.TtsListAgentsResponse))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Speechify.TtsAgent>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.TtsUpdateAgentRequestLlmProvider), TypeInfoPropertyName = "TtsUpdateAgentRequestLlmProvider2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.TtsUpdateAgentRequestBackgroundNoisePreset), TypeInfoPropertyName = "TtsUpdateAgentRequestBackgroundNoisePreset2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.TtsUpdateAgentRequestSttOverride), TypeInfoPropertyName = "TtsUpdateAgentRequestSttOverride2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.TtsUpdateAgentRequest))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.TtsCreateConversationRequest))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.TtsConversationStatus), TypeInfoPropertyName = "TtsConversationStatus2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.TtsConversationTransport), TypeInfoPropertyName = "TtsConversationTransport2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.TtsConversationEndReason), TypeInfoPropertyName = "TtsConversationEndReason2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.TtsAgentSnapshotBackgroundNoisePreset), TypeInfoPropertyName = "TtsAgentSnapshotBackgroundNoisePreset2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.TtsAgentSnapshot))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.TtsConversationIvrSurrenderReason), TypeInfoPropertyName = "TtsConversationIvrSurrenderReason2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.TtsConversation))]

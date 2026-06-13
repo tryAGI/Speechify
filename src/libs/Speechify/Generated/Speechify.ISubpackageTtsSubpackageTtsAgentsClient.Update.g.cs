@@ -184,7 +184,7 @@ namespace Speechify
             double? responseDelaySeconds = default,
             bool? clearResponseDelaySeconds = default,
             int? inactivityTimeoutSeconds = default,
-            string? backgroundNoisePreset = default,
+            global::Speechify.TtsUpdateAgentRequestBackgroundNoisePreset? backgroundNoisePreset = default,
             double? backgroundNoiseVolume = default,
             global::Speechify.TtsUpdateAgentRequestSttOverride? sttOverride = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,

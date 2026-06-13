@@ -231,7 +231,8 @@ namespace Speechify
         /// disable the bed, which also clears `background_noise_volume`.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("background_noise_preset")]
-        public string? BackgroundNoisePreset { get; set; }
+        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Speechify.JsonConverters.TtsUpdateAgentRequestBackgroundNoisePresetJsonConverter))]
+        public global::Speechify.TtsUpdateAgentRequestBackgroundNoisePreset? BackgroundNoisePreset { get; set; }
 
         /// <summary>
         /// Volume of the background-noise bed (0..1). Ignored when<br/>
@@ -404,7 +405,7 @@ namespace Speechify
             double? responseDelaySeconds,
             bool? clearResponseDelaySeconds,
             int? inactivityTimeoutSeconds,
-            string? backgroundNoisePreset,
+            global::Speechify.TtsUpdateAgentRequestBackgroundNoisePreset? backgroundNoisePreset,
             double? backgroundNoiseVolume,
             global::Speechify.TtsUpdateAgentRequestSttOverride? sttOverride)
         {

@@ -272,11 +272,12 @@ namespace Speechify
         public int? InactivityTimeoutSeconds { get; set; }
 
         /// <summary>
-        /// Optional pre-mixed ambient bed (e.g. office, cafe). Null<br/>
-        /// disables background noise.
+        /// Optional pre-mixed ambient bed. Null disables background<br/>
+        /// noise.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("background_noise_preset")]
-        public string? BackgroundNoisePreset { get; set; }
+        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Speechify.JsonConverters.TtsAgentBackgroundNoisePresetJsonConverter))]
+        public global::Speechify.TtsAgentBackgroundNoisePreset? BackgroundNoisePreset { get; set; }
 
         /// <summary>
         /// Volume of the background-noise bed. Null disables.
@@ -473,8 +474,8 @@ namespace Speechify
         /// the platform default.
         /// </param>
         /// <param name="backgroundNoisePreset">
-        /// Optional pre-mixed ambient bed (e.g. office, cafe). Null<br/>
-        /// disables background noise.
+        /// Optional pre-mixed ambient bed. Null disables background<br/>
+        /// noise.
         /// </param>
         /// <param name="backgroundNoiseVolume">
         /// Volume of the background-noise bed. Null disables.
@@ -523,7 +524,7 @@ namespace Speechify
             double? ttsPlaybackRate,
             double? responseDelaySeconds,
             int? inactivityTimeoutSeconds,
-            string? backgroundNoisePreset,
+            global::Speechify.TtsAgentBackgroundNoisePreset? backgroundNoisePreset,
             double? backgroundNoiseVolume,
             global::Speechify.TtsAgentSttOverride? sttOverride)
         {
