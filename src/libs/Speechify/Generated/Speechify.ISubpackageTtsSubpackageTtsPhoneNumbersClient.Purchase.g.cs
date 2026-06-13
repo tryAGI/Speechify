@@ -7,9 +7,10 @@ namespace Speechify
         /// <summary>
         /// Purchase Phone Number<br/>
         /// Purchase a phone number on Speechify's master Twilio account.<br/>
-        /// The number is billed to Speechify until released; each<br/>
-        /// workspace is capped at a small number of purchased numbers<br/>
-        /// (see 422 response) independent of the overall 100-number cap.<br/>
+        /// The number is billed to Speechify until released. A plan that<br/>
+        /// includes no purchased numbers (e.g. Free) returns 402; a plan<br/>
+        /// that has used its full included quota returns 422. This is<br/>
+        /// independent of the overall 100-number cap.<br/>
         /// `e164` must come from a recent `SearchAvailablePhoneNumbers`<br/>
         /// response — carriers reject buys against numbers that are no<br/>
         /// longer in inventory. The returned phone number is wired for<br/>
@@ -29,9 +30,10 @@ namespace Speechify
         /// <summary>
         /// Purchase Phone Number<br/>
         /// Purchase a phone number on Speechify's master Twilio account.<br/>
-        /// The number is billed to Speechify until released; each<br/>
-        /// workspace is capped at a small number of purchased numbers<br/>
-        /// (see 422 response) independent of the overall 100-number cap.<br/>
+        /// The number is billed to Speechify until released. A plan that<br/>
+        /// includes no purchased numbers (e.g. Free) returns 402; a plan<br/>
+        /// that has used its full included quota returns 422. This is<br/>
+        /// independent of the overall 100-number cap.<br/>
         /// `e164` must come from a recent `SearchAvailablePhoneNumbers`<br/>
         /// response — carriers reject buys against numbers that are no<br/>
         /// longer in inventory. The returned phone number is wired for<br/>
@@ -51,9 +53,10 @@ namespace Speechify
         /// <summary>
         /// Purchase Phone Number<br/>
         /// Purchase a phone number on Speechify's master Twilio account.<br/>
-        /// The number is billed to Speechify until released; each<br/>
-        /// workspace is capped at a small number of purchased numbers<br/>
-        /// (see 422 response) independent of the overall 100-number cap.<br/>
+        /// The number is billed to Speechify until released. A plan that<br/>
+        /// includes no purchased numbers (e.g. Free) returns 402; a plan<br/>
+        /// that has used its full included quota returns 422. This is<br/>
+        /// independent of the overall 100-number cap.<br/>
         /// `e164` must come from a recent `SearchAvailablePhoneNumbers`<br/>
         /// response — carriers reject buys against numbers that are no<br/>
         /// longer in inventory. The returned phone number is wired for<br/>

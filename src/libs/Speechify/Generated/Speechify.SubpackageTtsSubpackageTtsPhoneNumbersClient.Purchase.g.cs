@@ -44,9 +44,10 @@ namespace Speechify
         /// <summary>
         /// Purchase Phone Number<br/>
         /// Purchase a phone number on Speechify's master Twilio account.<br/>
-        /// The number is billed to Speechify until released; each<br/>
-        /// workspace is capped at a small number of purchased numbers<br/>
-        /// (see 422 response) independent of the overall 100-number cap.<br/>
+        /// The number is billed to Speechify until released. A plan that<br/>
+        /// includes no purchased numbers (e.g. Free) returns 402; a plan<br/>
+        /// that has used its full included quota returns 422. This is<br/>
+        /// independent of the overall 100-number cap.<br/>
         /// `e164` must come from a recent `SearchAvailablePhoneNumbers`<br/>
         /// response — carriers reject buys against numbers that are no<br/>
         /// longer in inventory. The returned phone number is wired for<br/>
@@ -76,9 +77,10 @@ namespace Speechify
         /// <summary>
         /// Purchase Phone Number<br/>
         /// Purchase a phone number on Speechify's master Twilio account.<br/>
-        /// The number is billed to Speechify until released; each<br/>
-        /// workspace is capped at a small number of purchased numbers<br/>
-        /// (see 422 response) independent of the overall 100-number cap.<br/>
+        /// The number is billed to Speechify until released. A plan that<br/>
+        /// includes no purchased numbers (e.g. Free) returns 402; a plan<br/>
+        /// that has used its full included quota returns 422. This is<br/>
+        /// independent of the overall 100-number cap.<br/>
         /// `e164` must come from a recent `SearchAvailablePhoneNumbers`<br/>
         /// response — carriers reject buys against numbers that are no<br/>
         /// longer in inventory. The returned phone number is wired for<br/>
@@ -429,6 +431,43 @@ namespace Speechify
                                         h => h.Key,
                                         h => h.Value));
                             }
+                            // The workspace has insufficient credits, or the request needs a plan tier the workspace is not on (e.g. voice cloning). Distinct from `Forbidden` so SDK consumers can drive upgrade UX. 
+                            if ((int)__response.StatusCode == 402)
+                            {
+                                string? __content_402 = null;
+                                global::System.Exception? __exception_402 = null;
+                                global::Speechify.TtsError? __value_402 = null;
+                                try
+                                {
+                                    if (__effectiveReadResponseAsString)
+                                    {
+                                        __content_402 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+                                        __value_402 = global::Speechify.TtsError.FromJson(__content_402, JsonSerializerContext);
+                                    }
+                                    else
+                                    {
+                                        __content_402 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+
+                                        __value_402 = global::Speechify.TtsError.FromJson(__content_402, JsonSerializerContext);
+                                    }
+                                }
+                                catch (global::System.Exception __ex)
+                                {
+                                    __exception_402 = __ex;
+                                }
+
+
+                                throw global::Speechify.ApiException<global::Speechify.TtsError>.Create(
+                                    statusCode: __response.StatusCode,
+                                    message: __content_402 ?? __response.ReasonPhrase ?? string.Empty,
+                                    innerException: __exception_402,
+                                    responseBody: __content_402,
+                                    responseObject: __value_402,
+                                    responseHeaders: global::System.Linq.Enumerable.ToDictionary(
+                                        __response.Headers,
+                                        h => h.Key,
+                                        h => h.Value));
+                            }
                             // The request was well-formed but semantically rejected - typically a referential integrity violation (e.g. flow node references an audio asset in another workspace) or a state machine refusal. 
                             if ((int)__response.StatusCode == 422)
                             {
@@ -602,9 +641,10 @@ namespace Speechify
         /// <summary>
         /// Purchase Phone Number<br/>
         /// Purchase a phone number on Speechify's master Twilio account.<br/>
-        /// The number is billed to Speechify until released; each<br/>
-        /// workspace is capped at a small number of purchased numbers<br/>
-        /// (see 422 response) independent of the overall 100-number cap.<br/>
+        /// The number is billed to Speechify until released. A plan that<br/>
+        /// includes no purchased numbers (e.g. Free) returns 402; a plan<br/>
+        /// that has used its full included quota returns 422. This is<br/>
+        /// independent of the overall 100-number cap.<br/>
         /// `e164` must come from a recent `SearchAvailablePhoneNumbers`<br/>
         /// response — carriers reject buys against numbers that are no<br/>
         /// longer in inventory. The returned phone number is wired for<br/>
