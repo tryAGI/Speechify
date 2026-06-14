@@ -52,10 +52,6 @@ namespace Speechify
         /// <summary>
         /// 
         /// </summary>
-        PaymentMethodRequired,
-        /// <summary>
-        /// 
-        /// </summary>
         PaymentRequired,
         /// <summary>
         /// 
@@ -104,7 +100,6 @@ namespace Speechify
                 TtsErrorCode.MethodNotAllowed => "method_not_allowed",
                 TtsErrorCode.NotFound => "not_found",
                 TtsErrorCode.PayloadTooLarge => "payload_too_large",
-                TtsErrorCode.PaymentMethodRequired => "payment_method_required",
                 TtsErrorCode.PaymentRequired => "payment_required",
                 TtsErrorCode.RateLimited => "rate_limited",
                 TtsErrorCode.ServiceUnavailable => "service_unavailable",
@@ -131,7 +126,6 @@ namespace Speechify
                 "method_not_allowed" => TtsErrorCode.MethodNotAllowed,
                 "not_found" => TtsErrorCode.NotFound,
                 "payload_too_large" => TtsErrorCode.PayloadTooLarge,
-                "payment_method_required" => TtsErrorCode.PaymentMethodRequired,
                 "payment_required" => TtsErrorCode.PaymentRequired,
                 "rate_limited" => TtsErrorCode.RateLimited,
                 "service_unavailable" => TtsErrorCode.ServiceUnavailable,
