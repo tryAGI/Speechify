@@ -6,8 +6,7 @@ namespace Speechify
     /// <summary>
     /// Bare list of the knowledge bases attached to an agent. Not<br/>
     /// paginated — an agent's KB attachment count is naturally<br/>
-    /// bounded (configuration, not data scale). See [ADR 0013](../docs/adrs/0013-list-pagination-conventions.md)<br/>
-    /// for the "pagination only where needed" rule.
+    /// bounded (configuration, not data scale).
     /// </summary>
     public sealed partial class TtsAttachedKnowledgeBasesResponse
     {

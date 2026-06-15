@@ -4,7 +4,7 @@
 namespace Speechify
 {
     /// <summary>
-    /// Per-document auto-refresh state (AIS-2656). Only populated<br/>
+    /// Per-document auto-refresh state. Only populated<br/>
     /// for url-sourced documents; file and text rows omit this and<br/>
     /// the console's auto-refresh panel hides accordingly.
     /// </summary>

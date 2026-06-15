@@ -4,7 +4,7 @@
 namespace Speechify
 {
     /// <summary>
-    /// Async URL import job (AIS-2655 sitemap, AIS-2657 crawl, plus<br/>
+    /// Async URL import job (sitemap, crawl, plus<br/>
     /// the auto-refresh path). The console polls<br/>
     /// `GET /v1/agents/knowledge-bases/{id}/imports` while the job is<br/>
     /// non-terminal.

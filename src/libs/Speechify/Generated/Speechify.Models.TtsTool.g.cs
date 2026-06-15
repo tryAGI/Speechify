@@ -9,8 +9,7 @@ namespace Speechify
     public sealed partial class TtsTool
     {
         /// <summary>
-        /// Prefixed wire identifier (`tool_&lt;26 char Crockford base32&gt;`).<br/>
-        /// ADR 0015 Cluster 1 hard-break.
+        /// Prefixed wire identifier (`tool_&lt;26 char Crockford base32&gt;`).
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("id")]
         [global::System.Text.Json.Serialization.JsonRequired]
@@ -35,7 +34,7 @@ namespace Speechify
         /// - `system`:  worker-resident built-in (e.g. end_call, play_audio)<br/>
         /// - `webhook`: worker signs a payload and POSTs it to your URL<br/>
         /// - `client`:  worker dispatches to the caller's browser/SDK via data channel<br/>
-        /// - `mcp`:     worker connects to a customer-hosted MCP server and proxies tool calls (AIS-3056)
+        /// - `mcp`:     worker connects to a customer-hosted MCP server and proxies tool calls
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("kind")]
         [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Speechify.JsonConverters.TtsToolKindJsonConverter))]
@@ -82,8 +81,7 @@ namespace Speechify
         /// Initializes a new instance of the <see cref="TtsTool" /> class.
         /// </summary>
         /// <param name="id">
-        /// Prefixed wire identifier (`tool_&lt;26 char Crockford base32&gt;`).<br/>
-        /// ADR 0015 Cluster 1 hard-break.
+        /// Prefixed wire identifier (`tool_&lt;26 char Crockford base32&gt;`).
         /// </param>
         /// <param name="name"></param>
         /// <param name="description"></param>
@@ -92,7 +90,7 @@ namespace Speechify
         /// - `system`:  worker-resident built-in (e.g. end_call, play_audio)<br/>
         /// - `webhook`: worker signs a payload and POSTs it to your URL<br/>
         /// - `client`:  worker dispatches to the caller's browser/SDK via data channel<br/>
-        /// - `mcp`:     worker connects to a customer-hosted MCP server and proxies tool calls (AIS-3056)
+        /// - `mcp`:     worker connects to a customer-hosted MCP server and proxies tool calls
         /// </param>
         /// <param name="config">
         /// One of `SystemToolConfig`, `WebhookToolConfig`, `ClientToolConfig`, or `MCPToolConfig` depending on `kind`.

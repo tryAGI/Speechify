@@ -4,7 +4,7 @@
 namespace Speechify
 {
     /// <summary>
-    /// One memorized IVR menu level (AIS-3267). Identified by the<br/>
+    /// One memorized IVR menu level. Identified by the<br/>
     /// SHA-256 fingerprint of the normalized greeting transcript;<br/>
     /// scoped to the caller's workspace (foreign-tenant menus are<br/>
     /// never returned).<br/>
@@ -13,9 +13,9 @@ namespace Speechify
     /// reached by pressing an option are their own rows, looked up at<br/>
     /// descent time by a fresh fingerprint - the tree structure is the<br/>
     /// implicit graph of fingerprint -&gt; fingerprint transitions.<br/>
-    /// `confidence_score` is `succeeded_traversals / total_traversals`<br/>
-    /// (ADR 0009 §3). The worker's plan-then-execute fast path only<br/>
-    /// activates at or above 0.5.<br/>
+    /// `confidence_score` is `succeeded_traversals / total_traversals`.<br/>
+    /// The worker's plan-then-execute fast path only activates at or<br/>
+    /// above 0.5.<br/>
     /// `invalidated_at` is non-null on a soft-deleted row; the API<br/>
     /// filters these out of list / lookup / get responses so this field<br/>
     /// is informational only.
@@ -24,9 +24,9 @@ namespace Speechify
     {
         /// <summary>
         /// Prefixed wire identifier (`menu_&lt;26 char Crockford base32&gt;`).<br/>
-        /// ADR 0015 Cluster 2 hard-break: URL paths accept only this<br/>
+        /// URL paths accept only this<br/>
         /// prefixed form; legacy UUID path parameters are rejected with<br/>
-        /// 404 as of Cluster 2.
+        /// 404.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("id")]
         [global::System.Text.Json.Serialization.JsonRequired]
@@ -118,9 +118,9 @@ namespace Speechify
         /// </summary>
         /// <param name="id">
         /// Prefixed wire identifier (`menu_&lt;26 char Crockford base32&gt;`).<br/>
-        /// ADR 0015 Cluster 2 hard-break: URL paths accept only this<br/>
+        /// URL paths accept only this<br/>
         /// prefixed form; legacy UUID path parameters are rejected with<br/>
-        /// 404 as of Cluster 2.
+        /// 404.
         /// </param>
         /// <param name="fingerprintId"></param>
         /// <param name="schemaVersion"></param>

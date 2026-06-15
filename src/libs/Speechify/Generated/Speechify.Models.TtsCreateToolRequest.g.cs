@@ -27,7 +27,7 @@ namespace Speechify
         /// - `system`:  worker-resident built-in (e.g. end_call, play_audio)<br/>
         /// - `webhook`: worker signs a payload and POSTs it to your URL<br/>
         /// - `client`:  worker dispatches to the caller's browser/SDK via data channel<br/>
-        /// - `mcp`:     worker connects to a customer-hosted MCP server and proxies tool calls (AIS-3056)
+        /// - `mcp`:     worker connects to a customer-hosted MCP server and proxies tool calls
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("kind")]
         [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Speechify.JsonConverters.TtsToolKindJsonConverter))]
@@ -58,7 +58,7 @@ namespace Speechify
         /// - `system`:  worker-resident built-in (e.g. end_call, play_audio)<br/>
         /// - `webhook`: worker signs a payload and POSTs it to your URL<br/>
         /// - `client`:  worker dispatches to the caller's browser/SDK via data channel<br/>
-        /// - `mcp`:     worker connects to a customer-hosted MCP server and proxies tool calls (AIS-3056)
+        /// - `mcp`:     worker connects to a customer-hosted MCP server and proxies tool calls
         /// </param>
         /// <param name="config"></param>
 #if NET7_0_OR_GREATER

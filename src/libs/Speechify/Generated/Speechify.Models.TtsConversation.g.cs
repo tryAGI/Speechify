@@ -10,9 +10,9 @@ namespace Speechify
     {
         /// <summary>
         /// Prefixed wire identifier (`conv_&lt;26 char Crockford base32&gt;`).<br/>
-        /// ADR 0015 Cluster 2 hard-break: URL paths accept only this<br/>
+        /// URL paths accept only this<br/>
         /// prefixed form; legacy UUID path parameters are rejected with<br/>
-        /// 404 as of Cluster 2.
+        /// 404.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("id")]
         [global::System.Text.Json.Serialization.JsonRequired]
@@ -20,9 +20,7 @@ namespace Speechify
 
         /// <summary>
         /// Prefixed wire identifier (`agent_&lt;26 char Crockford base32&gt;`)<br/>
-        /// for the agent that answers this conversation. ADR 0015<br/>
-        /// FK consistency: customer-facing responses emit the prefixed<br/>
-        /// form, never raw UUIDs.
+        /// for the agent that answers this conversation.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("agent_id")]
         [global::System.Text.Json.Serialization.JsonRequired]
@@ -206,7 +204,7 @@ namespace Speechify
         public required int MessageCount { get; set; }
 
         /// <summary>
-        /// AIS-3322 audit pointer at the cached IVR menu the<br/>
+        /// Audit pointer at the cached IVR menu the<br/>
         /// navigator consulted on this call. NULL when the navigator<br/>
         /// never engaged OR after the referenced menu was<br/>
         /// invalidated (FK is ON DELETE SET NULL).
@@ -215,7 +213,7 @@ namespace Speechify
         public string? IvrMenuId { get; set; }
 
         /// <summary>
-        /// AIS-3322 ordered log of the navigator's per-call presses:<br/>
+        /// Ordered log of the navigator's per-call presses:<br/>
         /// `[{fingerprint, dtmf, label}, ...]`. Empty array means<br/>
         /// "navigator engaged but pressed nothing" (distinct from<br/>
         /// NULL = "navigator never engaged").
@@ -224,7 +222,7 @@ namespace Speechify
         public global::System.Collections.Generic.IList<object>? IvrPathTaken { get; set; }
 
         /// <summary>
-        /// AIS-3322 canonical code the worker emits when the IVR<br/>
+        /// Canonical code the worker emits when the IVR<br/>
         /// navigator gave up. NULL when the navigator completed<br/>
         /// cleanly OR never started a plan.<br/>
         /// * `no_goal` - the goal extractor returned empty.<br/>
@@ -253,15 +251,13 @@ namespace Speechify
         /// </summary>
         /// <param name="id">
         /// Prefixed wire identifier (`conv_&lt;26 char Crockford base32&gt;`).<br/>
-        /// ADR 0015 Cluster 2 hard-break: URL paths accept only this<br/>
+        /// URL paths accept only this<br/>
         /// prefixed form; legacy UUID path parameters are rejected with<br/>
-        /// 404 as of Cluster 2.
+        /// 404.
         /// </param>
         /// <param name="agentId">
         /// Prefixed wire identifier (`agent_&lt;26 char Crockford base32&gt;`)<br/>
-        /// for the agent that answers this conversation. ADR 0015<br/>
-        /// FK consistency: customer-facing responses emit the prefixed<br/>
-        /// form, never raw UUIDs.
+        /// for the agent that answers this conversation.
         /// </param>
         /// <param name="roomName">
         /// LiveKit room name. Equals the conversation `id` for `web`<br/>
@@ -361,19 +357,19 @@ namespace Speechify
         /// list endpoint skips it, mirroring `agent_snapshot`.
         /// </param>
         /// <param name="ivrMenuId">
-        /// AIS-3322 audit pointer at the cached IVR menu the<br/>
+        /// Audit pointer at the cached IVR menu the<br/>
         /// navigator consulted on this call. NULL when the navigator<br/>
         /// never engaged OR after the referenced menu was<br/>
         /// invalidated (FK is ON DELETE SET NULL).
         /// </param>
         /// <param name="ivrPathTaken">
-        /// AIS-3322 ordered log of the navigator's per-call presses:<br/>
+        /// Ordered log of the navigator's per-call presses:<br/>
         /// `[{fingerprint, dtmf, label}, ...]`. Empty array means<br/>
         /// "navigator engaged but pressed nothing" (distinct from<br/>
         /// NULL = "navigator never engaged").
         /// </param>
         /// <param name="ivrSurrenderReason">
-        /// AIS-3322 canonical code the worker emits when the IVR<br/>
+        /// Canonical code the worker emits when the IVR<br/>
         /// navigator gave up. NULL when the navigator completed<br/>
         /// cleanly OR never started a plan.<br/>
         /// * `no_goal` - the goal extractor returned empty.<br/>

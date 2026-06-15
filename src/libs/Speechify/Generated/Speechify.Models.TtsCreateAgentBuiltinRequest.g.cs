@@ -12,7 +12,7 @@ namespace Speechify
         /// Identifier of a worker-resident system builtin. New entries are<br/>
         /// added together on the server (a new `tool_builtin_&lt;name&gt;.go`<br/>
         /// file) and worker (`tools/builtins/&lt;name&gt;.py`) - the 2-file rule<br/>
-        /// AIS-3053 pins. Customers read the catalogue from<br/>
+        /// the server pins. Customers read the catalogue from<br/>
         /// `GET /v1/agents/tools/system-builtins` rather than depending on this<br/>
         /// string set staying stable across releases.
         /// </summary>
@@ -64,7 +64,7 @@ namespace Speechify
         /// Identifier of a worker-resident system builtin. New entries are<br/>
         /// added together on the server (a new `tool_builtin_&lt;name&gt;.go`<br/>
         /// file) and worker (`tools/builtins/&lt;name&gt;.py`) - the 2-file rule<br/>
-        /// AIS-3053 pins. Customers read the catalogue from<br/>
+        /// the server pins. Customers read the catalogue from<br/>
         /// `GET /v1/agents/tools/system-builtins` rather than depending on this<br/>
         /// string set staying stable across releases.
         /// </param>

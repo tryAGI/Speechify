@@ -5,10 +5,8 @@ namespace Speechify
 {
     /// <summary>
     /// Shared pagination metadata composed into every cursor-paginated<br/>
-    /// list response via `allOf`. See [ADR 0013](../docs/adrs/0013-list-pagination-conventions.md)<br/>
-    /// for the convention and the rationale for shipping `has_more`<br/>
-    /// alongside `next_cursor` (defense-in-depth across two equivalent<br/>
-    /// end-of-pages signals).
+    /// list response via `allOf`. Ships `has_more` alongside `next_cursor`<br/>
+    /// as two equivalent end-of-pages signals (defense-in-depth).
     /// </summary>
     public sealed partial class TtsListMessagesResponse
     {

@@ -19,7 +19,7 @@ namespace Speechify
 
         /// <summary>
         /// Prefixed wire identifier (`agent_&lt;26 char Crockford base32&gt;`)<br/>
-        /// of the owning agent. ADR 0015 FK consistency.
+        /// of the owning agent.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("agent_id")]
         [global::System.Text.Json.Serialization.JsonRequired]
@@ -42,7 +42,7 @@ namespace Speechify
         /// <summary>
         /// When set, the prefixed wire identifier<br/>
         /// (`conv_&lt;26 char Crockford base32&gt;`) of the conversation this<br/>
-        /// memory was extracted from. ADR 0015 FK consistency.
+        /// memory was extracted from.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("source_conversation_id")]
         public string? SourceConversationId { get; set; }
@@ -73,7 +73,7 @@ namespace Speechify
         /// <param name="id"></param>
         /// <param name="agentId">
         /// Prefixed wire identifier (`agent_&lt;26 char Crockford base32&gt;`)<br/>
-        /// of the owning agent. ADR 0015 FK consistency.
+        /// of the owning agent.
         /// </param>
         /// <param name="callerIdentity"></param>
         /// <param name="fact"></param>
@@ -82,7 +82,7 @@ namespace Speechify
         /// <param name="sourceConversationId">
         /// When set, the prefixed wire identifier<br/>
         /// (`conv_&lt;26 char Crockford base32&gt;`) of the conversation this<br/>
-        /// memory was extracted from. ADR 0015 FK consistency.
+        /// memory was extracted from.
         /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]

@@ -25,13 +25,15 @@ namespace Speechify
         /// 
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("prompt")]
-        public string? Prompt { get; set; }
+        [global::System.Text.Json.Serialization.JsonRequired]
+        public required string Prompt { get; set; }
 
         /// <summary>
         /// Greeting spoken verbatim at session start when included in the agent's flow graph.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("first_message")]
-        public string? FirstMessage { get; set; }
+        [global::System.Text.Json.Serialization.JsonRequired]
+        public required string FirstMessage { get; set; }
 
         /// <summary>
         /// ISO 639-1 code. Defaults to 'en' when omitted.
@@ -92,7 +94,7 @@ namespace Speechify
         public required string VoiceId { get; set; }
 
         /// <summary>
-        /// 0.0..1.0. Defaults to 0.7 when omitted.
+        /// Sampling temperature in the range 0.0–1.0. Defaults to 0.5 when omitted.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("temperature")]
         public double? Temperature { get; set; }
@@ -237,15 +239,15 @@ namespace Speechify
         /// Initializes a new instance of the <see cref="TtsCreateAgentRequest" /> class.
         /// </summary>
         /// <param name="name"></param>
+        /// <param name="prompt"></param>
+        /// <param name="firstMessage">
+        /// Greeting spoken verbatim at session start when included in the agent's flow graph.
+        /// </param>
         /// <param name="voiceId">
         /// Voice slug from the VMS catalog (see GET /v1/voices). Required — the server rejects writes with an unknown or empty slug.
         /// </param>
         /// <param name="slug">
         /// Optional. Server derives slug from name with a random suffix when omitted; if you supply your own, a collision returns 400 'slug already taken'.
-        /// </param>
-        /// <param name="prompt"></param>
-        /// <param name="firstMessage">
-        /// Greeting spoken verbatim at session start when included in the agent's flow graph.
         /// </param>
         /// <param name="language">
         /// ISO 639-1 code. Defaults to 'en' when omitted.
@@ -280,7 +282,7 @@ namespace Speechify
         /// `custom`.
         /// </param>
         /// <param name="temperature">
-        /// 0.0..1.0. Defaults to 0.7 when omitted.
+        /// Sampling temperature in the range 0.0–1.0. Defaults to 0.5 when omitted.
         /// </param>
         /// <param name="widgetConfig">
         /// Customer-editable appearance + behaviour payload for the<br/>
@@ -354,10 +356,10 @@ namespace Speechify
 #endif
         public TtsCreateAgentRequest(
             string name,
+            string prompt,
+            string firstMessage,
             string voiceId,
             string? slug,
-            string? prompt,
-            string? firstMessage,
             string? language,
             global::Speechify.TtsCreateAgentRequestLlmProvider? llmProvider,
             string? llmModel,
@@ -387,8 +389,8 @@ namespace Speechify
         {
             this.Name = name ?? throw new global::System.ArgumentNullException(nameof(name));
             this.Slug = slug;
-            this.Prompt = prompt;
-            this.FirstMessage = firstMessage;
+            this.Prompt = prompt ?? throw new global::System.ArgumentNullException(nameof(prompt));
+            this.FirstMessage = firstMessage ?? throw new global::System.ArgumentNullException(nameof(firstMessage));
             this.Language = language;
             this.LlmProvider = llmProvider;
             this.LlmModel = llmModel;

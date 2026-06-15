@@ -23,8 +23,7 @@ namespace Speechify
 
         /// <summary>
         /// Prefixed wire identifier (`conv_&lt;26 char Crockford base32&gt;`)<br/>
-        /// of the conversation this evaluation is attached to. ADR 0015<br/>
-        /// FK consistency.
+        /// of the conversation this evaluation is attached to.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("conversation_id")]
         [global::System.Text.Json.Serialization.JsonRequired]
@@ -102,8 +101,7 @@ namespace Speechify
         /// <param name="id"></param>
         /// <param name="conversationId">
         /// Prefixed wire identifier (`conv_&lt;26 char Crockford base32&gt;`)<br/>
-        /// of the conversation this evaluation is attached to. ADR 0015<br/>
-        /// FK consistency.
+        /// of the conversation this evaluation is attached to.
         /// </param>
         /// <param name="kind"></param>
         /// <param name="name"></param>

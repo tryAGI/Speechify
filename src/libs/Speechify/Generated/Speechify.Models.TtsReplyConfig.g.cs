@@ -46,7 +46,7 @@ namespace Speechify
         public global::System.Collections.Generic.IList<global::Speechify.TtsSimulationMessage>? InitialChatHistory { get; set; }
 
         /// <summary>
-        /// Deprecated (AIS-3443). Prefer the run-level `config_override`<br/>
+        /// Deprecated. Prefer the run-level `config_override`<br/>
         /// on `POST /v1/agents/{id}/tests/runs`, which applies a proposed<br/>
         /// prompt to every test in the run without editing each one.<br/>
         /// Still honoured; the run-level override wins when both are set.<br/>
@@ -62,7 +62,7 @@ namespace Speechify
         public string? FirstMessageOverride { get; set; }
 
         /// <summary>
-        /// Deprecated (AIS-3443). Prefer the run-level `config_override`<br/>
+        /// Deprecated. Prefer the run-level `config_override`<br/>
         /// on `POST /v1/agents/{id}/tests/runs`. Still honoured; the<br/>
         /// run-level override wins when both are set. Overrides the LLM<br/>
         /// model used by the agent for this run only.
@@ -95,7 +95,7 @@ namespace Speechify
         /// Optional seed conversation prepended before `context`. Lets you test the agent's reply mid-conversation rather than on a cold single-turn prompt.
         /// </param>
         /// <param name="systemPromptOverride">
-        /// Deprecated (AIS-3443). Prefer the run-level `config_override`<br/>
+        /// Deprecated. Prefer the run-level `config_override`<br/>
         /// on `POST /v1/agents/{id}/tests/runs`, which applies a proposed<br/>
         /// prompt to every test in the run without editing each one.<br/>
         /// Still honoured; the run-level override wins when both are set.<br/>
@@ -105,7 +105,7 @@ namespace Speechify
         /// Replaces the agent's first message for this run only.
         /// </param>
         /// <param name="modelOverride">
-        /// Deprecated (AIS-3443). Prefer the run-level `config_override`<br/>
+        /// Deprecated. Prefer the run-level `config_override`<br/>
         /// on `POST /v1/agents/{id}/tests/runs`. Still honoured; the<br/>
         /// run-level override wins when both are set. Overrides the LLM<br/>
         /// model used by the agent for this run only.

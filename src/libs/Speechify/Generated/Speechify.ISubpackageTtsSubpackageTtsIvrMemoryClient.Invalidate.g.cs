@@ -8,7 +8,7 @@ namespace Speechify
         /// Invalidate IVR Menu<br/>
         /// Soft-invalidate the named menu. Future lookups skip it; the<br/>
         /// next discovery for the same fingerprint replaces it (clearing<br/>
-        /// the invalidation, see ADR 0009 §4). Idempotent: re-invalidating<br/>
+        /// the invalidation). Idempotent: re-invalidating<br/>
         /// an already-invalidated row returns 404.<br/>
         /// Reason is optional and is captured in structured logs for<br/>
         /// operator triage. A future audit table may persist it.
@@ -28,7 +28,7 @@ namespace Speechify
         /// Invalidate IVR Menu<br/>
         /// Soft-invalidate the named menu. Future lookups skip it; the<br/>
         /// next discovery for the same fingerprint replaces it (clearing<br/>
-        /// the invalidation, see ADR 0009 §4). Idempotent: re-invalidating<br/>
+        /// the invalidation). Idempotent: re-invalidating<br/>
         /// an already-invalidated row returns 404.<br/>
         /// Reason is optional and is captured in structured logs for<br/>
         /// operator triage. A future audit table may persist it.
@@ -48,7 +48,7 @@ namespace Speechify
         /// Invalidate IVR Menu<br/>
         /// Soft-invalidate the named menu. Future lookups skip it; the<br/>
         /// next discovery for the same fingerprint replaces it (clearing<br/>
-        /// the invalidation, see ADR 0009 §4). Idempotent: re-invalidating<br/>
+        /// the invalidation). Idempotent: re-invalidating<br/>
         /// an already-invalidated row returns 404.<br/>
         /// Reason is optional and is captured in structured logs for<br/>
         /// operator triage. A future audit table may persist it.
