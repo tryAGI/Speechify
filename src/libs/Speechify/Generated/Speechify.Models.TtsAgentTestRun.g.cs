@@ -12,9 +12,9 @@ namespace Speechify
     {
         /// <summary>
         /// Prefixed wire identifier (`run_&lt;26 char Crockford base32&gt;`).<br/>
-        /// ADR 0015 Cluster 3 hard-break: URL paths accept only this<br/>
+        /// URL paths accept only this<br/>
         /// prefixed form; legacy UUID path parameters are rejected with<br/>
-        /// 404 as of Cluster 3.
+        /// 404.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("id")]
         [global::System.Text.Json.Serialization.JsonRequired]
@@ -22,7 +22,7 @@ namespace Speechify
 
         /// <summary>
         /// Prefixed wire identifier (`test_&lt;26 char Crockford base32&gt;`)<br/>
-        /// of the parent test. ADR 0015 FK consistency.
+        /// of the parent test.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("test_id")]
         [global::System.Text.Json.Serialization.JsonRequired]
@@ -30,8 +30,7 @@ namespace Speechify
 
         /// <summary>
         /// Prefixed wire identifier (`agent_&lt;26 char Crockford base32&gt;`)<br/>
-        /// of the agent this run executed against. ADR 0015 FK<br/>
-        /// consistency.
+        /// of the agent this run executed against.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("agent_id")]
         [global::System.Text.Json.Serialization.JsonRequired]
@@ -93,18 +92,17 @@ namespace Speechify
         /// </summary>
         /// <param name="id">
         /// Prefixed wire identifier (`run_&lt;26 char Crockford base32&gt;`).<br/>
-        /// ADR 0015 Cluster 3 hard-break: URL paths accept only this<br/>
+        /// URL paths accept only this<br/>
         /// prefixed form; legacy UUID path parameters are rejected with<br/>
-        /// 404 as of Cluster 3.
+        /// 404.
         /// </param>
         /// <param name="testId">
         /// Prefixed wire identifier (`test_&lt;26 char Crockford base32&gt;`)<br/>
-        /// of the parent test. ADR 0015 FK consistency.
+        /// of the parent test.
         /// </param>
         /// <param name="agentId">
         /// Prefixed wire identifier (`agent_&lt;26 char Crockford base32&gt;`)<br/>
-        /// of the agent this run executed against. ADR 0015 FK<br/>
-        /// consistency.
+        /// of the agent this run executed against.
         /// </param>
         /// <param name="status">
         /// Lifecycle of a test run: `queued` - `running` - terminal.<br/>

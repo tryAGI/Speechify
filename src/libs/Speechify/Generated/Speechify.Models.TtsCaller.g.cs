@@ -4,7 +4,7 @@
 namespace Speechify
 {
     /// <summary>
-    /// First-class Caller entity (Phase 2 of ADR 0011). Identified by<br/>
+    /// First-class Caller entity. Identified by<br/>
     /// the (tenant, agent, identity) triple. Memories and conversations<br/>
     /// FK at it via `caller_id`.
     /// </summary>
@@ -12,9 +12,9 @@ namespace Speechify
     {
         /// <summary>
         /// Prefixed wire identifier (`caller_&lt;26 char Crockford base32&gt;`).<br/>
-        /// ADR 0015 Cluster 2 hard-break: URL paths accept only this<br/>
+        /// URL paths accept only this<br/>
         /// prefixed form; legacy UUID path parameters are rejected with<br/>
-        /// 404 as of Cluster 2.
+        /// 404.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("id")]
         [global::System.Text.Json.Serialization.JsonRequired]
@@ -22,7 +22,7 @@ namespace Speechify
 
         /// <summary>
         /// Prefixed wire identifier (`ws_&lt;26 char Crockford base32&gt;`) of<br/>
-        /// the owning workspace. ADR 0015 FK consistency.
+        /// the owning workspace.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("tenant_id")]
         [global::System.Text.Json.Serialization.JsonRequired]
@@ -30,8 +30,7 @@ namespace Speechify
 
         /// <summary>
         /// Prefixed wire identifier (`agent_&lt;26 char Crockford base32&gt;`)<br/>
-        /// of the agent the caller is scoped under. ADR 0015 FK<br/>
-        /// consistency.
+        /// of the agent the caller is scoped under.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("agent_id")]
         [global::System.Text.Json.Serialization.JsonRequired]
@@ -110,18 +109,17 @@ namespace Speechify
         /// </summary>
         /// <param name="id">
         /// Prefixed wire identifier (`caller_&lt;26 char Crockford base32&gt;`).<br/>
-        /// ADR 0015 Cluster 2 hard-break: URL paths accept only this<br/>
+        /// URL paths accept only this<br/>
         /// prefixed form; legacy UUID path parameters are rejected with<br/>
-        /// 404 as of Cluster 2.
+        /// 404.
         /// </param>
         /// <param name="tenantId">
         /// Prefixed wire identifier (`ws_&lt;26 char Crockford base32&gt;`) of<br/>
-        /// the owning workspace. ADR 0015 FK consistency.
+        /// the owning workspace.
         /// </param>
         /// <param name="agentId">
         /// Prefixed wire identifier (`agent_&lt;26 char Crockford base32&gt;`)<br/>
-        /// of the agent the caller is scoped under. ADR 0015 FK<br/>
-        /// consistency.
+        /// of the agent the caller is scoped under.
         /// </param>
         /// <param name="identity">
         /// The raw identifier the caller arrived with (E.164 phone for SIP, LiveKit<br/>

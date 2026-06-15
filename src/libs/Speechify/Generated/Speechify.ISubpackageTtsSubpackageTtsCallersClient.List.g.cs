@@ -8,7 +8,7 @@ namespace Speechify
         /// List Callers<br/>
         /// List the workspace's callers, ordered by most-recently-seen first.<br/>
         /// A caller is the per-(tenant, agent, identity) entity that owns<br/>
-        /// long-term memories and conversation history. Phase 2 of ADR 0011.
+        /// long-term memories and conversation history.
         /// </summary>
         /// <param name="agentId"></param>
         /// <param name="q"></param>
@@ -32,7 +32,7 @@ namespace Speechify
         /// List Callers<br/>
         /// List the workspace's callers, ordered by most-recently-seen first.<br/>
         /// A caller is the per-(tenant, agent, identity) entity that owns<br/>
-        /// long-term memories and conversation history. Phase 2 of ADR 0011.
+        /// long-term memories and conversation history.
         /// </summary>
         /// <param name="agentId"></param>
         /// <param name="q"></param>

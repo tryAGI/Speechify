@@ -5,7 +5,7 @@ namespace Speechify
 {
     /// <summary>
     /// Frozen copy of the agent's behavioral configuration captured at<br/>
-    /// conversation-create time (AIS-2778) so the detail view can<br/>
+    /// conversation-create time so the detail view can<br/>
     /// render historical calls accurately even after the live agent<br/>
     /// has been edited. Carries its own `schema_version` because the<br/>
     /// snapshot shape evolves independently of the live Agent shape.<br/>
@@ -131,8 +131,7 @@ namespace Speechify
         /// audio into one of LiveKit's categories (human, uncertain,<br/>
         /// machine-vm, machine-ivr, machine-unavailable) and dispatches per<br/>
         /// category to the configured action. Stored on the agent row;<br/>
-        /// flowed onto outbound dispatch metadata under the `amd` key.<br/>
-        /// Rationale: see ADR 0008 (docs/adrs/0008-amd-as-session-routing-primitive.md).
+        /// flowed onto outbound dispatch metadata under the `amd` key.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("amd")]
         public global::Speechify.TtsAMDConfig? Amd { get; set; }
@@ -222,8 +221,7 @@ namespace Speechify
         /// audio into one of LiveKit's categories (human, uncertain,<br/>
         /// machine-vm, machine-ivr, machine-unavailable) and dispatches per<br/>
         /// category to the configured action. Stored on the agent row;<br/>
-        /// flowed onto outbound dispatch metadata under the `amd` key.<br/>
-        /// Rationale: see ADR 0008 (docs/adrs/0008-amd-as-session-routing-primitive.md).
+        /// flowed onto outbound dispatch metadata under the `amd` key.
         /// </param>
         /// <param name="saveAudioRecording"></param>
         /// <param name="navigatorMode"></param>

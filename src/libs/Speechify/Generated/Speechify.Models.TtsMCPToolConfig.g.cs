@@ -4,7 +4,7 @@
 namespace Speechify
 {
     /// <summary>
-    /// Config shape for `kind=mcp` (AIS-3056). The worker opens the<br/>
+    /// Config shape for `kind=mcp`. The worker opens the<br/>
     /// configured transport at session start, runs `initialize` +<br/>
     /// `list_tools`, and registers each discovered remote tool as a<br/>
     /// livekit-agents function_tool proxying through the long-lived<br/>

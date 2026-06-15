@@ -4,8 +4,8 @@
 namespace Speechify
 {
     /// <summary>
-    /// Result details for a `simulation` test run. AIS-3446 unifies<br/>
-    /// scoring with the post-call evaluator: the synthetic transcript<br/>
+    /// Result details for a `simulation` test run. Scoring is unified<br/>
+    /// with the post-call evaluator: the synthetic transcript<br/>
     /// is scored against the agent's configured evaluation criteria<br/>
     /// and data-collection fields, then per-test `data_assertions`<br/>
     /// check the extracted values. The top-level `passed` is derived<br/>

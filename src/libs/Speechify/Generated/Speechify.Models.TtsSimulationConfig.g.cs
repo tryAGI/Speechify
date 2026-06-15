@@ -44,7 +44,7 @@ namespace Speechify
         public global::System.Collections.Generic.IList<global::Speechify.TtsDataAssertion>? DataAssertions { get; set; }
 
         /// <summary>
-        /// Deprecated (AIS-3443). Prefer the run-level `config_override`<br/>
+        /// Deprecated. Prefer the run-level `config_override`<br/>
         /// on `POST /v1/agents/{id}/tests/runs`. Still honoured; the<br/>
         /// run-level override wins when both are set. Replaces the<br/>
         /// agent's system prompt for this run only.
@@ -53,7 +53,7 @@ namespace Speechify
         public string? SystemPromptOverride { get; set; }
 
         /// <summary>
-        /// Deprecated (AIS-3443). Prefer the run-level `config_override`<br/>
+        /// Deprecated. Prefer the run-level `config_override`<br/>
         /// on `POST /v1/agents/{id}/tests/runs`. Still honoured; the<br/>
         /// run-level override wins when both are set. Overrides the LLM<br/>
         /// model used by the agent for this run only.
@@ -87,13 +87,13 @@ namespace Speechify
         /// The test fails if any assertion fails.
         /// </param>
         /// <param name="systemPromptOverride">
-        /// Deprecated (AIS-3443). Prefer the run-level `config_override`<br/>
+        /// Deprecated. Prefer the run-level `config_override`<br/>
         /// on `POST /v1/agents/{id}/tests/runs`. Still honoured; the<br/>
         /// run-level override wins when both are set. Replaces the<br/>
         /// agent's system prompt for this run only.
         /// </param>
         /// <param name="modelOverride">
-        /// Deprecated (AIS-3443). Prefer the run-level `config_override`<br/>
+        /// Deprecated. Prefer the run-level `config_override`<br/>
         /// on `POST /v1/agents/{id}/tests/runs`. Still honoured; the<br/>
         /// run-level override wins when both are set. Overrides the LLM<br/>
         /// model used by the agent for this run only.

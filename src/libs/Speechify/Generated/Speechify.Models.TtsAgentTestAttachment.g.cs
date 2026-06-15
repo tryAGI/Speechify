@@ -10,7 +10,7 @@ namespace Speechify
     {
         /// <summary>
         /// Prefixed wire identifier (`test_&lt;26 char Crockford base32&gt;`)<br/>
-        /// of the attached test. ADR 0015 FK consistency.
+        /// of the attached test.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("test_id")]
         [global::System.Text.Json.Serialization.JsonRequired]
@@ -18,7 +18,7 @@ namespace Speechify
 
         /// <summary>
         /// Prefixed wire identifier (`agent_&lt;26 char Crockford base32&gt;`)<br/>
-        /// of the attached agent. ADR 0015 FK consistency.
+        /// of the attached agent.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("agent_id")]
         [global::System.Text.Json.Serialization.JsonRequired]
@@ -42,11 +42,11 @@ namespace Speechify
         /// </summary>
         /// <param name="testId">
         /// Prefixed wire identifier (`test_&lt;26 char Crockford base32&gt;`)<br/>
-        /// of the attached test. ADR 0015 FK consistency.
+        /// of the attached test.
         /// </param>
         /// <param name="agentId">
         /// Prefixed wire identifier (`agent_&lt;26 char Crockford base32&gt;`)<br/>
-        /// of the attached agent. ADR 0015 FK consistency.
+        /// of the attached agent.
         /// </param>
         /// <param name="createdAt"></param>
 #if NET7_0_OR_GREATER

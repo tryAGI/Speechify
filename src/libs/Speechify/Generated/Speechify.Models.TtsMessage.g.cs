@@ -17,7 +17,7 @@ namespace Speechify
 
         /// <summary>
         /// Prefixed wire identifier (`conv_&lt;26 char Crockford base32&gt;`)<br/>
-        /// of the parent conversation. ADR 0015 FK consistency.
+        /// of the parent conversation.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("conversation_id")]
         [global::System.Text.Json.Serialization.JsonRequired]
@@ -81,7 +81,7 @@ namespace Speechify
         /// <param name="id"></param>
         /// <param name="conversationId">
         /// Prefixed wire identifier (`conv_&lt;26 char Crockford base32&gt;`)<br/>
-        /// of the parent conversation. ADR 0015 FK consistency.
+        /// of the parent conversation.
         /// </param>
         /// <param name="role"></param>
         /// <param name="content"></param>

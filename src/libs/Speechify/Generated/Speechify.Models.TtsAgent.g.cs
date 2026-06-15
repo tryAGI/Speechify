@@ -10,9 +10,9 @@ namespace Speechify
     {
         /// <summary>
         /// Prefixed wire identifier (`agent_&lt;26 char Crockford base32&gt;`).<br/>
-        /// ADR 0015 Cluster 1 hard-break: this is the sole customer-facing<br/>
+        /// This is the sole customer-facing<br/>
         /// identifier. URL paths accept only this prefixed form; legacy<br/>
-        /// UUID path parameters are rejected with 404 as of Cluster 1.
+        /// UUID path parameters are rejected with 404.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("id")]
         [global::System.Text.Json.Serialization.JsonRequired]
@@ -195,8 +195,7 @@ namespace Speechify
         /// audio into one of LiveKit's categories (human, uncertain,<br/>
         /// machine-vm, machine-ivr, machine-unavailable) and dispatches per<br/>
         /// category to the configured action. Stored on the agent row;<br/>
-        /// flowed onto outbound dispatch metadata under the `amd` key.<br/>
-        /// Rationale: see ADR 0008 (docs/adrs/0008-amd-as-session-routing-primitive.md).
+        /// flowed onto outbound dispatch metadata under the `amd` key.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("amd")]
         [global::System.Text.Json.Serialization.JsonRequired]
@@ -323,9 +322,9 @@ namespace Speechify
         /// </summary>
         /// <param name="id">
         /// Prefixed wire identifier (`agent_&lt;26 char Crockford base32&gt;`).<br/>
-        /// ADR 0015 Cluster 1 hard-break: this is the sole customer-facing<br/>
+        /// This is the sole customer-facing<br/>
         /// identifier. URL paths accept only this prefixed form; legacy<br/>
-        /// UUID path parameters are rejected with 404 as of Cluster 1.
+        /// UUID path parameters are rejected with 404.
         /// </param>
         /// <param name="name"></param>
         /// <param name="slug"></param>
@@ -377,8 +376,7 @@ namespace Speechify
         /// audio into one of LiveKit's categories (human, uncertain,<br/>
         /// machine-vm, machine-ivr, machine-unavailable) and dispatches per<br/>
         /// category to the configured action. Stored on the agent row;<br/>
-        /// flowed onto outbound dispatch metadata under the `amd` key.<br/>
-        /// Rationale: see ADR 0008 (docs/adrs/0008-amd-as-session-routing-primitive.md).
+        /// flowed onto outbound dispatch metadata under the `amd` key.
         /// </param>
         /// <param name="saveAudioRecording">
         /// When true, every conversation produces a room-composite<br/>

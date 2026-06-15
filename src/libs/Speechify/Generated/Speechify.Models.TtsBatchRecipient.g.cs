@@ -17,7 +17,7 @@ namespace Speechify
 
         /// <summary>
         /// Prefixed wire identifier (`batch_&lt;26 char Crockford base32&gt;`)<br/>
-        /// of the parent batch. ADR 0015 FK consistency.
+        /// of the parent batch.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("batch_id")]
         [global::System.Text.Json.Serialization.JsonRequired]
@@ -46,7 +46,7 @@ namespace Speechify
 
         /// <summary>
         /// Set once the call is placed. Prefixed wire identifier<br/>
-        /// (`conv_&lt;26 char Crockford base32&gt;`). ADR 0015 FK consistency.
+        /// (`conv_&lt;26 char Crockford base32&gt;`).
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("conversation_id")]
         public string? ConversationId { get; set; }
@@ -81,7 +81,7 @@ namespace Speechify
         /// <param name="id"></param>
         /// <param name="batchId">
         /// Prefixed wire identifier (`batch_&lt;26 char Crockford base32&gt;`)<br/>
-        /// of the parent batch. ADR 0015 FK consistency.
+        /// of the parent batch.
         /// </param>
         /// <param name="phone">
         /// Recipient phone number in E.164 format.
@@ -92,7 +92,7 @@ namespace Speechify
         /// </param>
         /// <param name="conversationId">
         /// Set once the call is placed. Prefixed wire identifier<br/>
-        /// (`conv_&lt;26 char Crockford base32&gt;`). ADR 0015 FK consistency.
+        /// (`conv_&lt;26 char Crockford base32&gt;`).
         /// </param>
         /// <param name="error">
         /// Populated when this recipient fails.

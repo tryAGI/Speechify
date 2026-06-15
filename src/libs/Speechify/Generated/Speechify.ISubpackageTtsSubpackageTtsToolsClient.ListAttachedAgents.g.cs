@@ -10,7 +10,7 @@ namespace Speechify
         /// this tool attached. Useful before deleting a tool, to surface<br/>
         /// which agents will lose access. Soft-deleted agents are filtered<br/>
         /// out. Bounded by the number of agents per workspace (tens), so<br/>
-        /// the response is not paginated (see ADR 0013).
+        /// the response is not paginated.
         /// </summary>
         /// <param name="id"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
@@ -26,7 +26,7 @@ namespace Speechify
         /// this tool attached. Useful before deleting a tool, to surface<br/>
         /// which agents will lose access. Soft-deleted agents are filtered<br/>
         /// out. Bounded by the number of agents per workspace (tens), so<br/>
-        /// the response is not paginated (see ADR 0013).
+        /// the response is not paginated.
         /// </summary>
         /// <param name="id"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>

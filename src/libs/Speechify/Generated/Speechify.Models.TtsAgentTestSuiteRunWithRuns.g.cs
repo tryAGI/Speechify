@@ -112,7 +112,7 @@ namespace Speechify
         public global::System.DateTime? CompletedAt { get; set; }
 
         /// <summary>
-        /// The run-level config override (AIS-3443) this suite was run<br/>
+        /// The run-level config override this suite was run<br/>
         /// with, or null for an ordinary Run All / batch.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("config_override")]
@@ -195,7 +195,7 @@ namespace Speechify
         /// Newest child-run completion; null until every child run is terminal.
         /// </param>
         /// <param name="configOverride">
-        /// The run-level config override (AIS-3443) this suite was run<br/>
+        /// The run-level config override this suite was run<br/>
         /// with, or null for an ordinary Run All / batch.
         /// </param>
         /// <param name="flowVersionId">

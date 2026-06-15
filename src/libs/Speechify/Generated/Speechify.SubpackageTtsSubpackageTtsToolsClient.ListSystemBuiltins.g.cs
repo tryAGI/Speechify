@@ -43,7 +43,7 @@ namespace Speechify
         /// List System Builtins<br/>
         /// Read-only catalogue of every system builtin the worker knows<br/>
         /// about. The console fetches this at runtime rather than<br/>
-        /// maintaining a parallel client-side list (AIS-3074); the server<br/>
+        /// maintaining a parallel client-side list; the server<br/>
         /// is the single source of truth for the label and description<br/>
         /// copy a customer sees in the builtin-instance picker.
         /// </summary>
@@ -65,7 +65,7 @@ namespace Speechify
         /// List System Builtins<br/>
         /// Read-only catalogue of every system builtin the worker knows<br/>
         /// about. The console fetches this at runtime rather than<br/>
-        /// maintaining a parallel client-side list (AIS-3074); the server<br/>
+        /// maintaining a parallel client-side list; the server<br/>
         /// is the single source of truth for the label and description<br/>
         /// copy a customer sees in the builtin-instance picker.
         /// </summary>

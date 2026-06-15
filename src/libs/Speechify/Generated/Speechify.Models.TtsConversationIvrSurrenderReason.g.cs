@@ -4,7 +4,7 @@
 namespace Speechify
 {
     /// <summary>
-    /// AIS-3322 canonical code the worker emits when the IVR<br/>
+    /// Canonical code the worker emits when the IVR<br/>
     /// navigator gave up. NULL when the navigator completed<br/>
     /// cleanly OR never started a plan.<br/>
     /// * `no_goal` - the goal extractor returned empty.<br/>

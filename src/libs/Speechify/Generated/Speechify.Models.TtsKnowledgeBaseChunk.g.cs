@@ -24,8 +24,7 @@ namespace Speechify
 
         /// <summary>
         /// Prefixed wire identifier (`kb_&lt;26 char Crockford base32&gt;`) of<br/>
-        /// the knowledge base the chunk belongs to. ADR 0015 FK<br/>
-        /// consistency.
+        /// the knowledge base the chunk belongs to.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("kb_id")]
         [global::System.Text.Json.Serialization.JsonRequired]
@@ -58,8 +57,7 @@ namespace Speechify
         /// <param name="documentId"></param>
         /// <param name="kbId">
         /// Prefixed wire identifier (`kb_&lt;26 char Crockford base32&gt;`) of<br/>
-        /// the knowledge base the chunk belongs to. ADR 0015 FK<br/>
-        /// consistency.
+        /// the knowledge base the chunk belongs to.
         /// </param>
         /// <param name="chunkIndex"></param>
         /// <param name="content"></param>

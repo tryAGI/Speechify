@@ -6,8 +6,7 @@ namespace Speechify
     /// <summary>
     /// Bare list of the tools attached to an agent. Not paginated —<br/>
     /// an agent's tool attachment count is bounded by configuration,<br/>
-    /// not by data scale. See [ADR 0013](../docs/adrs/0013-list-pagination-conventions.md)<br/>
-    /// for the "pagination only where needed" rule.
+    /// not by data scale.
     /// </summary>
     public sealed partial class TtsAttachedToolsResponse
     {

@@ -19,8 +19,7 @@ namespace Speechify
 
         /// <summary>
         /// Prefixed wire identifier (`conv_&lt;26 char Crockford base32&gt;`)<br/>
-        /// of the conversation that triggered this delivery. ADR 0015<br/>
-        /// FK consistency.
+        /// of the conversation that triggered this delivery.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("conversation_id")]
         [global::System.Text.Json.Serialization.JsonRequired]
@@ -28,7 +27,7 @@ namespace Speechify
 
         /// <summary>
         /// Prefixed wire identifier (`agent_&lt;26 char Crockford base32&gt;`)<br/>
-        /// of the agent. ADR 0015 FK consistency.
+        /// of the agent.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("agent_id")]
         [global::System.Text.Json.Serialization.JsonRequired]
@@ -102,12 +101,11 @@ namespace Speechify
         /// <param name="id"></param>
         /// <param name="conversationId">
         /// Prefixed wire identifier (`conv_&lt;26 char Crockford base32&gt;`)<br/>
-        /// of the conversation that triggered this delivery. ADR 0015<br/>
-        /// FK consistency.
+        /// of the conversation that triggered this delivery.
         /// </param>
         /// <param name="agentId">
         /// Prefixed wire identifier (`agent_&lt;26 char Crockford base32&gt;`)<br/>
-        /// of the agent. ADR 0015 FK consistency.
+        /// of the agent.
         /// </param>
         /// <param name="url"></param>
         /// <param name="event"></param>

@@ -9,7 +9,7 @@ namespace Speechify
     public sealed partial class TtsGetCallerResponse
     {
         /// <summary>
-        /// First-class Caller entity (Phase 2 of ADR 0011). Identified by<br/>
+        /// First-class Caller entity. Identified by<br/>
         /// the (tenant, agent, identity) triple. Memories and conversations<br/>
         /// FK at it via `caller_id`.
         /// </summary>
@@ -27,7 +27,7 @@ namespace Speechify
         /// Initializes a new instance of the <see cref="TtsGetCallerResponse" /> class.
         /// </summary>
         /// <param name="caller">
-        /// First-class Caller entity (Phase 2 of ADR 0011). Identified by<br/>
+        /// First-class Caller entity. Identified by<br/>
         /// the (tenant, agent, identity) triple. Memories and conversations<br/>
         /// FK at it via `caller_id`.
         /// </param>

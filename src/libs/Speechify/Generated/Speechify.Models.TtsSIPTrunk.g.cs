@@ -13,9 +13,9 @@ namespace Speechify
     {
         /// <summary>
         /// Prefixed wire identifier (`trunk_&lt;26 char Crockford base32&gt;`).<br/>
-        /// ADR 0015 Cluster 3 hard-break: URL paths accept only this<br/>
+        /// URL paths accept only this<br/>
         /// prefixed form; legacy UUID path parameters are rejected with<br/>
-        /// 404 as of Cluster 3.
+        /// 404.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("id")]
         [global::System.Text.Json.Serialization.JsonRequired]
@@ -147,9 +147,9 @@ namespace Speechify
         /// </summary>
         /// <param name="id">
         /// Prefixed wire identifier (`trunk_&lt;26 char Crockford base32&gt;`).<br/>
-        /// ADR 0015 Cluster 3 hard-break: URL paths accept only this<br/>
+        /// URL paths accept only this<br/>
         /// prefixed form; legacy UUID path parameters are rejected with<br/>
-        /// 404 as of Cluster 3.
+        /// 404.
         /// </param>
         /// <param name="name">
         /// Human-readable name.

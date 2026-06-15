@@ -9,8 +9,7 @@ namespace Speechify
     /// audio into one of LiveKit's categories (human, uncertain,<br/>
     /// machine-vm, machine-ivr, machine-unavailable) and dispatches per<br/>
     /// category to the configured action. Stored on the agent row;<br/>
-    /// flowed onto outbound dispatch metadata under the `amd` key.<br/>
-    /// Rationale: see ADR 0008 (docs/adrs/0008-amd-as-session-routing-primitive.md).
+    /// flowed onto outbound dispatch metadata under the `amd` key.
     /// </summary>
     public sealed partial class TtsAMDConfig
     {

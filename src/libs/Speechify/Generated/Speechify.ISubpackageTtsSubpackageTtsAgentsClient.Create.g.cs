@@ -78,7 +78,7 @@ namespace Speechify
         /// Voice slug from the VMS catalog (see GET /v1/voices). Required — the server rejects writes with an unknown or empty slug.
         /// </param>
         /// <param name="temperature">
-        /// 0.0..1.0. Defaults to 0.7 when omitted.
+        /// Sampling temperature in the range 0.0–1.0. Defaults to 0.5 when omitted.
         /// </param>
         /// <param name="widgetConfig">
         /// Customer-editable appearance + behaviour payload for the<br/>
@@ -152,10 +152,10 @@ namespace Speechify
         /// <exception cref="global::System.InvalidOperationException"></exception>
         global::System.Threading.Tasks.Task<global::Speechify.TtsAgent> CreateAsync(
             string name,
+            string prompt,
+            string firstMessage,
             string voiceId,
             string? slug = default,
-            string? prompt = default,
-            string? firstMessage = default,
             string? language = default,
             global::Speechify.TtsCreateAgentRequestLlmProvider? llmProvider = default,
             string? llmModel = default,

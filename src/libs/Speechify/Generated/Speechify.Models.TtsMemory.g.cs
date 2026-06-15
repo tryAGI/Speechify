@@ -13,9 +13,9 @@ namespace Speechify
     {
         /// <summary>
         /// Prefixed wire identifier (`memory_&lt;26 char Crockford base32&gt;`).<br/>
-        /// ADR 0015 Cluster 2 hard-break: URL paths accept only this<br/>
+        /// URL paths accept only this<br/>
         /// prefixed form; legacy UUID path parameters are rejected with<br/>
-        /// 404 as of Cluster 2.
+        /// 404.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("id")]
         [global::System.Text.Json.Serialization.JsonRequired]
@@ -23,7 +23,7 @@ namespace Speechify
 
         /// <summary>
         /// Prefixed wire identifier (`agent_&lt;26 char Crockford base32&gt;`)<br/>
-        /// of the owning agent. ADR 0015 FK consistency.
+        /// of the owning agent.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("agent_id")]
         [global::System.Text.Json.Serialization.JsonRequired]
@@ -47,7 +47,7 @@ namespace Speechify
         /// When set, the prefixed wire identifier<br/>
         /// (`conv_&lt;26 char Crockford base32&gt;`) of the conversation this<br/>
         /// memory was extracted from. May be null if the source was<br/>
-        /// deleted. ADR 0015 FK consistency.
+        /// deleted.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("source_conversation_id")]
         public string? SourceConversationId { get; set; }
@@ -83,13 +83,13 @@ namespace Speechify
         /// </summary>
         /// <param name="id">
         /// Prefixed wire identifier (`memory_&lt;26 char Crockford base32&gt;`).<br/>
-        /// ADR 0015 Cluster 2 hard-break: URL paths accept only this<br/>
+        /// URL paths accept only this<br/>
         /// prefixed form; legacy UUID path parameters are rejected with<br/>
-        /// 404 as of Cluster 2.
+        /// 404.
         /// </param>
         /// <param name="agentId">
         /// Prefixed wire identifier (`agent_&lt;26 char Crockford base32&gt;`)<br/>
-        /// of the owning agent. ADR 0015 FK consistency.
+        /// of the owning agent.
         /// </param>
         /// <param name="callerIdentity">
         /// Stable caller key (LiveKit participant identity) the memory is scoped to.
@@ -105,7 +105,7 @@ namespace Speechify
         /// When set, the prefixed wire identifier<br/>
         /// (`conv_&lt;26 char Crockford base32&gt;`) of the conversation this<br/>
         /// memory was extracted from. May be null if the source was<br/>
-        /// deleted. ADR 0015 FK consistency.
+        /// deleted.
         /// </param>
         /// <param name="score">
         /// Populated only on retrieval hits — recency-weighted cosine similarity.

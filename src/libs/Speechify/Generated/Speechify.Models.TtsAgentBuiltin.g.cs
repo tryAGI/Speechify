@@ -7,7 +7,7 @@ namespace Speechify
     /// One instance of a system builtin bound to a specific agent.<br/>
     /// Storage lives in the `agent_builtins` table (migration 00061);<br/>
     /// wire format intentionally matches the legacy `kind="system"`<br/>
-    /// Tool shape so the worker is untouched by the AIS-3116 split.
+    /// Tool shape so the worker is untouched by the split.
     /// </summary>
     public sealed partial class TtsAgentBuiltin
     {
@@ -36,7 +36,7 @@ namespace Speechify
         /// Identifier of a worker-resident system builtin. New entries are<br/>
         /// added together on the server (a new `tool_builtin_&lt;name&gt;.go`<br/>
         /// file) and worker (`tools/builtins/&lt;name&gt;.py`) - the 2-file rule<br/>
-        /// AIS-3053 pins. Customers read the catalogue from<br/>
+        /// the server pins. Customers read the catalogue from<br/>
         /// `GET /v1/agents/tools/system-builtins` rather than depending on this<br/>
         /// string set staying stable across releases.
         /// </summary>
@@ -119,7 +119,7 @@ namespace Speechify
         /// Identifier of a worker-resident system builtin. New entries are<br/>
         /// added together on the server (a new `tool_builtin_&lt;name&gt;.go`<br/>
         /// file) and worker (`tools/builtins/&lt;name&gt;.py`) - the 2-file rule<br/>
-        /// AIS-3053 pins. Customers read the catalogue from<br/>
+        /// the server pins. Customers read the catalogue from<br/>
         /// `GET /v1/agents/tools/system-builtins` rather than depending on this<br/>
         /// string set staying stable across releases.
         /// </param>
