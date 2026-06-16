@@ -12,7 +12,7 @@ namespace Speechify
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
-        global::System.Threading.Tasks.Task<global::Speechify.TtsCreatedVoice> CreateAsync(
+        global::System.Threading.Tasks.Task<global::Speechify.CreatedVoice> CreateAsync(
 
             global::Speechify.CreateRequest request,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
@@ -25,7 +25,7 @@ namespace Speechify
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
-        global::System.Threading.Tasks.Task<global::Speechify.AutoSDKHttpResponse<global::Speechify.TtsCreatedVoice>> CreateAsResponseAsync(
+        global::System.Threading.Tasks.Task<global::Speechify.AutoSDKHttpResponse<global::Speechify.CreatedVoice>> CreateAsResponseAsync(
 
             global::Speechify.CreateRequest request,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
@@ -67,9 +67,9 @@ namespace Speechify
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::System.InvalidOperationException"></exception>
-        global::System.Threading.Tasks.Task<global::Speechify.TtsCreatedVoice> CreateAsync(
+        global::System.Threading.Tasks.Task<global::Speechify.CreatedVoice> CreateAsync(
             string name,
-            global::Speechify.TtsV1VoicesPostRequestBodyContentMultipartFormDataSchemaGender gender,
+            global::Speechify.V1VoicesPostRequestBodyContentMultipartFormDataSchemaGender gender,
             byte[] sample,
             string samplename,
             string consent,
@@ -116,9 +116,9 @@ namespace Speechify
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
-        global::System.Threading.Tasks.Task<global::Speechify.TtsCreatedVoice> CreateAsync(
+        global::System.Threading.Tasks.Task<global::Speechify.CreatedVoice> CreateAsync(
             string name,
-            global::Speechify.TtsV1VoicesPostRequestBodyContentMultipartFormDataSchemaGender gender,
+            global::Speechify.V1VoicesPostRequestBodyContentMultipartFormDataSchemaGender gender,
             global::System.IO.Stream sample,
             string samplename,
             string consent,
@@ -164,9 +164,9 @@ namespace Speechify
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
-        global::System.Threading.Tasks.Task<global::Speechify.AutoSDKHttpResponse<global::Speechify.TtsCreatedVoice>> CreateAsResponseAsync(
+        global::System.Threading.Tasks.Task<global::Speechify.AutoSDKHttpResponse<global::Speechify.CreatedVoice>> CreateAsResponseAsync(
             string name,
-            global::Speechify.TtsV1VoicesPostRequestBodyContentMultipartFormDataSchemaGender gender,
+            global::Speechify.V1VoicesPostRequestBodyContentMultipartFormDataSchemaGender gender,
             global::System.IO.Stream sample,
             string samplename,
             string consent,

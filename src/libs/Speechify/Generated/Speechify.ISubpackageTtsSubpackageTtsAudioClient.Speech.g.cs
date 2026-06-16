@@ -14,9 +14,9 @@ namespace Speechify
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
-        global::System.Threading.Tasks.Task<global::Speechify.TtsGetSpeechResponse> SpeechAsync(
+        global::System.Threading.Tasks.Task<global::Speechify.GetSpeechResponse> SpeechAsync(
 
-            global::Speechify.TtsGetSpeechRequest request,
+            global::Speechify.GetSpeechRequest request,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
@@ -29,9 +29,9 @@ namespace Speechify
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
-        global::System.Threading.Tasks.Task<global::Speechify.AutoSDKHttpResponse<global::Speechify.TtsGetSpeechResponse>> SpeechAsResponseAsync(
+        global::System.Threading.Tasks.Task<global::Speechify.AutoSDKHttpResponse<global::Speechify.GetSpeechResponse>> SpeechAsResponseAsync(
 
-            global::Speechify.TtsGetSpeechRequest request,
+            global::Speechify.GetSpeechRequest request,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
@@ -66,13 +66,13 @@ namespace Speechify
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::System.InvalidOperationException"></exception>
-        global::System.Threading.Tasks.Task<global::Speechify.TtsGetSpeechResponse> SpeechAsync(
+        global::System.Threading.Tasks.Task<global::Speechify.GetSpeechResponse> SpeechAsync(
             string input,
             string voiceId,
-            global::Speechify.TtsGetSpeechRequestAudioFormat? audioFormat = default,
+            global::Speechify.GetSpeechRequestAudioFormat? audioFormat = default,
             string? language = default,
-            global::Speechify.TtsGetSpeechRequestModel? model = default,
-            global::Speechify.TtsGetSpeechOptionsRequest? options = default,
+            global::Speechify.GetSpeechRequestModel? model = default,
+            global::Speechify.GetSpeechOptionsRequest? options = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
     }

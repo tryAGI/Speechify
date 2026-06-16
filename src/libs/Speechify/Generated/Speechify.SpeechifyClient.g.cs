@@ -42,7 +42,7 @@ namespace Speechify
         /// <summary>
         /// 
         /// </summary>
-        public SubpackageTtsSubpackageTtsAdminClient SubpackageTtsSubpackageTtsAdmin => new SubpackageTtsSubpackageTtsAdminClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
+        public SubpackageAgentClient SubpackageAgent => new SubpackageAgentClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
         {
             ReadResponseAsString = ReadResponseAsString,
             JsonSerializerContext = JsonSerializerContext,
@@ -51,7 +51,124 @@ namespace Speechify
         /// <summary>
         /// 
         /// </summary>
-        public SubpackageTtsSubpackageTtsAgentsClient SubpackageTtsSubpackageTtsAgents => new SubpackageTtsSubpackageTtsAgentsClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
+        public SubpackageAgentSubpackageAgentAdminClient SubpackageAgentSubpackageAgentAdmin => new SubpackageAgentSubpackageAgentAdminClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
+        {
+            ReadResponseAsString = ReadResponseAsString,
+            JsonSerializerContext = JsonSerializerContext,
+        };
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public SubpackageAgentSubpackageAgentAudioAssetsClient SubpackageAgentSubpackageAgentAudioAssets => new SubpackageAgentSubpackageAgentAudioAssetsClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
+        {
+            ReadResponseAsString = ReadResponseAsString,
+            JsonSerializerContext = JsonSerializerContext,
+        };
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public SubpackageAgentSubpackageAgentBatchCallsClient SubpackageAgentSubpackageAgentBatchCalls => new SubpackageAgentSubpackageAgentBatchCallsClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
+        {
+            ReadResponseAsString = ReadResponseAsString,
+            JsonSerializerContext = JsonSerializerContext,
+        };
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public SubpackageAgentSubpackageAgentCallersClient SubpackageAgentSubpackageAgentCallers => new SubpackageAgentSubpackageAgentCallersClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
+        {
+            ReadResponseAsString = ReadResponseAsString,
+            JsonSerializerContext = JsonSerializerContext,
+        };
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public SubpackageAgentSubpackageAgentConversationsClient SubpackageAgentSubpackageAgentConversations => new SubpackageAgentSubpackageAgentConversationsClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
+        {
+            ReadResponseAsString = ReadResponseAsString,
+            JsonSerializerContext = JsonSerializerContext,
+        };
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public SubpackageAgentSubpackageAgentFlowClient SubpackageAgentSubpackageAgentFlow => new SubpackageAgentSubpackageAgentFlowClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
+        {
+            ReadResponseAsString = ReadResponseAsString,
+            JsonSerializerContext = JsonSerializerContext,
+        };
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public SubpackageAgentSubpackageAgentIvrMemoryClient SubpackageAgentSubpackageAgentIvrMemory => new SubpackageAgentSubpackageAgentIvrMemoryClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
+        {
+            ReadResponseAsString = ReadResponseAsString,
+            JsonSerializerContext = JsonSerializerContext,
+        };
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public SubpackageAgentSubpackageAgentKnowledgeBasesClient SubpackageAgentSubpackageAgentKnowledgeBases => new SubpackageAgentSubpackageAgentKnowledgeBasesClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
+        {
+            ReadResponseAsString = ReadResponseAsString,
+            JsonSerializerContext = JsonSerializerContext,
+        };
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public SubpackageAgentSubpackageAgentMemoriesClient SubpackageAgentSubpackageAgentMemories => new SubpackageAgentSubpackageAgentMemoriesClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
+        {
+            ReadResponseAsString = ReadResponseAsString,
+            JsonSerializerContext = JsonSerializerContext,
+        };
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public SubpackageAgentSubpackageAgentOutboundCallsClient SubpackageAgentSubpackageAgentOutboundCalls => new SubpackageAgentSubpackageAgentOutboundCallsClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
+        {
+            ReadResponseAsString = ReadResponseAsString,
+            JsonSerializerContext = JsonSerializerContext,
+        };
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public SubpackageAgentSubpackageAgentPhoneNumbersClient SubpackageAgentSubpackageAgentPhoneNumbers => new SubpackageAgentSubpackageAgentPhoneNumbersClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
+        {
+            ReadResponseAsString = ReadResponseAsString,
+            JsonSerializerContext = JsonSerializerContext,
+        };
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public SubpackageAgentSubpackageAgentSipTrunksClient SubpackageAgentSubpackageAgentSipTrunks => new SubpackageAgentSubpackageAgentSipTrunksClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
+        {
+            ReadResponseAsString = ReadResponseAsString,
+            JsonSerializerContext = JsonSerializerContext,
+        };
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public SubpackageAgentSubpackageAgentTestsClient SubpackageAgentSubpackageAgentTests => new SubpackageAgentSubpackageAgentTestsClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
+        {
+            ReadResponseAsString = ReadResponseAsString,
+            JsonSerializerContext = JsonSerializerContext,
+        };
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public SubpackageAgentSubpackageAgentToolsClient SubpackageAgentSubpackageAgentTools => new SubpackageAgentSubpackageAgentToolsClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
         {
             ReadResponseAsString = ReadResponseAsString,
             JsonSerializerContext = JsonSerializerContext,
@@ -61,123 +178,6 @@ namespace Speechify
         /// 
         /// </summary>
         public SubpackageTtsSubpackageTtsAudioClient SubpackageTtsSubpackageTtsAudio => new SubpackageTtsSubpackageTtsAudioClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
-        {
-            ReadResponseAsString = ReadResponseAsString,
-            JsonSerializerContext = JsonSerializerContext,
-        };
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public SubpackageTtsSubpackageTtsAudioAssetsClient SubpackageTtsSubpackageTtsAudioAssets => new SubpackageTtsSubpackageTtsAudioAssetsClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
-        {
-            ReadResponseAsString = ReadResponseAsString,
-            JsonSerializerContext = JsonSerializerContext,
-        };
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public SubpackageTtsSubpackageTtsBatchCallsClient SubpackageTtsSubpackageTtsBatchCalls => new SubpackageTtsSubpackageTtsBatchCallsClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
-        {
-            ReadResponseAsString = ReadResponseAsString,
-            JsonSerializerContext = JsonSerializerContext,
-        };
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public SubpackageTtsSubpackageTtsCallersClient SubpackageTtsSubpackageTtsCallers => new SubpackageTtsSubpackageTtsCallersClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
-        {
-            ReadResponseAsString = ReadResponseAsString,
-            JsonSerializerContext = JsonSerializerContext,
-        };
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public SubpackageTtsSubpackageTtsConversationsClient SubpackageTtsSubpackageTtsConversations => new SubpackageTtsSubpackageTtsConversationsClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
-        {
-            ReadResponseAsString = ReadResponseAsString,
-            JsonSerializerContext = JsonSerializerContext,
-        };
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public SubpackageTtsSubpackageTtsFlowClient SubpackageTtsSubpackageTtsFlow => new SubpackageTtsSubpackageTtsFlowClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
-        {
-            ReadResponseAsString = ReadResponseAsString,
-            JsonSerializerContext = JsonSerializerContext,
-        };
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public SubpackageTtsSubpackageTtsIvrMemoryClient SubpackageTtsSubpackageTtsIvrMemory => new SubpackageTtsSubpackageTtsIvrMemoryClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
-        {
-            ReadResponseAsString = ReadResponseAsString,
-            JsonSerializerContext = JsonSerializerContext,
-        };
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public SubpackageTtsSubpackageTtsKnowledgeBasesClient SubpackageTtsSubpackageTtsKnowledgeBases => new SubpackageTtsSubpackageTtsKnowledgeBasesClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
-        {
-            ReadResponseAsString = ReadResponseAsString,
-            JsonSerializerContext = JsonSerializerContext,
-        };
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public SubpackageTtsSubpackageTtsMemoriesClient SubpackageTtsSubpackageTtsMemories => new SubpackageTtsSubpackageTtsMemoriesClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
-        {
-            ReadResponseAsString = ReadResponseAsString,
-            JsonSerializerContext = JsonSerializerContext,
-        };
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public SubpackageTtsSubpackageTtsOutboundCallsClient SubpackageTtsSubpackageTtsOutboundCalls => new SubpackageTtsSubpackageTtsOutboundCallsClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
-        {
-            ReadResponseAsString = ReadResponseAsString,
-            JsonSerializerContext = JsonSerializerContext,
-        };
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public SubpackageTtsSubpackageTtsPhoneNumbersClient SubpackageTtsSubpackageTtsPhoneNumbers => new SubpackageTtsSubpackageTtsPhoneNumbersClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
-        {
-            ReadResponseAsString = ReadResponseAsString,
-            JsonSerializerContext = JsonSerializerContext,
-        };
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public SubpackageTtsSubpackageTtsSipTrunksClient SubpackageTtsSubpackageTtsSipTrunks => new SubpackageTtsSubpackageTtsSipTrunksClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
-        {
-            ReadResponseAsString = ReadResponseAsString,
-            JsonSerializerContext = JsonSerializerContext,
-        };
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public SubpackageTtsSubpackageTtsTestsClient SubpackageTtsSubpackageTtsTests => new SubpackageTtsSubpackageTtsTestsClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
-        {
-            ReadResponseAsString = ReadResponseAsString,
-            JsonSerializerContext = JsonSerializerContext,
-        };
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public SubpackageTtsSubpackageTtsToolsClient SubpackageTtsSubpackageTtsTools => new SubpackageTtsSubpackageTtsToolsClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
         {
             ReadResponseAsString = ReadResponseAsString,
             JsonSerializerContext = JsonSerializerContext,
