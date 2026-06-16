@@ -29,9 +29,9 @@ namespace Speechify
         /// notSpecified GenderNotSpecified
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("gender")]
-        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Speechify.JsonConverters.TtsV1VoicesPostRequestBodyContentMultipartFormDataSchemaGenderJsonConverter))]
+        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Speechify.JsonConverters.V1VoicesPostRequestBodyContentMultipartFormDataSchemaGenderJsonConverter))]
         [global::System.Text.Json.Serialization.JsonRequired]
-        public required global::Speechify.TtsV1VoicesPostRequestBodyContentMultipartFormDataSchemaGender Gender { get; set; }
+        public required global::Speechify.V1VoicesPostRequestBodyContentMultipartFormDataSchemaGender Gender { get; set; }
 
         /// <summary>
         /// Audio sample file
@@ -112,7 +112,7 @@ namespace Speechify
 #endif
         public CreateRequest(
             string name,
-            global::Speechify.TtsV1VoicesPostRequestBodyContentMultipartFormDataSchemaGender gender,
+            global::Speechify.V1VoicesPostRequestBodyContentMultipartFormDataSchemaGender gender,
             byte[] sample,
             string samplename,
             string consent,
