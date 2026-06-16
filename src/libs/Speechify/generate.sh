@@ -1,13 +1,24 @@
 #!/usr/bin/env bash
 set -euo pipefail
+install_autosdk_cli() {
+  dotnet tool update --global autosdk.cli --prerelease >/dev/null 2>&1 || \
+    dotnet tool install --global autosdk.cli --prerelease
+}
 
-dotnet tool install --global autosdk.cli --prerelease
+fetch_spec() {
+  curl "$@" \
+    --fail --silent --show-error --location \
+    --retry 5 --retry-delay 10 --retry-all-errors \
+    --connect-timeout 30 --max-time 300
+}
+
+install_autosdk_cli
 
 tmp_dir="$(mktemp -d)"
 trap 'rm -rf "$tmp_dir"' EXIT
 
-curl -fsSL -o "$tmp_dir/api-reference.json" https://docs.speechify.ai/openapi/api-reference.json
-curl -fsSL -o "$tmp_dir/api-reference-2.json" https://docs.speechify.ai/openapi/api-reference-2.json
+fetch_spec -fsSL -o "$tmp_dir/api-reference.json" https://docs.speechify.ai/openapi/api-reference.json
+fetch_spec -fsSL -o "$tmp_dir/api-reference-2.json" https://docs.speechify.ai/openapi/api-reference-2.json
 
 python3 - "$tmp_dir/api-reference.json" "$tmp_dir/api-reference-2.json" openapi.yaml <<'PY'
 import json
