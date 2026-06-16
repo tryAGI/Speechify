@@ -593,7 +593,9 @@ namespace Speechify
         /// when the resulting provider is `custom`.
         /// </param>
         /// <param name="voiceId"></param>
-        /// <param name="temperature"></param>
+        /// <param name="temperature">
+        /// Sampling temperature in the range 0.0–1.0. Omit to leave unchanged.
+        /// </param>
         /// <param name="widgetConfig">
         /// Customer-editable appearance + behaviour payload for the<br/>
         /// embedded `&lt;speechify-agent&gt;` pill: button text, avatar style,<br/>
