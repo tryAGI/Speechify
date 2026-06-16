@@ -1,0 +1,55 @@
+
+#nullable enable
+
+namespace Speechify
+{
+    /// <summary>
+    /// Config shape for `kind=client`. Execution happens in the caller's browser / SDK.
+    /// </summary>
+    public sealed partial class ClientToolConfig
+    {
+        /// <summary>
+        /// 
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("params")]
+        public global::System.Collections.Generic.IList<global::Speechify.ToolParam>? Params { get; set; }
+
+        /// <summary>
+        /// Per-call timeout in milliseconds. Defaults to 10000 server-side when omitted.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("timeout_ms")]
+        public int? TimeoutMs { get; set; }
+
+        /// <summary>
+        /// Additional properties that are not explicitly defined in the schema
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonExtensionData]
+        public global::System.Collections.Generic.IDictionary<string, object> AdditionalProperties { get; set; } = new global::System.Collections.Generic.Dictionary<string, object>();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ClientToolConfig" /> class.
+        /// </summary>
+        /// <param name="params"></param>
+        /// <param name="timeoutMs">
+        /// Per-call timeout in milliseconds. Defaults to 10000 server-side when omitted.
+        /// </param>
+#if NET7_0_OR_GREATER
+        [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
+#endif
+        public ClientToolConfig(
+            global::System.Collections.Generic.IList<global::Speechify.ToolParam>? @params,
+            int? timeoutMs)
+        {
+            this.Params = @params;
+            this.TimeoutMs = timeoutMs;
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ClientToolConfig" /> class.
+        /// </summary>
+        public ClientToolConfig()
+        {
+        }
+
+    }
+}

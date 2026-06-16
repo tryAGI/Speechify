@@ -331,19 +331,19 @@ namespace Speechify
                             {
                                 string? __content_400 = null;
                                 global::System.Exception? __exception_400 = null;
-                                global::Speechify.TtsError? __value_400 = null;
+                                global::Speechify.Error? __value_400 = null;
                                 try
                                 {
                                     if (__effectiveReadResponseAsString)
                                     {
                                         __content_400 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
-                                        __value_400 = global::Speechify.TtsError.FromJson(__content_400, JsonSerializerContext);
+                                        __value_400 = global::Speechify.Error.FromJson(__content_400, JsonSerializerContext);
                                     }
                                     else
                                     {
                                         __content_400 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
 
-                                        __value_400 = global::Speechify.TtsError.FromJson(__content_400, JsonSerializerContext);
+                                        __value_400 = global::Speechify.Error.FromJson(__content_400, JsonSerializerContext);
                                     }
                                 }
                                 catch (global::System.Exception __ex)
@@ -352,7 +352,7 @@ namespace Speechify
                                 }
 
 
-                                throw global::Speechify.ApiException<global::Speechify.TtsError>.Create(
+                                throw global::Speechify.ApiException<global::Speechify.Error>.Create(
                                     statusCode: __response.StatusCode,
                                     message: __content_400 ?? __response.ReasonPhrase ?? string.Empty,
                                     innerException: __exception_400,
@@ -368,19 +368,19 @@ namespace Speechify
                             {
                                 string? __content_401 = null;
                                 global::System.Exception? __exception_401 = null;
-                                global::Speechify.TtsError? __value_401 = null;
+                                global::Speechify.Error? __value_401 = null;
                                 try
                                 {
                                     if (__effectiveReadResponseAsString)
                                     {
                                         __content_401 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
-                                        __value_401 = global::Speechify.TtsError.FromJson(__content_401, JsonSerializerContext);
+                                        __value_401 = global::Speechify.Error.FromJson(__content_401, JsonSerializerContext);
                                     }
                                     else
                                     {
                                         __content_401 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
 
-                                        __value_401 = global::Speechify.TtsError.FromJson(__content_401, JsonSerializerContext);
+                                        __value_401 = global::Speechify.Error.FromJson(__content_401, JsonSerializerContext);
                                     }
                                 }
                                 catch (global::System.Exception __ex)
@@ -389,7 +389,7 @@ namespace Speechify
                                 }
 
 
-                                throw global::Speechify.ApiException<global::Speechify.TtsError>.Create(
+                                throw global::Speechify.ApiException<global::Speechify.Error>.Create(
                                     statusCode: __response.StatusCode,
                                     message: __content_401 ?? __response.ReasonPhrase ?? string.Empty,
                                     innerException: __exception_401,
@@ -405,19 +405,19 @@ namespace Speechify
                             {
                                 string? __content_403 = null;
                                 global::System.Exception? __exception_403 = null;
-                                global::Speechify.TtsError? __value_403 = null;
+                                global::Speechify.Error? __value_403 = null;
                                 try
                                 {
                                     if (__effectiveReadResponseAsString)
                                     {
                                         __content_403 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
-                                        __value_403 = global::Speechify.TtsError.FromJson(__content_403, JsonSerializerContext);
+                                        __value_403 = global::Speechify.Error.FromJson(__content_403, JsonSerializerContext);
                                     }
                                     else
                                     {
                                         __content_403 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
 
-                                        __value_403 = global::Speechify.TtsError.FromJson(__content_403, JsonSerializerContext);
+                                        __value_403 = global::Speechify.Error.FromJson(__content_403, JsonSerializerContext);
                                     }
                                 }
                                 catch (global::System.Exception __ex)
@@ -426,7 +426,7 @@ namespace Speechify
                                 }
 
 
-                                throw global::Speechify.ApiException<global::Speechify.TtsError>.Create(
+                                throw global::Speechify.ApiException<global::Speechify.Error>.Create(
                                     statusCode: __response.StatusCode,
                                     message: __content_403 ?? __response.ReasonPhrase ?? string.Empty,
                                     innerException: __exception_403,
@@ -442,19 +442,19 @@ namespace Speechify
                             {
                                 string? __content_404 = null;
                                 global::System.Exception? __exception_404 = null;
-                                global::Speechify.TtsError? __value_404 = null;
+                                global::Speechify.Error? __value_404 = null;
                                 try
                                 {
                                     if (__effectiveReadResponseAsString)
                                     {
                                         __content_404 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
-                                        __value_404 = global::Speechify.TtsError.FromJson(__content_404, JsonSerializerContext);
+                                        __value_404 = global::Speechify.Error.FromJson(__content_404, JsonSerializerContext);
                                     }
                                     else
                                     {
                                         __content_404 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
 
-                                        __value_404 = global::Speechify.TtsError.FromJson(__content_404, JsonSerializerContext);
+                                        __value_404 = global::Speechify.Error.FromJson(__content_404, JsonSerializerContext);
                                     }
                                 }
                                 catch (global::System.Exception __ex)
@@ -463,7 +463,7 @@ namespace Speechify
                                 }
 
 
-                                throw global::Speechify.ApiException<global::Speechify.TtsError>.Create(
+                                throw global::Speechify.ApiException<global::Speechify.Error>.Create(
                                     statusCode: __response.StatusCode,
                                     message: __content_404 ?? __response.ReasonPhrase ?? string.Empty,
                                     innerException: __exception_404,
@@ -479,19 +479,19 @@ namespace Speechify
                             {
                                 string? __content_429 = null;
                                 global::System.Exception? __exception_429 = null;
-                                global::Speechify.TtsError? __value_429 = null;
+                                global::Speechify.Error? __value_429 = null;
                                 try
                                 {
                                     if (__effectiveReadResponseAsString)
                                     {
                                         __content_429 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
-                                        __value_429 = global::Speechify.TtsError.FromJson(__content_429, JsonSerializerContext);
+                                        __value_429 = global::Speechify.Error.FromJson(__content_429, JsonSerializerContext);
                                     }
                                     else
                                     {
                                         __content_429 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
 
-                                        __value_429 = global::Speechify.TtsError.FromJson(__content_429, JsonSerializerContext);
+                                        __value_429 = global::Speechify.Error.FromJson(__content_429, JsonSerializerContext);
                                     }
                                 }
                                 catch (global::System.Exception __ex)
@@ -500,7 +500,7 @@ namespace Speechify
                                 }
 
 
-                                throw global::Speechify.ApiException<global::Speechify.TtsError>.Create(
+                                throw global::Speechify.ApiException<global::Speechify.Error>.Create(
                                     statusCode: __response.StatusCode,
                                     message: __content_429 ?? __response.ReasonPhrase ?? string.Empty,
                                     innerException: __exception_429,
@@ -516,19 +516,19 @@ namespace Speechify
                             {
                                 string? __content_500 = null;
                                 global::System.Exception? __exception_500 = null;
-                                global::Speechify.TtsError? __value_500 = null;
+                                global::Speechify.Error? __value_500 = null;
                                 try
                                 {
                                     if (__effectiveReadResponseAsString)
                                     {
                                         __content_500 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
-                                        __value_500 = global::Speechify.TtsError.FromJson(__content_500, JsonSerializerContext);
+                                        __value_500 = global::Speechify.Error.FromJson(__content_500, JsonSerializerContext);
                                     }
                                     else
                                     {
                                         __content_500 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
 
-                                        __value_500 = global::Speechify.TtsError.FromJson(__content_500, JsonSerializerContext);
+                                        __value_500 = global::Speechify.Error.FromJson(__content_500, JsonSerializerContext);
                                     }
                                 }
                                 catch (global::System.Exception __ex)
@@ -537,7 +537,7 @@ namespace Speechify
                                 }
 
 
-                                throw global::Speechify.ApiException<global::Speechify.TtsError>.Create(
+                                throw global::Speechify.ApiException<global::Speechify.Error>.Create(
                                     statusCode: __response.StatusCode,
                                     message: __content_500 ?? __response.ReasonPhrase ?? string.Empty,
                                     innerException: __exception_500,
@@ -553,19 +553,19 @@ namespace Speechify
                             {
                                 string? __content_502 = null;
                                 global::System.Exception? __exception_502 = null;
-                                global::Speechify.TtsError? __value_502 = null;
+                                global::Speechify.Error? __value_502 = null;
                                 try
                                 {
                                     if (__effectiveReadResponseAsString)
                                     {
                                         __content_502 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
-                                        __value_502 = global::Speechify.TtsError.FromJson(__content_502, JsonSerializerContext);
+                                        __value_502 = global::Speechify.Error.FromJson(__content_502, JsonSerializerContext);
                                     }
                                     else
                                     {
                                         __content_502 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
 
-                                        __value_502 = global::Speechify.TtsError.FromJson(__content_502, JsonSerializerContext);
+                                        __value_502 = global::Speechify.Error.FromJson(__content_502, JsonSerializerContext);
                                     }
                                 }
                                 catch (global::System.Exception __ex)
@@ -574,7 +574,7 @@ namespace Speechify
                                 }
 
 
-                                throw global::Speechify.ApiException<global::Speechify.TtsError>.Create(
+                                throw global::Speechify.ApiException<global::Speechify.Error>.Create(
                                     statusCode: __response.StatusCode,
                                     message: __content_502 ?? __response.ReasonPhrase ?? string.Empty,
                                     innerException: __exception_502,
@@ -590,19 +590,19 @@ namespace Speechify
                             {
                                 string? __content_503 = null;
                                 global::System.Exception? __exception_503 = null;
-                                global::Speechify.TtsError? __value_503 = null;
+                                global::Speechify.Error? __value_503 = null;
                                 try
                                 {
                                     if (__effectiveReadResponseAsString)
                                     {
                                         __content_503 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
-                                        __value_503 = global::Speechify.TtsError.FromJson(__content_503, JsonSerializerContext);
+                                        __value_503 = global::Speechify.Error.FromJson(__content_503, JsonSerializerContext);
                                     }
                                     else
                                     {
                                         __content_503 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
 
-                                        __value_503 = global::Speechify.TtsError.FromJson(__content_503, JsonSerializerContext);
+                                        __value_503 = global::Speechify.Error.FromJson(__content_503, JsonSerializerContext);
                                     }
                                 }
                                 catch (global::System.Exception __ex)
@@ -611,7 +611,7 @@ namespace Speechify
                                 }
 
 
-                                throw global::Speechify.ApiException<global::Speechify.TtsError>.Create(
+                                throw global::Speechify.ApiException<global::Speechify.Error>.Create(
                                     statusCode: __response.StatusCode,
                                     message: __content_503 ?? __response.ReasonPhrase ?? string.Empty,
                                     innerException: __exception_503,
@@ -942,19 +942,19 @@ namespace Speechify
                             {
                                 string? __content_400 = null;
                                 global::System.Exception? __exception_400 = null;
-                                global::Speechify.TtsError? __value_400 = null;
+                                global::Speechify.Error? __value_400 = null;
                                 try
                                 {
                                     if (__effectiveReadResponseAsString)
                                     {
                                         __content_400 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
-                                        __value_400 = global::Speechify.TtsError.FromJson(__content_400, JsonSerializerContext);
+                                        __value_400 = global::Speechify.Error.FromJson(__content_400, JsonSerializerContext);
                                     }
                                     else
                                     {
                                         __content_400 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
 
-                                        __value_400 = global::Speechify.TtsError.FromJson(__content_400, JsonSerializerContext);
+                                        __value_400 = global::Speechify.Error.FromJson(__content_400, JsonSerializerContext);
                                     }
                                 }
                                 catch (global::System.Exception __ex)
@@ -963,7 +963,7 @@ namespace Speechify
                                 }
 
 
-                                throw global::Speechify.ApiException<global::Speechify.TtsError>.Create(
+                                throw global::Speechify.ApiException<global::Speechify.Error>.Create(
                                     statusCode: __response.StatusCode,
                                     message: __content_400 ?? __response.ReasonPhrase ?? string.Empty,
                                     innerException: __exception_400,
@@ -979,19 +979,19 @@ namespace Speechify
                             {
                                 string? __content_401 = null;
                                 global::System.Exception? __exception_401 = null;
-                                global::Speechify.TtsError? __value_401 = null;
+                                global::Speechify.Error? __value_401 = null;
                                 try
                                 {
                                     if (__effectiveReadResponseAsString)
                                     {
                                         __content_401 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
-                                        __value_401 = global::Speechify.TtsError.FromJson(__content_401, JsonSerializerContext);
+                                        __value_401 = global::Speechify.Error.FromJson(__content_401, JsonSerializerContext);
                                     }
                                     else
                                     {
                                         __content_401 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
 
-                                        __value_401 = global::Speechify.TtsError.FromJson(__content_401, JsonSerializerContext);
+                                        __value_401 = global::Speechify.Error.FromJson(__content_401, JsonSerializerContext);
                                     }
                                 }
                                 catch (global::System.Exception __ex)
@@ -1000,7 +1000,7 @@ namespace Speechify
                                 }
 
 
-                                throw global::Speechify.ApiException<global::Speechify.TtsError>.Create(
+                                throw global::Speechify.ApiException<global::Speechify.Error>.Create(
                                     statusCode: __response.StatusCode,
                                     message: __content_401 ?? __response.ReasonPhrase ?? string.Empty,
                                     innerException: __exception_401,
@@ -1016,19 +1016,19 @@ namespace Speechify
                             {
                                 string? __content_403 = null;
                                 global::System.Exception? __exception_403 = null;
-                                global::Speechify.TtsError? __value_403 = null;
+                                global::Speechify.Error? __value_403 = null;
                                 try
                                 {
                                     if (__effectiveReadResponseAsString)
                                     {
                                         __content_403 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
-                                        __value_403 = global::Speechify.TtsError.FromJson(__content_403, JsonSerializerContext);
+                                        __value_403 = global::Speechify.Error.FromJson(__content_403, JsonSerializerContext);
                                     }
                                     else
                                     {
                                         __content_403 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
 
-                                        __value_403 = global::Speechify.TtsError.FromJson(__content_403, JsonSerializerContext);
+                                        __value_403 = global::Speechify.Error.FromJson(__content_403, JsonSerializerContext);
                                     }
                                 }
                                 catch (global::System.Exception __ex)
@@ -1037,7 +1037,7 @@ namespace Speechify
                                 }
 
 
-                                throw global::Speechify.ApiException<global::Speechify.TtsError>.Create(
+                                throw global::Speechify.ApiException<global::Speechify.Error>.Create(
                                     statusCode: __response.StatusCode,
                                     message: __content_403 ?? __response.ReasonPhrase ?? string.Empty,
                                     innerException: __exception_403,
@@ -1053,19 +1053,19 @@ namespace Speechify
                             {
                                 string? __content_404 = null;
                                 global::System.Exception? __exception_404 = null;
-                                global::Speechify.TtsError? __value_404 = null;
+                                global::Speechify.Error? __value_404 = null;
                                 try
                                 {
                                     if (__effectiveReadResponseAsString)
                                     {
                                         __content_404 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
-                                        __value_404 = global::Speechify.TtsError.FromJson(__content_404, JsonSerializerContext);
+                                        __value_404 = global::Speechify.Error.FromJson(__content_404, JsonSerializerContext);
                                     }
                                     else
                                     {
                                         __content_404 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
 
-                                        __value_404 = global::Speechify.TtsError.FromJson(__content_404, JsonSerializerContext);
+                                        __value_404 = global::Speechify.Error.FromJson(__content_404, JsonSerializerContext);
                                     }
                                 }
                                 catch (global::System.Exception __ex)
@@ -1074,7 +1074,7 @@ namespace Speechify
                                 }
 
 
-                                throw global::Speechify.ApiException<global::Speechify.TtsError>.Create(
+                                throw global::Speechify.ApiException<global::Speechify.Error>.Create(
                                     statusCode: __response.StatusCode,
                                     message: __content_404 ?? __response.ReasonPhrase ?? string.Empty,
                                     innerException: __exception_404,
@@ -1090,19 +1090,19 @@ namespace Speechify
                             {
                                 string? __content_429 = null;
                                 global::System.Exception? __exception_429 = null;
-                                global::Speechify.TtsError? __value_429 = null;
+                                global::Speechify.Error? __value_429 = null;
                                 try
                                 {
                                     if (__effectiveReadResponseAsString)
                                     {
                                         __content_429 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
-                                        __value_429 = global::Speechify.TtsError.FromJson(__content_429, JsonSerializerContext);
+                                        __value_429 = global::Speechify.Error.FromJson(__content_429, JsonSerializerContext);
                                     }
                                     else
                                     {
                                         __content_429 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
 
-                                        __value_429 = global::Speechify.TtsError.FromJson(__content_429, JsonSerializerContext);
+                                        __value_429 = global::Speechify.Error.FromJson(__content_429, JsonSerializerContext);
                                     }
                                 }
                                 catch (global::System.Exception __ex)
@@ -1111,7 +1111,7 @@ namespace Speechify
                                 }
 
 
-                                throw global::Speechify.ApiException<global::Speechify.TtsError>.Create(
+                                throw global::Speechify.ApiException<global::Speechify.Error>.Create(
                                     statusCode: __response.StatusCode,
                                     message: __content_429 ?? __response.ReasonPhrase ?? string.Empty,
                                     innerException: __exception_429,
@@ -1127,19 +1127,19 @@ namespace Speechify
                             {
                                 string? __content_500 = null;
                                 global::System.Exception? __exception_500 = null;
-                                global::Speechify.TtsError? __value_500 = null;
+                                global::Speechify.Error? __value_500 = null;
                                 try
                                 {
                                     if (__effectiveReadResponseAsString)
                                     {
                                         __content_500 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
-                                        __value_500 = global::Speechify.TtsError.FromJson(__content_500, JsonSerializerContext);
+                                        __value_500 = global::Speechify.Error.FromJson(__content_500, JsonSerializerContext);
                                     }
                                     else
                                     {
                                         __content_500 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
 
-                                        __value_500 = global::Speechify.TtsError.FromJson(__content_500, JsonSerializerContext);
+                                        __value_500 = global::Speechify.Error.FromJson(__content_500, JsonSerializerContext);
                                     }
                                 }
                                 catch (global::System.Exception __ex)
@@ -1148,7 +1148,7 @@ namespace Speechify
                                 }
 
 
-                                throw global::Speechify.ApiException<global::Speechify.TtsError>.Create(
+                                throw global::Speechify.ApiException<global::Speechify.Error>.Create(
                                     statusCode: __response.StatusCode,
                                     message: __content_500 ?? __response.ReasonPhrase ?? string.Empty,
                                     innerException: __exception_500,
@@ -1164,19 +1164,19 @@ namespace Speechify
                             {
                                 string? __content_502 = null;
                                 global::System.Exception? __exception_502 = null;
-                                global::Speechify.TtsError? __value_502 = null;
+                                global::Speechify.Error? __value_502 = null;
                                 try
                                 {
                                     if (__effectiveReadResponseAsString)
                                     {
                                         __content_502 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
-                                        __value_502 = global::Speechify.TtsError.FromJson(__content_502, JsonSerializerContext);
+                                        __value_502 = global::Speechify.Error.FromJson(__content_502, JsonSerializerContext);
                                     }
                                     else
                                     {
                                         __content_502 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
 
-                                        __value_502 = global::Speechify.TtsError.FromJson(__content_502, JsonSerializerContext);
+                                        __value_502 = global::Speechify.Error.FromJson(__content_502, JsonSerializerContext);
                                     }
                                 }
                                 catch (global::System.Exception __ex)
@@ -1185,7 +1185,7 @@ namespace Speechify
                                 }
 
 
-                                throw global::Speechify.ApiException<global::Speechify.TtsError>.Create(
+                                throw global::Speechify.ApiException<global::Speechify.Error>.Create(
                                     statusCode: __response.StatusCode,
                                     message: __content_502 ?? __response.ReasonPhrase ?? string.Empty,
                                     innerException: __exception_502,
@@ -1201,19 +1201,19 @@ namespace Speechify
                             {
                                 string? __content_503 = null;
                                 global::System.Exception? __exception_503 = null;
-                                global::Speechify.TtsError? __value_503 = null;
+                                global::Speechify.Error? __value_503 = null;
                                 try
                                 {
                                     if (__effectiveReadResponseAsString)
                                     {
                                         __content_503 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
-                                        __value_503 = global::Speechify.TtsError.FromJson(__content_503, JsonSerializerContext);
+                                        __value_503 = global::Speechify.Error.FromJson(__content_503, JsonSerializerContext);
                                     }
                                     else
                                     {
                                         __content_503 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
 
-                                        __value_503 = global::Speechify.TtsError.FromJson(__content_503, JsonSerializerContext);
+                                        __value_503 = global::Speechify.Error.FromJson(__content_503, JsonSerializerContext);
                                     }
                                 }
                                 catch (global::System.Exception __ex)
@@ -1222,7 +1222,7 @@ namespace Speechify
                                 }
 
 
-                                throw global::Speechify.ApiException<global::Speechify.TtsError>.Create(
+                                throw global::Speechify.ApiException<global::Speechify.Error>.Create(
                                     statusCode: __response.StatusCode,
                                     message: __content_503 ?? __response.ReasonPhrase ?? string.Empty,
                                     innerException: __exception_503,

@@ -1,0 +1,87 @@
+
+#nullable enable
+
+namespace Speechify
+{
+    /// <summary>
+    /// 
+    /// </summary>
+    public sealed partial class CreateToolRequest
+    {
+        /// <summary>
+        /// 
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("name")]
+        [global::System.Text.Json.Serialization.JsonRequired]
+        public required string Name { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("description")]
+        [global::System.Text.Json.Serialization.JsonRequired]
+        public required string Description { get; set; }
+
+        /// <summary>
+        /// Where the tool executes.<br/>
+        /// - `system`:  worker-resident built-in (e.g. end_call, play_audio)<br/>
+        /// - `webhook`: worker signs a payload and POSTs it to your URL<br/>
+        /// - `client`:  worker dispatches to the caller's browser/SDK via data channel<br/>
+        /// - `mcp`:     worker connects to a customer-hosted MCP server and proxies tool calls
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("kind")]
+        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Speechify.JsonConverters.ToolKindJsonConverter))]
+        [global::System.Text.Json.Serialization.JsonRequired]
+        public required global::Speechify.ToolKind Kind { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("config")]
+        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Speechify.JsonConverters.CreateToolRequestConfigJsonConverter))]
+        [global::System.Text.Json.Serialization.JsonRequired]
+        public required global::Speechify.CreateToolRequestConfig Config { get; set; }
+
+        /// <summary>
+        /// Additional properties that are not explicitly defined in the schema
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonExtensionData]
+        public global::System.Collections.Generic.IDictionary<string, object> AdditionalProperties { get; set; } = new global::System.Collections.Generic.Dictionary<string, object>();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CreateToolRequest" /> class.
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="description"></param>
+        /// <param name="kind">
+        /// Where the tool executes.<br/>
+        /// - `system`:  worker-resident built-in (e.g. end_call, play_audio)<br/>
+        /// - `webhook`: worker signs a payload and POSTs it to your URL<br/>
+        /// - `client`:  worker dispatches to the caller's browser/SDK via data channel<br/>
+        /// - `mcp`:     worker connects to a customer-hosted MCP server and proxies tool calls
+        /// </param>
+        /// <param name="config"></param>
+#if NET7_0_OR_GREATER
+        [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
+#endif
+        public CreateToolRequest(
+            string name,
+            string description,
+            global::Speechify.ToolKind kind,
+            global::Speechify.CreateToolRequestConfig config)
+        {
+            this.Name = name ?? throw new global::System.ArgumentNullException(nameof(name));
+            this.Description = description ?? throw new global::System.ArgumentNullException(nameof(description));
+            this.Kind = kind;
+            this.Config = config;
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CreateToolRequest" /> class.
+        /// </summary>
+        public CreateToolRequest()
+        {
+        }
+
+    }
+}

@@ -47,82 +47,82 @@ namespace Speechify
         /// <summary>
         /// 
         /// </summary>
-        public SubpackageTtsSubpackageTtsAdminClient SubpackageTtsSubpackageTtsAdmin { get; }
+        public SubpackageAgentClient SubpackageAgent { get; }
 
         /// <summary>
         /// 
         /// </summary>
-        public SubpackageTtsSubpackageTtsAgentsClient SubpackageTtsSubpackageTtsAgents { get; }
+        public SubpackageAgentSubpackageAgentAdminClient SubpackageAgentSubpackageAgentAdmin { get; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public SubpackageAgentSubpackageAgentAudioAssetsClient SubpackageAgentSubpackageAgentAudioAssets { get; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public SubpackageAgentSubpackageAgentBatchCallsClient SubpackageAgentSubpackageAgentBatchCalls { get; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public SubpackageAgentSubpackageAgentCallersClient SubpackageAgentSubpackageAgentCallers { get; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public SubpackageAgentSubpackageAgentConversationsClient SubpackageAgentSubpackageAgentConversations { get; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public SubpackageAgentSubpackageAgentFlowClient SubpackageAgentSubpackageAgentFlow { get; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public SubpackageAgentSubpackageAgentIvrMemoryClient SubpackageAgentSubpackageAgentIvrMemory { get; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public SubpackageAgentSubpackageAgentKnowledgeBasesClient SubpackageAgentSubpackageAgentKnowledgeBases { get; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public SubpackageAgentSubpackageAgentMemoriesClient SubpackageAgentSubpackageAgentMemories { get; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public SubpackageAgentSubpackageAgentOutboundCallsClient SubpackageAgentSubpackageAgentOutboundCalls { get; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public SubpackageAgentSubpackageAgentPhoneNumbersClient SubpackageAgentSubpackageAgentPhoneNumbers { get; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public SubpackageAgentSubpackageAgentSipTrunksClient SubpackageAgentSubpackageAgentSipTrunks { get; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public SubpackageAgentSubpackageAgentTestsClient SubpackageAgentSubpackageAgentTests { get; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public SubpackageAgentSubpackageAgentToolsClient SubpackageAgentSubpackageAgentTools { get; }
 
         /// <summary>
         /// 
         /// </summary>
         public SubpackageTtsSubpackageTtsAudioClient SubpackageTtsSubpackageTtsAudio { get; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public SubpackageTtsSubpackageTtsAudioAssetsClient SubpackageTtsSubpackageTtsAudioAssets { get; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public SubpackageTtsSubpackageTtsBatchCallsClient SubpackageTtsSubpackageTtsBatchCalls { get; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public SubpackageTtsSubpackageTtsCallersClient SubpackageTtsSubpackageTtsCallers { get; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public SubpackageTtsSubpackageTtsConversationsClient SubpackageTtsSubpackageTtsConversations { get; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public SubpackageTtsSubpackageTtsFlowClient SubpackageTtsSubpackageTtsFlow { get; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public SubpackageTtsSubpackageTtsIvrMemoryClient SubpackageTtsSubpackageTtsIvrMemory { get; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public SubpackageTtsSubpackageTtsKnowledgeBasesClient SubpackageTtsSubpackageTtsKnowledgeBases { get; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public SubpackageTtsSubpackageTtsMemoriesClient SubpackageTtsSubpackageTtsMemories { get; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public SubpackageTtsSubpackageTtsOutboundCallsClient SubpackageTtsSubpackageTtsOutboundCalls { get; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public SubpackageTtsSubpackageTtsPhoneNumbersClient SubpackageTtsSubpackageTtsPhoneNumbers { get; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public SubpackageTtsSubpackageTtsSipTrunksClient SubpackageTtsSubpackageTtsSipTrunks { get; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public SubpackageTtsSubpackageTtsTestsClient SubpackageTtsSubpackageTtsTests { get; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public SubpackageTtsSubpackageTtsToolsClient SubpackageTtsSubpackageTtsTools { get; }
 
         /// <summary>
         /// 

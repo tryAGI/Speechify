@@ -17,9 +17,9 @@ namespace Speechify
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
         global::System.Threading.Tasks.Task<byte[]> StreamAsync(
-            global::Speechify.TtsV1AudioStreamPostParametersAccept accept,
+            global::Speechify.V1AudioStreamPostParametersAccept accept,
 
-            global::Speechify.TtsGetStreamRequest request,
+            global::Speechify.GetStreamRequest request,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
@@ -35,9 +35,9 @@ namespace Speechify
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
         global::System.Threading.Tasks.Task<global::System.IO.Stream> StreamAsStreamAsync(
-            global::Speechify.TtsV1AudioStreamPostParametersAccept accept,
+            global::Speechify.V1AudioStreamPostParametersAccept accept,
 
-            global::Speechify.TtsGetStreamRequest request,
+            global::Speechify.GetStreamRequest request,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
@@ -53,9 +53,9 @@ namespace Speechify
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
         global::System.Threading.Tasks.Task<global::Speechify.AutoSDKHttpResponse<byte[]>> StreamAsResponseAsync(
-            global::Speechify.TtsV1AudioStreamPostParametersAccept accept,
+            global::Speechify.V1AudioStreamPostParametersAccept accept,
 
-            global::Speechify.TtsGetStreamRequest request,
+            global::Speechify.GetStreamRequest request,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
@@ -89,12 +89,12 @@ namespace Speechify
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::System.InvalidOperationException"></exception>
         global::System.Threading.Tasks.Task<byte[]> StreamAsync(
-            global::Speechify.TtsV1AudioStreamPostParametersAccept accept,
+            global::Speechify.V1AudioStreamPostParametersAccept accept,
             string input,
             string voiceId,
             string? language = default,
-            global::Speechify.TtsGetStreamRequestModel? model = default,
-            global::Speechify.TtsGetStreamOptionsRequest? options = default,
+            global::Speechify.GetStreamRequestModel? model = default,
+            global::Speechify.GetStreamOptionsRequest? options = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
     }

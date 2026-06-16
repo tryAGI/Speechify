@@ -1,0 +1,19 @@
+
+#nullable enable
+
+namespace Speechify
+{
+    /// <summary>
+    /// Structured data-collection payload (present only on `kind=data` rows).
+    /// </summary>
+    public sealed partial class EvaluationData
+    {
+
+        /// <summary>
+        /// Additional properties that are not explicitly defined in the schema
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonExtensionData]
+        public global::System.Collections.Generic.IDictionary<string, object> AdditionalProperties { get; set; } = new global::System.Collections.Generic.Dictionary<string, object>();
+
+    }
+}
