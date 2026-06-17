@@ -117,7 +117,9 @@ namespace Speechify
         /// Coarse termination category. Worker-stamped reasons arrive<br/>
         /// before `terminate_call` fires; `caller_hangup` has two<br/>
         /// emit sites (worker-observed SIP disconnect, plus a<br/>
-        /// server-side post-call catch-all).<br/>
+        /// server-side post-call catch-all). The `dial_*` reasons are<br/>
+        /// server-stamped on a `failed` conversation for an outbound<br/>
+        /// call that never connected (no worker session ran).<br/>
         /// * `voicemail_message_left` — AMD machine-vm + we spoke the configured drop-message.<br/>
         /// * `voicemail_hangup` — AMD machine-vm + we terminated silently (action=hangup or empty-message bypass).<br/>
         /// * `ivr_hangup` — AMD machine-ivr + action=hangup.<br/>
@@ -128,6 +130,10 @@ namespace Speechify
         /// * `max_duration_reached` - worker's max-call-duration watchdog force-ended the call at the platform ceiling (a safety bound on runaway calls).<br/>
         /// * `over_capacity` — inbound call refused because the workspace was over its active-call concurrency cap; the busy message played and the call hung up. Stamped server-side and excluded from billing.<br/>
         /// * `caller_hangup` — caller's leg went away. Precise when the worker observed the SIP `participant_disconnected` event (stamped immediately); otherwise stamped server-side ~10s after `room_finished` as a catch-all (web tab close, network blip, worker crash, etc.).<br/>
+        /// * `dial_no_answer` — outbound dial: callee did not pick up (SIP 408/480/487, the ringing timeout expired).<br/>
+        /// * `dial_busy` — outbound dial: the line was busy (SIP 486/600).<br/>
+        /// * `dial_rejected` — outbound dial: the call was actively refused (SIP 401/403/407 carrier auth/permission, or 603/607/608 callee decline).<br/>
+        /// * `dial_failed` — outbound dial: any other failure to connect (invalid number, carrier 5xx, malformed trunk address, TLS requirement, transport error). On a `failed` conversation with NULL `duration_ms`.<br/>
         /// * `null` — pre-rollout calls only (anything that landed after the rollout completes without a stamp gets `caller_hangup` from the post-call goroutine).
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("end_reason")]
@@ -305,7 +311,9 @@ namespace Speechify
         /// Coarse termination category. Worker-stamped reasons arrive<br/>
         /// before `terminate_call` fires; `caller_hangup` has two<br/>
         /// emit sites (worker-observed SIP disconnect, plus a<br/>
-        /// server-side post-call catch-all).<br/>
+        /// server-side post-call catch-all). The `dial_*` reasons are<br/>
+        /// server-stamped on a `failed` conversation for an outbound<br/>
+        /// call that never connected (no worker session ran).<br/>
         /// * `voicemail_message_left` — AMD machine-vm + we spoke the configured drop-message.<br/>
         /// * `voicemail_hangup` — AMD machine-vm + we terminated silently (action=hangup or empty-message bypass).<br/>
         /// * `ivr_hangup` — AMD machine-ivr + action=hangup.<br/>
@@ -316,6 +324,10 @@ namespace Speechify
         /// * `max_duration_reached` - worker's max-call-duration watchdog force-ended the call at the platform ceiling (a safety bound on runaway calls).<br/>
         /// * `over_capacity` — inbound call refused because the workspace was over its active-call concurrency cap; the busy message played and the call hung up. Stamped server-side and excluded from billing.<br/>
         /// * `caller_hangup` — caller's leg went away. Precise when the worker observed the SIP `participant_disconnected` event (stamped immediately); otherwise stamped server-side ~10s after `room_finished` as a catch-all (web tab close, network blip, worker crash, etc.).<br/>
+        /// * `dial_no_answer` — outbound dial: callee did not pick up (SIP 408/480/487, the ringing timeout expired).<br/>
+        /// * `dial_busy` — outbound dial: the line was busy (SIP 486/600).<br/>
+        /// * `dial_rejected` — outbound dial: the call was actively refused (SIP 401/403/407 carrier auth/permission, or 603/607/608 callee decline).<br/>
+        /// * `dial_failed` — outbound dial: any other failure to connect (invalid number, carrier 5xx, malformed trunk address, TLS requirement, transport error). On a `failed` conversation with NULL `duration_ms`.<br/>
         /// * `null` — pre-rollout calls only (anything that landed after the rollout completes without a stamp gets `caller_hangup` from the post-call goroutine).
         /// </param>
         /// <param name="callerIdentity">
