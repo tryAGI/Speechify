@@ -72,6 +72,10 @@ namespace Speechify
         /// <summary>
         /// 
         /// </summary>
+        InviteAlreadyPending,
+        /// <summary>
+        /// 
+        /// </summary>
         InviteEmailMismatch,
         /// <summary>
         /// 
@@ -197,6 +201,7 @@ namespace Speechify
                 ErrorCode.Forbidden => "forbidden",
                 ErrorCode.InsufficientScope => "insufficient_scope",
                 ErrorCode.InternalError => "internal_error",
+                ErrorCode.InviteAlreadyPending => "invite_already_pending",
                 ErrorCode.InviteEmailMismatch => "invite_email_mismatch",
                 ErrorCode.InviteNotFound => "invite_not_found",
                 ErrorCode.KbDocumentNotFound => "kb_document_not_found",
@@ -246,6 +251,7 @@ namespace Speechify
                 "forbidden" => ErrorCode.Forbidden,
                 "insufficient_scope" => ErrorCode.InsufficientScope,
                 "internal_error" => ErrorCode.InternalError,
+                "invite_already_pending" => ErrorCode.InviteAlreadyPending,
                 "invite_email_mismatch" => ErrorCode.InviteEmailMismatch,
                 "invite_not_found" => ErrorCode.InviteNotFound,
                 "kb_document_not_found" => ErrorCode.KbDocumentNotFound,
