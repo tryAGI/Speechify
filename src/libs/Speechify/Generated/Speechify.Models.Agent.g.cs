@@ -56,7 +56,7 @@ namespace Speechify
         /// <summary>
         /// LLM backend the worker constructs for this agent. Null<br/>
         /// means "use the platform default" (resolved server-side at<br/>
-        /// dispatch; today: Speechify Kimi K2.6). `openai` and<br/>
+        /// dispatch; today: Speechify GLM-5.2). `openai` and<br/>
         /// `speechify` pair with a model from the allowed (provider,<br/>
         /// model) table. `custom` points the worker at any OpenAI /<br/>
         /// vLLM-compatible endpoint - see `llm_base_url`,<br/>
@@ -69,8 +69,8 @@ namespace Speechify
 
         /// <summary>
         /// Chat model slug. Null means "use the platform default"<br/>
-        /// (resolved server-side at dispatch; today: Speechify Kimi<br/>
-        /// K2.6). For `openai` / `speechify` it must be a slug from<br/>
+        /// (resolved server-side at dispatch; today: Speechify<br/>
+        /// GLM-5.2). For `openai` / `speechify` it must be a slug from<br/>
         /// the allowed table; for `custom` it is free-form (the<br/>
         /// customer's endpoint owns the namespace).
         /// </summary>
@@ -335,7 +335,7 @@ namespace Speechify
         /// <param name="llmProvider">
         /// LLM backend the worker constructs for this agent. Null<br/>
         /// means "use the platform default" (resolved server-side at<br/>
-        /// dispatch; today: Speechify Kimi K2.6). `openai` and<br/>
+        /// dispatch; today: Speechify GLM-5.2). `openai` and<br/>
         /// `speechify` pair with a model from the allowed (provider,<br/>
         /// model) table. `custom` points the worker at any OpenAI /<br/>
         /// vLLM-compatible endpoint - see `llm_base_url`,<br/>
@@ -397,8 +397,8 @@ namespace Speechify
         /// <param name="updatedAt"></param>
         /// <param name="llmModel">
         /// Chat model slug. Null means "use the platform default"<br/>
-        /// (resolved server-side at dispatch; today: Speechify Kimi<br/>
-        /// K2.6). For `openai` / `speechify` it must be a slug from<br/>
+        /// (resolved server-side at dispatch; today: Speechify<br/>
+        /// GLM-5.2). For `openai` / `speechify` it must be a slug from<br/>
         /// the allowed table; for `custom` it is free-form (the<br/>
         /// customer's endpoint owns the namespace).
         /// </param>
