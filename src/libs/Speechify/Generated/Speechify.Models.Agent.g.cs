@@ -286,12 +286,9 @@ namespace Speechify
 
         /// <summary>
         /// Optional override for the streaming-STT stack this agent<br/>
-        /// dispatches with. Null means use the worker's default<br/>
-        /// stack (today: whisper-v3, Baseten Whisper Large V3). Pick<br/>
-        /// `whisper-v3` to pin Whisper Large V3 explicitly, `flux` to<br/>
-        /// opt into Deepgram Flux's semantic end-of-turn detection, or<br/>
-        /// `gpt-realtime-whisper` for OpenAI's streaming Whisper-class<br/>
-        /// STT.
+        /// dispatches with. Null means use the default (Whisper Large V3).<br/>
+        /// Pick `whisper-v3` to pin Whisper Large V3 explicitly, or<br/>
+        /// `gpt-realtime-whisper` for OpenAI's streaming Whisper-class STT.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("stt_override")]
         [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Speechify.JsonConverters.AgentSttOverrideJsonConverter))]
@@ -480,12 +477,9 @@ namespace Speechify
         /// </param>
         /// <param name="sttOverride">
         /// Optional override for the streaming-STT stack this agent<br/>
-        /// dispatches with. Null means use the worker's default<br/>
-        /// stack (today: whisper-v3, Baseten Whisper Large V3). Pick<br/>
-        /// `whisper-v3` to pin Whisper Large V3 explicitly, `flux` to<br/>
-        /// opt into Deepgram Flux's semantic end-of-turn detection, or<br/>
-        /// `gpt-realtime-whisper` for OpenAI's streaming Whisper-class<br/>
-        /// STT.
+        /// dispatches with. Null means use the default (Whisper Large V3).<br/>
+        /// Pick `whisper-v3` to pin Whisper Large V3 explicitly, or<br/>
+        /// `gpt-realtime-whisper` for OpenAI's streaming Whisper-class STT.
         /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
