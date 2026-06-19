@@ -13,10 +13,6 @@ namespace Speechify
         /// <summary>
         /// 
         /// </summary>
-        Flux,
-        /// <summary>
-        /// 
-        /// </summary>
         GptRealtimeWhisper,
         /// <summary>
         /// whisper-v3).
@@ -36,7 +32,6 @@ namespace Speechify
         {
             return value switch
             {
-                CreateAgentRequestSttOverride.Flux => "flux",
                 CreateAgentRequestSttOverride.GptRealtimeWhisper => "gpt-realtime-whisper",
                 CreateAgentRequestSttOverride.WhisperV3 => "whisper-v3",
                 _ => throw new global::System.ArgumentOutOfRangeException(nameof(value), value, null),
@@ -49,7 +44,6 @@ namespace Speechify
         {
             return value switch
             {
-                "flux" => CreateAgentRequestSttOverride.Flux,
                 "gpt-realtime-whisper" => CreateAgentRequestSttOverride.GptRealtimeWhisper,
                 "whisper-v3" => CreateAgentRequestSttOverride.WhisperV3,
                 _ => null,
