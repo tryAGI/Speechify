@@ -6,7 +6,7 @@ namespace Speechify
     /// <summary>
     /// LLM backend the worker constructs for this agent. Null<br/>
     /// means "use the platform default" (resolved server-side at<br/>
-    /// dispatch; today: Speechify Kimi K2.6). `openai` and<br/>
+    /// dispatch; today: Speechify GLM-5.2). `openai` and<br/>
     /// `speechify` pair with a model from the allowed (provider,<br/>
     /// model) table. `custom` points the worker at any OpenAI /<br/>
     /// vLLM-compatible endpoint - see `llm_base_url`,<br/>
@@ -19,7 +19,7 @@ namespace Speechify
         /// </summary>
         Custom,
         /// <summary>
-        /// Speechify Kimi K2.6). `openai` and
+        /// Speechify GLM-5.2). `openai` and
         /// </summary>
         Openai,
         /// <summary>

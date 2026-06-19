@@ -6,7 +6,7 @@ namespace Speechify
     /// <summary>
     /// LLM backend. Send an empty string together with<br/>
     /// `llm_model: ""` to clear the pair to the platform default<br/>
-    /// (today: Speechify Kimi K2.6). Sending one populated and<br/>
+    /// (today: Speechify GLM-5.2). Sending one populated and<br/>
     /// one empty is rejected as a 400. Omit both to leave the<br/>
     /// stored pair unchanged. Switching to a non-`custom` provider<br/>
     /// clears any stored `llm_base_url` / `llm_api_key` /<br/>
