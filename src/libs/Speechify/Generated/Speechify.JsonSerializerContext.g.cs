@@ -759,6 +759,7 @@ namespace Speechify
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.LLMModelInfo))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.LLMModelsResponse))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Speechify.LLMModelInfo>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.TakeOverConversationResponse))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.CreateRequest))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.UploadDocumentRequest))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.UpdateDocumentRequest))]
