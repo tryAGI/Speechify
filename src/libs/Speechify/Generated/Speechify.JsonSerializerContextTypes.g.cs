@@ -1656,31 +1656,35 @@ namespace Speechify
         /// <summary>
         /// 
         /// </summary>
-        public global::Speechify.CreateRequest? Type407 { get; set; }
+        public global::Speechify.TakeOverConversationResponse? Type407 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::Speechify.UploadDocumentRequest? Type408 { get; set; }
+        public global::Speechify.CreateRequest? Type408 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::Speechify.UpdateDocumentRequest? Type409 { get; set; }
+        public global::Speechify.UploadDocumentRequest? Type409 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::Speechify.RunTestRequest? Type410 { get; set; }
+        public global::Speechify.UpdateDocumentRequest? Type410 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::Speechify.UploadRequest? Type411 { get; set; }
+        public global::Speechify.RunTestRequest? Type411 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::System.Collections.Generic.IList<global::Speechify.GetVoice>? Type412 { get; set; }
+        public global::Speechify.UploadRequest? Type412 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::System.Collections.Generic.IList<global::Speechify.AgentVoice>? Type413 { get; set; }
+        public global::System.Collections.Generic.IList<global::Speechify.GetVoice>? Type413 { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public global::System.Collections.Generic.IList<global::Speechify.AgentVoice>? Type414 { get; set; }
 
         /// <summary>
         /// 
