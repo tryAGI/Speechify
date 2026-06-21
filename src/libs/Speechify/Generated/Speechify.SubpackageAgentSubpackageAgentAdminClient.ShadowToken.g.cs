@@ -45,13 +45,13 @@ namespace Speechify
         /// Mint shadow-call token<br/>
         /// Mint a listen-only LiveKit access token so an authorized observer<br/>
         /// can join an ongoing voice-agent conversation as a hidden<br/>
-        /// participant. Caller must be an `owner` or `admin` of the<br/>
-        /// workspace the conversation belongs to. The token cannot publish<br/>
-        /// audio or data; the observer is invisible to the caller and the<br/>
-        /// agent. Speechify support engineers reach this endpoint the same<br/>
-        /// way as any other observer — by being granted the owner/admin<br/>
-        /// role on the customer's workspace (typically under an NDA-backed<br/>
-        /// support arrangement).
+        /// participant. Any `member`, `admin`, or `owner` of the workspace<br/>
+        /// the conversation belongs to may listen in — it is read-only<br/>
+        /// observation. The token cannot publish audio or data; the observer<br/>
+        /// is invisible to the caller and the agent. Speechify support<br/>
+        /// engineers reach this endpoint the same way as any other observer<br/>
+        /// — by being granted a role on the customer's workspace (typically<br/>
+        /// under an NDA-backed support arrangement).
         /// </summary>
         /// <param name="id"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
@@ -74,13 +74,13 @@ namespace Speechify
         /// Mint shadow-call token<br/>
         /// Mint a listen-only LiveKit access token so an authorized observer<br/>
         /// can join an ongoing voice-agent conversation as a hidden<br/>
-        /// participant. Caller must be an `owner` or `admin` of the<br/>
-        /// workspace the conversation belongs to. The token cannot publish<br/>
-        /// audio or data; the observer is invisible to the caller and the<br/>
-        /// agent. Speechify support engineers reach this endpoint the same<br/>
-        /// way as any other observer — by being granted the owner/admin<br/>
-        /// role on the customer's workspace (typically under an NDA-backed<br/>
-        /// support arrangement).
+        /// participant. Any `member`, `admin`, or `owner` of the workspace<br/>
+        /// the conversation belongs to may listen in — it is read-only<br/>
+        /// observation. The token cannot publish audio or data; the observer<br/>
+        /// is invisible to the caller and the agent. Speechify support<br/>
+        /// engineers reach this endpoint the same way as any other observer<br/>
+        /// — by being granted a role on the customer's workspace (typically<br/>
+        /// under an NDA-backed support arrangement).
         /// </summary>
         /// <param name="id"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>

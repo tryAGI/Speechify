@@ -45,8 +45,8 @@ namespace Speechify
         /// Force-end conversation<br/>
         /// Force-terminate the LiveKit room for an ongoing conversation.<br/>
         /// Idempotent: rooms that LiveKit has already cleaned up return<br/>
-        /// 204 the same as a successful first-time termination. Same<br/>
-        /// owner/admin role gating as the shadow-token endpoint.
+        /// 204 the same as a successful first-time termination. Requires an<br/>
+        /// `owner` or `admin` of the workspace — the same gate as take-over.
         /// </summary>
         /// <param name="id"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
@@ -69,8 +69,8 @@ namespace Speechify
         /// Force-end conversation<br/>
         /// Force-terminate the LiveKit room for an ongoing conversation.<br/>
         /// Idempotent: rooms that LiveKit has already cleaned up return<br/>
-        /// 204 the same as a successful first-time termination. Same<br/>
-        /// owner/admin role gating as the shadow-token endpoint.
+        /// 204 the same as a successful first-time termination. Requires an<br/>
+        /// `owner` or `admin` of the workspace — the same gate as take-over.
         /// </summary>
         /// <param name="id"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
