@@ -1656,35 +1656,163 @@ namespace Speechify
         /// <summary>
         /// 
         /// </summary>
-        public global::Speechify.TakeOverConversationResponse? Type407 { get; set; }
+        public global::Speechify.AnalyticsDimensionType? Type407 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::Speechify.CreateRequest? Type408 { get; set; }
+        public global::Speechify.AnalyticsDimensionSource? Type408 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::Speechify.UploadDocumentRequest? Type409 { get; set; }
+        public global::Speechify.AnalyticsDimension? Type409 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::Speechify.UpdateDocumentRequest? Type410 { get; set; }
+        public global::Speechify.AnalyticsDimensionsResponse? Type410 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::Speechify.RunTestRequest? Type411 { get; set; }
+        public global::System.Collections.Generic.IList<global::Speechify.AnalyticsDimension>? Type411 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::Speechify.UploadRequest? Type412 { get; set; }
+        public global::Speechify.AnalyticsMetricAgg? Type412 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::System.Collections.Generic.IList<global::Speechify.GetVoice>? Type413 { get; set; }
+        public global::Speechify.AnalyticsFilterOp? Type413 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::System.Collections.Generic.IList<global::Speechify.AgentVoice>? Type414 { get; set; }
+        public global::Speechify.AnalyticsFilter? Type414 { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public global::Speechify.AnalyticsMetric? Type415 { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public global::Speechify.AnalyticsTimeField? Type416 { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public global::Speechify.AnalyticsTimeBucket? Type417 { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public global::Speechify.AnalyticsTime? Type418 { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public global::Speechify.AnalyticsQueryRequest? Type419 { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public global::System.Collections.Generic.IList<global::Speechify.AnalyticsFilter>? Type420 { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public global::Speechify.AnalyticsQueryResultBucket? Type421 { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public global::Speechify.AnalyticsPoint? Type422 { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public global::Speechify.AnalyticsSeries? Type423 { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public global::System.Collections.Generic.IList<global::Speechify.AnalyticsPoint>? Type424 { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public global::Speechify.AnalyticsPreviousResult? Type425 { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public global::System.Collections.Generic.IList<global::Speechify.AnalyticsSeries>? Type426 { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public global::Speechify.AnalyticsQueryMeta? Type427 { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public global::Speechify.AnalyticsQueryResult? Type428 { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public global::Speechify.DashboardWidgetChartType? Type429 { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public global::Speechify.DashboardPosition? Type430 { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public global::Speechify.DashboardWidget? Type431 { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public global::Speechify.DashboardLayout? Type432 { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public global::System.Collections.Generic.IList<global::Speechify.DashboardWidget>? Type433 { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public global::Speechify.Dashboard? Type434 { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public global::Speechify.ListDashboardsResponse? Type435 { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public global::System.Collections.Generic.IList<global::Speechify.Dashboard>? Type436 { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public global::Speechify.CreateDashboardRequest? Type437 { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public global::Speechify.UpdateDashboardRequest? Type438 { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public global::Speechify.TakeOverConversationResponse? Type439 { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public global::Speechify.CreateRequest? Type440 { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public global::Speechify.UploadDocumentRequest? Type441 { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public global::Speechify.UpdateDocumentRequest? Type442 { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public global::Speechify.RunTestRequest? Type443 { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public global::Speechify.UploadRequest? Type444 { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public global::System.Collections.Generic.IList<global::Speechify.GetVoice>? Type445 { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public global::System.Collections.Generic.IList<global::Speechify.AgentVoice>? Type446 { get; set; }
 
         /// <summary>
         /// 
@@ -1993,10 +2121,34 @@ namespace Speechify
         /// <summary>
         /// 
         /// </summary>
-        public global::System.Collections.Generic.List<global::Speechify.GetVoice>? ListType76 { get; set; }
+        public global::System.Collections.Generic.List<global::Speechify.AnalyticsDimension>? ListType76 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::System.Collections.Generic.List<global::Speechify.AgentVoice>? ListType77 { get; set; }
+        public global::System.Collections.Generic.List<global::Speechify.AnalyticsFilter>? ListType77 { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public global::System.Collections.Generic.List<global::Speechify.AnalyticsPoint>? ListType78 { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public global::System.Collections.Generic.List<global::Speechify.AnalyticsSeries>? ListType79 { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public global::System.Collections.Generic.List<global::Speechify.DashboardWidget>? ListType80 { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public global::System.Collections.Generic.List<global::Speechify.Dashboard>? ListType81 { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public global::System.Collections.Generic.List<global::Speechify.GetVoice>? ListType82 { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public global::System.Collections.Generic.List<global::Speechify.AgentVoice>? ListType83 { get; set; }
     }
 }

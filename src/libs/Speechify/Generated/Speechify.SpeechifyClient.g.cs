@@ -60,6 +60,15 @@ namespace Speechify
         /// <summary>
         /// 
         /// </summary>
+        public SubpackageAgentSubpackageAgentAnalyticsClient SubpackageAgentSubpackageAgentAnalytics => new SubpackageAgentSubpackageAgentAnalyticsClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
+        {
+            ReadResponseAsString = ReadResponseAsString,
+            JsonSerializerContext = JsonSerializerContext,
+        };
+
+        /// <summary>
+        /// 
+        /// </summary>
         public SubpackageAgentSubpackageAgentAudioAssetsClient SubpackageAgentSubpackageAgentAudioAssets => new SubpackageAgentSubpackageAgentAudioAssetsClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
         {
             ReadResponseAsString = ReadResponseAsString,
@@ -88,6 +97,15 @@ namespace Speechify
         /// 
         /// </summary>
         public SubpackageAgentSubpackageAgentConversationsClient SubpackageAgentSubpackageAgentConversations => new SubpackageAgentSubpackageAgentConversationsClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
+        {
+            ReadResponseAsString = ReadResponseAsString,
+            JsonSerializerContext = JsonSerializerContext,
+        };
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public SubpackageAgentSubpackageAgentDashboardsClient SubpackageAgentSubpackageAgentDashboards => new SubpackageAgentSubpackageAgentDashboardsClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
         {
             ReadResponseAsString = ReadResponseAsString,
             JsonSerializerContext = JsonSerializerContext,
