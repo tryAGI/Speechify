@@ -313,6 +313,38 @@ namespace Speechify
 
             typeof(global::Speechify.JsonConverters.SIPMediaEncryptionNullableJsonConverter),
 
+            typeof(global::Speechify.JsonConverters.AnalyticsDimensionTypeJsonConverter),
+
+            typeof(global::Speechify.JsonConverters.AnalyticsDimensionTypeNullableJsonConverter),
+
+            typeof(global::Speechify.JsonConverters.AnalyticsDimensionSourceJsonConverter),
+
+            typeof(global::Speechify.JsonConverters.AnalyticsDimensionSourceNullableJsonConverter),
+
+            typeof(global::Speechify.JsonConverters.AnalyticsMetricAggJsonConverter),
+
+            typeof(global::Speechify.JsonConverters.AnalyticsMetricAggNullableJsonConverter),
+
+            typeof(global::Speechify.JsonConverters.AnalyticsFilterOpJsonConverter),
+
+            typeof(global::Speechify.JsonConverters.AnalyticsFilterOpNullableJsonConverter),
+
+            typeof(global::Speechify.JsonConverters.AnalyticsTimeFieldJsonConverter),
+
+            typeof(global::Speechify.JsonConverters.AnalyticsTimeFieldNullableJsonConverter),
+
+            typeof(global::Speechify.JsonConverters.AnalyticsTimeBucketJsonConverter),
+
+            typeof(global::Speechify.JsonConverters.AnalyticsTimeBucketNullableJsonConverter),
+
+            typeof(global::Speechify.JsonConverters.AnalyticsQueryResultBucketJsonConverter),
+
+            typeof(global::Speechify.JsonConverters.AnalyticsQueryResultBucketNullableJsonConverter),
+
+            typeof(global::Speechify.JsonConverters.DashboardWidgetChartTypeJsonConverter),
+
+            typeof(global::Speechify.JsonConverters.DashboardWidgetChartTypeNullableJsonConverter),
+
             typeof(global::Speechify.JsonConverters.MCPAuthJsonConverter),
 
             typeof(global::Speechify.JsonConverters.ToolConfigJsonConverter),
@@ -759,6 +791,38 @@ namespace Speechify
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.LLMModelInfo))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.LLMModelsResponse))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Speechify.LLMModelInfo>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.AnalyticsDimensionType), TypeInfoPropertyName = "AnalyticsDimensionType2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.AnalyticsDimensionSource), TypeInfoPropertyName = "AnalyticsDimensionSource2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.AnalyticsDimension))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.AnalyticsDimensionsResponse))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Speechify.AnalyticsDimension>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.AnalyticsMetricAgg), TypeInfoPropertyName = "AnalyticsMetricAgg2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.AnalyticsFilterOp), TypeInfoPropertyName = "AnalyticsFilterOp2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.AnalyticsFilter))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.AnalyticsMetric))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.AnalyticsTimeField), TypeInfoPropertyName = "AnalyticsTimeField2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.AnalyticsTimeBucket), TypeInfoPropertyName = "AnalyticsTimeBucket2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.AnalyticsTime))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.AnalyticsQueryRequest))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Speechify.AnalyticsFilter>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.AnalyticsQueryResultBucket), TypeInfoPropertyName = "AnalyticsQueryResultBucket2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.AnalyticsPoint))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.AnalyticsSeries))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Speechify.AnalyticsPoint>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.AnalyticsPreviousResult))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Speechify.AnalyticsSeries>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.AnalyticsQueryMeta))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.AnalyticsQueryResult))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.DashboardWidgetChartType), TypeInfoPropertyName = "DashboardWidgetChartType2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.DashboardPosition))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.DashboardWidget))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.DashboardLayout))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Speechify.DashboardWidget>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.Dashboard))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.ListDashboardsResponse))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Speechify.Dashboard>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.CreateDashboardRequest))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.UpdateDashboardRequest))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.TakeOverConversationResponse))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.CreateRequest))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.UploadDocumentRequest))]
@@ -819,6 +883,387 @@ namespace Speechify
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.ParameterCheck>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.DataAssertion>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.ToolMock>))]
+    internal sealed partial class SourceGenerationContextChunk0 : global::System.Text.Json.Serialization.JsonSerializerContext
+    {
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    [global::System.Text.Json.Serialization.JsonSourceGenerationOptions(
+        DefaultIgnoreCondition = global::System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull,
+        Converters = new global::System.Type[]
+        {
+            typeof(global::Speechify.JsonConverters.GetSpeechRequestAudioFormatJsonConverter),
+
+            typeof(global::Speechify.JsonConverters.GetSpeechRequestAudioFormatNullableJsonConverter),
+
+            typeof(global::Speechify.JsonConverters.GetSpeechRequestModelJsonConverter),
+
+            typeof(global::Speechify.JsonConverters.GetSpeechRequestModelNullableJsonConverter),
+
+            typeof(global::Speechify.JsonConverters.GetSpeechResponseAudioFormatJsonConverter),
+
+            typeof(global::Speechify.JsonConverters.GetSpeechResponseAudioFormatNullableJsonConverter),
+
+            typeof(global::Speechify.JsonConverters.ErrorCodeJsonConverter),
+
+            typeof(global::Speechify.JsonConverters.ErrorCodeNullableJsonConverter),
+
+            typeof(global::Speechify.JsonConverters.V1AudioStreamPostParametersAcceptJsonConverter),
+
+            typeof(global::Speechify.JsonConverters.V1AudioStreamPostParametersAcceptNullableJsonConverter),
+
+            typeof(global::Speechify.JsonConverters.GetStreamRequestModelJsonConverter),
+
+            typeof(global::Speechify.JsonConverters.GetStreamRequestModelNullableJsonConverter),
+
+            typeof(global::Speechify.JsonConverters.GetVoiceGenderJsonConverter),
+
+            typeof(global::Speechify.JsonConverters.GetVoiceGenderNullableJsonConverter),
+
+            typeof(global::Speechify.JsonConverters.GetVoicesModelNameJsonConverter),
+
+            typeof(global::Speechify.JsonConverters.GetVoicesModelNameNullableJsonConverter),
+
+            typeof(global::Speechify.JsonConverters.GetVoiceTypeJsonConverter),
+
+            typeof(global::Speechify.JsonConverters.GetVoiceTypeNullableJsonConverter),
+
+            typeof(global::Speechify.JsonConverters.V1VoicesPostRequestBodyContentMultipartFormDataSchemaGenderJsonConverter),
+
+            typeof(global::Speechify.JsonConverters.V1VoicesPostRequestBodyContentMultipartFormDataSchemaGenderNullableJsonConverter),
+
+            typeof(global::Speechify.JsonConverters.CreatedVoiceGenderJsonConverter),
+
+            typeof(global::Speechify.JsonConverters.CreatedVoiceGenderNullableJsonConverter),
+
+            typeof(global::Speechify.JsonConverters.CreateVoiceModelNameJsonConverter),
+
+            typeof(global::Speechify.JsonConverters.CreateVoiceModelNameNullableJsonConverter),
+
+            typeof(global::Speechify.JsonConverters.CreatedVoiceTypeJsonConverter),
+
+            typeof(global::Speechify.JsonConverters.CreatedVoiceTypeNullableJsonConverter),
+
+            typeof(global::Speechify.JsonConverters.AgentLlmProviderJsonConverter),
+
+            typeof(global::Speechify.JsonConverters.AgentLlmProviderNullableJsonConverter),
+
+            typeof(global::Speechify.JsonConverters.WidgetConfigStyleJsonConverter),
+
+            typeof(global::Speechify.JsonConverters.WidgetConfigStyleNullableJsonConverter),
+
+            typeof(global::Speechify.JsonConverters.WidgetConfigThemeJsonConverter),
+
+            typeof(global::Speechify.JsonConverters.WidgetConfigThemeNullableJsonConverter),
+
+            typeof(global::Speechify.JsonConverters.WidgetConfigAvatarTypeJsonConverter),
+
+            typeof(global::Speechify.JsonConverters.WidgetConfigAvatarTypeNullableJsonConverter),
+
+            typeof(global::Speechify.JsonConverters.AmdConfigOnVoicemailActionJsonConverter),
+
+            typeof(global::Speechify.JsonConverters.AmdConfigOnVoicemailActionNullableJsonConverter),
+
+            typeof(global::Speechify.JsonConverters.AmdConfigOnIvrActionJsonConverter),
+
+            typeof(global::Speechify.JsonConverters.AmdConfigOnIvrActionNullableJsonConverter),
+
+            typeof(global::Speechify.JsonConverters.AmdConfigOnUnavailableActionJsonConverter),
+
+            typeof(global::Speechify.JsonConverters.AmdConfigOnUnavailableActionNullableJsonConverter),
+
+            typeof(global::Speechify.JsonConverters.AgentBackgroundNoisePresetJsonConverter),
+
+            typeof(global::Speechify.JsonConverters.AgentBackgroundNoisePresetNullableJsonConverter),
+
+            typeof(global::Speechify.JsonConverters.AgentSttOverrideJsonConverter),
+
+            typeof(global::Speechify.JsonConverters.AgentSttOverrideNullableJsonConverter),
+
+            typeof(global::Speechify.JsonConverters.CreateAgentRequestLlmProviderJsonConverter),
+
+            typeof(global::Speechify.JsonConverters.CreateAgentRequestLlmProviderNullableJsonConverter),
+
+            typeof(global::Speechify.JsonConverters.CreateAgentRequestBackgroundNoisePresetJsonConverter),
+
+            typeof(global::Speechify.JsonConverters.CreateAgentRequestBackgroundNoisePresetNullableJsonConverter),
+
+            typeof(global::Speechify.JsonConverters.CreateAgentRequestSttOverrideJsonConverter),
+
+            typeof(global::Speechify.JsonConverters.CreateAgentRequestSttOverrideNullableJsonConverter),
+
+            typeof(global::Speechify.JsonConverters.AgentVoiceTypeJsonConverter),
+
+            typeof(global::Speechify.JsonConverters.AgentVoiceTypeNullableJsonConverter),
+
+            typeof(global::Speechify.JsonConverters.AgentVoiceModelNameJsonConverter),
+
+            typeof(global::Speechify.JsonConverters.AgentVoiceModelNameNullableJsonConverter),
+
+            typeof(global::Speechify.JsonConverters.AgentVoiceGenderJsonConverter),
+
+            typeof(global::Speechify.JsonConverters.AgentVoiceGenderNullableJsonConverter),
+
+            typeof(global::Speechify.JsonConverters.UpdateAgentRequestLlmProviderJsonConverter),
+
+            typeof(global::Speechify.JsonConverters.UpdateAgentRequestLlmProviderNullableJsonConverter),
+
+            typeof(global::Speechify.JsonConverters.UpdateAgentRequestBackgroundNoisePresetJsonConverter),
+
+            typeof(global::Speechify.JsonConverters.UpdateAgentRequestBackgroundNoisePresetNullableJsonConverter),
+
+            typeof(global::Speechify.JsonConverters.UpdateAgentRequestSttOverrideJsonConverter),
+
+            typeof(global::Speechify.JsonConverters.UpdateAgentRequestSttOverrideNullableJsonConverter),
+
+            typeof(global::Speechify.JsonConverters.DataCollectionFieldTypeJsonConverter),
+
+            typeof(global::Speechify.JsonConverters.DataCollectionFieldTypeNullableJsonConverter),
+
+            typeof(global::Speechify.JsonConverters.DynamicVariableTypeJsonConverter),
+
+            typeof(global::Speechify.JsonConverters.DynamicVariableTypeNullableJsonConverter),
+
+            typeof(global::Speechify.JsonConverters.ConversationStatusJsonConverter),
+
+            typeof(global::Speechify.JsonConverters.ConversationStatusNullableJsonConverter),
+
+            typeof(global::Speechify.JsonConverters.ConversationTransportJsonConverter),
+
+            typeof(global::Speechify.JsonConverters.ConversationTransportNullableJsonConverter),
+
+            typeof(global::Speechify.JsonConverters.ConversationEndReasonJsonConverter),
+
+            typeof(global::Speechify.JsonConverters.ConversationEndReasonNullableJsonConverter),
+
+            typeof(global::Speechify.JsonConverters.AgentSnapshotBackgroundNoisePresetJsonConverter),
+
+            typeof(global::Speechify.JsonConverters.AgentSnapshotBackgroundNoisePresetNullableJsonConverter),
+
+            typeof(global::Speechify.JsonConverters.ConversationIvrSurrenderReasonJsonConverter),
+
+            typeof(global::Speechify.JsonConverters.ConversationIvrSurrenderReasonNullableJsonConverter),
+
+            typeof(global::Speechify.JsonConverters.EvaluationKindJsonConverter),
+
+            typeof(global::Speechify.JsonConverters.EvaluationKindNullableJsonConverter),
+
+            typeof(global::Speechify.JsonConverters.EvaluationStatusJsonConverter),
+
+            typeof(global::Speechify.JsonConverters.EvaluationStatusNullableJsonConverter),
+
+            typeof(global::Speechify.JsonConverters.MessageRoleJsonConverter),
+
+            typeof(global::Speechify.JsonConverters.MessageRoleNullableJsonConverter),
+
+            typeof(global::Speechify.JsonConverters.WebhookDeliveryStatusJsonConverter),
+
+            typeof(global::Speechify.JsonConverters.WebhookDeliveryStatusNullableJsonConverter),
+
+            typeof(global::Speechify.JsonConverters.KnowledgeBaseDocumentSourceKindJsonConverter),
+
+            typeof(global::Speechify.JsonConverters.KnowledgeBaseDocumentSourceKindNullableJsonConverter),
+
+            typeof(global::Speechify.JsonConverters.KnowledgeBaseDocumentStatusJsonConverter),
+
+            typeof(global::Speechify.JsonConverters.KnowledgeBaseDocumentStatusNullableJsonConverter),
+
+            typeof(global::Speechify.JsonConverters.ImportJobKindJsonConverter),
+
+            typeof(global::Speechify.JsonConverters.ImportJobKindNullableJsonConverter),
+
+            typeof(global::Speechify.JsonConverters.ImportJobStatusJsonConverter),
+
+            typeof(global::Speechify.JsonConverters.ImportJobStatusNullableJsonConverter),
+
+            typeof(global::Speechify.JsonConverters.RefreshHistoryEntryStatusJsonConverter),
+
+            typeof(global::Speechify.JsonConverters.RefreshHistoryEntryStatusNullableJsonConverter),
+
+            typeof(global::Speechify.JsonConverters.ToolKindJsonConverter),
+
+            typeof(global::Speechify.JsonConverters.ToolKindNullableJsonConverter),
+
+            typeof(global::Speechify.JsonConverters.ToolParamTypeJsonConverter),
+
+            typeof(global::Speechify.JsonConverters.ToolParamTypeNullableJsonConverter),
+
+            typeof(global::Speechify.JsonConverters.WebhookToolConfigMethodJsonConverter),
+
+            typeof(global::Speechify.JsonConverters.WebhookToolConfigMethodNullableJsonConverter),
+
+            typeof(global::Speechify.JsonConverters.MCPTransportJsonConverter),
+
+            typeof(global::Speechify.JsonConverters.MCPTransportNullableJsonConverter),
+
+            typeof(global::Speechify.JsonConverters.MCPAuthVariant1TypeJsonConverter),
+
+            typeof(global::Speechify.JsonConverters.MCPAuthVariant1TypeNullableJsonConverter),
+
+            typeof(global::Speechify.JsonConverters.MCPAuthVariant2TypeJsonConverter),
+
+            typeof(global::Speechify.JsonConverters.MCPAuthVariant2TypeNullableJsonConverter),
+
+            typeof(global::Speechify.JsonConverters.MCPAuthVariant3TypeJsonConverter),
+
+            typeof(global::Speechify.JsonConverters.MCPAuthVariant3TypeNullableJsonConverter),
+
+            typeof(global::Speechify.JsonConverters.MCPAuthDiscriminatorTypeJsonConverter),
+
+            typeof(global::Speechify.JsonConverters.MCPAuthDiscriminatorTypeNullableJsonConverter),
+
+            typeof(global::Speechify.JsonConverters.McpProbeErrorDetailsStageJsonConverter),
+
+            typeof(global::Speechify.JsonConverters.McpProbeErrorDetailsStageNullableJsonConverter),
+
+            typeof(global::Speechify.JsonConverters.TestTypeJsonConverter),
+
+            typeof(global::Speechify.JsonConverters.TestTypeNullableJsonConverter),
+
+            typeof(global::Speechify.JsonConverters.SimulationMessageRoleJsonConverter),
+
+            typeof(global::Speechify.JsonConverters.SimulationMessageRoleNullableJsonConverter),
+
+            typeof(global::Speechify.JsonConverters.ParameterCheckModeJsonConverter),
+
+            typeof(global::Speechify.JsonConverters.ParameterCheckModeNullableJsonConverter),
+
+            typeof(global::Speechify.JsonConverters.DataAssertionModeJsonConverter),
+
+            typeof(global::Speechify.JsonConverters.DataAssertionModeNullableJsonConverter),
+
+            typeof(global::Speechify.JsonConverters.MockingStrategyJsonConverter),
+
+            typeof(global::Speechify.JsonConverters.MockingStrategyNullableJsonConverter),
+
+            typeof(global::Speechify.JsonConverters.NoMatchBehaviorJsonConverter),
+
+            typeof(global::Speechify.JsonConverters.NoMatchBehaviorNullableJsonConverter),
+
+            typeof(global::Speechify.JsonConverters.TestRunStatusJsonConverter),
+
+            typeof(global::Speechify.JsonConverters.TestRunStatusNullableJsonConverter),
+
+            typeof(global::Speechify.JsonConverters.SimulationResultSentimentJsonConverter),
+
+            typeof(global::Speechify.JsonConverters.SimulationResultSentimentNullableJsonConverter),
+
+            typeof(global::Speechify.JsonConverters.SimulationCriterionResultStatusJsonConverter),
+
+            typeof(global::Speechify.JsonConverters.SimulationCriterionResultStatusNullableJsonConverter),
+
+            typeof(global::Speechify.JsonConverters.DataAssertionResultModeJsonConverter),
+
+            typeof(global::Speechify.JsonConverters.DataAssertionResultModeNullableJsonConverter),
+
+            typeof(global::Speechify.JsonConverters.SuiteRunTriggerJsonConverter),
+
+            typeof(global::Speechify.JsonConverters.SuiteRunTriggerNullableJsonConverter),
+
+            typeof(global::Speechify.JsonConverters.BatchCallStatusJsonConverter),
+
+            typeof(global::Speechify.JsonConverters.BatchCallStatusNullableJsonConverter),
+
+            typeof(global::Speechify.JsonConverters.BatchRecipientStatusJsonConverter),
+
+            typeof(global::Speechify.JsonConverters.BatchRecipientStatusNullableJsonConverter),
+
+            typeof(global::Speechify.JsonConverters.PhoneNumberSourceJsonConverter),
+
+            typeof(global::Speechify.JsonConverters.PhoneNumberSourceNullableJsonConverter),
+
+            typeof(global::Speechify.JsonConverters.PhoneNumberCapabilityJsonConverter),
+
+            typeof(global::Speechify.JsonConverters.PhoneNumberCapabilityNullableJsonConverter),
+
+            typeof(global::Speechify.JsonConverters.SIPTrunkKindJsonConverter),
+
+            typeof(global::Speechify.JsonConverters.SIPTrunkKindNullableJsonConverter),
+
+            typeof(global::Speechify.JsonConverters.SIPTrunkDirectionJsonConverter),
+
+            typeof(global::Speechify.JsonConverters.SIPTrunkDirectionNullableJsonConverter),
+
+            typeof(global::Speechify.JsonConverters.SIPTransportJsonConverter),
+
+            typeof(global::Speechify.JsonConverters.SIPTransportNullableJsonConverter),
+
+            typeof(global::Speechify.JsonConverters.SIPMediaEncryptionJsonConverter),
+
+            typeof(global::Speechify.JsonConverters.SIPMediaEncryptionNullableJsonConverter),
+
+            typeof(global::Speechify.JsonConverters.AnalyticsDimensionTypeJsonConverter),
+
+            typeof(global::Speechify.JsonConverters.AnalyticsDimensionTypeNullableJsonConverter),
+
+            typeof(global::Speechify.JsonConverters.AnalyticsDimensionSourceJsonConverter),
+
+            typeof(global::Speechify.JsonConverters.AnalyticsDimensionSourceNullableJsonConverter),
+
+            typeof(global::Speechify.JsonConverters.AnalyticsMetricAggJsonConverter),
+
+            typeof(global::Speechify.JsonConverters.AnalyticsMetricAggNullableJsonConverter),
+
+            typeof(global::Speechify.JsonConverters.AnalyticsFilterOpJsonConverter),
+
+            typeof(global::Speechify.JsonConverters.AnalyticsFilterOpNullableJsonConverter),
+
+            typeof(global::Speechify.JsonConverters.AnalyticsTimeFieldJsonConverter),
+
+            typeof(global::Speechify.JsonConverters.AnalyticsTimeFieldNullableJsonConverter),
+
+            typeof(global::Speechify.JsonConverters.AnalyticsTimeBucketJsonConverter),
+
+            typeof(global::Speechify.JsonConverters.AnalyticsTimeBucketNullableJsonConverter),
+
+            typeof(global::Speechify.JsonConverters.AnalyticsQueryResultBucketJsonConverter),
+
+            typeof(global::Speechify.JsonConverters.AnalyticsQueryResultBucketNullableJsonConverter),
+
+            typeof(global::Speechify.JsonConverters.DashboardWidgetChartTypeJsonConverter),
+
+            typeof(global::Speechify.JsonConverters.DashboardWidgetChartTypeNullableJsonConverter),
+
+            typeof(global::Speechify.JsonConverters.MCPAuthJsonConverter),
+
+            typeof(global::Speechify.JsonConverters.ToolConfigJsonConverter),
+
+            typeof(global::Speechify.JsonConverters.CreateToolRequestConfigJsonConverter),
+
+            typeof(global::Speechify.JsonConverters.UpdateToolRequestConfigJsonConverter),
+
+            typeof(global::Speechify.JsonConverters.AgentTestConfigJsonConverter),
+
+            typeof(global::Speechify.JsonConverters.UpdateAgentTestRequestConfigJsonConverter),
+
+            typeof(global::Speechify.JsonConverters.CreateAgentTestRequestConfigJsonConverter),
+
+            typeof(global::Speechify.JsonConverters.OneOfJsonConverter<global::Speechify.EvaluationStatus?, object>),
+
+            typeof(global::Speechify.JsonConverters.OneOfJsonConverter<global::Speechify.ReplyResult, object>),
+
+            typeof(global::Speechify.JsonConverters.OneOfJsonConverter<global::Speechify.ToolCallResult, object>),
+
+            typeof(global::Speechify.JsonConverters.OneOfJsonConverter<global::Speechify.SimulationResult, object>),
+
+            typeof(global::Speechify.JsonConverters.OneOfJsonConverter<global::Speechify.TestRunResult, object>),
+
+            typeof(global::Speechify.JsonConverters.OneOfJsonConverter<global::Speechify.AgentTestRun, object>),
+
+            typeof(global::Speechify.JsonConverters.OneOfJsonConverter<global::Speechify.TestRunConfigOverride, object>),
+
+            typeof(global::Speechify.JsonConverters.OneOfJsonConverter<global::Speechify.AgentTestSuiteRun, object>),
+
+            typeof(global::Speechify.JsonConverters.OneOfJsonConverter<global::Speechify.TestRunResult, object>),
+
+            typeof(global::Speechify.JsonConverters.OneOfJsonConverter<global::Speechify.TestRunConfigOverride, object>),
+
+            typeof(global::Speechify.JsonConverters.OneOfJsonConverter<global::Speechify.AgentTestSuiteRun, object>),
+
+            typeof(global::Speechify.JsonConverters.UnixTimestampJsonConverter),
+        })]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.ParameterCheckResult>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.SimulationToolCall>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.SimulationCriterionResult>))]
@@ -843,9 +1288,243 @@ namespace Speechify
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.CallerMemoryItem>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.AudioAsset>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.LLMModelInfo>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.AnalyticsDimension>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.AnalyticsFilter>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.AnalyticsPoint>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.AnalyticsSeries>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.DashboardWidget>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.Dashboard>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.GetVoice>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.AgentVoice>))]
+    internal sealed partial class SourceGenerationContextChunk1 : global::System.Text.Json.Serialization.JsonSerializerContext
+    {
+    }
+    /// <summary>
+    /// 
+    /// </summary>
     public sealed partial class SourceGenerationContext : global::System.Text.Json.Serialization.JsonSerializerContext
     {
+        private static readonly global::System.Text.Json.Serialization.Metadata.IJsonTypeInfoResolver Resolver = global::System.Text.Json.Serialization.Metadata.JsonTypeInfoResolver.Combine(
+            SourceGenerationContextChunk0.Default,
+
+            SourceGenerationContextChunk1.Default
+            );
+
+        private static readonly global::System.Text.Json.JsonSerializerOptions DefaultOptions = CreateDefaultOptions();
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public static SourceGenerationContext Default { get; } = new(DefaultOptions);
+
+        private SourceGenerationContext(global::System.Text.Json.JsonSerializerOptions options)
+            : base(options)
+        {
+        }
+
+        /// <inheritdoc />
+        protected override global::System.Text.Json.JsonSerializerOptions? GeneratedSerializerOptions => DefaultOptions;
+
+        /// <inheritdoc />
+        public override global::System.Text.Json.Serialization.Metadata.JsonTypeInfo? GetTypeInfo(global::System.Type type)
+        {
+            return Resolver.GetTypeInfo(type, Options);
+        }
+
+        private static global::System.Text.Json.JsonSerializerOptions CreateDefaultOptions()
+        {
+            var options = new global::System.Text.Json.JsonSerializerOptions
+            {
+                DefaultIgnoreCondition = global::System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull,
+                TypeInfoResolver = Resolver,
+            };
+            options.Converters.Add(new global::Speechify.JsonConverters.GetSpeechRequestAudioFormatJsonConverter());
+            options.Converters.Add(new global::Speechify.JsonConverters.GetSpeechRequestAudioFormatNullableJsonConverter());
+            options.Converters.Add(new global::Speechify.JsonConverters.GetSpeechRequestModelJsonConverter());
+            options.Converters.Add(new global::Speechify.JsonConverters.GetSpeechRequestModelNullableJsonConverter());
+            options.Converters.Add(new global::Speechify.JsonConverters.GetSpeechResponseAudioFormatJsonConverter());
+            options.Converters.Add(new global::Speechify.JsonConverters.GetSpeechResponseAudioFormatNullableJsonConverter());
+            options.Converters.Add(new global::Speechify.JsonConverters.ErrorCodeJsonConverter());
+            options.Converters.Add(new global::Speechify.JsonConverters.ErrorCodeNullableJsonConverter());
+            options.Converters.Add(new global::Speechify.JsonConverters.V1AudioStreamPostParametersAcceptJsonConverter());
+            options.Converters.Add(new global::Speechify.JsonConverters.V1AudioStreamPostParametersAcceptNullableJsonConverter());
+            options.Converters.Add(new global::Speechify.JsonConverters.GetStreamRequestModelJsonConverter());
+            options.Converters.Add(new global::Speechify.JsonConverters.GetStreamRequestModelNullableJsonConverter());
+            options.Converters.Add(new global::Speechify.JsonConverters.GetVoiceGenderJsonConverter());
+            options.Converters.Add(new global::Speechify.JsonConverters.GetVoiceGenderNullableJsonConverter());
+            options.Converters.Add(new global::Speechify.JsonConverters.GetVoicesModelNameJsonConverter());
+            options.Converters.Add(new global::Speechify.JsonConverters.GetVoicesModelNameNullableJsonConverter());
+            options.Converters.Add(new global::Speechify.JsonConverters.GetVoiceTypeJsonConverter());
+            options.Converters.Add(new global::Speechify.JsonConverters.GetVoiceTypeNullableJsonConverter());
+            options.Converters.Add(new global::Speechify.JsonConverters.V1VoicesPostRequestBodyContentMultipartFormDataSchemaGenderJsonConverter());
+            options.Converters.Add(new global::Speechify.JsonConverters.V1VoicesPostRequestBodyContentMultipartFormDataSchemaGenderNullableJsonConverter());
+            options.Converters.Add(new global::Speechify.JsonConverters.CreatedVoiceGenderJsonConverter());
+            options.Converters.Add(new global::Speechify.JsonConverters.CreatedVoiceGenderNullableJsonConverter());
+            options.Converters.Add(new global::Speechify.JsonConverters.CreateVoiceModelNameJsonConverter());
+            options.Converters.Add(new global::Speechify.JsonConverters.CreateVoiceModelNameNullableJsonConverter());
+            options.Converters.Add(new global::Speechify.JsonConverters.CreatedVoiceTypeJsonConverter());
+            options.Converters.Add(new global::Speechify.JsonConverters.CreatedVoiceTypeNullableJsonConverter());
+            options.Converters.Add(new global::Speechify.JsonConverters.AgentLlmProviderJsonConverter());
+            options.Converters.Add(new global::Speechify.JsonConverters.AgentLlmProviderNullableJsonConverter());
+            options.Converters.Add(new global::Speechify.JsonConverters.WidgetConfigStyleJsonConverter());
+            options.Converters.Add(new global::Speechify.JsonConverters.WidgetConfigStyleNullableJsonConverter());
+            options.Converters.Add(new global::Speechify.JsonConverters.WidgetConfigThemeJsonConverter());
+            options.Converters.Add(new global::Speechify.JsonConverters.WidgetConfigThemeNullableJsonConverter());
+            options.Converters.Add(new global::Speechify.JsonConverters.WidgetConfigAvatarTypeJsonConverter());
+            options.Converters.Add(new global::Speechify.JsonConverters.WidgetConfigAvatarTypeNullableJsonConverter());
+            options.Converters.Add(new global::Speechify.JsonConverters.AmdConfigOnVoicemailActionJsonConverter());
+            options.Converters.Add(new global::Speechify.JsonConverters.AmdConfigOnVoicemailActionNullableJsonConverter());
+            options.Converters.Add(new global::Speechify.JsonConverters.AmdConfigOnIvrActionJsonConverter());
+            options.Converters.Add(new global::Speechify.JsonConverters.AmdConfigOnIvrActionNullableJsonConverter());
+            options.Converters.Add(new global::Speechify.JsonConverters.AmdConfigOnUnavailableActionJsonConverter());
+            options.Converters.Add(new global::Speechify.JsonConverters.AmdConfigOnUnavailableActionNullableJsonConverter());
+            options.Converters.Add(new global::Speechify.JsonConverters.AgentBackgroundNoisePresetJsonConverter());
+            options.Converters.Add(new global::Speechify.JsonConverters.AgentBackgroundNoisePresetNullableJsonConverter());
+            options.Converters.Add(new global::Speechify.JsonConverters.AgentSttOverrideJsonConverter());
+            options.Converters.Add(new global::Speechify.JsonConverters.AgentSttOverrideNullableJsonConverter());
+            options.Converters.Add(new global::Speechify.JsonConverters.CreateAgentRequestLlmProviderJsonConverter());
+            options.Converters.Add(new global::Speechify.JsonConverters.CreateAgentRequestLlmProviderNullableJsonConverter());
+            options.Converters.Add(new global::Speechify.JsonConverters.CreateAgentRequestBackgroundNoisePresetJsonConverter());
+            options.Converters.Add(new global::Speechify.JsonConverters.CreateAgentRequestBackgroundNoisePresetNullableJsonConverter());
+            options.Converters.Add(new global::Speechify.JsonConverters.CreateAgentRequestSttOverrideJsonConverter());
+            options.Converters.Add(new global::Speechify.JsonConverters.CreateAgentRequestSttOverrideNullableJsonConverter());
+            options.Converters.Add(new global::Speechify.JsonConverters.AgentVoiceTypeJsonConverter());
+            options.Converters.Add(new global::Speechify.JsonConverters.AgentVoiceTypeNullableJsonConverter());
+            options.Converters.Add(new global::Speechify.JsonConverters.AgentVoiceModelNameJsonConverter());
+            options.Converters.Add(new global::Speechify.JsonConverters.AgentVoiceModelNameNullableJsonConverter());
+            options.Converters.Add(new global::Speechify.JsonConverters.AgentVoiceGenderJsonConverter());
+            options.Converters.Add(new global::Speechify.JsonConverters.AgentVoiceGenderNullableJsonConverter());
+            options.Converters.Add(new global::Speechify.JsonConverters.UpdateAgentRequestLlmProviderJsonConverter());
+            options.Converters.Add(new global::Speechify.JsonConverters.UpdateAgentRequestLlmProviderNullableJsonConverter());
+            options.Converters.Add(new global::Speechify.JsonConverters.UpdateAgentRequestBackgroundNoisePresetJsonConverter());
+            options.Converters.Add(new global::Speechify.JsonConverters.UpdateAgentRequestBackgroundNoisePresetNullableJsonConverter());
+            options.Converters.Add(new global::Speechify.JsonConverters.UpdateAgentRequestSttOverrideJsonConverter());
+            options.Converters.Add(new global::Speechify.JsonConverters.UpdateAgentRequestSttOverrideNullableJsonConverter());
+            options.Converters.Add(new global::Speechify.JsonConverters.DataCollectionFieldTypeJsonConverter());
+            options.Converters.Add(new global::Speechify.JsonConverters.DataCollectionFieldTypeNullableJsonConverter());
+            options.Converters.Add(new global::Speechify.JsonConverters.DynamicVariableTypeJsonConverter());
+            options.Converters.Add(new global::Speechify.JsonConverters.DynamicVariableTypeNullableJsonConverter());
+            options.Converters.Add(new global::Speechify.JsonConverters.ConversationStatusJsonConverter());
+            options.Converters.Add(new global::Speechify.JsonConverters.ConversationStatusNullableJsonConverter());
+            options.Converters.Add(new global::Speechify.JsonConverters.ConversationTransportJsonConverter());
+            options.Converters.Add(new global::Speechify.JsonConverters.ConversationTransportNullableJsonConverter());
+            options.Converters.Add(new global::Speechify.JsonConverters.ConversationEndReasonJsonConverter());
+            options.Converters.Add(new global::Speechify.JsonConverters.ConversationEndReasonNullableJsonConverter());
+            options.Converters.Add(new global::Speechify.JsonConverters.AgentSnapshotBackgroundNoisePresetJsonConverter());
+            options.Converters.Add(new global::Speechify.JsonConverters.AgentSnapshotBackgroundNoisePresetNullableJsonConverter());
+            options.Converters.Add(new global::Speechify.JsonConverters.ConversationIvrSurrenderReasonJsonConverter());
+            options.Converters.Add(new global::Speechify.JsonConverters.ConversationIvrSurrenderReasonNullableJsonConverter());
+            options.Converters.Add(new global::Speechify.JsonConverters.EvaluationKindJsonConverter());
+            options.Converters.Add(new global::Speechify.JsonConverters.EvaluationKindNullableJsonConverter());
+            options.Converters.Add(new global::Speechify.JsonConverters.EvaluationStatusJsonConverter());
+            options.Converters.Add(new global::Speechify.JsonConverters.EvaluationStatusNullableJsonConverter());
+            options.Converters.Add(new global::Speechify.JsonConverters.MessageRoleJsonConverter());
+            options.Converters.Add(new global::Speechify.JsonConverters.MessageRoleNullableJsonConverter());
+            options.Converters.Add(new global::Speechify.JsonConverters.WebhookDeliveryStatusJsonConverter());
+            options.Converters.Add(new global::Speechify.JsonConverters.WebhookDeliveryStatusNullableJsonConverter());
+            options.Converters.Add(new global::Speechify.JsonConverters.KnowledgeBaseDocumentSourceKindJsonConverter());
+            options.Converters.Add(new global::Speechify.JsonConverters.KnowledgeBaseDocumentSourceKindNullableJsonConverter());
+            options.Converters.Add(new global::Speechify.JsonConverters.KnowledgeBaseDocumentStatusJsonConverter());
+            options.Converters.Add(new global::Speechify.JsonConverters.KnowledgeBaseDocumentStatusNullableJsonConverter());
+            options.Converters.Add(new global::Speechify.JsonConverters.ImportJobKindJsonConverter());
+            options.Converters.Add(new global::Speechify.JsonConverters.ImportJobKindNullableJsonConverter());
+            options.Converters.Add(new global::Speechify.JsonConverters.ImportJobStatusJsonConverter());
+            options.Converters.Add(new global::Speechify.JsonConverters.ImportJobStatusNullableJsonConverter());
+            options.Converters.Add(new global::Speechify.JsonConverters.RefreshHistoryEntryStatusJsonConverter());
+            options.Converters.Add(new global::Speechify.JsonConverters.RefreshHistoryEntryStatusNullableJsonConverter());
+            options.Converters.Add(new global::Speechify.JsonConverters.ToolKindJsonConverter());
+            options.Converters.Add(new global::Speechify.JsonConverters.ToolKindNullableJsonConverter());
+            options.Converters.Add(new global::Speechify.JsonConverters.ToolParamTypeJsonConverter());
+            options.Converters.Add(new global::Speechify.JsonConverters.ToolParamTypeNullableJsonConverter());
+            options.Converters.Add(new global::Speechify.JsonConverters.WebhookToolConfigMethodJsonConverter());
+            options.Converters.Add(new global::Speechify.JsonConverters.WebhookToolConfigMethodNullableJsonConverter());
+            options.Converters.Add(new global::Speechify.JsonConverters.MCPTransportJsonConverter());
+            options.Converters.Add(new global::Speechify.JsonConverters.MCPTransportNullableJsonConverter());
+            options.Converters.Add(new global::Speechify.JsonConverters.MCPAuthVariant1TypeJsonConverter());
+            options.Converters.Add(new global::Speechify.JsonConverters.MCPAuthVariant1TypeNullableJsonConverter());
+            options.Converters.Add(new global::Speechify.JsonConverters.MCPAuthVariant2TypeJsonConverter());
+            options.Converters.Add(new global::Speechify.JsonConverters.MCPAuthVariant2TypeNullableJsonConverter());
+            options.Converters.Add(new global::Speechify.JsonConverters.MCPAuthVariant3TypeJsonConverter());
+            options.Converters.Add(new global::Speechify.JsonConverters.MCPAuthVariant3TypeNullableJsonConverter());
+            options.Converters.Add(new global::Speechify.JsonConverters.MCPAuthDiscriminatorTypeJsonConverter());
+            options.Converters.Add(new global::Speechify.JsonConverters.MCPAuthDiscriminatorTypeNullableJsonConverter());
+            options.Converters.Add(new global::Speechify.JsonConverters.McpProbeErrorDetailsStageJsonConverter());
+            options.Converters.Add(new global::Speechify.JsonConverters.McpProbeErrorDetailsStageNullableJsonConverter());
+            options.Converters.Add(new global::Speechify.JsonConverters.TestTypeJsonConverter());
+            options.Converters.Add(new global::Speechify.JsonConverters.TestTypeNullableJsonConverter());
+            options.Converters.Add(new global::Speechify.JsonConverters.SimulationMessageRoleJsonConverter());
+            options.Converters.Add(new global::Speechify.JsonConverters.SimulationMessageRoleNullableJsonConverter());
+            options.Converters.Add(new global::Speechify.JsonConverters.ParameterCheckModeJsonConverter());
+            options.Converters.Add(new global::Speechify.JsonConverters.ParameterCheckModeNullableJsonConverter());
+            options.Converters.Add(new global::Speechify.JsonConverters.DataAssertionModeJsonConverter());
+            options.Converters.Add(new global::Speechify.JsonConverters.DataAssertionModeNullableJsonConverter());
+            options.Converters.Add(new global::Speechify.JsonConverters.MockingStrategyJsonConverter());
+            options.Converters.Add(new global::Speechify.JsonConverters.MockingStrategyNullableJsonConverter());
+            options.Converters.Add(new global::Speechify.JsonConverters.NoMatchBehaviorJsonConverter());
+            options.Converters.Add(new global::Speechify.JsonConverters.NoMatchBehaviorNullableJsonConverter());
+            options.Converters.Add(new global::Speechify.JsonConverters.TestRunStatusJsonConverter());
+            options.Converters.Add(new global::Speechify.JsonConverters.TestRunStatusNullableJsonConverter());
+            options.Converters.Add(new global::Speechify.JsonConverters.SimulationResultSentimentJsonConverter());
+            options.Converters.Add(new global::Speechify.JsonConverters.SimulationResultSentimentNullableJsonConverter());
+            options.Converters.Add(new global::Speechify.JsonConverters.SimulationCriterionResultStatusJsonConverter());
+            options.Converters.Add(new global::Speechify.JsonConverters.SimulationCriterionResultStatusNullableJsonConverter());
+            options.Converters.Add(new global::Speechify.JsonConverters.DataAssertionResultModeJsonConverter());
+            options.Converters.Add(new global::Speechify.JsonConverters.DataAssertionResultModeNullableJsonConverter());
+            options.Converters.Add(new global::Speechify.JsonConverters.SuiteRunTriggerJsonConverter());
+            options.Converters.Add(new global::Speechify.JsonConverters.SuiteRunTriggerNullableJsonConverter());
+            options.Converters.Add(new global::Speechify.JsonConverters.BatchCallStatusJsonConverter());
+            options.Converters.Add(new global::Speechify.JsonConverters.BatchCallStatusNullableJsonConverter());
+            options.Converters.Add(new global::Speechify.JsonConverters.BatchRecipientStatusJsonConverter());
+            options.Converters.Add(new global::Speechify.JsonConverters.BatchRecipientStatusNullableJsonConverter());
+            options.Converters.Add(new global::Speechify.JsonConverters.PhoneNumberSourceJsonConverter());
+            options.Converters.Add(new global::Speechify.JsonConverters.PhoneNumberSourceNullableJsonConverter());
+            options.Converters.Add(new global::Speechify.JsonConverters.PhoneNumberCapabilityJsonConverter());
+            options.Converters.Add(new global::Speechify.JsonConverters.PhoneNumberCapabilityNullableJsonConverter());
+            options.Converters.Add(new global::Speechify.JsonConverters.SIPTrunkKindJsonConverter());
+            options.Converters.Add(new global::Speechify.JsonConverters.SIPTrunkKindNullableJsonConverter());
+            options.Converters.Add(new global::Speechify.JsonConverters.SIPTrunkDirectionJsonConverter());
+            options.Converters.Add(new global::Speechify.JsonConverters.SIPTrunkDirectionNullableJsonConverter());
+            options.Converters.Add(new global::Speechify.JsonConverters.SIPTransportJsonConverter());
+            options.Converters.Add(new global::Speechify.JsonConverters.SIPTransportNullableJsonConverter());
+            options.Converters.Add(new global::Speechify.JsonConverters.SIPMediaEncryptionJsonConverter());
+            options.Converters.Add(new global::Speechify.JsonConverters.SIPMediaEncryptionNullableJsonConverter());
+            options.Converters.Add(new global::Speechify.JsonConverters.AnalyticsDimensionTypeJsonConverter());
+            options.Converters.Add(new global::Speechify.JsonConverters.AnalyticsDimensionTypeNullableJsonConverter());
+            options.Converters.Add(new global::Speechify.JsonConverters.AnalyticsDimensionSourceJsonConverter());
+            options.Converters.Add(new global::Speechify.JsonConverters.AnalyticsDimensionSourceNullableJsonConverter());
+            options.Converters.Add(new global::Speechify.JsonConverters.AnalyticsMetricAggJsonConverter());
+            options.Converters.Add(new global::Speechify.JsonConverters.AnalyticsMetricAggNullableJsonConverter());
+            options.Converters.Add(new global::Speechify.JsonConverters.AnalyticsFilterOpJsonConverter());
+            options.Converters.Add(new global::Speechify.JsonConverters.AnalyticsFilterOpNullableJsonConverter());
+            options.Converters.Add(new global::Speechify.JsonConverters.AnalyticsTimeFieldJsonConverter());
+            options.Converters.Add(new global::Speechify.JsonConverters.AnalyticsTimeFieldNullableJsonConverter());
+            options.Converters.Add(new global::Speechify.JsonConverters.AnalyticsTimeBucketJsonConverter());
+            options.Converters.Add(new global::Speechify.JsonConverters.AnalyticsTimeBucketNullableJsonConverter());
+            options.Converters.Add(new global::Speechify.JsonConverters.AnalyticsQueryResultBucketJsonConverter());
+            options.Converters.Add(new global::Speechify.JsonConverters.AnalyticsQueryResultBucketNullableJsonConverter());
+            options.Converters.Add(new global::Speechify.JsonConverters.DashboardWidgetChartTypeJsonConverter());
+            options.Converters.Add(new global::Speechify.JsonConverters.DashboardWidgetChartTypeNullableJsonConverter());
+            options.Converters.Add(new global::Speechify.JsonConverters.MCPAuthJsonConverter());
+            options.Converters.Add(new global::Speechify.JsonConverters.ToolConfigJsonConverter());
+            options.Converters.Add(new global::Speechify.JsonConverters.CreateToolRequestConfigJsonConverter());
+            options.Converters.Add(new global::Speechify.JsonConverters.UpdateToolRequestConfigJsonConverter());
+            options.Converters.Add(new global::Speechify.JsonConverters.AgentTestConfigJsonConverter());
+            options.Converters.Add(new global::Speechify.JsonConverters.UpdateAgentTestRequestConfigJsonConverter());
+            options.Converters.Add(new global::Speechify.JsonConverters.CreateAgentTestRequestConfigJsonConverter());
+            options.Converters.Add(new global::Speechify.JsonConverters.OneOfJsonConverter<global::Speechify.EvaluationStatus?, object>());
+            options.Converters.Add(new global::Speechify.JsonConverters.OneOfJsonConverter<global::Speechify.ReplyResult, object>());
+            options.Converters.Add(new global::Speechify.JsonConverters.OneOfJsonConverter<global::Speechify.ToolCallResult, object>());
+            options.Converters.Add(new global::Speechify.JsonConverters.OneOfJsonConverter<global::Speechify.SimulationResult, object>());
+            options.Converters.Add(new global::Speechify.JsonConverters.OneOfJsonConverter<global::Speechify.TestRunResult, object>());
+            options.Converters.Add(new global::Speechify.JsonConverters.OneOfJsonConverter<global::Speechify.AgentTestRun, object>());
+            options.Converters.Add(new global::Speechify.JsonConverters.OneOfJsonConverter<global::Speechify.TestRunConfigOverride, object>());
+            options.Converters.Add(new global::Speechify.JsonConverters.OneOfJsonConverter<global::Speechify.AgentTestSuiteRun, object>());
+            options.Converters.Add(new global::Speechify.JsonConverters.OneOfJsonConverter<global::Speechify.TestRunResult, object>());
+            options.Converters.Add(new global::Speechify.JsonConverters.OneOfJsonConverter<global::Speechify.TestRunConfigOverride, object>());
+            options.Converters.Add(new global::Speechify.JsonConverters.OneOfJsonConverter<global::Speechify.AgentTestSuiteRun, object>());
+            options.Converters.Add(new global::Speechify.JsonConverters.UnixTimestampJsonConverter());
+
+            return options;
+        }
     }
 }

@@ -57,6 +57,11 @@ namespace Speechify
         /// <summary>
         /// 
         /// </summary>
+        public SubpackageAgentSubpackageAgentAnalyticsClient SubpackageAgentSubpackageAgentAnalytics { get; }
+
+        /// <summary>
+        /// 
+        /// </summary>
         public SubpackageAgentSubpackageAgentAudioAssetsClient SubpackageAgentSubpackageAgentAudioAssets { get; }
 
         /// <summary>
@@ -73,6 +78,11 @@ namespace Speechify
         /// 
         /// </summary>
         public SubpackageAgentSubpackageAgentConversationsClient SubpackageAgentSubpackageAgentConversations { get; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public SubpackageAgentSubpackageAgentDashboardsClient SubpackageAgentSubpackageAgentDashboards { get; }
 
         /// <summary>
         /// 
