@@ -14,9 +14,10 @@ namespace Speechify
         /// `e164` must come from a recent `SearchAvailablePhoneNumbers`<br/>
         /// response — carriers reject buys against numbers that are no<br/>
         /// longer in inventory. The returned phone number is wired for<br/>
-        /// both inbound (when `agent_id` is set, or after a later<br/>
-        /// `PATCH`) and outbound calls (via the workspace's shared<br/>
-        /// outbound trunk).
+        /// both inbound (when `agent_id` is set, or after binding the<br/>
+        /// number to an agent via<br/>
+        /// `POST /v1/agents/{id}/phone-numbers/{phoneNumberId}`) and<br/>
+        /// outbound calls (via the workspace's shared outbound trunk).
         /// </summary>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
@@ -37,9 +38,10 @@ namespace Speechify
         /// `e164` must come from a recent `SearchAvailablePhoneNumbers`<br/>
         /// response — carriers reject buys against numbers that are no<br/>
         /// longer in inventory. The returned phone number is wired for<br/>
-        /// both inbound (when `agent_id` is set, or after a later<br/>
-        /// `PATCH`) and outbound calls (via the workspace's shared<br/>
-        /// outbound trunk).
+        /// both inbound (when `agent_id` is set, or after binding the<br/>
+        /// number to an agent via<br/>
+        /// `POST /v1/agents/{id}/phone-numbers/{phoneNumberId}`) and<br/>
+        /// outbound calls (via the workspace's shared outbound trunk).
         /// </summary>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
@@ -60,9 +62,10 @@ namespace Speechify
         /// `e164` must come from a recent `SearchAvailablePhoneNumbers`<br/>
         /// response — carriers reject buys against numbers that are no<br/>
         /// longer in inventory. The returned phone number is wired for<br/>
-        /// both inbound (when `agent_id` is set, or after a later<br/>
-        /// `PATCH`) and outbound calls (via the workspace's shared<br/>
-        /// outbound trunk).
+        /// both inbound (when `agent_id` is set, or after binding the<br/>
+        /// number to an agent via<br/>
+        /// `POST /v1/agents/{id}/phone-numbers/{phoneNumberId}`) and<br/>
+        /// outbound calls (via the workspace's shared outbound trunk).
         /// </summary>
         /// <param name="e164">
         /// The E.164 number to buy. Must currently be in carrier inventory.

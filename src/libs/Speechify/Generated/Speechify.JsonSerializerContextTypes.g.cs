@@ -1544,7 +1544,7 @@ namespace Speechify
         /// <summary>
         /// 
         /// </summary>
-        public global::Speechify.SIPTrunkKind? Type379 { get; set; }
+        public global::Speechify.SIPTrunkProvider? Type379 { get; set; }
         /// <summary>
         /// 
         /// </summary>

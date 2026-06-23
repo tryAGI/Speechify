@@ -464,6 +464,43 @@ namespace Speechify
                                         h => h.Key,
                                         h => h.Value));
                             }
+                            // An upstream dependency (the TTS composer or voice-metadata service) returned a 5xx. The raw upstream detail is not forwarded - the cause is in the server log; the response is a fixed `upstream_failure` envelope. Safe to retry. 
+                            if ((int)__response.StatusCode == 502)
+                            {
+                                string? __content_502 = null;
+                                global::System.Exception? __exception_502 = null;
+                                global::Speechify.Error? __value_502 = null;
+                                try
+                                {
+                                    if (__effectiveReadResponseAsString)
+                                    {
+                                        __content_502 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+                                        __value_502 = global::Speechify.Error.FromJson(__content_502, JsonSerializerContext);
+                                    }
+                                    else
+                                    {
+                                        __content_502 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+
+                                        __value_502 = global::Speechify.Error.FromJson(__content_502, JsonSerializerContext);
+                                    }
+                                }
+                                catch (global::System.Exception __ex)
+                                {
+                                    __exception_502 = __ex;
+                                }
+
+
+                                throw global::Speechify.ApiException<global::Speechify.Error>.Create(
+                                    statusCode: __response.StatusCode,
+                                    message: __content_502 ?? __response.ReasonPhrase ?? string.Empty,
+                                    innerException: __exception_502,
+                                    responseBody: __content_502,
+                                    responseObject: __value_502,
+                                    responseHeaders: global::System.Linq.Enumerable.ToDictionary(
+                                        __response.Headers,
+                                        h => h.Key,
+                                        h => h.Value));
+                            }
 
                             if (__effectiveReadResponseAsString)
                             {

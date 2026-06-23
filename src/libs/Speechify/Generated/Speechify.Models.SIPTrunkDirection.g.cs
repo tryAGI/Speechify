@@ -5,7 +5,7 @@ namespace Speechify
 {
     /// <summary>
     /// Whether the trunk handles inbound calls, outbound calls, or both.<br/>
-    /// A `both` trunk has distinct LiveKit inbound and outbound trunk IDs.
+    /// A `both` trunk has distinct provider inbound and outbound trunk IDs.
     /// </summary>
     public enum SIPTrunkDirection
     {
