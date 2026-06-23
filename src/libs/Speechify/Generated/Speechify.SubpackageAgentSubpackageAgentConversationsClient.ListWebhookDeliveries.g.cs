@@ -52,6 +52,11 @@ namespace Speechify
         /// webhook has fired and the post-call webhook has been<br/>
         /// dispatched to the agent's configured URL. One row per<br/>
         /// `(conversation, webhook-url)`, updated in place across retries.<br/>
+        /// Each row includes the exact request payload and signed headers<br/>
+        /// Speechify sent (`request_body`, `request_headers`) and the<br/>
+        /// response your server returned (`last_status_code`,<br/>
+        /// `last_response_body`, `last_response_headers`), so you can verify<br/>
+        /// what was delivered and debug a failing endpoint.<br/>
         /// Cursor-paginated: omit `cursor` to fetch the first page.<br/>
         /// Default page size is 50 and max is 200. Walk pages while<br/>
         /// `has_more` is true.
@@ -86,6 +91,11 @@ namespace Speechify
         /// webhook has fired and the post-call webhook has been<br/>
         /// dispatched to the agent's configured URL. One row per<br/>
         /// `(conversation, webhook-url)`, updated in place across retries.<br/>
+        /// Each row includes the exact request payload and signed headers<br/>
+        /// Speechify sent (`request_body`, `request_headers`) and the<br/>
+        /// response your server returned (`last_status_code`,<br/>
+        /// `last_response_body`, `last_response_headers`), so you can verify<br/>
+        /// what was delivered and debug a failing endpoint.<br/>
         /// Cursor-paginated: omit `cursor` to fetch the first page.<br/>
         /// Default page size is 50 and max is 200. Walk pages while<br/>
         /// `has_more` is true.

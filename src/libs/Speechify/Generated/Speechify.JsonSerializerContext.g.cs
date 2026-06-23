@@ -289,9 +289,9 @@ namespace Speechify
 
             typeof(global::Speechify.JsonConverters.BatchRecipientStatusNullableJsonConverter),
 
-            typeof(global::Speechify.JsonConverters.PhoneNumberSourceJsonConverter),
+            typeof(global::Speechify.JsonConverters.PhoneNumberProviderJsonConverter),
 
-            typeof(global::Speechify.JsonConverters.PhoneNumberSourceNullableJsonConverter),
+            typeof(global::Speechify.JsonConverters.PhoneNumberProviderNullableJsonConverter),
 
             typeof(global::Speechify.JsonConverters.PhoneNumberCapabilityJsonConverter),
 
@@ -750,7 +750,7 @@ namespace Speechify
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.InvalidateIVRMenuRequest))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.CreateOutboundCallRequest))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.CreateOutboundCallResponse))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.PhoneNumberSource), TypeInfoPropertyName = "PhoneNumberSource2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.PhoneNumberProvider), TypeInfoPropertyName = "PhoneNumberProvider2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.PhoneNumberCapability), TypeInfoPropertyName = "PhoneNumberCapability2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.PhoneNumber))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Speechify.PhoneNumberCapability>))]
@@ -1170,9 +1170,9 @@ namespace Speechify
 
             typeof(global::Speechify.JsonConverters.BatchRecipientStatusNullableJsonConverter),
 
-            typeof(global::Speechify.JsonConverters.PhoneNumberSourceJsonConverter),
+            typeof(global::Speechify.JsonConverters.PhoneNumberProviderJsonConverter),
 
-            typeof(global::Speechify.JsonConverters.PhoneNumberSourceNullableJsonConverter),
+            typeof(global::Speechify.JsonConverters.PhoneNumberProviderNullableJsonConverter),
 
             typeof(global::Speechify.JsonConverters.PhoneNumberCapabilityJsonConverter),
 
@@ -1476,8 +1476,8 @@ namespace Speechify
             options.Converters.Add(new global::Speechify.JsonConverters.BatchCallStatusNullableJsonConverter());
             options.Converters.Add(new global::Speechify.JsonConverters.BatchRecipientStatusJsonConverter());
             options.Converters.Add(new global::Speechify.JsonConverters.BatchRecipientStatusNullableJsonConverter());
-            options.Converters.Add(new global::Speechify.JsonConverters.PhoneNumberSourceJsonConverter());
-            options.Converters.Add(new global::Speechify.JsonConverters.PhoneNumberSourceNullableJsonConverter());
+            options.Converters.Add(new global::Speechify.JsonConverters.PhoneNumberProviderJsonConverter());
+            options.Converters.Add(new global::Speechify.JsonConverters.PhoneNumberProviderNullableJsonConverter());
             options.Converters.Add(new global::Speechify.JsonConverters.PhoneNumberCapabilityJsonConverter());
             options.Converters.Add(new global::Speechify.JsonConverters.PhoneNumberCapabilityNullableJsonConverter());
             options.Converters.Add(new global::Speechify.JsonConverters.SIPTrunkProviderJsonConverter());

@@ -90,6 +90,40 @@ namespace Speechify
         public required global::System.DateTime CreatedAt { get; set; }
 
         /// <summary>
+        /// The exact JSON body Speechify POSTed to your webhook URL. This<br/>
+        /// is the verbatim payload the `X-Speechify-Signature` HMAC was<br/>
+        /// computed over, so you can re-verify the signature against it.<br/>
+        /// Absent on deliveries that pre-date this capture.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("request_body")]
+        public string? RequestBody { get; set; }
+
+        /// <summary>
+        /// The HTTP headers Speechify sent with the delivery, including<br/>
+        /// `X-Speechify-Signature`, `X-Speechify-Timestamp`,<br/>
+        /// `X-Speechify-Event`, and `X-Speechify-Delivery-Id`. Reflects<br/>
+        /// the most recent attempt.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("request_headers")]
+        public global::System.Collections.Generic.Dictionary<string, string>? RequestHeaders { get; set; }
+
+        /// <summary>
+        /// The response body your server returned on the most recent<br/>
+        /// attempt, truncated to 8 KiB. Useful for debugging a non-2xx<br/>
+        /// response. Absent when no response was received (transport<br/>
+        /// error) or on pre-capture deliveries.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("last_response_body")]
+        public string? LastResponseBody { get; set; }
+
+        /// <summary>
+        /// The response headers your server returned on the most recent<br/>
+        /// attempt.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("last_response_headers")]
+        public global::System.Collections.Generic.Dictionary<string, string>? LastResponseHeaders { get; set; }
+
+        /// <summary>
         /// Additional properties that are not explicitly defined in the schema
         /// </summary>
         [global::System.Text.Json.Serialization.JsonExtensionData]
@@ -119,6 +153,28 @@ namespace Speechify
         /// <param name="lastAttemptAt"></param>
         /// <param name="lastStatusCode"></param>
         /// <param name="lastError"></param>
+        /// <param name="requestBody">
+        /// The exact JSON body Speechify POSTed to your webhook URL. This<br/>
+        /// is the verbatim payload the `X-Speechify-Signature` HMAC was<br/>
+        /// computed over, so you can re-verify the signature against it.<br/>
+        /// Absent on deliveries that pre-date this capture.
+        /// </param>
+        /// <param name="requestHeaders">
+        /// The HTTP headers Speechify sent with the delivery, including<br/>
+        /// `X-Speechify-Signature`, `X-Speechify-Timestamp`,<br/>
+        /// `X-Speechify-Event`, and `X-Speechify-Delivery-Id`. Reflects<br/>
+        /// the most recent attempt.
+        /// </param>
+        /// <param name="lastResponseBody">
+        /// The response body your server returned on the most recent<br/>
+        /// attempt, truncated to 8 KiB. Useful for debugging a non-2xx<br/>
+        /// response. Absent when no response was received (transport<br/>
+        /// error) or on pre-capture deliveries.
+        /// </param>
+        /// <param name="lastResponseHeaders">
+        /// The response headers your server returned on the most recent<br/>
+        /// attempt.
+        /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
 #endif
@@ -133,7 +189,11 @@ namespace Speechify
             global::System.DateTime createdAt,
             global::System.DateTime? lastAttemptAt,
             int? lastStatusCode,
-            string? lastError)
+            string? lastError,
+            string? requestBody,
+            global::System.Collections.Generic.Dictionary<string, string>? requestHeaders,
+            string? lastResponseBody,
+            global::System.Collections.Generic.Dictionary<string, string>? lastResponseHeaders)
         {
             this.Id = id ?? throw new global::System.ArgumentNullException(nameof(id));
             this.ConversationId = conversationId ?? throw new global::System.ArgumentNullException(nameof(conversationId));
@@ -146,6 +206,10 @@ namespace Speechify
             this.LastStatusCode = lastStatusCode;
             this.LastError = lastError;
             this.CreatedAt = createdAt;
+            this.RequestBody = requestBody;
+            this.RequestHeaders = requestHeaders;
+            this.LastResponseBody = lastResponseBody;
+            this.LastResponseHeaders = lastResponseHeaders;
         }
 
         /// <summary>

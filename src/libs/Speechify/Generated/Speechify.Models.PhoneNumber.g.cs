@@ -28,8 +28,8 @@ namespace Speechify
         public required string E164 { get; set; }
 
         /// <summary>
-        /// Where the number came from. Determines the provisioning and<br/>
-        /// portability path.<br/>
+        /// Which provider the number came from. Determines the provisioning<br/>
+        /// and portability path.<br/>
         /// - `livekit` - LiveKit owns the carrier relationship; US inbound only.<br/>
         /// - `twilio` - Customer's own Twilio number bridged via Elastic SIP Trunk.<br/>
         /// - `byoc` - Any SIP provider using a customer-supplied trunk.<br/>
@@ -37,17 +37,17 @@ namespace Speechify
         /// - `verified_caller_id` - Customer-verified outbound caller ID on<br/>
         ///   their own Twilio account (Twilio's OutgoingCallerIds resource).<br/>
         ///   Server-determined at import time: when an `e164` submitted with<br/>
-        ///   `source=twilio` is not a full DID on the customer's account but<br/>
-        ///   IS a verified caller ID, the resulting row gets this source.<br/>
+        ///   `provider=twilio` is not a full DID on the customer's account but<br/>
+        ///   IS a verified caller ID, the resulting row gets this provider.<br/>
         ///   Outbound-only, never agent-bindable, rides the customer's<br/>
         ///   existing shared Twilio trunk for outbound routing. Requires a<br/>
         ///   prior `twilio` full-DID import from the same account; without<br/>
         ///   it the import returns 400.
         /// </summary>
-        [global::System.Text.Json.Serialization.JsonPropertyName("source")]
-        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Speechify.JsonConverters.PhoneNumberSourceJsonConverter))]
+        [global::System.Text.Json.Serialization.JsonPropertyName("type")]
+        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Speechify.JsonConverters.PhoneNumberProviderJsonConverter))]
         [global::System.Text.Json.Serialization.JsonRequired]
-        public required global::Speechify.PhoneNumberSource Source { get; set; }
+        public required global::Speechify.PhoneNumberProvider Type { get; set; }
 
         /// <summary>
         /// Optional human-readable label set by the customer.
@@ -75,10 +75,12 @@ namespace Speechify
         public required global::System.Collections.Generic.IList<global::Speechify.PhoneNumberCapability> Capabilities { get; set; }
 
         /// <summary>
-        /// LiveKit's own phone number ID (populated for `source=livekit` only).
+        /// The upstream provider's own identifier for this number, when<br/>
+        /// the provider exposes one (e.g. LiveKit's phone number ID for<br/>
+        /// `type=livekit`, or the Twilio number SID for `type=twilio_purchased`).
         /// </summary>
-        [global::System.Text.Json.Serialization.JsonPropertyName("livekit_phone_number_id")]
-        public string? LivekitPhoneNumberId { get; set; }
+        [global::System.Text.Json.Serialization.JsonPropertyName("provider_phone_number_id")]
+        public string? ProviderPhoneNumberId { get; set; }
 
         /// <summary>
         /// When the number was imported.
@@ -112,9 +114,9 @@ namespace Speechify
         /// <param name="e164">
         /// The phone number in E.164 format (e.g. `+12025551234`).
         /// </param>
-        /// <param name="source">
-        /// Where the number came from. Determines the provisioning and<br/>
-        /// portability path.<br/>
+        /// <param name="type">
+        /// Which provider the number came from. Determines the provisioning<br/>
+        /// and portability path.<br/>
         /// - `livekit` - LiveKit owns the carrier relationship; US inbound only.<br/>
         /// - `twilio` - Customer's own Twilio number bridged via Elastic SIP Trunk.<br/>
         /// - `byoc` - Any SIP provider using a customer-supplied trunk.<br/>
@@ -122,8 +124,8 @@ namespace Speechify
         /// - `verified_caller_id` - Customer-verified outbound caller ID on<br/>
         ///   their own Twilio account (Twilio's OutgoingCallerIds resource).<br/>
         ///   Server-determined at import time: when an `e164` submitted with<br/>
-        ///   `source=twilio` is not a full DID on the customer's account but<br/>
-        ///   IS a verified caller ID, the resulting row gets this source.<br/>
+        ///   `provider=twilio` is not a full DID on the customer's account but<br/>
+        ///   IS a verified caller ID, the resulting row gets this provider.<br/>
         ///   Outbound-only, never agent-bindable, rides the customer's<br/>
         ///   existing shared Twilio trunk for outbound routing. Requires a<br/>
         ///   prior `twilio` full-DID import from the same account; without<br/>
@@ -147,8 +149,10 @@ namespace Speechify
         /// <param name="agentId">
         /// ID of the agent that answers calls to this number. Null when unbound.
         /// </param>
-        /// <param name="livekitPhoneNumberId">
-        /// LiveKit's own phone number ID (populated for `source=livekit` only).
+        /// <param name="providerPhoneNumberId">
+        /// The upstream provider's own identifier for this number, when<br/>
+        /// the provider exposes one (e.g. LiveKit's phone number ID for<br/>
+        /// `type=livekit`, or the Twilio number SID for `type=twilio_purchased`).
         /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
@@ -156,23 +160,23 @@ namespace Speechify
         public PhoneNumber(
             string id,
             string e164,
-            global::Speechify.PhoneNumberSource source,
+            global::Speechify.PhoneNumberProvider type,
             global::System.Collections.Generic.IList<global::Speechify.PhoneNumberCapability> capabilities,
             global::System.DateTime createdAt,
             global::System.DateTime updatedAt,
             string? label,
             string? trunkId,
             string? agentId,
-            string? livekitPhoneNumberId)
+            string? providerPhoneNumberId)
         {
             this.Id = id ?? throw new global::System.ArgumentNullException(nameof(id));
             this.E164 = e164 ?? throw new global::System.ArgumentNullException(nameof(e164));
-            this.Source = source;
+            this.Type = type;
             this.Label = label;
             this.TrunkId = trunkId;
             this.AgentId = agentId;
             this.Capabilities = capabilities ?? throw new global::System.ArgumentNullException(nameof(capabilities));
-            this.LivekitPhoneNumberId = livekitPhoneNumberId;
+            this.ProviderPhoneNumberId = providerPhoneNumberId;
             this.CreatedAt = createdAt;
             this.UpdatedAt = updatedAt;
         }

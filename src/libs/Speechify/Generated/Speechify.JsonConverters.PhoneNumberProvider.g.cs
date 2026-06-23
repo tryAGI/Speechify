@@ -3,10 +3,10 @@
 namespace Speechify.JsonConverters
 {
     /// <inheritdoc />
-    public sealed class PhoneNumberSourceNullableJsonConverter : global::System.Text.Json.Serialization.JsonConverter<global::Speechify.PhoneNumberSource?>
+    public sealed class PhoneNumberProviderJsonConverter : global::System.Text.Json.Serialization.JsonConverter<global::Speechify.PhoneNumberProvider>
     {
         /// <inheritdoc />
-        public override global::Speechify.PhoneNumberSource? Read(
+        public override global::Speechify.PhoneNumberProvider Read(
             ref global::System.Text.Json.Utf8JsonReader reader,
             global::System.Type typeToConvert,
             global::System.Text.Json.JsonSerializerOptions options)
@@ -18,7 +18,7 @@ namespace Speechify.JsonConverters
                     var stringValue = reader.GetString();
                     if (stringValue != null)
                     {
-                        return global::Speechify.PhoneNumberSourceExtensions.ToEnum(stringValue);
+                        return global::Speechify.PhoneNumberProviderExtensions.ToEnum(stringValue) ?? default;
                     }
                     
                     break;
@@ -26,11 +26,11 @@ namespace Speechify.JsonConverters
                 case global::System.Text.Json.JsonTokenType.Number:
                 {
                     var numValue = reader.GetInt32();
-                    return (global::Speechify.PhoneNumberSource)numValue;
+                    return (global::Speechify.PhoneNumberProvider)numValue;
                 }
                 case global::System.Text.Json.JsonTokenType.Null:
                 {
-                    return default(global::Speechify.PhoneNumberSource?);
+                    return default(global::Speechify.PhoneNumberProvider);
                 }
                 default:
                     throw new global::System.ArgumentOutOfRangeException(nameof(reader));
@@ -42,19 +42,12 @@ namespace Speechify.JsonConverters
         /// <inheritdoc />
         public override void Write(
             global::System.Text.Json.Utf8JsonWriter writer,
-            global::Speechify.PhoneNumberSource? value,
+            global::Speechify.PhoneNumberProvider value,
             global::System.Text.Json.JsonSerializerOptions options)
         {
             writer = writer ?? throw new global::System.ArgumentNullException(nameof(writer));
 
-            if (value == null)
-            {
-                writer.WriteNullValue();
-            }
-            else
-            {
-                writer.WriteStringValue(global::Speechify.PhoneNumberSourceExtensions.ToValueString(value.Value));
-            }
+            writer.WriteStringValue(global::Speechify.PhoneNumberProviderExtensions.ToValueString(value));
         }
     }
 }
