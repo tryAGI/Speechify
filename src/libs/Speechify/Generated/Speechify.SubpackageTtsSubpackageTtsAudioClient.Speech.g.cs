@@ -44,8 +44,8 @@ namespace Speechify
         /// <summary>
         /// Create Speech<br/>
         /// Synthesize speech audio from text or SSML. Returns the complete audio<br/>
-        /// file plus billing and speech-mark metadata in a single response. For<br/>
-        /// low-latency playback or long-form text, use POST /v1/audio/stream.
+        /// file plus billing and speech-mark metadata in a single JSON response.<br/>
+        /// For low-latency playback or long-form text, use POST /v1/audio/stream.
         /// </summary>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
@@ -69,8 +69,8 @@ namespace Speechify
         /// <summary>
         /// Create Speech<br/>
         /// Synthesize speech audio from text or SSML. Returns the complete audio<br/>
-        /// file plus billing and speech-mark metadata in a single response. For<br/>
-        /// low-latency playback or long-form text, use POST /v1/audio/stream.
+        /// file plus billing and speech-mark metadata in a single JSON response.<br/>
+        /// For low-latency playback or long-form text, use POST /v1/audio/stream.
         /// </summary>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
@@ -773,8 +773,8 @@ namespace Speechify
         /// <summary>
         /// Create Speech<br/>
         /// Synthesize speech audio from text or SSML. Returns the complete audio<br/>
-        /// file plus billing and speech-mark metadata in a single response. For<br/>
-        /// low-latency playback or long-form text, use POST /v1/audio/stream.
+        /// file plus billing and speech-mark metadata in a single JSON response.<br/>
+        /// For low-latency playback or long-form text, use POST /v1/audio/stream.
         /// </summary>
         /// <param name="audioFormat">
         /// The format for the output audio. Note, that the current default is "wav", but there's no guarantee it will not change in the future. We recommend always passing the specific param you expect.<br/>
