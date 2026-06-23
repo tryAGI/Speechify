@@ -7,8 +7,9 @@ namespace Speechify
         /// <summary>
         /// Stream Speech<br/>
         /// Synthesize speech and stream the audio back as it is generated, for<br/>
-        /// low-latency playback. The Accept header selects the audio container.<br/>
-        /// For short text where receiving the whole file at once is fine, use<br/>
+        /// low-latency playback. The Accept header selects the audio container;<br/>
+        /// the response is raw audio bytes (HTTP chunked). For Base64-encoded<br/>
+        /// audio with speech-mark metadata in a single JSON response, use<br/>
         /// POST /v1/audio/speech.
         /// </summary>
         /// <param name="accept"></param>
@@ -25,8 +26,9 @@ namespace Speechify
         /// <summary>
         /// Stream Speech<br/>
         /// Synthesize speech and stream the audio back as it is generated, for<br/>
-        /// low-latency playback. The Accept header selects the audio container.<br/>
-        /// For short text where receiving the whole file at once is fine, use<br/>
+        /// low-latency playback. The Accept header selects the audio container;<br/>
+        /// the response is raw audio bytes (HTTP chunked). For Base64-encoded<br/>
+        /// audio with speech-mark metadata in a single JSON response, use<br/>
         /// POST /v1/audio/speech.
         /// </summary>
         /// <param name="accept"></param>
@@ -43,8 +45,9 @@ namespace Speechify
         /// <summary>
         /// Stream Speech<br/>
         /// Synthesize speech and stream the audio back as it is generated, for<br/>
-        /// low-latency playback. The Accept header selects the audio container.<br/>
-        /// For short text where receiving the whole file at once is fine, use<br/>
+        /// low-latency playback. The Accept header selects the audio container;<br/>
+        /// the response is raw audio bytes (HTTP chunked). For Base64-encoded<br/>
+        /// audio with speech-mark metadata in a single JSON response, use<br/>
         /// POST /v1/audio/speech.
         /// </summary>
         /// <param name="accept"></param>
@@ -61,8 +64,9 @@ namespace Speechify
         /// <summary>
         /// Stream Speech<br/>
         /// Synthesize speech and stream the audio back as it is generated, for<br/>
-        /// low-latency playback. The Accept header selects the audio container.<br/>
-        /// For short text where receiving the whole file at once is fine, use<br/>
+        /// low-latency playback. The Accept header selects the audio container;<br/>
+        /// the response is raw audio bytes (HTTP chunked). For Base64-encoded<br/>
+        /// audio with speech-mark metadata in a single JSON response, use<br/>
         /// POST /v1/audio/speech.
         /// </summary>
         /// <param name="accept"></param>
