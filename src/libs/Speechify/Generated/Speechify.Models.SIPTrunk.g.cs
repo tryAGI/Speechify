@@ -29,20 +29,20 @@ namespace Speechify
         public required string Name { get; set; }
 
         /// <summary>
-        /// Where the trunk came from. Informs the provisioning path and<br/>
+        /// Which provider backs the trunk. Informs the provisioning path and<br/>
         /// portability story.<br/>
         /// - `livekit` - Provisioned by LiveKit's native phone-number API.<br/>
         /// - `twilio` - Backed by a Twilio Elastic SIP Trunk on the customer's account.<br/>
         /// - `byoc` - Any SIP provider with a customer-managed trunk.
         /// </summary>
-        [global::System.Text.Json.Serialization.JsonPropertyName("kind")]
-        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Speechify.JsonConverters.SIPTrunkKindJsonConverter))]
+        [global::System.Text.Json.Serialization.JsonPropertyName("provider")]
+        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Speechify.JsonConverters.SIPTrunkProviderJsonConverter))]
         [global::System.Text.Json.Serialization.JsonRequired]
-        public required global::Speechify.SIPTrunkKind Kind { get; set; }
+        public required global::Speechify.SIPTrunkProvider Provider { get; set; }
 
         /// <summary>
         /// Whether the trunk handles inbound calls, outbound calls, or both.<br/>
-        /// A `both` trunk has distinct LiveKit inbound and outbound trunk IDs.
+        /// A `both` trunk has distinct provider inbound and outbound trunk IDs.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("direction")]
         [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Speechify.JsonConverters.SIPTrunkDirectionJsonConverter))]
@@ -50,25 +50,25 @@ namespace Speechify
         public required global::Speechify.SIPTrunkDirection Direction { get; set; }
 
         /// <summary>
-        /// LiveKit's inbound trunk ID (present when direction is `inbound` or `both`).
+        /// The provider's inbound trunk ID (present when direction is `inbound` or `both`).
         /// </summary>
-        [global::System.Text.Json.Serialization.JsonPropertyName("livekit_inbound_trunk_id")]
-        public string? LivekitInboundTrunkId { get; set; }
+        [global::System.Text.Json.Serialization.JsonPropertyName("provider_inbound_trunk_id")]
+        public string? ProviderInboundTrunkId { get; set; }
 
         /// <summary>
-        /// LiveKit's outbound trunk ID (present when direction is `outbound` or `both`).
+        /// The provider's outbound trunk ID (present when direction is `outbound` or `both`).
         /// </summary>
-        [global::System.Text.Json.Serialization.JsonPropertyName("livekit_outbound_trunk_id")]
-        public string? LivekitOutboundTrunkId { get; set; }
+        [global::System.Text.Json.Serialization.JsonPropertyName("provider_outbound_trunk_id")]
+        public string? ProviderOutboundTrunkId { get; set; }
 
         /// <summary>
-        /// LiveKit dispatch rule ID that routes inbound calls into rooms.
+        /// The provider's dispatch rule ID that routes inbound calls into rooms.
         /// </summary>
-        [global::System.Text.Json.Serialization.JsonPropertyName("livekit_dispatch_rule_id")]
-        public string? LivekitDispatchRuleId { get; set; }
+        [global::System.Text.Json.Serialization.JsonPropertyName("provider_dispatch_rule_id")]
+        public string? ProviderDispatchRuleId { get; set; }
 
         /// <summary>
-        /// SIP endpoint hostname (e.g. `sip.telnyx.com`). Required for `kind=byoc`.
+        /// SIP endpoint hostname (e.g. `sip.telnyx.com`). Required for `provider=byoc`.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("sip_address")]
         public string? SipAddress { get; set; }
@@ -154,8 +154,8 @@ namespace Speechify
         /// <param name="name">
         /// Human-readable name.
         /// </param>
-        /// <param name="kind">
-        /// Where the trunk came from. Informs the provisioning path and<br/>
+        /// <param name="provider">
+        /// Which provider backs the trunk. Informs the provisioning path and<br/>
         /// portability story.<br/>
         /// - `livekit` - Provisioned by LiveKit's native phone-number API.<br/>
         /// - `twilio` - Backed by a Twilio Elastic SIP Trunk on the customer's account.<br/>
@@ -163,7 +163,7 @@ namespace Speechify
         /// </param>
         /// <param name="direction">
         /// Whether the trunk handles inbound calls, outbound calls, or both.<br/>
-        /// A `both` trunk has distinct LiveKit inbound and outbound trunk IDs.
+        /// A `both` trunk has distinct provider inbound and outbound trunk IDs.
         /// </param>
         /// <param name="allowedAddresses">
         /// IP address / CIDR allowlist for inbound SIP connections.
@@ -182,17 +182,17 @@ namespace Speechify
         /// </param>
         /// <param name="createdAt"></param>
         /// <param name="updatedAt"></param>
-        /// <param name="livekitInboundTrunkId">
-        /// LiveKit's inbound trunk ID (present when direction is `inbound` or `both`).
+        /// <param name="providerInboundTrunkId">
+        /// The provider's inbound trunk ID (present when direction is `inbound` or `both`).
         /// </param>
-        /// <param name="livekitOutboundTrunkId">
-        /// LiveKit's outbound trunk ID (present when direction is `outbound` or `both`).
+        /// <param name="providerOutboundTrunkId">
+        /// The provider's outbound trunk ID (present when direction is `outbound` or `both`).
         /// </param>
-        /// <param name="livekitDispatchRuleId">
-        /// LiveKit dispatch rule ID that routes inbound calls into rooms.
+        /// <param name="providerDispatchRuleId">
+        /// The provider's dispatch rule ID that routes inbound calls into rooms.
         /// </param>
         /// <param name="sipAddress">
-        /// SIP endpoint hostname (e.g. `sip.telnyx.com`). Required for `kind=byoc`.
+        /// SIP endpoint hostname (e.g. `sip.telnyx.com`). Required for `provider=byoc`.
         /// </param>
         /// <param name="authUsername">
         /// SIP digest auth username.
@@ -211,16 +211,16 @@ namespace Speechify
         public SIPTrunk(
             string id,
             string name,
-            global::Speechify.SIPTrunkKind kind,
+            global::Speechify.SIPTrunkProvider provider,
             global::Speechify.SIPTrunkDirection direction,
             global::System.Collections.Generic.IList<string> allowedAddresses,
             global::Speechify.SIPTransport transport,
             global::Speechify.SIPMediaEncryption mediaEncryption,
             global::System.DateTime createdAt,
             global::System.DateTime updatedAt,
-            string? livekitInboundTrunkId,
-            string? livekitOutboundTrunkId,
-            string? livekitDispatchRuleId,
+            string? providerInboundTrunkId,
+            string? providerOutboundTrunkId,
+            string? providerDispatchRuleId,
             string? sipAddress,
             string? authUsername,
             bool? authPasswordSet,
@@ -228,11 +228,11 @@ namespace Speechify
         {
             this.Id = id ?? throw new global::System.ArgumentNullException(nameof(id));
             this.Name = name ?? throw new global::System.ArgumentNullException(nameof(name));
-            this.Kind = kind;
+            this.Provider = provider;
             this.Direction = direction;
-            this.LivekitInboundTrunkId = livekitInboundTrunkId;
-            this.LivekitOutboundTrunkId = livekitOutboundTrunkId;
-            this.LivekitDispatchRuleId = livekitDispatchRuleId;
+            this.ProviderInboundTrunkId = providerInboundTrunkId;
+            this.ProviderOutboundTrunkId = providerOutboundTrunkId;
+            this.ProviderDispatchRuleId = providerDispatchRuleId;
             this.SipAddress = sipAddress;
             this.AuthUsername = authUsername;
             this.AuthPasswordSet = authPasswordSet;

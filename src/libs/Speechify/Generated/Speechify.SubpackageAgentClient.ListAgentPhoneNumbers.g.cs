@@ -3,11 +3,11 @@
 
 namespace Speechify
 {
-    public partial class SubpackageAgentSubpackageAgentAdminClient
+    public partial class SubpackageAgentClient
     {
 
 
-        private static readonly global::Speechify.EndPointSecurityRequirement s_ShadowTokenSecurityRequirement0 =
+        private static readonly global::Speechify.EndPointSecurityRequirement s_ListAgentPhoneNumbersSecurityRequirement0 =
             new global::Speechify.EndPointSecurityRequirement
             {
                 Authorizations = new global::Speechify.EndPointAuthorizationRequirement[]
@@ -21,48 +21,42 @@ namespace Speechify
                     },
                 },
             };
-        private static readonly global::Speechify.EndPointSecurityRequirement[] s_ShadowTokenSecurityRequirements =
+        private static readonly global::Speechify.EndPointSecurityRequirement[] s_ListAgentPhoneNumbersSecurityRequirements =
             new global::Speechify.EndPointSecurityRequirement[]
-            {                s_ShadowTokenSecurityRequirement0,
+            {                s_ListAgentPhoneNumbersSecurityRequirement0,
             };
-        partial void PrepareShadowTokenArguments(
+        partial void PrepareListAgentPhoneNumbersArguments(
             global::System.Net.Http.HttpClient httpClient,
             ref string id);
-        partial void PrepareShadowTokenRequest(
+        partial void PrepareListAgentPhoneNumbersRequest(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpRequestMessage httpRequestMessage,
             string id);
-        partial void ProcessShadowTokenResponse(
+        partial void ProcessListAgentPhoneNumbersResponse(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpResponseMessage httpResponseMessage);
 
-        partial void ProcessShadowTokenResponseContent(
+        partial void ProcessListAgentPhoneNumbersResponseContent(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpResponseMessage httpResponseMessage,
             ref string content);
 
         /// <summary>
-        /// Mint shadow-call token<br/>
-        /// Mint a listen-only realtime access token so an authorized observer<br/>
-        /// can join an ongoing voice-agent conversation as a hidden<br/>
-        /// participant. Any `member`, `admin`, or `owner` of the workspace<br/>
-        /// the conversation belongs to may listen in — it is read-only<br/>
-        /// observation. The token cannot publish audio or data; the observer<br/>
-        /// is invisible to the caller and the agent. Speechify support<br/>
-        /// engineers reach this endpoint the same way as any other observer<br/>
-        /// — by being granted a role on the customer's workspace (typically<br/>
-        /// under an NDA-backed support arrangement).
+        /// List Agent Phone Numbers<br/>
+        /// List the phone numbers bound to an agent. Bare list - the count<br/>
+        /// is bounded by the workspace's number inventory, not by data<br/>
+        /// scale, so this endpoint does not paginate.
         /// </summary>
         /// <param name="id"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
-        public async global::System.Threading.Tasks.Task<global::Speechify.ShadowConversationResponse> ShadowTokenAsync(
+        public async global::System.Threading.Tasks.Task<global::Speechify.ListPhoneNumbersResponse> ListAgentPhoneNumbersAsync(
             string id,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
-            var __response = await ShadowTokenAsResponseAsync(
+            var __response = await ListAgentPhoneNumbersAsResponseAsync(
                 id: id,
                 requestOptions: requestOptions,
                 cancellationToken: cancellationToken
@@ -71,37 +65,31 @@ namespace Speechify
             return __response.Body;
         }
         /// <summary>
-        /// Mint shadow-call token<br/>
-        /// Mint a listen-only realtime access token so an authorized observer<br/>
-        /// can join an ongoing voice-agent conversation as a hidden<br/>
-        /// participant. Any `member`, `admin`, or `owner` of the workspace<br/>
-        /// the conversation belongs to may listen in — it is read-only<br/>
-        /// observation. The token cannot publish audio or data; the observer<br/>
-        /// is invisible to the caller and the agent. Speechify support<br/>
-        /// engineers reach this endpoint the same way as any other observer<br/>
-        /// — by being granted a role on the customer's workspace (typically<br/>
-        /// under an NDA-backed support arrangement).
+        /// List Agent Phone Numbers<br/>
+        /// List the phone numbers bound to an agent. Bare list - the count<br/>
+        /// is bounded by the workspace's number inventory, not by data<br/>
+        /// scale, so this endpoint does not paginate.
         /// </summary>
         /// <param name="id"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
-        public async global::System.Threading.Tasks.Task<global::Speechify.AutoSDKHttpResponse<global::Speechify.ShadowConversationResponse>> ShadowTokenAsResponseAsync(
+        public async global::System.Threading.Tasks.Task<global::Speechify.AutoSDKHttpResponse<global::Speechify.ListPhoneNumbersResponse>> ListAgentPhoneNumbersAsResponseAsync(
             string id,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
             PrepareArguments(
                 client: HttpClient);
-            PrepareShadowTokenArguments(
+            PrepareListAgentPhoneNumbersArguments(
                 httpClient: HttpClient,
                 id: ref id);
 
 
             var __authorizations = global::Speechify.EndPointSecurityResolver.ResolveAuthorizations(
                 availableAuthorizations: Authorizations,
-                securityRequirements: s_ShadowTokenSecurityRequirements,
-                operationName: "ShadowTokenAsync");
+                securityRequirements: s_ListAgentPhoneNumbersSecurityRequirements,
+                operationName: "ListAgentPhoneNumbersAsync");
 
             using var __timeoutCancellationTokenSource = global::Speechify.AutoSDKRequestOptionsSupport.CreateTimeoutCancellationTokenSource(
                 clientOptions: Options,
@@ -121,7 +109,7 @@ namespace Speechify
             {
 
                             var __pathBuilder = new global::Speechify.PathBuilder(
-                                path: $"/v1/agents/conversations/{id}/shadow-token",
+                                path: $"/v1/agents/{id}/phone-numbers",
                                 baseUri: HttpClient.BaseAddress);
                             var __path = __pathBuilder.ToString();
                 __path = global::Speechify.AutoSDKRequestOptionsSupport.AppendQueryParameters(
@@ -129,7 +117,7 @@ namespace Speechify
                     clientParameters: Options.QueryParameters,
                     requestParameters: requestOptions?.QueryParameters);
                 var __httpRequest = new global::System.Net.Http.HttpRequestMessage(
-                    method: global::System.Net.Http.HttpMethod.Post,
+                    method: global::System.Net.Http.HttpMethod.Get,
                     requestUri: new global::System.Uri(__path, global::System.UriKind.RelativeOrAbsolute));
 #if NET6_0_OR_GREATER
                 __httpRequest.Version = global::System.Net.HttpVersion.Version11;
@@ -160,7 +148,7 @@ namespace Speechify
                 PrepareRequest(
                     client: HttpClient,
                     request: __httpRequest);
-                PrepareShadowTokenRequest(
+                PrepareListAgentPhoneNumbersRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
                     id: id!);
@@ -180,10 +168,10 @@ namespace Speechify
                     await global::Speechify.AutoSDKRequestOptionsSupport.OnBeforeRequestAsync(
                             clientOptions: Options,
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "ShadowToken",
-                                methodName: "ShadowTokenAsync",
-                                pathTemplate: "$\"/v1/agents/conversations/{id}/shadow-token\"",
-                                httpMethod: "POST",
+                                operationId: "ListAgentPhoneNumbers",
+                                methodName: "ListAgentPhoneNumbersAsync",
+                                pathTemplate: "$\"/v1/agents/{id}/phone-numbers\"",
+                                httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
                                 response: null,
@@ -214,10 +202,10 @@ namespace Speechify
                         await global::Speechify.AutoSDKRequestOptionsSupport.OnAfterErrorAsync(
                             clientOptions: Options,
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "ShadowToken",
-                                methodName: "ShadowTokenAsync",
-                                pathTemplate: "$\"/v1/agents/conversations/{id}/shadow-token\"",
-                                httpMethod: "POST",
+                                operationId: "ListAgentPhoneNumbers",
+                                methodName: "ListAgentPhoneNumbersAsync",
+                                pathTemplate: "$\"/v1/agents/{id}/phone-numbers\"",
+                                httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
                                 response: null,
@@ -255,10 +243,10 @@ namespace Speechify
                         await global::Speechify.AutoSDKRequestOptionsSupport.OnAfterErrorAsync(
                             clientOptions: Options,
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "ShadowToken",
-                                methodName: "ShadowTokenAsync",
-                                pathTemplate: "$\"/v1/agents/conversations/{id}/shadow-token\"",
-                                httpMethod: "POST",
+                                operationId: "ListAgentPhoneNumbers",
+                                methodName: "ListAgentPhoneNumbersAsync",
+                                pathTemplate: "$\"/v1/agents/{id}/phone-numbers\"",
+                                httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
                                 response: __response,
@@ -295,7 +283,7 @@ namespace Speechify
                 ProcessResponse(
                     client: HttpClient,
                     response: __response);
-                ProcessShadowTokenResponse(
+                ProcessListAgentPhoneNumbersResponse(
                     httpClient: HttpClient,
                     httpResponseMessage: __response);
                 if (__response.IsSuccessStatusCode)
@@ -303,10 +291,10 @@ namespace Speechify
                     await global::Speechify.AutoSDKRequestOptionsSupport.OnAfterSuccessAsync(
                             clientOptions: Options,
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "ShadowToken",
-                                methodName: "ShadowTokenAsync",
-                                pathTemplate: "$\"/v1/agents/conversations/{id}/shadow-token\"",
-                                httpMethod: "POST",
+                                operationId: "ListAgentPhoneNumbers",
+                                methodName: "ListAgentPhoneNumbersAsync",
+                                pathTemplate: "$\"/v1/agents/{id}/phone-numbers\"",
+                                httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
                                 response: __response,
@@ -325,10 +313,10 @@ namespace Speechify
                     await global::Speechify.AutoSDKRequestOptionsSupport.OnAfterErrorAsync(
                             clientOptions: Options,
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "ShadowToken",
-                                methodName: "ShadowTokenAsync",
-                                pathTemplate: "$\"/v1/agents/conversations/{id}/shadow-token\"",
-                                httpMethod: "POST",
+                                operationId: "ListAgentPhoneNumbers",
+                                methodName: "ListAgentPhoneNumbersAsync",
+                                pathTemplate: "$\"/v1/agents/{id}/phone-numbers\"",
+                                httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
                                 response: __response,
@@ -379,43 +367,6 @@ namespace Speechify
                                         h => h.Key,
                                         h => h.Value));
                             }
-                            // The credential authenticated, but is not authorised for this resource - typically a workspace-role gate (owner / admin required) or a cross-tenant access attempt. 
-                            if ((int)__response.StatusCode == 403)
-                            {
-                                string? __content_403 = null;
-                                global::System.Exception? __exception_403 = null;
-                                global::Speechify.Error? __value_403 = null;
-                                try
-                                {
-                                    if (__effectiveReadResponseAsString)
-                                    {
-                                        __content_403 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
-                                        __value_403 = global::Speechify.Error.FromJson(__content_403, JsonSerializerContext);
-                                    }
-                                    else
-                                    {
-                                        __content_403 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
-
-                                        __value_403 = global::Speechify.Error.FromJson(__content_403, JsonSerializerContext);
-                                    }
-                                }
-                                catch (global::System.Exception __ex)
-                                {
-                                    __exception_403 = __ex;
-                                }
-
-
-                                throw global::Speechify.ApiException<global::Speechify.Error>.Create(
-                                    statusCode: __response.StatusCode,
-                                    message: __content_403 ?? __response.ReasonPhrase ?? string.Empty,
-                                    innerException: __exception_403,
-                                    responseBody: __content_403,
-                                    responseObject: __value_403,
-                                    responseHeaders: global::System.Linq.Enumerable.ToDictionary(
-                                        __response.Headers,
-                                        h => h.Key,
-                                        h => h.Value));
-                            }
                             // The referenced resource does not exist or is not visible to the caller's workspace. 
                             if ((int)__response.StatusCode == 404)
                             {
@@ -453,43 +404,6 @@ namespace Speechify
                                         h => h.Key,
                                         h => h.Value));
                             }
-                            // The request conflicts with the current resource state - e.g. duplicate, optimistic-concurrency mismatch, or last-owner guard. 
-                            if ((int)__response.StatusCode == 409)
-                            {
-                                string? __content_409 = null;
-                                global::System.Exception? __exception_409 = null;
-                                global::Speechify.Error? __value_409 = null;
-                                try
-                                {
-                                    if (__effectiveReadResponseAsString)
-                                    {
-                                        __content_409 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
-                                        __value_409 = global::Speechify.Error.FromJson(__content_409, JsonSerializerContext);
-                                    }
-                                    else
-                                    {
-                                        __content_409 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
-
-                                        __value_409 = global::Speechify.Error.FromJson(__content_409, JsonSerializerContext);
-                                    }
-                                }
-                                catch (global::System.Exception __ex)
-                                {
-                                    __exception_409 = __ex;
-                                }
-
-
-                                throw global::Speechify.ApiException<global::Speechify.Error>.Create(
-                                    statusCode: __response.StatusCode,
-                                    message: __content_409 ?? __response.ReasonPhrase ?? string.Empty,
-                                    innerException: __exception_409,
-                                    responseBody: __content_409,
-                                    responseObject: __value_409,
-                                    responseHeaders: global::System.Linq.Enumerable.ToDictionary(
-                                        __response.Headers,
-                                        h => h.Key,
-                                        h => h.Value));
-                            }
 
                             if (__effectiveReadResponseAsString)
                             {
@@ -503,7 +417,7 @@ namespace Speechify
                                     client: HttpClient,
                                     response: __response,
                                     content: ref __content);
-                                ProcessShadowTokenResponseContent(
+                                ProcessListAgentPhoneNumbersResponseContent(
                                     httpClient: HttpClient,
                                     httpResponseMessage: __response,
                                     content: ref __content);
@@ -512,9 +426,9 @@ namespace Speechify
                                 {
                                     __response.EnsureSuccessStatusCode();
 
-                                    var __value = global::Speechify.ShadowConversationResponse.FromJson(__content, JsonSerializerContext) ??
+                                    var __value = global::Speechify.ListPhoneNumbersResponse.FromJson(__content, JsonSerializerContext) ??
                                         throw new global::System.InvalidOperationException($"Response deserialization failed for \"{__content}\" ");
-                                    return new global::Speechify.AutoSDKHttpResponse<global::Speechify.ShadowConversationResponse>(
+                                    return new global::Speechify.AutoSDKHttpResponse<global::Speechify.ListPhoneNumbersResponse>(
                                         statusCode: __response.StatusCode,
                                         headers: global::Speechify.AutoSDKHttpResponse.CreateHeaders(__response),
                                         requestUri: __response.RequestMessage?.RequestUri,
@@ -544,9 +458,9 @@ namespace Speechify
                 #endif
                                     ).ConfigureAwait(false);
 
-                                    var __value = await global::Speechify.ShadowConversationResponse.FromJsonStreamAsync(__content, JsonSerializerContext).ConfigureAwait(false) ??
+                                    var __value = await global::Speechify.ListPhoneNumbersResponse.FromJsonStreamAsync(__content, JsonSerializerContext).ConfigureAwait(false) ??
                                         throw new global::System.InvalidOperationException("Response deserialization failed.");
-                                    return new global::Speechify.AutoSDKHttpResponse<global::Speechify.ShadowConversationResponse>(
+                                    return new global::Speechify.AutoSDKHttpResponse<global::Speechify.ListPhoneNumbersResponse>(
                                         statusCode: __response.StatusCode,
                                         headers: global::Speechify.AutoSDKHttpResponse.CreateHeaders(__response),
                                         requestUri: __response.RequestMessage?.RequestUri,

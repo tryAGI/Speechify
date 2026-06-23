@@ -6,7 +6,7 @@ namespace Speechify
     /// <summary>
     /// Connection details for an authorized operator (workspace owner or<br/>
     /// admin) taking over an active conversation. A real-time client<br/>
-    /// consumes `livekit_url` + `token` to join the live call publishing<br/>
+    /// consumes `signaling_url` + `token` to join the live call publishing<br/>
     /// the operator's microphone; the AI agent stands down for the<br/>
     /// duration and resumes when the operator leaves.
     /// </summary>
@@ -29,9 +29,9 @@ namespace Speechify
         /// <summary>
         /// Signaling URL the real-time client connects to.
         /// </summary>
-        [global::System.Text.Json.Serialization.JsonPropertyName("livekit_url")]
+        [global::System.Text.Json.Serialization.JsonPropertyName("signaling_url")]
         [global::System.Text.Json.Serialization.JsonRequired]
-        public required string LivekitUrl { get; set; }
+        public required string SignalingUrl { get; set; }
 
         /// <summary>
         /// Short-lived access token authorizing the operator to publish<br/>
@@ -66,7 +66,7 @@ namespace Speechify
         /// </summary>
         /// <param name="conversationId"></param>
         /// <param name="roomName"></param>
-        /// <param name="livekitUrl">
+        /// <param name="signalingUrl">
         /// Signaling URL the real-time client connects to.
         /// </param>
         /// <param name="token">
@@ -85,14 +85,14 @@ namespace Speechify
         public TakeOverConversationResponse(
             string conversationId,
             string roomName,
-            string livekitUrl,
+            string signalingUrl,
             string token,
             string identity,
             global::System.DateTime expiresAt)
         {
             this.ConversationId = conversationId ?? throw new global::System.ArgumentNullException(nameof(conversationId));
             this.RoomName = roomName ?? throw new global::System.ArgumentNullException(nameof(roomName));
-            this.LivekitUrl = livekitUrl ?? throw new global::System.ArgumentNullException(nameof(livekitUrl));
+            this.SignalingUrl = signalingUrl ?? throw new global::System.ArgumentNullException(nameof(signalingUrl));
             this.Token = token ?? throw new global::System.ArgumentNullException(nameof(token));
             this.Identity = identity ?? throw new global::System.ArgumentNullException(nameof(identity));
             this.ExpiresAt = expiresAt;

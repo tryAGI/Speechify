@@ -6,7 +6,7 @@ namespace Speechify
     {
         /// <summary>
         /// Mint shadow-call token<br/>
-        /// Mint a listen-only LiveKit access token so an authorized observer<br/>
+        /// Mint a listen-only realtime access token so an authorized observer<br/>
         /// can join an ongoing voice-agent conversation as a hidden<br/>
         /// participant. Any `member`, `admin`, or `owner` of the workspace<br/>
         /// the conversation belongs to may listen in — it is read-only<br/>
@@ -26,7 +26,7 @@ namespace Speechify
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Mint shadow-call token<br/>
-        /// Mint a listen-only LiveKit access token so an authorized observer<br/>
+        /// Mint a listen-only realtime access token so an authorized observer<br/>
         /// can join an ongoing voice-agent conversation as a hidden<br/>
         /// participant. Any `member`, `admin`, or `owner` of the workspace<br/>
         /// the conversation belongs to may listen in — it is read-only<br/>

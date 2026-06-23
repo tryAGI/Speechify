@@ -16,20 +16,20 @@ namespace Speechify
         public required string Name { get; set; }
 
         /// <summary>
-        /// Where the trunk came from. Informs the provisioning path and<br/>
+        /// Which provider backs the trunk. Informs the provisioning path and<br/>
         /// portability story.<br/>
         /// - `livekit` - Provisioned by LiveKit's native phone-number API.<br/>
         /// - `twilio` - Backed by a Twilio Elastic SIP Trunk on the customer's account.<br/>
         /// - `byoc` - Any SIP provider with a customer-managed trunk.
         /// </summary>
-        [global::System.Text.Json.Serialization.JsonPropertyName("kind")]
-        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Speechify.JsonConverters.SIPTrunkKindJsonConverter))]
+        [global::System.Text.Json.Serialization.JsonPropertyName("provider")]
+        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Speechify.JsonConverters.SIPTrunkProviderJsonConverter))]
         [global::System.Text.Json.Serialization.JsonRequired]
-        public required global::Speechify.SIPTrunkKind Kind { get; set; }
+        public required global::Speechify.SIPTrunkProvider Provider { get; set; }
 
         /// <summary>
         /// Whether the trunk handles inbound calls, outbound calls, or both.<br/>
-        /// A `both` trunk has distinct LiveKit inbound and outbound trunk IDs.
+        /// A `both` trunk has distinct provider inbound and outbound trunk IDs.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("direction")]
         [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Speechify.JsonConverters.SIPTrunkDirectionJsonConverter))]
@@ -37,7 +37,7 @@ namespace Speechify
         public required global::Speechify.SIPTrunkDirection Direction { get; set; }
 
         /// <summary>
-        /// SIP endpoint hostname. Required for `kind=byoc`.
+        /// SIP endpoint hostname. Required for `provider=byoc`.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("sip_address")]
         public string? SipAddress { get; set; }
@@ -104,8 +104,8 @@ namespace Speechify
         /// <param name="name">
         /// Human-readable name for the trunk.
         /// </param>
-        /// <param name="kind">
-        /// Where the trunk came from. Informs the provisioning path and<br/>
+        /// <param name="provider">
+        /// Which provider backs the trunk. Informs the provisioning path and<br/>
         /// portability story.<br/>
         /// - `livekit` - Provisioned by LiveKit's native phone-number API.<br/>
         /// - `twilio` - Backed by a Twilio Elastic SIP Trunk on the customer's account.<br/>
@@ -113,10 +113,10 @@ namespace Speechify
         /// </param>
         /// <param name="direction">
         /// Whether the trunk handles inbound calls, outbound calls, or both.<br/>
-        /// A `both` trunk has distinct LiveKit inbound and outbound trunk IDs.
+        /// A `both` trunk has distinct provider inbound and outbound trunk IDs.
         /// </param>
         /// <param name="sipAddress">
-        /// SIP endpoint hostname. Required for `kind=byoc`.
+        /// SIP endpoint hostname. Required for `provider=byoc`.
         /// </param>
         /// <param name="authUsername">
         /// SIP digest auth username.
@@ -150,7 +150,7 @@ namespace Speechify
 #endif
         public CreateSIPTrunkRequest(
             string name,
-            global::Speechify.SIPTrunkKind kind,
+            global::Speechify.SIPTrunkProvider provider,
             global::Speechify.SIPTrunkDirection direction,
             string? sipAddress,
             string? authUsername,
@@ -162,7 +162,7 @@ namespace Speechify
             global::Speechify.CreateSipTrunkRequestCredentials? credentials)
         {
             this.Name = name ?? throw new global::System.ArgumentNullException(nameof(name));
-            this.Kind = kind;
+            this.Provider = provider;
             this.Direction = direction;
             this.SipAddress = sipAddress;
             this.AuthUsername = authUsername;

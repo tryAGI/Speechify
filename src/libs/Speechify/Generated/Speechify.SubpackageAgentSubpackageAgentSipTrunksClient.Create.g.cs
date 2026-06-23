@@ -563,8 +563,8 @@ namespace Speechify
         /// <param name="name">
         /// Human-readable name for the trunk.
         /// </param>
-        /// <param name="kind">
-        /// Where the trunk came from. Informs the provisioning path and<br/>
+        /// <param name="provider">
+        /// Which provider backs the trunk. Informs the provisioning path and<br/>
         /// portability story.<br/>
         /// - `livekit` - Provisioned by LiveKit's native phone-number API.<br/>
         /// - `twilio` - Backed by a Twilio Elastic SIP Trunk on the customer's account.<br/>
@@ -572,10 +572,10 @@ namespace Speechify
         /// </param>
         /// <param name="direction">
         /// Whether the trunk handles inbound calls, outbound calls, or both.<br/>
-        /// A `both` trunk has distinct LiveKit inbound and outbound trunk IDs.
+        /// A `both` trunk has distinct provider inbound and outbound trunk IDs.
         /// </param>
         /// <param name="sipAddress">
-        /// SIP endpoint hostname. Required for `kind=byoc`.
+        /// SIP endpoint hostname. Required for `provider=byoc`.
         /// </param>
         /// <param name="authUsername">
         /// SIP digest auth username.
@@ -609,7 +609,7 @@ namespace Speechify
         /// <exception cref="global::System.InvalidOperationException"></exception>
         public async global::System.Threading.Tasks.Task<global::Speechify.SIPTrunk> CreateAsync(
             string name,
-            global::Speechify.SIPTrunkKind kind,
+            global::Speechify.SIPTrunkProvider provider,
             global::Speechify.SIPTrunkDirection direction,
             string? sipAddress = default,
             string? authUsername = default,
@@ -625,7 +625,7 @@ namespace Speechify
             var __request = new global::Speechify.CreateSIPTrunkRequest
             {
                 Name = name,
-                Kind = kind,
+                Provider = provider,
                 Direction = direction,
                 SipAddress = sipAddress,
                 AuthUsername = authUsername,

@@ -3,10 +3,10 @@
 namespace Speechify.JsonConverters
 {
     /// <inheritdoc />
-    public sealed class SIPTrunkKindNullableJsonConverter : global::System.Text.Json.Serialization.JsonConverter<global::Speechify.SIPTrunkKind?>
+    public sealed class SIPTrunkProviderJsonConverter : global::System.Text.Json.Serialization.JsonConverter<global::Speechify.SIPTrunkProvider>
     {
         /// <inheritdoc />
-        public override global::Speechify.SIPTrunkKind? Read(
+        public override global::Speechify.SIPTrunkProvider Read(
             ref global::System.Text.Json.Utf8JsonReader reader,
             global::System.Type typeToConvert,
             global::System.Text.Json.JsonSerializerOptions options)
@@ -18,7 +18,7 @@ namespace Speechify.JsonConverters
                     var stringValue = reader.GetString();
                     if (stringValue != null)
                     {
-                        return global::Speechify.SIPTrunkKindExtensions.ToEnum(stringValue);
+                        return global::Speechify.SIPTrunkProviderExtensions.ToEnum(stringValue) ?? default;
                     }
                     
                     break;
@@ -26,11 +26,11 @@ namespace Speechify.JsonConverters
                 case global::System.Text.Json.JsonTokenType.Number:
                 {
                     var numValue = reader.GetInt32();
-                    return (global::Speechify.SIPTrunkKind)numValue;
+                    return (global::Speechify.SIPTrunkProvider)numValue;
                 }
                 case global::System.Text.Json.JsonTokenType.Null:
                 {
-                    return default(global::Speechify.SIPTrunkKind?);
+                    return default(global::Speechify.SIPTrunkProvider);
                 }
                 default:
                     throw new global::System.ArgumentOutOfRangeException(nameof(reader));
@@ -42,19 +42,12 @@ namespace Speechify.JsonConverters
         /// <inheritdoc />
         public override void Write(
             global::System.Text.Json.Utf8JsonWriter writer,
-            global::Speechify.SIPTrunkKind? value,
+            global::Speechify.SIPTrunkProvider value,
             global::System.Text.Json.JsonSerializerOptions options)
         {
             writer = writer ?? throw new global::System.ArgumentNullException(nameof(writer));
 
-            if (value == null)
-            {
-                writer.WriteNullValue();
-            }
-            else
-            {
-                writer.WriteStringValue(global::Speechify.SIPTrunkKindExtensions.ToValueString(value.Value));
-            }
+            writer.WriteStringValue(global::Speechify.SIPTrunkProviderExtensions.ToValueString(value));
         }
     }
 }
