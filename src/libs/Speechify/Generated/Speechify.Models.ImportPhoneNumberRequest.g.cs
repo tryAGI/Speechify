@@ -5,22 +5,22 @@ namespace Speechify
 {
     /// <summary>
     /// Body for `POST /v1/agents/phone-numbers`. The required fields vary by<br/>
-    /// `source` - see the individual source descriptions.
+    /// `provider` - see the individual provider descriptions.
     /// </summary>
     public sealed partial class ImportPhoneNumberRequest
     {
         /// <summary>
-        /// The phone number in E.164 format. For `source=livekit` this<br/>
-        /// is the number you want LiveKit to purchase. For `source=twilio`<br/>
-        /// and `source=byoc` it is the number you already own.
+        /// The phone number in E.164 format. For `provider=livekit` this<br/>
+        /// is the number you want LiveKit to purchase. For `provider=twilio`<br/>
+        /// and `provider=byoc` it is the number you already own.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("e164")]
         [global::System.Text.Json.Serialization.JsonRequired]
         public required string E164 { get; set; }
 
         /// <summary>
-        /// Where the number came from. Determines the provisioning and<br/>
-        /// portability path.<br/>
+        /// Which provider the number came from. Determines the provisioning<br/>
+        /// and portability path.<br/>
         /// - `livekit` - LiveKit owns the carrier relationship; US inbound only.<br/>
         /// - `twilio` - Customer's own Twilio number bridged via Elastic SIP Trunk.<br/>
         /// - `byoc` - Any SIP provider using a customer-supplied trunk.<br/>
@@ -28,17 +28,17 @@ namespace Speechify
         /// - `verified_caller_id` - Customer-verified outbound caller ID on<br/>
         ///   their own Twilio account (Twilio's OutgoingCallerIds resource).<br/>
         ///   Server-determined at import time: when an `e164` submitted with<br/>
-        ///   `source=twilio` is not a full DID on the customer's account but<br/>
-        ///   IS a verified caller ID, the resulting row gets this source.<br/>
+        ///   `provider=twilio` is not a full DID on the customer's account but<br/>
+        ///   IS a verified caller ID, the resulting row gets this provider.<br/>
         ///   Outbound-only, never agent-bindable, rides the customer's<br/>
         ///   existing shared Twilio trunk for outbound routing. Requires a<br/>
         ///   prior `twilio` full-DID import from the same account; without<br/>
         ///   it the import returns 400.
         /// </summary>
-        [global::System.Text.Json.Serialization.JsonPropertyName("source")]
-        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Speechify.JsonConverters.PhoneNumberSourceJsonConverter))]
+        [global::System.Text.Json.Serialization.JsonPropertyName("provider")]
+        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Speechify.JsonConverters.PhoneNumberProviderJsonConverter))]
         [global::System.Text.Json.Serialization.JsonRequired]
-        public required global::Speechify.PhoneNumberSource Source { get; set; }
+        public required global::Speechify.PhoneNumberProvider Provider { get; set; }
 
         /// <summary>
         /// Optional human-readable label.
@@ -47,9 +47,9 @@ namespace Speechify
         public string? Label { get; set; }
 
         /// <summary>
-        /// For `source=byoc`: the SIP trunk to bind this number to.<br/>
+        /// For `provider=byoc`: the SIP trunk to bind this number to.<br/>
         /// Prefixed wire identifier (`trunk_&lt;26 char Crockford base32&gt;`).<br/>
-        /// Not required for `source=livekit` or `source=twilio`.
+        /// Not required for `provider=livekit` or `provider=twilio`.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("trunk_id")]
         public string? TrunkId { get; set; }
@@ -63,7 +63,7 @@ namespace Speechify
 
         /// <summary>
         /// Twilio credentials for the one-click import flow. Used only when<br/>
-        /// `source=twilio`. The Account SID and Auth Token are used to<br/>
+        /// `provider=twilio`. The Account SID and Auth Token are used to<br/>
         /// provision an Elastic SIP Trunk on the customer's Twilio account<br/>
         /// pointing at LiveKit's SIP endpoint, then stored for future trunk<br/>
         /// management operations.
@@ -81,13 +81,13 @@ namespace Speechify
         /// Initializes a new instance of the <see cref="ImportPhoneNumberRequest" /> class.
         /// </summary>
         /// <param name="e164">
-        /// The phone number in E.164 format. For `source=livekit` this<br/>
-        /// is the number you want LiveKit to purchase. For `source=twilio`<br/>
-        /// and `source=byoc` it is the number you already own.
+        /// The phone number in E.164 format. For `provider=livekit` this<br/>
+        /// is the number you want LiveKit to purchase. For `provider=twilio`<br/>
+        /// and `provider=byoc` it is the number you already own.
         /// </param>
-        /// <param name="source">
-        /// Where the number came from. Determines the provisioning and<br/>
-        /// portability path.<br/>
+        /// <param name="provider">
+        /// Which provider the number came from. Determines the provisioning<br/>
+        /// and portability path.<br/>
         /// - `livekit` - LiveKit owns the carrier relationship; US inbound only.<br/>
         /// - `twilio` - Customer's own Twilio number bridged via Elastic SIP Trunk.<br/>
         /// - `byoc` - Any SIP provider using a customer-supplied trunk.<br/>
@@ -95,8 +95,8 @@ namespace Speechify
         /// - `verified_caller_id` - Customer-verified outbound caller ID on<br/>
         ///   their own Twilio account (Twilio's OutgoingCallerIds resource).<br/>
         ///   Server-determined at import time: when an `e164` submitted with<br/>
-        ///   `source=twilio` is not a full DID on the customer's account but<br/>
-        ///   IS a verified caller ID, the resulting row gets this source.<br/>
+        ///   `provider=twilio` is not a full DID on the customer's account but<br/>
+        ///   IS a verified caller ID, the resulting row gets this provider.<br/>
         ///   Outbound-only, never agent-bindable, rides the customer's<br/>
         ///   existing shared Twilio trunk for outbound routing. Requires a<br/>
         ///   prior `twilio` full-DID import from the same account; without<br/>
@@ -106,9 +106,9 @@ namespace Speechify
         /// Optional human-readable label.
         /// </param>
         /// <param name="trunkId">
-        /// For `source=byoc`: the SIP trunk to bind this number to.<br/>
+        /// For `provider=byoc`: the SIP trunk to bind this number to.<br/>
         /// Prefixed wire identifier (`trunk_&lt;26 char Crockford base32&gt;`).<br/>
-        /// Not required for `source=livekit` or `source=twilio`.
+        /// Not required for `provider=livekit` or `provider=twilio`.
         /// </param>
         /// <param name="agentId">
         /// Optional agent to bind on import. Prefixed wire identifier<br/>
@@ -116,7 +116,7 @@ namespace Speechify
         /// </param>
         /// <param name="twilio">
         /// Twilio credentials for the one-click import flow. Used only when<br/>
-        /// `source=twilio`. The Account SID and Auth Token are used to<br/>
+        /// `provider=twilio`. The Account SID and Auth Token are used to<br/>
         /// provision an Elastic SIP Trunk on the customer's Twilio account<br/>
         /// pointing at LiveKit's SIP endpoint, then stored for future trunk<br/>
         /// management operations.
@@ -126,14 +126,14 @@ namespace Speechify
 #endif
         public ImportPhoneNumberRequest(
             string e164,
-            global::Speechify.PhoneNumberSource source,
+            global::Speechify.PhoneNumberProvider provider,
             string? label,
             string? trunkId,
             string? agentId,
             global::Speechify.TwilioImportSpec? twilio)
         {
             this.E164 = e164 ?? throw new global::System.ArgumentNullException(nameof(e164));
-            this.Source = source;
+            this.Provider = provider;
             this.Label = label;
             this.TrunkId = trunkId;
             this.AgentId = agentId;

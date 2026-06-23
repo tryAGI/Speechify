@@ -1492,7 +1492,7 @@ namespace Speechify
         /// <summary>
         /// 
         /// </summary>
-        public global::Speechify.PhoneNumberSource? Type366 { get; set; }
+        public global::Speechify.PhoneNumberProvider? Type366 { get; set; }
         /// <summary>
         /// 
         /// </summary>
