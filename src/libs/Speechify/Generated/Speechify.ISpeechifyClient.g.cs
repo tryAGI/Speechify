@@ -132,12 +132,12 @@ namespace Speechify
         /// <summary>
         /// 
         /// </summary>
-        public SubpackageTtsSubpackageTtsAudioClient SubpackageTtsSubpackageTtsAudio { get; }
+        public SubpackageAudioClient SubpackageAudio { get; }
 
         /// <summary>
         /// 
         /// </summary>
-        public SubpackageTtsSubpackageTtsVoicesClient SubpackageTtsSubpackageTtsVoices { get; }
+        public SubpackageVoicesClient SubpackageVoices { get; }
 
     }
 }

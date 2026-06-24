@@ -2,7 +2,7 @@
 
 namespace Speechify
 {
-    public partial interface ISubpackageTtsSubpackageTtsAudioClient
+    public partial interface ISubpackageAudioClient
     {
         /// <summary>
         /// Stream Speech<br/>

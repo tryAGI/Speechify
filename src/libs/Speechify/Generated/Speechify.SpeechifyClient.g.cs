@@ -195,7 +195,7 @@ namespace Speechify
         /// <summary>
         /// 
         /// </summary>
-        public SubpackageTtsSubpackageTtsAudioClient SubpackageTtsSubpackageTtsAudio => new SubpackageTtsSubpackageTtsAudioClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
+        public SubpackageAudioClient SubpackageAudio => new SubpackageAudioClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
         {
             ReadResponseAsString = ReadResponseAsString,
             JsonSerializerContext = JsonSerializerContext,
@@ -204,7 +204,7 @@ namespace Speechify
         /// <summary>
         /// 
         /// </summary>
-        public SubpackageTtsSubpackageTtsVoicesClient SubpackageTtsSubpackageTtsVoices => new SubpackageTtsSubpackageTtsVoicesClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
+        public SubpackageVoicesClient SubpackageVoices => new SubpackageVoicesClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
         {
             ReadResponseAsString = ReadResponseAsString,
             JsonSerializerContext = JsonSerializerContext,
