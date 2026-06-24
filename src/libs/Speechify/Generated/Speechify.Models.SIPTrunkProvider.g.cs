@@ -8,6 +8,7 @@ namespace Speechify
     /// portability story.<br/>
     /// - `livekit` - Provisioned by LiveKit's native phone-number API.<br/>
     /// - `twilio` - Backed by a Twilio Elastic SIP Trunk on the customer's account.<br/>
+    /// - `telnyx` - Backed by a Telnyx FQDN connection on the customer's account.<br/>
     /// - `byoc` - Any SIP provider with a customer-managed trunk.
     /// </summary>
     public enum SIPTrunkProvider
@@ -20,6 +21,10 @@ namespace Speechify
         /// 
         /// </summary>
         Livekit,
+        /// <summary>
+        /// 
+        /// </summary>
+        Telnyx,
         /// <summary>
         /// 
         /// </summary>
@@ -40,6 +45,7 @@ namespace Speechify
             {
                 SIPTrunkProvider.Byoc => "byoc",
                 SIPTrunkProvider.Livekit => "livekit",
+                SIPTrunkProvider.Telnyx => "telnyx",
                 SIPTrunkProvider.Twilio => "twilio",
                 _ => throw new global::System.ArgumentOutOfRangeException(nameof(value), value, null),
             };
@@ -53,6 +59,7 @@ namespace Speechify
             {
                 "byoc" => SIPTrunkProvider.Byoc,
                 "livekit" => SIPTrunkProvider.Livekit,
+                "telnyx" => SIPTrunkProvider.Telnyx,
                 "twilio" => SIPTrunkProvider.Twilio,
                 _ => null,
             };

@@ -54,64 +54,58 @@ namespace Speechify
         public required string Language { get; set; }
 
         /// <summary>
-        /// LLM backend the worker constructs for this agent. Null<br/>
-        /// means "use the platform default" (resolved server-side at<br/>
-        /// dispatch; today: Speechify GLM-5.2). `openai` and<br/>
-        /// `speechify` pair with a model from the allowed (provider,<br/>
-        /// model) table. `custom` points the worker at any OpenAI /<br/>
-        /// vLLM-compatible endpoint - see `llm_base_url`,<br/>
-        /// `llm_api_key`, `llm_extra_body`.
+        /// Language-model configuration. Omit the whole block on create to<br/>
+        /// run on the platform default model. On update (merge-patch) send<br/>
+        /// only the sub-fields you want to change: an explicit null clears a<br/>
+        /// nullable field to its default, a value sets it, and anything<br/>
+        /// omitted is left unchanged. `provider`/`model` are validated as a<br/>
+        /// pair, inheriting the omitted half from the stored value.
         /// </summary>
-        [global::System.Text.Json.Serialization.JsonPropertyName("llm_provider")]
-        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Speechify.JsonConverters.AgentLlmProviderJsonConverter))]
+        [global::System.Text.Json.Serialization.JsonPropertyName("llm")]
         [global::System.Text.Json.Serialization.JsonRequired]
-        public required global::Speechify.AgentLlmProvider LlmProvider { get; set; }
+        public required global::Speechify.AgentLLMConfig Llm { get; set; }
 
         /// <summary>
-        /// Chat model slug. Null means "use the platform default"<br/>
-        /// (resolved server-side at dispatch; today: Speechify<br/>
-        /// GLM-5.2). For `openai` / `speechify` it must be a slug from<br/>
-        /// the allowed table; for `custom` it is free-form (the<br/>
-        /// customer's endpoint owns the namespace).
+        /// Text-to-speech voice and delivery configuration.
         /// </summary>
-        [global::System.Text.Json.Serialization.JsonPropertyName("llm_model")]
-        public string? LlmModel { get; set; }
-
-        /// <summary>
-        /// Custom OpenAI/vLLM-compatible endpoint base URL. Non-null<br/>
-        /// only when `llm_provider` is `custom`.
-        /// </summary>
-        [global::System.Text.Json.Serialization.JsonPropertyName("llm_base_url")]
-        public string? LlmBaseUrl { get; set; }
-
-        /// <summary>
-        /// Whether a bearer key is stored for the custom endpoint.<br/>
-        /// The key itself is write-only and never returned.
-        /// </summary>
-        [global::System.Text.Json.Serialization.JsonPropertyName("llm_api_key_set")]
-        public bool? LlmApiKeySet { get; set; }
-
-        /// <summary>
-        /// JSON object forwarded verbatim to the custom endpoint as<br/>
-        /// the chat.completions `extra_body` (reasoning / sampling<br/>
-        /// knobs). Non-null only when `llm_provider` is `custom`.
-        /// </summary>
-        [global::System.Text.Json.Serialization.JsonPropertyName("llm_extra_body")]
-        public object? LlmExtraBody { get; set; }
-
-        /// <summary>
-        /// Speechify voice slug.
-        /// </summary>
-        [global::System.Text.Json.Serialization.JsonPropertyName("voice_id")]
+        [global::System.Text.Json.Serialization.JsonPropertyName("tts")]
         [global::System.Text.Json.Serialization.JsonRequired]
-        public required string VoiceId { get; set; }
+        public required global::Speechify.AgentTTSConfig Tts { get; set; }
 
         /// <summary>
-        /// 
+        /// Speech-to-text configuration.
         /// </summary>
-        [global::System.Text.Json.Serialization.JsonPropertyName("temperature")]
+        [global::System.Text.Json.Serialization.JsonPropertyName("stt")]
         [global::System.Text.Json.Serialization.JsonRequired]
-        public required double Temperature { get; set; }
+        public required global::Speechify.AgentSTTConfig Stt { get; set; }
+
+        /// <summary>
+        /// Turn-handling and silence-timeout configuration.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("turn_handling")]
+        [global::System.Text.Json.Serialization.JsonRequired]
+        public required global::Speechify.AgentTurnHandlingConfig TurnHandling { get; set; }
+
+        /// <summary>
+        /// Per-caller long-term memory configuration.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("memory")]
+        [global::System.Text.Json.Serialization.JsonRequired]
+        public required global::Speechify.AgentMemoryConfig Memory { get; set; }
+
+        /// <summary>
+        /// Autonomous IVR-navigation configuration for outbound calls.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("navigator")]
+        [global::System.Text.Json.Serialization.JsonRequired]
+        public required global::Speechify.AgentNavigatorConfig Navigator { get; set; }
+
+        /// <summary>
+        /// Optional ambient background-noise bed mixed into the call.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("background_noise")]
+        [global::System.Text.Json.Serialization.JsonRequired]
+        public required global::Speechify.AgentBackgroundNoiseConfig BackgroundNoise { get; set; }
 
         /// <summary>
         /// Customer-editable appearance + behaviour payload for the<br/>
@@ -155,24 +149,6 @@ namespace Speechify
         public global::System.Collections.Generic.IList<string>? HostnameAllowlist { get; set; }
 
         /// <summary>
-        /// When true, the post-call extractor writes durable facts about<br/>
-        /// each caller; at conversation-start the retriever injects the<br/>
-        /// top matches into the system prompt via the `{{memory}}`<br/>
-        /// template variable. Defaults to false.
-        /// </summary>
-        [global::System.Text.Json.Serialization.JsonPropertyName("memory_enabled")]
-        [global::System.Text.Json.Serialization.JsonRequired]
-        public required bool MemoryEnabled { get; set; }
-
-        /// <summary>
-        /// Maximum age (in days) of memories kept and surfaced to the<br/>
-        /// retriever. 0 disables the cap. Defaults to 90.
-        /// </summary>
-        [global::System.Text.Json.Serialization.JsonPropertyName("memory_retention_days")]
-        [global::System.Text.Json.Serialization.JsonRequired]
-        public required int MemoryRetentionDays { get; set; }
-
-        /// <summary>
         /// Customer-facing post-call webhook target. When non-empty,<br/>
         /// the control plane POSTs a signed payload (transcript +<br/>
         /// evals + extractors + recording URL) once the conversation<br/>
@@ -209,90 +185,6 @@ namespace Speechify
         [global::System.Text.Json.Serialization.JsonPropertyName("save_audio_recording")]
         [global::System.Text.Json.Serialization.JsonRequired]
         public required bool SaveAudioRecording { get; set; }
-
-        /// <summary>
-        /// Tunes worker turn handling for autonomous outbound IVR<br/>
-        /// navigation - longer endpointing and no barge-in. The goal<br/>
-        /// itself lives in the agent's prompt; this flag is the<br/>
-        /// behaviour switch only. Defaults FALSE.
-        /// </summary>
-        [global::System.Text.Json.Serialization.JsonPropertyName("navigator_mode")]
-        [global::System.Text.Json.Serialization.JsonRequired]
-        public required bool NavigatorMode { get; set; }
-
-        /// <summary>
-        /// Per-agent kill switch for the IVR-memory cache lookup<br/>
-        /// performed at AMD time. Defaults TRUE so existing navigator<br/>
-        /// agents keep their always-on behaviour. Set to false to skip<br/>
-        /// the cache and force every outbound dial on this agent to<br/>
-        /// start cold (LLM-driven navigation only).
-        /// </summary>
-        [global::System.Text.Json.Serialization.JsonPropertyName("ivr_memory_enabled")]
-        [global::System.Text.Json.Serialization.JsonRequired]
-        public required bool IvrMemoryEnabled { get; set; }
-
-        /// <summary>
-        /// Per-agent override for the voice's default speaking rate<br/>
-        /// (0.5 = half speed, 2.0 = double, 1.0 = neutral). Null<br/>
-        /// means "use the voice's default rate".
-        /// </summary>
-        [global::System.Text.Json.Serialization.JsonPropertyName("tts_speaking_rate")]
-        public double? TtsSpeakingRate { get; set; }
-
-        /// <summary>
-        /// Per-agent post-process pitch-preserving time-stretch applied<br/>
-        /// to the synthesized audio in the worker before publishing.<br/>
-        /// Distinct from tts_speaking_rate: speaking_rate biases the<br/>
-        /// model's generation prosody (clipped syllables, pauses<br/>
-        /// preserved); playback_rate uniformly stretches the rendered<br/>
-        /// waveform (every sample, every pause, every breath). Range<br/>
-        /// 0.5..3.0; null means no post-process.
-        /// </summary>
-        [global::System.Text.Json.Serialization.JsonPropertyName("tts_playback_rate")]
-        public double? TtsPlaybackRate { get; set; }
-
-        /// <summary>
-        /// How long the agent waits after the caller stops talking<br/>
-        /// before generating a reply (the worker's endpointing<br/>
-        /// min_delay on the VAD path). Range 0.0..5.0. Null means<br/>
-        /// "use the stack default" — Deepgram VAD: 0.5s, or 0.75s<br/>
-        /// when `navigator_mode=true`. Ignored on Flux + Whisper<br/>
-        /// STT, which use semantic turn detection instead.
-        /// </summary>
-        [global::System.Text.Json.Serialization.JsonPropertyName("response_delay_seconds")]
-        public double? ResponseDelaySeconds { get; set; }
-
-        /// <summary>
-        /// Optional override for the per-agent silence-tolerance<br/>
-        /// before the worker tears the call down. Null means use<br/>
-        /// the platform default.
-        /// </summary>
-        [global::System.Text.Json.Serialization.JsonPropertyName("inactivity_timeout_seconds")]
-        public int? InactivityTimeoutSeconds { get; set; }
-
-        /// <summary>
-        /// Optional pre-mixed ambient bed. Null disables background<br/>
-        /// noise.
-        /// </summary>
-        [global::System.Text.Json.Serialization.JsonPropertyName("background_noise_preset")]
-        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Speechify.JsonConverters.AgentBackgroundNoisePresetJsonConverter))]
-        public global::Speechify.AgentBackgroundNoisePreset? BackgroundNoisePreset { get; set; }
-
-        /// <summary>
-        /// Volume of the background-noise bed. Null disables.
-        /// </summary>
-        [global::System.Text.Json.Serialization.JsonPropertyName("background_noise_volume")]
-        public double? BackgroundNoiseVolume { get; set; }
-
-        /// <summary>
-        /// Optional override for the streaming-STT stack this agent<br/>
-        /// dispatches with. Null means use the default (Whisper Large V3).<br/>
-        /// Pick `whisper-v3` to pin Whisper Large V3 explicitly, or<br/>
-        /// `gpt-realtime-whisper` for OpenAI's streaming Whisper-class STT.
-        /// </summary>
-        [global::System.Text.Json.Serialization.JsonPropertyName("stt_override")]
-        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Speechify.JsonConverters.AgentSttOverrideJsonConverter))]
-        public global::Speechify.AgentSttOverride? SttOverride { get; set; }
 
         /// <summary>
         /// 
@@ -332,19 +224,32 @@ namespace Speechify
         /// <param name="language">
         /// ISO 639-1 code, e.g. 'en'.
         /// </param>
-        /// <param name="llmProvider">
-        /// LLM backend the worker constructs for this agent. Null<br/>
-        /// means "use the platform default" (resolved server-side at<br/>
-        /// dispatch; today: Speechify GLM-5.2). `openai` and<br/>
-        /// `speechify` pair with a model from the allowed (provider,<br/>
-        /// model) table. `custom` points the worker at any OpenAI /<br/>
-        /// vLLM-compatible endpoint - see `llm_base_url`,<br/>
-        /// `llm_api_key`, `llm_extra_body`.
+        /// <param name="llm">
+        /// Language-model configuration. Omit the whole block on create to<br/>
+        /// run on the platform default model. On update (merge-patch) send<br/>
+        /// only the sub-fields you want to change: an explicit null clears a<br/>
+        /// nullable field to its default, a value sets it, and anything<br/>
+        /// omitted is left unchanged. `provider`/`model` are validated as a<br/>
+        /// pair, inheriting the omitted half from the stored value.
         /// </param>
-        /// <param name="voiceId">
-        /// Speechify voice slug.
+        /// <param name="tts">
+        /// Text-to-speech voice and delivery configuration.
         /// </param>
-        /// <param name="temperature"></param>
+        /// <param name="stt">
+        /// Speech-to-text configuration.
+        /// </param>
+        /// <param name="turnHandling">
+        /// Turn-handling and silence-timeout configuration.
+        /// </param>
+        /// <param name="memory">
+        /// Per-caller long-term memory configuration.
+        /// </param>
+        /// <param name="navigator">
+        /// Autonomous IVR-navigation configuration for outbound calls.
+        /// </param>
+        /// <param name="backgroundNoise">
+        /// Optional ambient background-noise bed mixed into the call.
+        /// </param>
         /// <param name="isPublic">
         /// When true, the `&lt;speechify-agent&gt;` web component can start a<br/>
         /// session against this agent without an API key, subject to<br/>
@@ -356,16 +261,6 @@ namespace Speechify
         /// that are allowed to start public sessions. Empty array<br/>
         /// with `is_public = true` means any origin is accepted —<br/>
         /// intended for open demos. No subdomain wildcards.
-        /// </param>
-        /// <param name="memoryEnabled">
-        /// When true, the post-call extractor writes durable facts about<br/>
-        /// each caller; at conversation-start the retriever injects the<br/>
-        /// top matches into the system prompt via the `{{memory}}`<br/>
-        /// template variable. Defaults to false.
-        /// </param>
-        /// <param name="memoryRetentionDays">
-        /// Maximum age (in days) of memories kept and surfaced to the<br/>
-        /// retriever. 0 disables the cap. Defaults to 90.
         /// </param>
         /// <param name="amd">
         /// Answering Machine Detection routing config for outbound voice<br/>
@@ -380,41 +275,8 @@ namespace Speechify
         /// OGG egress uploaded to the recordings bucket. Defaults<br/>
         /// FALSE for new agents (privacy by default).
         /// </param>
-        /// <param name="navigatorMode">
-        /// Tunes worker turn handling for autonomous outbound IVR<br/>
-        /// navigation - longer endpointing and no barge-in. The goal<br/>
-        /// itself lives in the agent's prompt; this flag is the<br/>
-        /// behaviour switch only. Defaults FALSE.
-        /// </param>
-        /// <param name="ivrMemoryEnabled">
-        /// Per-agent kill switch for the IVR-memory cache lookup<br/>
-        /// performed at AMD time. Defaults TRUE so existing navigator<br/>
-        /// agents keep their always-on behaviour. Set to false to skip<br/>
-        /// the cache and force every outbound dial on this agent to<br/>
-        /// start cold (LLM-driven navigation only).
-        /// </param>
         /// <param name="createdAt"></param>
         /// <param name="updatedAt"></param>
-        /// <param name="llmModel">
-        /// Chat model slug. Null means "use the platform default"<br/>
-        /// (resolved server-side at dispatch; today: Speechify<br/>
-        /// GLM-5.2). For `openai` / `speechify` it must be a slug from<br/>
-        /// the allowed table; for `custom` it is free-form (the<br/>
-        /// customer's endpoint owns the namespace).
-        /// </param>
-        /// <param name="llmBaseUrl">
-        /// Custom OpenAI/vLLM-compatible endpoint base URL. Non-null<br/>
-        /// only when `llm_provider` is `custom`.
-        /// </param>
-        /// <param name="llmApiKeySet">
-        /// Whether a bearer key is stored for the custom endpoint.<br/>
-        /// The key itself is write-only and never returned.
-        /// </param>
-        /// <param name="llmExtraBody">
-        /// JSON object forwarded verbatim to the custom endpoint as<br/>
-        /// the chat.completions `extra_body` (reasoning / sampling<br/>
-        /// knobs). Non-null only when `llm_provider` is `custom`.
-        /// </param>
         /// <param name="widgetConfig">
         /// Customer-editable appearance + behaviour payload for the<br/>
         /// embedded `&lt;speechify-agent&gt;` pill: button text, avatar style,<br/>
@@ -441,46 +303,6 @@ namespace Speechify
         /// secret itself is write-only — supplied on PATCH and never<br/>
         /// echoed back on reads.
         /// </param>
-        /// <param name="ttsSpeakingRate">
-        /// Per-agent override for the voice's default speaking rate<br/>
-        /// (0.5 = half speed, 2.0 = double, 1.0 = neutral). Null<br/>
-        /// means "use the voice's default rate".
-        /// </param>
-        /// <param name="ttsPlaybackRate">
-        /// Per-agent post-process pitch-preserving time-stretch applied<br/>
-        /// to the synthesized audio in the worker before publishing.<br/>
-        /// Distinct from tts_speaking_rate: speaking_rate biases the<br/>
-        /// model's generation prosody (clipped syllables, pauses<br/>
-        /// preserved); playback_rate uniformly stretches the rendered<br/>
-        /// waveform (every sample, every pause, every breath). Range<br/>
-        /// 0.5..3.0; null means no post-process.
-        /// </param>
-        /// <param name="responseDelaySeconds">
-        /// How long the agent waits after the caller stops talking<br/>
-        /// before generating a reply (the worker's endpointing<br/>
-        /// min_delay on the VAD path). Range 0.0..5.0. Null means<br/>
-        /// "use the stack default" — Deepgram VAD: 0.5s, or 0.75s<br/>
-        /// when `navigator_mode=true`. Ignored on Flux + Whisper<br/>
-        /// STT, which use semantic turn detection instead.
-        /// </param>
-        /// <param name="inactivityTimeoutSeconds">
-        /// Optional override for the per-agent silence-tolerance<br/>
-        /// before the worker tears the call down. Null means use<br/>
-        /// the platform default.
-        /// </param>
-        /// <param name="backgroundNoisePreset">
-        /// Optional pre-mixed ambient bed. Null disables background<br/>
-        /// noise.
-        /// </param>
-        /// <param name="backgroundNoiseVolume">
-        /// Volume of the background-noise bed. Null disables.
-        /// </param>
-        /// <param name="sttOverride">
-        /// Optional override for the streaming-STT stack this agent<br/>
-        /// dispatches with. Null means use the default (Whisper Large V3).<br/>
-        /// Pick `whisper-v3` to pin Whisper Large V3 explicitly, or<br/>
-        /// `gpt-realtime-whisper` for OpenAI's streaming Whisper-class STT.
-        /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
 #endif
@@ -491,34 +313,23 @@ namespace Speechify
             string prompt,
             string firstMessage,
             string language,
-            global::Speechify.AgentLlmProvider llmProvider,
-            string voiceId,
-            double temperature,
+            global::Speechify.AgentLLMConfig llm,
+            global::Speechify.AgentTTSConfig tts,
+            global::Speechify.AgentSTTConfig stt,
+            global::Speechify.AgentTurnHandlingConfig turnHandling,
+            global::Speechify.AgentMemoryConfig memory,
+            global::Speechify.AgentNavigatorConfig navigator,
+            global::Speechify.AgentBackgroundNoiseConfig backgroundNoise,
             bool isPublic,
             global::System.Collections.Generic.IList<string> allowedOrigins,
-            bool memoryEnabled,
-            int memoryRetentionDays,
             global::Speechify.AMDConfig amd,
             bool saveAudioRecording,
-            bool navigatorMode,
-            bool ivrMemoryEnabled,
             global::System.DateTime createdAt,
             global::System.DateTime updatedAt,
-            string? llmModel,
-            string? llmBaseUrl,
-            bool? llmApiKeySet,
-            object? llmExtraBody,
             global::Speechify.WidgetConfig? widgetConfig,
             global::System.Collections.Generic.IList<string>? hostnameAllowlist,
             string? webhookUrl,
-            bool? webhookSecretSet,
-            double? ttsSpeakingRate,
-            double? ttsPlaybackRate,
-            double? responseDelaySeconds,
-            int? inactivityTimeoutSeconds,
-            global::Speechify.AgentBackgroundNoisePreset? backgroundNoisePreset,
-            double? backgroundNoiseVolume,
-            global::Speechify.AgentSttOverride? sttOverride)
+            bool? webhookSecretSet)
         {
             this.Id = id ?? throw new global::System.ArgumentNullException(nameof(id));
             this.Name = name ?? throw new global::System.ArgumentNullException(nameof(name));
@@ -526,32 +337,21 @@ namespace Speechify
             this.Prompt = prompt ?? throw new global::System.ArgumentNullException(nameof(prompt));
             this.FirstMessage = firstMessage ?? throw new global::System.ArgumentNullException(nameof(firstMessage));
             this.Language = language ?? throw new global::System.ArgumentNullException(nameof(language));
-            this.LlmProvider = llmProvider;
-            this.LlmModel = llmModel;
-            this.LlmBaseUrl = llmBaseUrl;
-            this.LlmApiKeySet = llmApiKeySet;
-            this.LlmExtraBody = llmExtraBody;
-            this.VoiceId = voiceId ?? throw new global::System.ArgumentNullException(nameof(voiceId));
-            this.Temperature = temperature;
+            this.Llm = llm ?? throw new global::System.ArgumentNullException(nameof(llm));
+            this.Tts = tts ?? throw new global::System.ArgumentNullException(nameof(tts));
+            this.Stt = stt ?? throw new global::System.ArgumentNullException(nameof(stt));
+            this.TurnHandling = turnHandling ?? throw new global::System.ArgumentNullException(nameof(turnHandling));
+            this.Memory = memory ?? throw new global::System.ArgumentNullException(nameof(memory));
+            this.Navigator = navigator ?? throw new global::System.ArgumentNullException(nameof(navigator));
+            this.BackgroundNoise = backgroundNoise ?? throw new global::System.ArgumentNullException(nameof(backgroundNoise));
             this.WidgetConfig = widgetConfig;
             this.IsPublic = isPublic;
             this.AllowedOrigins = allowedOrigins ?? throw new global::System.ArgumentNullException(nameof(allowedOrigins));
             this.HostnameAllowlist = hostnameAllowlist;
-            this.MemoryEnabled = memoryEnabled;
-            this.MemoryRetentionDays = memoryRetentionDays;
             this.WebhookUrl = webhookUrl;
             this.WebhookSecretSet = webhookSecretSet;
             this.Amd = amd ?? throw new global::System.ArgumentNullException(nameof(amd));
             this.SaveAudioRecording = saveAudioRecording;
-            this.NavigatorMode = navigatorMode;
-            this.IvrMemoryEnabled = ivrMemoryEnabled;
-            this.TtsSpeakingRate = ttsSpeakingRate;
-            this.TtsPlaybackRate = ttsPlaybackRate;
-            this.ResponseDelaySeconds = responseDelaySeconds;
-            this.InactivityTimeoutSeconds = inactivityTimeoutSeconds;
-            this.BackgroundNoisePreset = backgroundNoisePreset;
-            this.BackgroundNoiseVolume = backgroundNoiseVolume;
-            this.SttOverride = sttOverride;
             this.CreatedAt = createdAt;
             this.UpdatedAt = updatedAt;
         }
