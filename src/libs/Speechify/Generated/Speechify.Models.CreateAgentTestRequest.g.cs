@@ -62,14 +62,6 @@ namespace Speechify
         public string? FolderId { get; set; }
 
         /// <summary>
-        /// Optional list of additional agents this test should also run<br/>
-        /// against. The owner agent (path param) is always attached<br/>
-        /// implicitly.
-        /// </summary>
-        [global::System.Text.Json.Serialization.JsonPropertyName("attached_agent_ids")]
-        public global::System.Collections.Generic.IList<string>? AttachedAgentIds { get; set; }
-
-        /// <summary>
         /// Additional properties that are not explicitly defined in the schema
         /// </summary>
         [global::System.Text.Json.Serialization.JsonExtensionData]
@@ -105,11 +97,6 @@ namespace Speechify
         /// Prefixed wire identifier (`folder_&lt;26 char Crockford base32&gt;`)<br/>
         /// of the folder to place the test in. Omit / null for root.
         /// </param>
-        /// <param name="attachedAgentIds">
-        /// Optional list of additional agents this test should also run<br/>
-        /// against. The owner agent (path param) is always attached<br/>
-        /// implicitly.
-        /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
 #endif
@@ -120,8 +107,7 @@ namespace Speechify
             string? description,
             global::Speechify.ToolMockConfig? toolMockConfig,
             object? variables,
-            string? folderId,
-            global::System.Collections.Generic.IList<string>? attachedAgentIds)
+            string? folderId)
         {
             this.Name = name ?? throw new global::System.ArgumentNullException(nameof(name));
             this.Description = description;
@@ -130,7 +116,6 @@ namespace Speechify
             this.ToolMockConfig = toolMockConfig;
             this.Variables = variables;
             this.FolderId = folderId;
-            this.AttachedAgentIds = attachedAgentIds;
         }
 
         /// <summary>
