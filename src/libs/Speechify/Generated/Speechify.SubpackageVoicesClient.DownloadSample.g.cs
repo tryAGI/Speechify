@@ -3,11 +3,11 @@
 
 namespace Speechify
 {
-    public partial class SubpackageTtsSubpackageTtsAudioClient
+    public partial class SubpackageVoicesClient
     {
 
 
-        private static readonly global::Speechify.EndPointSecurityRequirement s_StreamSecurityRequirement0 =
+        private static readonly global::Speechify.EndPointSecurityRequirement s_DownloadSampleSecurityRequirement0 =
             new global::Speechify.EndPointSecurityRequirement
             {
                 Authorizations = new global::Speechify.EndPointAuthorizationRequirement[]
@@ -21,52 +21,41 @@ namespace Speechify
                     },
                 },
             };
-        private static readonly global::Speechify.EndPointSecurityRequirement[] s_StreamSecurityRequirements =
+        private static readonly global::Speechify.EndPointSecurityRequirement[] s_DownloadSampleSecurityRequirements =
             new global::Speechify.EndPointSecurityRequirement[]
-            {                s_StreamSecurityRequirement0,
+            {                s_DownloadSampleSecurityRequirement0,
             };
-        partial void PrepareStreamArguments(
+        partial void PrepareDownloadSampleArguments(
             global::System.Net.Http.HttpClient httpClient,
-            ref global::Speechify.V1AudioStreamPostParametersAccept accept,
-            global::Speechify.GetStreamRequest request);
-        partial void PrepareStreamRequest(
+            ref string id);
+        partial void PrepareDownloadSampleRequest(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpRequestMessage httpRequestMessage,
-            global::Speechify.V1AudioStreamPostParametersAccept accept,
-            global::Speechify.GetStreamRequest request);
-        partial void ProcessStreamResponse(
+            string id);
+        partial void ProcessDownloadSampleResponse(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpResponseMessage httpResponseMessage);
 
-        partial void ProcessStreamResponseContent(
+        partial void ProcessDownloadSampleResponseContent(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpResponseMessage httpResponseMessage,
             ref byte[] content);
 
         /// <summary>
-        /// Stream Speech<br/>
-        /// Synthesize speech and stream the audio back as it is generated, for<br/>
-        /// low-latency playback. The Accept header selects the audio container;<br/>
-        /// the response is raw audio bytes (HTTP chunked). For Base64-encoded<br/>
-        /// audio with speech-mark metadata in a single JSON response, use<br/>
-        /// POST /v1/audio/speech.
+        /// Download Voice Sample<br/>
+        /// Download a personal (cloned) voice sample
         /// </summary>
-        /// <param name="accept"></param>
-        /// <param name="request"></param>
+        /// <param name="id"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
-        public async global::System.Threading.Tasks.Task<byte[]> StreamAsync(
-            global::Speechify.V1AudioStreamPostParametersAccept accept,
-
-            global::Speechify.GetStreamRequest request,
+        public async global::System.Threading.Tasks.Task<byte[]> DownloadSampleAsync(
+            string id,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
-            var __response = await StreamAsResponseAsync(
-                accept: accept,
-
-                request: request,
+            var __response = await DownloadSampleAsResponseAsync(
+                id: id,
                 requestOptions: requestOptions,
                 cancellationToken: cancellationToken
             ).ConfigureAwait(false);
@@ -74,39 +63,29 @@ namespace Speechify
             return __response.Body;
         }
         /// <summary>
-        /// Stream Speech<br/>
-        /// Synthesize speech and stream the audio back as it is generated, for<br/>
-        /// low-latency playback. The Accept header selects the audio container;<br/>
-        /// the response is raw audio bytes (HTTP chunked). For Base64-encoded<br/>
-        /// audio with speech-mark metadata in a single JSON response, use<br/>
-        /// POST /v1/audio/speech.
+        /// Download Voice Sample<br/>
+        /// Download a personal (cloned) voice sample
         /// </summary>
-        /// <param name="accept"></param>
-        /// <param name="request"></param>
+        /// <param name="id"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
-        public async global::System.Threading.Tasks.Task<global::System.IO.Stream> StreamAsStreamAsync(
-            global::Speechify.V1AudioStreamPostParametersAccept accept,
-
-            global::Speechify.GetStreamRequest request,
+        public async global::System.Threading.Tasks.Task<global::System.IO.Stream> DownloadSampleAsStreamAsync(
+            string id,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
-            request = request ?? throw new global::System.ArgumentNullException(nameof(request));
-
             PrepareArguments(
                 client: HttpClient);
-            PrepareStreamArguments(
+            PrepareDownloadSampleArguments(
                 httpClient: HttpClient,
-                accept: ref accept,
-                request: request);
+                id: ref id);
 
 
             var __authorizations = global::Speechify.EndPointSecurityResolver.ResolveAuthorizations(
                 availableAuthorizations: Authorizations,
-                securityRequirements: s_StreamSecurityRequirements,
-                operationName: "StreamAsync");
+                securityRequirements: s_DownloadSampleSecurityRequirements,
+                operationName: "DownloadSampleAsync");
 
             using var __timeoutCancellationTokenSource = global::Speechify.AutoSDKRequestOptionsSupport.CreateTimeoutCancellationTokenSource(
                 clientOptions: Options,
@@ -126,7 +105,7 @@ namespace Speechify
             {
 
                             var __pathBuilder = new global::Speechify.PathBuilder(
-                                path: "/v1/audio/stream",
+                                path: $"/v1/voices/{id}/sample",
                                 baseUri: HttpClient.BaseAddress);
                             var __path = __pathBuilder.ToString();
                 __path = global::Speechify.AutoSDKRequestOptionsSupport.AppendQueryParameters(
@@ -134,7 +113,7 @@ namespace Speechify
                     clientParameters: Options.QueryParameters,
                     requestParameters: requestOptions?.QueryParameters);
                 var __httpRequest = new global::System.Net.Http.HttpRequestMessage(
-                    method: global::System.Net.Http.HttpMethod.Post,
+                    method: global::System.Net.Http.HttpMethod.Get,
                     requestUri: new global::System.Uri(__path, global::System.UriKind.RelativeOrAbsolute));
 #if NET6_0_OR_GREATER
                 __httpRequest.Version = global::System.Net.HttpVersion.Version11;
@@ -157,15 +136,6 @@ namespace Speechify
                     __httpRequest.Headers.Add(__authorization.Name, __authorization.Value);
                 } 
             }
-
-                __httpRequest.Headers.TryAddWithoutValidation("Accept", accept.ToValueString());
-
-                            var __httpRequestContentBody = request.ToJson(JsonSerializerContext);
-                            var __httpRequestContent = new global::System.Net.Http.StringContent(
-                                content: __httpRequestContentBody,
-                                encoding: global::System.Text.Encoding.UTF8,
-                                mediaType: "application/json");
-                            __httpRequest.Content = __httpRequestContent;
                 global::Speechify.AutoSDKRequestOptionsSupport.ApplyHeaders(
                     request: __httpRequest,
                     clientHeaders: Options.Headers,
@@ -174,11 +144,10 @@ namespace Speechify
                 PrepareRequest(
                     client: HttpClient,
                     request: __httpRequest);
-                PrepareStreamRequest(
+                PrepareDownloadSampleRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
-                    accept: accept!,
-                    request: request);
+                    id: id!);
 
                 return __httpRequest;
             }
@@ -195,10 +164,10 @@ namespace Speechify
                     await global::Speechify.AutoSDKRequestOptionsSupport.OnBeforeRequestAsync(
                             clientOptions: Options,
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "Stream",
-                                methodName: "StreamAsync",
-                                pathTemplate: "\"/v1/audio/stream\"",
-                                httpMethod: "POST",
+                                operationId: "DownloadSample",
+                                methodName: "DownloadSampleAsync",
+                                pathTemplate: "$\"/v1/voices/{id}/sample\"",
+                                httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
                                 response: null,
@@ -229,10 +198,10 @@ namespace Speechify
                         await global::Speechify.AutoSDKRequestOptionsSupport.OnAfterErrorAsync(
                             clientOptions: Options,
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "Stream",
-                                methodName: "StreamAsync",
-                                pathTemplate: "\"/v1/audio/stream\"",
-                                httpMethod: "POST",
+                                operationId: "DownloadSample",
+                                methodName: "DownloadSampleAsync",
+                                pathTemplate: "$\"/v1/voices/{id}/sample\"",
+                                httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
                                 response: null,
@@ -270,10 +239,10 @@ namespace Speechify
                         await global::Speechify.AutoSDKRequestOptionsSupport.OnAfterErrorAsync(
                             clientOptions: Options,
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "Stream",
-                                methodName: "StreamAsync",
-                                pathTemplate: "\"/v1/audio/stream\"",
-                                httpMethod: "POST",
+                                operationId: "DownloadSample",
+                                methodName: "DownloadSampleAsync",
+                                pathTemplate: "$\"/v1/voices/{id}/sample\"",
+                                httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
                                 response: __response,
@@ -310,7 +279,7 @@ namespace Speechify
                 ProcessResponse(
                     client: HttpClient,
                     response: __response);
-                ProcessStreamResponse(
+                ProcessDownloadSampleResponse(
                     httpClient: HttpClient,
                     httpResponseMessage: __response);
                 if (__response.IsSuccessStatusCode)
@@ -318,10 +287,10 @@ namespace Speechify
                     await global::Speechify.AutoSDKRequestOptionsSupport.OnAfterSuccessAsync(
                             clientOptions: Options,
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "Stream",
-                                methodName: "StreamAsync",
-                                pathTemplate: "\"/v1/audio/stream\"",
-                                httpMethod: "POST",
+                                operationId: "DownloadSample",
+                                methodName: "DownloadSampleAsync",
+                                pathTemplate: "$\"/v1/voices/{id}/sample\"",
+                                httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
                                 response: __response,
@@ -340,10 +309,10 @@ namespace Speechify
                     await global::Speechify.AutoSDKRequestOptionsSupport.OnAfterErrorAsync(
                             clientOptions: Options,
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "Stream",
-                                methodName: "StreamAsync",
-                                pathTemplate: "\"/v1/audio/stream\"",
-                                httpMethod: "POST",
+                                operationId: "DownloadSample",
+                                methodName: "DownloadSampleAsync",
+                                pathTemplate: "$\"/v1/voices/{id}/sample\"",
+                                httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
                                 response: __response,
@@ -426,43 +395,6 @@ namespace Speechify
                                     innerException: __exception_401,
                                     responseBody: __content_401,
                                     responseObject: __value_401,
-                                    responseHeaders: global::System.Linq.Enumerable.ToDictionary(
-                                        __response.Headers,
-                                        h => h.Key,
-                                        h => h.Value));
-                            }
-                            // The workspace has insufficient credits, or the request needs a plan tier the workspace is not on (e.g. voice cloning). Distinct from `Forbidden` so SDK consumers can drive upgrade UX. 
-                            if ((int)__response.StatusCode == 402)
-                            {
-                                string? __content_402 = null;
-                                global::System.Exception? __exception_402 = null;
-                                global::Speechify.Error? __value_402 = null;
-                                try
-                                {
-                                    if (__effectiveReadResponseAsString)
-                                    {
-                                        __content_402 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
-                                        __value_402 = global::Speechify.Error.FromJson(__content_402, JsonSerializerContext);
-                                    }
-                                    else
-                                    {
-                                        __content_402 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
-
-                                        __value_402 = global::Speechify.Error.FromJson(__content_402, JsonSerializerContext);
-                                    }
-                                }
-                                catch (global::System.Exception __ex)
-                                {
-                                    __exception_402 = __ex;
-                                }
-
-
-                                throw global::Speechify.ApiException<global::Speechify.Error>.Create(
-                                    statusCode: __response.StatusCode,
-                                    message: __content_402 ?? __response.ReasonPhrase ?? string.Empty,
-                                    innerException: __exception_402,
-                                    responseBody: __content_402,
-                                    responseObject: __value_402,
                                     responseHeaders: global::System.Linq.Enumerable.ToDictionary(
                                         __response.Headers,
                                         h => h.Key,
@@ -742,39 +674,29 @@ namespace Speechify
             }
         }
         /// <summary>
-        /// Stream Speech<br/>
-        /// Synthesize speech and stream the audio back as it is generated, for<br/>
-        /// low-latency playback. The Accept header selects the audio container;<br/>
-        /// the response is raw audio bytes (HTTP chunked). For Base64-encoded<br/>
-        /// audio with speech-mark metadata in a single JSON response, use<br/>
-        /// POST /v1/audio/speech.
+        /// Download Voice Sample<br/>
+        /// Download a personal (cloned) voice sample
         /// </summary>
-        /// <param name="accept"></param>
-        /// <param name="request"></param>
+        /// <param name="id"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
-        public async global::System.Threading.Tasks.Task<global::Speechify.AutoSDKHttpResponse<byte[]>> StreamAsResponseAsync(
-            global::Speechify.V1AudioStreamPostParametersAccept accept,
-
-            global::Speechify.GetStreamRequest request,
+        public async global::System.Threading.Tasks.Task<global::Speechify.AutoSDKHttpResponse<byte[]>> DownloadSampleAsResponseAsync(
+            string id,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
-            request = request ?? throw new global::System.ArgumentNullException(nameof(request));
-
             PrepareArguments(
                 client: HttpClient);
-            PrepareStreamArguments(
+            PrepareDownloadSampleArguments(
                 httpClient: HttpClient,
-                accept: ref accept,
-                request: request);
+                id: ref id);
 
 
             var __authorizations = global::Speechify.EndPointSecurityResolver.ResolveAuthorizations(
                 availableAuthorizations: Authorizations,
-                securityRequirements: s_StreamSecurityRequirements,
-                operationName: "StreamAsync");
+                securityRequirements: s_DownloadSampleSecurityRequirements,
+                operationName: "DownloadSampleAsync");
 
             using var __timeoutCancellationTokenSource = global::Speechify.AutoSDKRequestOptionsSupport.CreateTimeoutCancellationTokenSource(
                 clientOptions: Options,
@@ -794,7 +716,7 @@ namespace Speechify
             {
 
                             var __pathBuilder = new global::Speechify.PathBuilder(
-                                path: "/v1/audio/stream",
+                                path: $"/v1/voices/{id}/sample",
                                 baseUri: HttpClient.BaseAddress);
                             var __path = __pathBuilder.ToString();
                 __path = global::Speechify.AutoSDKRequestOptionsSupport.AppendQueryParameters(
@@ -802,7 +724,7 @@ namespace Speechify
                     clientParameters: Options.QueryParameters,
                     requestParameters: requestOptions?.QueryParameters);
                 var __httpRequest = new global::System.Net.Http.HttpRequestMessage(
-                    method: global::System.Net.Http.HttpMethod.Post,
+                    method: global::System.Net.Http.HttpMethod.Get,
                     requestUri: new global::System.Uri(__path, global::System.UriKind.RelativeOrAbsolute));
 #if NET6_0_OR_GREATER
                 __httpRequest.Version = global::System.Net.HttpVersion.Version11;
@@ -825,15 +747,6 @@ namespace Speechify
                     __httpRequest.Headers.Add(__authorization.Name, __authorization.Value);
                 } 
             }
-
-                __httpRequest.Headers.TryAddWithoutValidation("Accept", accept.ToValueString());
-
-                            var __httpRequestContentBody = request.ToJson(JsonSerializerContext);
-                            var __httpRequestContent = new global::System.Net.Http.StringContent(
-                                content: __httpRequestContentBody,
-                                encoding: global::System.Text.Encoding.UTF8,
-                                mediaType: "application/json");
-                            __httpRequest.Content = __httpRequestContent;
                 global::Speechify.AutoSDKRequestOptionsSupport.ApplyHeaders(
                     request: __httpRequest,
                     clientHeaders: Options.Headers,
@@ -842,11 +755,10 @@ namespace Speechify
                 PrepareRequest(
                     client: HttpClient,
                     request: __httpRequest);
-                PrepareStreamRequest(
+                PrepareDownloadSampleRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
-                    accept: accept!,
-                    request: request);
+                    id: id!);
 
                 return __httpRequest;
             }
@@ -863,10 +775,10 @@ namespace Speechify
                     await global::Speechify.AutoSDKRequestOptionsSupport.OnBeforeRequestAsync(
                             clientOptions: Options,
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "Stream",
-                                methodName: "StreamAsync",
-                                pathTemplate: "\"/v1/audio/stream\"",
-                                httpMethod: "POST",
+                                operationId: "DownloadSample",
+                                methodName: "DownloadSampleAsync",
+                                pathTemplate: "$\"/v1/voices/{id}/sample\"",
+                                httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
                                 response: null,
@@ -897,10 +809,10 @@ namespace Speechify
                         await global::Speechify.AutoSDKRequestOptionsSupport.OnAfterErrorAsync(
                             clientOptions: Options,
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "Stream",
-                                methodName: "StreamAsync",
-                                pathTemplate: "\"/v1/audio/stream\"",
-                                httpMethod: "POST",
+                                operationId: "DownloadSample",
+                                methodName: "DownloadSampleAsync",
+                                pathTemplate: "$\"/v1/voices/{id}/sample\"",
+                                httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
                                 response: null,
@@ -938,10 +850,10 @@ namespace Speechify
                         await global::Speechify.AutoSDKRequestOptionsSupport.OnAfterErrorAsync(
                             clientOptions: Options,
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "Stream",
-                                methodName: "StreamAsync",
-                                pathTemplate: "\"/v1/audio/stream\"",
-                                httpMethod: "POST",
+                                operationId: "DownloadSample",
+                                methodName: "DownloadSampleAsync",
+                                pathTemplate: "$\"/v1/voices/{id}/sample\"",
+                                httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
                                 response: __response,
@@ -978,7 +890,7 @@ namespace Speechify
                 ProcessResponse(
                     client: HttpClient,
                     response: __response);
-                ProcessStreamResponse(
+                ProcessDownloadSampleResponse(
                     httpClient: HttpClient,
                     httpResponseMessage: __response);
                 if (__response.IsSuccessStatusCode)
@@ -986,10 +898,10 @@ namespace Speechify
                     await global::Speechify.AutoSDKRequestOptionsSupport.OnAfterSuccessAsync(
                             clientOptions: Options,
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "Stream",
-                                methodName: "StreamAsync",
-                                pathTemplate: "\"/v1/audio/stream\"",
-                                httpMethod: "POST",
+                                operationId: "DownloadSample",
+                                methodName: "DownloadSampleAsync",
+                                pathTemplate: "$\"/v1/voices/{id}/sample\"",
+                                httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
                                 response: __response,
@@ -1008,10 +920,10 @@ namespace Speechify
                     await global::Speechify.AutoSDKRequestOptionsSupport.OnAfterErrorAsync(
                             clientOptions: Options,
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "Stream",
-                                methodName: "StreamAsync",
-                                pathTemplate: "\"/v1/audio/stream\"",
-                                httpMethod: "POST",
+                                operationId: "DownloadSample",
+                                methodName: "DownloadSampleAsync",
+                                pathTemplate: "$\"/v1/voices/{id}/sample\"",
+                                httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
                                 response: __response,
@@ -1094,43 +1006,6 @@ namespace Speechify
                                     innerException: __exception_401,
                                     responseBody: __content_401,
                                     responseObject: __value_401,
-                                    responseHeaders: global::System.Linq.Enumerable.ToDictionary(
-                                        __response.Headers,
-                                        h => h.Key,
-                                        h => h.Value));
-                            }
-                            // The workspace has insufficient credits, or the request needs a plan tier the workspace is not on (e.g. voice cloning). Distinct from `Forbidden` so SDK consumers can drive upgrade UX. 
-                            if ((int)__response.StatusCode == 402)
-                            {
-                                string? __content_402 = null;
-                                global::System.Exception? __exception_402 = null;
-                                global::Speechify.Error? __value_402 = null;
-                                try
-                                {
-                                    if (__effectiveReadResponseAsString)
-                                    {
-                                        __content_402 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
-                                        __value_402 = global::Speechify.Error.FromJson(__content_402, JsonSerializerContext);
-                                    }
-                                    else
-                                    {
-                                        __content_402 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
-
-                                        __value_402 = global::Speechify.Error.FromJson(__content_402, JsonSerializerContext);
-                                    }
-                                }
-                                catch (global::System.Exception __ex)
-                                {
-                                    __exception_402 = __ex;
-                                }
-
-
-                                throw global::Speechify.ApiException<global::Speechify.Error>.Create(
-                                    statusCode: __response.StatusCode,
-                                    message: __content_402 ?? __response.ReasonPhrase ?? string.Empty,
-                                    innerException: __exception_402,
-                                    responseBody: __content_402,
-                                    responseObject: __value_402,
                                     responseHeaders: global::System.Linq.Enumerable.ToDictionary(
                                         __response.Headers,
                                         h => h.Key,
@@ -1367,7 +1242,7 @@ namespace Speechify
                 #endif
                                 ).ConfigureAwait(false);
 
-                                ProcessStreamResponseContent(
+                                ProcessDownloadSampleResponseContent(
                                     httpClient: HttpClient,
                                     httpResponseMessage: __response,
                                     content: ref __content);
@@ -1445,62 +1320,6 @@ namespace Speechify
             {
                 __httpRequest?.Dispose();
             }
-        }
-        /// <summary>
-        /// Stream Speech<br/>
-        /// Synthesize speech and stream the audio back as it is generated, for<br/>
-        /// low-latency playback. The Accept header selects the audio container;<br/>
-        /// the response is raw audio bytes (HTTP chunked). For Base64-encoded<br/>
-        /// audio with speech-mark metadata in a single JSON response, use<br/>
-        /// POST /v1/audio/speech.
-        /// </summary>
-        /// <param name="accept"></param>
-        /// <param name="input">
-        /// Plain text or SSML to be synthesized to speech.<br/>
-        /// Refer to https://docs.speechify.ai/docs/api-limits for the input size limits.<br/>
-        /// Emotion, Pitch and Speed Rate are configured in the ssml input, please refer to the ssml documentation for more information: https://docs.speechify.ai/docs/ssml#prosody
-        /// </param>
-        /// <param name="language">
-        /// Language of the input. Follow the format of an ISO 639-1 language code and an ISO 3166-1 region code, separated by a hyphen, e.g. en-US.<br/>
-        /// Please refer to the list of the supported languages and recommendations regarding this parameter: https://docs.speechify.ai/docs/language-support.
-        /// </param>
-        /// <param name="model">
-        /// Model used for audio synthesis. `simba-english` is optimized for English, `simba-multilingual` for non-English or mixed input. `simba-3.0` is the streaming-native model with lower TTFB and richer expressivity. Currently English only; multilingual coming soon. Non-English voices return 400 until multilingual support ships.<br/>
-        /// Default Value: simba-english
-        /// </param>
-        /// <param name="options">
-        /// GetStreamOptionsRequest is the wrapper for request parameters to the client
-        /// </param>
-        /// <param name="voiceId">
-        /// Id of the voice to be used for synthesizing speech. Refer to /v1/voices endpoint for available voices
-        /// </param>
-        /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
-        /// <param name="cancellationToken">The token to cancel the operation with</param>
-        /// <exception cref="global::System.InvalidOperationException"></exception>
-        public async global::System.Threading.Tasks.Task<byte[]> StreamAsync(
-            global::Speechify.V1AudioStreamPostParametersAccept accept,
-            string input,
-            string voiceId,
-            string? language = default,
-            global::Speechify.GetStreamRequestModel? model = default,
-            global::Speechify.GetStreamOptionsRequest? options = default,
-            global::Speechify.AutoSDKRequestOptions? requestOptions = default,
-            global::System.Threading.CancellationToken cancellationToken = default)
-        {
-            var __request = new global::Speechify.GetStreamRequest
-            {
-                Input = input,
-                Language = language,
-                Model = model,
-                Options = options,
-                VoiceId = voiceId,
-            };
-
-            return await StreamAsync(
-                accept: accept,
-                request: __request,
-                requestOptions: requestOptions,
-                cancellationToken: cancellationToken).ConfigureAwait(false);
         }
     }
 }

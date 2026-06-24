@@ -3,7 +3,7 @@
 
 namespace Speechify
 {
-    public partial class SubpackageTtsSubpackageTtsVoicesClient
+    public partial class SubpackageVoicesClient
     {
 
 

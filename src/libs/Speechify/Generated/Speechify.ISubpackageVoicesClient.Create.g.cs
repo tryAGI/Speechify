@@ -2,7 +2,7 @@
 
 namespace Speechify
 {
-    public partial interface ISubpackageTtsSubpackageTtsVoicesClient
+    public partial interface ISubpackageVoicesClient
     {
         /// <summary>
         /// Create Voice<br/>
