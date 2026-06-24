@@ -585,11 +585,6 @@ namespace Speechify
         /// Prefixed wire identifier (`folder_&lt;26 char Crockford base32&gt;`)<br/>
         /// of the folder to place the test in. Omit / null for root.
         /// </param>
-        /// <param name="attachedAgentIds">
-        /// Optional list of additional agents this test should also run<br/>
-        /// against. The owner agent (path param) is always attached<br/>
-        /// implicitly.
-        /// </param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::System.InvalidOperationException"></exception>
@@ -602,7 +597,6 @@ namespace Speechify
             global::Speechify.ToolMockConfig? toolMockConfig = default,
             object? variables = default,
             string? folderId = default,
-            global::System.Collections.Generic.IList<string>? attachedAgentIds = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
@@ -615,7 +609,6 @@ namespace Speechify
                 ToolMockConfig = toolMockConfig,
                 Variables = variables,
                 FolderId = folderId,
-                AttachedAgentIds = attachedAgentIds,
             };
 
             return await CreateTestAsync(
