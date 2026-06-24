@@ -54,6 +54,7 @@ namespace Speechify
         /// portability story.<br/>
         /// - `livekit` - Provisioned by LiveKit's native phone-number API.<br/>
         /// - `twilio` - Backed by a Twilio Elastic SIP Trunk on the customer's account.<br/>
+        /// - `telnyx` - Backed by a Telnyx FQDN connection on the customer's account.<br/>
         /// - `byoc` - Any SIP provider with a customer-managed trunk.
         /// </param>
         /// <param name="direction">

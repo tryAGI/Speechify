@@ -661,6 +661,10 @@ namespace Speechify
         /// <param name="label">
         /// Optional human-readable label.
         /// </param>
+        /// <param name="provider">
+        /// Which carrier's Speechify-managed account to buy on. Optional;<br/>
+        /// defaults to `twilio_purchased`.
+        /// </param>
         /// <param name="agentId">
         /// Optional agent to bind the number to at purchase time.<br/>
         /// Prefixed wire identifier (`agent_&lt;26 char Crockford base32&gt;`).
@@ -671,6 +675,7 @@ namespace Speechify
         public async global::System.Threading.Tasks.Task<global::Speechify.PhoneNumber> PurchaseAsync(
             string e164,
             string? label = default,
+            global::Speechify.PurchasedPhoneNumberProvider? provider = default,
             string? agentId = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
@@ -679,6 +684,7 @@ namespace Speechify
             {
                 E164 = e164,
                 Label = label,
+                Provider = provider,
                 AgentId = agentId,
             };
 

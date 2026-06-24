@@ -11,8 +11,9 @@ namespace Speechify
     {
         /// <summary>
         /// The phone number in E.164 format. For `provider=livekit` this<br/>
-        /// is the number you want LiveKit to purchase. For `provider=twilio`<br/>
-        /// and `provider=byoc` it is the number you already own.
+        /// is the number you want LiveKit to purchase. For `provider=twilio`,<br/>
+        /// `provider=telnyx`, and `provider=byoc` it is the number you<br/>
+        /// already own.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("e164")]
         [global::System.Text.Json.Serialization.JsonRequired]
@@ -23,8 +24,10 @@ namespace Speechify
         /// and portability path.<br/>
         /// - `livekit` - LiveKit owns the carrier relationship; US inbound only.<br/>
         /// - `twilio` - Customer's own Twilio number bridged via Elastic SIP Trunk.<br/>
+        /// - `telnyx` - Customer's own Telnyx number bridged via a Telnyx FQDN connection.<br/>
         /// - `byoc` - Any SIP provider using a customer-supplied trunk.<br/>
         /// - `twilio_purchased` - Bought through `POST /v1/agents/phone-numbers/purchase` on Speechify's master Twilio account; billed to Speechify.<br/>
+        /// - `telnyx_purchased` - Bought through `POST /v1/agents/phone-numbers/purchase` (with `provider=telnyx`) on Speechify's master Telnyx account; billed to Speechify.<br/>
         /// - `verified_caller_id` - Customer-verified outbound caller ID on<br/>
         ///   their own Twilio account (Twilio's OutgoingCallerIds resource).<br/>
         ///   Server-determined at import time: when an `e164` submitted with<br/>
@@ -49,7 +52,8 @@ namespace Speechify
         /// <summary>
         /// For `provider=byoc`: the SIP trunk to bind this number to.<br/>
         /// Prefixed wire identifier (`trunk_&lt;26 char Crockford base32&gt;`).<br/>
-        /// Not required for `provider=livekit` or `provider=twilio`.
+        /// Not required for `provider=livekit`, `provider=twilio`, or<br/>
+        /// `provider=telnyx`.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("trunk_id")]
         public string? TrunkId { get; set; }
@@ -72,6 +76,17 @@ namespace Speechify
         public global::Speechify.TwilioImportSpec? Twilio { get; set; }
 
         /// <summary>
+        /// Telnyx connection details for the bring-your-own-connection import<br/>
+        /// flow. Used only when `provider=telnyx`. You provision an FQDN<br/>
+        /// connection on your Telnyx account whose inbound calls forward to<br/>
+        /// Speechify's LiveKit SIP ingress, assign the number to it, then import<br/>
+        /// by passing the connection's id. A second number on the same connection<br/>
+        /// reuses the one shared trunk + dispatch rule.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("telnyx")]
+        public global::Speechify.TelnyxImportSpec? Telnyx { get; set; }
+
+        /// <summary>
         /// Additional properties that are not explicitly defined in the schema
         /// </summary>
         [global::System.Text.Json.Serialization.JsonExtensionData]
@@ -82,16 +97,19 @@ namespace Speechify
         /// </summary>
         /// <param name="e164">
         /// The phone number in E.164 format. For `provider=livekit` this<br/>
-        /// is the number you want LiveKit to purchase. For `provider=twilio`<br/>
-        /// and `provider=byoc` it is the number you already own.
+        /// is the number you want LiveKit to purchase. For `provider=twilio`,<br/>
+        /// `provider=telnyx`, and `provider=byoc` it is the number you<br/>
+        /// already own.
         /// </param>
         /// <param name="provider">
         /// Which provider the number came from. Determines the provisioning<br/>
         /// and portability path.<br/>
         /// - `livekit` - LiveKit owns the carrier relationship; US inbound only.<br/>
         /// - `twilio` - Customer's own Twilio number bridged via Elastic SIP Trunk.<br/>
+        /// - `telnyx` - Customer's own Telnyx number bridged via a Telnyx FQDN connection.<br/>
         /// - `byoc` - Any SIP provider using a customer-supplied trunk.<br/>
         /// - `twilio_purchased` - Bought through `POST /v1/agents/phone-numbers/purchase` on Speechify's master Twilio account; billed to Speechify.<br/>
+        /// - `telnyx_purchased` - Bought through `POST /v1/agents/phone-numbers/purchase` (with `provider=telnyx`) on Speechify's master Telnyx account; billed to Speechify.<br/>
         /// - `verified_caller_id` - Customer-verified outbound caller ID on<br/>
         ///   their own Twilio account (Twilio's OutgoingCallerIds resource).<br/>
         ///   Server-determined at import time: when an `e164` submitted with<br/>
@@ -108,7 +126,8 @@ namespace Speechify
         /// <param name="trunkId">
         /// For `provider=byoc`: the SIP trunk to bind this number to.<br/>
         /// Prefixed wire identifier (`trunk_&lt;26 char Crockford base32&gt;`).<br/>
-        /// Not required for `provider=livekit` or `provider=twilio`.
+        /// Not required for `provider=livekit`, `provider=twilio`, or<br/>
+        /// `provider=telnyx`.
         /// </param>
         /// <param name="agentId">
         /// Optional agent to bind on import. Prefixed wire identifier<br/>
@@ -121,6 +140,14 @@ namespace Speechify
         /// pointing at LiveKit's SIP endpoint, then stored for future trunk<br/>
         /// management operations.
         /// </param>
+        /// <param name="telnyx">
+        /// Telnyx connection details for the bring-your-own-connection import<br/>
+        /// flow. Used only when `provider=telnyx`. You provision an FQDN<br/>
+        /// connection on your Telnyx account whose inbound calls forward to<br/>
+        /// Speechify's LiveKit SIP ingress, assign the number to it, then import<br/>
+        /// by passing the connection's id. A second number on the same connection<br/>
+        /// reuses the one shared trunk + dispatch rule.
+        /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
 #endif
@@ -130,7 +157,8 @@ namespace Speechify
             string? label,
             string? trunkId,
             string? agentId,
-            global::Speechify.TwilioImportSpec? twilio)
+            global::Speechify.TwilioImportSpec? twilio,
+            global::Speechify.TelnyxImportSpec? telnyx)
         {
             this.E164 = e164 ?? throw new global::System.ArgumentNullException(nameof(e164));
             this.Provider = provider;
@@ -138,6 +166,7 @@ namespace Speechify
             this.TrunkId = trunkId;
             this.AgentId = agentId;
             this.Twilio = twilio;
+            this.Telnyx = telnyx;
         }
 
         /// <summary>

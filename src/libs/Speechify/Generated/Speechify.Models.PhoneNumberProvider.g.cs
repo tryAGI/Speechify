@@ -8,8 +8,10 @@ namespace Speechify
     /// and portability path.<br/>
     /// - `livekit` - LiveKit owns the carrier relationship; US inbound only.<br/>
     /// - `twilio` - Customer's own Twilio number bridged via Elastic SIP Trunk.<br/>
+    /// - `telnyx` - Customer's own Telnyx number bridged via a Telnyx FQDN connection.<br/>
     /// - `byoc` - Any SIP provider using a customer-supplied trunk.<br/>
     /// - `twilio_purchased` - Bought through `POST /v1/agents/phone-numbers/purchase` on Speechify's master Twilio account; billed to Speechify.<br/>
+    /// - `telnyx_purchased` - Bought through `POST /v1/agents/phone-numbers/purchase` (with `provider=telnyx`) on Speechify's master Telnyx account; billed to Speechify.<br/>
     /// - `verified_caller_id` - Customer-verified outbound caller ID on<br/>
     ///   their own Twilio account (Twilio's OutgoingCallerIds resource).<br/>
     ///   Server-determined at import time: when an `e164` submitted with<br/>
@@ -30,6 +32,14 @@ namespace Speechify
         /// 
         /// </summary>
         Livekit,
+        /// <summary>
+        /// 
+        /// </summary>
+        Telnyx,
+        /// <summary>
+        /// 
+        /// </summary>
+        TelnyxPurchased,
         /// <summary>
         /// 
         /// </summary>
@@ -58,6 +68,8 @@ namespace Speechify
             {
                 PhoneNumberProvider.Byoc => "byoc",
                 PhoneNumberProvider.Livekit => "livekit",
+                PhoneNumberProvider.Telnyx => "telnyx",
+                PhoneNumberProvider.TelnyxPurchased => "telnyx_purchased",
                 PhoneNumberProvider.Twilio => "twilio",
                 PhoneNumberProvider.TwilioPurchased => "twilio_purchased",
                 PhoneNumberProvider.VerifiedCallerId => "verified_caller_id",
@@ -73,6 +85,8 @@ namespace Speechify
             {
                 "byoc" => PhoneNumberProvider.Byoc,
                 "livekit" => PhoneNumberProvider.Livekit,
+                "telnyx" => PhoneNumberProvider.Telnyx,
+                "telnyx_purchased" => PhoneNumberProvider.TelnyxPurchased,
                 "twilio" => PhoneNumberProvider.Twilio,
                 "twilio_purchased" => PhoneNumberProvider.TwilioPurchased,
                 "verified_caller_id" => PhoneNumberProvider.VerifiedCallerId,

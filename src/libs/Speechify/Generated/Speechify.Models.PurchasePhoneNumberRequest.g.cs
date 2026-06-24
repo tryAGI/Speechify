@@ -23,6 +23,14 @@ namespace Speechify
         public string? Label { get; set; }
 
         /// <summary>
+        /// Which carrier's Speechify-managed account to buy on. Optional;<br/>
+        /// defaults to `twilio_purchased`.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("provider")]
+        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Speechify.JsonConverters.PurchasedPhoneNumberProviderJsonConverter))]
+        public global::Speechify.PurchasedPhoneNumberProvider? Provider { get; set; }
+
+        /// <summary>
         /// Optional agent to bind the number to at purchase time.<br/>
         /// Prefixed wire identifier (`agent_&lt;26 char Crockford base32&gt;`).
         /// </summary>
@@ -44,6 +52,10 @@ namespace Speechify
         /// <param name="label">
         /// Optional human-readable label.
         /// </param>
+        /// <param name="provider">
+        /// Which carrier's Speechify-managed account to buy on. Optional;<br/>
+        /// defaults to `twilio_purchased`.
+        /// </param>
         /// <param name="agentId">
         /// Optional agent to bind the number to at purchase time.<br/>
         /// Prefixed wire identifier (`agent_&lt;26 char Crockford base32&gt;`).
@@ -54,10 +66,12 @@ namespace Speechify
         public PurchasePhoneNumberRequest(
             string e164,
             string? label,
+            global::Speechify.PurchasedPhoneNumberProvider? provider,
             string? agentId)
         {
             this.E164 = e164 ?? throw new global::System.ArgumentNullException(nameof(e164));
             this.Label = label;
+            this.Provider = provider;
             this.AgentId = agentId;
         }
 

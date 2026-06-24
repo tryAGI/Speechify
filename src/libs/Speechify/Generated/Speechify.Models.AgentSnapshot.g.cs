@@ -102,12 +102,6 @@ namespace Speechify
         public int? MemoryRetentionDays { get; set; }
 
         /// <summary>
-        /// Per-agent speaking-rate override at call time; null = the resolved voice's default rate.
-        /// </summary>
-        [global::System.Text.Json.Serialization.JsonPropertyName("tts_speaking_rate")]
-        public double? TtsSpeakingRate { get; set; }
-
-        /// <summary>
         /// Post-process time-stretch at call time; null = no time-stretch (1x).
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("tts_playback_rate")]
@@ -203,9 +197,6 @@ namespace Speechify
         /// <param name="temperature"></param>
         /// <param name="memoryEnabled"></param>
         /// <param name="memoryRetentionDays"></param>
-        /// <param name="ttsSpeakingRate">
-        /// Per-agent speaking-rate override at call time; null = the resolved voice's default rate.
-        /// </param>
         /// <param name="ttsPlaybackRate">
         /// Post-process time-stretch at call time; null = no time-stretch (1x).
         /// </param>
@@ -251,7 +242,6 @@ namespace Speechify
             double? temperature,
             bool? memoryEnabled,
             int? memoryRetentionDays,
-            double? ttsSpeakingRate,
             double? ttsPlaybackRate,
             double? responseDelaySeconds,
             string? sttOverride,
@@ -277,7 +267,6 @@ namespace Speechify
             this.Temperature = temperature;
             this.MemoryEnabled = memoryEnabled;
             this.MemoryRetentionDays = memoryRetentionDays;
-            this.TtsSpeakingRate = ttsSpeakingRate;
             this.TtsPlaybackRate = ttsPlaybackRate;
             this.ResponseDelaySeconds = responseDelaySeconds;
             this.SttOverride = sttOverride;
