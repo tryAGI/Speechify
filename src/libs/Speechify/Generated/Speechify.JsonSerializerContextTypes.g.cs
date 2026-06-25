@@ -1424,19 +1424,19 @@ namespace Speechify
         /// <summary>
         /// 
         /// </summary>
-        public global::Speechify.AvailablePhoneNumber? Type349 { get; set; }
+        public global::Speechify.PurchasedPhoneNumberProvider? Type349 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::Speechify.SearchAvailablePhoneNumbersResponse? Type350 { get; set; }
+        public global::Speechify.AvailablePhoneNumber? Type350 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::System.Collections.Generic.IList<global::Speechify.AvailablePhoneNumber>? Type351 { get; set; }
+        public global::Speechify.SearchAvailablePhoneNumbersResponse? Type351 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::Speechify.PurchasedPhoneNumberProvider? Type352 { get; set; }
+        public global::System.Collections.Generic.IList<global::Speechify.AvailablePhoneNumber>? Type352 { get; set; }
         /// <summary>
         /// 
         /// </summary>

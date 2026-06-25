@@ -43,6 +43,16 @@ namespace Speechify
         public required string IsoCountry { get; set; }
 
         /// <summary>
+        /// The purchasable carrier this number comes from. Pass it back<br/>
+        /// verbatim as `provider` on the purchase request so the buy is<br/>
+        /// placed on the matching Speechify-managed account.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("provider")]
+        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Speechify.JsonConverters.PurchasedPhoneNumberProviderJsonConverter))]
+        [global::System.Text.Json.Serialization.JsonRequired]
+        public required global::Speechify.PurchasedPhoneNumberProvider Provider { get; set; }
+
+        /// <summary>
         /// Additional properties that are not explicitly defined in the schema
         /// </summary>
         [global::System.Text.Json.Serialization.JsonExtensionData]
@@ -56,6 +66,11 @@ namespace Speechify
         /// </param>
         /// <param name="isoCountry">
         /// ISO-3166 alpha-2 country code.
+        /// </param>
+        /// <param name="provider">
+        /// The purchasable carrier this number comes from. Pass it back<br/>
+        /// verbatim as `provider` on the purchase request so the buy is<br/>
+        /// placed on the matching Speechify-managed account.
         /// </param>
         /// <param name="friendlyName">
         /// Carrier-formatted display variant, e.g. "(415) 555-2671".
@@ -72,6 +87,7 @@ namespace Speechify
         public AvailablePhoneNumber(
             string e164,
             string isoCountry,
+            global::Speechify.PurchasedPhoneNumberProvider provider,
             string? friendlyName,
             string? locality,
             string? region)
@@ -81,6 +97,7 @@ namespace Speechify
             this.Locality = locality;
             this.Region = region;
             this.IsoCountry = isoCountry ?? throw new global::System.ArgumentNullException(nameof(isoCountry));
+            this.Provider = provider;
         }
 
         /// <summary>
