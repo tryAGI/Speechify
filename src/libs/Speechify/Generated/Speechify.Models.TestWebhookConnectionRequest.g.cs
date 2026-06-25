@@ -4,8 +4,8 @@
 namespace Speechify
 {
     /// <summary>
-    /// Body for `POST /v1/agents/tools/test-webhook-connection`.<br/>
-    /// `config` is the same WebhookToolConfig shape `POST /v1/agents/tools`<br/>
+    /// Body for `POST /v1/agents/tool-definitions/test-webhook-connection`.<br/>
+    /// `config` is the same WebhookToolConfig shape `POST /v1/agents/tool-definitions`<br/>
     /// would persist; nothing is persisted by the probe. `tool_id` is<br/>
     /// only meaningful in the edit-form flow — when set, the server<br/>
     /// signs the probe request with the tool's stored HMAC secret so<br/>

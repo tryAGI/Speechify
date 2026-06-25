@@ -136,6 +136,10 @@ namespace Speechify
         /// <summary>
         /// 
         /// </summary>
+        ToolConfigShared,
+        /// <summary>
+        /// 
+        /// </summary>
         ToolNotFound,
         /// <summary>
         /// 
@@ -217,6 +221,7 @@ namespace Speechify
                 ErrorCode.RateLimited => "rate_limited",
                 ErrorCode.ServiceUnavailable => "service_unavailable",
                 ErrorCode.SipTrunkNotFound => "sip_trunk_not_found",
+                ErrorCode.ToolConfigShared => "tool_config_shared",
                 ErrorCode.ToolNotFound => "tool_not_found",
                 ErrorCode.Unauthorized => "unauthorized",
                 ErrorCode.UnsupportedMediaType => "unsupported_media_type",
@@ -267,6 +272,7 @@ namespace Speechify
                 "rate_limited" => ErrorCode.RateLimited,
                 "service_unavailable" => ErrorCode.ServiceUnavailable,
                 "sip_trunk_not_found" => ErrorCode.SipTrunkNotFound,
+                "tool_config_shared" => ErrorCode.ToolConfigShared,
                 "tool_not_found" => ErrorCode.ToolNotFound,
                 "unauthorized" => ErrorCode.Unauthorized,
                 "unsupported_media_type" => ErrorCode.UnsupportedMediaType,

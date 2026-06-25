@@ -4,7 +4,9 @@
 namespace Speechify
 {
     /// <summary>
-    /// 
+    /// A workspace tool definition: a reusable webhook / client / MCP<br/>
+    /// integration created once and attached to many agents. Built-ins<br/>
+    /// are NOT definitions - they are per-agent (see `AgentTool`).
     /// </summary>
     public sealed partial class Tool
     {
@@ -30,8 +32,8 @@ namespace Speechify
         public required string Description { get; set; }
 
         /// <summary>
-        /// Where the tool executes.<br/>
-        /// - `system`:  worker-resident built-in (e.g. end_call, play_audio)<br/>
+        /// What kind of tool this is, and where it executes.<br/>
+        /// - `builtin`: a worker-resident platform capability (e.g. end_call, play_audio), configured per-agent<br/>
         /// - `webhook`: worker signs a payload and POSTs it to your URL<br/>
         /// - `client`:  worker dispatches to the caller's browser/SDK via data channel<br/>
         /// - `mcp`:     worker connects to a customer-hosted MCP server and proxies tool calls
@@ -42,7 +44,7 @@ namespace Speechify
         public required global::Speechify.ToolKind Kind { get; set; }
 
         /// <summary>
-        /// One of `SystemToolConfig`, `WebhookToolConfig`, `ClientToolConfig`, or `MCPToolConfig` depending on `kind`.
+        /// One of `WebhookToolConfig`, `ClientToolConfig`, or `MCPToolConfig` depending on `kind`.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("config")]
         [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Speechify.JsonConverters.ToolConfigJsonConverter))]
@@ -86,14 +88,14 @@ namespace Speechify
         /// <param name="name"></param>
         /// <param name="description"></param>
         /// <param name="kind">
-        /// Where the tool executes.<br/>
-        /// - `system`:  worker-resident built-in (e.g. end_call, play_audio)<br/>
+        /// What kind of tool this is, and where it executes.<br/>
+        /// - `builtin`: a worker-resident platform capability (e.g. end_call, play_audio), configured per-agent<br/>
         /// - `webhook`: worker signs a payload and POSTs it to your URL<br/>
         /// - `client`:  worker dispatches to the caller's browser/SDK via data channel<br/>
         /// - `mcp`:     worker connects to a customer-hosted MCP server and proxies tool calls
         /// </param>
         /// <param name="config">
-        /// One of `SystemToolConfig`, `WebhookToolConfig`, `ClientToolConfig`, or `MCPToolConfig` depending on `kind`.
+        /// One of `WebhookToolConfig`, `ClientToolConfig`, or `MCPToolConfig` depending on `kind`.
         /// </param>
         /// <param name="createdAt"></param>
         /// <param name="updatedAt"></param>

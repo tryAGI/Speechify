@@ -4,7 +4,7 @@
 namespace Speechify
 {
     /// <summary>
-    /// All fields optional. `kind` is immutable — create a new tool to change it.
+    /// All fields optional. `kind` is immutable — create a new definition to change it.
     /// </summary>
     public sealed partial class UpdateToolRequest
     {

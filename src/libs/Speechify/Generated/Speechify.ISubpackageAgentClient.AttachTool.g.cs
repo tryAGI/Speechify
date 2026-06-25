@@ -6,7 +6,9 @@ namespace Speechify
     {
         /// <summary>
         /// Attach Tool<br/>
-        /// Attach an existing tool to the agent so the LLM can call it.
+        /// Attach an existing workspace tool definition (webhook / client /<br/>
+        /// MCP) to the agent by its definition id. Idempotent. To create and<br/>
+        /// attach in one step, POST to `/v1/agents/{id}/tools` instead.
         /// </summary>
         /// <param name="id"></param>
         /// <param name="toolId"></param>
@@ -20,7 +22,9 @@ namespace Speechify
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Attach Tool<br/>
-        /// Attach an existing tool to the agent so the LLM can call it.
+        /// Attach an existing workspace tool definition (webhook / client /<br/>
+        /// MCP) to the agent by its definition id. Idempotent. To create and<br/>
+        /// attach in one step, POST to `/v1/agents/{id}/tools` instead.
         /// </summary>
         /// <param name="id"></param>
         /// <param name="toolId"></param>

@@ -45,7 +45,9 @@ namespace Speechify
 
         /// <summary>
         /// Attach Tool<br/>
-        /// Attach an existing tool to the agent so the LLM can call it.
+        /// Attach an existing workspace tool definition (webhook / client /<br/>
+        /// MCP) to the agent by its definition id. Idempotent. To create and<br/>
+        /// attach in one step, POST to `/v1/agents/{id}/tools` instead.
         /// </summary>
         /// <param name="id"></param>
         /// <param name="toolId"></param>
@@ -69,7 +71,9 @@ namespace Speechify
         }
         /// <summary>
         /// Attach Tool<br/>
-        /// Attach an existing tool to the agent so the LLM can call it.
+        /// Attach an existing workspace tool definition (webhook / client /<br/>
+        /// MCP) to the agent by its definition id. Idempotent. To create and<br/>
+        /// attach in one step, POST to `/v1/agents/{id}/tools` instead.
         /// </summary>
         /// <param name="id"></param>
         /// <param name="toolId"></param>
@@ -121,7 +125,7 @@ namespace Speechify
                     clientParameters: Options.QueryParameters,
                     requestParameters: requestOptions?.QueryParameters);
                 var __httpRequest = new global::System.Net.Http.HttpRequestMessage(
-                    method: global::System.Net.Http.HttpMethod.Post,
+                    method: global::System.Net.Http.HttpMethod.Put,
                     requestUri: new global::System.Uri(__path, global::System.UriKind.RelativeOrAbsolute));
 #if NET6_0_OR_GREATER
                 __httpRequest.Version = global::System.Net.HttpVersion.Version11;
@@ -176,7 +180,7 @@ namespace Speechify
                                 operationId: "AttachTool",
                                 methodName: "AttachToolAsync",
                                 pathTemplate: "$\"/v1/agents/{id}/tools/{toolId}\"",
-                                httpMethod: "POST",
+                                httpMethod: "PUT",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
                                 response: null,
@@ -210,7 +214,7 @@ namespace Speechify
                                 operationId: "AttachTool",
                                 methodName: "AttachToolAsync",
                                 pathTemplate: "$\"/v1/agents/{id}/tools/{toolId}\"",
-                                httpMethod: "POST",
+                                httpMethod: "PUT",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
                                 response: null,
@@ -251,7 +255,7 @@ namespace Speechify
                                 operationId: "AttachTool",
                                 methodName: "AttachToolAsync",
                                 pathTemplate: "$\"/v1/agents/{id}/tools/{toolId}\"",
-                                httpMethod: "POST",
+                                httpMethod: "PUT",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
                                 response: __response,
@@ -299,7 +303,7 @@ namespace Speechify
                                 operationId: "AttachTool",
                                 methodName: "AttachToolAsync",
                                 pathTemplate: "$\"/v1/agents/{id}/tools/{toolId}\"",
-                                httpMethod: "POST",
+                                httpMethod: "PUT",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
                                 response: __response,
@@ -321,7 +325,7 @@ namespace Speechify
                                 operationId: "AttachTool",
                                 methodName: "AttachToolAsync",
                                 pathTemplate: "$\"/v1/agents/{id}/tools/{toolId}\"",
-                                httpMethod: "POST",
+                                httpMethod: "PUT",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
                                 response: __response,

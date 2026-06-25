@@ -4,14 +4,18 @@
 namespace Speechify
 {
     /// <summary>
-    /// Where the tool executes.<br/>
-    /// - `system`:  worker-resident built-in (e.g. end_call, play_audio)<br/>
+    /// What kind of tool this is, and where it executes.<br/>
+    /// - `builtin`: a worker-resident platform capability (e.g. end_call, play_audio), configured per-agent<br/>
     /// - `webhook`: worker signs a payload and POSTs it to your URL<br/>
     /// - `client`:  worker dispatches to the caller's browser/SDK via data channel<br/>
     /// - `mcp`:     worker connects to a customer-hosted MCP server and proxies tool calls
     /// </summary>
     public enum ToolKind
     {
+        /// <summary>
+        /// a worker-resident platform capability (e.g. end_call, play_audio), configured per-agent
+        /// </summary>
+        Builtin,
         /// <summary>
         /// worker dispatches to the caller's browser/SDK via data channel
         /// </summary>
@@ -20,10 +24,6 @@ namespace Speechify
         /// worker connects to a customer-hosted MCP server and proxies tool calls
         /// </summary>
         Mcp,
-        /// <summary>
-        /// worker-resident built-in (e.g. end_call, play_audio)
-        /// </summary>
-        System,
         /// <summary>
         /// worker signs a payload and POSTs it to your URL
         /// </summary>
@@ -42,9 +42,9 @@ namespace Speechify
         {
             return value switch
             {
+                ToolKind.Builtin => "builtin",
                 ToolKind.Client => "client",
                 ToolKind.Mcp => "mcp",
-                ToolKind.System => "system",
                 ToolKind.Webhook => "webhook",
                 _ => throw new global::System.ArgumentOutOfRangeException(nameof(value), value, null),
             };
@@ -56,9 +56,9 @@ namespace Speechify
         {
             return value switch
             {
+                "builtin" => ToolKind.Builtin,
                 "client" => ToolKind.Client,
                 "mcp" => ToolKind.Mcp,
-                "system" => ToolKind.System,
                 "webhook" => ToolKind.Webhook,
                 _ => null,
             };
