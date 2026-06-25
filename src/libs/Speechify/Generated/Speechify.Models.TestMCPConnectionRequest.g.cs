@@ -4,8 +4,8 @@
 namespace Speechify
 {
     /// <summary>
-    /// Body for `POST /v1/agents/tools/test-mcp-connection`. `config` is the<br/>
-    /// same MCPToolConfig shape `POST /v1/agents/tools` would persist; nothing<br/>
+    /// Body for `POST /v1/agents/tool-definitions/test-mcp-connection`. `config` is the<br/>
+    /// same MCPToolConfig shape `POST /v1/agents/tool-definitions` would persist; nothing<br/>
     /// is persisted by the probe itself. `tool_id` is only meaningful<br/>
     /// in the edit-form flow — when set, the server hydrates stored<br/>
     /// bearer / oauth2 secrets from the encrypted column before<br/>

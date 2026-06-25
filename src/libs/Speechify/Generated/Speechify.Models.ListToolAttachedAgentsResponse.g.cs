@@ -4,7 +4,7 @@
 namespace Speechify
 {
     /// <summary>
-    /// Response shape for GET /v1/agents/tools/{id}/attached-agents.<br/>
+    /// Response shape for GET /v1/agents/tool-definitions/{id}/attached-agents.<br/>
     /// Agents are tenant-scoped and ordered by name ASC.
     /// </summary>
     public sealed partial class ListToolAttachedAgentsResponse

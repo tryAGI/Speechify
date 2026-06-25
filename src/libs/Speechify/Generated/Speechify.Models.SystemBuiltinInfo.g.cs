@@ -13,7 +13,7 @@ namespace Speechify
         /// added together on the server (a new `tool_builtin_&lt;name&gt;.go`<br/>
         /// file) and worker (`tools/builtins/&lt;name&gt;.py`) - the 2-file rule<br/>
         /// the server pins. Customers read the catalogue from<br/>
-        /// `GET /v1/agents/tools/system-builtins` rather than depending on this<br/>
+        /// `GET /v1/agents/tool-capabilities` rather than depending on this<br/>
         /// string set staying stable across releases.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("name")]
@@ -48,7 +48,7 @@ namespace Speechify
         /// added together on the server (a new `tool_builtin_&lt;name&gt;.go`<br/>
         /// file) and worker (`tools/builtins/&lt;name&gt;.py`) - the 2-file rule<br/>
         /// the server pins. Customers read the catalogue from<br/>
-        /// `GET /v1/agents/tools/system-builtins` rather than depending on this<br/>
+        /// `GET /v1/agents/tool-capabilities` rather than depending on this<br/>
         /// string set staying stable across releases.
         /// </param>
         /// <param name="label">

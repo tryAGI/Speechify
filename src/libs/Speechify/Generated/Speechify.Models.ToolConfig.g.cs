@@ -5,50 +5,10 @@
 namespace Speechify
 {
     /// <summary>
-    /// One of `SystemToolConfig`, `WebhookToolConfig`, `ClientToolConfig`, or `MCPToolConfig` depending on `kind`.
+    /// One of `WebhookToolConfig`, `ClientToolConfig`, or `MCPToolConfig` depending on `kind`.
     /// </summary>
     public readonly partial struct ToolConfig : global::System.IEquatable<ToolConfig>
     {
-        /// <summary>
-        /// Config shape for `kind=system`. The `builtin` value names the<br/>
-        /// worker-resident capability; the catalogue served by<br/>
-        /// `GET /v1/agents/tools/system-builtins` is the runtime source of truth<br/>
-        /// for valid names plus their console-facing labels.
-        /// </summary>
-#if NET6_0_OR_GREATER
-        public global::Speechify.SystemToolConfig? SystemToolConfig { get; init; }
-#else
-        public global::Speechify.SystemToolConfig? SystemToolConfig { get; }
-#endif
-
-        /// <summary>
-        /// 
-        /// </summary>
-#if NET6_0_OR_GREATER
-        [global::System.Diagnostics.CodeAnalysis.MemberNotNullWhen(true, nameof(SystemToolConfig))]
-#endif
-        public bool IsSystemToolConfig => SystemToolConfig != null;
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public bool TryPickSystemToolConfig(
-#if NET6_0_OR_GREATER
-            [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
-#endif
-            out global::Speechify.SystemToolConfig? value)
-        {
-            value = SystemToolConfig;
-            return IsSystemToolConfig;
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public global::Speechify.SystemToolConfig PickSystemToolConfig() => IsSystemToolConfig
-            ? SystemToolConfig!
-            : throw new global::System.InvalidOperationException($"Expected union variant 'SystemToolConfig' but the value was {ToString()}.");
-
         /// <summary>
         /// Config shape for `kind=webhook`.
         /// </summary>
@@ -166,29 +126,6 @@ namespace Speechify
         /// <summary>
         /// 
         /// </summary>
-        public static implicit operator ToolConfig(global::Speechify.SystemToolConfig value) => new ToolConfig((global::Speechify.SystemToolConfig?)value);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public static implicit operator global::Speechify.SystemToolConfig?(ToolConfig @this) => @this.SystemToolConfig;
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public ToolConfig(global::Speechify.SystemToolConfig? value)
-        {
-            SystemToolConfig = value;
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public static ToolConfig FromSystemToolConfig(global::Speechify.SystemToolConfig? value) => new ToolConfig(value);
-
-        /// <summary>
-        /// 
-        /// </summary>
         public static implicit operator ToolConfig(global::Speechify.WebhookToolConfig value) => new ToolConfig((global::Speechify.WebhookToolConfig?)value);
 
         /// <summary>
@@ -259,13 +196,11 @@ namespace Speechify
         /// 
         /// </summary>
         public ToolConfig(
-            global::Speechify.SystemToolConfig? systemToolConfig,
             global::Speechify.WebhookToolConfig? webhookToolConfig,
             global::Speechify.ClientToolConfig? clientToolConfig,
             global::Speechify.MCPToolConfig? mCPToolConfig
             )
         {
-            SystemToolConfig = systemToolConfig;
             WebhookToolConfig = webhookToolConfig;
             ClientToolConfig = clientToolConfig;
             MCPToolConfig = mCPToolConfig;
@@ -277,15 +212,13 @@ namespace Speechify
         public object? Object =>
             MCPToolConfig as object ??
             ClientToolConfig as object ??
-            WebhookToolConfig as object ??
-            SystemToolConfig as object 
+            WebhookToolConfig as object 
             ;
 
         /// <summary>
         /// 
         /// </summary>
         public override string? ToString() =>
-            SystemToolConfig?.ToString() ??
             WebhookToolConfig?.ToString() ??
             ClientToolConfig?.ToString() ??
             MCPToolConfig?.ToString() 
@@ -296,14 +229,13 @@ namespace Speechify
         /// </summary>
         public bool Validate()
         {
-            return IsSystemToolConfig && !IsWebhookToolConfig && !IsClientToolConfig && !IsMCPToolConfig || !IsSystemToolConfig && IsWebhookToolConfig && !IsClientToolConfig && !IsMCPToolConfig || !IsSystemToolConfig && !IsWebhookToolConfig && IsClientToolConfig && !IsMCPToolConfig || !IsSystemToolConfig && !IsWebhookToolConfig && !IsClientToolConfig && IsMCPToolConfig;
+            return IsWebhookToolConfig && !IsClientToolConfig && !IsMCPToolConfig || !IsWebhookToolConfig && IsClientToolConfig && !IsMCPToolConfig || !IsWebhookToolConfig && !IsClientToolConfig && IsMCPToolConfig;
         }
 
         /// <summary>
         /// 
         /// </summary>
         public TResult? Match<TResult>(
-            global::System.Func<global::Speechify.SystemToolConfig, TResult>? systemToolConfig = null,
             global::System.Func<global::Speechify.WebhookToolConfig, TResult>? webhookToolConfig = null,
             global::System.Func<global::Speechify.ClientToolConfig, TResult>? clientToolConfig = null,
             global::System.Func<global::Speechify.MCPToolConfig, TResult>? mCPToolConfig = null,
@@ -314,11 +246,7 @@ namespace Speechify
                 Validate();
             }
 
-            if (IsSystemToolConfig && systemToolConfig != null)
-            {
-                return systemToolConfig(SystemToolConfig!);
-            }
-            else if (IsWebhookToolConfig && webhookToolConfig != null)
+            if (IsWebhookToolConfig && webhookToolConfig != null)
             {
                 return webhookToolConfig(WebhookToolConfig!);
             }
@@ -338,8 +266,6 @@ namespace Speechify
         /// 
         /// </summary>
         public void Match(
-            global::System.Action<global::Speechify.SystemToolConfig>? systemToolConfig = null,
-
             global::System.Action<global::Speechify.WebhookToolConfig>? webhookToolConfig = null,
 
             global::System.Action<global::Speechify.ClientToolConfig>? clientToolConfig = null,
@@ -352,11 +278,7 @@ namespace Speechify
                 Validate();
             }
 
-            if (IsSystemToolConfig)
-            {
-                systemToolConfig?.Invoke(SystemToolConfig!);
-            }
-            else if (IsWebhookToolConfig)
+            if (IsWebhookToolConfig)
             {
                 webhookToolConfig?.Invoke(WebhookToolConfig!);
             }
@@ -374,7 +296,6 @@ namespace Speechify
         /// 
         /// </summary>
         public void Switch(
-            global::System.Action<global::Speechify.SystemToolConfig>? systemToolConfig = null,
             global::System.Action<global::Speechify.WebhookToolConfig>? webhookToolConfig = null,
             global::System.Action<global::Speechify.ClientToolConfig>? clientToolConfig = null,
             global::System.Action<global::Speechify.MCPToolConfig>? mCPToolConfig = null,
@@ -385,11 +306,7 @@ namespace Speechify
                 Validate();
             }
 
-            if (IsSystemToolConfig)
-            {
-                systemToolConfig?.Invoke(SystemToolConfig!);
-            }
-            else if (IsWebhookToolConfig)
+            if (IsWebhookToolConfig)
             {
                 webhookToolConfig?.Invoke(WebhookToolConfig!);
             }
@@ -410,8 +327,6 @@ namespace Speechify
         {
             var fields = new object?[]
             {
-                SystemToolConfig,
-                typeof(global::Speechify.SystemToolConfig),
                 WebhookToolConfig,
                 typeof(global::Speechify.WebhookToolConfig),
                 ClientToolConfig,
@@ -434,7 +349,6 @@ namespace Speechify
         public bool Equals(ToolConfig other)
         {
             return
-                global::System.Collections.Generic.EqualityComparer<global::Speechify.SystemToolConfig?>.Default.Equals(SystemToolConfig, other.SystemToolConfig) &&
                 global::System.Collections.Generic.EqualityComparer<global::Speechify.WebhookToolConfig?>.Default.Equals(WebhookToolConfig, other.WebhookToolConfig) &&
                 global::System.Collections.Generic.EqualityComparer<global::Speechify.ClientToolConfig?>.Default.Equals(ClientToolConfig, other.ClientToolConfig) &&
                 global::System.Collections.Generic.EqualityComparer<global::Speechify.MCPToolConfig?>.Default.Equals(MCPToolConfig, other.MCPToolConfig) 

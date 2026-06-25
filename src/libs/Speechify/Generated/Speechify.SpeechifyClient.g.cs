@@ -186,7 +186,7 @@ namespace Speechify
         /// <summary>
         /// 
         /// </summary>
-        public SubpackageAgentSubpackageAgentToolsClient SubpackageAgentSubpackageAgentTools => new SubpackageAgentSubpackageAgentToolsClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
+        public SubpackageAgentSubpackageAgentToolDefinitionsClient SubpackageAgentSubpackageAgentToolDefinitions => new SubpackageAgentSubpackageAgentToolDefinitionsClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
         {
             ReadResponseAsString = ReadResponseAsString,
             JsonSerializerContext = JsonSerializerContext,

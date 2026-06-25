@@ -43,15 +43,17 @@ namespace Speechify
 
         /// <summary>
         /// List Agent Tools<br/>
-        /// List tools currently attached to the agent. Bare list — an<br/>
-        /// agent's tool attachment count is bounded by configuration, so<br/>
+        /// List everything this agent can do: built-in capabilities and<br/>
+        /// attached external tool definitions (webhook / client / MCP) in<br/>
+        /// one mixed-kind list. Each item carries its resolved config inline.<br/>
+        /// Bare list — an agent's tool count is bounded by configuration, so<br/>
         /// this endpoint does not paginate.
         /// </summary>
         /// <param name="id"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
-        public async global::System.Threading.Tasks.Task<global::Speechify.AttachedToolsResponse> ListToolsAsync(
+        public async global::System.Threading.Tasks.Task<global::Speechify.ListAgentToolsResponse> ListToolsAsync(
             string id,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
@@ -66,15 +68,17 @@ namespace Speechify
         }
         /// <summary>
         /// List Agent Tools<br/>
-        /// List tools currently attached to the agent. Bare list — an<br/>
-        /// agent's tool attachment count is bounded by configuration, so<br/>
+        /// List everything this agent can do: built-in capabilities and<br/>
+        /// attached external tool definitions (webhook / client / MCP) in<br/>
+        /// one mixed-kind list. Each item carries its resolved config inline.<br/>
+        /// Bare list — an agent's tool count is bounded by configuration, so<br/>
         /// this endpoint does not paginate.
         /// </summary>
         /// <param name="id"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
-        public async global::System.Threading.Tasks.Task<global::Speechify.AutoSDKHttpResponse<global::Speechify.AttachedToolsResponse>> ListToolsAsResponseAsync(
+        public async global::System.Threading.Tasks.Task<global::Speechify.AutoSDKHttpResponse<global::Speechify.ListAgentToolsResponse>> ListToolsAsResponseAsync(
             string id,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
@@ -367,6 +371,43 @@ namespace Speechify
                                         h => h.Key,
                                         h => h.Value));
                             }
+                            // The referenced resource does not exist or is not visible to the caller's workspace. 
+                            if ((int)__response.StatusCode == 404)
+                            {
+                                string? __content_404 = null;
+                                global::System.Exception? __exception_404 = null;
+                                global::Speechify.Error? __value_404 = null;
+                                try
+                                {
+                                    if (__effectiveReadResponseAsString)
+                                    {
+                                        __content_404 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+                                        __value_404 = global::Speechify.Error.FromJson(__content_404, JsonSerializerContext);
+                                    }
+                                    else
+                                    {
+                                        __content_404 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+
+                                        __value_404 = global::Speechify.Error.FromJson(__content_404, JsonSerializerContext);
+                                    }
+                                }
+                                catch (global::System.Exception __ex)
+                                {
+                                    __exception_404 = __ex;
+                                }
+
+
+                                throw global::Speechify.ApiException<global::Speechify.Error>.Create(
+                                    statusCode: __response.StatusCode,
+                                    message: __content_404 ?? __response.ReasonPhrase ?? string.Empty,
+                                    innerException: __exception_404,
+                                    responseBody: __content_404,
+                                    responseObject: __value_404,
+                                    responseHeaders: global::System.Linq.Enumerable.ToDictionary(
+                                        __response.Headers,
+                                        h => h.Key,
+                                        h => h.Value));
+                            }
 
                             if (__effectiveReadResponseAsString)
                             {
@@ -389,9 +430,9 @@ namespace Speechify
                                 {
                                     __response.EnsureSuccessStatusCode();
 
-                                    var __value = global::Speechify.AttachedToolsResponse.FromJson(__content, JsonSerializerContext) ??
+                                    var __value = global::Speechify.ListAgentToolsResponse.FromJson(__content, JsonSerializerContext) ??
                                         throw new global::System.InvalidOperationException($"Response deserialization failed for \"{__content}\" ");
-                                    return new global::Speechify.AutoSDKHttpResponse<global::Speechify.AttachedToolsResponse>(
+                                    return new global::Speechify.AutoSDKHttpResponse<global::Speechify.ListAgentToolsResponse>(
                                         statusCode: __response.StatusCode,
                                         headers: global::Speechify.AutoSDKHttpResponse.CreateHeaders(__response),
                                         requestUri: __response.RequestMessage?.RequestUri,
@@ -421,9 +462,9 @@ namespace Speechify
                 #endif
                                     ).ConfigureAwait(false);
 
-                                    var __value = await global::Speechify.AttachedToolsResponse.FromJsonStreamAsync(__content, JsonSerializerContext).ConfigureAwait(false) ??
+                                    var __value = await global::Speechify.ListAgentToolsResponse.FromJsonStreamAsync(__content, JsonSerializerContext).ConfigureAwait(false) ??
                                         throw new global::System.InvalidOperationException("Response deserialization failed.");
-                                    return new global::Speechify.AutoSDKHttpResponse<global::Speechify.AttachedToolsResponse>(
+                                    return new global::Speechify.AutoSDKHttpResponse<global::Speechify.ListAgentToolsResponse>(
                                         statusCode: __response.StatusCode,
                                         headers: global::Speechify.AutoSDKHttpResponse.CreateHeaders(__response),
                                         requestUri: __response.RequestMessage?.RequestUri,

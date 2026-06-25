@@ -127,7 +127,7 @@ namespace Speechify
         /// <summary>
         /// 
         /// </summary>
-        public SubpackageAgentSubpackageAgentToolsClient SubpackageAgentSubpackageAgentTools { get; }
+        public SubpackageAgentSubpackageAgentToolDefinitionsClient SubpackageAgentSubpackageAgentToolDefinitions { get; }
 
         /// <summary>
         /// 
