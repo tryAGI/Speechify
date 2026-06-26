@@ -4,9 +4,11 @@
 namespace Speechify
 {
     /// <summary>
-    /// Kind-specific credential payload. Exactly one block is<br/>
-    /// populated — the one named by the credential's `kind`. The<br/>
-    /// block IS the secret; it is echoed back decrypted on reads.
+    /// Kind-specific credential payload, used on WRITES only (create and<br/>
+    /// rotate). Exactly one block is populated — the one named by the<br/>
+    /// credential's `kind`. The secret fields are write-only: they are<br/>
+    /// accepted here but are NEVER returned on reads — a read returns the<br/>
+    /// masked `CredentialConfigView` instead.
     /// </summary>
     public sealed partial class CredentialConfig
     {

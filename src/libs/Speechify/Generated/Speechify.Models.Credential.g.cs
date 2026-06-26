@@ -7,7 +7,11 @@ namespace Speechify
     /// A workspace-shared secret in the credentials vault. Tools (and<br/>
     /// future MCP servers) reference a credential by id rather than<br/>
     /// inlining a secret per row, so one OAuth / Basic / Bearer /<br/>
-    /// headers blob is reused across many tools and rotated centrally.
+    /// headers blob is reused across many tools and rotated centrally.<br/>
+    /// The vault is write-only: `config` here is the masked<br/>
+    /// `CredentialConfigView` (non-secret fields plus `*_set` markers).<br/>
+    /// Secret values are never returned; rotate them via<br/>
+    /// `PATCH /v1/credentials/{id}`.
     /// </summary>
     public sealed partial class Credential
     {
@@ -36,13 +40,16 @@ namespace Speechify
         public required global::Speechify.CredentialKind Kind { get; set; }
 
         /// <summary>
-        /// Kind-specific credential payload. Exactly one block is<br/>
-        /// populated — the one named by the credential's `kind`. The<br/>
-        /// block IS the secret; it is echoed back decrypted on reads.
+        /// The masked, read-safe projection of a credential's config. Returned<br/>
+        /// on every read (list / get / create / rotate response). Non-secret<br/>
+        /// fields (token URLs, client ids, issuer, header names) pass through;<br/>
+        /// each secret is replaced by a `*_set` boolean. Secret values are never<br/>
+        /// returned — to change one, rotate it via `PATCH /v1/credentials/{id}`.<br/>
+        /// Exactly one block is populated, matching the credential's `kind`.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("config")]
         [global::System.Text.Json.Serialization.JsonRequired]
-        public required global::Speechify.CredentialConfig Config { get; set; }
+        public required global::Speechify.CredentialConfigView Config { get; set; }
 
         /// <summary>
         /// 
@@ -79,9 +86,12 @@ namespace Speechify
         /// `config.&lt;kind&gt;` block is the one that must be populated.
         /// </param>
         /// <param name="config">
-        /// Kind-specific credential payload. Exactly one block is<br/>
-        /// populated — the one named by the credential's `kind`. The<br/>
-        /// block IS the secret; it is echoed back decrypted on reads.
+        /// The masked, read-safe projection of a credential's config. Returned<br/>
+        /// on every read (list / get / create / rotate response). Non-secret<br/>
+        /// fields (token URLs, client ids, issuer, header names) pass through;<br/>
+        /// each secret is replaced by a `*_set` boolean. Secret values are never<br/>
+        /// returned — to change one, rotate it via `PATCH /v1/credentials/{id}`.<br/>
+        /// Exactly one block is populated, matching the credential's `kind`.
         /// </param>
         /// <param name="createdAt"></param>
         /// <param name="updatedAt"></param>
@@ -92,7 +102,7 @@ namespace Speechify
             string id,
             string name,
             global::Speechify.CredentialKind kind,
-            global::Speechify.CredentialConfig config,
+            global::Speechify.CredentialConfigView config,
             global::System.DateTime createdAt,
             global::System.DateTime updatedAt)
         {

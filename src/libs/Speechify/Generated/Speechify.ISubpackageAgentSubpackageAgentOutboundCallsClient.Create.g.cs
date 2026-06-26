@@ -17,6 +17,9 @@ namespace Speechify
         /// inbound-only.
         /// </summary>
         /// <param name="speechifyVersion"></param>
+        /// <param name="idempotencyKey">
+        /// Optional idempotency key. When omitted, the SDK generates one for this request.
+        /// </param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -25,6 +28,7 @@ namespace Speechify
 
             global::Speechify.CreateOutboundCallRequest request,
             string? speechifyVersion = default,
+            string? idempotencyKey = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
@@ -40,6 +44,9 @@ namespace Speechify
         /// inbound-only.
         /// </summary>
         /// <param name="speechifyVersion"></param>
+        /// <param name="idempotencyKey">
+        /// Optional idempotency key. When omitted, the SDK generates one for this request.
+        /// </param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -48,6 +55,7 @@ namespace Speechify
 
             global::Speechify.CreateOutboundCallRequest request,
             string? speechifyVersion = default,
+            string? idempotencyKey = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
@@ -63,6 +71,9 @@ namespace Speechify
         /// inbound-only.
         /// </summary>
         /// <param name="speechifyVersion"></param>
+        /// <param name="idempotencyKey">
+        /// Optional idempotency key. When omitted, the SDK generates one for this request.
+        /// </param>
         /// <param name="agentId">
         /// ID of the agent that handles the answered call.
         /// </param>
@@ -107,6 +118,7 @@ namespace Speechify
             string agentId,
             string to,
             string? speechifyVersion = default,
+            string? idempotencyKey = default,
             string? callerIdNumber = default,
             string? dtmfPrefix = default,
             object? dynamicVariables = default,

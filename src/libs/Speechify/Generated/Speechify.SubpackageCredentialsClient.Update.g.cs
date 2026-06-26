@@ -7,7 +7,7 @@ namespace Speechify
     {
 
 
-        private static readonly global::Speechify.EndPointSecurityRequirement s_GetSecurityRequirement0 =
+        private static readonly global::Speechify.EndPointSecurityRequirement s_UpdateSecurityRequirement0 =
             new global::Speechify.EndPointSecurityRequirement
             {
                 Authorizations = new global::Speechify.EndPointAuthorizationRequirement[]
@@ -21,49 +21,56 @@ namespace Speechify
                     },
                 },
             };
-        private static readonly global::Speechify.EndPointSecurityRequirement[] s_GetSecurityRequirements =
+        private static readonly global::Speechify.EndPointSecurityRequirement[] s_UpdateSecurityRequirements =
             new global::Speechify.EndPointSecurityRequirement[]
-            {                s_GetSecurityRequirement0,
+            {                s_UpdateSecurityRequirement0,
             };
-        partial void PrepareGetArguments(
+        partial void PrepareUpdateArguments(
             global::System.Net.Http.HttpClient httpClient,
             ref string id,
-            ref string? speechifyVersion);
-        partial void PrepareGetRequest(
+            ref string? speechifyVersion,
+            global::Speechify.UpdateCredentialRequest request);
+        partial void PrepareUpdateRequest(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpRequestMessage httpRequestMessage,
             string id,
-            string? speechifyVersion);
-        partial void ProcessGetResponse(
+            string? speechifyVersion,
+            global::Speechify.UpdateCredentialRequest request);
+        partial void ProcessUpdateResponse(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpResponseMessage httpResponseMessage);
 
-        partial void ProcessGetResponseContent(
+        partial void ProcessUpdateResponseContent(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpResponseMessage httpResponseMessage,
             ref string content);
 
         /// <summary>
-        /// Get Credential<br/>
-        /// Fetch one credential by id, scoped to the caller's workspace.<br/>
-        /// `config` is the masked `CredentialConfigView` — secret values are<br/>
-        /// never returned. Returns 404 for missing, soft-deleted, or<br/>
-        /// foreign-workspace credentials — credential existence is never<br/>
-        /// leaked across workspaces.
+        /// Update Credential<br/>
+        /// Rotate a credential's secret and/or rename it, in place, keeping the<br/>
+        /// same id so every referencing config picks up the change with no<br/>
+        /// re-wiring. Because the vault is write-only, rotation is the only way<br/>
+        /// to change a stored secret. The kind is immutable: a rotated `config`<br/>
+        /// must populate the same block as the credential's existing kind.
         /// </summary>
         /// <param name="id"></param>
         /// <param name="speechifyVersion"></param>
+        /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
-        public async global::System.Threading.Tasks.Task<global::Speechify.Credential> GetAsync(
+        public async global::System.Threading.Tasks.Task<global::Speechify.Credential> UpdateAsync(
             string id,
+
+            global::Speechify.UpdateCredentialRequest request,
             string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
-            var __response = await GetAsResponseAsync(
+            var __response = await UpdateAsResponseAsync(
                 id: id,
+
+                request: request,
                 speechifyVersion: speechifyVersion,
                 requestOptions: requestOptions,
                 cancellationToken: cancellationToken
@@ -72,36 +79,42 @@ namespace Speechify
             return __response.Body;
         }
         /// <summary>
-        /// Get Credential<br/>
-        /// Fetch one credential by id, scoped to the caller's workspace.<br/>
-        /// `config` is the masked `CredentialConfigView` — secret values are<br/>
-        /// never returned. Returns 404 for missing, soft-deleted, or<br/>
-        /// foreign-workspace credentials — credential existence is never<br/>
-        /// leaked across workspaces.
+        /// Update Credential<br/>
+        /// Rotate a credential's secret and/or rename it, in place, keeping the<br/>
+        /// same id so every referencing config picks up the change with no<br/>
+        /// re-wiring. Because the vault is write-only, rotation is the only way<br/>
+        /// to change a stored secret. The kind is immutable: a rotated `config`<br/>
+        /// must populate the same block as the credential's existing kind.
         /// </summary>
         /// <param name="id"></param>
         /// <param name="speechifyVersion"></param>
+        /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
-        public async global::System.Threading.Tasks.Task<global::Speechify.AutoSDKHttpResponse<global::Speechify.Credential>> GetAsResponseAsync(
+        public async global::System.Threading.Tasks.Task<global::Speechify.AutoSDKHttpResponse<global::Speechify.Credential>> UpdateAsResponseAsync(
             string id,
+
+            global::Speechify.UpdateCredentialRequest request,
             string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
+            request = request ?? throw new global::System.ArgumentNullException(nameof(request));
+
             PrepareArguments(
                 client: HttpClient);
-            PrepareGetArguments(
+            PrepareUpdateArguments(
                 httpClient: HttpClient,
                 id: ref id,
-                speechifyVersion: ref speechifyVersion);
+                speechifyVersion: ref speechifyVersion,
+                request: request);
 
 
             var __authorizations = global::Speechify.EndPointSecurityResolver.ResolveAuthorizations(
                 availableAuthorizations: Authorizations,
-                securityRequirements: s_GetSecurityRequirements,
-                operationName: "GetAsync");
+                securityRequirements: s_UpdateSecurityRequirements,
+                operationName: "UpdateAsync");
 
             using var __timeoutCancellationTokenSource = global::Speechify.AutoSDKRequestOptionsSupport.CreateTimeoutCancellationTokenSource(
                 clientOptions: Options,
@@ -129,7 +142,7 @@ namespace Speechify
                     clientParameters: Options.QueryParameters,
                     requestParameters: requestOptions?.QueryParameters);
                 var __httpRequest = new global::System.Net.Http.HttpRequestMessage(
-                    method: global::System.Net.Http.HttpMethod.Get,
+                    method: new global::System.Net.Http.HttpMethod("PATCH"),
                     requestUri: new global::System.Uri(__path, global::System.UriKind.RelativeOrAbsolute));
 #if NET6_0_OR_GREATER
                 __httpRequest.Version = global::System.Net.HttpVersion.Version11;
@@ -158,6 +171,12 @@ namespace Speechify
                 __httpRequest.Headers.TryAddWithoutValidation("Speechify-Version", speechifyVersion.ToString());
             }
 
+                            var __httpRequestContentBody = request.ToJson(JsonSerializerContext);
+                            var __httpRequestContent = new global::System.Net.Http.StringContent(
+                                content: __httpRequestContentBody,
+                                encoding: global::System.Text.Encoding.UTF8,
+                                mediaType: "application/json");
+                            __httpRequest.Content = __httpRequestContent;
                 global::Speechify.AutoSDKRequestOptionsSupport.ApplyHeaders(
                     request: __httpRequest,
                     clientHeaders: Options.Headers,
@@ -166,11 +185,12 @@ namespace Speechify
                 PrepareRequest(
                     client: HttpClient,
                     request: __httpRequest);
-                PrepareGetRequest(
+                PrepareUpdateRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
                     id: id!,
-                    speechifyVersion: speechifyVersion);
+                    speechifyVersion: speechifyVersion,
+                    request: request);
 
                 return __httpRequest;
             }
@@ -187,10 +207,10 @@ namespace Speechify
                     await global::Speechify.AutoSDKRequestOptionsSupport.OnBeforeRequestAsync(
                             clientOptions: Options,
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "Get",
-                                methodName: "GetAsync",
+                                operationId: "Update",
+                                methodName: "UpdateAsync",
                                 pathTemplate: "$\"/v1/credentials/{id}\"",
-                                httpMethod: "GET",
+                                httpMethod: "PATCH",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
                                 response: null,
@@ -221,10 +241,10 @@ namespace Speechify
                         await global::Speechify.AutoSDKRequestOptionsSupport.OnAfterErrorAsync(
                             clientOptions: Options,
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "Get",
-                                methodName: "GetAsync",
+                                operationId: "Update",
+                                methodName: "UpdateAsync",
                                 pathTemplate: "$\"/v1/credentials/{id}\"",
-                                httpMethod: "GET",
+                                httpMethod: "PATCH",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
                                 response: null,
@@ -262,10 +282,10 @@ namespace Speechify
                         await global::Speechify.AutoSDKRequestOptionsSupport.OnAfterErrorAsync(
                             clientOptions: Options,
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "Get",
-                                methodName: "GetAsync",
+                                operationId: "Update",
+                                methodName: "UpdateAsync",
                                 pathTemplate: "$\"/v1/credentials/{id}\"",
-                                httpMethod: "GET",
+                                httpMethod: "PATCH",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
                                 response: __response,
@@ -302,7 +322,7 @@ namespace Speechify
                 ProcessResponse(
                     client: HttpClient,
                     response: __response);
-                ProcessGetResponse(
+                ProcessUpdateResponse(
                     httpClient: HttpClient,
                     httpResponseMessage: __response);
                 if (__response.IsSuccessStatusCode)
@@ -310,10 +330,10 @@ namespace Speechify
                     await global::Speechify.AutoSDKRequestOptionsSupport.OnAfterSuccessAsync(
                             clientOptions: Options,
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "Get",
-                                methodName: "GetAsync",
+                                operationId: "Update",
+                                methodName: "UpdateAsync",
                                 pathTemplate: "$\"/v1/credentials/{id}\"",
-                                httpMethod: "GET",
+                                httpMethod: "PATCH",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
                                 response: __response,
@@ -332,10 +352,10 @@ namespace Speechify
                     await global::Speechify.AutoSDKRequestOptionsSupport.OnAfterErrorAsync(
                             clientOptions: Options,
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "Get",
-                                methodName: "GetAsync",
+                                operationId: "Update",
+                                methodName: "UpdateAsync",
                                 pathTemplate: "$\"/v1/credentials/{id}\"",
-                                httpMethod: "GET",
+                                httpMethod: "PATCH",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
                                 response: __response,
@@ -349,6 +369,43 @@ namespace Speechify
                                 retryReason: global::System.String.Empty,
                                 cancellationToken: __effectiveCancellationToken)).ConfigureAwait(false);
                 }
+                            // The request was malformed or failed validation. The response body is the standard `Error` envelope; for validation failures `error.fields` enumerates the offending fields as a `path -> message` map (code = `validation_failed`). 
+                            if ((int)__response.StatusCode == 400)
+                            {
+                                string? __content_400 = null;
+                                global::System.Exception? __exception_400 = null;
+                                global::Speechify.Error? __value_400 = null;
+                                try
+                                {
+                                    if (__effectiveReadResponseAsString)
+                                    {
+                                        __content_400 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+                                        __value_400 = global::Speechify.Error.FromJson(__content_400, JsonSerializerContext);
+                                    }
+                                    else
+                                    {
+                                        __content_400 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+
+                                        __value_400 = global::Speechify.Error.FromJson(__content_400, JsonSerializerContext);
+                                    }
+                                }
+                                catch (global::System.Exception __ex)
+                                {
+                                    __exception_400 = __ex;
+                                }
+
+
+                                throw global::Speechify.ApiException<global::Speechify.Error>.Create(
+                                    statusCode: __response.StatusCode,
+                                    message: __content_400 ?? __response.ReasonPhrase ?? string.Empty,
+                                    innerException: __exception_400,
+                                    responseBody: __content_400,
+                                    responseObject: __value_400,
+                                    responseHeaders: global::System.Linq.Enumerable.ToDictionary(
+                                        __response.Headers,
+                                        h => h.Key,
+                                        h => h.Value));
+                            }
                             // Authentication is missing or invalid. The request did not carry a recognised credential (Firebase ID token, API key, or worker JWT). 
                             if ((int)__response.StatusCode == 401)
                             {
@@ -423,6 +480,43 @@ namespace Speechify
                                         h => h.Key,
                                         h => h.Value));
                             }
+                            // The request conflicts with the current resource state - e.g. duplicate, optimistic-concurrency mismatch, or last-owner guard. 
+                            if ((int)__response.StatusCode == 409)
+                            {
+                                string? __content_409 = null;
+                                global::System.Exception? __exception_409 = null;
+                                global::Speechify.Error? __value_409 = null;
+                                try
+                                {
+                                    if (__effectiveReadResponseAsString)
+                                    {
+                                        __content_409 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+                                        __value_409 = global::Speechify.Error.FromJson(__content_409, JsonSerializerContext);
+                                    }
+                                    else
+                                    {
+                                        __content_409 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+
+                                        __value_409 = global::Speechify.Error.FromJson(__content_409, JsonSerializerContext);
+                                    }
+                                }
+                                catch (global::System.Exception __ex)
+                                {
+                                    __exception_409 = __ex;
+                                }
+
+
+                                throw global::Speechify.ApiException<global::Speechify.Error>.Create(
+                                    statusCode: __response.StatusCode,
+                                    message: __content_409 ?? __response.ReasonPhrase ?? string.Empty,
+                                    innerException: __exception_409,
+                                    responseBody: __content_409,
+                                    responseObject: __value_409,
+                                    responseHeaders: global::System.Linq.Enumerable.ToDictionary(
+                                        __response.Headers,
+                                        h => h.Key,
+                                        h => h.Value));
+                            }
 
                             if (__effectiveReadResponseAsString)
                             {
@@ -436,7 +530,7 @@ namespace Speechify
                                     client: HttpClient,
                                     response: __response,
                                     content: ref __content);
-                                ProcessGetResponseContent(
+                                ProcessUpdateResponseContent(
                                     httpClient: HttpClient,
                                     httpResponseMessage: __response,
                                     content: ref __content);
@@ -518,6 +612,50 @@ namespace Speechify
             {
                 __httpRequest?.Dispose();
             }
+        }
+        /// <summary>
+        /// Update Credential<br/>
+        /// Rotate a credential's secret and/or rename it, in place, keeping the<br/>
+        /// same id so every referencing config picks up the change with no<br/>
+        /// re-wiring. Because the vault is write-only, rotation is the only way<br/>
+        /// to change a stored secret. The kind is immutable: a rotated `config`<br/>
+        /// must populate the same block as the credential's existing kind.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="speechifyVersion"></param>
+        /// <param name="name">
+        /// New human-readable label, unique per workspace.
+        /// </param>
+        /// <param name="config">
+        /// Kind-specific credential payload, used on WRITES only (create and<br/>
+        /// rotate). Exactly one block is populated — the one named by the<br/>
+        /// credential's `kind`. The secret fields are write-only: they are<br/>
+        /// accepted here but are NEVER returned on reads — a read returns the<br/>
+        /// masked `CredentialConfigView` instead.
+        /// </param>
+        /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
+        /// <param name="cancellationToken">The token to cancel the operation with</param>
+        /// <exception cref="global::System.InvalidOperationException"></exception>
+        public async global::System.Threading.Tasks.Task<global::Speechify.Credential> UpdateAsync(
+            string id,
+            string? speechifyVersion = default,
+            string? name = default,
+            global::Speechify.CredentialConfig? config = default,
+            global::Speechify.AutoSDKRequestOptions? requestOptions = default,
+            global::System.Threading.CancellationToken cancellationToken = default)
+        {
+            var __request = new global::Speechify.UpdateCredentialRequest
+            {
+                Name = name,
+                Config = config,
+            };
+
+            return await UpdateAsync(
+                id: id,
+                speechifyVersion: speechifyVersion,
+                request: __request,
+                requestOptions: requestOptions,
+                cancellationToken: cancellationToken).ConfigureAwait(false);
         }
     }
 }

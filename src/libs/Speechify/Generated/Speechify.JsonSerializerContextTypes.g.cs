@@ -1828,27 +1828,27 @@ namespace Speechify
         /// <summary>
         /// 
         /// </summary>
-        public global::Speechify.OAuth2ClientCredentialsConfig? Type450 { get; set; }
+        public global::Speechify.CredentialConfigViewOauth2ClientCredentials? Type450 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::Speechify.OAuth2JWTConfig? Type451 { get; set; }
+        public global::Speechify.CredentialConfigViewOauth2Jwt? Type451 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::Speechify.BasicAuthConfig? Type452 { get; set; }
+        public global::Speechify.CredentialConfigViewBasic? Type452 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::Speechify.BearerAuthConfig? Type453 { get; set; }
+        public global::Speechify.CredentialConfigViewBearer? Type453 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::Speechify.CustomHeadersConfig? Type454 { get; set; }
+        public global::Speechify.CredentialConfigViewCustomHeaders? Type454 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::Speechify.CredentialConfig? Type455 { get; set; }
+        public global::Speechify.CredentialConfigView? Type455 { get; set; }
         /// <summary>
         /// 
         /// </summary>
@@ -1864,35 +1864,63 @@ namespace Speechify
         /// <summary>
         /// 
         /// </summary>
-        public global::Speechify.CreateCredentialRequest? Type459 { get; set; }
+        public global::Speechify.OAuth2ClientCredentialsConfig? Type459 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::Speechify.CreateRequest? Type460 { get; set; }
+        public global::Speechify.OAuth2JWTConfig? Type460 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::Speechify.UploadDocumentRequest? Type461 { get; set; }
+        public global::Speechify.BasicAuthConfig? Type461 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::Speechify.UpdateDocumentRequest? Type462 { get; set; }
+        public global::Speechify.BearerAuthConfig? Type462 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::Speechify.RunTestRequest? Type463 { get; set; }
+        public global::Speechify.CustomHeadersConfig? Type463 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::Speechify.UploadRequest? Type464 { get; set; }
+        public global::Speechify.CredentialConfig? Type464 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::System.Collections.Generic.IList<global::Speechify.GetVoice>? Type465 { get; set; }
+        public global::Speechify.CreateCredentialRequest? Type465 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::System.Collections.Generic.IList<global::Speechify.AgentVoice>? Type466 { get; set; }
+        public global::Speechify.UpdateCredentialRequest? Type466 { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public global::Speechify.CreateRequest? Type467 { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public global::Speechify.UploadDocumentRequest? Type468 { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public global::Speechify.UpdateDocumentRequest? Type469 { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public global::Speechify.RunTestRequest? Type470 { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public global::Speechify.UploadRequest? Type471 { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public global::System.Collections.Generic.IList<global::Speechify.GetVoice>? Type472 { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public global::System.Collections.Generic.IList<global::Speechify.AgentVoice>? Type473 { get; set; }
 
         /// <summary>
         /// 

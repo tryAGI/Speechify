@@ -64,6 +64,10 @@ namespace Speechify
         /// <summary>
         /// 
         /// </summary>
+        IdempotencyConflict,
+        /// <summary>
+        /// 
+        /// </summary>
         InsufficientScope,
         /// <summary>
         /// 
@@ -207,6 +211,7 @@ namespace Speechify
                 ErrorCode.ConversationNotFound => "conversation_not_found",
                 ErrorCode.CredentialNotFound => "credential_not_found",
                 ErrorCode.Forbidden => "forbidden",
+                ErrorCode.IdempotencyConflict => "idempotency_conflict",
                 ErrorCode.InsufficientScope => "insufficient_scope",
                 ErrorCode.InternalError => "internal_error",
                 ErrorCode.InvalidApiVersion => "invalid_api_version",
@@ -259,6 +264,7 @@ namespace Speechify
                 "conversation_not_found" => ErrorCode.ConversationNotFound,
                 "credential_not_found" => ErrorCode.CredentialNotFound,
                 "forbidden" => ErrorCode.Forbidden,
+                "idempotency_conflict" => ErrorCode.IdempotencyConflict,
                 "insufficient_scope" => ErrorCode.InsufficientScope,
                 "internal_error" => ErrorCode.InternalError,
                 "invalid_api_version" => ErrorCode.InvalidApiVersion,

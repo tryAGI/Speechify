@@ -581,9 +581,11 @@ namespace Speechify
         /// `config.&lt;kind&gt;` block is the one that must be populated.
         /// </param>
         /// <param name="config">
-        /// Kind-specific credential payload. Exactly one block is<br/>
-        /// populated — the one named by the credential's `kind`. The<br/>
-        /// block IS the secret; it is echoed back decrypted on reads.
+        /// Kind-specific credential payload, used on WRITES only (create and<br/>
+        /// rotate). Exactly one block is populated — the one named by the<br/>
+        /// credential's `kind`. The secret fields are write-only: they are<br/>
+        /// accepted here but are NEVER returned on reads — a read returns the<br/>
+        /// masked `CredentialConfigView` instead.
         /// </param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>

@@ -28,11 +28,13 @@ namespace Speechify
         partial void PreparePurchaseArguments(
             global::System.Net.Http.HttpClient httpClient,
             ref string? speechifyVersion,
+            ref string? idempotencyKey,
             global::Speechify.PurchasePhoneNumberRequest request);
         partial void PreparePurchaseRequest(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpRequestMessage httpRequestMessage,
             string? speechifyVersion,
+            string? idempotencyKey,
             global::Speechify.PurchasePhoneNumberRequest request);
         partial void ProcessPurchaseResponse(
             global::System.Net.Http.HttpClient httpClient,
@@ -59,6 +61,9 @@ namespace Speechify
         /// outbound calls (via the workspace's shared outbound trunk).
         /// </summary>
         /// <param name="speechifyVersion"></param>
+        /// <param name="idempotencyKey">
+        /// Optional idempotency key. When omitted, the SDK generates one for this request.
+        /// </param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -67,6 +72,7 @@ namespace Speechify
 
             global::Speechify.PurchasePhoneNumberRequest request,
             string? speechifyVersion = default,
+            string? idempotencyKey = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
@@ -74,6 +80,7 @@ namespace Speechify
 
                 request: request,
                 speechifyVersion: speechifyVersion,
+                idempotencyKey: idempotencyKey,
                 requestOptions: requestOptions,
                 cancellationToken: cancellationToken
             ).ConfigureAwait(false);
@@ -96,6 +103,9 @@ namespace Speechify
         /// outbound calls (via the workspace's shared outbound trunk).
         /// </summary>
         /// <param name="speechifyVersion"></param>
+        /// <param name="idempotencyKey">
+        /// Optional idempotency key. When omitted, the SDK generates one for this request.
+        /// </param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -104,6 +114,7 @@ namespace Speechify
 
             global::Speechify.PurchasePhoneNumberRequest request,
             string? speechifyVersion = default,
+            string? idempotencyKey = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
@@ -114,6 +125,7 @@ namespace Speechify
             PreparePurchaseArguments(
                 httpClient: HttpClient,
                 speechifyVersion: ref speechifyVersion,
+                idempotencyKey: ref idempotencyKey,
                 request: request);
 
 
@@ -176,6 +188,10 @@ namespace Speechify
             {
                 __httpRequest.Headers.TryAddWithoutValidation("Speechify-Version", speechifyVersion.ToString());
             }
+            var __idempotencyKey = global::System.String.IsNullOrWhiteSpace(idempotencyKey)
+                ? CreateIdempotencyKey()
+                : idempotencyKey;
+            __httpRequest.Headers.TryAddWithoutValidation("Idempotency-Key", __idempotencyKey);
 
                             var __httpRequestContentBody = request.ToJson(JsonSerializerContext);
                             var __httpRequestContent = new global::System.Net.Http.StringContent(
@@ -195,6 +211,7 @@ namespace Speechify
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
                     speechifyVersion: speechifyVersion,
+                    idempotencyKey: idempotencyKey,
                     request: request);
 
                 return __httpRequest;
@@ -485,6 +502,43 @@ namespace Speechify
                                         h => h.Key,
                                         h => h.Value));
                             }
+                            // The request conflicts with the current resource state - e.g. duplicate, optimistic-concurrency mismatch, or last-owner guard. 
+                            if ((int)__response.StatusCode == 409)
+                            {
+                                string? __content_409 = null;
+                                global::System.Exception? __exception_409 = null;
+                                global::Speechify.Error? __value_409 = null;
+                                try
+                                {
+                                    if (__effectiveReadResponseAsString)
+                                    {
+                                        __content_409 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+                                        __value_409 = global::Speechify.Error.FromJson(__content_409, JsonSerializerContext);
+                                    }
+                                    else
+                                    {
+                                        __content_409 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+
+                                        __value_409 = global::Speechify.Error.FromJson(__content_409, JsonSerializerContext);
+                                    }
+                                }
+                                catch (global::System.Exception __ex)
+                                {
+                                    __exception_409 = __ex;
+                                }
+
+
+                                throw global::Speechify.ApiException<global::Speechify.Error>.Create(
+                                    statusCode: __response.StatusCode,
+                                    message: __content_409 ?? __response.ReasonPhrase ?? string.Empty,
+                                    innerException: __exception_409,
+                                    responseBody: __content_409,
+                                    responseObject: __value_409,
+                                    responseHeaders: global::System.Linq.Enumerable.ToDictionary(
+                                        __response.Headers,
+                                        h => h.Key,
+                                        h => h.Value));
+                            }
                             // The request was well-formed but semantically rejected - typically a referential integrity violation (e.g. flow node references an audio asset in another workspace) or a state machine refusal. 
                             if ((int)__response.StatusCode == 422)
                             {
@@ -671,6 +725,9 @@ namespace Speechify
         /// outbound calls (via the workspace's shared outbound trunk).
         /// </summary>
         /// <param name="speechifyVersion"></param>
+        /// <param name="idempotencyKey">
+        /// Optional idempotency key. When omitted, the SDK generates one for this request.
+        /// </param>
         /// <param name="e164">
         /// The E.164 number to buy. Must currently be in carrier inventory.
         /// </param>
@@ -691,6 +748,7 @@ namespace Speechify
         public async global::System.Threading.Tasks.Task<global::Speechify.PhoneNumber> PurchaseAsync(
             string e164,
             string? speechifyVersion = default,
+            string? idempotencyKey = default,
             string? label = default,
             global::Speechify.PurchasedPhoneNumberProvider? provider = default,
             string? agentId = default,
@@ -707,6 +765,7 @@ namespace Speechify
 
             return await PurchaseAsync(
                 speechifyVersion: speechifyVersion,
+                idempotencyKey: idempotencyKey,
                 request: __request,
                 requestOptions: requestOptions,
                 cancellationToken: cancellationToken).ConfigureAwait(false);
