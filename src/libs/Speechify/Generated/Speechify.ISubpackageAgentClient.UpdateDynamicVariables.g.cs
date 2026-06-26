@@ -14,6 +14,7 @@ namespace Speechify
         /// `system__` prefix.
         /// </summary>
         /// <param name="id"></param>
+        /// <param name="speechifyVersion"></param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -22,6 +23,7 @@ namespace Speechify
             string id,
 
             global::Speechify.UpdateDynamicVariablesRequest request,
+            string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
@@ -34,6 +36,7 @@ namespace Speechify
         /// `system__` prefix.
         /// </summary>
         /// <param name="id"></param>
+        /// <param name="speechifyVersion"></param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -42,6 +45,7 @@ namespace Speechify
             string id,
 
             global::Speechify.UpdateDynamicVariablesRequest request,
+            string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
@@ -54,6 +58,7 @@ namespace Speechify
         /// `system__` prefix.
         /// </summary>
         /// <param name="id"></param>
+        /// <param name="speechifyVersion"></param>
         /// <param name="variables">
         /// The new variable list. Replaces the existing list entirely.
         /// </param>
@@ -63,6 +68,7 @@ namespace Speechify
         global::System.Threading.Tasks.Task<global::Speechify.ListDynamicVariablesResponse> UpdateDynamicVariablesAsync(
             string id,
             global::System.Collections.Generic.IList<global::Speechify.DynamicVariable> variables,
+            string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
     }

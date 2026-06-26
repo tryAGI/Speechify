@@ -27,10 +27,12 @@ namespace Speechify
             };
         partial void PrepareRunTestsBatchArguments(
             global::System.Net.Http.HttpClient httpClient,
+            ref string? speechifyVersion,
             global::Speechify.RunBatchRequest request);
         partial void PrepareRunTestsBatchRequest(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpRequestMessage httpRequestMessage,
+            string? speechifyVersion,
             global::Speechify.RunBatchRequest request);
         partial void ProcessRunTestsBatchResponse(
             global::System.Net.Http.HttpClient httpClient,
@@ -49,6 +51,7 @@ namespace Speechify
         /// Each entry in the response is a queued run; poll<br/>
         /// `GET /v1/agents/tests/runs/{id}` for each.
         /// </summary>
+        /// <param name="speechifyVersion"></param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -56,12 +59,14 @@ namespace Speechify
         public async global::System.Threading.Tasks.Task<global::Speechify.RunBatchResponse> RunTestsBatchAsync(
 
             global::Speechify.RunBatchRequest request,
+            string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
             var __response = await RunTestsBatchAsResponseAsync(
 
                 request: request,
+                speechifyVersion: speechifyVersion,
                 requestOptions: requestOptions,
                 cancellationToken: cancellationToken
             ).ConfigureAwait(false);
@@ -76,6 +81,7 @@ namespace Speechify
         /// Each entry in the response is a queued run; poll<br/>
         /// `GET /v1/agents/tests/runs/{id}` for each.
         /// </summary>
+        /// <param name="speechifyVersion"></param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -83,6 +89,7 @@ namespace Speechify
         public async global::System.Threading.Tasks.Task<global::Speechify.AutoSDKHttpResponse<global::Speechify.RunBatchResponse>> RunTestsBatchAsResponseAsync(
 
             global::Speechify.RunBatchRequest request,
+            string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
@@ -92,6 +99,7 @@ namespace Speechify
                 client: HttpClient);
             PrepareRunTestsBatchArguments(
                 httpClient: HttpClient,
+                speechifyVersion: ref speechifyVersion,
                 request: request);
 
 
@@ -149,6 +157,12 @@ namespace Speechify
                     __httpRequest.Headers.Add(__authorization.Name, __authorization.Value);
                 } 
             }
+
+            if (speechifyVersion != default)
+            {
+                __httpRequest.Headers.TryAddWithoutValidation("Speechify-Version", speechifyVersion.ToString());
+            }
+
                             var __httpRequestContentBody = request.ToJson(JsonSerializerContext);
                             var __httpRequestContent = new global::System.Net.Http.StringContent(
                                 content: __httpRequestContentBody,
@@ -166,6 +180,7 @@ namespace Speechify
                 PrepareRunTestsBatchRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
+                    speechifyVersion: speechifyVersion,
                     request: request);
 
                 return __httpRequest;
@@ -523,12 +538,14 @@ namespace Speechify
         /// Each entry in the response is a queued run; poll<br/>
         /// `GET /v1/agents/tests/runs/{id}` for each.
         /// </summary>
+        /// <param name="speechifyVersion"></param>
         /// <param name="entries"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::System.InvalidOperationException"></exception>
         public async global::System.Threading.Tasks.Task<global::Speechify.RunBatchResponse> RunTestsBatchAsync(
             global::System.Collections.Generic.IList<global::Speechify.BatchRunEntry> entries,
+            string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
@@ -538,6 +555,7 @@ namespace Speechify
             };
 
             return await RunTestsBatchAsync(
+                speechifyVersion: speechifyVersion,
                 request: __request,
                 requestOptions: requestOptions,
                 cancellationToken: cancellationToken).ConfigureAwait(false);

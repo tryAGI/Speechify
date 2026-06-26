@@ -27,10 +27,12 @@ namespace Speechify
             };
         partial void PrepareCreateArguments(
             global::System.Net.Http.HttpClient httpClient,
+            ref string? speechifyVersion,
             global::Speechify.CreateSIPTrunkRequest request);
         partial void PrepareCreateRequest(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpRequestMessage httpRequestMessage,
+            string? speechifyVersion,
             global::Speechify.CreateSIPTrunkRequest request);
         partial void ProcessCreateResponse(
             global::System.Net.Http.HttpClient httpClient,
@@ -49,6 +51,7 @@ namespace Speechify
         /// creation is handled automatically. Returns 402 when the workspace<br/>
         /// has reached the 20-trunk cap.
         /// </summary>
+        /// <param name="speechifyVersion"></param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -56,12 +59,14 @@ namespace Speechify
         public async global::System.Threading.Tasks.Task<global::Speechify.SIPTrunk> CreateAsync(
 
             global::Speechify.CreateSIPTrunkRequest request,
+            string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
             var __response = await CreateAsResponseAsync(
 
                 request: request,
+                speechifyVersion: speechifyVersion,
                 requestOptions: requestOptions,
                 cancellationToken: cancellationToken
             ).ConfigureAwait(false);
@@ -76,6 +81,7 @@ namespace Speechify
         /// creation is handled automatically. Returns 402 when the workspace<br/>
         /// has reached the 20-trunk cap.
         /// </summary>
+        /// <param name="speechifyVersion"></param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -83,6 +89,7 @@ namespace Speechify
         public async global::System.Threading.Tasks.Task<global::Speechify.AutoSDKHttpResponse<global::Speechify.SIPTrunk>> CreateAsResponseAsync(
 
             global::Speechify.CreateSIPTrunkRequest request,
+            string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
@@ -92,6 +99,7 @@ namespace Speechify
                 client: HttpClient);
             PrepareCreateArguments(
                 httpClient: HttpClient,
+                speechifyVersion: ref speechifyVersion,
                 request: request);
 
 
@@ -149,6 +157,12 @@ namespace Speechify
                     __httpRequest.Headers.Add(__authorization.Name, __authorization.Value);
                 } 
             }
+
+            if (speechifyVersion != default)
+            {
+                __httpRequest.Headers.TryAddWithoutValidation("Speechify-Version", speechifyVersion.ToString());
+            }
+
                             var __httpRequestContentBody = request.ToJson(JsonSerializerContext);
                             var __httpRequestContent = new global::System.Net.Http.StringContent(
                                 content: __httpRequestContentBody,
@@ -166,6 +180,7 @@ namespace Speechify
                 PrepareCreateRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
+                    speechifyVersion: speechifyVersion,
                     request: request);
 
                 return __httpRequest;
@@ -560,6 +575,7 @@ namespace Speechify
         /// creation is handled automatically. Returns 402 when the workspace<br/>
         /// has reached the 20-trunk cap.
         /// </summary>
+        /// <param name="speechifyVersion"></param>
         /// <param name="name">
         /// Human-readable name for the trunk.
         /// </param>
@@ -612,6 +628,7 @@ namespace Speechify
             string name,
             global::Speechify.SIPTrunkProvider provider,
             global::Speechify.SIPTrunkDirection direction,
+            string? speechifyVersion = default,
             string? sipAddress = default,
             string? authUsername = default,
             string? authPassword = default,
@@ -639,6 +656,7 @@ namespace Speechify
             };
 
             return await CreateAsync(
+                speechifyVersion: speechifyVersion,
                 request: __request,
                 requestOptions: requestOptions,
                 cancellationToken: cancellationToken).ConfigureAwait(false);

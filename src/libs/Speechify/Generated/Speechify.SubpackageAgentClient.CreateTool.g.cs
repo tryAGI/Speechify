@@ -28,11 +28,13 @@ namespace Speechify
         partial void PrepareCreateToolArguments(
             global::System.Net.Http.HttpClient httpClient,
             ref string id,
+            ref string? speechifyVersion,
             global::Speechify.CreateAgentToolRequest request);
         partial void PrepareCreateToolRequest(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpRequestMessage httpRequestMessage,
             string id,
+            string? speechifyVersion,
             global::Speechify.CreateAgentToolRequest request);
         partial void ProcessCreateToolResponse(
             global::System.Net.Http.HttpClient httpClient,
@@ -54,6 +56,7 @@ namespace Speechify
         /// `PUT /v1/agents/{id}/tools/{toolId}` instead.
         /// </summary>
         /// <param name="id"></param>
+        /// <param name="speechifyVersion"></param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -62,6 +65,7 @@ namespace Speechify
             string id,
 
             global::Speechify.CreateAgentToolRequest request,
+            string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
@@ -69,6 +73,7 @@ namespace Speechify
                 id: id,
 
                 request: request,
+                speechifyVersion: speechifyVersion,
                 requestOptions: requestOptions,
                 cancellationToken: cancellationToken
             ).ConfigureAwait(false);
@@ -86,6 +91,7 @@ namespace Speechify
         /// `PUT /v1/agents/{id}/tools/{toolId}` instead.
         /// </summary>
         /// <param name="id"></param>
+        /// <param name="speechifyVersion"></param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -94,6 +100,7 @@ namespace Speechify
             string id,
 
             global::Speechify.CreateAgentToolRequest request,
+            string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
@@ -104,6 +111,7 @@ namespace Speechify
             PrepareCreateToolArguments(
                 httpClient: HttpClient,
                 id: ref id,
+                speechifyVersion: ref speechifyVersion,
                 request: request);
 
 
@@ -161,6 +169,12 @@ namespace Speechify
                     __httpRequest.Headers.Add(__authorization.Name, __authorization.Value);
                 } 
             }
+
+            if (speechifyVersion != default)
+            {
+                __httpRequest.Headers.TryAddWithoutValidation("Speechify-Version", speechifyVersion.ToString());
+            }
+
                             var __httpRequestContentBody = request.ToJson(JsonSerializerContext);
                             var __httpRequestContent = new global::System.Net.Http.StringContent(
                                 content: __httpRequestContentBody,
@@ -179,6 +193,7 @@ namespace Speechify
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
                     id: id!,
+                    speechifyVersion: speechifyVersion,
                     request: request);
 
                 return __httpRequest;
@@ -576,6 +591,7 @@ namespace Speechify
         /// `PUT /v1/agents/{id}/tools/{toolId}` instead.
         /// </summary>
         /// <param name="id"></param>
+        /// <param name="speechifyVersion"></param>
         /// <param name="kind">
         /// What kind of tool this is, and where it executes.<br/>
         /// - `builtin`: a worker-resident platform capability (e.g. end_call, play_audio), configured per-agent<br/>
@@ -597,6 +613,7 @@ namespace Speechify
             global::Speechify.ToolKind kind,
             string name,
             global::Speechify.CreateAgentToolRequestConfig config,
+            string? speechifyVersion = default,
             string? description = default,
             bool? enabled = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
@@ -613,6 +630,7 @@ namespace Speechify
 
             return await CreateToolAsync(
                 id: id,
+                speechifyVersion: speechifyVersion,
                 request: __request,
                 requestOptions: requestOptions,
                 cancellationToken: cancellationToken).ConfigureAwait(false);

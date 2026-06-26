@@ -17,6 +17,7 @@ namespace Speechify
         ///   registered against that trunk.<br/>
         /// Returns 402 when the workspace has reached the 100-number cap.
         /// </summary>
+        /// <param name="speechifyVersion"></param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -24,6 +25,7 @@ namespace Speechify
         global::System.Threading.Tasks.Task<global::Speechify.PhoneNumber> ImportAsync(
 
             global::Speechify.ImportPhoneNumberRequest request,
+            string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
@@ -39,6 +41,7 @@ namespace Speechify
         ///   registered against that trunk.<br/>
         /// Returns 402 when the workspace has reached the 100-number cap.
         /// </summary>
+        /// <param name="speechifyVersion"></param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -46,6 +49,7 @@ namespace Speechify
         global::System.Threading.Tasks.Task<global::Speechify.AutoSDKHttpResponse<global::Speechify.PhoneNumber>> ImportAsResponseAsync(
 
             global::Speechify.ImportPhoneNumberRequest request,
+            string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
@@ -61,6 +65,7 @@ namespace Speechify
         ///   registered against that trunk.<br/>
         /// Returns 402 when the workspace has reached the 100-number cap.
         /// </summary>
+        /// <param name="speechifyVersion"></param>
         /// <param name="e164">
         /// The phone number in E.164 format. For `provider=livekit` this<br/>
         /// is the number you want LiveKit to purchase. For `provider=twilio`,<br/>
@@ -120,6 +125,7 @@ namespace Speechify
         global::System.Threading.Tasks.Task<global::Speechify.PhoneNumber> ImportAsync(
             string e164,
             global::Speechify.PhoneNumberProvider provider,
+            string? speechifyVersion = default,
             string? label = default,
             string? trunkId = default,
             string? agentId = default,

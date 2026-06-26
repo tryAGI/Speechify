@@ -27,10 +27,12 @@ namespace Speechify
             };
         partial void PrepareSpeechArguments(
             global::System.Net.Http.HttpClient httpClient,
+            ref string? speechifyVersion,
             global::Speechify.GetSpeechRequest request);
         partial void PrepareSpeechRequest(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpRequestMessage httpRequestMessage,
+            string? speechifyVersion,
             global::Speechify.GetSpeechRequest request);
         partial void ProcessSpeechResponse(
             global::System.Net.Http.HttpClient httpClient,
@@ -47,6 +49,7 @@ namespace Speechify
         /// file plus billing and speech-mark metadata in a single JSON response.<br/>
         /// For low-latency playback or long-form text, use POST /v1/audio/stream.
         /// </summary>
+        /// <param name="speechifyVersion"></param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -54,12 +57,14 @@ namespace Speechify
         public async global::System.Threading.Tasks.Task<global::Speechify.GetSpeechResponse> SpeechAsync(
 
             global::Speechify.GetSpeechRequest request,
+            string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
             var __response = await SpeechAsResponseAsync(
 
                 request: request,
+                speechifyVersion: speechifyVersion,
                 requestOptions: requestOptions,
                 cancellationToken: cancellationToken
             ).ConfigureAwait(false);
@@ -72,6 +77,7 @@ namespace Speechify
         /// file plus billing and speech-mark metadata in a single JSON response.<br/>
         /// For low-latency playback or long-form text, use POST /v1/audio/stream.
         /// </summary>
+        /// <param name="speechifyVersion"></param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -79,6 +85,7 @@ namespace Speechify
         public async global::System.Threading.Tasks.Task<global::Speechify.AutoSDKHttpResponse<global::Speechify.GetSpeechResponse>> SpeechAsResponseAsync(
 
             global::Speechify.GetSpeechRequest request,
+            string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
@@ -88,6 +95,7 @@ namespace Speechify
                 client: HttpClient);
             PrepareSpeechArguments(
                 httpClient: HttpClient,
+                speechifyVersion: ref speechifyVersion,
                 request: request);
 
 
@@ -145,6 +153,12 @@ namespace Speechify
                     __httpRequest.Headers.Add(__authorization.Name, __authorization.Value);
                 } 
             }
+
+            if (speechifyVersion != default)
+            {
+                __httpRequest.Headers.TryAddWithoutValidation("Speechify-Version", speechifyVersion.ToString());
+            }
+
                             var __httpRequestContentBody = request.ToJson(JsonSerializerContext);
                             var __httpRequestContent = new global::System.Net.Http.StringContent(
                                 content: __httpRequestContentBody,
@@ -162,6 +176,7 @@ namespace Speechify
                 PrepareSpeechRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
+                    speechifyVersion: speechifyVersion,
                     request: request);
 
                 return __httpRequest;
@@ -776,6 +791,7 @@ namespace Speechify
         /// file plus billing and speech-mark metadata in a single JSON response.<br/>
         /// For low-latency playback or long-form text, use POST /v1/audio/stream.
         /// </summary>
+        /// <param name="speechifyVersion"></param>
         /// <param name="audioFormat">
         /// The format for the output audio. Note, that the current default is "wav", but there's no guarantee it will not change in the future. We recommend always passing the specific param you expect.<br/>
         /// Default Value: wav
@@ -805,6 +821,7 @@ namespace Speechify
         public async global::System.Threading.Tasks.Task<global::Speechify.GetSpeechResponse> SpeechAsync(
             string input,
             string voiceId,
+            string? speechifyVersion = default,
             global::Speechify.GetSpeechRequestAudioFormat? audioFormat = default,
             string? language = default,
             global::Speechify.GetSpeechRequestModel? model = default,
@@ -823,6 +840,7 @@ namespace Speechify
             };
 
             return await SpeechAsync(
+                speechifyVersion: speechifyVersion,
                 request: __request,
                 requestOptions: requestOptions,
                 cancellationToken: cancellationToken).ConfigureAwait(false);

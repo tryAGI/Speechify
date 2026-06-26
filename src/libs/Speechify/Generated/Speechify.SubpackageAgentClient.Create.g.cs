@@ -27,10 +27,12 @@ namespace Speechify
             };
         partial void PrepareCreateArguments(
             global::System.Net.Http.HttpClient httpClient,
+            ref string? speechifyVersion,
             global::Speechify.CreateAgentRequest request);
         partial void PrepareCreateRequest(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpRequestMessage httpRequestMessage,
+            string? speechifyVersion,
             global::Speechify.CreateAgentRequest request);
         partial void ProcessCreateResponse(
             global::System.Net.Http.HttpClient httpClient,
@@ -45,6 +47,7 @@ namespace Speechify
         /// Create Agent<br/>
         /// Create a voice agent.
         /// </summary>
+        /// <param name="speechifyVersion"></param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -52,12 +55,14 @@ namespace Speechify
         public async global::System.Threading.Tasks.Task<global::Speechify.Agent> CreateAsync(
 
             global::Speechify.CreateAgentRequest request,
+            string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
             var __response = await CreateAsResponseAsync(
 
                 request: request,
+                speechifyVersion: speechifyVersion,
                 requestOptions: requestOptions,
                 cancellationToken: cancellationToken
             ).ConfigureAwait(false);
@@ -68,6 +73,7 @@ namespace Speechify
         /// Create Agent<br/>
         /// Create a voice agent.
         /// </summary>
+        /// <param name="speechifyVersion"></param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -75,6 +81,7 @@ namespace Speechify
         public async global::System.Threading.Tasks.Task<global::Speechify.AutoSDKHttpResponse<global::Speechify.Agent>> CreateAsResponseAsync(
 
             global::Speechify.CreateAgentRequest request,
+            string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
@@ -84,6 +91,7 @@ namespace Speechify
                 client: HttpClient);
             PrepareCreateArguments(
                 httpClient: HttpClient,
+                speechifyVersion: ref speechifyVersion,
                 request: request);
 
 
@@ -141,6 +149,12 @@ namespace Speechify
                     __httpRequest.Headers.Add(__authorization.Name, __authorization.Value);
                 } 
             }
+
+            if (speechifyVersion != default)
+            {
+                __httpRequest.Headers.TryAddWithoutValidation("Speechify-Version", speechifyVersion.ToString());
+            }
+
                             var __httpRequestContentBody = request.ToJson(JsonSerializerContext);
                             var __httpRequestContent = new global::System.Net.Http.StringContent(
                                 content: __httpRequestContentBody,
@@ -158,6 +172,7 @@ namespace Speechify
                 PrepareCreateRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
+                    speechifyVersion: speechifyVersion,
                     request: request);
 
                 return __httpRequest;
@@ -511,6 +526,7 @@ namespace Speechify
         /// Create Agent<br/>
         /// Create a voice agent.
         /// </summary>
+        /// <param name="speechifyVersion"></param>
         /// <param name="name"></param>
         /// <param name="slug">
         /// Optional. Server derives slug from name with a random suffix when omitted; if you supply your own, a collision returns 400 'slug already taken'.
@@ -583,6 +599,7 @@ namespace Speechify
             string prompt,
             string firstMessage,
             global::Speechify.AgentTTSConfig tts,
+            string? speechifyVersion = default,
             string? slug = default,
             string? language = default,
             global::Speechify.AgentLLMConfig? llm = default,
@@ -627,6 +644,7 @@ namespace Speechify
             };
 
             return await CreateAsync(
+                speechifyVersion: speechifyVersion,
                 request: __request,
                 requestOptions: requestOptions,
                 cancellationToken: cancellationToken).ConfigureAwait(false);

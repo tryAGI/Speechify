@@ -28,12 +28,14 @@ namespace Speechify
         partial void PrepareBindPhoneNumberArguments(
             global::System.Net.Http.HttpClient httpClient,
             ref string id,
-            ref string phoneNumberId);
+            ref string phoneNumberId,
+            ref string? speechifyVersion);
         partial void PrepareBindPhoneNumberRequest(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpRequestMessage httpRequestMessage,
             string id,
-            string phoneNumberId);
+            string phoneNumberId,
+            string? speechifyVersion);
         partial void ProcessBindPhoneNumberResponse(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpResponseMessage httpResponseMessage);
@@ -52,18 +54,21 @@ namespace Speechify
         /// </summary>
         /// <param name="id"></param>
         /// <param name="phoneNumberId"></param>
+        /// <param name="speechifyVersion"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
         public async global::System.Threading.Tasks.Task<string> BindPhoneNumberAsync(
             string id,
             string phoneNumberId,
+            string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
             var __response = await BindPhoneNumberAsResponseAsync(
                 id: id,
                 phoneNumberId: phoneNumberId,
+                speechifyVersion: speechifyVersion,
                 requestOptions: requestOptions,
                 cancellationToken: cancellationToken
             ).ConfigureAwait(false);
@@ -79,12 +84,14 @@ namespace Speechify
         /// </summary>
         /// <param name="id"></param>
         /// <param name="phoneNumberId"></param>
+        /// <param name="speechifyVersion"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
         public async global::System.Threading.Tasks.Task<global::Speechify.AutoSDKHttpResponse<string>> BindPhoneNumberAsResponseAsync(
             string id,
             string phoneNumberId,
+            string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
@@ -93,7 +100,8 @@ namespace Speechify
             PrepareBindPhoneNumberArguments(
                 httpClient: HttpClient,
                 id: ref id,
-                phoneNumberId: ref phoneNumberId);
+                phoneNumberId: ref phoneNumberId,
+                speechifyVersion: ref speechifyVersion);
 
 
             var __authorizations = global::Speechify.EndPointSecurityResolver.ResolveAuthorizations(
@@ -150,6 +158,12 @@ namespace Speechify
                     __httpRequest.Headers.Add(__authorization.Name, __authorization.Value);
                 } 
             }
+
+            if (speechifyVersion != default)
+            {
+                __httpRequest.Headers.TryAddWithoutValidation("Speechify-Version", speechifyVersion.ToString());
+            }
+
                 global::Speechify.AutoSDKRequestOptionsSupport.ApplyHeaders(
                     request: __httpRequest,
                     clientHeaders: Options.Headers,
@@ -162,7 +176,8 @@ namespace Speechify
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
                     id: id!,
-                    phoneNumberId: phoneNumberId!);
+                    phoneNumberId: phoneNumberId!,
+                    speechifyVersion: speechifyVersion);
 
                 return __httpRequest;
             }

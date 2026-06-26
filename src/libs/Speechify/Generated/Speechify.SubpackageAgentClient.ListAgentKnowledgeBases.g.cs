@@ -27,11 +27,13 @@ namespace Speechify
             };
         partial void PrepareListAgentKnowledgeBasesArguments(
             global::System.Net.Http.HttpClient httpClient,
-            ref string id);
+            ref string id,
+            ref string? speechifyVersion);
         partial void PrepareListAgentKnowledgeBasesRequest(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpRequestMessage httpRequestMessage,
-            string id);
+            string id,
+            string? speechifyVersion);
         partial void ProcessListAgentKnowledgeBasesResponse(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpResponseMessage httpResponseMessage);
@@ -48,16 +50,19 @@ namespace Speechify
         /// scale, so this endpoint does not paginate.
         /// </summary>
         /// <param name="id"></param>
+        /// <param name="speechifyVersion"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
         public async global::System.Threading.Tasks.Task<global::Speechify.AttachedKnowledgeBasesResponse> ListAgentKnowledgeBasesAsync(
             string id,
+            string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
             var __response = await ListAgentKnowledgeBasesAsResponseAsync(
                 id: id,
+                speechifyVersion: speechifyVersion,
                 requestOptions: requestOptions,
                 cancellationToken: cancellationToken
             ).ConfigureAwait(false);
@@ -71,11 +76,13 @@ namespace Speechify
         /// scale, so this endpoint does not paginate.
         /// </summary>
         /// <param name="id"></param>
+        /// <param name="speechifyVersion"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
         public async global::System.Threading.Tasks.Task<global::Speechify.AutoSDKHttpResponse<global::Speechify.AttachedKnowledgeBasesResponse>> ListAgentKnowledgeBasesAsResponseAsync(
             string id,
+            string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
@@ -83,7 +90,8 @@ namespace Speechify
                 client: HttpClient);
             PrepareListAgentKnowledgeBasesArguments(
                 httpClient: HttpClient,
-                id: ref id);
+                id: ref id,
+                speechifyVersion: ref speechifyVersion);
 
 
             var __authorizations = global::Speechify.EndPointSecurityResolver.ResolveAuthorizations(
@@ -140,6 +148,12 @@ namespace Speechify
                     __httpRequest.Headers.Add(__authorization.Name, __authorization.Value);
                 } 
             }
+
+            if (speechifyVersion != default)
+            {
+                __httpRequest.Headers.TryAddWithoutValidation("Speechify-Version", speechifyVersion.ToString());
+            }
+
                 global::Speechify.AutoSDKRequestOptionsSupport.ApplyHeaders(
                     request: __httpRequest,
                     clientHeaders: Options.Headers,
@@ -151,7 +165,8 @@ namespace Speechify
                 PrepareListAgentKnowledgeBasesRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
-                    id: id!);
+                    id: id!,
+                    speechifyVersion: speechifyVersion);
 
                 return __httpRequest;
             }

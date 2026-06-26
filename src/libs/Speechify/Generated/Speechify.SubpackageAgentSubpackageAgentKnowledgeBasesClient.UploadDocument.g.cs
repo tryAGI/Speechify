@@ -28,11 +28,13 @@ namespace Speechify
         partial void PrepareUploadDocumentArguments(
             global::System.Net.Http.HttpClient httpClient,
             ref string id,
+            ref string? speechifyVersion,
             global::Speechify.UploadDocumentRequest request);
         partial void PrepareUploadDocumentRequest(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpRequestMessage httpRequestMessage,
             string id,
+            string? speechifyVersion,
             global::Speechify.UploadDocumentRequest request);
         partial void ProcessUploadDocumentResponse(
             global::System.Net.Http.HttpClient httpClient,
@@ -51,6 +53,7 @@ namespace Speechify
         /// Maximum 10 MB per upload.
         /// </summary>
         /// <param name="id"></param>
+        /// <param name="speechifyVersion"></param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -59,6 +62,7 @@ namespace Speechify
             string id,
 
             global::Speechify.UploadDocumentRequest request,
+            string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
@@ -66,6 +70,7 @@ namespace Speechify
                 id: id,
 
                 request: request,
+                speechifyVersion: speechifyVersion,
                 requestOptions: requestOptions,
                 cancellationToken: cancellationToken
             ).ConfigureAwait(false);
@@ -80,6 +85,7 @@ namespace Speechify
         /// Maximum 10 MB per upload.
         /// </summary>
         /// <param name="id"></param>
+        /// <param name="speechifyVersion"></param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -88,6 +94,7 @@ namespace Speechify
             string id,
 
             global::Speechify.UploadDocumentRequest request,
+            string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
@@ -98,6 +105,7 @@ namespace Speechify
             PrepareUploadDocumentArguments(
                 httpClient: HttpClient,
                 id: ref id,
+                speechifyVersion: ref speechifyVersion,
                 request: request);
 
 
@@ -156,11 +164,25 @@ namespace Speechify
                 } 
             }
 
+            if (speechifyVersion != default)
+            {
+                __httpRequest.Headers.TryAddWithoutValidation("Speechify-Version", speechifyVersion.ToString());
+            }
+
+
                             var __httpRequestContent = new global::System.Net.Http.MultipartFormDataContent();
                             __httpRequestContent.Add(
                                 content: new global::System.Net.Http.StringContent(id ?? string.Empty),
                                 name: "\"id\"");
 
+                            if (speechifyVersion != default)
+                            {
+
+                                __httpRequestContent.Add(
+                                    content: new global::System.Net.Http.StringContent(speechifyVersion ?? string.Empty),
+                                    name: "\"Speechify-Version\"");
+
+                            }
                             var __contentFile = new global::System.Net.Http.ByteArrayContent(request.File ?? global::System.Array.Empty<byte>());
                             __contentFile.Headers.ContentType = new global::System.Net.Http.Headers.MediaTypeHeaderValue(
                                 request.Filename is null
@@ -213,6 +235,7 @@ namespace Speechify
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
                     id: id!,
+                    speechifyVersion: speechifyVersion,
                     request: request);
 
                 return __httpRequest;
@@ -644,6 +667,7 @@ namespace Speechify
         /// Maximum 10 MB per upload.
         /// </summary>
         /// <param name="id"></param>
+        /// <param name="speechifyVersion"></param>
         /// <param name="file"></param>
         /// <param name="filename"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
@@ -653,6 +677,7 @@ namespace Speechify
             string id,
             byte[] file,
             string filename,
+            string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
@@ -664,6 +689,7 @@ namespace Speechify
 
             return await UploadDocumentAsync(
                 id: id,
+                speechifyVersion: speechifyVersion,
                 request: __request,
                 requestOptions: requestOptions,
                 cancellationToken: cancellationToken).ConfigureAwait(false);
@@ -677,6 +703,7 @@ namespace Speechify
         /// Maximum 10 MB per upload.
         /// </summary>
         /// <param name="id"></param>
+        /// <param name="speechifyVersion"></param>
         /// <param name="file">
         /// The stream to send as the multipart 'file' file part.
         /// </param>
@@ -688,6 +715,7 @@ namespace Speechify
             string id,
             global::System.IO.Stream file,
             string filename,
+            string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
@@ -703,6 +731,7 @@ namespace Speechify
             PrepareUploadDocumentArguments(
                 httpClient: HttpClient,
                 id: ref id,
+                speechifyVersion: ref speechifyVersion,
                 request: request);
 
 
@@ -761,11 +790,25 @@ namespace Speechify
                 } 
             }
 
+            if (speechifyVersion != default)
+            {
+                __httpRequest.Headers.TryAddWithoutValidation("Speechify-Version", speechifyVersion.ToString());
+            }
+
+
                             var __httpRequestContent = new global::System.Net.Http.MultipartFormDataContent();
                             __httpRequestContent.Add(
                                 content: new global::System.Net.Http.StringContent(id ?? string.Empty),
                                 name: "\"id\"");
 
+                            if (speechifyVersion != default)
+                            {
+
+                                __httpRequestContent.Add(
+                                    content: new global::System.Net.Http.StringContent(speechifyVersion ?? string.Empty),
+                                    name: "\"Speechify-Version\"");
+
+                            }
                             var __contentFile = new global::System.Net.Http.StreamContent(file);
                             __contentFile.Headers.ContentType = new global::System.Net.Http.Headers.MediaTypeHeaderValue(
                                 request.Filename is null
@@ -818,6 +861,7 @@ namespace Speechify
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
                     id: id!,
+                    speechifyVersion: speechifyVersion,
                     request: request);
 
                 return __httpRequest;
@@ -1241,6 +1285,7 @@ namespace Speechify
         /// Maximum 10 MB per upload.
         /// </summary>
         /// <param name="id"></param>
+        /// <param name="speechifyVersion"></param>
         /// <param name="file">
         /// The stream to send as the multipart 'file' file part.
         /// </param>
@@ -1252,6 +1297,7 @@ namespace Speechify
             string id,
             global::System.IO.Stream file,
             string filename,
+            string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
@@ -1267,6 +1313,7 @@ namespace Speechify
             PrepareUploadDocumentArguments(
                 httpClient: HttpClient,
                 id: ref id,
+                speechifyVersion: ref speechifyVersion,
                 request: request);
 
 
@@ -1325,11 +1372,25 @@ namespace Speechify
                 } 
             }
 
+            if (speechifyVersion != default)
+            {
+                __httpRequest.Headers.TryAddWithoutValidation("Speechify-Version", speechifyVersion.ToString());
+            }
+
+
                             var __httpRequestContent = new global::System.Net.Http.MultipartFormDataContent();
                             __httpRequestContent.Add(
                                 content: new global::System.Net.Http.StringContent(id ?? string.Empty),
                                 name: "\"id\"");
 
+                            if (speechifyVersion != default)
+                            {
+
+                                __httpRequestContent.Add(
+                                    content: new global::System.Net.Http.StringContent(speechifyVersion ?? string.Empty),
+                                    name: "\"Speechify-Version\"");
+
+                            }
                             var __contentFile = new global::System.Net.Http.StreamContent(file);
                             __contentFile.Headers.ContentType = new global::System.Net.Http.Headers.MediaTypeHeaderValue(
                                 request.Filename is null
@@ -1382,6 +1443,7 @@ namespace Speechify
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
                     id: id!,
+                    speechifyVersion: speechifyVersion,
                     request: request);
 
                 return __httpRequest;

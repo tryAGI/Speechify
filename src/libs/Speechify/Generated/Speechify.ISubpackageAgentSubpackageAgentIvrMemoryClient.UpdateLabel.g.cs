@@ -13,6 +13,7 @@ namespace Speechify
         /// are a no-op (the response echoes the unchanged menu).
         /// </summary>
         /// <param name="id"></param>
+        /// <param name="speechifyVersion"></param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -21,6 +22,7 @@ namespace Speechify
             string id,
 
             global::Speechify.UpdateIVRMenuLabelRequest request,
+            string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
@@ -32,6 +34,7 @@ namespace Speechify
         /// are a no-op (the response echoes the unchanged menu).
         /// </summary>
         /// <param name="id"></param>
+        /// <param name="speechifyVersion"></param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -40,6 +43,7 @@ namespace Speechify
             string id,
 
             global::Speechify.UpdateIVRMenuLabelRequest request,
+            string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
@@ -51,6 +55,7 @@ namespace Speechify
         /// are a no-op (the response echoes the unchanged menu).
         /// </summary>
         /// <param name="id"></param>
+        /// <param name="speechifyVersion"></param>
         /// <param name="dtmf">
         /// DTMF value of the option to relabel (e.g. "1", "*", "#").
         /// </param>
@@ -64,6 +69,7 @@ namespace Speechify
             string id,
             string dtmf,
             string label,
+            string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
     }

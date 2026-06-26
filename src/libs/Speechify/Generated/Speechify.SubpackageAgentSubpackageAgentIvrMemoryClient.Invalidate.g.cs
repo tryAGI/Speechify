@@ -28,11 +28,13 @@ namespace Speechify
         partial void PrepareInvalidateArguments(
             global::System.Net.Http.HttpClient httpClient,
             ref string id,
+            ref string? speechifyVersion,
             global::Speechify.InvalidateIVRMenuRequest request);
         partial void PrepareInvalidateRequest(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpRequestMessage httpRequestMessage,
             string id,
+            string? speechifyVersion,
             global::Speechify.InvalidateIVRMenuRequest request);
         partial void ProcessInvalidateResponse(
             global::System.Net.Http.HttpClient httpClient,
@@ -53,6 +55,7 @@ namespace Speechify
         /// operator triage. A future audit table may persist it.
         /// </summary>
         /// <param name="id"></param>
+        /// <param name="speechifyVersion"></param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -61,6 +64,7 @@ namespace Speechify
             string id,
 
             global::Speechify.InvalidateIVRMenuRequest request,
+            string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
@@ -68,6 +72,7 @@ namespace Speechify
                 id: id,
 
                 request: request,
+                speechifyVersion: speechifyVersion,
                 requestOptions: requestOptions,
                 cancellationToken: cancellationToken
             ).ConfigureAwait(false);
@@ -84,6 +89,7 @@ namespace Speechify
         /// operator triage. A future audit table may persist it.
         /// </summary>
         /// <param name="id"></param>
+        /// <param name="speechifyVersion"></param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -92,6 +98,7 @@ namespace Speechify
             string id,
 
             global::Speechify.InvalidateIVRMenuRequest request,
+            string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
@@ -102,6 +109,7 @@ namespace Speechify
             PrepareInvalidateArguments(
                 httpClient: HttpClient,
                 id: ref id,
+                speechifyVersion: ref speechifyVersion,
                 request: request);
 
 
@@ -159,6 +167,12 @@ namespace Speechify
                     __httpRequest.Headers.Add(__authorization.Name, __authorization.Value);
                 } 
             }
+
+            if (speechifyVersion != default)
+            {
+                __httpRequest.Headers.TryAddWithoutValidation("Speechify-Version", speechifyVersion.ToString());
+            }
+
                             var __httpRequestContentBody = request.ToJson(JsonSerializerContext);
                             var __httpRequestContent = new global::System.Net.Http.StringContent(
                                 content: __httpRequestContentBody,
@@ -177,6 +191,7 @@ namespace Speechify
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
                     id: id!,
+                    speechifyVersion: speechifyVersion,
                     request: request);
 
                 return __httpRequest;
@@ -532,6 +547,7 @@ namespace Speechify
         /// operator triage. A future audit table may persist it.
         /// </summary>
         /// <param name="id"></param>
+        /// <param name="speechifyVersion"></param>
         /// <param name="reason">
         /// Operator-debug cause string. Bounded to 256 chars.
         /// </param>
@@ -540,6 +556,7 @@ namespace Speechify
         /// <exception cref="global::System.InvalidOperationException"></exception>
         public async global::System.Threading.Tasks.Task<string> InvalidateAsync(
             string id,
+            string? speechifyVersion = default,
             string? reason = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
@@ -551,6 +568,7 @@ namespace Speechify
 
             return await InvalidateAsync(
                 id: id,
+                speechifyVersion: speechifyVersion,
                 request: __request,
                 requestOptions: requestOptions,
                 cancellationToken: cancellationToken).ConfigureAwait(false);

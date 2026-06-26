@@ -28,12 +28,14 @@ namespace Speechify
         partial void PrepareGetVersionArguments(
             global::System.Net.Http.HttpClient httpClient,
             ref string id,
-            ref string versionId);
+            ref string versionId,
+            ref string? speechifyVersion);
         partial void PrepareGetVersionRequest(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpRequestMessage httpRequestMessage,
             string id,
-            string versionId);
+            string versionId,
+            string? speechifyVersion);
         partial void ProcessGetVersionResponse(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpResponseMessage httpResponseMessage);
@@ -49,18 +51,21 @@ namespace Speechify
         /// </summary>
         /// <param name="id"></param>
         /// <param name="versionId"></param>
+        /// <param name="speechifyVersion"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
         public async global::System.Threading.Tasks.Task<global::Speechify.GetFlowVersionResponse> GetVersionAsync(
             string id,
             string versionId,
+            string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
             var __response = await GetVersionAsResponseAsync(
                 id: id,
                 versionId: versionId,
+                speechifyVersion: speechifyVersion,
                 requestOptions: requestOptions,
                 cancellationToken: cancellationToken
             ).ConfigureAwait(false);
@@ -73,12 +78,14 @@ namespace Speechify
         /// </summary>
         /// <param name="id"></param>
         /// <param name="versionId"></param>
+        /// <param name="speechifyVersion"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
         public async global::System.Threading.Tasks.Task<global::Speechify.AutoSDKHttpResponse<global::Speechify.GetFlowVersionResponse>> GetVersionAsResponseAsync(
             string id,
             string versionId,
+            string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
@@ -87,7 +94,8 @@ namespace Speechify
             PrepareGetVersionArguments(
                 httpClient: HttpClient,
                 id: ref id,
-                versionId: ref versionId);
+                versionId: ref versionId,
+                speechifyVersion: ref speechifyVersion);
 
 
             var __authorizations = global::Speechify.EndPointSecurityResolver.ResolveAuthorizations(
@@ -144,6 +152,12 @@ namespace Speechify
                     __httpRequest.Headers.Add(__authorization.Name, __authorization.Value);
                 } 
             }
+
+            if (speechifyVersion != default)
+            {
+                __httpRequest.Headers.TryAddWithoutValidation("Speechify-Version", speechifyVersion.ToString());
+            }
+
                 global::Speechify.AutoSDKRequestOptionsSupport.ApplyHeaders(
                     request: __httpRequest,
                     clientHeaders: Options.Headers,
@@ -156,7 +170,8 @@ namespace Speechify
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
                     id: id!,
-                    versionId: versionId!);
+                    versionId: versionId!,
+                    speechifyVersion: speechifyVersion);
 
                 return __httpRequest;
             }

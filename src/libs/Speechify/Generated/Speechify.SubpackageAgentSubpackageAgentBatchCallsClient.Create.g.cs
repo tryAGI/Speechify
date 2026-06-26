@@ -27,10 +27,12 @@ namespace Speechify
             };
         partial void PrepareCreateArguments(
             global::System.Net.Http.HttpClient httpClient,
+            ref string? speechifyVersion,
             global::Speechify.CreateBatchCallRequest request);
         partial void PrepareCreateRequest(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpRequestMessage httpRequestMessage,
+            string? speechifyVersion,
             global::Speechify.CreateBatchCallRequest request);
         partial void ProcessCreateResponse(
             global::System.Net.Http.HttpClient httpClient,
@@ -50,6 +52,7 @@ namespace Speechify
         /// Accepts `application/json` or `multipart/form-data` (with a CSV file).<br/>
         /// Max 1000 recipients per batch.
         /// </summary>
+        /// <param name="speechifyVersion"></param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -57,12 +60,14 @@ namespace Speechify
         public async global::System.Threading.Tasks.Task<global::Speechify.CreateBatchCallResponse> CreateAsync(
 
             global::Speechify.CreateBatchCallRequest request,
+            string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
             var __response = await CreateAsResponseAsync(
 
                 request: request,
+                speechifyVersion: speechifyVersion,
                 requestOptions: requestOptions,
                 cancellationToken: cancellationToken
             ).ConfigureAwait(false);
@@ -78,6 +83,7 @@ namespace Speechify
         /// Accepts `application/json` or `multipart/form-data` (with a CSV file).<br/>
         /// Max 1000 recipients per batch.
         /// </summary>
+        /// <param name="speechifyVersion"></param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -85,6 +91,7 @@ namespace Speechify
         public async global::System.Threading.Tasks.Task<global::Speechify.AutoSDKHttpResponse<global::Speechify.CreateBatchCallResponse>> CreateAsResponseAsync(
 
             global::Speechify.CreateBatchCallRequest request,
+            string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
@@ -94,6 +101,7 @@ namespace Speechify
                 client: HttpClient);
             PrepareCreateArguments(
                 httpClient: HttpClient,
+                speechifyVersion: ref speechifyVersion,
                 request: request);
 
 
@@ -151,6 +159,12 @@ namespace Speechify
                     __httpRequest.Headers.Add(__authorization.Name, __authorization.Value);
                 } 
             }
+
+            if (speechifyVersion != default)
+            {
+                __httpRequest.Headers.TryAddWithoutValidation("Speechify-Version", speechifyVersion.ToString());
+            }
+
                             var __httpRequestContentBody = request.ToJson(JsonSerializerContext);
                             var __httpRequestContent = new global::System.Net.Http.StringContent(
                                 content: __httpRequestContentBody,
@@ -168,6 +182,7 @@ namespace Speechify
                 PrepareCreateRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
+                    speechifyVersion: speechifyVersion,
                     request: request);
 
                 return __httpRequest;
@@ -489,6 +504,7 @@ namespace Speechify
         /// Accepts `application/json` or `multipart/form-data` (with a CSV file).<br/>
         /// Max 1000 recipients per batch.
         /// </summary>
+        /// <param name="speechifyVersion"></param>
         /// <param name="name">
         /// Human-readable batch name.
         /// </param>
@@ -516,6 +532,7 @@ namespace Speechify
             string name,
             string agentId,
             global::System.Collections.Generic.IList<global::Speechify.BatchRecipientRequest> recipients,
+            string? speechifyVersion = default,
             string? phoneNumberId = default,
             global::System.DateTime? scheduledAt = default,
             int? ringingTimeoutMs = default,
@@ -533,6 +550,7 @@ namespace Speechify
             };
 
             return await CreateAsync(
+                speechifyVersion: speechifyVersion,
                 request: __request,
                 requestOptions: requestOptions,
                 cancellationToken: cancellationToken).ConfigureAwait(false);

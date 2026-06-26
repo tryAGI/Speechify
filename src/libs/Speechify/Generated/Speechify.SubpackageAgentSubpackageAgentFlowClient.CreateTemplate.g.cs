@@ -27,10 +27,12 @@ namespace Speechify
             };
         partial void PrepareCreateTemplateArguments(
             global::System.Net.Http.HttpClient httpClient,
+            ref string? speechifyVersion,
             global::Speechify.CreateFlowTemplateRequest request);
         partial void PrepareCreateTemplateRequest(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpRequestMessage httpRequestMessage,
+            string? speechifyVersion,
             global::Speechify.CreateFlowTemplateRequest request);
         partial void ProcessCreateTemplateResponse(
             global::System.Net.Http.HttpClient httpClient,
@@ -45,6 +47,7 @@ namespace Speechify
         /// Create Flow Template<br/>
         /// Create a reusable flow template from a graph.
         /// </summary>
+        /// <param name="speechifyVersion"></param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -52,12 +55,14 @@ namespace Speechify
         public async global::System.Threading.Tasks.Task<global::Speechify.FlowTemplate> CreateTemplateAsync(
 
             global::Speechify.CreateFlowTemplateRequest request,
+            string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
             var __response = await CreateTemplateAsResponseAsync(
 
                 request: request,
+                speechifyVersion: speechifyVersion,
                 requestOptions: requestOptions,
                 cancellationToken: cancellationToken
             ).ConfigureAwait(false);
@@ -68,6 +73,7 @@ namespace Speechify
         /// Create Flow Template<br/>
         /// Create a reusable flow template from a graph.
         /// </summary>
+        /// <param name="speechifyVersion"></param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -75,6 +81,7 @@ namespace Speechify
         public async global::System.Threading.Tasks.Task<global::Speechify.AutoSDKHttpResponse<global::Speechify.FlowTemplate>> CreateTemplateAsResponseAsync(
 
             global::Speechify.CreateFlowTemplateRequest request,
+            string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
@@ -84,6 +91,7 @@ namespace Speechify
                 client: HttpClient);
             PrepareCreateTemplateArguments(
                 httpClient: HttpClient,
+                speechifyVersion: ref speechifyVersion,
                 request: request);
 
 
@@ -141,6 +149,12 @@ namespace Speechify
                     __httpRequest.Headers.Add(__authorization.Name, __authorization.Value);
                 } 
             }
+
+            if (speechifyVersion != default)
+            {
+                __httpRequest.Headers.TryAddWithoutValidation("Speechify-Version", speechifyVersion.ToString());
+            }
+
                             var __httpRequestContentBody = request.ToJson(JsonSerializerContext);
                             var __httpRequestContent = new global::System.Net.Http.StringContent(
                                 content: __httpRequestContentBody,
@@ -158,6 +172,7 @@ namespace Speechify
                 PrepareCreateTemplateRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
+                    speechifyVersion: speechifyVersion,
                     request: request);
 
                 return __httpRequest;
@@ -585,6 +600,7 @@ namespace Speechify
         /// Create Flow Template<br/>
         /// Create a reusable flow template from a graph.
         /// </summary>
+        /// <param name="speechifyVersion"></param>
         /// <param name="key"></param>
         /// <param name="name"></param>
         /// <param name="description"></param>
@@ -603,6 +619,7 @@ namespace Speechify
             string key,
             string name,
             global::Speechify.FlowGraphInput graph,
+            string? speechifyVersion = default,
             string? description = default,
             string? category = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
@@ -618,6 +635,7 @@ namespace Speechify
             };
 
             return await CreateTemplateAsync(
+                speechifyVersion: speechifyVersion,
                 request: __request,
                 requestOptions: requestOptions,
                 cancellationToken: cancellationToken).ConfigureAwait(false);

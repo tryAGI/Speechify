@@ -21,6 +21,7 @@ namespace Speechify
         /// number of breakdown groups is capped by `breakdown_limit`; `meta.truncated`<br/>
         /// reports when groups were dropped.
         /// </summary>
+        /// <param name="speechifyVersion"></param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -28,6 +29,7 @@ namespace Speechify
         global::System.Threading.Tasks.Task<global::Speechify.AnalyticsQueryResult> QueryAsync(
 
             global::Speechify.AnalyticsQueryRequest request,
+            string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
@@ -47,6 +49,7 @@ namespace Speechify
         /// number of breakdown groups is capped by `breakdown_limit`; `meta.truncated`<br/>
         /// reports when groups were dropped.
         /// </summary>
+        /// <param name="speechifyVersion"></param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -54,6 +57,7 @@ namespace Speechify
         global::System.Threading.Tasks.Task<global::Speechify.AutoSDKHttpResponse<global::Speechify.AnalyticsQueryResult>> QueryAsResponseAsync(
 
             global::Speechify.AnalyticsQueryRequest request,
+            string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
@@ -73,6 +77,7 @@ namespace Speechify
         /// number of breakdown groups is capped by `breakdown_limit`; `meta.truncated`<br/>
         /// reports when groups were dropped.
         /// </summary>
+        /// <param name="speechifyVersion"></param>
         /// <param name="metric">
         /// The value each group / bucket reduces to.
         /// </param>
@@ -94,6 +99,7 @@ namespace Speechify
         /// <exception cref="global::System.InvalidOperationException"></exception>
         global::System.Threading.Tasks.Task<global::Speechify.AnalyticsQueryResult> QueryAsync(
             global::Speechify.AnalyticsMetric metric,
+            string? speechifyVersion = default,
             global::System.Collections.Generic.IList<string>? groupBy = default,
             global::System.Collections.Generic.IList<global::Speechify.AnalyticsFilter>? filters = default,
             global::Speechify.AnalyticsTime? time = default,

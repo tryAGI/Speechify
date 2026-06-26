@@ -18,7 +18,7 @@ namespace Speechify
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
         global::System.Threading.Tasks.Task<global::Speechify.LLMModelsResponse> ListLlmModelsAsync(
-            global::System.DateTime? speechifyVersion = default,
+            string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
@@ -35,7 +35,7 @@ namespace Speechify
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
         global::System.Threading.Tasks.Task<global::Speechify.AutoSDKHttpResponse<global::Speechify.LLMModelsResponse>> ListLlmModelsAsResponseAsync(
-            global::System.DateTime? speechifyVersion = default,
+            string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
     }

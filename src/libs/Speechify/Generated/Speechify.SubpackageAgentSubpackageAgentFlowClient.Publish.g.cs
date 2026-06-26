@@ -28,11 +28,13 @@ namespace Speechify
         partial void PreparePublishArguments(
             global::System.Net.Http.HttpClient httpClient,
             ref string id,
+            ref string? speechifyVersion,
             global::Speechify.PublishFlowRequest request);
         partial void PreparePublishRequest(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpRequestMessage httpRequestMessage,
             string id,
+            string? speechifyVersion,
             global::Speechify.PublishFlowRequest request);
         partial void ProcessPublishResponse(
             global::System.Net.Http.HttpClient httpClient,
@@ -48,6 +50,7 @@ namespace Speechify
         /// Publish the agent's draft graph as a new active flow version.
         /// </summary>
         /// <param name="id"></param>
+        /// <param name="speechifyVersion"></param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -56,6 +59,7 @@ namespace Speechify
             string id,
 
             global::Speechify.PublishFlowRequest request,
+            string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
@@ -63,6 +67,7 @@ namespace Speechify
                 id: id,
 
                 request: request,
+                speechifyVersion: speechifyVersion,
                 requestOptions: requestOptions,
                 cancellationToken: cancellationToken
             ).ConfigureAwait(false);
@@ -74,6 +79,7 @@ namespace Speechify
         /// Publish the agent's draft graph as a new active flow version.
         /// </summary>
         /// <param name="id"></param>
+        /// <param name="speechifyVersion"></param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -82,6 +88,7 @@ namespace Speechify
             string id,
 
             global::Speechify.PublishFlowRequest request,
+            string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
@@ -92,6 +99,7 @@ namespace Speechify
             PreparePublishArguments(
                 httpClient: HttpClient,
                 id: ref id,
+                speechifyVersion: ref speechifyVersion,
                 request: request);
 
 
@@ -149,6 +157,12 @@ namespace Speechify
                     __httpRequest.Headers.Add(__authorization.Name, __authorization.Value);
                 } 
             }
+
+            if (speechifyVersion != default)
+            {
+                __httpRequest.Headers.TryAddWithoutValidation("Speechify-Version", speechifyVersion.ToString());
+            }
+
                             var __httpRequestContentBody = request.ToJson(JsonSerializerContext);
                             var __httpRequestContent = new global::System.Net.Http.StringContent(
                                 content: __httpRequestContentBody,
@@ -167,6 +181,7 @@ namespace Speechify
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
                     id: id!,
+                    speechifyVersion: speechifyVersion,
                     request: request);
 
                 return __httpRequest;
@@ -632,6 +647,7 @@ namespace Speechify
         /// Publish the agent's draft graph as a new active flow version.
         /// </summary>
         /// <param name="id"></param>
+        /// <param name="speechifyVersion"></param>
         /// <param name="notes">
         /// Optional changelog note recorded on the published version.
         /// </param>
@@ -640,6 +656,7 @@ namespace Speechify
         /// <exception cref="global::System.InvalidOperationException"></exception>
         public async global::System.Threading.Tasks.Task<global::Speechify.FlowVersion> PublishAsync(
             string id,
+            string? speechifyVersion = default,
             string? notes = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
@@ -651,6 +668,7 @@ namespace Speechify
 
             return await PublishAsync(
                 id: id,
+                speechifyVersion: speechifyVersion,
                 request: __request,
                 requestOptions: requestOptions,
                 cancellationToken: cancellationToken).ConfigureAwait(false);

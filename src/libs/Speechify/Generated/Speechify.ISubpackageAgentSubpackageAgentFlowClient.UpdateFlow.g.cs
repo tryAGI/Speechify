@@ -10,6 +10,7 @@ namespace Speechify
         /// before it is stored; publish it separately to make it active.
         /// </summary>
         /// <param name="id"></param>
+        /// <param name="speechifyVersion"></param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -18,6 +19,7 @@ namespace Speechify
             string id,
 
             global::Speechify.PutFlowRequest request,
+            string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
@@ -26,6 +28,7 @@ namespace Speechify
         /// before it is stored; publish it separately to make it active.
         /// </summary>
         /// <param name="id"></param>
+        /// <param name="speechifyVersion"></param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -34,6 +37,7 @@ namespace Speechify
             string id,
 
             global::Speechify.PutFlowRequest request,
+            string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
@@ -42,6 +46,7 @@ namespace Speechify
         /// before it is stored; publish it separately to make it active.
         /// </summary>
         /// <param name="id"></param>
+        /// <param name="speechifyVersion"></param>
         /// <param name="name"></param>
         /// <param name="notes"></param>
         /// <param name="nodes"></param>
@@ -54,6 +59,7 @@ namespace Speechify
             string id,
             global::System.Collections.Generic.IList<global::Speechify.PutFlowRequestNodesItems> nodes,
             global::System.Collections.Generic.IList<global::Speechify.PutFlowRequestEdgesItems> edges,
+            string? speechifyVersion = default,
             string? name = default,
             string? notes = default,
             global::System.Collections.Generic.IList<global::Speechify.PutFlowRequestVariablesItems>? variables = default,

@@ -37,7 +37,8 @@ namespace Speechify
             ref global::System.DateTime? startedAfter,
             ref global::System.DateTime? startedBefore,
             ref int? durationMinMs,
-            ref int? durationMaxMs);
+            ref int? durationMaxMs,
+            ref string? speechifyVersion);
         partial void PrepareListRequest(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpRequestMessage httpRequestMessage,
@@ -51,7 +52,8 @@ namespace Speechify
             global::System.DateTime? startedAfter,
             global::System.DateTime? startedBefore,
             int? durationMinMs,
-            int? durationMaxMs);
+            int? durationMaxMs,
+            string? speechifyVersion);
         partial void ProcessListResponse(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpResponseMessage httpResponseMessage);
@@ -83,6 +85,7 @@ namespace Speechify
         /// <param name="startedBefore"></param>
         /// <param name="durationMinMs"></param>
         /// <param name="durationMaxMs"></param>
+        /// <param name="speechifyVersion"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
@@ -98,6 +101,7 @@ namespace Speechify
             global::System.DateTime? startedBefore = default,
             int? durationMinMs = default,
             int? durationMaxMs = default,
+            string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
@@ -113,6 +117,7 @@ namespace Speechify
                 startedBefore: startedBefore,
                 durationMinMs: durationMinMs,
                 durationMaxMs: durationMaxMs,
+                speechifyVersion: speechifyVersion,
                 requestOptions: requestOptions,
                 cancellationToken: cancellationToken
             ).ConfigureAwait(false);
@@ -141,6 +146,7 @@ namespace Speechify
         /// <param name="startedBefore"></param>
         /// <param name="durationMinMs"></param>
         /// <param name="durationMaxMs"></param>
+        /// <param name="speechifyVersion"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
@@ -156,6 +162,7 @@ namespace Speechify
             global::System.DateTime? startedBefore = default,
             int? durationMinMs = default,
             int? durationMaxMs = default,
+            string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
@@ -173,7 +180,8 @@ namespace Speechify
                 startedAfter: ref startedAfter,
                 startedBefore: ref startedBefore,
                 durationMinMs: ref durationMinMs,
-                durationMaxMs: ref durationMaxMs);
+                durationMaxMs: ref durationMaxMs,
+                speechifyVersion: ref speechifyVersion);
 
 
             var __authorizations = global::Speechify.EndPointSecurityResolver.ResolveAuthorizations(
@@ -243,6 +251,12 @@ namespace Speechify
                     __httpRequest.Headers.Add(__authorization.Name, __authorization.Value);
                 } 
             }
+
+            if (speechifyVersion != default)
+            {
+                __httpRequest.Headers.TryAddWithoutValidation("Speechify-Version", speechifyVersion.ToString());
+            }
+
                 global::Speechify.AutoSDKRequestOptionsSupport.ApplyHeaders(
                     request: __httpRequest,
                     clientHeaders: Options.Headers,
@@ -264,7 +278,8 @@ namespace Speechify
                     startedAfter: startedAfter,
                     startedBefore: startedBefore,
                     durationMinMs: durationMinMs,
-                    durationMaxMs: durationMaxMs);
+                    durationMaxMs: durationMaxMs,
+                    speechifyVersion: speechifyVersion);
 
                 return __httpRequest;
             }

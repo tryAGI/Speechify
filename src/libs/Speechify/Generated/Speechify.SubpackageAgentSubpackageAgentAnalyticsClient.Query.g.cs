@@ -27,10 +27,12 @@ namespace Speechify
             };
         partial void PrepareQueryArguments(
             global::System.Net.Http.HttpClient httpClient,
+            ref string? speechifyVersion,
             global::Speechify.AnalyticsQueryRequest request);
         partial void PrepareQueryRequest(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpRequestMessage httpRequestMessage,
+            string? speechifyVersion,
             global::Speechify.AnalyticsQueryRequest request);
         partial void ProcessQueryResponse(
             global::System.Net.Http.HttpClient httpClient,
@@ -58,6 +60,7 @@ namespace Speechify
         /// number of breakdown groups is capped by `breakdown_limit`; `meta.truncated`<br/>
         /// reports when groups were dropped.
         /// </summary>
+        /// <param name="speechifyVersion"></param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -65,12 +68,14 @@ namespace Speechify
         public async global::System.Threading.Tasks.Task<global::Speechify.AnalyticsQueryResult> QueryAsync(
 
             global::Speechify.AnalyticsQueryRequest request,
+            string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
             var __response = await QueryAsResponseAsync(
 
                 request: request,
+                speechifyVersion: speechifyVersion,
                 requestOptions: requestOptions,
                 cancellationToken: cancellationToken
             ).ConfigureAwait(false);
@@ -94,6 +99,7 @@ namespace Speechify
         /// number of breakdown groups is capped by `breakdown_limit`; `meta.truncated`<br/>
         /// reports when groups were dropped.
         /// </summary>
+        /// <param name="speechifyVersion"></param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -101,6 +107,7 @@ namespace Speechify
         public async global::System.Threading.Tasks.Task<global::Speechify.AutoSDKHttpResponse<global::Speechify.AnalyticsQueryResult>> QueryAsResponseAsync(
 
             global::Speechify.AnalyticsQueryRequest request,
+            string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
@@ -110,6 +117,7 @@ namespace Speechify
                 client: HttpClient);
             PrepareQueryArguments(
                 httpClient: HttpClient,
+                speechifyVersion: ref speechifyVersion,
                 request: request);
 
 
@@ -167,6 +175,12 @@ namespace Speechify
                     __httpRequest.Headers.Add(__authorization.Name, __authorization.Value);
                 } 
             }
+
+            if (speechifyVersion != default)
+            {
+                __httpRequest.Headers.TryAddWithoutValidation("Speechify-Version", speechifyVersion.ToString());
+            }
+
                             var __httpRequestContentBody = request.ToJson(JsonSerializerContext);
                             var __httpRequestContent = new global::System.Net.Http.StringContent(
                                 content: __httpRequestContentBody,
@@ -184,6 +198,7 @@ namespace Speechify
                 PrepareQueryRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
+                    speechifyVersion: speechifyVersion,
                     request: request);
 
                 return __httpRequest;
@@ -550,6 +565,7 @@ namespace Speechify
         /// number of breakdown groups is capped by `breakdown_limit`; `meta.truncated`<br/>
         /// reports when groups were dropped.
         /// </summary>
+        /// <param name="speechifyVersion"></param>
         /// <param name="metric">
         /// The value each group / bucket reduces to.
         /// </param>
@@ -571,6 +587,7 @@ namespace Speechify
         /// <exception cref="global::System.InvalidOperationException"></exception>
         public async global::System.Threading.Tasks.Task<global::Speechify.AnalyticsQueryResult> QueryAsync(
             global::Speechify.AnalyticsMetric metric,
+            string? speechifyVersion = default,
             global::System.Collections.Generic.IList<string>? groupBy = default,
             global::System.Collections.Generic.IList<global::Speechify.AnalyticsFilter>? filters = default,
             global::Speechify.AnalyticsTime? time = default,
@@ -590,6 +607,7 @@ namespace Speechify
             };
 
             return await QueryAsync(
+                speechifyVersion: speechifyVersion,
                 request: __request,
                 requestOptions: requestOptions,
                 cancellationToken: cancellationToken).ConfigureAwait(false);

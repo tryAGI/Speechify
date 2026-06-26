@@ -19,6 +19,7 @@ namespace Speechify
         /// `POST /v1/agents/{id}/phone-numbers/{phoneNumberId}`) and<br/>
         /// outbound calls (via the workspace's shared outbound trunk).
         /// </summary>
+        /// <param name="speechifyVersion"></param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -26,6 +27,7 @@ namespace Speechify
         global::System.Threading.Tasks.Task<global::Speechify.PhoneNumber> PurchaseAsync(
 
             global::Speechify.PurchasePhoneNumberRequest request,
+            string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
@@ -43,6 +45,7 @@ namespace Speechify
         /// `POST /v1/agents/{id}/phone-numbers/{phoneNumberId}`) and<br/>
         /// outbound calls (via the workspace's shared outbound trunk).
         /// </summary>
+        /// <param name="speechifyVersion"></param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -50,6 +53,7 @@ namespace Speechify
         global::System.Threading.Tasks.Task<global::Speechify.AutoSDKHttpResponse<global::Speechify.PhoneNumber>> PurchaseAsResponseAsync(
 
             global::Speechify.PurchasePhoneNumberRequest request,
+            string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
@@ -67,6 +71,7 @@ namespace Speechify
         /// `POST /v1/agents/{id}/phone-numbers/{phoneNumberId}`) and<br/>
         /// outbound calls (via the workspace's shared outbound trunk).
         /// </summary>
+        /// <param name="speechifyVersion"></param>
         /// <param name="e164">
         /// The E.164 number to buy. Must currently be in carrier inventory.
         /// </param>
@@ -86,6 +91,7 @@ namespace Speechify
         /// <exception cref="global::System.InvalidOperationException"></exception>
         global::System.Threading.Tasks.Task<global::Speechify.PhoneNumber> PurchaseAsync(
             string e164,
+            string? speechifyVersion = default,
             string? label = default,
             global::Speechify.PurchasedPhoneNumberProvider? provider = default,
             string? agentId = default,

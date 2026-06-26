@@ -27,10 +27,12 @@ namespace Speechify
             };
         partial void PrepareSearchArguments(
             global::System.Net.Http.HttpClient httpClient,
+            ref string? speechifyVersion,
             global::Speechify.SearchKnowledgeBasesRequest request);
         partial void PrepareSearchRequest(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpRequestMessage httpRequestMessage,
+            string? speechifyVersion,
             global::Speechify.SearchKnowledgeBasesRequest request);
         partial void ProcessSearchResponse(
             global::System.Net.Http.HttpClient httpClient,
@@ -47,6 +49,7 @@ namespace Speechify
         /// Returns ranked chunks with source filename and a cosine-similarity<br/>
         /// score. Limited to 50 results per request.
         /// </summary>
+        /// <param name="speechifyVersion"></param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -54,12 +57,14 @@ namespace Speechify
         public async global::System.Threading.Tasks.Task<global::Speechify.SearchKnowledgeBasesResponse> SearchAsync(
 
             global::Speechify.SearchKnowledgeBasesRequest request,
+            string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
             var __response = await SearchAsResponseAsync(
 
                 request: request,
+                speechifyVersion: speechifyVersion,
                 requestOptions: requestOptions,
                 cancellationToken: cancellationToken
             ).ConfigureAwait(false);
@@ -72,6 +77,7 @@ namespace Speechify
         /// Returns ranked chunks with source filename and a cosine-similarity<br/>
         /// score. Limited to 50 results per request.
         /// </summary>
+        /// <param name="speechifyVersion"></param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -79,6 +85,7 @@ namespace Speechify
         public async global::System.Threading.Tasks.Task<global::Speechify.AutoSDKHttpResponse<global::Speechify.SearchKnowledgeBasesResponse>> SearchAsResponseAsync(
 
             global::Speechify.SearchKnowledgeBasesRequest request,
+            string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
@@ -88,6 +95,7 @@ namespace Speechify
                 client: HttpClient);
             PrepareSearchArguments(
                 httpClient: HttpClient,
+                speechifyVersion: ref speechifyVersion,
                 request: request);
 
 
@@ -145,6 +153,12 @@ namespace Speechify
                     __httpRequest.Headers.Add(__authorization.Name, __authorization.Value);
                 } 
             }
+
+            if (speechifyVersion != default)
+            {
+                __httpRequest.Headers.TryAddWithoutValidation("Speechify-Version", speechifyVersion.ToString());
+            }
+
                             var __httpRequestContentBody = request.ToJson(JsonSerializerContext);
                             var __httpRequestContent = new global::System.Net.Http.StringContent(
                                 content: __httpRequestContentBody,
@@ -162,6 +176,7 @@ namespace Speechify
                 PrepareSearchRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
+                    speechifyVersion: speechifyVersion,
                     request: request);
 
                 return __httpRequest;
@@ -517,6 +532,7 @@ namespace Speechify
         /// Returns ranked chunks with source filename and a cosine-similarity<br/>
         /// score. Limited to 50 results per request.
         /// </summary>
+        /// <param name="speechifyVersion"></param>
         /// <param name="query">
         /// Natural-language search query.
         /// </param>
@@ -533,6 +549,7 @@ namespace Speechify
         public async global::System.Threading.Tasks.Task<global::Speechify.SearchKnowledgeBasesResponse> SearchAsync(
             string query,
             global::System.Collections.Generic.IList<string> kbIds,
+            string? speechifyVersion = default,
             int? topK = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
@@ -545,6 +562,7 @@ namespace Speechify
             };
 
             return await SearchAsync(
+                speechifyVersion: speechifyVersion,
                 request: __request,
                 requestOptions: requestOptions,
                 cancellationToken: cancellationToken).ConfigureAwait(false);

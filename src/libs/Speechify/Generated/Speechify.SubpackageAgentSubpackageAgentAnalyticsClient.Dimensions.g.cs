@@ -27,11 +27,13 @@ namespace Speechify
             };
         partial void PrepareDimensionsArguments(
             global::System.Net.Http.HttpClient httpClient,
-            ref string? agentId);
+            ref string? agentId,
+            ref string? speechifyVersion);
         partial void PrepareDimensionsRequest(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpRequestMessage httpRequestMessage,
-            string? agentId);
+            string? agentId,
+            string? speechifyVersion);
         partial void ProcessDimensionsResponse(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpResponseMessage httpResponseMessage);
@@ -51,16 +53,19 @@ namespace Speechify
         /// or both. Free-text fields are never returned as dimensions.
         /// </summary>
         /// <param name="agentId"></param>
+        /// <param name="speechifyVersion"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
         public async global::System.Threading.Tasks.Task<global::Speechify.AnalyticsDimensionsResponse> DimensionsAsync(
             string? agentId = default,
+            string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
             var __response = await DimensionsAsResponseAsync(
                 agentId: agentId,
+                speechifyVersion: speechifyVersion,
                 requestOptions: requestOptions,
                 cancellationToken: cancellationToken
             ).ConfigureAwait(false);
@@ -77,11 +82,13 @@ namespace Speechify
         /// or both. Free-text fields are never returned as dimensions.
         /// </summary>
         /// <param name="agentId"></param>
+        /// <param name="speechifyVersion"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
         public async global::System.Threading.Tasks.Task<global::Speechify.AutoSDKHttpResponse<global::Speechify.AnalyticsDimensionsResponse>> DimensionsAsResponseAsync(
             string? agentId = default,
+            string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
@@ -89,7 +96,8 @@ namespace Speechify
                 client: HttpClient);
             PrepareDimensionsArguments(
                 httpClient: HttpClient,
-                agentId: ref agentId);
+                agentId: ref agentId,
+                speechifyVersion: ref speechifyVersion);
 
 
             var __authorizations = global::Speechify.EndPointSecurityResolver.ResolveAuthorizations(
@@ -149,6 +157,12 @@ namespace Speechify
                     __httpRequest.Headers.Add(__authorization.Name, __authorization.Value);
                 } 
             }
+
+            if (speechifyVersion != default)
+            {
+                __httpRequest.Headers.TryAddWithoutValidation("Speechify-Version", speechifyVersion.ToString());
+            }
+
                 global::Speechify.AutoSDKRequestOptionsSupport.ApplyHeaders(
                     request: __httpRequest,
                     clientHeaders: Options.Headers,
@@ -160,7 +174,8 @@ namespace Speechify
                 PrepareDimensionsRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
-                    agentId: agentId);
+                    agentId: agentId,
+                    speechifyVersion: speechifyVersion);
 
                 return __httpRequest;
             }

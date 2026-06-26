@@ -8,6 +8,7 @@ namespace Speechify
         /// Create Agent<br/>
         /// Create a voice agent.
         /// </summary>
+        /// <param name="speechifyVersion"></param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -15,12 +16,14 @@ namespace Speechify
         global::System.Threading.Tasks.Task<global::Speechify.Agent> CreateAsync(
 
             global::Speechify.CreateAgentRequest request,
+            string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Create Agent<br/>
         /// Create a voice agent.
         /// </summary>
+        /// <param name="speechifyVersion"></param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -28,12 +31,14 @@ namespace Speechify
         global::System.Threading.Tasks.Task<global::Speechify.AutoSDKHttpResponse<global::Speechify.Agent>> CreateAsResponseAsync(
 
             global::Speechify.CreateAgentRequest request,
+            string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Create Agent<br/>
         /// Create a voice agent.
         /// </summary>
+        /// <param name="speechifyVersion"></param>
         /// <param name="name"></param>
         /// <param name="slug">
         /// Optional. Server derives slug from name with a random suffix when omitted; if you supply your own, a collision returns 400 'slug already taken'.
@@ -106,6 +111,7 @@ namespace Speechify
             string prompt,
             string firstMessage,
             global::Speechify.AgentTTSConfig tts,
+            string? speechifyVersion = default,
             string? slug = default,
             string? language = default,
             global::Speechify.AgentLLMConfig? llm = default,

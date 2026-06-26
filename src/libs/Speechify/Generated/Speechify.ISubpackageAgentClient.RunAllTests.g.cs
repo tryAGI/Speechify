@@ -18,6 +18,7 @@ namespace Speechify
         /// agent's live config and active flow.
         /// </summary>
         /// <param name="id"></param>
+        /// <param name="speechifyVersion"></param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -26,6 +27,7 @@ namespace Speechify
             string id,
 
             global::Speechify.RunAllTestsRequest request,
+            string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
@@ -42,6 +44,7 @@ namespace Speechify
         /// agent's live config and active flow.
         /// </summary>
         /// <param name="id"></param>
+        /// <param name="speechifyVersion"></param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -50,6 +53,7 @@ namespace Speechify
             string id,
 
             global::Speechify.RunAllTestsRequest request,
+            string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
@@ -66,6 +70,7 @@ namespace Speechify
         /// agent's live config and active flow.
         /// </summary>
         /// <param name="id"></param>
+        /// <param name="speechifyVersion"></param>
         /// <param name="configOverride">
         /// A run-level config override applied to every test in a Run All.<br/>
         /// Layered on top of the agent's stored config for the duration of<br/>
@@ -86,6 +91,7 @@ namespace Speechify
         /// <exception cref="global::System.InvalidOperationException"></exception>
         global::System.Threading.Tasks.Task<global::Speechify.RunAgentTestsResponse> RunAllTestsAsync(
             string id,
+            string? speechifyVersion = default,
             global::Speechify.TestRunConfigOverride? configOverride = default,
             string? flowVersionId = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,

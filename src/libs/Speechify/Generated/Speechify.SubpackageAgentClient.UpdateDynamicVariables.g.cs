@@ -28,11 +28,13 @@ namespace Speechify
         partial void PrepareUpdateDynamicVariablesArguments(
             global::System.Net.Http.HttpClient httpClient,
             ref string id,
+            ref string? speechifyVersion,
             global::Speechify.UpdateDynamicVariablesRequest request);
         partial void PrepareUpdateDynamicVariablesRequest(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpRequestMessage httpRequestMessage,
             string id,
+            string? speechifyVersion,
             global::Speechify.UpdateDynamicVariablesRequest request);
         partial void ProcessUpdateDynamicVariablesResponse(
             global::System.Net.Http.HttpClient httpClient,
@@ -53,6 +55,7 @@ namespace Speechify
         /// `system__` prefix.
         /// </summary>
         /// <param name="id"></param>
+        /// <param name="speechifyVersion"></param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -61,6 +64,7 @@ namespace Speechify
             string id,
 
             global::Speechify.UpdateDynamicVariablesRequest request,
+            string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
@@ -68,6 +72,7 @@ namespace Speechify
                 id: id,
 
                 request: request,
+                speechifyVersion: speechifyVersion,
                 requestOptions: requestOptions,
                 cancellationToken: cancellationToken
             ).ConfigureAwait(false);
@@ -84,6 +89,7 @@ namespace Speechify
         /// `system__` prefix.
         /// </summary>
         /// <param name="id"></param>
+        /// <param name="speechifyVersion"></param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -92,6 +98,7 @@ namespace Speechify
             string id,
 
             global::Speechify.UpdateDynamicVariablesRequest request,
+            string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
@@ -102,6 +109,7 @@ namespace Speechify
             PrepareUpdateDynamicVariablesArguments(
                 httpClient: HttpClient,
                 id: ref id,
+                speechifyVersion: ref speechifyVersion,
                 request: request);
 
 
@@ -159,6 +167,12 @@ namespace Speechify
                     __httpRequest.Headers.Add(__authorization.Name, __authorization.Value);
                 } 
             }
+
+            if (speechifyVersion != default)
+            {
+                __httpRequest.Headers.TryAddWithoutValidation("Speechify-Version", speechifyVersion.ToString());
+            }
+
                             var __httpRequestContentBody = request.ToJson(JsonSerializerContext);
                             var __httpRequestContent = new global::System.Net.Http.StringContent(
                                 content: __httpRequestContentBody,
@@ -177,6 +191,7 @@ namespace Speechify
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
                     id: id!,
+                    speechifyVersion: speechifyVersion,
                     request: request);
 
                 return __httpRequest;
@@ -573,6 +588,7 @@ namespace Speechify
         /// `system__` prefix.
         /// </summary>
         /// <param name="id"></param>
+        /// <param name="speechifyVersion"></param>
         /// <param name="variables">
         /// The new variable list. Replaces the existing list entirely.
         /// </param>
@@ -582,6 +598,7 @@ namespace Speechify
         public async global::System.Threading.Tasks.Task<global::Speechify.ListDynamicVariablesResponse> UpdateDynamicVariablesAsync(
             string id,
             global::System.Collections.Generic.IList<global::Speechify.DynamicVariable> variables,
+            string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
@@ -592,6 +609,7 @@ namespace Speechify
 
             return await UpdateDynamicVariablesAsync(
                 id: id,
+                speechifyVersion: speechifyVersion,
                 request: __request,
                 requestOptions: requestOptions,
                 cancellationToken: cancellationToken).ConfigureAwait(false);

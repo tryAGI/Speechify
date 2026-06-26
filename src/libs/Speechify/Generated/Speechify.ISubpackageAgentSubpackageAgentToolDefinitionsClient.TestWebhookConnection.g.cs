@@ -17,6 +17,7 @@ namespace Speechify
         /// `tool_id` from the edit-form flow so the server signs the probe<br/>
         /// with the tool's stored HMAC secret.
         /// </summary>
+        /// <param name="speechifyVersion"></param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -24,6 +25,7 @@ namespace Speechify
         global::System.Threading.Tasks.Task<global::Speechify.WebhookProbeResult> TestWebhookConnectionAsync(
 
             global::Speechify.TestWebhookConnectionRequest request,
+            string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
@@ -39,6 +41,7 @@ namespace Speechify
         /// `tool_id` from the edit-form flow so the server signs the probe<br/>
         /// with the tool's stored HMAC secret.
         /// </summary>
+        /// <param name="speechifyVersion"></param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -46,6 +49,7 @@ namespace Speechify
         global::System.Threading.Tasks.Task<global::Speechify.AutoSDKHttpResponse<global::Speechify.WebhookProbeResult>> TestWebhookConnectionAsResponseAsync(
 
             global::Speechify.TestWebhookConnectionRequest request,
+            string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
@@ -61,6 +65,7 @@ namespace Speechify
         /// `tool_id` from the edit-form flow so the server signs the probe<br/>
         /// with the tool's stored HMAC secret.
         /// </summary>
+        /// <param name="speechifyVersion"></param>
         /// <param name="config">
         /// Config shape for `kind=webhook`.
         /// </param>
@@ -74,6 +79,7 @@ namespace Speechify
         /// <exception cref="global::System.InvalidOperationException"></exception>
         global::System.Threading.Tasks.Task<global::Speechify.WebhookProbeResult> TestWebhookConnectionAsync(
             global::Speechify.WebhookToolConfig config,
+            string? speechifyVersion = default,
             string? toolId = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);

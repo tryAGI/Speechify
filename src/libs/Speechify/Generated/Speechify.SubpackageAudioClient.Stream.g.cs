@@ -27,11 +27,13 @@ namespace Speechify
             };
         partial void PrepareStreamArguments(
             global::System.Net.Http.HttpClient httpClient,
+            ref string? speechifyVersion,
             ref global::Speechify.V1AudioStreamPostParametersAccept accept,
             global::Speechify.GetStreamRequest request);
         partial void PrepareStreamRequest(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpRequestMessage httpRequestMessage,
+            string? speechifyVersion,
             global::Speechify.V1AudioStreamPostParametersAccept accept,
             global::Speechify.GetStreamRequest request);
         partial void ProcessStreamResponse(
@@ -51,6 +53,7 @@ namespace Speechify
         /// audio with speech-mark metadata in a single JSON response, use<br/>
         /// POST /v1/audio/speech.
         /// </summary>
+        /// <param name="speechifyVersion"></param>
         /// <param name="accept"></param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
@@ -60,6 +63,7 @@ namespace Speechify
             global::Speechify.V1AudioStreamPostParametersAccept accept,
 
             global::Speechify.GetStreamRequest request,
+            string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
@@ -67,6 +71,7 @@ namespace Speechify
                 accept: accept,
 
                 request: request,
+                speechifyVersion: speechifyVersion,
                 requestOptions: requestOptions,
                 cancellationToken: cancellationToken
             ).ConfigureAwait(false);
@@ -81,6 +86,7 @@ namespace Speechify
         /// audio with speech-mark metadata in a single JSON response, use<br/>
         /// POST /v1/audio/speech.
         /// </summary>
+        /// <param name="speechifyVersion"></param>
         /// <param name="accept"></param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
@@ -90,6 +96,7 @@ namespace Speechify
             global::Speechify.V1AudioStreamPostParametersAccept accept,
 
             global::Speechify.GetStreamRequest request,
+            string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
@@ -99,6 +106,7 @@ namespace Speechify
                 client: HttpClient);
             PrepareStreamArguments(
                 httpClient: HttpClient,
+                speechifyVersion: ref speechifyVersion,
                 accept: ref accept,
                 request: request);
 
@@ -159,6 +167,10 @@ namespace Speechify
             }
 
                 __httpRequest.Headers.TryAddWithoutValidation("Accept", accept.ToValueString());
+            if (speechifyVersion != default)
+            {
+                __httpRequest.Headers.TryAddWithoutValidation("Speechify-Version", speechifyVersion.ToString());
+            }
 
                             var __httpRequestContentBody = request.ToJson(JsonSerializerContext);
                             var __httpRequestContent = new global::System.Net.Http.StringContent(
@@ -177,6 +189,7 @@ namespace Speechify
                 PrepareStreamRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
+                    speechifyVersion: speechifyVersion,
                     accept: accept!,
                     request: request);
 
@@ -749,6 +762,7 @@ namespace Speechify
         /// audio with speech-mark metadata in a single JSON response, use<br/>
         /// POST /v1/audio/speech.
         /// </summary>
+        /// <param name="speechifyVersion"></param>
         /// <param name="accept"></param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
@@ -758,6 +772,7 @@ namespace Speechify
             global::Speechify.V1AudioStreamPostParametersAccept accept,
 
             global::Speechify.GetStreamRequest request,
+            string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
@@ -767,6 +782,7 @@ namespace Speechify
                 client: HttpClient);
             PrepareStreamArguments(
                 httpClient: HttpClient,
+                speechifyVersion: ref speechifyVersion,
                 accept: ref accept,
                 request: request);
 
@@ -827,6 +843,10 @@ namespace Speechify
             }
 
                 __httpRequest.Headers.TryAddWithoutValidation("Accept", accept.ToValueString());
+            if (speechifyVersion != default)
+            {
+                __httpRequest.Headers.TryAddWithoutValidation("Speechify-Version", speechifyVersion.ToString());
+            }
 
                             var __httpRequestContentBody = request.ToJson(JsonSerializerContext);
                             var __httpRequestContent = new global::System.Net.Http.StringContent(
@@ -845,6 +865,7 @@ namespace Speechify
                 PrepareStreamRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
+                    speechifyVersion: speechifyVersion,
                     accept: accept!,
                     request: request);
 
@@ -1454,6 +1475,7 @@ namespace Speechify
         /// audio with speech-mark metadata in a single JSON response, use<br/>
         /// POST /v1/audio/speech.
         /// </summary>
+        /// <param name="speechifyVersion"></param>
         /// <param name="accept"></param>
         /// <param name="input">
         /// Plain text or SSML to be synthesized to speech.<br/>
@@ -1481,6 +1503,7 @@ namespace Speechify
             global::Speechify.V1AudioStreamPostParametersAccept accept,
             string input,
             string voiceId,
+            string? speechifyVersion = default,
             string? language = default,
             global::Speechify.GetStreamRequestModel? model = default,
             global::Speechify.GetStreamOptionsRequest? options = default,
@@ -1497,6 +1520,7 @@ namespace Speechify
             };
 
             return await StreamAsync(
+                speechifyVersion: speechifyVersion,
                 accept: accept,
                 request: __request,
                 requestOptions: requestOptions,
