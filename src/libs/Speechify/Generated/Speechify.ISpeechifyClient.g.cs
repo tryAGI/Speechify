@@ -137,6 +137,11 @@ namespace Speechify
         /// <summary>
         /// 
         /// </summary>
+        public SubpackageCredentialsClient SubpackageCredentials { get; }
+
+        /// <summary>
+        /// 
+        /// </summary>
         public SubpackageVoicesClient SubpackageVoices { get; }
 
     }

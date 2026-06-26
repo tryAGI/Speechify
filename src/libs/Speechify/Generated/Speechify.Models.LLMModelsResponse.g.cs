@@ -23,18 +23,14 @@ namespace Speechify
         public required bool CustomEndpointAllowed { get; set; }
 
         /// <summary>
-        /// Provider the "Platform default" picker entry resolves to.
+        /// The provider/model pair an agent left on the "Platform default" picker<br/>
+        /// entry resolves to at dispatch time. Introduced 2026-06-25 (pin<br/>
+        /// `Speechify-Version: 2026-06-24` or earlier to receive the previous flat<br/>
+        /// `platform_default_provider` / `platform_default_model` fields instead).
         /// </summary>
-        [global::System.Text.Json.Serialization.JsonPropertyName("platform_default_provider")]
+        [global::System.Text.Json.Serialization.JsonPropertyName("platform_default")]
         [global::System.Text.Json.Serialization.JsonRequired]
-        public required string PlatformDefaultProvider { get; set; }
-
-        /// <summary>
-        /// Model the "Platform default" picker entry resolves to.
-        /// </summary>
-        [global::System.Text.Json.Serialization.JsonPropertyName("platform_default_model")]
-        [global::System.Text.Json.Serialization.JsonRequired]
-        public required string PlatformDefaultModel { get; set; }
+        public required global::Speechify.LLMPlatformDefault PlatformDefault { get; set; }
 
         /// <summary>
         /// Additional properties that are not explicitly defined in the schema
@@ -49,11 +45,11 @@ namespace Speechify
         /// <param name="customEndpointAllowed">
         /// Whether the workspace plan permits a bring-your-own custom LLM endpoint.
         /// </param>
-        /// <param name="platformDefaultProvider">
-        /// Provider the "Platform default" picker entry resolves to.
-        /// </param>
-        /// <param name="platformDefaultModel">
-        /// Model the "Platform default" picker entry resolves to.
+        /// <param name="platformDefault">
+        /// The provider/model pair an agent left on the "Platform default" picker<br/>
+        /// entry resolves to at dispatch time. Introduced 2026-06-25 (pin<br/>
+        /// `Speechify-Version: 2026-06-24` or earlier to receive the previous flat<br/>
+        /// `platform_default_provider` / `platform_default_model` fields instead).
         /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
@@ -61,13 +57,11 @@ namespace Speechify
         public LLMModelsResponse(
             global::System.Collections.Generic.IList<global::Speechify.LLMModelInfo> models,
             bool customEndpointAllowed,
-            string platformDefaultProvider,
-            string platformDefaultModel)
+            global::Speechify.LLMPlatformDefault platformDefault)
         {
             this.Models = models ?? throw new global::System.ArgumentNullException(nameof(models));
             this.CustomEndpointAllowed = customEndpointAllowed;
-            this.PlatformDefaultProvider = platformDefaultProvider ?? throw new global::System.ArgumentNullException(nameof(platformDefaultProvider));
-            this.PlatformDefaultModel = platformDefaultModel ?? throw new global::System.ArgumentNullException(nameof(platformDefaultModel));
+            this.PlatformDefault = platformDefault ?? throw new global::System.ArgumentNullException(nameof(platformDefault));
         }
 
         /// <summary>

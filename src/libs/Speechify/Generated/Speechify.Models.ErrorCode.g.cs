@@ -72,6 +72,10 @@ namespace Speechify
         /// <summary>
         /// 
         /// </summary>
+        InvalidApiVersion,
+        /// <summary>
+        /// 
+        /// </summary>
         InviteAlreadyPending,
         /// <summary>
         /// 
@@ -205,6 +209,7 @@ namespace Speechify
                 ErrorCode.Forbidden => "forbidden",
                 ErrorCode.InsufficientScope => "insufficient_scope",
                 ErrorCode.InternalError => "internal_error",
+                ErrorCode.InvalidApiVersion => "invalid_api_version",
                 ErrorCode.InviteAlreadyPending => "invite_already_pending",
                 ErrorCode.InviteEmailMismatch => "invite_email_mismatch",
                 ErrorCode.InviteNotFound => "invite_not_found",
@@ -256,6 +261,7 @@ namespace Speechify
                 "forbidden" => ErrorCode.Forbidden,
                 "insufficient_scope" => ErrorCode.InsufficientScope,
                 "internal_error" => ErrorCode.InternalError,
+                "invalid_api_version" => ErrorCode.InvalidApiVersion,
                 "invite_already_pending" => ErrorCode.InviteAlreadyPending,
                 "invite_email_mismatch" => ErrorCode.InviteEmailMismatch,
                 "invite_not_found" => ErrorCode.InviteNotFound,
