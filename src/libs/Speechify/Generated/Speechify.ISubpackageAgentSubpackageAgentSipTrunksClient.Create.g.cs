@@ -12,6 +12,7 @@ namespace Speechify
         /// creation is handled automatically. Returns 402 when the workspace<br/>
         /// has reached the 20-trunk cap.
         /// </summary>
+        /// <param name="speechifyVersion"></param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -19,6 +20,7 @@ namespace Speechify
         global::System.Threading.Tasks.Task<global::Speechify.SIPTrunk> CreateAsync(
 
             global::Speechify.CreateSIPTrunkRequest request,
+            string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
@@ -29,6 +31,7 @@ namespace Speechify
         /// creation is handled automatically. Returns 402 when the workspace<br/>
         /// has reached the 20-trunk cap.
         /// </summary>
+        /// <param name="speechifyVersion"></param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -36,6 +39,7 @@ namespace Speechify
         global::System.Threading.Tasks.Task<global::Speechify.AutoSDKHttpResponse<global::Speechify.SIPTrunk>> CreateAsResponseAsync(
 
             global::Speechify.CreateSIPTrunkRequest request,
+            string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
@@ -46,6 +50,7 @@ namespace Speechify
         /// creation is handled automatically. Returns 402 when the workspace<br/>
         /// has reached the 20-trunk cap.
         /// </summary>
+        /// <param name="speechifyVersion"></param>
         /// <param name="name">
         /// Human-readable name for the trunk.
         /// </param>
@@ -98,6 +103,7 @@ namespace Speechify
             string name,
             global::Speechify.SIPTrunkProvider provider,
             global::Speechify.SIPTrunkDirection direction,
+            string? speechifyVersion = default,
             string? sipAddress = default,
             string? authUsername = default,
             string? authPassword = default,

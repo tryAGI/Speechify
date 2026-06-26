@@ -16,6 +16,7 @@ namespace Speechify
         /// <param name="sourceKind"></param>
         /// <param name="cursor"></param>
         /// <param name="limit"></param>
+        /// <param name="speechifyVersion"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
@@ -26,6 +27,7 @@ namespace Speechify
             string? sourceKind = default,
             string? cursor = default,
             int? limit = default,
+            string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
@@ -40,6 +42,7 @@ namespace Speechify
         /// <param name="sourceKind"></param>
         /// <param name="cursor"></param>
         /// <param name="limit"></param>
+        /// <param name="speechifyVersion"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
@@ -50,6 +53,7 @@ namespace Speechify
             string? sourceKind = default,
             string? cursor = default,
             int? limit = default,
+            string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
     }

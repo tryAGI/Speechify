@@ -14,6 +14,7 @@ namespace Speechify
         /// `_set` markers but no plaintext, so the server can hydrate the<br/>
         /// stored secret from the encrypted column before probing.
         /// </summary>
+        /// <param name="speechifyVersion"></param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -21,6 +22,7 @@ namespace Speechify
         global::System.Threading.Tasks.Task<global::Speechify.MCPProbeResult> TestMcpConnectionAsync(
 
             global::Speechify.TestMCPConnectionRequest request,
+            string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
@@ -33,6 +35,7 @@ namespace Speechify
         /// `_set` markers but no plaintext, so the server can hydrate the<br/>
         /// stored secret from the encrypted column before probing.
         /// </summary>
+        /// <param name="speechifyVersion"></param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -40,6 +43,7 @@ namespace Speechify
         global::System.Threading.Tasks.Task<global::Speechify.AutoSDKHttpResponse<global::Speechify.MCPProbeResult>> TestMcpConnectionAsResponseAsync(
 
             global::Speechify.TestMCPConnectionRequest request,
+            string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
@@ -52,6 +56,7 @@ namespace Speechify
         /// `_set` markers but no plaintext, so the server can hydrate the<br/>
         /// stored secret from the encrypted column before probing.
         /// </summary>
+        /// <param name="speechifyVersion"></param>
         /// <param name="config">
         /// Config shape for `kind=mcp`. The worker opens the<br/>
         /// configured transport at session start, runs `initialize` +<br/>
@@ -69,6 +74,7 @@ namespace Speechify
         /// <exception cref="global::System.InvalidOperationException"></exception>
         global::System.Threading.Tasks.Task<global::Speechify.MCPProbeResult> TestMcpConnectionAsync(
             global::Speechify.MCPToolConfig config,
+            string? speechifyVersion = default,
             string? toolId = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);

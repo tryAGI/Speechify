@@ -34,7 +34,8 @@ namespace Speechify
             ref string? updatedAfter,
             ref string? q,
             ref int? limit,
-            ref string? cursor);
+            ref string? cursor,
+            ref string? speechifyVersion);
         partial void PrepareListAllTestsRequest(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpRequestMessage httpRequestMessage,
@@ -45,7 +46,8 @@ namespace Speechify
             string? updatedAfter,
             string? q,
             int? limit,
-            string? cursor);
+            string? cursor,
+            string? speechifyVersion);
         partial void ProcessListAllTestsResponse(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpResponseMessage httpResponseMessage);
@@ -71,6 +73,7 @@ namespace Speechify
         /// <param name="q"></param>
         /// <param name="limit"></param>
         /// <param name="cursor"></param>
+        /// <param name="speechifyVersion"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
@@ -83,6 +86,7 @@ namespace Speechify
             string? q = default,
             int? limit = default,
             string? cursor = default,
+            string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
@@ -95,6 +99,7 @@ namespace Speechify
                 q: q,
                 limit: limit,
                 cursor: cursor,
+                speechifyVersion: speechifyVersion,
                 requestOptions: requestOptions,
                 cancellationToken: cancellationToken
             ).ConfigureAwait(false);
@@ -117,6 +122,7 @@ namespace Speechify
         /// <param name="q"></param>
         /// <param name="limit"></param>
         /// <param name="cursor"></param>
+        /// <param name="speechifyVersion"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
@@ -129,6 +135,7 @@ namespace Speechify
             string? q = default,
             int? limit = default,
             string? cursor = default,
+            string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
@@ -143,7 +150,8 @@ namespace Speechify
                 updatedAfter: ref updatedAfter,
                 q: ref q,
                 limit: ref limit,
-                cursor: ref cursor);
+                cursor: ref cursor,
+                speechifyVersion: ref speechifyVersion);
 
 
             var __authorizations = global::Speechify.EndPointSecurityResolver.ResolveAuthorizations(
@@ -210,6 +218,12 @@ namespace Speechify
                     __httpRequest.Headers.Add(__authorization.Name, __authorization.Value);
                 } 
             }
+
+            if (speechifyVersion != default)
+            {
+                __httpRequest.Headers.TryAddWithoutValidation("Speechify-Version", speechifyVersion.ToString());
+            }
+
                 global::Speechify.AutoSDKRequestOptionsSupport.ApplyHeaders(
                     request: __httpRequest,
                     clientHeaders: Options.Headers,
@@ -228,7 +242,8 @@ namespace Speechify
                     updatedAfter: updatedAfter,
                     q: q,
                     limit: limit,
-                    cursor: cursor);
+                    cursor: cursor,
+                    speechifyVersion: speechifyVersion);
 
                 return __httpRequest;
             }

@@ -8,6 +8,7 @@ namespace Speechify
         /// Create Knowledge Base<br/>
         /// Create a new knowledge base.
         /// </summary>
+        /// <param name="speechifyVersion"></param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -15,12 +16,14 @@ namespace Speechify
         global::System.Threading.Tasks.Task<global::Speechify.KnowledgeBase> CreateAsync(
 
             global::Speechify.CreateKnowledgeBaseRequest request,
+            string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Create Knowledge Base<br/>
         /// Create a new knowledge base.
         /// </summary>
+        /// <param name="speechifyVersion"></param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -28,12 +31,14 @@ namespace Speechify
         global::System.Threading.Tasks.Task<global::Speechify.AutoSDKHttpResponse<global::Speechify.KnowledgeBase>> CreateAsResponseAsync(
 
             global::Speechify.CreateKnowledgeBaseRequest request,
+            string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Create Knowledge Base<br/>
         /// Create a new knowledge base.
         /// </summary>
+        /// <param name="speechifyVersion"></param>
         /// <param name="name">
         /// Human-readable label.
         /// </param>
@@ -45,6 +50,7 @@ namespace Speechify
         /// <exception cref="global::System.InvalidOperationException"></exception>
         global::System.Threading.Tasks.Task<global::Speechify.KnowledgeBase> CreateAsync(
             string name,
+            string? speechifyVersion = default,
             string? description = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);

@@ -29,13 +29,15 @@ namespace Speechify
             global::System.Net.Http.HttpClient httpClient,
             ref string? country,
             ref string? areaCode,
-            ref int? limit);
+            ref int? limit,
+            ref string? speechifyVersion);
         partial void PrepareSearchAvailableRequest(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpRequestMessage httpRequestMessage,
             string? country,
             string? areaCode,
-            int? limit);
+            int? limit,
+            string? speechifyVersion);
         partial void ProcessSearchAvailableResponse(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpResponseMessage httpResponseMessage);
@@ -61,6 +63,7 @@ namespace Speechify
         /// <param name="limit">
         /// Default Value: 20
         /// </param>
+        /// <param name="speechifyVersion"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
@@ -68,6 +71,7 @@ namespace Speechify
             string? country = default,
             string? areaCode = default,
             int? limit = default,
+            string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
@@ -75,6 +79,7 @@ namespace Speechify
                 country: country,
                 areaCode: areaCode,
                 limit: limit,
+                speechifyVersion: speechifyVersion,
                 requestOptions: requestOptions,
                 cancellationToken: cancellationToken
             ).ConfigureAwait(false);
@@ -97,6 +102,7 @@ namespace Speechify
         /// <param name="limit">
         /// Default Value: 20
         /// </param>
+        /// <param name="speechifyVersion"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
@@ -104,6 +110,7 @@ namespace Speechify
             string? country = default,
             string? areaCode = default,
             int? limit = default,
+            string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
@@ -113,7 +120,8 @@ namespace Speechify
                 httpClient: HttpClient,
                 country: ref country,
                 areaCode: ref areaCode,
-                limit: ref limit);
+                limit: ref limit,
+                speechifyVersion: ref speechifyVersion);
 
 
             var __authorizations = global::Speechify.EndPointSecurityResolver.ResolveAuthorizations(
@@ -175,6 +183,12 @@ namespace Speechify
                     __httpRequest.Headers.Add(__authorization.Name, __authorization.Value);
                 } 
             }
+
+            if (speechifyVersion != default)
+            {
+                __httpRequest.Headers.TryAddWithoutValidation("Speechify-Version", speechifyVersion.ToString());
+            }
+
                 global::Speechify.AutoSDKRequestOptionsSupport.ApplyHeaders(
                     request: __httpRequest,
                     clientHeaders: Options.Headers,
@@ -188,7 +202,8 @@ namespace Speechify
                     httpRequestMessage: __httpRequest,
                     country: country,
                     areaCode: areaCode,
-                    limit: limit);
+                    limit: limit,
+                    speechifyVersion: speechifyVersion);
 
                 return __httpRequest;
             }

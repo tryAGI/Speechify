@@ -11,6 +11,7 @@ namespace Speechify
         /// </summary>
         /// <param name="id"></param>
         /// <param name="docId"></param>
+        /// <param name="speechifyVersion"></param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -20,6 +21,7 @@ namespace Speechify
             string docId,
 
             global::Speechify.UpdateDocumentRequest request,
+            string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
@@ -29,6 +31,7 @@ namespace Speechify
         /// </summary>
         /// <param name="id"></param>
         /// <param name="docId"></param>
+        /// <param name="speechifyVersion"></param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -38,6 +41,7 @@ namespace Speechify
             string docId,
 
             global::Speechify.UpdateDocumentRequest request,
+            string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
@@ -47,6 +51,7 @@ namespace Speechify
         /// </summary>
         /// <param name="id"></param>
         /// <param name="docId"></param>
+        /// <param name="speechifyVersion"></param>
         /// <param name="folderId">
         /// Destination folder. Prefixed wire identifier<br/>
         /// (`kfolder_&lt;26 char Crockford base32&gt;`); null moves the<br/>
@@ -58,6 +63,7 @@ namespace Speechify
         global::System.Threading.Tasks.Task<string> UpdateDocumentAsync(
             string id,
             string docId,
+            string? speechifyVersion = default,
             string? folderId = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);

@@ -8,6 +8,7 @@ namespace Speechify
         /// Create Voice<br/>
         /// Create a personal (cloned) voice for the user
         /// </summary>
+        /// <param name="speechifyVersion"></param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -15,12 +16,14 @@ namespace Speechify
         global::System.Threading.Tasks.Task<global::Speechify.CreatedVoice> CreateAsync(
 
             global::Speechify.CreateRequest request,
+            string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Create Voice<br/>
         /// Create a personal (cloned) voice for the user
         /// </summary>
+        /// <param name="speechifyVersion"></param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -28,12 +31,14 @@ namespace Speechify
         global::System.Threading.Tasks.Task<global::Speechify.AutoSDKHttpResponse<global::Speechify.CreatedVoice>> CreateAsResponseAsync(
 
             global::Speechify.CreateRequest request,
+            string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Create Voice<br/>
         /// Create a personal (cloned) voice for the user
         /// </summary>
+        /// <param name="speechifyVersion"></param>
         /// <param name="name">
         /// Name of the personal voice
         /// </param>
@@ -73,6 +78,7 @@ namespace Speechify
             byte[] sample,
             string samplename,
             string consent,
+            string? speechifyVersion = default,
             string? locale = default,
             byte[]? avatar = default,
             string? avatarname = default,
@@ -83,6 +89,7 @@ namespace Speechify
         /// Create Voice<br/>
         /// Create a personal (cloned) voice for the user
         /// </summary>
+        /// <param name="speechifyVersion"></param>
         /// <param name="name">
         /// Name of the personal voice
         /// </param>
@@ -122,6 +129,7 @@ namespace Speechify
             global::System.IO.Stream sample,
             string samplename,
             string consent,
+            string? speechifyVersion = default,
             string? locale = default,
             global::System.IO.Stream? avatar = default,
             string? avatarname = default,
@@ -131,6 +139,7 @@ namespace Speechify
         /// Create Voice<br/>
         /// Create a personal (cloned) voice for the user
         /// </summary>
+        /// <param name="speechifyVersion"></param>
         /// <param name="name">
         /// Name of the personal voice
         /// </param>
@@ -170,6 +179,7 @@ namespace Speechify
             global::System.IO.Stream sample,
             string samplename,
             string consent,
+            string? speechifyVersion = default,
             string? locale = default,
             global::System.IO.Stream? avatar = default,
             string? avatarname = default,

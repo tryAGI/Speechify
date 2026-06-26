@@ -29,12 +29,14 @@ namespace Speechify
             global::System.Net.Http.HttpClient httpClient,
             ref string id,
             ref string docId,
+            ref string? speechifyVersion,
             global::Speechify.UpdateRefreshConfigRequest request);
         partial void PrepareUpdateRefreshConfigRequest(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpRequestMessage httpRequestMessage,
             string id,
             string docId,
+            string? speechifyVersion,
             global::Speechify.UpdateRefreshConfigRequest request);
         partial void ProcessUpdateRefreshConfigResponse(
             global::System.Net.Http.HttpClient httpClient,
@@ -53,6 +55,7 @@ namespace Speechify
         /// </summary>
         /// <param name="id"></param>
         /// <param name="docId"></param>
+        /// <param name="speechifyVersion"></param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -62,6 +65,7 @@ namespace Speechify
             string docId,
 
             global::Speechify.UpdateRefreshConfigRequest request,
+            string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
@@ -70,6 +74,7 @@ namespace Speechify
                 docId: docId,
 
                 request: request,
+                speechifyVersion: speechifyVersion,
                 requestOptions: requestOptions,
                 cancellationToken: cancellationToken
             ).ConfigureAwait(false);
@@ -84,6 +89,7 @@ namespace Speechify
         /// </summary>
         /// <param name="id"></param>
         /// <param name="docId"></param>
+        /// <param name="speechifyVersion"></param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -93,6 +99,7 @@ namespace Speechify
             string docId,
 
             global::Speechify.UpdateRefreshConfigRequest request,
+            string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
@@ -104,6 +111,7 @@ namespace Speechify
                 httpClient: HttpClient,
                 id: ref id,
                 docId: ref docId,
+                speechifyVersion: ref speechifyVersion,
                 request: request);
 
 
@@ -161,6 +169,12 @@ namespace Speechify
                     __httpRequest.Headers.Add(__authorization.Name, __authorization.Value);
                 } 
             }
+
+            if (speechifyVersion != default)
+            {
+                __httpRequest.Headers.TryAddWithoutValidation("Speechify-Version", speechifyVersion.ToString());
+            }
+
                             var __httpRequestContentBody = request.ToJson(JsonSerializerContext);
                             var __httpRequestContent = new global::System.Net.Http.StringContent(
                                 content: __httpRequestContentBody,
@@ -180,6 +194,7 @@ namespace Speechify
                     httpRequestMessage: __httpRequest,
                     id: id!,
                     docId: docId!,
+                    speechifyVersion: speechifyVersion,
                     request: request);
 
                 return __httpRequest;
@@ -574,6 +589,7 @@ namespace Speechify
         /// </summary>
         /// <param name="id"></param>
         /// <param name="docId"></param>
+        /// <param name="speechifyVersion"></param>
         /// <param name="enabled"></param>
         /// <param name="intervalDays"></param>
         /// <param name="autoRemoveEnabled"></param>
@@ -583,6 +599,7 @@ namespace Speechify
         public async global::System.Threading.Tasks.Task<global::Speechify.RefreshConfig> UpdateRefreshConfigAsync(
             string id,
             string docId,
+            string? speechifyVersion = default,
             bool? enabled = default,
             int? intervalDays = default,
             bool? autoRemoveEnabled = default,
@@ -599,6 +616,7 @@ namespace Speechify
             return await UpdateRefreshConfigAsync(
                 id: id,
                 docId: docId,
+                speechifyVersion: speechifyVersion,
                 request: __request,
                 requestOptions: requestOptions,
                 cancellationToken: cancellationToken).ConfigureAwait(false);

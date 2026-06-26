@@ -27,10 +27,12 @@ namespace Speechify
             };
         partial void PrepareTestWebhookConnectionArguments(
             global::System.Net.Http.HttpClient httpClient,
+            ref string? speechifyVersion,
             global::Speechify.TestWebhookConnectionRequest request);
         partial void PrepareTestWebhookConnectionRequest(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpRequestMessage httpRequestMessage,
+            string? speechifyVersion,
             global::Speechify.TestWebhookConnectionRequest request);
         partial void ProcessTestWebhookConnectionResponse(
             global::System.Net.Http.HttpClient httpClient,
@@ -54,6 +56,7 @@ namespace Speechify
         /// `tool_id` from the edit-form flow so the server signs the probe<br/>
         /// with the tool's stored HMAC secret.
         /// </summary>
+        /// <param name="speechifyVersion"></param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -61,12 +64,14 @@ namespace Speechify
         public async global::System.Threading.Tasks.Task<global::Speechify.WebhookProbeResult> TestWebhookConnectionAsync(
 
             global::Speechify.TestWebhookConnectionRequest request,
+            string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
             var __response = await TestWebhookConnectionAsResponseAsync(
 
                 request: request,
+                speechifyVersion: speechifyVersion,
                 requestOptions: requestOptions,
                 cancellationToken: cancellationToken
             ).ConfigureAwait(false);
@@ -86,6 +91,7 @@ namespace Speechify
         /// `tool_id` from the edit-form flow so the server signs the probe<br/>
         /// with the tool's stored HMAC secret.
         /// </summary>
+        /// <param name="speechifyVersion"></param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -93,6 +99,7 @@ namespace Speechify
         public async global::System.Threading.Tasks.Task<global::Speechify.AutoSDKHttpResponse<global::Speechify.WebhookProbeResult>> TestWebhookConnectionAsResponseAsync(
 
             global::Speechify.TestWebhookConnectionRequest request,
+            string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
@@ -102,6 +109,7 @@ namespace Speechify
                 client: HttpClient);
             PrepareTestWebhookConnectionArguments(
                 httpClient: HttpClient,
+                speechifyVersion: ref speechifyVersion,
                 request: request);
 
 
@@ -159,6 +167,12 @@ namespace Speechify
                     __httpRequest.Headers.Add(__authorization.Name, __authorization.Value);
                 } 
             }
+
+            if (speechifyVersion != default)
+            {
+                __httpRequest.Headers.TryAddWithoutValidation("Speechify-Version", speechifyVersion.ToString());
+            }
+
                             var __httpRequestContentBody = request.ToJson(JsonSerializerContext);
                             var __httpRequestContent = new global::System.Net.Http.StringContent(
                                 content: __httpRequestContentBody,
@@ -176,6 +190,7 @@ namespace Speechify
                 PrepareTestWebhookConnectionRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
+                    speechifyVersion: speechifyVersion,
                     request: request);
 
                 return __httpRequest;
@@ -538,6 +553,7 @@ namespace Speechify
         /// `tool_id` from the edit-form flow so the server signs the probe<br/>
         /// with the tool's stored HMAC secret.
         /// </summary>
+        /// <param name="speechifyVersion"></param>
         /// <param name="config">
         /// Config shape for `kind=webhook`.
         /// </param>
@@ -551,6 +567,7 @@ namespace Speechify
         /// <exception cref="global::System.InvalidOperationException"></exception>
         public async global::System.Threading.Tasks.Task<global::Speechify.WebhookProbeResult> TestWebhookConnectionAsync(
             global::Speechify.WebhookToolConfig config,
+            string? speechifyVersion = default,
             string? toolId = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
@@ -562,6 +579,7 @@ namespace Speechify
             };
 
             return await TestWebhookConnectionAsync(
+                speechifyVersion: speechifyVersion,
                 request: __request,
                 requestOptions: requestOptions,
                 cancellationToken: cancellationToken).ConfigureAwait(false);

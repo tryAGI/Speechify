@@ -11,6 +11,7 @@ namespace Speechify
         /// `kind=bearer` requires `config.bearer`). Names are unique per<br/>
         /// workspace among active credentials.
         /// </summary>
+        /// <param name="speechifyVersion"></param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -18,6 +19,7 @@ namespace Speechify
         global::System.Threading.Tasks.Task<global::Speechify.Credential> CreateAsync(
 
             global::Speechify.CreateCredentialRequest request,
+            string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
@@ -27,6 +29,7 @@ namespace Speechify
         /// `kind=bearer` requires `config.bearer`). Names are unique per<br/>
         /// workspace among active credentials.
         /// </summary>
+        /// <param name="speechifyVersion"></param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -34,6 +37,7 @@ namespace Speechify
         global::System.Threading.Tasks.Task<global::Speechify.AutoSDKHttpResponse<global::Speechify.Credential>> CreateAsResponseAsync(
 
             global::Speechify.CreateCredentialRequest request,
+            string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
@@ -43,6 +47,7 @@ namespace Speechify
         /// `kind=bearer` requires `config.bearer`). Names are unique per<br/>
         /// workspace among active credentials.
         /// </summary>
+        /// <param name="speechifyVersion"></param>
         /// <param name="name">
         /// Human-readable label, unique per workspace.
         /// </param>
@@ -62,6 +67,7 @@ namespace Speechify
             string name,
             global::Speechify.CredentialKind kind,
             global::Speechify.CredentialConfig config,
+            string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
     }

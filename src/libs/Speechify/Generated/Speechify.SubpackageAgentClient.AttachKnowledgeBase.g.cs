@@ -28,12 +28,14 @@ namespace Speechify
         partial void PrepareAttachKnowledgeBaseArguments(
             global::System.Net.Http.HttpClient httpClient,
             ref string id,
-            ref string kbId);
+            ref string kbId,
+            ref string? speechifyVersion);
         partial void PrepareAttachKnowledgeBaseRequest(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpRequestMessage httpRequestMessage,
             string id,
-            string kbId);
+            string kbId,
+            string? speechifyVersion);
         partial void ProcessAttachKnowledgeBaseResponse(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpResponseMessage httpResponseMessage);
@@ -51,18 +53,21 @@ namespace Speechify
         /// </summary>
         /// <param name="id"></param>
         /// <param name="kbId"></param>
+        /// <param name="speechifyVersion"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
         public async global::System.Threading.Tasks.Task<string> AttachKnowledgeBaseAsync(
             string id,
             string kbId,
+            string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
             var __response = await AttachKnowledgeBaseAsResponseAsync(
                 id: id,
                 kbId: kbId,
+                speechifyVersion: speechifyVersion,
                 requestOptions: requestOptions,
                 cancellationToken: cancellationToken
             ).ConfigureAwait(false);
@@ -77,12 +82,14 @@ namespace Speechify
         /// </summary>
         /// <param name="id"></param>
         /// <param name="kbId"></param>
+        /// <param name="speechifyVersion"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
         public async global::System.Threading.Tasks.Task<global::Speechify.AutoSDKHttpResponse<string>> AttachKnowledgeBaseAsResponseAsync(
             string id,
             string kbId,
+            string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
@@ -91,7 +98,8 @@ namespace Speechify
             PrepareAttachKnowledgeBaseArguments(
                 httpClient: HttpClient,
                 id: ref id,
-                kbId: ref kbId);
+                kbId: ref kbId,
+                speechifyVersion: ref speechifyVersion);
 
 
             var __authorizations = global::Speechify.EndPointSecurityResolver.ResolveAuthorizations(
@@ -148,6 +156,12 @@ namespace Speechify
                     __httpRequest.Headers.Add(__authorization.Name, __authorization.Value);
                 } 
             }
+
+            if (speechifyVersion != default)
+            {
+                __httpRequest.Headers.TryAddWithoutValidation("Speechify-Version", speechifyVersion.ToString());
+            }
+
                 global::Speechify.AutoSDKRequestOptionsSupport.ApplyHeaders(
                     request: __httpRequest,
                     clientHeaders: Options.Headers,
@@ -160,7 +174,8 @@ namespace Speechify
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
                     id: id!,
-                    kbId: kbId!);
+                    kbId: kbId!,
+                    speechifyVersion: speechifyVersion);
 
                 return __httpRequest;
             }

@@ -9,6 +9,7 @@ namespace Speechify
         /// Create a new test for the agent.
         /// </summary>
         /// <param name="id"></param>
+        /// <param name="speechifyVersion"></param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -17,6 +18,7 @@ namespace Speechify
             string id,
 
             global::Speechify.CreateAgentTestRequest request,
+            string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
@@ -24,6 +26,7 @@ namespace Speechify
         /// Create a new test for the agent.
         /// </summary>
         /// <param name="id"></param>
+        /// <param name="speechifyVersion"></param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -32,6 +35,7 @@ namespace Speechify
             string id,
 
             global::Speechify.CreateAgentTestRequest request,
+            string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
@@ -39,6 +43,7 @@ namespace Speechify
         /// Create a new test for the agent.
         /// </summary>
         /// <param name="id"></param>
+        /// <param name="speechifyVersion"></param>
         /// <param name="name">
         /// Short human-readable label for the test.
         /// </param>
@@ -74,6 +79,7 @@ namespace Speechify
             string name,
             global::Speechify.TestType type,
             global::Speechify.CreateAgentTestRequestConfig config,
+            string? speechifyVersion = default,
             string? description = default,
             global::Speechify.ToolMockConfig? toolMockConfig = default,
             object? variables = default,

@@ -27,10 +27,12 @@ namespace Speechify
             };
         partial void PrepareCreateArguments(
             global::System.Net.Http.HttpClient httpClient,
+            ref string? speechifyVersion,
             global::Speechify.CreateRequest request);
         partial void PrepareCreateRequest(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpRequestMessage httpRequestMessage,
+            string? speechifyVersion,
             global::Speechify.CreateRequest request);
         partial void ProcessCreateResponse(
             global::System.Net.Http.HttpClient httpClient,
@@ -45,6 +47,7 @@ namespace Speechify
         /// Create Voice<br/>
         /// Create a personal (cloned) voice for the user
         /// </summary>
+        /// <param name="speechifyVersion"></param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -52,12 +55,14 @@ namespace Speechify
         public async global::System.Threading.Tasks.Task<global::Speechify.CreatedVoice> CreateAsync(
 
             global::Speechify.CreateRequest request,
+            string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
             var __response = await CreateAsResponseAsync(
 
                 request: request,
+                speechifyVersion: speechifyVersion,
                 requestOptions: requestOptions,
                 cancellationToken: cancellationToken
             ).ConfigureAwait(false);
@@ -68,6 +73,7 @@ namespace Speechify
         /// Create Voice<br/>
         /// Create a personal (cloned) voice for the user
         /// </summary>
+        /// <param name="speechifyVersion"></param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -75,6 +81,7 @@ namespace Speechify
         public async global::System.Threading.Tasks.Task<global::Speechify.AutoSDKHttpResponse<global::Speechify.CreatedVoice>> CreateAsResponseAsync(
 
             global::Speechify.CreateRequest request,
+            string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
@@ -84,6 +91,7 @@ namespace Speechify
                 client: HttpClient);
             PrepareCreateArguments(
                 httpClient: HttpClient,
+                speechifyVersion: ref speechifyVersion,
                 request: request);
 
 
@@ -142,7 +150,21 @@ namespace Speechify
                 } 
             }
 
+            if (speechifyVersion != default)
+            {
+                __httpRequest.Headers.TryAddWithoutValidation("Speechify-Version", speechifyVersion.ToString());
+            }
+
+
                             var __httpRequestContent = new global::System.Net.Http.MultipartFormDataContent();
+                            if (speechifyVersion != default)
+                            {
+
+                                __httpRequestContent.Add(
+                                    content: new global::System.Net.Http.StringContent(speechifyVersion ?? string.Empty),
+                                    name: "\"Speechify-Version\"");
+
+                            }
                             __httpRequestContent.Add(
                                 content: new global::System.Net.Http.StringContent(request.Name ?? string.Empty),
                                 name: "\"name\"");
@@ -256,6 +278,7 @@ namespace Speechify
                 PrepareCreateRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
+                    speechifyVersion: speechifyVersion,
                     request: request);
 
                 return __httpRequest;
@@ -868,6 +891,7 @@ namespace Speechify
         /// Create Voice<br/>
         /// Create a personal (cloned) voice for the user
         /// </summary>
+        /// <param name="speechifyVersion"></param>
         /// <param name="name">
         /// Name of the personal voice
         /// </param>
@@ -907,6 +931,7 @@ namespace Speechify
             byte[] sample,
             string samplename,
             string consent,
+            string? speechifyVersion = default,
             string? locale = default,
             byte[]? avatar = default,
             string? avatarname = default,
@@ -926,6 +951,7 @@ namespace Speechify
             };
 
             return await CreateAsync(
+                speechifyVersion: speechifyVersion,
                 request: __request,
                 requestOptions: requestOptions,
                 cancellationToken: cancellationToken).ConfigureAwait(false);
@@ -935,6 +961,7 @@ namespace Speechify
         /// Create Voice<br/>
         /// Create a personal (cloned) voice for the user
         /// </summary>
+        /// <param name="speechifyVersion"></param>
         /// <param name="name">
         /// Name of the personal voice
         /// </param>
@@ -974,6 +1001,7 @@ namespace Speechify
             global::System.IO.Stream sample,
             string samplename,
             string consent,
+            string? speechifyVersion = default,
             string? locale = default,
             global::System.IO.Stream? avatar = default,
             string? avatarname = default,
@@ -997,6 +1025,7 @@ namespace Speechify
                 client: HttpClient);
             PrepareCreateArguments(
                 httpClient: HttpClient,
+                speechifyVersion: ref speechifyVersion,
                 request: request);
 
 
@@ -1055,7 +1084,21 @@ namespace Speechify
                 } 
             }
 
+            if (speechifyVersion != default)
+            {
+                __httpRequest.Headers.TryAddWithoutValidation("Speechify-Version", speechifyVersion.ToString());
+            }
+
+
                             var __httpRequestContent = new global::System.Net.Http.MultipartFormDataContent();
+                            if (speechifyVersion != default)
+                            {
+
+                                __httpRequestContent.Add(
+                                    content: new global::System.Net.Http.StringContent(speechifyVersion ?? string.Empty),
+                                    name: "\"Speechify-Version\"");
+
+                            }
                             __httpRequestContent.Add(
                                 content: new global::System.Net.Http.StringContent(request.Name ?? string.Empty),
                                 name: "\"name\"");
@@ -1169,6 +1212,7 @@ namespace Speechify
                 PrepareCreateRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
+                    speechifyVersion: speechifyVersion,
                     request: request);
 
                 return __httpRequest;
@@ -1773,6 +1817,7 @@ namespace Speechify
         /// Create Voice<br/>
         /// Create a personal (cloned) voice for the user
         /// </summary>
+        /// <param name="speechifyVersion"></param>
         /// <param name="name">
         /// Name of the personal voice
         /// </param>
@@ -1812,6 +1857,7 @@ namespace Speechify
             global::System.IO.Stream sample,
             string samplename,
             string consent,
+            string? speechifyVersion = default,
             string? locale = default,
             global::System.IO.Stream? avatar = default,
             string? avatarname = default,
@@ -1835,6 +1881,7 @@ namespace Speechify
                 client: HttpClient);
             PrepareCreateArguments(
                 httpClient: HttpClient,
+                speechifyVersion: ref speechifyVersion,
                 request: request);
 
 
@@ -1893,7 +1940,21 @@ namespace Speechify
                 } 
             }
 
+            if (speechifyVersion != default)
+            {
+                __httpRequest.Headers.TryAddWithoutValidation("Speechify-Version", speechifyVersion.ToString());
+            }
+
+
                             var __httpRequestContent = new global::System.Net.Http.MultipartFormDataContent();
+                            if (speechifyVersion != default)
+                            {
+
+                                __httpRequestContent.Add(
+                                    content: new global::System.Net.Http.StringContent(speechifyVersion ?? string.Empty),
+                                    name: "\"Speechify-Version\"");
+
+                            }
                             __httpRequestContent.Add(
                                 content: new global::System.Net.Http.StringContent(request.Name ?? string.Empty),
                                 name: "\"name\"");
@@ -2007,6 +2068,7 @@ namespace Speechify
                 PrepareCreateRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
+                    speechifyVersion: speechifyVersion,
                     request: request);
 
                 return __httpRequest;

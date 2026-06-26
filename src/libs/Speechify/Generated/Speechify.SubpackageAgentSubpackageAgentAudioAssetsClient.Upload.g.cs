@@ -27,10 +27,12 @@ namespace Speechify
             };
         partial void PrepareUploadArguments(
             global::System.Net.Http.HttpClient httpClient,
+            ref string? speechifyVersion,
             global::Speechify.UploadRequest request);
         partial void PrepareUploadRequest(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpRequestMessage httpRequestMessage,
+            string? speechifyVersion,
             global::Speechify.UploadRequest request);
         partial void ProcessUploadResponse(
             global::System.Net.Http.HttpClient httpClient,
@@ -53,6 +55,7 @@ namespace Speechify
         /// convert MP3 sources with `ffmpeg -i in.mp3 -ar 48000 -ac 1<br/>
         /// -sample_fmt s16 out.wav`.
         /// </summary>
+        /// <param name="speechifyVersion"></param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -60,12 +63,14 @@ namespace Speechify
         public async global::System.Threading.Tasks.Task<global::Speechify.UploadAudioAssetResponse> UploadAsync(
 
             global::Speechify.UploadRequest request,
+            string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
             var __response = await UploadAsResponseAsync(
 
                 request: request,
+                speechifyVersion: speechifyVersion,
                 requestOptions: requestOptions,
                 cancellationToken: cancellationToken
             ).ConfigureAwait(false);
@@ -84,6 +89,7 @@ namespace Speechify
         /// convert MP3 sources with `ffmpeg -i in.mp3 -ar 48000 -ac 1<br/>
         /// -sample_fmt s16 out.wav`.
         /// </summary>
+        /// <param name="speechifyVersion"></param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -91,6 +97,7 @@ namespace Speechify
         public async global::System.Threading.Tasks.Task<global::Speechify.AutoSDKHttpResponse<global::Speechify.UploadAudioAssetResponse>> UploadAsResponseAsync(
 
             global::Speechify.UploadRequest request,
+            string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
@@ -100,6 +107,7 @@ namespace Speechify
                 client: HttpClient);
             PrepareUploadArguments(
                 httpClient: HttpClient,
+                speechifyVersion: ref speechifyVersion,
                 request: request);
 
 
@@ -158,7 +166,21 @@ namespace Speechify
                 } 
             }
 
+            if (speechifyVersion != default)
+            {
+                __httpRequest.Headers.TryAddWithoutValidation("Speechify-Version", speechifyVersion.ToString());
+            }
+
+
                             var __httpRequestContent = new global::System.Net.Http.MultipartFormDataContent();
+                            if (speechifyVersion != default)
+                            {
+
+                                __httpRequestContent.Add(
+                                    content: new global::System.Net.Http.StringContent(speechifyVersion ?? string.Empty),
+                                    name: "\"Speechify-Version\"");
+
+                            }
                             var __contentFile = new global::System.Net.Http.ByteArrayContent(request.File ?? global::System.Array.Empty<byte>());
                             __contentFile.Headers.ContentType = new global::System.Net.Http.Headers.MediaTypeHeaderValue(
                                 request.Filename is null
@@ -210,6 +232,7 @@ namespace Speechify
                 PrepareUploadRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
+                    speechifyVersion: speechifyVersion,
                     request: request);
 
                 return __httpRequest;
@@ -571,6 +594,7 @@ namespace Speechify
         /// convert MP3 sources with `ffmpeg -i in.mp3 -ar 48000 -ac 1<br/>
         /// -sample_fmt s16 out.wav`.
         /// </summary>
+        /// <param name="speechifyVersion"></param>
         /// <param name="file">
         /// The WAV file bytes. Must be PCM 16-bit signed, mono,<br/>
         /// 48000 Hz, ≤30s duration, ≤4 MiB total.
@@ -585,6 +609,7 @@ namespace Speechify
         public async global::System.Threading.Tasks.Task<global::Speechify.UploadAudioAssetResponse> UploadAsync(
             byte[] file,
             string filename,
+            string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
@@ -595,6 +620,7 @@ namespace Speechify
             };
 
             return await UploadAsync(
+                speechifyVersion: speechifyVersion,
                 request: __request,
                 requestOptions: requestOptions,
                 cancellationToken: cancellationToken).ConfigureAwait(false);
@@ -612,6 +638,7 @@ namespace Speechify
         /// convert MP3 sources with `ffmpeg -i in.mp3 -ar 48000 -ac 1<br/>
         /// -sample_fmt s16 out.wav`.
         /// </summary>
+        /// <param name="speechifyVersion"></param>
         /// <param name="file">
         /// The WAV file bytes. Must be PCM 16-bit signed, mono,<br/>
         /// 48000 Hz, ≤30s duration, ≤4 MiB total.
@@ -626,6 +653,7 @@ namespace Speechify
         public async global::System.Threading.Tasks.Task<global::Speechify.UploadAudioAssetResponse> UploadAsync(
             global::System.IO.Stream file,
             string filename,
+            string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
@@ -640,6 +668,7 @@ namespace Speechify
                 client: HttpClient);
             PrepareUploadArguments(
                 httpClient: HttpClient,
+                speechifyVersion: ref speechifyVersion,
                 request: request);
 
 
@@ -698,7 +727,21 @@ namespace Speechify
                 } 
             }
 
+            if (speechifyVersion != default)
+            {
+                __httpRequest.Headers.TryAddWithoutValidation("Speechify-Version", speechifyVersion.ToString());
+            }
+
+
                             var __httpRequestContent = new global::System.Net.Http.MultipartFormDataContent();
+                            if (speechifyVersion != default)
+                            {
+
+                                __httpRequestContent.Add(
+                                    content: new global::System.Net.Http.StringContent(speechifyVersion ?? string.Empty),
+                                    name: "\"Speechify-Version\"");
+
+                            }
                             var __contentFile = new global::System.Net.Http.StreamContent(file);
                             __contentFile.Headers.ContentType = new global::System.Net.Http.Headers.MediaTypeHeaderValue(
                                 request.Filename is null
@@ -750,6 +793,7 @@ namespace Speechify
                 PrepareUploadRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
+                    speechifyVersion: speechifyVersion,
                     request: request);
 
                 return __httpRequest;
@@ -1103,6 +1147,7 @@ namespace Speechify
         /// convert MP3 sources with `ffmpeg -i in.mp3 -ar 48000 -ac 1<br/>
         /// -sample_fmt s16 out.wav`.
         /// </summary>
+        /// <param name="speechifyVersion"></param>
         /// <param name="file">
         /// The WAV file bytes. Must be PCM 16-bit signed, mono,<br/>
         /// 48000 Hz, ≤30s duration, ≤4 MiB total.
@@ -1117,6 +1162,7 @@ namespace Speechify
         public async global::System.Threading.Tasks.Task<global::Speechify.AutoSDKHttpResponse<global::Speechify.UploadAudioAssetResponse>> UploadAsResponseAsync(
             global::System.IO.Stream file,
             string filename,
+            string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
@@ -1131,6 +1177,7 @@ namespace Speechify
                 client: HttpClient);
             PrepareUploadArguments(
                 httpClient: HttpClient,
+                speechifyVersion: ref speechifyVersion,
                 request: request);
 
 
@@ -1189,7 +1236,21 @@ namespace Speechify
                 } 
             }
 
+            if (speechifyVersion != default)
+            {
+                __httpRequest.Headers.TryAddWithoutValidation("Speechify-Version", speechifyVersion.ToString());
+            }
+
+
                             var __httpRequestContent = new global::System.Net.Http.MultipartFormDataContent();
+                            if (speechifyVersion != default)
+                            {
+
+                                __httpRequestContent.Add(
+                                    content: new global::System.Net.Http.StringContent(speechifyVersion ?? string.Empty),
+                                    name: "\"Speechify-Version\"");
+
+                            }
                             var __contentFile = new global::System.Net.Http.StreamContent(file);
                             __contentFile.Headers.ContentType = new global::System.Net.Http.Headers.MediaTypeHeaderValue(
                                 request.Filename is null
@@ -1241,6 +1302,7 @@ namespace Speechify
                 PrepareUploadRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
+                    speechifyVersion: speechifyVersion,
                     request: request);
 
                 return __httpRequest;

@@ -27,11 +27,13 @@ namespace Speechify
             };
         partial void PrepareGetTestStatsArguments(
             global::System.Net.Http.HttpClient httpClient,
-            ref int? windowDays);
+            ref int? windowDays,
+            ref string? speechifyVersion);
         partial void PrepareGetTestStatsRequest(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpRequestMessage httpRequestMessage,
-            int? windowDays);
+            int? windowDays,
+            string? speechifyVersion);
         partial void ProcessGetTestStatsResponse(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpResponseMessage httpResponseMessage);
@@ -49,16 +51,19 @@ namespace Speechify
         /// page. Default window is 30 days, max 90.
         /// </summary>
         /// <param name="windowDays"></param>
+        /// <param name="speechifyVersion"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
         public async global::System.Threading.Tasks.Task<global::Speechify.TestStats> GetTestStatsAsync(
             int? windowDays = default,
+            string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
             var __response = await GetTestStatsAsResponseAsync(
                 windowDays: windowDays,
+                speechifyVersion: speechifyVersion,
                 requestOptions: requestOptions,
                 cancellationToken: cancellationToken
             ).ConfigureAwait(false);
@@ -73,11 +78,13 @@ namespace Speechify
         /// page. Default window is 30 days, max 90.
         /// </summary>
         /// <param name="windowDays"></param>
+        /// <param name="speechifyVersion"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
         public async global::System.Threading.Tasks.Task<global::Speechify.AutoSDKHttpResponse<global::Speechify.TestStats>> GetTestStatsAsResponseAsync(
             int? windowDays = default,
+            string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
@@ -85,7 +92,8 @@ namespace Speechify
                 client: HttpClient);
             PrepareGetTestStatsArguments(
                 httpClient: HttpClient,
-                windowDays: ref windowDays);
+                windowDays: ref windowDays,
+                speechifyVersion: ref speechifyVersion);
 
 
             var __authorizations = global::Speechify.EndPointSecurityResolver.ResolveAuthorizations(
@@ -145,6 +153,12 @@ namespace Speechify
                     __httpRequest.Headers.Add(__authorization.Name, __authorization.Value);
                 } 
             }
+
+            if (speechifyVersion != default)
+            {
+                __httpRequest.Headers.TryAddWithoutValidation("Speechify-Version", speechifyVersion.ToString());
+            }
+
                 global::Speechify.AutoSDKRequestOptionsSupport.ApplyHeaders(
                     request: __httpRequest,
                     clientHeaders: Options.Headers,
@@ -156,7 +170,8 @@ namespace Speechify
                 PrepareGetTestStatsRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
-                    windowDays: windowDays);
+                    windowDays: windowDays,
+                    speechifyVersion: speechifyVersion);
 
                 return __httpRequest;
             }

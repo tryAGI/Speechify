@@ -29,13 +29,15 @@ namespace Speechify
             global::System.Net.Http.HttpClient httpClient,
             ref string id,
             ref string? cursor,
-            ref int? limit);
+            ref int? limit,
+            ref string? speechifyVersion);
         partial void PrepareListConversationsRequest(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpRequestMessage httpRequestMessage,
             string id,
             string? cursor,
-            int? limit);
+            int? limit,
+            string? speechifyVersion);
         partial void ProcessListConversationsResponse(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpResponseMessage httpResponseMessage);
@@ -56,6 +58,7 @@ namespace Speechify
         /// <param name="limit">
         /// Default Value: 50
         /// </param>
+        /// <param name="speechifyVersion"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
@@ -63,6 +66,7 @@ namespace Speechify
             string id,
             string? cursor = default,
             int? limit = default,
+            string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
@@ -70,6 +74,7 @@ namespace Speechify
                 id: id,
                 cursor: cursor,
                 limit: limit,
+                speechifyVersion: speechifyVersion,
                 requestOptions: requestOptions,
                 cancellationToken: cancellationToken
             ).ConfigureAwait(false);
@@ -87,6 +92,7 @@ namespace Speechify
         /// <param name="limit">
         /// Default Value: 50
         /// </param>
+        /// <param name="speechifyVersion"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
@@ -94,6 +100,7 @@ namespace Speechify
             string id,
             string? cursor = default,
             int? limit = default,
+            string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
@@ -103,7 +110,8 @@ namespace Speechify
                 httpClient: HttpClient,
                 id: ref id,
                 cursor: ref cursor,
-                limit: ref limit);
+                limit: ref limit,
+                speechifyVersion: ref speechifyVersion);
 
 
             var __authorizations = global::Speechify.EndPointSecurityResolver.ResolveAuthorizations(
@@ -164,6 +172,12 @@ namespace Speechify
                     __httpRequest.Headers.Add(__authorization.Name, __authorization.Value);
                 } 
             }
+
+            if (speechifyVersion != default)
+            {
+                __httpRequest.Headers.TryAddWithoutValidation("Speechify-Version", speechifyVersion.ToString());
+            }
+
                 global::Speechify.AutoSDKRequestOptionsSupport.ApplyHeaders(
                     request: __httpRequest,
                     clientHeaders: Options.Headers,
@@ -177,7 +191,8 @@ namespace Speechify
                     httpRequestMessage: __httpRequest,
                     id: id!,
                     cursor: cursor,
-                    limit: limit);
+                    limit: limit,
+                    speechifyVersion: speechifyVersion);
 
                 return __httpRequest;
             }

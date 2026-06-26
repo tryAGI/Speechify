@@ -27,11 +27,13 @@ namespace Speechify
             };
         partial void PrepareListArguments(
             global::System.Net.Http.HttpClient httpClient,
-            ref string? fingerprint);
+            ref string? fingerprint,
+            ref string? speechifyVersion);
         partial void PrepareListRequest(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpRequestMessage httpRequestMessage,
-            string? fingerprint);
+            string? fingerprint,
+            string? speechifyVersion);
         partial void ProcessListResponse(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpResponseMessage httpResponseMessage);
@@ -50,16 +52,19 @@ namespace Speechify
         /// the top. Capped at 200 rows.
         /// </summary>
         /// <param name="fingerprint"></param>
+        /// <param name="speechifyVersion"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
         public async global::System.Threading.Tasks.Task<global::Speechify.ListIVRMenusResponse> ListAsync(
             string? fingerprint = default,
+            string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
             var __response = await ListAsResponseAsync(
                 fingerprint: fingerprint,
+                speechifyVersion: speechifyVersion,
                 requestOptions: requestOptions,
                 cancellationToken: cancellationToken
             ).ConfigureAwait(false);
@@ -75,11 +80,13 @@ namespace Speechify
         /// the top. Capped at 200 rows.
         /// </summary>
         /// <param name="fingerprint"></param>
+        /// <param name="speechifyVersion"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
         public async global::System.Threading.Tasks.Task<global::Speechify.AutoSDKHttpResponse<global::Speechify.ListIVRMenusResponse>> ListAsResponseAsync(
             string? fingerprint = default,
+            string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
@@ -87,7 +94,8 @@ namespace Speechify
                 client: HttpClient);
             PrepareListArguments(
                 httpClient: HttpClient,
-                fingerprint: ref fingerprint);
+                fingerprint: ref fingerprint,
+                speechifyVersion: ref speechifyVersion);
 
 
             var __authorizations = global::Speechify.EndPointSecurityResolver.ResolveAuthorizations(
@@ -147,6 +155,12 @@ namespace Speechify
                     __httpRequest.Headers.Add(__authorization.Name, __authorization.Value);
                 } 
             }
+
+            if (speechifyVersion != default)
+            {
+                __httpRequest.Headers.TryAddWithoutValidation("Speechify-Version", speechifyVersion.ToString());
+            }
+
                 global::Speechify.AutoSDKRequestOptionsSupport.ApplyHeaders(
                     request: __httpRequest,
                     clientHeaders: Options.Headers,
@@ -158,7 +172,8 @@ namespace Speechify
                 PrepareListRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
-                    fingerprint: fingerprint);
+                    fingerprint: fingerprint,
+                    speechifyVersion: speechifyVersion);
 
                 return __httpRequest;
             }

@@ -16,6 +16,7 @@ namespace Speechify
         /// Requires a Twilio or BYOC trunk. LiveKit-native numbers are<br/>
         /// inbound-only.
         /// </summary>
+        /// <param name="speechifyVersion"></param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -23,6 +24,7 @@ namespace Speechify
         global::System.Threading.Tasks.Task<global::Speechify.CreateOutboundCallResponse> CreateAsync(
 
             global::Speechify.CreateOutboundCallRequest request,
+            string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
@@ -37,6 +39,7 @@ namespace Speechify
         /// Requires a Twilio or BYOC trunk. LiveKit-native numbers are<br/>
         /// inbound-only.
         /// </summary>
+        /// <param name="speechifyVersion"></param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -44,6 +47,7 @@ namespace Speechify
         global::System.Threading.Tasks.Task<global::Speechify.AutoSDKHttpResponse<global::Speechify.CreateOutboundCallResponse>> CreateAsResponseAsync(
 
             global::Speechify.CreateOutboundCallRequest request,
+            string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
@@ -58,6 +62,7 @@ namespace Speechify
         /// Requires a Twilio or BYOC trunk. LiveKit-native numbers are<br/>
         /// inbound-only.
         /// </summary>
+        /// <param name="speechifyVersion"></param>
         /// <param name="agentId">
         /// ID of the agent that handles the answered call.
         /// </param>
@@ -101,6 +106,7 @@ namespace Speechify
         global::System.Threading.Tasks.Task<global::Speechify.CreateOutboundCallResponse> CreateAsync(
             string agentId,
             string to,
+            string? speechifyVersion = default,
             string? callerIdNumber = default,
             string? dtmfPrefix = default,
             object? dynamicVariables = default,

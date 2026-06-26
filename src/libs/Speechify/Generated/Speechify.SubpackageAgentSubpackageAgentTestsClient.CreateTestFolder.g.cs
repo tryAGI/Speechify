@@ -27,10 +27,12 @@ namespace Speechify
             };
         partial void PrepareCreateTestFolderArguments(
             global::System.Net.Http.HttpClient httpClient,
+            ref string? speechifyVersion,
             global::Speechify.CreateAgentTestFolderRequest request);
         partial void PrepareCreateTestFolderRequest(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpRequestMessage httpRequestMessage,
+            string? speechifyVersion,
             global::Speechify.CreateAgentTestFolderRequest request);
         partial void ProcessCreateTestFolderResponse(
             global::System.Net.Http.HttpClient httpClient,
@@ -45,6 +47,7 @@ namespace Speechify
         /// Create Test Folder<br/>
         /// Create a test folder. Max depth is 3.
         /// </summary>
+        /// <param name="speechifyVersion"></param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -52,12 +55,14 @@ namespace Speechify
         public async global::System.Threading.Tasks.Task<global::Speechify.AgentTestFolder> CreateTestFolderAsync(
 
             global::Speechify.CreateAgentTestFolderRequest request,
+            string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
             var __response = await CreateTestFolderAsResponseAsync(
 
                 request: request,
+                speechifyVersion: speechifyVersion,
                 requestOptions: requestOptions,
                 cancellationToken: cancellationToken
             ).ConfigureAwait(false);
@@ -68,6 +73,7 @@ namespace Speechify
         /// Create Test Folder<br/>
         /// Create a test folder. Max depth is 3.
         /// </summary>
+        /// <param name="speechifyVersion"></param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -75,6 +81,7 @@ namespace Speechify
         public async global::System.Threading.Tasks.Task<global::Speechify.AutoSDKHttpResponse<global::Speechify.AgentTestFolder>> CreateTestFolderAsResponseAsync(
 
             global::Speechify.CreateAgentTestFolderRequest request,
+            string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
@@ -84,6 +91,7 @@ namespace Speechify
                 client: HttpClient);
             PrepareCreateTestFolderArguments(
                 httpClient: HttpClient,
+                speechifyVersion: ref speechifyVersion,
                 request: request);
 
 
@@ -141,6 +149,12 @@ namespace Speechify
                     __httpRequest.Headers.Add(__authorization.Name, __authorization.Value);
                 } 
             }
+
+            if (speechifyVersion != default)
+            {
+                __httpRequest.Headers.TryAddWithoutValidation("Speechify-Version", speechifyVersion.ToString());
+            }
+
                             var __httpRequestContentBody = request.ToJson(JsonSerializerContext);
                             var __httpRequestContent = new global::System.Net.Http.StringContent(
                                 content: __httpRequestContentBody,
@@ -158,6 +172,7 @@ namespace Speechify
                 PrepareCreateTestFolderRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
+                    speechifyVersion: speechifyVersion,
                     request: request);
 
                 return __httpRequest;
@@ -511,6 +526,7 @@ namespace Speechify
         /// Create Test Folder<br/>
         /// Create a test folder. Max depth is 3.
         /// </summary>
+        /// <param name="speechifyVersion"></param>
         /// <param name="name"></param>
         /// <param name="parentFolderId">
         /// Prefixed wire identifier (`folder_&lt;26 char Crockford base32&gt;`)<br/>
@@ -521,6 +537,7 @@ namespace Speechify
         /// <exception cref="global::System.InvalidOperationException"></exception>
         public async global::System.Threading.Tasks.Task<global::Speechify.AgentTestFolder> CreateTestFolderAsync(
             string name,
+            string? speechifyVersion = default,
             string? parentFolderId = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
@@ -532,6 +549,7 @@ namespace Speechify
             };
 
             return await CreateTestFolderAsync(
+                speechifyVersion: speechifyVersion,
                 request: __request,
                 requestOptions: requestOptions,
                 cancellationToken: cancellationToken).ConfigureAwait(false);

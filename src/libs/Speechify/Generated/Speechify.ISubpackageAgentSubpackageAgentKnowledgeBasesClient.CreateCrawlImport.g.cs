@@ -10,6 +10,7 @@ namespace Speechify
         /// job row; client polls `GET /{id}/imports` for progress.
         /// </summary>
         /// <param name="id"></param>
+        /// <param name="speechifyVersion"></param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -18,6 +19,7 @@ namespace Speechify
             string id,
 
             global::Speechify.CreateCrawlImportRequest request,
+            string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
@@ -26,6 +28,7 @@ namespace Speechify
         /// job row; client polls `GET /{id}/imports` for progress.
         /// </summary>
         /// <param name="id"></param>
+        /// <param name="speechifyVersion"></param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -34,6 +37,7 @@ namespace Speechify
             string id,
 
             global::Speechify.CreateCrawlImportRequest request,
+            string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
@@ -42,6 +46,7 @@ namespace Speechify
         /// job row; client polls `GET /{id}/imports` for progress.
         /// </summary>
         /// <param name="id"></param>
+        /// <param name="speechifyVersion"></param>
         /// <param name="url"></param>
         /// <param name="maxPages"></param>
         /// <param name="maxDepth"></param>
@@ -55,6 +60,7 @@ namespace Speechify
         global::System.Threading.Tasks.Task<global::Speechify.ImportJobResponse> CreateCrawlImportAsync(
             string id,
             string url,
+            string? speechifyVersion = default,
             int? maxPages = default,
             int? maxDepth = default,
             string? folderId = default,

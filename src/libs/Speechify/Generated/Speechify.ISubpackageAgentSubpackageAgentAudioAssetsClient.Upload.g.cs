@@ -16,6 +16,7 @@ namespace Speechify
         /// convert MP3 sources with `ffmpeg -i in.mp3 -ar 48000 -ac 1<br/>
         /// -sample_fmt s16 out.wav`.
         /// </summary>
+        /// <param name="speechifyVersion"></param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -23,6 +24,7 @@ namespace Speechify
         global::System.Threading.Tasks.Task<global::Speechify.UploadAudioAssetResponse> UploadAsync(
 
             global::Speechify.UploadRequest request,
+            string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
@@ -37,6 +39,7 @@ namespace Speechify
         /// convert MP3 sources with `ffmpeg -i in.mp3 -ar 48000 -ac 1<br/>
         /// -sample_fmt s16 out.wav`.
         /// </summary>
+        /// <param name="speechifyVersion"></param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -44,6 +47,7 @@ namespace Speechify
         global::System.Threading.Tasks.Task<global::Speechify.AutoSDKHttpResponse<global::Speechify.UploadAudioAssetResponse>> UploadAsResponseAsync(
 
             global::Speechify.UploadRequest request,
+            string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
@@ -58,6 +62,7 @@ namespace Speechify
         /// convert MP3 sources with `ffmpeg -i in.mp3 -ar 48000 -ac 1<br/>
         /// -sample_fmt s16 out.wav`.
         /// </summary>
+        /// <param name="speechifyVersion"></param>
         /// <param name="file">
         /// The WAV file bytes. Must be PCM 16-bit signed, mono,<br/>
         /// 48000 Hz, ≤30s duration, ≤4 MiB total.
@@ -72,6 +77,7 @@ namespace Speechify
         global::System.Threading.Tasks.Task<global::Speechify.UploadAudioAssetResponse> UploadAsync(
             byte[] file,
             string filename,
+            string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
 
@@ -87,6 +93,7 @@ namespace Speechify
         /// convert MP3 sources with `ffmpeg -i in.mp3 -ar 48000 -ac 1<br/>
         /// -sample_fmt s16 out.wav`.
         /// </summary>
+        /// <param name="speechifyVersion"></param>
         /// <param name="file">
         /// The WAV file bytes. Must be PCM 16-bit signed, mono,<br/>
         /// 48000 Hz, ≤30s duration, ≤4 MiB total.
@@ -101,6 +108,7 @@ namespace Speechify
         global::System.Threading.Tasks.Task<global::Speechify.UploadAudioAssetResponse> UploadAsync(
             global::System.IO.Stream file,
             string filename,
+            string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
@@ -115,6 +123,7 @@ namespace Speechify
         /// convert MP3 sources with `ffmpeg -i in.mp3 -ar 48000 -ac 1<br/>
         /// -sample_fmt s16 out.wav`.
         /// </summary>
+        /// <param name="speechifyVersion"></param>
         /// <param name="file">
         /// The WAV file bytes. Must be PCM 16-bit signed, mono,<br/>
         /// 48000 Hz, ≤30s duration, ≤4 MiB total.
@@ -129,6 +138,7 @@ namespace Speechify
         global::System.Threading.Tasks.Task<global::Speechify.AutoSDKHttpResponse<global::Speechify.UploadAudioAssetResponse>> UploadAsResponseAsync(
             global::System.IO.Stream file,
             string filename,
+            string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
     }

@@ -10,6 +10,7 @@ namespace Speechify
         /// Returns ranked chunks with source filename and a cosine-similarity<br/>
         /// score. Limited to 50 results per request.
         /// </summary>
+        /// <param name="speechifyVersion"></param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -17,6 +18,7 @@ namespace Speechify
         global::System.Threading.Tasks.Task<global::Speechify.SearchKnowledgeBasesResponse> SearchAsync(
 
             global::Speechify.SearchKnowledgeBasesRequest request,
+            string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
@@ -25,6 +27,7 @@ namespace Speechify
         /// Returns ranked chunks with source filename and a cosine-similarity<br/>
         /// score. Limited to 50 results per request.
         /// </summary>
+        /// <param name="speechifyVersion"></param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -32,6 +35,7 @@ namespace Speechify
         global::System.Threading.Tasks.Task<global::Speechify.AutoSDKHttpResponse<global::Speechify.SearchKnowledgeBasesResponse>> SearchAsResponseAsync(
 
             global::Speechify.SearchKnowledgeBasesRequest request,
+            string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
@@ -40,6 +44,7 @@ namespace Speechify
         /// Returns ranked chunks with source filename and a cosine-similarity<br/>
         /// score. Limited to 50 results per request.
         /// </summary>
+        /// <param name="speechifyVersion"></param>
         /// <param name="query">
         /// Natural-language search query.
         /// </param>
@@ -56,6 +61,7 @@ namespace Speechify
         global::System.Threading.Tasks.Task<global::Speechify.SearchKnowledgeBasesResponse> SearchAsync(
             string query,
             global::System.Collections.Generic.IList<string> kbIds,
+            string? speechifyVersion = default,
             int? topK = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);

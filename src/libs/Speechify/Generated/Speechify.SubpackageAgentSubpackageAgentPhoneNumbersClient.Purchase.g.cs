@@ -27,10 +27,12 @@ namespace Speechify
             };
         partial void PreparePurchaseArguments(
             global::System.Net.Http.HttpClient httpClient,
+            ref string? speechifyVersion,
             global::Speechify.PurchasePhoneNumberRequest request);
         partial void PreparePurchaseRequest(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpRequestMessage httpRequestMessage,
+            string? speechifyVersion,
             global::Speechify.PurchasePhoneNumberRequest request);
         partial void ProcessPurchaseResponse(
             global::System.Net.Http.HttpClient httpClient,
@@ -56,6 +58,7 @@ namespace Speechify
         /// `POST /v1/agents/{id}/phone-numbers/{phoneNumberId}`) and<br/>
         /// outbound calls (via the workspace's shared outbound trunk).
         /// </summary>
+        /// <param name="speechifyVersion"></param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -63,12 +66,14 @@ namespace Speechify
         public async global::System.Threading.Tasks.Task<global::Speechify.PhoneNumber> PurchaseAsync(
 
             global::Speechify.PurchasePhoneNumberRequest request,
+            string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
             var __response = await PurchaseAsResponseAsync(
 
                 request: request,
+                speechifyVersion: speechifyVersion,
                 requestOptions: requestOptions,
                 cancellationToken: cancellationToken
             ).ConfigureAwait(false);
@@ -90,6 +95,7 @@ namespace Speechify
         /// `POST /v1/agents/{id}/phone-numbers/{phoneNumberId}`) and<br/>
         /// outbound calls (via the workspace's shared outbound trunk).
         /// </summary>
+        /// <param name="speechifyVersion"></param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -97,6 +103,7 @@ namespace Speechify
         public async global::System.Threading.Tasks.Task<global::Speechify.AutoSDKHttpResponse<global::Speechify.PhoneNumber>> PurchaseAsResponseAsync(
 
             global::Speechify.PurchasePhoneNumberRequest request,
+            string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
@@ -106,6 +113,7 @@ namespace Speechify
                 client: HttpClient);
             PreparePurchaseArguments(
                 httpClient: HttpClient,
+                speechifyVersion: ref speechifyVersion,
                 request: request);
 
 
@@ -163,6 +171,12 @@ namespace Speechify
                     __httpRequest.Headers.Add(__authorization.Name, __authorization.Value);
                 } 
             }
+
+            if (speechifyVersion != default)
+            {
+                __httpRequest.Headers.TryAddWithoutValidation("Speechify-Version", speechifyVersion.ToString());
+            }
+
                             var __httpRequestContentBody = request.ToJson(JsonSerializerContext);
                             var __httpRequestContent = new global::System.Net.Http.StringContent(
                                 content: __httpRequestContentBody,
@@ -180,6 +194,7 @@ namespace Speechify
                 PreparePurchaseRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
+                    speechifyVersion: speechifyVersion,
                     request: request);
 
                 return __httpRequest;
@@ -655,6 +670,7 @@ namespace Speechify
         /// `POST /v1/agents/{id}/phone-numbers/{phoneNumberId}`) and<br/>
         /// outbound calls (via the workspace's shared outbound trunk).
         /// </summary>
+        /// <param name="speechifyVersion"></param>
         /// <param name="e164">
         /// The E.164 number to buy. Must currently be in carrier inventory.
         /// </param>
@@ -674,6 +690,7 @@ namespace Speechify
         /// <exception cref="global::System.InvalidOperationException"></exception>
         public async global::System.Threading.Tasks.Task<global::Speechify.PhoneNumber> PurchaseAsync(
             string e164,
+            string? speechifyVersion = default,
             string? label = default,
             global::Speechify.PurchasedPhoneNumberProvider? provider = default,
             string? agentId = default,
@@ -689,6 +706,7 @@ namespace Speechify
             };
 
             return await PurchaseAsync(
+                speechifyVersion: speechifyVersion,
                 request: __request,
                 requestOptions: requestOptions,
                 cancellationToken: cancellationToken).ConfigureAwait(false);

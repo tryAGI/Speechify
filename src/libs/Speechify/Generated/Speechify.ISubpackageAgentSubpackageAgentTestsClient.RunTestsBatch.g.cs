@@ -12,6 +12,7 @@ namespace Speechify
         /// Each entry in the response is a queued run; poll<br/>
         /// `GET /v1/agents/tests/runs/{id}` for each.
         /// </summary>
+        /// <param name="speechifyVersion"></param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -19,6 +20,7 @@ namespace Speechify
         global::System.Threading.Tasks.Task<global::Speechify.RunBatchResponse> RunTestsBatchAsync(
 
             global::Speechify.RunBatchRequest request,
+            string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
@@ -29,6 +31,7 @@ namespace Speechify
         /// Each entry in the response is a queued run; poll<br/>
         /// `GET /v1/agents/tests/runs/{id}` for each.
         /// </summary>
+        /// <param name="speechifyVersion"></param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -36,6 +39,7 @@ namespace Speechify
         global::System.Threading.Tasks.Task<global::Speechify.AutoSDKHttpResponse<global::Speechify.RunBatchResponse>> RunTestsBatchAsResponseAsync(
 
             global::Speechify.RunBatchRequest request,
+            string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
@@ -46,12 +50,14 @@ namespace Speechify
         /// Each entry in the response is a queued run; poll<br/>
         /// `GET /v1/agents/tests/runs/{id}` for each.
         /// </summary>
+        /// <param name="speechifyVersion"></param>
         /// <param name="entries"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::System.InvalidOperationException"></exception>
         global::System.Threading.Tasks.Task<global::Speechify.RunBatchResponse> RunTestsBatchAsync(
             global::System.Collections.Generic.IList<global::Speechify.BatchRunEntry> entries,
+            string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
     }
