@@ -3,11 +3,11 @@
 
 namespace Speechify
 {
-    public partial class SubpackageAgentClient
+    public partial class SubpackageCredentialsClient
     {
 
 
-        private static readonly global::Speechify.EndPointSecurityRequirement s_ListLlmModelsSecurityRequirement0 =
+        private static readonly global::Speechify.EndPointSecurityRequirement s_CreateSecurityRequirement0 =
             new global::Speechify.EndPointSecurityRequirement
             {
                 Authorizations = new global::Speechify.EndPointAuthorizationRequirement[]
@@ -21,46 +21,46 @@ namespace Speechify
                     },
                 },
             };
-        private static readonly global::Speechify.EndPointSecurityRequirement[] s_ListLlmModelsSecurityRequirements =
+        private static readonly global::Speechify.EndPointSecurityRequirement[] s_CreateSecurityRequirements =
             new global::Speechify.EndPointSecurityRequirement[]
-            {                s_ListLlmModelsSecurityRequirement0,
+            {                s_CreateSecurityRequirement0,
             };
-        partial void PrepareListLlmModelsArguments(
+        partial void PrepareCreateArguments(
             global::System.Net.Http.HttpClient httpClient,
-            ref global::System.DateTime? speechifyVersion);
-        partial void PrepareListLlmModelsRequest(
+            global::Speechify.CreateCredentialRequest request);
+        partial void PrepareCreateRequest(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpRequestMessage httpRequestMessage,
-            global::System.DateTime? speechifyVersion);
-        partial void ProcessListLlmModelsResponse(
+            global::Speechify.CreateCredentialRequest request);
+        partial void ProcessCreateResponse(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpResponseMessage httpResponseMessage);
 
-        partial void ProcessListLlmModelsResponseContent(
+        partial void ProcessCreateResponseContent(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpResponseMessage httpResponseMessage,
             ref string content);
 
         /// <summary>
-        /// List LLM Models<br/>
-        /// List the LLM models selectable for voice agents on the caller's<br/>
-        /// workspace plan. Premium flagship models and the bring-your-own<br/>
-        /// custom endpoint are available only on higher plans; lower plans<br/>
-        /// receive the managed and standard models. The console renders its<br/>
-        /// model picker from this response so it only offers models that<br/>
-        /// POST/PATCH /v1/agents will accept.
+        /// Create Credential<br/>
+        /// Create a credential in the caller's workspace. `config` must<br/>
+        /// carry exactly the one kind-specific block named by `kind` (e.g.<br/>
+        /// `kind=bearer` requires `config.bearer`). Names are unique per<br/>
+        /// workspace among active credentials.
         /// </summary>
-        /// <param name="speechifyVersion"></param>
+        /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
-        public async global::System.Threading.Tasks.Task<global::Speechify.LLMModelsResponse> ListLlmModelsAsync(
-            global::System.DateTime? speechifyVersion = default,
+        public async global::System.Threading.Tasks.Task<global::Speechify.Credential> CreateAsync(
+
+            global::Speechify.CreateCredentialRequest request,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
-            var __response = await ListLlmModelsAsResponseAsync(
-                speechifyVersion: speechifyVersion,
+            var __response = await CreateAsResponseAsync(
+
+                request: request,
                 requestOptions: requestOptions,
                 cancellationToken: cancellationToken
             ).ConfigureAwait(false);
@@ -68,34 +68,35 @@ namespace Speechify
             return __response.Body;
         }
         /// <summary>
-        /// List LLM Models<br/>
-        /// List the LLM models selectable for voice agents on the caller's<br/>
-        /// workspace plan. Premium flagship models and the bring-your-own<br/>
-        /// custom endpoint are available only on higher plans; lower plans<br/>
-        /// receive the managed and standard models. The console renders its<br/>
-        /// model picker from this response so it only offers models that<br/>
-        /// POST/PATCH /v1/agents will accept.
+        /// Create Credential<br/>
+        /// Create a credential in the caller's workspace. `config` must<br/>
+        /// carry exactly the one kind-specific block named by `kind` (e.g.<br/>
+        /// `kind=bearer` requires `config.bearer`). Names are unique per<br/>
+        /// workspace among active credentials.
         /// </summary>
-        /// <param name="speechifyVersion"></param>
+        /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
-        public async global::System.Threading.Tasks.Task<global::Speechify.AutoSDKHttpResponse<global::Speechify.LLMModelsResponse>> ListLlmModelsAsResponseAsync(
-            global::System.DateTime? speechifyVersion = default,
+        public async global::System.Threading.Tasks.Task<global::Speechify.AutoSDKHttpResponse<global::Speechify.Credential>> CreateAsResponseAsync(
+
+            global::Speechify.CreateCredentialRequest request,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
+            request = request ?? throw new global::System.ArgumentNullException(nameof(request));
+
             PrepareArguments(
                 client: HttpClient);
-            PrepareListLlmModelsArguments(
+            PrepareCreateArguments(
                 httpClient: HttpClient,
-                speechifyVersion: ref speechifyVersion);
+                request: request);
 
 
             var __authorizations = global::Speechify.EndPointSecurityResolver.ResolveAuthorizations(
                 availableAuthorizations: Authorizations,
-                securityRequirements: s_ListLlmModelsSecurityRequirements,
-                operationName: "ListLlmModelsAsync");
+                securityRequirements: s_CreateSecurityRequirements,
+                operationName: "CreateAsync");
 
             using var __timeoutCancellationTokenSource = global::Speechify.AutoSDKRequestOptionsSupport.CreateTimeoutCancellationTokenSource(
                 clientOptions: Options,
@@ -115,7 +116,7 @@ namespace Speechify
             {
 
                             var __pathBuilder = new global::Speechify.PathBuilder(
-                                path: "/v1/agents/llm-models",
+                                path: "/v1/credentials",
                                 baseUri: HttpClient.BaseAddress);
                             var __path = __pathBuilder.ToString();
                 __path = global::Speechify.AutoSDKRequestOptionsSupport.AppendQueryParameters(
@@ -123,7 +124,7 @@ namespace Speechify
                     clientParameters: Options.QueryParameters,
                     requestParameters: requestOptions?.QueryParameters);
                 var __httpRequest = new global::System.Net.Http.HttpRequestMessage(
-                    method: global::System.Net.Http.HttpMethod.Get,
+                    method: global::System.Net.Http.HttpMethod.Post,
                     requestUri: new global::System.Uri(__path, global::System.UriKind.RelativeOrAbsolute));
 #if NET6_0_OR_GREATER
                 __httpRequest.Version = global::System.Net.HttpVersion.Version11;
@@ -146,12 +147,12 @@ namespace Speechify
                     __httpRequest.Headers.Add(__authorization.Name, __authorization.Value);
                 } 
             }
-
-            if (speechifyVersion != default)
-            {
-                __httpRequest.Headers.TryAddWithoutValidation("Speechify-Version", speechifyVersion.ToString());
-            }
-
+                            var __httpRequestContentBody = request.ToJson(JsonSerializerContext);
+                            var __httpRequestContent = new global::System.Net.Http.StringContent(
+                                content: __httpRequestContentBody,
+                                encoding: global::System.Text.Encoding.UTF8,
+                                mediaType: "application/json");
+                            __httpRequest.Content = __httpRequestContent;
                 global::Speechify.AutoSDKRequestOptionsSupport.ApplyHeaders(
                     request: __httpRequest,
                     clientHeaders: Options.Headers,
@@ -160,10 +161,10 @@ namespace Speechify
                 PrepareRequest(
                     client: HttpClient,
                     request: __httpRequest);
-                PrepareListLlmModelsRequest(
+                PrepareCreateRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
-                    speechifyVersion: speechifyVersion);
+                    request: request);
 
                 return __httpRequest;
             }
@@ -180,10 +181,10 @@ namespace Speechify
                     await global::Speechify.AutoSDKRequestOptionsSupport.OnBeforeRequestAsync(
                             clientOptions: Options,
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "ListLlmModels",
-                                methodName: "ListLlmModelsAsync",
-                                pathTemplate: "\"/v1/agents/llm-models\"",
-                                httpMethod: "GET",
+                                operationId: "Create",
+                                methodName: "CreateAsync",
+                                pathTemplate: "\"/v1/credentials\"",
+                                httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
                                 response: null,
@@ -214,10 +215,10 @@ namespace Speechify
                         await global::Speechify.AutoSDKRequestOptionsSupport.OnAfterErrorAsync(
                             clientOptions: Options,
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "ListLlmModels",
-                                methodName: "ListLlmModelsAsync",
-                                pathTemplate: "\"/v1/agents/llm-models\"",
-                                httpMethod: "GET",
+                                operationId: "Create",
+                                methodName: "CreateAsync",
+                                pathTemplate: "\"/v1/credentials\"",
+                                httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
                                 response: null,
@@ -255,10 +256,10 @@ namespace Speechify
                         await global::Speechify.AutoSDKRequestOptionsSupport.OnAfterErrorAsync(
                             clientOptions: Options,
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "ListLlmModels",
-                                methodName: "ListLlmModelsAsync",
-                                pathTemplate: "\"/v1/agents/llm-models\"",
-                                httpMethod: "GET",
+                                operationId: "Create",
+                                methodName: "CreateAsync",
+                                pathTemplate: "\"/v1/credentials\"",
+                                httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
                                 response: __response,
@@ -295,7 +296,7 @@ namespace Speechify
                 ProcessResponse(
                     client: HttpClient,
                     response: __response);
-                ProcessListLlmModelsResponse(
+                ProcessCreateResponse(
                     httpClient: HttpClient,
                     httpResponseMessage: __response);
                 if (__response.IsSuccessStatusCode)
@@ -303,10 +304,10 @@ namespace Speechify
                     await global::Speechify.AutoSDKRequestOptionsSupport.OnAfterSuccessAsync(
                             clientOptions: Options,
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "ListLlmModels",
-                                methodName: "ListLlmModelsAsync",
-                                pathTemplate: "\"/v1/agents/llm-models\"",
-                                httpMethod: "GET",
+                                operationId: "Create",
+                                methodName: "CreateAsync",
+                                pathTemplate: "\"/v1/credentials\"",
+                                httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
                                 response: __response,
@@ -325,10 +326,10 @@ namespace Speechify
                     await global::Speechify.AutoSDKRequestOptionsSupport.OnAfterErrorAsync(
                             clientOptions: Options,
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "ListLlmModels",
-                                methodName: "ListLlmModelsAsync",
-                                pathTemplate: "\"/v1/agents/llm-models\"",
-                                httpMethod: "GET",
+                                operationId: "Create",
+                                methodName: "CreateAsync",
+                                pathTemplate: "\"/v1/credentials\"",
+                                httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
                                 response: __response,
@@ -342,6 +343,43 @@ namespace Speechify
                                 retryReason: global::System.String.Empty,
                                 cancellationToken: __effectiveCancellationToken)).ConfigureAwait(false);
                 }
+                            // The request was malformed or failed validation. The response body is the standard `Error` envelope; for validation failures `error.fields` enumerates the offending fields as a `path -> message` map (code = `validation_failed`). 
+                            if ((int)__response.StatusCode == 400)
+                            {
+                                string? __content_400 = null;
+                                global::System.Exception? __exception_400 = null;
+                                global::Speechify.Error? __value_400 = null;
+                                try
+                                {
+                                    if (__effectiveReadResponseAsString)
+                                    {
+                                        __content_400 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+                                        __value_400 = global::Speechify.Error.FromJson(__content_400, JsonSerializerContext);
+                                    }
+                                    else
+                                    {
+                                        __content_400 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+
+                                        __value_400 = global::Speechify.Error.FromJson(__content_400, JsonSerializerContext);
+                                    }
+                                }
+                                catch (global::System.Exception __ex)
+                                {
+                                    __exception_400 = __ex;
+                                }
+
+
+                                throw global::Speechify.ApiException<global::Speechify.Error>.Create(
+                                    statusCode: __response.StatusCode,
+                                    message: __content_400 ?? __response.ReasonPhrase ?? string.Empty,
+                                    innerException: __exception_400,
+                                    responseBody: __content_400,
+                                    responseObject: __value_400,
+                                    responseHeaders: global::System.Linq.Enumerable.ToDictionary(
+                                        __response.Headers,
+                                        h => h.Key,
+                                        h => h.Value));
+                            }
                             // Authentication is missing or invalid. The request did not carry a recognised credential (Firebase ID token, API key, or worker JWT). 
                             if ((int)__response.StatusCode == 401)
                             {
@@ -379,6 +417,43 @@ namespace Speechify
                                         h => h.Key,
                                         h => h.Value));
                             }
+                            // The request conflicts with the current resource state - e.g. duplicate, optimistic-concurrency mismatch, or last-owner guard. 
+                            if ((int)__response.StatusCode == 409)
+                            {
+                                string? __content_409 = null;
+                                global::System.Exception? __exception_409 = null;
+                                global::Speechify.Error? __value_409 = null;
+                                try
+                                {
+                                    if (__effectiveReadResponseAsString)
+                                    {
+                                        __content_409 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+                                        __value_409 = global::Speechify.Error.FromJson(__content_409, JsonSerializerContext);
+                                    }
+                                    else
+                                    {
+                                        __content_409 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+
+                                        __value_409 = global::Speechify.Error.FromJson(__content_409, JsonSerializerContext);
+                                    }
+                                }
+                                catch (global::System.Exception __ex)
+                                {
+                                    __exception_409 = __ex;
+                                }
+
+
+                                throw global::Speechify.ApiException<global::Speechify.Error>.Create(
+                                    statusCode: __response.StatusCode,
+                                    message: __content_409 ?? __response.ReasonPhrase ?? string.Empty,
+                                    innerException: __exception_409,
+                                    responseBody: __content_409,
+                                    responseObject: __value_409,
+                                    responseHeaders: global::System.Linq.Enumerable.ToDictionary(
+                                        __response.Headers,
+                                        h => h.Key,
+                                        h => h.Value));
+                            }
 
                             if (__effectiveReadResponseAsString)
                             {
@@ -392,7 +467,7 @@ namespace Speechify
                                     client: HttpClient,
                                     response: __response,
                                     content: ref __content);
-                                ProcessListLlmModelsResponseContent(
+                                ProcessCreateResponseContent(
                                     httpClient: HttpClient,
                                     httpResponseMessage: __response,
                                     content: ref __content);
@@ -401,9 +476,9 @@ namespace Speechify
                                 {
                                     __response.EnsureSuccessStatusCode();
 
-                                    var __value = global::Speechify.LLMModelsResponse.FromJson(__content, JsonSerializerContext) ??
+                                    var __value = global::Speechify.Credential.FromJson(__content, JsonSerializerContext) ??
                                         throw new global::System.InvalidOperationException($"Response deserialization failed for \"{__content}\" ");
-                                    return new global::Speechify.AutoSDKHttpResponse<global::Speechify.LLMModelsResponse>(
+                                    return new global::Speechify.AutoSDKHttpResponse<global::Speechify.Credential>(
                                         statusCode: __response.StatusCode,
                                         headers: global::Speechify.AutoSDKHttpResponse.CreateHeaders(__response),
                                         requestUri: __response.RequestMessage?.RequestUri,
@@ -433,9 +508,9 @@ namespace Speechify
                 #endif
                                     ).ConfigureAwait(false);
 
-                                    var __value = await global::Speechify.LLMModelsResponse.FromJsonStreamAsync(__content, JsonSerializerContext).ConfigureAwait(false) ??
+                                    var __value = await global::Speechify.Credential.FromJsonStreamAsync(__content, JsonSerializerContext).ConfigureAwait(false) ??
                                         throw new global::System.InvalidOperationException("Response deserialization failed.");
-                                    return new global::Speechify.AutoSDKHttpResponse<global::Speechify.LLMModelsResponse>(
+                                    return new global::Speechify.AutoSDKHttpResponse<global::Speechify.Credential>(
                                         statusCode: __response.StatusCode,
                                         headers: global::Speechify.AutoSDKHttpResponse.CreateHeaders(__response),
                                         requestUri: __response.RequestMessage?.RequestUri,
@@ -474,6 +549,47 @@ namespace Speechify
             {
                 __httpRequest?.Dispose();
             }
+        }
+        /// <summary>
+        /// Create Credential<br/>
+        /// Create a credential in the caller's workspace. `config` must<br/>
+        /// carry exactly the one kind-specific block named by `kind` (e.g.<br/>
+        /// `kind=bearer` requires `config.bearer`). Names are unique per<br/>
+        /// workspace among active credentials.
+        /// </summary>
+        /// <param name="name">
+        /// Human-readable label, unique per workspace.
+        /// </param>
+        /// <param name="kind">
+        /// Discriminates the auth flow a credential carries. The matching<br/>
+        /// `config.&lt;kind&gt;` block is the one that must be populated.
+        /// </param>
+        /// <param name="config">
+        /// Kind-specific credential payload. Exactly one block is<br/>
+        /// populated — the one named by the credential's `kind`. The<br/>
+        /// block IS the secret; it is echoed back decrypted on reads.
+        /// </param>
+        /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
+        /// <param name="cancellationToken">The token to cancel the operation with</param>
+        /// <exception cref="global::System.InvalidOperationException"></exception>
+        public async global::System.Threading.Tasks.Task<global::Speechify.Credential> CreateAsync(
+            string name,
+            global::Speechify.CredentialKind kind,
+            global::Speechify.CredentialConfig config,
+            global::Speechify.AutoSDKRequestOptions? requestOptions = default,
+            global::System.Threading.CancellationToken cancellationToken = default)
+        {
+            var __request = new global::Speechify.CreateCredentialRequest
+            {
+                Name = name,
+                Kind = kind,
+                Config = config,
+            };
+
+            return await CreateAsync(
+                request: __request,
+                requestOptions: requestOptions,
+                cancellationToken: cancellationToken).ConfigureAwait(false);
         }
     }
 }

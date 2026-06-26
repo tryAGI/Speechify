@@ -3,11 +3,11 @@
 
 namespace Speechify
 {
-    public partial class SubpackageAgentClient
+    public partial class SubpackageAgentSubpackageAgentConversationsClient
     {
 
 
-        private static readonly global::Speechify.EndPointSecurityRequirement s_ListLlmModelsSecurityRequirement0 =
+        private static readonly global::Speechify.EndPointSecurityRequirement s_StreamLiveSecurityRequirement0 =
             new global::Speechify.EndPointSecurityRequirement
             {
                 Authorizations = new global::Speechify.EndPointAuthorizationRequirement[]
@@ -21,81 +21,52 @@ namespace Speechify
                     },
                 },
             };
-        private static readonly global::Speechify.EndPointSecurityRequirement[] s_ListLlmModelsSecurityRequirements =
+        private static readonly global::Speechify.EndPointSecurityRequirement[] s_StreamLiveSecurityRequirements =
             new global::Speechify.EndPointSecurityRequirement[]
-            {                s_ListLlmModelsSecurityRequirement0,
+            {                s_StreamLiveSecurityRequirement0,
             };
-        partial void PrepareListLlmModelsArguments(
+        partial void PrepareStreamLiveArguments(
             global::System.Net.Http.HttpClient httpClient,
-            ref global::System.DateTime? speechifyVersion);
-        partial void PrepareListLlmModelsRequest(
+            ref string id);
+        partial void PrepareStreamLiveRequest(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpRequestMessage httpRequestMessage,
-            global::System.DateTime? speechifyVersion);
-        partial void ProcessListLlmModelsResponse(
+            string id);
+        partial void ProcessStreamLiveResponse(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpResponseMessage httpResponseMessage);
 
-        partial void ProcessListLlmModelsResponseContent(
-            global::System.Net.Http.HttpClient httpClient,
-            global::System.Net.Http.HttpResponseMessage httpResponseMessage,
-            ref string content);
-
         /// <summary>
-        /// List LLM Models<br/>
-        /// List the LLM models selectable for voice agents on the caller's<br/>
-        /// workspace plan. Premium flagship models and the bring-your-own<br/>
-        /// custom endpoint are available only on higher plans; lower plans<br/>
-        /// receive the managed and standard models. The console renders its<br/>
-        /// model picker from this response so it only offers models that<br/>
-        /// POST/PATCH /v1/agents will accept.
+        /// Stream Live Conversation<br/>
+        /// Server-Sent Events stream of an in-progress conversation's<br/>
+        /// transcript and status, for the live-monitoring console surface.<br/>
+        /// Holds the connection open and tails the transcript: emits a<br/>
+        /// `message` event per turn (its `data` is a Message object), a<br/>
+        /// `status` event when the conversation status changes, and a<br/>
+        /// terminal `end` event when the call completes. Resumes after a<br/>
+        /// dropped connection via the standard `Last-Event-ID` header. Same<br/>
+        /// read access as List Messages.
         /// </summary>
-        /// <param name="speechifyVersion"></param>
+        /// <param name="id"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
-        public async global::System.Threading.Tasks.Task<global::Speechify.LLMModelsResponse> ListLlmModelsAsync(
-            global::System.DateTime? speechifyVersion = default,
+        public async global::System.Collections.Generic.IAsyncEnumerable<string> StreamLiveAsync(
+            string id,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
-            global::System.Threading.CancellationToken cancellationToken = default)
-        {
-            var __response = await ListLlmModelsAsResponseAsync(
-                speechifyVersion: speechifyVersion,
-                requestOptions: requestOptions,
-                cancellationToken: cancellationToken
-            ).ConfigureAwait(false);
-
-            return __response.Body;
-        }
-        /// <summary>
-        /// List LLM Models<br/>
-        /// List the LLM models selectable for voice agents on the caller's<br/>
-        /// workspace plan. Premium flagship models and the bring-your-own<br/>
-        /// custom endpoint are available only on higher plans; lower plans<br/>
-        /// receive the managed and standard models. The console renders its<br/>
-        /// model picker from this response so it only offers models that<br/>
-        /// POST/PATCH /v1/agents will accept.
-        /// </summary>
-        /// <param name="speechifyVersion"></param>
-        /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
-        /// <param name="cancellationToken">The token to cancel the operation with</param>
-        /// <exception cref="global::Speechify.ApiException"></exception>
-        public async global::System.Threading.Tasks.Task<global::Speechify.AutoSDKHttpResponse<global::Speechify.LLMModelsResponse>> ListLlmModelsAsResponseAsync(
-            global::System.DateTime? speechifyVersion = default,
-            global::Speechify.AutoSDKRequestOptions? requestOptions = default,
-            global::System.Threading.CancellationToken cancellationToken = default)
+            [global::System.Runtime.CompilerServices.EnumeratorCancellation] global::System.Threading.CancellationToken cancellationToken = default)
         {
             PrepareArguments(
                 client: HttpClient);
-            PrepareListLlmModelsArguments(
+            PrepareStreamLiveArguments(
                 httpClient: HttpClient,
-                speechifyVersion: ref speechifyVersion);
+                id: ref id);
 
 
             var __authorizations = global::Speechify.EndPointSecurityResolver.ResolveAuthorizations(
                 availableAuthorizations: Authorizations,
-                securityRequirements: s_ListLlmModelsSecurityRequirements,
-                operationName: "ListLlmModelsAsync");
+                securityRequirements: s_StreamLiveSecurityRequirements,
+                operationName: "StreamLiveAsync");
 
             using var __timeoutCancellationTokenSource = global::Speechify.AutoSDKRequestOptionsSupport.CreateTimeoutCancellationTokenSource(
                 clientOptions: Options,
@@ -115,7 +86,7 @@ namespace Speechify
             {
 
                             var __pathBuilder = new global::Speechify.PathBuilder(
-                                path: "/v1/agents/llm-models",
+                                path: $"/v1/agents/conversations/{id}/live",
                                 baseUri: HttpClient.BaseAddress);
                             var __path = __pathBuilder.ToString();
                 __path = global::Speechify.AutoSDKRequestOptionsSupport.AppendQueryParameters(
@@ -146,12 +117,6 @@ namespace Speechify
                     __httpRequest.Headers.Add(__authorization.Name, __authorization.Value);
                 } 
             }
-
-            if (speechifyVersion != default)
-            {
-                __httpRequest.Headers.TryAddWithoutValidation("Speechify-Version", speechifyVersion.ToString());
-            }
-
                 global::Speechify.AutoSDKRequestOptionsSupport.ApplyHeaders(
                     request: __httpRequest,
                     clientHeaders: Options.Headers,
@@ -160,10 +125,10 @@ namespace Speechify
                 PrepareRequest(
                     client: HttpClient,
                     request: __httpRequest);
-                PrepareListLlmModelsRequest(
+                PrepareStreamLiveRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
-                    speechifyVersion: speechifyVersion);
+                    id: id!);
 
                 return __httpRequest;
             }
@@ -180,9 +145,9 @@ namespace Speechify
                     await global::Speechify.AutoSDKRequestOptionsSupport.OnBeforeRequestAsync(
                             clientOptions: Options,
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "ListLlmModels",
-                                methodName: "ListLlmModelsAsync",
-                                pathTemplate: "\"/v1/agents/llm-models\"",
+                                operationId: "StreamLive",
+                                methodName: "StreamLiveAsync",
+                                pathTemplate: "$\"/v1/agents/conversations/{id}/live\"",
                                 httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -200,7 +165,7 @@ namespace Speechify
                     {
                         __response = await HttpClient.SendAsync(
                 request: __httpRequest,
-                completionOption: global::System.Net.Http.HttpCompletionOption.ResponseContentRead,
+                completionOption: global::System.Net.Http.HttpCompletionOption.ResponseHeadersRead,
                 cancellationToken: __effectiveCancellationToken).ConfigureAwait(false);
                     }
                     catch (global::System.Net.Http.HttpRequestException __exception)
@@ -214,9 +179,9 @@ namespace Speechify
                         await global::Speechify.AutoSDKRequestOptionsSupport.OnAfterErrorAsync(
                             clientOptions: Options,
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "ListLlmModels",
-                                methodName: "ListLlmModelsAsync",
-                                pathTemplate: "\"/v1/agents/llm-models\"",
+                                operationId: "StreamLive",
+                                methodName: "StreamLiveAsync",
+                                pathTemplate: "$\"/v1/agents/conversations/{id}/live\"",
                                 httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -255,9 +220,9 @@ namespace Speechify
                         await global::Speechify.AutoSDKRequestOptionsSupport.OnAfterErrorAsync(
                             clientOptions: Options,
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "ListLlmModels",
-                                methodName: "ListLlmModelsAsync",
-                                pathTemplate: "\"/v1/agents/llm-models\"",
+                                operationId: "StreamLive",
+                                methodName: "StreamLiveAsync",
+                                pathTemplate: "$\"/v1/agents/conversations/{id}/live\"",
                                 httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -295,7 +260,7 @@ namespace Speechify
                 ProcessResponse(
                     client: HttpClient,
                     response: __response);
-                ProcessListLlmModelsResponse(
+                ProcessStreamLiveResponse(
                     httpClient: HttpClient,
                     httpResponseMessage: __response);
                 if (__response.IsSuccessStatusCode)
@@ -303,9 +268,9 @@ namespace Speechify
                     await global::Speechify.AutoSDKRequestOptionsSupport.OnAfterSuccessAsync(
                             clientOptions: Options,
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "ListLlmModels",
-                                methodName: "ListLlmModelsAsync",
-                                pathTemplate: "\"/v1/agents/llm-models\"",
+                                operationId: "StreamLive",
+                                methodName: "StreamLiveAsync",
+                                pathTemplate: "$\"/v1/agents/conversations/{id}/live\"",
                                 httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -325,9 +290,9 @@ namespace Speechify
                     await global::Speechify.AutoSDKRequestOptionsSupport.OnAfterErrorAsync(
                             clientOptions: Options,
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "ListLlmModels",
-                                methodName: "ListLlmModelsAsync",
-                                pathTemplate: "\"/v1/agents/llm-models\"",
+                                operationId: "StreamLive",
+                                methodName: "StreamLiveAsync",
+                                pathTemplate: "$\"/v1/agents/conversations/{id}/live\"",
                                 httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -342,130 +307,64 @@ namespace Speechify
                                 retryReason: global::System.String.Empty,
                                 cancellationToken: __effectiveCancellationToken)).ConfigureAwait(false);
                 }
-                            // Authentication is missing or invalid. The request did not carry a recognised credential (Firebase ID token, API key, or worker JWT). 
-                            if ((int)__response.StatusCode == 401)
+
+                            try
                             {
-                                string? __content_401 = null;
-                                global::System.Exception? __exception_401 = null;
-                                global::Speechify.Error? __value_401 = null;
+                                __response.EnsureSuccessStatusCode();
+                            }
+                            catch (global::System.Net.Http.HttpRequestException __ex)
+                            {
+                                string? __content = null;
                                 try
                                 {
-                                    if (__effectiveReadResponseAsString)
-                                    {
-                                        __content_401 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
-                                        __value_401 = global::Speechify.Error.FromJson(__content_401, JsonSerializerContext);
-                                    }
-                                    else
-                                    {
-                                        __content_401 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
-
-                                        __value_401 = global::Speechify.Error.FromJson(__content_401, JsonSerializerContext);
-                                    }
+                                    __content = await __response.Content.ReadAsStringAsync(
+                #if NET5_0_OR_GREATER
+                                        __effectiveCancellationToken
+                #endif
+                                    ).ConfigureAwait(false);
                                 }
-                                catch (global::System.Exception __ex)
+                                catch (global::System.Exception)
                                 {
-                                    __exception_401 = __ex;
                                 }
 
-
-                                throw global::Speechify.ApiException<global::Speechify.Error>.Create(
+                                throw global::Speechify.ApiException.Create(
                                     statusCode: __response.StatusCode,
-                                    message: __content_401 ?? __response.ReasonPhrase ?? string.Empty,
-                                    innerException: __exception_401,
-                                    responseBody: __content_401,
-                                    responseObject: __value_401,
+                                    message: __content ?? __response.ReasonPhrase ?? string.Empty,
+                                    innerException: __ex,
+                                    responseBody: __content,
                                     responseHeaders: global::System.Linq.Enumerable.ToDictionary(
                                         __response.Headers,
                                         h => h.Key,
                                         h => h.Value));
                             }
 
-                            if (__effectiveReadResponseAsString)
+                            using var __stream = await __response.Content.ReadAsStreamAsync(
+                #if NET5_0_OR_GREATER
+                                __effectiveCancellationToken
+                #endif
+                            ).ConfigureAwait(false);
+
+                            await foreach (var __sseEvent in global::System.Net.ServerSentEvents.SseParser
+                                .Create(__stream).EnumerateAsync(__effectiveCancellationToken))
                             {
-                                var __content = await __response.Content.ReadAsStringAsync(
-                #if NET5_0_OR_GREATER
-                                    __effectiveCancellationToken
-                #endif
-                                ).ConfigureAwait(false);
-
-                                ProcessResponseContent(
-                                    client: HttpClient,
-                                    response: __response,
-                                    content: ref __content);
-                                ProcessListLlmModelsResponseContent(
-                                    httpClient: HttpClient,
-                                    httpResponseMessage: __response,
-                                    content: ref __content);
-
-                                try
+                                var __content = __sseEvent.Data;
+                                if (__content == "[DONE]")
                                 {
-                                    __response.EnsureSuccessStatusCode();
+                                    yield break;
+                                }
 
-                                    var __value = global::Speechify.LLMModelsResponse.FromJson(__content, JsonSerializerContext) ??
-                                        throw new global::System.InvalidOperationException($"Response deserialization failed for \"{__content}\" ");
-                                    return new global::Speechify.AutoSDKHttpResponse<global::Speechify.LLMModelsResponse>(
-                                        statusCode: __response.StatusCode,
-                                        headers: global::Speechify.AutoSDKHttpResponse.CreateHeaders(__response),
-                                        requestUri: __response.RequestMessage?.RequestUri,
-                                        body: __value);
-                                }
-                                catch (global::System.Exception __ex)
-                                {
-                                    throw global::Speechify.ApiException.Create(
-                                        statusCode: __response.StatusCode,
-                                        message: __content ?? __response.ReasonPhrase ?? string.Empty,
-                                        innerException: __ex,
-                                        responseBody: __content,
-                                        responseHeaders: global::System.Linq.Enumerable.ToDictionary(
-                                            __response.Headers,
-                                            h => h.Key,
-                                            h => h.Value));
-                                }
-                            }
-                            else
-                            {
-                                try
-                                {
-                                    __response.EnsureSuccessStatusCode();
-                                    using var __content = await __response.Content.ReadAsStreamAsync(
-                #if NET5_0_OR_GREATER
-                                        __effectiveCancellationToken
-                #endif
-                                    ).ConfigureAwait(false);
+                                var __streamedResponse = (string?)global::System.Text.Json.JsonSerializer.Deserialize(__content, typeof(string), JsonSerializerContext) ??
+                                                       throw global::Speechify.ApiException.Create(
+                                                           statusCode: __response.StatusCode,
+                                                           message: $"Response deserialization failed for \"{__content}\" ",
+                                                           innerException: null,
+                                                           responseBody: __content,
+                                                           responseHeaders: global::System.Linq.Enumerable.ToDictionary(
+                                                               __response.Headers,
+                                                               h => h.Key,
+                                                               h => h.Value));
 
-                                    var __value = await global::Speechify.LLMModelsResponse.FromJsonStreamAsync(__content, JsonSerializerContext).ConfigureAwait(false) ??
-                                        throw new global::System.InvalidOperationException("Response deserialization failed.");
-                                    return new global::Speechify.AutoSDKHttpResponse<global::Speechify.LLMModelsResponse>(
-                                        statusCode: __response.StatusCode,
-                                        headers: global::Speechify.AutoSDKHttpResponse.CreateHeaders(__response),
-                                        requestUri: __response.RequestMessage?.RequestUri,
-                                        body: __value);
-                                }
-                                catch (global::System.Exception __ex)
-                                {
-                                    string? __content = null;
-                                    try
-                                    {
-                                        __content = await __response.Content.ReadAsStringAsync(
-                #if NET5_0_OR_GREATER
-                                            __effectiveCancellationToken
-                #endif
-                                        ).ConfigureAwait(false);
-                                    }
-                                    catch (global::System.Exception)
-                                    {
-                                    }
-
-                                    throw global::Speechify.ApiException.Create(
-                                        statusCode: __response.StatusCode,
-                                        message: __content ?? __response.ReasonPhrase ?? string.Empty,
-                                        innerException: __ex,
-                                        responseBody: __content,
-                                        responseHeaders: global::System.Linq.Enumerable.ToDictionary(
-                                            __response.Headers,
-                                            h => h.Key,
-                                            h => h.Value));
-                                }
+                                yield return __streamedResponse;
                             }
 
                 }
