@@ -7,9 +7,10 @@ namespace Speechify
         /// <summary>
         /// Get Credential<br/>
         /// Fetch one credential by id, scoped to the caller's workspace.<br/>
-        /// `config` is returned decrypted. Returns 404 for missing,<br/>
-        /// soft-deleted, or foreign-workspace credentials — credential<br/>
-        /// existence is never leaked across workspaces.
+        /// `config` is the masked `CredentialConfigView` — secret values are<br/>
+        /// never returned. Returns 404 for missing, soft-deleted, or<br/>
+        /// foreign-workspace credentials — credential existence is never<br/>
+        /// leaked across workspaces.
         /// </summary>
         /// <param name="id"></param>
         /// <param name="speechifyVersion"></param>
@@ -24,9 +25,10 @@ namespace Speechify
         /// <summary>
         /// Get Credential<br/>
         /// Fetch one credential by id, scoped to the caller's workspace.<br/>
-        /// `config` is returned decrypted. Returns 404 for missing,<br/>
-        /// soft-deleted, or foreign-workspace credentials — credential<br/>
-        /// existence is never leaked across workspaces.
+        /// `config` is the masked `CredentialConfigView` — secret values are<br/>
+        /// never returned. Returns 404 for missing, soft-deleted, or<br/>
+        /// foreign-workspace credentials — credential existence is never<br/>
+        /// leaked across workspaces.
         /// </summary>
         /// <param name="id"></param>
         /// <param name="speechifyVersion"></param>

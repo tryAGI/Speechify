@@ -7,10 +7,10 @@ namespace Speechify
         /// <summary>
         /// List Credentials<br/>
         /// List every active credential in the caller's workspace, newest<br/>
-        /// first. Each credential's `config` is returned decrypted — the<br/>
-        /// config IS the user-supplied secret, and the console relies on<br/>
-        /// reading it back to pre-fill the edit form. Soft-deleted<br/>
-        /// credentials are omitted.
+        /// first. The vault is write-only: each `config` is the masked<br/>
+        /// `CredentialConfigView` (non-secret fields plus `*_set` markers) —<br/>
+        /// secret values are never returned. Soft-deleted credentials are<br/>
+        /// omitted.
         /// </summary>
         /// <param name="speechifyVersion"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
@@ -23,10 +23,10 @@ namespace Speechify
         /// <summary>
         /// List Credentials<br/>
         /// List every active credential in the caller's workspace, newest<br/>
-        /// first. Each credential's `config` is returned decrypted — the<br/>
-        /// config IS the user-supplied secret, and the console relies on<br/>
-        /// reading it back to pre-fill the edit form. Soft-deleted<br/>
-        /// credentials are omitted.
+        /// first. The vault is write-only: each `config` is the masked<br/>
+        /// `CredentialConfigView` (non-secret fields plus `*_set` markers) —<br/>
+        /// secret values are never returned. Soft-deleted credentials are<br/>
+        /// omitted.
         /// </summary>
         /// <param name="speechifyVersion"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>

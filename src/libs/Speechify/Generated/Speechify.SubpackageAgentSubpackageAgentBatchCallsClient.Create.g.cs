@@ -28,11 +28,13 @@ namespace Speechify
         partial void PrepareCreateArguments(
             global::System.Net.Http.HttpClient httpClient,
             ref string? speechifyVersion,
+            ref string? idempotencyKey,
             global::Speechify.CreateBatchCallRequest request);
         partial void PrepareCreateRequest(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpRequestMessage httpRequestMessage,
             string? speechifyVersion,
+            string? idempotencyKey,
             global::Speechify.CreateBatchCallRequest request);
         partial void ProcessCreateResponse(
             global::System.Net.Http.HttpClient httpClient,
@@ -53,6 +55,9 @@ namespace Speechify
         /// Max 1000 recipients per batch.
         /// </summary>
         /// <param name="speechifyVersion"></param>
+        /// <param name="idempotencyKey">
+        /// Optional idempotency key. When omitted, the SDK generates one for this request.
+        /// </param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -61,6 +66,7 @@ namespace Speechify
 
             global::Speechify.CreateBatchCallRequest request,
             string? speechifyVersion = default,
+            string? idempotencyKey = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
@@ -68,6 +74,7 @@ namespace Speechify
 
                 request: request,
                 speechifyVersion: speechifyVersion,
+                idempotencyKey: idempotencyKey,
                 requestOptions: requestOptions,
                 cancellationToken: cancellationToken
             ).ConfigureAwait(false);
@@ -84,6 +91,9 @@ namespace Speechify
         /// Max 1000 recipients per batch.
         /// </summary>
         /// <param name="speechifyVersion"></param>
+        /// <param name="idempotencyKey">
+        /// Optional idempotency key. When omitted, the SDK generates one for this request.
+        /// </param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -92,6 +102,7 @@ namespace Speechify
 
             global::Speechify.CreateBatchCallRequest request,
             string? speechifyVersion = default,
+            string? idempotencyKey = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
@@ -102,6 +113,7 @@ namespace Speechify
             PrepareCreateArguments(
                 httpClient: HttpClient,
                 speechifyVersion: ref speechifyVersion,
+                idempotencyKey: ref idempotencyKey,
                 request: request);
 
 
@@ -164,6 +176,10 @@ namespace Speechify
             {
                 __httpRequest.Headers.TryAddWithoutValidation("Speechify-Version", speechifyVersion.ToString());
             }
+            var __idempotencyKey = global::System.String.IsNullOrWhiteSpace(idempotencyKey)
+                ? CreateIdempotencyKey()
+                : idempotencyKey;
+            __httpRequest.Headers.TryAddWithoutValidation("Idempotency-Key", __idempotencyKey);
 
                             var __httpRequestContentBody = request.ToJson(JsonSerializerContext);
                             var __httpRequestContent = new global::System.Net.Http.StringContent(
@@ -183,6 +199,7 @@ namespace Speechify
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
                     speechifyVersion: speechifyVersion,
+                    idempotencyKey: idempotencyKey,
                     request: request);
 
                 return __httpRequest;
@@ -505,6 +522,9 @@ namespace Speechify
         /// Max 1000 recipients per batch.
         /// </summary>
         /// <param name="speechifyVersion"></param>
+        /// <param name="idempotencyKey">
+        /// Optional idempotency key. When omitted, the SDK generates one for this request.
+        /// </param>
         /// <param name="name">
         /// Human-readable batch name.
         /// </param>
@@ -533,6 +553,7 @@ namespace Speechify
             string agentId,
             global::System.Collections.Generic.IList<global::Speechify.BatchRecipientRequest> recipients,
             string? speechifyVersion = default,
+            string? idempotencyKey = default,
             string? phoneNumberId = default,
             global::System.DateTime? scheduledAt = default,
             int? ringingTimeoutMs = default,
@@ -551,6 +572,7 @@ namespace Speechify
 
             return await CreateAsync(
                 speechifyVersion: speechifyVersion,
+                idempotencyKey: idempotencyKey,
                 request: __request,
                 requestOptions: requestOptions,
                 cancellationToken: cancellationToken).ConfigureAwait(false);
