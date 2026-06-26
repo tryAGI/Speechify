@@ -52,7 +52,9 @@ namespace Speechify
             : throw new global::System.InvalidOperationException($"Expected union variant 'None' but the value was {ToString()}.");
 
         /// <summary>
-        /// bearer variant
+        /// Bearer auth for an MCP server. References a workspace credential of<br/>
+        /// kind `bearer` by id; the secret lives in the credentials vault and is<br/>
+        /// resolved server-side at dispatch, never inlined on the tool.
         /// </summary>
 #if NET6_0_OR_GREATER
         public global::Speechify.MCPAuthVariant2? Bearer { get; init; }
@@ -89,7 +91,10 @@ namespace Speechify
             : throw new global::System.InvalidOperationException($"Expected union variant 'Bearer' but the value was {ToString()}.");
 
         /// <summary>
-        /// oauth2_client_credentials variant
+        /// OAuth2 client-credentials auth for an MCP server. References a<br/>
+        /// workspace credential of kind `oauth2_client_credentials` by id; the<br/>
+        /// token_url / client_id / client_secret / scopes all live in the vault<br/>
+        /// credential and are resolved server-side at dispatch.
         /// </summary>
 #if NET6_0_OR_GREATER
         public global::Speechify.MCPAuthVariant3? Oauth2ClientCredentials { get; init; }

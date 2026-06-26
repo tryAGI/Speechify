@@ -56,6 +56,10 @@ namespace Speechify
         /// <summary>
         /// 
         /// </summary>
+        CredentialInUse,
+        /// <summary>
+        /// 
+        /// </summary>
         CredentialNotFound,
         /// <summary>
         /// 
@@ -209,6 +213,7 @@ namespace Speechify
                 ErrorCode.CallerNotFound => "caller_not_found",
                 ErrorCode.Conflict => "conflict",
                 ErrorCode.ConversationNotFound => "conversation_not_found",
+                ErrorCode.CredentialInUse => "credential_in_use",
                 ErrorCode.CredentialNotFound => "credential_not_found",
                 ErrorCode.Forbidden => "forbidden",
                 ErrorCode.IdempotencyConflict => "idempotency_conflict",
@@ -262,6 +267,7 @@ namespace Speechify
                 "caller_not_found" => ErrorCode.CallerNotFound,
                 "conflict" => ErrorCode.Conflict,
                 "conversation_not_found" => ErrorCode.ConversationNotFound,
+                "credential_in_use" => ErrorCode.CredentialInUse,
                 "credential_not_found" => ErrorCode.CredentialNotFound,
                 "forbidden" => ErrorCode.Forbidden,
                 "idempotency_conflict" => ErrorCode.IdempotencyConflict,
