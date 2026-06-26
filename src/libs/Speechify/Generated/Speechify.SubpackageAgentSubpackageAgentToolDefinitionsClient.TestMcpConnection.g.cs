@@ -552,25 +552,18 @@ namespace Speechify
         /// livekit-agents function_tool proxying through the long-lived<br/>
         /// ClientSession.
         /// </param>
-        /// <param name="toolId">
-        /// Optional `tool_&lt;crockford&gt;` id of the existing tool to hydrate<br/>
-        /// stored secrets from. Raw UUIDs and other-resource prefixes are<br/>
-        /// rejected.
-        /// </param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::System.InvalidOperationException"></exception>
         public async global::System.Threading.Tasks.Task<global::Speechify.MCPProbeResult> TestMcpConnectionAsync(
             global::Speechify.MCPToolConfig config,
             string? speechifyVersion = default,
-            string? toolId = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
             var __request = new global::Speechify.TestMCPConnectionRequest
             {
                 Config = config,
-                ToolId = toolId,
             };
 
             return await TestMcpConnectionAsync(
