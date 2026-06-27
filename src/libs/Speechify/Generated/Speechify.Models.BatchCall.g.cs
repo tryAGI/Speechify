@@ -43,15 +43,18 @@ namespace Speechify
         public required string Name { get; set; }
 
         /// <summary>
-        /// 
+        /// Lifecycle status. A batch deferred to a future time is<br/>
+        /// `pending` with a non-null `scheduled_at`; it moves to `running`<br/>
+        /// once the scheduled time arrives and the dispatcher starts<br/>
+        /// dialing.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("status")]
-        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Speechify.JsonConverters.BatchCallStatusJsonConverter))]
+        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Speechify.JsonConverters.JobStatusJsonConverter))]
         [global::System.Text.Json.Serialization.JsonRequired]
-        public required global::Speechify.BatchCallStatus Status { get; set; }
+        public required global::Speechify.JobStatus Status { get; set; }
 
         /// <summary>
-        /// Total number of recipients.
+        /// Total number of recipients (the progress denominator).
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("total")]
         [global::System.Text.Json.Serialization.JsonRequired]
@@ -139,9 +142,14 @@ namespace Speechify
         /// <param name="name">
         /// Human-readable batch name.
         /// </param>
-        /// <param name="status"></param>
+        /// <param name="status">
+        /// Lifecycle status. A batch deferred to a future time is<br/>
+        /// `pending` with a non-null `scheduled_at`; it moves to `running`<br/>
+        /// once the scheduled time arrives and the dispatcher starts<br/>
+        /// dialing.
+        /// </param>
         /// <param name="total">
-        /// Total number of recipients.
+        /// Total number of recipients (the progress denominator).
         /// </param>
         /// <param name="completed">
         /// Recipients successfully dialed.
@@ -181,7 +189,7 @@ namespace Speechify
             string id,
             string agentId,
             string name,
-            global::Speechify.BatchCallStatus status,
+            global::Speechify.JobStatus status,
             int total,
             int completed,
             int failed,

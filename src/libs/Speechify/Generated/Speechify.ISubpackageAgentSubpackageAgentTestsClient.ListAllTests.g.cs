@@ -15,6 +15,7 @@ namespace Speechify
         /// <param name="agentId"></param>
         /// <param name="type"></param>
         /// <param name="status"></param>
+        /// <param name="verdict"></param>
         /// <param name="folderId"></param>
         /// <param name="updatedAfter"></param>
         /// <param name="q"></param>
@@ -30,6 +31,7 @@ namespace Speechify
             string? agentId = default,
             string? type = default,
             string? status = default,
+            string? verdict = default,
             string? folderId = default,
             string? updatedAfter = default,
             string? q = default,
@@ -49,6 +51,7 @@ namespace Speechify
         /// <param name="agentId"></param>
         /// <param name="type"></param>
         /// <param name="status"></param>
+        /// <param name="verdict"></param>
         /// <param name="folderId"></param>
         /// <param name="updatedAfter"></param>
         /// <param name="q"></param>
@@ -64,6 +67,7 @@ namespace Speechify
             string? agentId = default,
             string? type = default,
             string? status = default,
+            string? verdict = default,
             string? folderId = default,
             string? updatedAfter = default,
             string? q = default,

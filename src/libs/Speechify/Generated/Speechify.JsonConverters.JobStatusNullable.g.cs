@@ -3,10 +3,10 @@
 namespace Speechify.JsonConverters
 {
     /// <inheritdoc />
-    public sealed class TestRunStatusNullableJsonConverter : global::System.Text.Json.Serialization.JsonConverter<global::Speechify.TestRunStatus?>
+    public sealed class JobStatusNullableJsonConverter : global::System.Text.Json.Serialization.JsonConverter<global::Speechify.JobStatus?>
     {
         /// <inheritdoc />
-        public override global::Speechify.TestRunStatus? Read(
+        public override global::Speechify.JobStatus? Read(
             ref global::System.Text.Json.Utf8JsonReader reader,
             global::System.Type typeToConvert,
             global::System.Text.Json.JsonSerializerOptions options)
@@ -18,7 +18,7 @@ namespace Speechify.JsonConverters
                     var stringValue = reader.GetString();
                     if (stringValue != null)
                     {
-                        return global::Speechify.TestRunStatusExtensions.ToEnum(stringValue);
+                        return global::Speechify.JobStatusExtensions.ToEnum(stringValue);
                     }
                     
                     break;
@@ -26,11 +26,11 @@ namespace Speechify.JsonConverters
                 case global::System.Text.Json.JsonTokenType.Number:
                 {
                     var numValue = reader.GetInt32();
-                    return (global::Speechify.TestRunStatus)numValue;
+                    return (global::Speechify.JobStatus)numValue;
                 }
                 case global::System.Text.Json.JsonTokenType.Null:
                 {
-                    return default(global::Speechify.TestRunStatus?);
+                    return default(global::Speechify.JobStatus?);
                 }
                 default:
                     throw new global::System.ArgumentOutOfRangeException(nameof(reader));
@@ -42,7 +42,7 @@ namespace Speechify.JsonConverters
         /// <inheritdoc />
         public override void Write(
             global::System.Text.Json.Utf8JsonWriter writer,
-            global::Speechify.TestRunStatus? value,
+            global::Speechify.JobStatus? value,
             global::System.Text.Json.JsonSerializerOptions options)
         {
             writer = writer ?? throw new global::System.ArgumentNullException(nameof(writer));
@@ -53,7 +53,7 @@ namespace Speechify.JsonConverters
             }
             else
             {
-                writer.WriteStringValue(global::Speechify.TestRunStatusExtensions.ToValueString(value.Value));
+                writer.WriteStringValue(global::Speechify.JobStatusExtensions.ToValueString(value.Value));
             }
         }
     }

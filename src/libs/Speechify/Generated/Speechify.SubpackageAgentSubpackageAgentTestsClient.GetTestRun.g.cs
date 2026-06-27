@@ -46,8 +46,9 @@ namespace Speechify
         /// <summary>
         /// Get Agent Test Run<br/>
         /// Retrieve a single test run by ID. Poll this endpoint until<br/>
-        /// `status` reaches a terminal state (`passed`, `failed`, or `error`).<br/>
-        /// The `result` field is populated on terminal states.
+        /// `status` reaches a terminal state (`completed`, `failed`, or<br/>
+        /// `cancelled`). On `completed`, read `verdict` for the pass/fail<br/>
+        /// judgment and `result` for the detail.
         /// </summary>
         /// <param name="testRunId"></param>
         /// <param name="speechifyVersion"></param>
@@ -72,8 +73,9 @@ namespace Speechify
         /// <summary>
         /// Get Agent Test Run<br/>
         /// Retrieve a single test run by ID. Poll this endpoint until<br/>
-        /// `status` reaches a terminal state (`passed`, `failed`, or `error`).<br/>
-        /// The `result` field is populated on terminal states.
+        /// `status` reaches a terminal state (`completed`, `failed`, or<br/>
+        /// `cancelled`). On `completed`, read `verdict` for the pass/fail<br/>
+        /// judgment and `result` for the detail.
         /// </summary>
         /// <param name="testRunId"></param>
         /// <param name="speechifyVersion"></param>

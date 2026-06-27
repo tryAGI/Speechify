@@ -169,9 +169,9 @@ namespace Speechify
 
             typeof(global::Speechify.JsonConverters.ImportJobKindNullableJsonConverter),
 
-            typeof(global::Speechify.JsonConverters.ImportJobStatusJsonConverter),
+            typeof(global::Speechify.JsonConverters.JobStatusJsonConverter),
 
-            typeof(global::Speechify.JsonConverters.ImportJobStatusNullableJsonConverter),
+            typeof(global::Speechify.JsonConverters.JobStatusNullableJsonConverter),
 
             typeof(global::Speechify.JsonConverters.RefreshHistoryEntryStatusJsonConverter),
 
@@ -237,9 +237,9 @@ namespace Speechify
 
             typeof(global::Speechify.JsonConverters.NoMatchBehaviorNullableJsonConverter),
 
-            typeof(global::Speechify.JsonConverters.TestRunStatusJsonConverter),
+            typeof(global::Speechify.JsonConverters.TestVerdictJsonConverter),
 
-            typeof(global::Speechify.JsonConverters.TestRunStatusNullableJsonConverter),
+            typeof(global::Speechify.JsonConverters.TestVerdictNullableJsonConverter),
 
             typeof(global::Speechify.JsonConverters.SimulationResultSentimentJsonConverter),
 
@@ -256,10 +256,6 @@ namespace Speechify
             typeof(global::Speechify.JsonConverters.SuiteRunTriggerJsonConverter),
 
             typeof(global::Speechify.JsonConverters.SuiteRunTriggerNullableJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.BatchCallStatusJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.BatchCallStatusNullableJsonConverter),
 
             typeof(global::Speechify.JsonConverters.BatchRecipientStatusJsonConverter),
 
@@ -361,15 +357,23 @@ namespace Speechify
 
             typeof(global::Speechify.JsonConverters.OneOfJsonConverter<global::Speechify.SimulationResult, object>),
 
+            typeof(global::Speechify.JsonConverters.OneOfJsonConverter<global::Speechify.TestVerdict?, object>),
+
             typeof(global::Speechify.JsonConverters.OneOfJsonConverter<global::Speechify.TestRunResult, object>),
 
             typeof(global::Speechify.JsonConverters.OneOfJsonConverter<global::Speechify.AgentTestRun, object>),
+
+            typeof(global::Speechify.JsonConverters.OneOfJsonConverter<global::Speechify.TestVerdict?, object>),
 
             typeof(global::Speechify.JsonConverters.OneOfJsonConverter<global::Speechify.TestRunConfigOverride, object>),
 
             typeof(global::Speechify.JsonConverters.OneOfJsonConverter<global::Speechify.AgentTestSuiteRun, object>),
 
+            typeof(global::Speechify.JsonConverters.OneOfJsonConverter<global::Speechify.TestVerdict?, object>),
+
             typeof(global::Speechify.JsonConverters.OneOfJsonConverter<global::Speechify.TestRunResult, object>),
+
+            typeof(global::Speechify.JsonConverters.OneOfJsonConverter<global::Speechify.TestVerdict?, object>),
 
             typeof(global::Speechify.JsonConverters.OneOfJsonConverter<global::Speechify.TestRunConfigOverride, object>),
 
@@ -573,7 +577,7 @@ namespace Speechify
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.BatchMoveDocumentsRequest))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.CreateCrawlImportRequest))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.ImportJobKind), TypeInfoPropertyName = "ImportJobKind2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.ImportJobStatus), TypeInfoPropertyName = "ImportJobStatus2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.JobStatus), TypeInfoPropertyName = "JobStatus2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.ImportJob))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.ImportJobResponse))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.CreateSitemapImportRequest))]
@@ -668,7 +672,7 @@ namespace Speechify
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.NoMatchBehavior), TypeInfoPropertyName = "NoMatchBehavior2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.ToolMockConfig))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Speechify.ToolMock>))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.TestRunStatus), TypeInfoPropertyName = "TestRunStatus2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.TestVerdict), TypeInfoPropertyName = "TestVerdict2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.ReplyResult))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.ParameterCheckResult))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.ToolCallResult))]
@@ -688,6 +692,7 @@ namespace Speechify
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.OneOf<global::Speechify.ToolCallResult, object>), TypeInfoPropertyName = "OneOfToolCallResultObject2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.OneOf<global::Speechify.SimulationResult, object>), TypeInfoPropertyName = "OneOfSimulationResultObject2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.AgentTestRun))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.OneOf<global::Speechify.TestVerdict?, object>), TypeInfoPropertyName = "OneOfTestVerdictObject2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.OneOf<global::Speechify.TestRunResult, object>), TypeInfoPropertyName = "OneOfTestRunResultObject2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.AgentTestWithLastRun))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.OneOf<global::Speechify.AgentTestRun, object>), TypeInfoPropertyName = "OneOfAgentTestRunObject2")]
@@ -702,6 +707,7 @@ namespace Speechify
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.RunBatchRequest))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Speechify.BatchRunEntry>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.SuiteRunTrigger), TypeInfoPropertyName = "SuiteRunTrigger2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.AgentTestSuiteRunResults))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.TestRunConfigOverride))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.AgentTestSuiteRun))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.OneOf<global::Speechify.TestRunConfigOverride, object>), TypeInfoPropertyName = "OneOfTestRunConfigOverrideObject2")]
@@ -714,6 +720,7 @@ namespace Speechify
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.Dictionary<string, int>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.ListSuiteRunsResponse))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Speechify.AgentTestSuiteRun>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.AgentTestSuiteRunWithRunsResults))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.SuiteChildRun))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.AgentTestSuiteRunWithRuns))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Speechify.SuiteChildRun>))]
@@ -725,7 +732,6 @@ namespace Speechify
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.CreateAgentTestRequestConfig), TypeInfoPropertyName = "CreateAgentTestRequestConfig2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.CreateAgentTestRequest))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.RunAllTestsRequest))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.BatchCallStatus), TypeInfoPropertyName = "BatchCallStatus2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.BatchCall))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.ListBatchCallsResponse))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Speechify.BatchCall>))]
@@ -875,8 +881,6 @@ namespace Speechify
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.FlowValidationIssue>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.EvaluationCriterion>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.DataCollectionField>))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.PutFlowRequestNodesItems>))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.PutFlowRequestEdgesItems>))]
     internal sealed partial class SourceGenerationContextChunk0 : global::System.Text.Json.Serialization.JsonSerializerContext
     {
     }
@@ -1044,9 +1048,9 @@ namespace Speechify
 
             typeof(global::Speechify.JsonConverters.ImportJobKindNullableJsonConverter),
 
-            typeof(global::Speechify.JsonConverters.ImportJobStatusJsonConverter),
+            typeof(global::Speechify.JsonConverters.JobStatusJsonConverter),
 
-            typeof(global::Speechify.JsonConverters.ImportJobStatusNullableJsonConverter),
+            typeof(global::Speechify.JsonConverters.JobStatusNullableJsonConverter),
 
             typeof(global::Speechify.JsonConverters.RefreshHistoryEntryStatusJsonConverter),
 
@@ -1112,9 +1116,9 @@ namespace Speechify
 
             typeof(global::Speechify.JsonConverters.NoMatchBehaviorNullableJsonConverter),
 
-            typeof(global::Speechify.JsonConverters.TestRunStatusJsonConverter),
+            typeof(global::Speechify.JsonConverters.TestVerdictJsonConverter),
 
-            typeof(global::Speechify.JsonConverters.TestRunStatusNullableJsonConverter),
+            typeof(global::Speechify.JsonConverters.TestVerdictNullableJsonConverter),
 
             typeof(global::Speechify.JsonConverters.SimulationResultSentimentJsonConverter),
 
@@ -1131,10 +1135,6 @@ namespace Speechify
             typeof(global::Speechify.JsonConverters.SuiteRunTriggerJsonConverter),
 
             typeof(global::Speechify.JsonConverters.SuiteRunTriggerNullableJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.BatchCallStatusJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.BatchCallStatusNullableJsonConverter),
 
             typeof(global::Speechify.JsonConverters.BatchRecipientStatusJsonConverter),
 
@@ -1236,15 +1236,23 @@ namespace Speechify
 
             typeof(global::Speechify.JsonConverters.OneOfJsonConverter<global::Speechify.SimulationResult, object>),
 
+            typeof(global::Speechify.JsonConverters.OneOfJsonConverter<global::Speechify.TestVerdict?, object>),
+
             typeof(global::Speechify.JsonConverters.OneOfJsonConverter<global::Speechify.TestRunResult, object>),
 
             typeof(global::Speechify.JsonConverters.OneOfJsonConverter<global::Speechify.AgentTestRun, object>),
+
+            typeof(global::Speechify.JsonConverters.OneOfJsonConverter<global::Speechify.TestVerdict?, object>),
 
             typeof(global::Speechify.JsonConverters.OneOfJsonConverter<global::Speechify.TestRunConfigOverride, object>),
 
             typeof(global::Speechify.JsonConverters.OneOfJsonConverter<global::Speechify.AgentTestSuiteRun, object>),
 
+            typeof(global::Speechify.JsonConverters.OneOfJsonConverter<global::Speechify.TestVerdict?, object>),
+
             typeof(global::Speechify.JsonConverters.OneOfJsonConverter<global::Speechify.TestRunResult, object>),
+
+            typeof(global::Speechify.JsonConverters.OneOfJsonConverter<global::Speechify.TestVerdict?, object>),
 
             typeof(global::Speechify.JsonConverters.OneOfJsonConverter<global::Speechify.TestRunConfigOverride, object>),
 
@@ -1252,6 +1260,8 @@ namespace Speechify
 
             typeof(global::Speechify.JsonConverters.UnixTimestampJsonConverter),
         })]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.PutFlowRequestNodesItems>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.PutFlowRequestEdgesItems>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.PutFlowRequestVariablesItems>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.FlowVersion>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.DynamicVariable>))]
@@ -1435,8 +1445,8 @@ namespace Speechify
             options.Converters.Add(new global::Speechify.JsonConverters.KnowledgeBaseDocumentStatusNullableJsonConverter());
             options.Converters.Add(new global::Speechify.JsonConverters.ImportJobKindJsonConverter());
             options.Converters.Add(new global::Speechify.JsonConverters.ImportJobKindNullableJsonConverter());
-            options.Converters.Add(new global::Speechify.JsonConverters.ImportJobStatusJsonConverter());
-            options.Converters.Add(new global::Speechify.JsonConverters.ImportJobStatusNullableJsonConverter());
+            options.Converters.Add(new global::Speechify.JsonConverters.JobStatusJsonConverter());
+            options.Converters.Add(new global::Speechify.JsonConverters.JobStatusNullableJsonConverter());
             options.Converters.Add(new global::Speechify.JsonConverters.RefreshHistoryEntryStatusJsonConverter());
             options.Converters.Add(new global::Speechify.JsonConverters.RefreshHistoryEntryStatusNullableJsonConverter());
             options.Converters.Add(new global::Speechify.JsonConverters.ToolKindJsonConverter());
@@ -1469,8 +1479,8 @@ namespace Speechify
             options.Converters.Add(new global::Speechify.JsonConverters.MockingStrategyNullableJsonConverter());
             options.Converters.Add(new global::Speechify.JsonConverters.NoMatchBehaviorJsonConverter());
             options.Converters.Add(new global::Speechify.JsonConverters.NoMatchBehaviorNullableJsonConverter());
-            options.Converters.Add(new global::Speechify.JsonConverters.TestRunStatusJsonConverter());
-            options.Converters.Add(new global::Speechify.JsonConverters.TestRunStatusNullableJsonConverter());
+            options.Converters.Add(new global::Speechify.JsonConverters.TestVerdictJsonConverter());
+            options.Converters.Add(new global::Speechify.JsonConverters.TestVerdictNullableJsonConverter());
             options.Converters.Add(new global::Speechify.JsonConverters.SimulationResultSentimentJsonConverter());
             options.Converters.Add(new global::Speechify.JsonConverters.SimulationResultSentimentNullableJsonConverter());
             options.Converters.Add(new global::Speechify.JsonConverters.SimulationCriterionResultStatusJsonConverter());
@@ -1479,8 +1489,6 @@ namespace Speechify
             options.Converters.Add(new global::Speechify.JsonConverters.DataAssertionResultModeNullableJsonConverter());
             options.Converters.Add(new global::Speechify.JsonConverters.SuiteRunTriggerJsonConverter());
             options.Converters.Add(new global::Speechify.JsonConverters.SuiteRunTriggerNullableJsonConverter());
-            options.Converters.Add(new global::Speechify.JsonConverters.BatchCallStatusJsonConverter());
-            options.Converters.Add(new global::Speechify.JsonConverters.BatchCallStatusNullableJsonConverter());
             options.Converters.Add(new global::Speechify.JsonConverters.BatchRecipientStatusJsonConverter());
             options.Converters.Add(new global::Speechify.JsonConverters.BatchRecipientStatusNullableJsonConverter());
             options.Converters.Add(new global::Speechify.JsonConverters.PhoneNumberProviderJsonConverter());
@@ -1531,11 +1539,15 @@ namespace Speechify
             options.Converters.Add(new global::Speechify.JsonConverters.OneOfJsonConverter<global::Speechify.ReplyResult, object>());
             options.Converters.Add(new global::Speechify.JsonConverters.OneOfJsonConverter<global::Speechify.ToolCallResult, object>());
             options.Converters.Add(new global::Speechify.JsonConverters.OneOfJsonConverter<global::Speechify.SimulationResult, object>());
+            options.Converters.Add(new global::Speechify.JsonConverters.OneOfJsonConverter<global::Speechify.TestVerdict?, object>());
             options.Converters.Add(new global::Speechify.JsonConverters.OneOfJsonConverter<global::Speechify.TestRunResult, object>());
             options.Converters.Add(new global::Speechify.JsonConverters.OneOfJsonConverter<global::Speechify.AgentTestRun, object>());
+            options.Converters.Add(new global::Speechify.JsonConverters.OneOfJsonConverter<global::Speechify.TestVerdict?, object>());
             options.Converters.Add(new global::Speechify.JsonConverters.OneOfJsonConverter<global::Speechify.TestRunConfigOverride, object>());
             options.Converters.Add(new global::Speechify.JsonConverters.OneOfJsonConverter<global::Speechify.AgentTestSuiteRun, object>());
+            options.Converters.Add(new global::Speechify.JsonConverters.OneOfJsonConverter<global::Speechify.TestVerdict?, object>());
             options.Converters.Add(new global::Speechify.JsonConverters.OneOfJsonConverter<global::Speechify.TestRunResult, object>());
+            options.Converters.Add(new global::Speechify.JsonConverters.OneOfJsonConverter<global::Speechify.TestVerdict?, object>());
             options.Converters.Add(new global::Speechify.JsonConverters.OneOfJsonConverter<global::Speechify.TestRunConfigOverride, object>());
             options.Converters.Add(new global::Speechify.JsonConverters.OneOfJsonConverter<global::Speechify.AgentTestSuiteRun, object>());
             options.Converters.Add(new global::Speechify.JsonConverters.UnixTimestampJsonConverter());
