@@ -46,7 +46,7 @@ namespace Speechify
         /// <summary>
         /// Get Suite Run<br/>
         /// Retrieve a suite run by ID with its child runs and the derived<br/>
-        /// aggregate status and pass/fail/error counts.
+        /// aggregate `status`, `verdict`, and progress counts.
         /// </summary>
         /// <param name="suiteRunId"></param>
         /// <param name="speechifyVersion"></param>
@@ -71,7 +71,7 @@ namespace Speechify
         /// <summary>
         /// Get Suite Run<br/>
         /// Retrieve a suite run by ID with its child runs and the derived<br/>
-        /// aggregate status and pass/fail/error counts.
+        /// aggregate `status`, `verdict`, and progress counts.
         /// </summary>
         /// <param name="suiteRunId"></param>
         /// <param name="speechifyVersion"></param>

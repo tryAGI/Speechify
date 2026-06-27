@@ -3,11 +3,11 @@
 
 namespace Speechify
 {
-    public partial class SubpackageAgentSubpackageAgentTestsClient
+    public partial class SubpackageAgentSubpackageAgentKnowledgeBasesClient
     {
 
 
-        private static readonly global::Speechify.EndPointSecurityRequirement s_ListAllTestsSecurityRequirement0 =
+        private static readonly global::Speechify.EndPointSecurityRequirement s_GetImportJobSecurityRequirement0 =
             new global::Speechify.EndPointSecurityRequirement
             {
                 Authorizations = new global::Speechify.EndPointAuthorizationRequirement[]
@@ -21,91 +21,52 @@ namespace Speechify
                     },
                 },
             };
-        private static readonly global::Speechify.EndPointSecurityRequirement[] s_ListAllTestsSecurityRequirements =
+        private static readonly global::Speechify.EndPointSecurityRequirement[] s_GetImportJobSecurityRequirements =
             new global::Speechify.EndPointSecurityRequirement[]
-            {                s_ListAllTestsSecurityRequirement0,
+            {                s_GetImportJobSecurityRequirement0,
             };
-        partial void PrepareListAllTestsArguments(
+        partial void PrepareGetImportJobArguments(
             global::System.Net.Http.HttpClient httpClient,
-            ref string? agentId,
-            ref string? type,
-            ref string? status,
-            ref string? verdict,
-            ref string? folderId,
-            ref string? updatedAfter,
-            ref string? q,
-            ref int? limit,
-            ref string? cursor,
+            ref string kbId,
+            ref string importId,
             ref string? speechifyVersion);
-        partial void PrepareListAllTestsRequest(
+        partial void PrepareGetImportJobRequest(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpRequestMessage httpRequestMessage,
-            string? agentId,
-            string? type,
-            string? status,
-            string? verdict,
-            string? folderId,
-            string? updatedAfter,
-            string? q,
-            int? limit,
-            string? cursor,
+            string kbId,
+            string importId,
             string? speechifyVersion);
-        partial void ProcessListAllTestsResponse(
+        partial void ProcessGetImportJobResponse(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpResponseMessage httpResponseMessage);
 
-        partial void ProcessListAllTestsResponseContent(
+        partial void ProcessGetImportJobResponseContent(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpResponseMessage httpResponseMessage,
             ref string content);
 
         /// <summary>
-        /// List Tests<br/>
-        /// Workspace-wide list of tests across every agent the caller owns.<br/>
-        /// Supports filters (agent, type, last-run status, folder), full-text<br/>
-        /// search on name/description, and cursor pagination. Each row carries<br/>
-        /// its newest run and attached agent IDs so the list renders without<br/>
-        /// N+1 round-trips. Walk pages while `has_more` is true.
+        /// Get Import Job<br/>
+        /// Retrieve a single import job by ID. Poll this endpoint until<br/>
+        /// `status` reaches a terminal state (`completed` / `failed` /<br/>
+        /// `cancelled`).
         /// </summary>
-        /// <param name="agentId"></param>
-        /// <param name="type"></param>
-        /// <param name="status"></param>
-        /// <param name="verdict"></param>
-        /// <param name="folderId"></param>
-        /// <param name="updatedAfter"></param>
-        /// <param name="q"></param>
-        /// <param name="limit">
-        /// Default Value: 50
-        /// </param>
-        /// <param name="cursor"></param>
+        /// <param name="kbId"></param>
+        /// <param name="importId"></param>
         /// <param name="speechifyVersion"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
-        public async global::System.Threading.Tasks.Task<global::Speechify.ListTestsResponse> ListAllTestsAsync(
-            string? agentId = default,
-            string? type = default,
-            string? status = default,
-            string? verdict = default,
-            string? folderId = default,
-            string? updatedAfter = default,
-            string? q = default,
-            int? limit = default,
-            string? cursor = default,
+        public async global::System.Threading.Tasks.Task<global::Speechify.ImportJob> GetImportJobAsync(
+            string kbId,
+            string importId,
             string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
-            var __response = await ListAllTestsAsResponseAsync(
-                agentId: agentId,
-                type: type,
-                status: status,
-                verdict: verdict,
-                folderId: folderId,
-                updatedAfter: updatedAfter,
-                q: q,
-                limit: limit,
-                cursor: cursor,
+            var __response = await GetImportJobAsResponseAsync(
+                kbId: kbId,
+                importId: importId,
                 speechifyVersion: speechifyVersion,
                 requestOptions: requestOptions,
                 cancellationToken: cancellationToken
@@ -114,62 +75,37 @@ namespace Speechify
             return __response.Body;
         }
         /// <summary>
-        /// List Tests<br/>
-        /// Workspace-wide list of tests across every agent the caller owns.<br/>
-        /// Supports filters (agent, type, last-run status, folder), full-text<br/>
-        /// search on name/description, and cursor pagination. Each row carries<br/>
-        /// its newest run and attached agent IDs so the list renders without<br/>
-        /// N+1 round-trips. Walk pages while `has_more` is true.
+        /// Get Import Job<br/>
+        /// Retrieve a single import job by ID. Poll this endpoint until<br/>
+        /// `status` reaches a terminal state (`completed` / `failed` /<br/>
+        /// `cancelled`).
         /// </summary>
-        /// <param name="agentId"></param>
-        /// <param name="type"></param>
-        /// <param name="status"></param>
-        /// <param name="verdict"></param>
-        /// <param name="folderId"></param>
-        /// <param name="updatedAfter"></param>
-        /// <param name="q"></param>
-        /// <param name="limit">
-        /// Default Value: 50
-        /// </param>
-        /// <param name="cursor"></param>
+        /// <param name="kbId"></param>
+        /// <param name="importId"></param>
         /// <param name="speechifyVersion"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
-        public async global::System.Threading.Tasks.Task<global::Speechify.AutoSDKHttpResponse<global::Speechify.ListTestsResponse>> ListAllTestsAsResponseAsync(
-            string? agentId = default,
-            string? type = default,
-            string? status = default,
-            string? verdict = default,
-            string? folderId = default,
-            string? updatedAfter = default,
-            string? q = default,
-            int? limit = default,
-            string? cursor = default,
+        public async global::System.Threading.Tasks.Task<global::Speechify.AutoSDKHttpResponse<global::Speechify.ImportJob>> GetImportJobAsResponseAsync(
+            string kbId,
+            string importId,
             string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
             PrepareArguments(
                 client: HttpClient);
-            PrepareListAllTestsArguments(
+            PrepareGetImportJobArguments(
                 httpClient: HttpClient,
-                agentId: ref agentId,
-                type: ref type,
-                status: ref status,
-                verdict: ref verdict,
-                folderId: ref folderId,
-                updatedAfter: ref updatedAfter,
-                q: ref q,
-                limit: ref limit,
-                cursor: ref cursor,
+                kbId: ref kbId,
+                importId: ref importId,
                 speechifyVersion: ref speechifyVersion);
 
 
             var __authorizations = global::Speechify.EndPointSecurityResolver.ResolveAuthorizations(
                 availableAuthorizations: Authorizations,
-                securityRequirements: s_ListAllTestsSecurityRequirements,
-                operationName: "ListAllTestsAsync");
+                securityRequirements: s_GetImportJobSecurityRequirements,
+                operationName: "GetImportJobAsync");
 
             using var __timeoutCancellationTokenSource = global::Speechify.AutoSDKRequestOptionsSupport.CreateTimeoutCancellationTokenSource(
                 clientOptions: Options,
@@ -189,19 +125,8 @@ namespace Speechify
             {
 
                             var __pathBuilder = new global::Speechify.PathBuilder(
-                                path: "/v1/agents/tests",
+                                path: $"/v1/agents/knowledge-bases/{kbId}/imports/{importId}",
                                 baseUri: HttpClient.BaseAddress);
-                            __pathBuilder
-                                .AddOptionalParameter("agent_id", agentId)
-                                .AddOptionalParameter("type", type)
-                                .AddOptionalParameter("status", status)
-                                .AddOptionalParameter("verdict", verdict)
-                                .AddOptionalParameter("folder_id", folderId)
-                                .AddOptionalParameter("updated_after", updatedAfter)
-                                .AddOptionalParameter("q", q)
-                                .AddOptionalParameter("limit", limit?.ToString())
-                                .AddOptionalParameter("cursor", cursor)
-                                ;
                             var __path = __pathBuilder.ToString();
                 __path = global::Speechify.AutoSDKRequestOptionsSupport.AppendQueryParameters(
                     path: __path,
@@ -245,18 +170,11 @@ namespace Speechify
                 PrepareRequest(
                     client: HttpClient,
                     request: __httpRequest);
-                PrepareListAllTestsRequest(
+                PrepareGetImportJobRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
-                    agentId: agentId,
-                    type: type,
-                    status: status,
-                    verdict: verdict,
-                    folderId: folderId,
-                    updatedAfter: updatedAfter,
-                    q: q,
-                    limit: limit,
-                    cursor: cursor,
+                    kbId: kbId!,
+                    importId: importId!,
                     speechifyVersion: speechifyVersion);
 
                 return __httpRequest;
@@ -274,9 +192,9 @@ namespace Speechify
                     await global::Speechify.AutoSDKRequestOptionsSupport.OnBeforeRequestAsync(
                             clientOptions: Options,
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "ListAllTests",
-                                methodName: "ListAllTestsAsync",
-                                pathTemplate: "\"/v1/agents/tests\"",
+                                operationId: "GetImportJob",
+                                methodName: "GetImportJobAsync",
+                                pathTemplate: "$\"/v1/agents/knowledge-bases/{kbId}/imports/{importId}\"",
                                 httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -308,9 +226,9 @@ namespace Speechify
                         await global::Speechify.AutoSDKRequestOptionsSupport.OnAfterErrorAsync(
                             clientOptions: Options,
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "ListAllTests",
-                                methodName: "ListAllTestsAsync",
-                                pathTemplate: "\"/v1/agents/tests\"",
+                                operationId: "GetImportJob",
+                                methodName: "GetImportJobAsync",
+                                pathTemplate: "$\"/v1/agents/knowledge-bases/{kbId}/imports/{importId}\"",
                                 httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -349,9 +267,9 @@ namespace Speechify
                         await global::Speechify.AutoSDKRequestOptionsSupport.OnAfterErrorAsync(
                             clientOptions: Options,
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "ListAllTests",
-                                methodName: "ListAllTestsAsync",
-                                pathTemplate: "\"/v1/agents/tests\"",
+                                operationId: "GetImportJob",
+                                methodName: "GetImportJobAsync",
+                                pathTemplate: "$\"/v1/agents/knowledge-bases/{kbId}/imports/{importId}\"",
                                 httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -389,7 +307,7 @@ namespace Speechify
                 ProcessResponse(
                     client: HttpClient,
                     response: __response);
-                ProcessListAllTestsResponse(
+                ProcessGetImportJobResponse(
                     httpClient: HttpClient,
                     httpResponseMessage: __response);
                 if (__response.IsSuccessStatusCode)
@@ -397,9 +315,9 @@ namespace Speechify
                     await global::Speechify.AutoSDKRequestOptionsSupport.OnAfterSuccessAsync(
                             clientOptions: Options,
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "ListAllTests",
-                                methodName: "ListAllTestsAsync",
-                                pathTemplate: "\"/v1/agents/tests\"",
+                                operationId: "GetImportJob",
+                                methodName: "GetImportJobAsync",
+                                pathTemplate: "$\"/v1/agents/knowledge-bases/{kbId}/imports/{importId}\"",
                                 httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -419,9 +337,9 @@ namespace Speechify
                     await global::Speechify.AutoSDKRequestOptionsSupport.OnAfterErrorAsync(
                             clientOptions: Options,
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "ListAllTests",
-                                methodName: "ListAllTestsAsync",
-                                pathTemplate: "\"/v1/agents/tests\"",
+                                operationId: "GetImportJob",
+                                methodName: "GetImportJobAsync",
+                                pathTemplate: "$\"/v1/agents/knowledge-bases/{kbId}/imports/{importId}\"",
                                 httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -473,6 +391,43 @@ namespace Speechify
                                         h => h.Key,
                                         h => h.Value));
                             }
+                            // The referenced resource does not exist or is not visible to the caller's workspace. 
+                            if ((int)__response.StatusCode == 404)
+                            {
+                                string? __content_404 = null;
+                                global::System.Exception? __exception_404 = null;
+                                global::Speechify.Error? __value_404 = null;
+                                try
+                                {
+                                    if (__effectiveReadResponseAsString)
+                                    {
+                                        __content_404 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+                                        __value_404 = global::Speechify.Error.FromJson(__content_404, JsonSerializerContext);
+                                    }
+                                    else
+                                    {
+                                        __content_404 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+
+                                        __value_404 = global::Speechify.Error.FromJson(__content_404, JsonSerializerContext);
+                                    }
+                                }
+                                catch (global::System.Exception __ex)
+                                {
+                                    __exception_404 = __ex;
+                                }
+
+
+                                throw global::Speechify.ApiException<global::Speechify.Error>.Create(
+                                    statusCode: __response.StatusCode,
+                                    message: __content_404 ?? __response.ReasonPhrase ?? string.Empty,
+                                    innerException: __exception_404,
+                                    responseBody: __content_404,
+                                    responseObject: __value_404,
+                                    responseHeaders: global::System.Linq.Enumerable.ToDictionary(
+                                        __response.Headers,
+                                        h => h.Key,
+                                        h => h.Value));
+                            }
 
                             if (__effectiveReadResponseAsString)
                             {
@@ -486,7 +441,7 @@ namespace Speechify
                                     client: HttpClient,
                                     response: __response,
                                     content: ref __content);
-                                ProcessListAllTestsResponseContent(
+                                ProcessGetImportJobResponseContent(
                                     httpClient: HttpClient,
                                     httpResponseMessage: __response,
                                     content: ref __content);
@@ -495,9 +450,9 @@ namespace Speechify
                                 {
                                     __response.EnsureSuccessStatusCode();
 
-                                    var __value = global::Speechify.ListTestsResponse.FromJson(__content, JsonSerializerContext) ??
+                                    var __value = global::Speechify.ImportJob.FromJson(__content, JsonSerializerContext) ??
                                         throw new global::System.InvalidOperationException($"Response deserialization failed for \"{__content}\" ");
-                                    return new global::Speechify.AutoSDKHttpResponse<global::Speechify.ListTestsResponse>(
+                                    return new global::Speechify.AutoSDKHttpResponse<global::Speechify.ImportJob>(
                                         statusCode: __response.StatusCode,
                                         headers: global::Speechify.AutoSDKHttpResponse.CreateHeaders(__response),
                                         requestUri: __response.RequestMessage?.RequestUri,
@@ -527,9 +482,9 @@ namespace Speechify
                 #endif
                                     ).ConfigureAwait(false);
 
-                                    var __value = await global::Speechify.ListTestsResponse.FromJsonStreamAsync(__content, JsonSerializerContext).ConfigureAwait(false) ??
+                                    var __value = await global::Speechify.ImportJob.FromJsonStreamAsync(__content, JsonSerializerContext).ConfigureAwait(false) ??
                                         throw new global::System.InvalidOperationException("Response deserialization failed.");
-                                    return new global::Speechify.AutoSDKHttpResponse<global::Speechify.ListTestsResponse>(
+                                    return new global::Speechify.AutoSDKHttpResponse<global::Speechify.ImportJob>(
                                         statusCode: __response.StatusCode,
                                         headers: global::Speechify.AutoSDKHttpResponse.CreateHeaders(__response),
                                         requestUri: __response.RequestMessage?.RequestUri,

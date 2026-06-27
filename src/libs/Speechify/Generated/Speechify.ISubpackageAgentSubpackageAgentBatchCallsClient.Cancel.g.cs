@@ -6,8 +6,9 @@ namespace Speechify
     {
         /// <summary>
         /// Cancel Batch Call<br/>
-        /// Cancels a scheduled or pending batch before it starts dialing.<br/>
-        /// Returns 409 if the batch is already running or completed.
+        /// Cancels a pending batch before it starts dialing (including one<br/>
+        /// deferred to a future `scheduled_at`). Returns 409 if the batch is<br/>
+        /// already running or completed.
         /// </summary>
         /// <param name="batchCallId"></param>
         /// <param name="speechifyVersion"></param>
@@ -21,8 +22,9 @@ namespace Speechify
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Cancel Batch Call<br/>
-        /// Cancels a scheduled or pending batch before it starts dialing.<br/>
-        /// Returns 409 if the batch is already running or completed.
+        /// Cancels a pending batch before it starts dialing (including one<br/>
+        /// deferred to a future `scheduled_at`). Returns 409 if the batch is<br/>
+        /// already running or completed.
         /// </summary>
         /// <param name="batchCallId"></param>
         /// <param name="speechifyVersion"></param>
