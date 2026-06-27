@@ -48,7 +48,9 @@ namespace Speechify
         /// custom endpoint are available only on higher plans; lower plans<br/>
         /// receive the managed and standard models. The console renders its<br/>
         /// model picker from this response so it only offers models that<br/>
-        /// POST/PATCH /v1/agents will accept.
+        /// POST/PATCH /v1/agents will accept. Returns the full set in a single<br/>
+        /// response: bounded by the platform's curated model catalogue, so this<br/>
+        /// list is intentionally not paginated.
         /// </summary>
         /// <param name="speechifyVersion"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
@@ -74,7 +76,9 @@ namespace Speechify
         /// custom endpoint are available only on higher plans; lower plans<br/>
         /// receive the managed and standard models. The console renders its<br/>
         /// model picker from this response so it only offers models that<br/>
-        /// POST/PATCH /v1/agents will accept.
+        /// POST/PATCH /v1/agents will accept. Returns the full set in a single<br/>
+        /// response: bounded by the platform's curated model catalogue, so this<br/>
+        /// list is intentionally not paginated.
         /// </summary>
         /// <param name="speechifyVersion"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>

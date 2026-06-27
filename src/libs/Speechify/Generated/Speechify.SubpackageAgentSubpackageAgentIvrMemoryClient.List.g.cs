@@ -28,11 +28,15 @@ namespace Speechify
         partial void PrepareListArguments(
             global::System.Net.Http.HttpClient httpClient,
             ref string? fingerprint,
+            ref string? cursor,
+            ref int? limit,
             ref string? speechifyVersion);
         partial void PrepareListRequest(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpRequestMessage httpRequestMessage,
             string? fingerprint,
+            string? cursor,
+            int? limit,
             string? speechifyVersion);
         partial void ProcessListResponse(
             global::System.Net.Http.HttpClient httpClient,
@@ -49,21 +53,29 @@ namespace Speechify
         /// One row per (fingerprint, tenant).<br/>
         /// Invalidated rows and the cross-tenant shared slot are excluded.<br/>
         /// Sorted by `last_observed_at` DESC so the freshest IVRs land at<br/>
-        /// the top. Capped at 200 rows.
+        /// the top. Cursor-paginated: omit `cursor` to fetch the first<br/>
+        /// page. Default page size is 50 and max is 200. Walk pages while<br/>
+        /// `has_more` is true.
         /// </summary>
         /// <param name="fingerprint"></param>
+        /// <param name="cursor"></param>
+        /// <param name="limit"></param>
         /// <param name="speechifyVersion"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
         public async global::System.Threading.Tasks.Task<global::Speechify.ListIVRMenusResponse> ListAsync(
             string? fingerprint = default,
+            string? cursor = default,
+            int? limit = default,
             string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
             var __response = await ListAsResponseAsync(
                 fingerprint: fingerprint,
+                cursor: cursor,
+                limit: limit,
                 speechifyVersion: speechifyVersion,
                 requestOptions: requestOptions,
                 cancellationToken: cancellationToken
@@ -77,15 +89,21 @@ namespace Speechify
         /// One row per (fingerprint, tenant).<br/>
         /// Invalidated rows and the cross-tenant shared slot are excluded.<br/>
         /// Sorted by `last_observed_at` DESC so the freshest IVRs land at<br/>
-        /// the top. Capped at 200 rows.
+        /// the top. Cursor-paginated: omit `cursor` to fetch the first<br/>
+        /// page. Default page size is 50 and max is 200. Walk pages while<br/>
+        /// `has_more` is true.
         /// </summary>
         /// <param name="fingerprint"></param>
+        /// <param name="cursor"></param>
+        /// <param name="limit"></param>
         /// <param name="speechifyVersion"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
         public async global::System.Threading.Tasks.Task<global::Speechify.AutoSDKHttpResponse<global::Speechify.ListIVRMenusResponse>> ListAsResponseAsync(
             string? fingerprint = default,
+            string? cursor = default,
+            int? limit = default,
             string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
@@ -95,6 +113,8 @@ namespace Speechify
             PrepareListArguments(
                 httpClient: HttpClient,
                 fingerprint: ref fingerprint,
+                cursor: ref cursor,
+                limit: ref limit,
                 speechifyVersion: ref speechifyVersion);
 
 
@@ -125,6 +145,8 @@ namespace Speechify
                                 baseUri: HttpClient.BaseAddress);
                             __pathBuilder
                                 .AddOptionalParameter("fingerprint", fingerprint)
+                                .AddOptionalParameter("cursor", cursor)
+                                .AddOptionalParameter("limit", limit?.ToString())
                                 ;
                             var __path = __pathBuilder.ToString();
                 __path = global::Speechify.AutoSDKRequestOptionsSupport.AppendQueryParameters(
@@ -173,6 +195,8 @@ namespace Speechify
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
                     fingerprint: fingerprint,
+                    cursor: cursor,
+                    limit: limit,
                     speechifyVersion: speechifyVersion);
 
                 return __httpRequest;
@@ -352,6 +376,43 @@ namespace Speechify
                                 retryReason: global::System.String.Empty,
                                 cancellationToken: __effectiveCancellationToken)).ConfigureAwait(false);
                 }
+                            // The request was malformed or failed validation. The response body is the standard `Error` envelope; for validation failures `error.fields` enumerates the offending fields as a `path -> message` map (code = `validation_failed`). 
+                            if ((int)__response.StatusCode == 400)
+                            {
+                                string? __content_400 = null;
+                                global::System.Exception? __exception_400 = null;
+                                global::Speechify.Error? __value_400 = null;
+                                try
+                                {
+                                    if (__effectiveReadResponseAsString)
+                                    {
+                                        __content_400 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+                                        __value_400 = global::Speechify.Error.FromJson(__content_400, JsonSerializerContext);
+                                    }
+                                    else
+                                    {
+                                        __content_400 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+
+                                        __value_400 = global::Speechify.Error.FromJson(__content_400, JsonSerializerContext);
+                                    }
+                                }
+                                catch (global::System.Exception __ex)
+                                {
+                                    __exception_400 = __ex;
+                                }
+
+
+                                throw global::Speechify.ApiException<global::Speechify.Error>.Create(
+                                    statusCode: __response.StatusCode,
+                                    message: __content_400 ?? __response.ReasonPhrase ?? string.Empty,
+                                    innerException: __exception_400,
+                                    responseBody: __content_400,
+                                    responseObject: __value_400,
+                                    responseHeaders: global::System.Linq.Enumerable.ToDictionary(
+                                        __response.Headers,
+                                        h => h.Key,
+                                        h => h.Value));
+                            }
                             // Authentication is missing or invalid. The request did not carry a recognised credential (Firebase ID token, API key, or worker JWT). 
                             if ((int)__response.StatusCode == 401)
                             {

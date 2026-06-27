@@ -28,15 +28,15 @@ namespace Speechify
         partial void PrepareListMemoriesArguments(
             global::System.Net.Http.HttpClient httpClient,
             ref string id,
+            ref string? cursor,
             ref int? limit,
-            ref int? offset,
             ref string? speechifyVersion);
         partial void PrepareListMemoriesRequest(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpRequestMessage httpRequestMessage,
             string id,
+            string? cursor,
             int? limit,
-            int? offset,
             string? speechifyVersion);
         partial void ProcessListMemoriesResponse(
             global::System.Net.Http.HttpClient httpClient,
@@ -51,31 +51,29 @@ namespace Speechify
         /// List Agent Memories<br/>
         /// List per-caller memories extracted for an agent. Memories are<br/>
         /// written post-call by the built-in extractor when `memory_enabled`<br/>
-        /// is true on the agent; the list is sorted newest-first.
+        /// is true on the agent; the list is sorted newest-first.<br/>
+        /// Cursor-paginated: omit `cursor` for the first page; walk pages<br/>
+        /// while `has_more` is true (default page size 50, max 200).
         /// </summary>
         /// <param name="id"></param>
-        /// <param name="limit">
-        /// Default Value: 100
-        /// </param>
-        /// <param name="offset">
-        /// Default Value: 0
-        /// </param>
+        /// <param name="cursor"></param>
+        /// <param name="limit"></param>
         /// <param name="speechifyVersion"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
-        public async global::System.Threading.Tasks.Task<global::Speechify.ListMemoriesResponse> ListMemoriesAsync(
+        public async global::System.Threading.Tasks.Task<global::Speechify.ListAgentMemoriesResponse> ListMemoriesAsync(
             string id,
+            string? cursor = default,
             int? limit = default,
-            int? offset = default,
             string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
             var __response = await ListMemoriesAsResponseAsync(
                 id: id,
+                cursor: cursor,
                 limit: limit,
-                offset: offset,
                 speechifyVersion: speechifyVersion,
                 requestOptions: requestOptions,
                 cancellationToken: cancellationToken
@@ -87,23 +85,21 @@ namespace Speechify
         /// List Agent Memories<br/>
         /// List per-caller memories extracted for an agent. Memories are<br/>
         /// written post-call by the built-in extractor when `memory_enabled`<br/>
-        /// is true on the agent; the list is sorted newest-first.
+        /// is true on the agent; the list is sorted newest-first.<br/>
+        /// Cursor-paginated: omit `cursor` for the first page; walk pages<br/>
+        /// while `has_more` is true (default page size 50, max 200).
         /// </summary>
         /// <param name="id"></param>
-        /// <param name="limit">
-        /// Default Value: 100
-        /// </param>
-        /// <param name="offset">
-        /// Default Value: 0
-        /// </param>
+        /// <param name="cursor"></param>
+        /// <param name="limit"></param>
         /// <param name="speechifyVersion"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
-        public async global::System.Threading.Tasks.Task<global::Speechify.AutoSDKHttpResponse<global::Speechify.ListMemoriesResponse>> ListMemoriesAsResponseAsync(
+        public async global::System.Threading.Tasks.Task<global::Speechify.AutoSDKHttpResponse<global::Speechify.ListAgentMemoriesResponse>> ListMemoriesAsResponseAsync(
             string id,
+            string? cursor = default,
             int? limit = default,
-            int? offset = default,
             string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
@@ -113,8 +109,8 @@ namespace Speechify
             PrepareListMemoriesArguments(
                 httpClient: HttpClient,
                 id: ref id,
+                cursor: ref cursor,
                 limit: ref limit,
-                offset: ref offset,
                 speechifyVersion: ref speechifyVersion);
 
 
@@ -144,8 +140,8 @@ namespace Speechify
                                 path: $"/v1/agents/{id}/memories",
                                 baseUri: HttpClient.BaseAddress);
                             __pathBuilder
+                                .AddOptionalParameter("cursor", cursor)
                                 .AddOptionalParameter("limit", limit?.ToString())
-                                .AddOptionalParameter("offset", offset?.ToString())
                                 ;
                             var __path = __pathBuilder.ToString();
                 __path = global::Speechify.AutoSDKRequestOptionsSupport.AppendQueryParameters(
@@ -194,8 +190,8 @@ namespace Speechify
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
                     id: id!,
+                    cursor: cursor,
                     limit: limit,
-                    offset: offset,
                     speechifyVersion: speechifyVersion);
 
                 return __httpRequest;
@@ -375,6 +371,43 @@ namespace Speechify
                                 retryReason: global::System.String.Empty,
                                 cancellationToken: __effectiveCancellationToken)).ConfigureAwait(false);
                 }
+                            // The request was malformed or failed validation. The response body is the standard `Error` envelope; for validation failures `error.fields` enumerates the offending fields as a `path -> message` map (code = `validation_failed`). 
+                            if ((int)__response.StatusCode == 400)
+                            {
+                                string? __content_400 = null;
+                                global::System.Exception? __exception_400 = null;
+                                global::Speechify.Error? __value_400 = null;
+                                try
+                                {
+                                    if (__effectiveReadResponseAsString)
+                                    {
+                                        __content_400 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+                                        __value_400 = global::Speechify.Error.FromJson(__content_400, JsonSerializerContext);
+                                    }
+                                    else
+                                    {
+                                        __content_400 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+
+                                        __value_400 = global::Speechify.Error.FromJson(__content_400, JsonSerializerContext);
+                                    }
+                                }
+                                catch (global::System.Exception __ex)
+                                {
+                                    __exception_400 = __ex;
+                                }
+
+
+                                throw global::Speechify.ApiException<global::Speechify.Error>.Create(
+                                    statusCode: __response.StatusCode,
+                                    message: __content_400 ?? __response.ReasonPhrase ?? string.Empty,
+                                    innerException: __exception_400,
+                                    responseBody: __content_400,
+                                    responseObject: __value_400,
+                                    responseHeaders: global::System.Linq.Enumerable.ToDictionary(
+                                        __response.Headers,
+                                        h => h.Key,
+                                        h => h.Value));
+                            }
                             // Authentication is missing or invalid. The request did not carry a recognised credential (Firebase ID token, API key, or worker JWT). 
                             if ((int)__response.StatusCode == 401)
                             {
@@ -471,9 +504,9 @@ namespace Speechify
                                 {
                                     __response.EnsureSuccessStatusCode();
 
-                                    var __value = global::Speechify.ListMemoriesResponse.FromJson(__content, JsonSerializerContext) ??
+                                    var __value = global::Speechify.ListAgentMemoriesResponse.FromJson(__content, JsonSerializerContext) ??
                                         throw new global::System.InvalidOperationException($"Response deserialization failed for \"{__content}\" ");
-                                    return new global::Speechify.AutoSDKHttpResponse<global::Speechify.ListMemoriesResponse>(
+                                    return new global::Speechify.AutoSDKHttpResponse<global::Speechify.ListAgentMemoriesResponse>(
                                         statusCode: __response.StatusCode,
                                         headers: global::Speechify.AutoSDKHttpResponse.CreateHeaders(__response),
                                         requestUri: __response.RequestMessage?.RequestUri,
@@ -503,9 +536,9 @@ namespace Speechify
                 #endif
                                     ).ConfigureAwait(false);
 
-                                    var __value = await global::Speechify.ListMemoriesResponse.FromJsonStreamAsync(__content, JsonSerializerContext).ConfigureAwait(false) ??
+                                    var __value = await global::Speechify.ListAgentMemoriesResponse.FromJsonStreamAsync(__content, JsonSerializerContext).ConfigureAwait(false) ??
                                         throw new global::System.InvalidOperationException("Response deserialization failed.");
-                                    return new global::Speechify.AutoSDKHttpResponse<global::Speechify.ListMemoriesResponse>(
+                                    return new global::Speechify.AutoSDKHttpResponse<global::Speechify.ListAgentMemoriesResponse>(
                                         statusCode: __response.StatusCode,
                                         headers: global::Speechify.AutoSDKHttpResponse.CreateHeaders(__response),
                                         requestUri: __response.RequestMessage?.RequestUri,

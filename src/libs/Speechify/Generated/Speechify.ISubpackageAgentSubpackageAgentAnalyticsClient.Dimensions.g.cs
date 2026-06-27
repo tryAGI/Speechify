@@ -11,7 +11,10 @@ namespace Speechify
         /// pass `agent_id` to additionally include that agent's evaluation<br/>
         /// criteria and typed data-collection fields. Each dimension declares<br/>
         /// its value `type` and whether it can be used to filter, to group by,<br/>
-        /// or both. Free-text fields are never returned as dimensions.
+        /// or both. Free-text fields are never returned as dimensions. Returns<br/>
+        /// the full set in a single response: bounded by the typed dimension<br/>
+        /// catalogue plus (with agent_id) one agent's evaluation config, so<br/>
+        /// this list is intentionally not paginated.
         /// </summary>
         /// <param name="agentId"></param>
         /// <param name="speechifyVersion"></param>
@@ -30,7 +33,10 @@ namespace Speechify
         /// pass `agent_id` to additionally include that agent's evaluation<br/>
         /// criteria and typed data-collection fields. Each dimension declares<br/>
         /// its value `type` and whether it can be used to filter, to group by,<br/>
-        /// or both. Free-text fields are never returned as dimensions.
+        /// or both. Free-text fields are never returned as dimensions. Returns<br/>
+        /// the full set in a single response: bounded by the typed dimension<br/>
+        /// catalogue plus (with agent_id) one agent's evaluation config, so<br/>
+        /// this list is intentionally not paginated.
         /// </summary>
         /// <param name="agentId"></param>
         /// <param name="speechifyVersion"></param>

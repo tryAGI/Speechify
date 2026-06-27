@@ -12,7 +12,9 @@ namespace Speechify
         /// (cloned) voices are NOT included — they stay on<br/>
         /// `GET /v1/voices`. The JSON layout intentionally mirrors the<br/>
         /// TTS `/v1/voices` shape so the console feeds both endpoints<br/>
-        /// into the same voice-picker component.
+        /// into the same voice-picker component. Returns the full set in a<br/>
+        /// single response: bounded by the curated agent voice catalogue, so<br/>
+        /// this list is intentionally not paginated.
         /// </summary>
         /// <param name="speechifyVersion"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
@@ -30,7 +32,9 @@ namespace Speechify
         /// (cloned) voices are NOT included — they stay on<br/>
         /// `GET /v1/voices`. The JSON layout intentionally mirrors the<br/>
         /// TTS `/v1/voices` shape so the console feeds both endpoints<br/>
-        /// into the same voice-picker component.
+        /// into the same voice-picker component. Returns the full set in a<br/>
+        /// single response: bounded by the curated agent voice catalogue, so<br/>
+        /// this list is intentionally not paginated.
         /// </summary>
         /// <param name="speechifyVersion"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>

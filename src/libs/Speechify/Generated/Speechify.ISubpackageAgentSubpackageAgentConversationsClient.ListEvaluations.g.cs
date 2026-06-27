@@ -6,7 +6,10 @@ namespace Speechify
     {
         /// <summary>
         /// List Evaluations<br/>
-        /// Retrieve post-call evaluation results for a conversation.
+        /// Retrieve post-call evaluation results for a conversation. Returns<br/>
+        /// the full set in a single response: bounded by one conversation's<br/>
+        /// evaluation config (at most ~32 rows), so this list is intentionally<br/>
+        /// not paginated.
         /// </summary>
         /// <param name="id"></param>
         /// <param name="speechifyVersion"></param>
@@ -20,7 +23,10 @@ namespace Speechify
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// List Evaluations<br/>
-        /// Retrieve post-call evaluation results for a conversation.
+        /// Retrieve post-call evaluation results for a conversation. Returns<br/>
+        /// the full set in a single response: bounded by one conversation's<br/>
+        /// evaluation config (at most ~32 rows), so this list is intentionally<br/>
+        /// not paginated.
         /// </summary>
         /// <param name="id"></param>
         /// <param name="speechifyVersion"></param>

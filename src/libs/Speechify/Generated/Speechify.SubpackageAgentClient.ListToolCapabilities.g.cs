@@ -48,7 +48,10 @@ namespace Speechify
         /// `kind=builtin` tool to an agent). The console fetches this at<br/>
         /// runtime rather than maintaining a parallel client-side list; the<br/>
         /// server is the single source of truth for the label and<br/>
-        /// description copy a customer sees in the capability picker.
+        /// description copy a customer sees in the capability picker. Returns<br/>
+        /// the full set in a single response: bounded by the platform's<br/>
+        /// built-in tool-capability registry, so this list is intentionally<br/>
+        /// not paginated.
         /// </summary>
         /// <param name="speechifyVersion"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
@@ -74,7 +77,10 @@ namespace Speechify
         /// `kind=builtin` tool to an agent). The console fetches this at<br/>
         /// runtime rather than maintaining a parallel client-side list; the<br/>
         /// server is the single source of truth for the label and<br/>
-        /// description copy a customer sees in the capability picker.
+        /// description copy a customer sees in the capability picker. Returns<br/>
+        /// the full set in a single response: bounded by the platform's<br/>
+        /// built-in tool-capability registry, so this list is intentionally<br/>
+        /// not paginated.
         /// </summary>
         /// <param name="speechifyVersion"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
