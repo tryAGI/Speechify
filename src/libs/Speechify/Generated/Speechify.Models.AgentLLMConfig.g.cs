@@ -18,8 +18,8 @@ namespace Speechify
         /// resolved server-side at dispatch. `openai` and `speechify`<br/>
         /// pair with a `model` from the allowed table. `custom` points<br/>
         /// the worker at any OpenAI / vLLM-compatible endpoint - see<br/>
-        /// `base_url`, `api_key`, `extra_body`. Must be paired with a<br/>
-        /// non-null `model`; setting one without the other is rejected.
+        /// `base_url`, `credential_id`, `extra_body`. Must be paired with<br/>
+        /// a non-null `model`; setting one without the other is rejected.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("provider")]
         [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Speechify.JsonConverters.AgentLlmConfigProviderJsonConverter))]
@@ -41,15 +41,18 @@ namespace Speechify
         public string? BaseUrl { get; set; }
 
         /// <summary>
-        /// Bearer key for the custom endpoint. On write, send the<br/>
-        /// plaintext to set it, an empty string to clear it, or omit it<br/>
-        /// to keep the stored key unchanged. On read, a masked display<br/>
-        /// value when configured (the plaintext is never returned), or<br/>
-        /// null when no key is stored. Valid only when `provider` is<br/>
-        /// `custom`.
+        /// `cred_&lt;crockford&gt;` id of a `bearer` credential in the<br/>
+        /// workspace vault holding the custom endpoint's API key. The<br/>
+        /// secret lives in the vault and is resolved server-side at<br/>
+        /// dispatch, never inlined on the agent. On write, send a value<br/>
+        /// to point at a credential, an empty string to clear it, or omit<br/>
+        /// it to keep the stored reference unchanged. On read, the<br/>
+        /// referenced `cred_` id, or null when none is referenced. Create<br/>
+        /// the credential first via `POST /v1/credentials`. Valid only<br/>
+        /// when `provider` is `custom`.
         /// </summary>
-        [global::System.Text.Json.Serialization.JsonPropertyName("api_key")]
-        public string? ApiKey { get; set; }
+        [global::System.Text.Json.Serialization.JsonPropertyName("credential_id")]
+        public string? CredentialId { get; set; }
 
         /// <summary>
         /// JSON object forwarded verbatim to the custom endpoint as the<br/>
@@ -79,8 +82,8 @@ namespace Speechify
         /// resolved server-side at dispatch. `openai` and `speechify`<br/>
         /// pair with a `model` from the allowed table. `custom` points<br/>
         /// the worker at any OpenAI / vLLM-compatible endpoint - see<br/>
-        /// `base_url`, `api_key`, `extra_body`. Must be paired with a<br/>
-        /// non-null `model`; setting one without the other is rejected.
+        /// `base_url`, `credential_id`, `extra_body`. Must be paired with<br/>
+        /// a non-null `model`; setting one without the other is rejected.
         /// </param>
         /// <param name="model">
         /// Chat model slug. Null (or omit) uses the platform default.<br/>
@@ -91,13 +94,16 @@ namespace Speechify
         /// Custom OpenAI/vLLM-compatible endpoint base URL. Required<br/>
         /// when `provider` is `custom`, rejected otherwise.
         /// </param>
-        /// <param name="apiKey">
-        /// Bearer key for the custom endpoint. On write, send the<br/>
-        /// plaintext to set it, an empty string to clear it, or omit it<br/>
-        /// to keep the stored key unchanged. On read, a masked display<br/>
-        /// value when configured (the plaintext is never returned), or<br/>
-        /// null when no key is stored. Valid only when `provider` is<br/>
-        /// `custom`.
+        /// <param name="credentialId">
+        /// `cred_&lt;crockford&gt;` id of a `bearer` credential in the<br/>
+        /// workspace vault holding the custom endpoint's API key. The<br/>
+        /// secret lives in the vault and is resolved server-side at<br/>
+        /// dispatch, never inlined on the agent. On write, send a value<br/>
+        /// to point at a credential, an empty string to clear it, or omit<br/>
+        /// it to keep the stored reference unchanged. On read, the<br/>
+        /// referenced `cred_` id, or null when none is referenced. Create<br/>
+        /// the credential first via `POST /v1/credentials`. Valid only<br/>
+        /// when `provider` is `custom`.
         /// </param>
         /// <param name="extraBody">
         /// JSON object forwarded verbatim to the custom endpoint as the<br/>
@@ -114,14 +120,14 @@ namespace Speechify
             global::Speechify.AgentLlmConfigProvider? provider,
             string? model,
             string? baseUrl,
-            string? apiKey,
+            string? credentialId,
             object? extraBody,
             double? temperature)
         {
             this.Provider = provider;
             this.Model = model;
             this.BaseUrl = baseUrl;
-            this.ApiKey = apiKey;
+            this.CredentialId = credentialId;
             this.ExtraBody = extraBody;
             this.Temperature = temperature;
         }
