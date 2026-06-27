@@ -43,7 +43,10 @@ namespace Speechify
 
         /// <summary>
         /// List dashboards<br/>
-        /// The caller's workspace's saved analytics dashboards. Dashboards are shared across the workspace.
+        /// The caller's workspace's saved analytics dashboards. Dashboards are<br/>
+        /// shared across the workspace. Returns the full set in a single<br/>
+        /// response: bounded by the workspace's saved dashboards (hard-capped<br/>
+        /// at 10), so this list is intentionally not paginated.
         /// </summary>
         /// <param name="speechifyVersion"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
@@ -64,7 +67,10 @@ namespace Speechify
         }
         /// <summary>
         /// List dashboards<br/>
-        /// The caller's workspace's saved analytics dashboards. Dashboards are shared across the workspace.
+        /// The caller's workspace's saved analytics dashboards. Dashboards are<br/>
+        /// shared across the workspace. Returns the full set in a single<br/>
+        /// response: bounded by the workspace's saved dashboards (hard-capped<br/>
+        /// at 10), so this list is intentionally not paginated.
         /// </summary>
         /// <param name="speechifyVersion"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>

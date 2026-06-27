@@ -4,11 +4,9 @@
 namespace Speechify
 {
     /// <summary>
-    /// Shared pagination metadata composed into every cursor-paginated<br/>
-    /// list response via `allOf`. Ships `has_more` alongside `next_cursor`<br/>
-    /// as two equivalent end-of-pages signals (defense-in-depth).
+    /// Payload for `GET /v1/agents/{id}/memories`.
     /// </summary>
-    public sealed partial class ListCredentialsResponse
+    public sealed partial class ListAgentMemoriesResponse
     {
         /// <summary>
         /// Opaque keyset cursor for the next page. Pass back as the<br/>
@@ -29,9 +27,9 @@ namespace Speechify
         /// <summary>
         /// 
         /// </summary>
-        [global::System.Text.Json.Serialization.JsonPropertyName("credentials")]
+        [global::System.Text.Json.Serialization.JsonPropertyName("memories")]
         [global::System.Text.Json.Serialization.JsonRequired]
-        public required global::System.Collections.Generic.IList<global::Speechify.Credential> Credentials { get; set; }
+        public required global::System.Collections.Generic.IList<global::Speechify.Memory> Memories { get; set; }
 
         /// <summary>
         /// Additional properties that are not explicitly defined in the schema
@@ -40,12 +38,12 @@ namespace Speechify
         public global::System.Collections.Generic.IDictionary<string, object> AdditionalProperties { get; set; } = new global::System.Collections.Generic.Dictionary<string, object>();
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="ListCredentialsResponse" /> class.
+        /// Initializes a new instance of the <see cref="ListAgentMemoriesResponse" /> class.
         /// </summary>
         /// <param name="hasMore">
         /// True when more rows exist beyond this page.
         /// </param>
-        /// <param name="credentials"></param>
+        /// <param name="memories"></param>
         /// <param name="nextCursor">
         /// Opaque keyset cursor for the next page. Pass back as the<br/>
         /// `cursor` request parameter. `null` when the caller has<br/>
@@ -55,20 +53,20 @@ namespace Speechify
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
 #endif
-        public ListCredentialsResponse(
+        public ListAgentMemoriesResponse(
             bool hasMore,
-            global::System.Collections.Generic.IList<global::Speechify.Credential> credentials,
+            global::System.Collections.Generic.IList<global::Speechify.Memory> memories,
             string? nextCursor)
         {
             this.NextCursor = nextCursor;
             this.HasMore = hasMore;
-            this.Credentials = credentials ?? throw new global::System.ArgumentNullException(nameof(credentials));
+            this.Memories = memories ?? throw new global::System.ArgumentNullException(nameof(memories));
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="ListCredentialsResponse" /> class.
+        /// Initializes a new instance of the <see cref="ListAgentMemoriesResponse" /> class.
         /// </summary>
-        public ListCredentialsResponse()
+        public ListAgentMemoriesResponse()
         {
         }
 
