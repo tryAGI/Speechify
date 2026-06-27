@@ -27,14 +27,14 @@ namespace Speechify
             };
         partial void PrepareDeleteFolderArguments(
             global::System.Net.Http.HttpClient httpClient,
-            ref string id,
+            ref string kbId,
             ref string folderId,
             ref bool? force,
             ref string? speechifyVersion);
         partial void PrepareDeleteFolderRequest(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpRequestMessage httpRequestMessage,
-            string id,
+            string kbId,
             string folderId,
             bool? force,
             string? speechifyVersion);
@@ -52,7 +52,7 @@ namespace Speechify
         /// Delete a folder. Documents inside the folder are moved to root<br/>
         /// (not deleted). Sub-folders are detached likewise.
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="kbId"></param>
         /// <param name="folderId"></param>
         /// <param name="force"></param>
         /// <param name="speechifyVersion"></param>
@@ -60,7 +60,7 @@ namespace Speechify
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
         public async global::System.Threading.Tasks.Task<string> DeleteFolderAsync(
-            string id,
+            string kbId,
             string folderId,
             bool? force = default,
             string? speechifyVersion = default,
@@ -68,7 +68,7 @@ namespace Speechify
             global::System.Threading.CancellationToken cancellationToken = default)
         {
             var __response = await DeleteFolderAsResponseAsync(
-                id: id,
+                kbId: kbId,
                 folderId: folderId,
                 force: force,
                 speechifyVersion: speechifyVersion,
@@ -83,7 +83,7 @@ namespace Speechify
         /// Delete a folder. Documents inside the folder are moved to root<br/>
         /// (not deleted). Sub-folders are detached likewise.
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="kbId"></param>
         /// <param name="folderId"></param>
         /// <param name="force"></param>
         /// <param name="speechifyVersion"></param>
@@ -91,7 +91,7 @@ namespace Speechify
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
         public async global::System.Threading.Tasks.Task<global::Speechify.AutoSDKHttpResponse<string>> DeleteFolderAsResponseAsync(
-            string id,
+            string kbId,
             string folderId,
             bool? force = default,
             string? speechifyVersion = default,
@@ -102,7 +102,7 @@ namespace Speechify
                 client: HttpClient);
             PrepareDeleteFolderArguments(
                 httpClient: HttpClient,
-                id: ref id,
+                kbId: ref kbId,
                 folderId: ref folderId,
                 force: ref force,
                 speechifyVersion: ref speechifyVersion);
@@ -131,7 +131,7 @@ namespace Speechify
             {
 
                             var __pathBuilder = new global::Speechify.PathBuilder(
-                                path: $"/v1/agents/knowledge-bases/{id}/folders/{folderId}",
+                                path: $"/v1/agents/knowledge-bases/{kbId}/folders/{folderId}",
                                 baseUri: HttpClient.BaseAddress);
                             __pathBuilder
                                 .AddOptionalParameter("force", force?.ToString().ToLowerInvariant())
@@ -182,7 +182,7 @@ namespace Speechify
                 PrepareDeleteFolderRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
-                    id: id!,
+                    kbId: kbId!,
                     folderId: folderId!,
                     force: force,
                     speechifyVersion: speechifyVersion);
@@ -204,7 +204,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "DeleteFolder",
                                 methodName: "DeleteFolderAsync",
-                                pathTemplate: "$\"/v1/agents/knowledge-bases/{id}/folders/{folderId}\"",
+                                pathTemplate: "$\"/v1/agents/knowledge-bases/{kbId}/folders/{folderId}\"",
                                 httpMethod: "DELETE",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -238,7 +238,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "DeleteFolder",
                                 methodName: "DeleteFolderAsync",
-                                pathTemplate: "$\"/v1/agents/knowledge-bases/{id}/folders/{folderId}\"",
+                                pathTemplate: "$\"/v1/agents/knowledge-bases/{kbId}/folders/{folderId}\"",
                                 httpMethod: "DELETE",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -279,7 +279,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "DeleteFolder",
                                 methodName: "DeleteFolderAsync",
-                                pathTemplate: "$\"/v1/agents/knowledge-bases/{id}/folders/{folderId}\"",
+                                pathTemplate: "$\"/v1/agents/knowledge-bases/{kbId}/folders/{folderId}\"",
                                 httpMethod: "DELETE",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -327,7 +327,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "DeleteFolder",
                                 methodName: "DeleteFolderAsync",
-                                pathTemplate: "$\"/v1/agents/knowledge-bases/{id}/folders/{folderId}\"",
+                                pathTemplate: "$\"/v1/agents/knowledge-bases/{kbId}/folders/{folderId}\"",
                                 httpMethod: "DELETE",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -349,7 +349,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "DeleteFolder",
                                 methodName: "DeleteFolderAsync",
-                                pathTemplate: "$\"/v1/agents/knowledge-bases/{id}/folders/{folderId}\"",
+                                pathTemplate: "$\"/v1/agents/knowledge-bases/{kbId}/folders/{folderId}\"",
                                 httpMethod: "DELETE",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,

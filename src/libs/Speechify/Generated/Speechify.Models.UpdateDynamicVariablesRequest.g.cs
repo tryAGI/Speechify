@@ -4,7 +4,7 @@
 namespace Speechify
 {
     /// <summary>
-    /// PATCH body for `PATCH /v1/agents/{id}/variables`. Replaces the<br/>
+    /// PATCH body for `PATCH /v1/agents/{agent_id}/variables`. Replaces the<br/>
     /// stored variable list wholesale. Pass an empty array to clear all<br/>
     /// variables. Up to 20 variables per agent.
     /// </summary>

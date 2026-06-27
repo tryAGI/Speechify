@@ -11,7 +11,7 @@ namespace Speechify
         /// <summary>
         /// Async URL import job (sitemap, crawl, plus<br/>
         /// the auto-refresh path). The console polls<br/>
-        /// `GET /v1/agents/knowledge-bases/{id}/imports` while the job is<br/>
+        /// `GET /v1/agents/knowledge-bases/{kb_id}/imports` while the job is<br/>
         /// non-terminal.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("job")]
@@ -30,7 +30,7 @@ namespace Speechify
         /// <param name="job">
         /// Async URL import job (sitemap, crawl, plus<br/>
         /// the auto-refresh path). The console polls<br/>
-        /// `GET /v1/agents/knowledge-bases/{id}/imports` while the job is<br/>
+        /// `GET /v1/agents/knowledge-bases/{kb_id}/imports` while the job is<br/>
         /// non-terminal.
         /// </param>
 #if NET7_0_OR_GREATER

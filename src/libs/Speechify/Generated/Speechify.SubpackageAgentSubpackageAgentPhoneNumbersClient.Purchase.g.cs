@@ -57,7 +57,7 @@ namespace Speechify
         /// longer in inventory. The returned phone number is wired for<br/>
         /// both inbound (when `agent_id` is set, or after binding the<br/>
         /// number to an agent via<br/>
-        /// `POST /v1/agents/{id}/phone-numbers/{phoneNumberId}`) and<br/>
+        /// `POST /v1/agents/{agent_id}/phone-numbers/{phone_number_id}`) and<br/>
         /// outbound calls (via the workspace's shared outbound trunk).
         /// </summary>
         /// <param name="speechifyVersion"></param>
@@ -99,7 +99,7 @@ namespace Speechify
         /// longer in inventory. The returned phone number is wired for<br/>
         /// both inbound (when `agent_id` is set, or after binding the<br/>
         /// number to an agent via<br/>
-        /// `POST /v1/agents/{id}/phone-numbers/{phoneNumberId}`) and<br/>
+        /// `POST /v1/agents/{agent_id}/phone-numbers/{phone_number_id}`) and<br/>
         /// outbound calls (via the workspace's shared outbound trunk).
         /// </summary>
         /// <param name="speechifyVersion"></param>
@@ -721,7 +721,7 @@ namespace Speechify
         /// longer in inventory. The returned phone number is wired for<br/>
         /// both inbound (when `agent_id` is set, or after binding the<br/>
         /// number to an agent via<br/>
-        /// `POST /v1/agents/{id}/phone-numbers/{phoneNumberId}`) and<br/>
+        /// `POST /v1/agents/{agent_id}/phone-numbers/{phone_number_id}`) and<br/>
         /// outbound calls (via the workspace's shared outbound trunk).
         /// </summary>
         /// <param name="speechifyVersion"></param>

@@ -27,13 +27,13 @@ namespace Speechify
             };
         partial void PrepareUpdateLabelArguments(
             global::System.Net.Http.HttpClient httpClient,
-            ref string id,
+            ref string ivrMenuId,
             ref string? speechifyVersion,
             global::Speechify.UpdateIVRMenuLabelRequest request);
         partial void PrepareUpdateLabelRequest(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpRequestMessage httpRequestMessage,
-            string id,
+            string ivrMenuId,
             string? speechifyVersion,
             global::Speechify.UpdateIVRMenuLabelRequest request);
         partial void ProcessUpdateLabelResponse(
@@ -53,14 +53,14 @@ namespace Speechify
         /// time to surface the option semantically. Unknown DTMF values<br/>
         /// are a no-op (the response echoes the unchanged menu).
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="ivrMenuId"></param>
         /// <param name="speechifyVersion"></param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
         public async global::System.Threading.Tasks.Task<global::Speechify.IVRMenu> UpdateLabelAsync(
-            string id,
+            string ivrMenuId,
 
             global::Speechify.UpdateIVRMenuLabelRequest request,
             string? speechifyVersion = default,
@@ -68,7 +68,7 @@ namespace Speechify
             global::System.Threading.CancellationToken cancellationToken = default)
         {
             var __response = await UpdateLabelAsResponseAsync(
-                id: id,
+                ivrMenuId: ivrMenuId,
 
                 request: request,
                 speechifyVersion: speechifyVersion,
@@ -86,14 +86,14 @@ namespace Speechify
         /// time to surface the option semantically. Unknown DTMF values<br/>
         /// are a no-op (the response echoes the unchanged menu).
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="ivrMenuId"></param>
         /// <param name="speechifyVersion"></param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
         public async global::System.Threading.Tasks.Task<global::Speechify.AutoSDKHttpResponse<global::Speechify.IVRMenu>> UpdateLabelAsResponseAsync(
-            string id,
+            string ivrMenuId,
 
             global::Speechify.UpdateIVRMenuLabelRequest request,
             string? speechifyVersion = default,
@@ -106,7 +106,7 @@ namespace Speechify
                 client: HttpClient);
             PrepareUpdateLabelArguments(
                 httpClient: HttpClient,
-                id: ref id,
+                ivrMenuId: ref ivrMenuId,
                 speechifyVersion: ref speechifyVersion,
                 request: request);
 
@@ -134,7 +134,7 @@ namespace Speechify
             {
 
                             var __pathBuilder = new global::Speechify.PathBuilder(
-                                path: $"/v1/agents/ivr-menus/{id}",
+                                path: $"/v1/agents/ivr-menus/{ivrMenuId}",
                                 baseUri: HttpClient.BaseAddress);
                             var __path = __pathBuilder.ToString();
                 __path = global::Speechify.AutoSDKRequestOptionsSupport.AppendQueryParameters(
@@ -188,7 +188,7 @@ namespace Speechify
                 PrepareUpdateLabelRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
-                    id: id!,
+                    ivrMenuId: ivrMenuId!,
                     speechifyVersion: speechifyVersion,
                     request: request);
 
@@ -209,7 +209,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "UpdateLabel",
                                 methodName: "UpdateLabelAsync",
-                                pathTemplate: "$\"/v1/agents/ivr-menus/{id}\"",
+                                pathTemplate: "$\"/v1/agents/ivr-menus/{ivrMenuId}\"",
                                 httpMethod: "PATCH",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -243,7 +243,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "UpdateLabel",
                                 methodName: "UpdateLabelAsync",
-                                pathTemplate: "$\"/v1/agents/ivr-menus/{id}\"",
+                                pathTemplate: "$\"/v1/agents/ivr-menus/{ivrMenuId}\"",
                                 httpMethod: "PATCH",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -284,7 +284,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "UpdateLabel",
                                 methodName: "UpdateLabelAsync",
-                                pathTemplate: "$\"/v1/agents/ivr-menus/{id}\"",
+                                pathTemplate: "$\"/v1/agents/ivr-menus/{ivrMenuId}\"",
                                 httpMethod: "PATCH",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -332,7 +332,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "UpdateLabel",
                                 methodName: "UpdateLabelAsync",
-                                pathTemplate: "$\"/v1/agents/ivr-menus/{id}\"",
+                                pathTemplate: "$\"/v1/agents/ivr-menus/{ivrMenuId}\"",
                                 httpMethod: "PATCH",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -354,7 +354,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "UpdateLabel",
                                 methodName: "UpdateLabelAsync",
-                                pathTemplate: "$\"/v1/agents/ivr-menus/{id}\"",
+                                pathTemplate: "$\"/v1/agents/ivr-menus/{ivrMenuId}\"",
                                 httpMethod: "PATCH",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -584,7 +584,7 @@ namespace Speechify
         /// time to surface the option semantically. Unknown DTMF values<br/>
         /// are a no-op (the response echoes the unchanged menu).
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="ivrMenuId"></param>
         /// <param name="speechifyVersion"></param>
         /// <param name="dtmf">
         /// DTMF value of the option to relabel (e.g. "1", "*", "#").
@@ -596,7 +596,7 @@ namespace Speechify
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::System.InvalidOperationException"></exception>
         public async global::System.Threading.Tasks.Task<global::Speechify.IVRMenu> UpdateLabelAsync(
-            string id,
+            string ivrMenuId,
             string dtmf,
             string label,
             string? speechifyVersion = default,
@@ -610,7 +610,7 @@ namespace Speechify
             };
 
             return await UpdateLabelAsync(
-                id: id,
+                ivrMenuId: ivrMenuId,
                 speechifyVersion: speechifyVersion,
                 request: __request,
                 requestOptions: requestOptions,

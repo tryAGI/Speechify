@@ -27,12 +27,12 @@ namespace Speechify
             };
         partial void PrepareDeleteArguments(
             global::System.Net.Http.HttpClient httpClient,
-            ref string id,
+            ref string voiceId,
             ref string? speechifyVersion);
         partial void PrepareDeleteRequest(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpRequestMessage httpRequestMessage,
-            string id,
+            string voiceId,
             string? speechifyVersion);
         partial void ProcessDeleteResponse(
             global::System.Net.Http.HttpClient httpClient,
@@ -47,19 +47,19 @@ namespace Speechify
         /// Delete Voice<br/>
         /// Delete a personal (cloned) voice
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="voiceId"></param>
         /// <param name="speechifyVersion"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
         public async global::System.Threading.Tasks.Task<string> DeleteAsync(
-            string id,
+            string voiceId,
             string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
             var __response = await DeleteAsResponseAsync(
-                id: id,
+                voiceId: voiceId,
                 speechifyVersion: speechifyVersion,
                 requestOptions: requestOptions,
                 cancellationToken: cancellationToken
@@ -71,13 +71,13 @@ namespace Speechify
         /// Delete Voice<br/>
         /// Delete a personal (cloned) voice
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="voiceId"></param>
         /// <param name="speechifyVersion"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
         public async global::System.Threading.Tasks.Task<global::Speechify.AutoSDKHttpResponse<string>> DeleteAsResponseAsync(
-            string id,
+            string voiceId,
             string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
@@ -86,7 +86,7 @@ namespace Speechify
                 client: HttpClient);
             PrepareDeleteArguments(
                 httpClient: HttpClient,
-                id: ref id,
+                voiceId: ref voiceId,
                 speechifyVersion: ref speechifyVersion);
 
 
@@ -113,7 +113,7 @@ namespace Speechify
             {
 
                             var __pathBuilder = new global::Speechify.PathBuilder(
-                                path: $"/v1/voices/{id}",
+                                path: $"/v1/voices/{voiceId}",
                                 baseUri: HttpClient.BaseAddress);
                             var __path = __pathBuilder.ToString();
                 __path = global::Speechify.AutoSDKRequestOptionsSupport.AppendQueryParameters(
@@ -161,7 +161,7 @@ namespace Speechify
                 PrepareDeleteRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
-                    id: id!,
+                    voiceId: voiceId!,
                     speechifyVersion: speechifyVersion);
 
                 return __httpRequest;
@@ -181,7 +181,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "Delete",
                                 methodName: "DeleteAsync",
-                                pathTemplate: "$\"/v1/voices/{id}\"",
+                                pathTemplate: "$\"/v1/voices/{voiceId}\"",
                                 httpMethod: "DELETE",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -215,7 +215,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "Delete",
                                 methodName: "DeleteAsync",
-                                pathTemplate: "$\"/v1/voices/{id}\"",
+                                pathTemplate: "$\"/v1/voices/{voiceId}\"",
                                 httpMethod: "DELETE",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -256,7 +256,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "Delete",
                                 methodName: "DeleteAsync",
-                                pathTemplate: "$\"/v1/voices/{id}\"",
+                                pathTemplate: "$\"/v1/voices/{voiceId}\"",
                                 httpMethod: "DELETE",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -304,7 +304,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "Delete",
                                 methodName: "DeleteAsync",
-                                pathTemplate: "$\"/v1/voices/{id}\"",
+                                pathTemplate: "$\"/v1/voices/{voiceId}\"",
                                 httpMethod: "DELETE",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -326,7 +326,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "Delete",
                                 methodName: "DeleteAsync",
-                                pathTemplate: "$\"/v1/voices/{id}\"",
+                                pathTemplate: "$\"/v1/voices/{voiceId}\"",
                                 httpMethod: "DELETE",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,

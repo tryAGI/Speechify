@@ -27,13 +27,13 @@ namespace Speechify
             };
         partial void PrepareUploadDocumentArguments(
             global::System.Net.Http.HttpClient httpClient,
-            ref string id,
+            ref string kbId,
             ref string? speechifyVersion,
             global::Speechify.UploadDocumentRequest request);
         partial void PrepareUploadDocumentRequest(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpRequestMessage httpRequestMessage,
-            string id,
+            string kbId,
             string? speechifyVersion,
             global::Speechify.UploadDocumentRequest request);
         partial void ProcessUploadDocumentResponse(
@@ -52,14 +52,14 @@ namespace Speechify
         /// indexed synchronously; expect a few seconds per MB of input.<br/>
         /// Maximum 10 MB per upload.
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="kbId"></param>
         /// <param name="speechifyVersion"></param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
         public async global::System.Threading.Tasks.Task<global::Speechify.KnowledgeBaseDocument> UploadDocumentAsync(
-            string id,
+            string kbId,
 
             global::Speechify.UploadDocumentRequest request,
             string? speechifyVersion = default,
@@ -67,7 +67,7 @@ namespace Speechify
             global::System.Threading.CancellationToken cancellationToken = default)
         {
             var __response = await UploadDocumentAsResponseAsync(
-                id: id,
+                kbId: kbId,
 
                 request: request,
                 speechifyVersion: speechifyVersion,
@@ -84,14 +84,14 @@ namespace Speechify
         /// indexed synchronously; expect a few seconds per MB of input.<br/>
         /// Maximum 10 MB per upload.
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="kbId"></param>
         /// <param name="speechifyVersion"></param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
         public async global::System.Threading.Tasks.Task<global::Speechify.AutoSDKHttpResponse<global::Speechify.KnowledgeBaseDocument>> UploadDocumentAsResponseAsync(
-            string id,
+            string kbId,
 
             global::Speechify.UploadDocumentRequest request,
             string? speechifyVersion = default,
@@ -104,7 +104,7 @@ namespace Speechify
                 client: HttpClient);
             PrepareUploadDocumentArguments(
                 httpClient: HttpClient,
-                id: ref id,
+                kbId: ref kbId,
                 speechifyVersion: ref speechifyVersion,
                 request: request);
 
@@ -132,7 +132,7 @@ namespace Speechify
             {
 
                             var __pathBuilder = new global::Speechify.PathBuilder(
-                                path: $"/v1/agents/knowledge-bases/{id}/documents",
+                                path: $"/v1/agents/knowledge-bases/{kbId}/documents",
                                 baseUri: HttpClient.BaseAddress);
                             var __path = __pathBuilder.ToString();
                 __path = global::Speechify.AutoSDKRequestOptionsSupport.AppendQueryParameters(
@@ -172,8 +172,8 @@ namespace Speechify
 
                             var __httpRequestContent = new global::System.Net.Http.MultipartFormDataContent();
                             __httpRequestContent.Add(
-                                content: new global::System.Net.Http.StringContent(id ?? string.Empty),
-                                name: "\"id\"");
+                                content: new global::System.Net.Http.StringContent(kbId ?? string.Empty),
+                                name: "\"kb_id\"");
 
                             if (speechifyVersion != default)
                             {
@@ -234,7 +234,7 @@ namespace Speechify
                 PrepareUploadDocumentRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
-                    id: id!,
+                    kbId: kbId!,
                     speechifyVersion: speechifyVersion,
                     request: request);
 
@@ -255,7 +255,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "UploadDocument",
                                 methodName: "UploadDocumentAsync",
-                                pathTemplate: "$\"/v1/agents/knowledge-bases/{id}/documents\"",
+                                pathTemplate: "$\"/v1/agents/knowledge-bases/{kbId}/documents\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -289,7 +289,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "UploadDocument",
                                 methodName: "UploadDocumentAsync",
-                                pathTemplate: "$\"/v1/agents/knowledge-bases/{id}/documents\"",
+                                pathTemplate: "$\"/v1/agents/knowledge-bases/{kbId}/documents\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -330,7 +330,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "UploadDocument",
                                 methodName: "UploadDocumentAsync",
-                                pathTemplate: "$\"/v1/agents/knowledge-bases/{id}/documents\"",
+                                pathTemplate: "$\"/v1/agents/knowledge-bases/{kbId}/documents\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -378,7 +378,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "UploadDocument",
                                 methodName: "UploadDocumentAsync",
-                                pathTemplate: "$\"/v1/agents/knowledge-bases/{id}/documents\"",
+                                pathTemplate: "$\"/v1/agents/knowledge-bases/{kbId}/documents\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -400,7 +400,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "UploadDocument",
                                 methodName: "UploadDocumentAsync",
-                                pathTemplate: "$\"/v1/agents/knowledge-bases/{id}/documents\"",
+                                pathTemplate: "$\"/v1/agents/knowledge-bases/{kbId}/documents\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -666,7 +666,7 @@ namespace Speechify
         /// indexed synchronously; expect a few seconds per MB of input.<br/>
         /// Maximum 10 MB per upload.
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="kbId"></param>
         /// <param name="speechifyVersion"></param>
         /// <param name="file"></param>
         /// <param name="filename"></param>
@@ -674,7 +674,7 @@ namespace Speechify
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::System.InvalidOperationException"></exception>
         public async global::System.Threading.Tasks.Task<global::Speechify.KnowledgeBaseDocument> UploadDocumentAsync(
-            string id,
+            string kbId,
             byte[] file,
             string filename,
             string? speechifyVersion = default,
@@ -688,7 +688,7 @@ namespace Speechify
             };
 
             return await UploadDocumentAsync(
-                id: id,
+                kbId: kbId,
                 speechifyVersion: speechifyVersion,
                 request: __request,
                 requestOptions: requestOptions,
@@ -702,7 +702,7 @@ namespace Speechify
         /// indexed synchronously; expect a few seconds per MB of input.<br/>
         /// Maximum 10 MB per upload.
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="kbId"></param>
         /// <param name="speechifyVersion"></param>
         /// <param name="file">
         /// The stream to send as the multipart 'file' file part.
@@ -712,7 +712,7 @@ namespace Speechify
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
         public async global::System.Threading.Tasks.Task<global::Speechify.KnowledgeBaseDocument> UploadDocumentAsync(
-            string id,
+            string kbId,
             global::System.IO.Stream file,
             string filename,
             string? speechifyVersion = default,
@@ -730,7 +730,7 @@ namespace Speechify
                 client: HttpClient);
             PrepareUploadDocumentArguments(
                 httpClient: HttpClient,
-                id: ref id,
+                kbId: ref kbId,
                 speechifyVersion: ref speechifyVersion,
                 request: request);
 
@@ -758,7 +758,7 @@ namespace Speechify
             {
 
                             var __pathBuilder = new global::Speechify.PathBuilder(
-                                path: $"/v1/agents/knowledge-bases/{id}/documents",
+                                path: $"/v1/agents/knowledge-bases/{kbId}/documents",
                                 baseUri: HttpClient.BaseAddress);
                             var __path = __pathBuilder.ToString();
                 __path = global::Speechify.AutoSDKRequestOptionsSupport.AppendQueryParameters(
@@ -798,8 +798,8 @@ namespace Speechify
 
                             var __httpRequestContent = new global::System.Net.Http.MultipartFormDataContent();
                             __httpRequestContent.Add(
-                                content: new global::System.Net.Http.StringContent(id ?? string.Empty),
-                                name: "\"id\"");
+                                content: new global::System.Net.Http.StringContent(kbId ?? string.Empty),
+                                name: "\"kb_id\"");
 
                             if (speechifyVersion != default)
                             {
@@ -860,7 +860,7 @@ namespace Speechify
                 PrepareUploadDocumentRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
-                    id: id!,
+                    kbId: kbId!,
                     speechifyVersion: speechifyVersion,
                     request: request);
 
@@ -881,7 +881,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "UploadDocument",
                                 methodName: "UploadDocumentAsync",
-                                pathTemplate: "$\"/v1/agents/knowledge-bases/{id}/documents\"",
+                                pathTemplate: "$\"/v1/agents/knowledge-bases/{kbId}/documents\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -915,7 +915,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "UploadDocument",
                                 methodName: "UploadDocumentAsync",
-                                pathTemplate: "$\"/v1/agents/knowledge-bases/{id}/documents\"",
+                                pathTemplate: "$\"/v1/agents/knowledge-bases/{kbId}/documents\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -956,7 +956,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "UploadDocument",
                                 methodName: "UploadDocumentAsync",
-                                pathTemplate: "$\"/v1/agents/knowledge-bases/{id}/documents\"",
+                                pathTemplate: "$\"/v1/agents/knowledge-bases/{kbId}/documents\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -1004,7 +1004,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "UploadDocument",
                                 methodName: "UploadDocumentAsync",
-                                pathTemplate: "$\"/v1/agents/knowledge-bases/{id}/documents\"",
+                                pathTemplate: "$\"/v1/agents/knowledge-bases/{kbId}/documents\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -1026,7 +1026,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "UploadDocument",
                                 methodName: "UploadDocumentAsync",
-                                pathTemplate: "$\"/v1/agents/knowledge-bases/{id}/documents\"",
+                                pathTemplate: "$\"/v1/agents/knowledge-bases/{kbId}/documents\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -1284,7 +1284,7 @@ namespace Speechify
         /// indexed synchronously; expect a few seconds per MB of input.<br/>
         /// Maximum 10 MB per upload.
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="kbId"></param>
         /// <param name="speechifyVersion"></param>
         /// <param name="file">
         /// The stream to send as the multipart 'file' file part.
@@ -1294,7 +1294,7 @@ namespace Speechify
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
         public async global::System.Threading.Tasks.Task<global::Speechify.AutoSDKHttpResponse<global::Speechify.KnowledgeBaseDocument>> UploadDocumentAsResponseAsync(
-            string id,
+            string kbId,
             global::System.IO.Stream file,
             string filename,
             string? speechifyVersion = default,
@@ -1312,7 +1312,7 @@ namespace Speechify
                 client: HttpClient);
             PrepareUploadDocumentArguments(
                 httpClient: HttpClient,
-                id: ref id,
+                kbId: ref kbId,
                 speechifyVersion: ref speechifyVersion,
                 request: request);
 
@@ -1340,7 +1340,7 @@ namespace Speechify
             {
 
                             var __pathBuilder = new global::Speechify.PathBuilder(
-                                path: $"/v1/agents/knowledge-bases/{id}/documents",
+                                path: $"/v1/agents/knowledge-bases/{kbId}/documents",
                                 baseUri: HttpClient.BaseAddress);
                             var __path = __pathBuilder.ToString();
                 __path = global::Speechify.AutoSDKRequestOptionsSupport.AppendQueryParameters(
@@ -1380,8 +1380,8 @@ namespace Speechify
 
                             var __httpRequestContent = new global::System.Net.Http.MultipartFormDataContent();
                             __httpRequestContent.Add(
-                                content: new global::System.Net.Http.StringContent(id ?? string.Empty),
-                                name: "\"id\"");
+                                content: new global::System.Net.Http.StringContent(kbId ?? string.Empty),
+                                name: "\"kb_id\"");
 
                             if (speechifyVersion != default)
                             {
@@ -1442,7 +1442,7 @@ namespace Speechify
                 PrepareUploadDocumentRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
-                    id: id!,
+                    kbId: kbId!,
                     speechifyVersion: speechifyVersion,
                     request: request);
 
@@ -1463,7 +1463,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "UploadDocument",
                                 methodName: "UploadDocumentAsync",
-                                pathTemplate: "$\"/v1/agents/knowledge-bases/{id}/documents\"",
+                                pathTemplate: "$\"/v1/agents/knowledge-bases/{kbId}/documents\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -1497,7 +1497,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "UploadDocument",
                                 methodName: "UploadDocumentAsync",
-                                pathTemplate: "$\"/v1/agents/knowledge-bases/{id}/documents\"",
+                                pathTemplate: "$\"/v1/agents/knowledge-bases/{kbId}/documents\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -1538,7 +1538,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "UploadDocument",
                                 methodName: "UploadDocumentAsync",
-                                pathTemplate: "$\"/v1/agents/knowledge-bases/{id}/documents\"",
+                                pathTemplate: "$\"/v1/agents/knowledge-bases/{kbId}/documents\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -1586,7 +1586,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "UploadDocument",
                                 methodName: "UploadDocumentAsync",
-                                pathTemplate: "$\"/v1/agents/knowledge-bases/{id}/documents\"",
+                                pathTemplate: "$\"/v1/agents/knowledge-bases/{kbId}/documents\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -1608,7 +1608,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "UploadDocument",
                                 methodName: "UploadDocumentAsync",
-                                pathTemplate: "$\"/v1/agents/knowledge-bases/{id}/documents\"",
+                                pathTemplate: "$\"/v1/agents/knowledge-bases/{kbId}/documents\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,

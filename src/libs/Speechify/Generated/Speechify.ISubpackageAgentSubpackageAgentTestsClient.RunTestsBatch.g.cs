@@ -10,7 +10,7 @@ namespace Speechify
         /// without an `agent_id` fan out to every agent the test is<br/>
         /// attached to. Total expanded runs are capped at 100 per call.<br/>
         /// Each entry in the response is a queued run; poll<br/>
-        /// `GET /v1/agents/tests/runs/{id}` for each.
+        /// `GET /v1/agents/tests/runs/{test_run_id}` for each.
         /// </summary>
         /// <param name="speechifyVersion"></param>
         /// <param name="request"></param>
@@ -29,7 +29,7 @@ namespace Speechify
         /// without an `agent_id` fan out to every agent the test is<br/>
         /// attached to. Total expanded runs are capped at 100 per call.<br/>
         /// Each entry in the response is a queued run; poll<br/>
-        /// `GET /v1/agents/tests/runs/{id}` for each.
+        /// `GET /v1/agents/tests/runs/{test_run_id}` for each.
         /// </summary>
         /// <param name="speechifyVersion"></param>
         /// <param name="request"></param>
@@ -48,7 +48,7 @@ namespace Speechify
         /// without an `agent_id` fan out to every agent the test is<br/>
         /// attached to. Total expanded runs are capped at 100 per call.<br/>
         /// Each entry in the response is a queued run; poll<br/>
-        /// `GET /v1/agents/tests/runs/{id}` for each.
+        /// `GET /v1/agents/tests/runs/{test_run_id}` for each.
         /// </summary>
         /// <param name="speechifyVersion"></param>
         /// <param name="entries"></param>

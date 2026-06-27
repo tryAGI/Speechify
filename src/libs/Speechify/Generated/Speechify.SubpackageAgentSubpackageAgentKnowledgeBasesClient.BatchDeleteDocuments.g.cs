@@ -27,13 +27,13 @@ namespace Speechify
             };
         partial void PrepareBatchDeleteDocumentsArguments(
             global::System.Net.Http.HttpClient httpClient,
-            ref string id,
+            ref string kbId,
             ref string? speechifyVersion,
             global::Speechify.BatchDeleteDocumentsRequest request);
         partial void PrepareBatchDeleteDocumentsRequest(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpRequestMessage httpRequestMessage,
-            string id,
+            string kbId,
             string? speechifyVersion,
             global::Speechify.BatchDeleteDocumentsRequest request);
         partial void ProcessBatchDeleteDocumentsResponse(
@@ -52,14 +52,14 @@ namespace Speechify
         /// the request with 400 before any rows are touched. Capped at<br/>
         /// 200 ids per call.
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="kbId"></param>
         /// <param name="speechifyVersion"></param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
         public async global::System.Threading.Tasks.Task<string> BatchDeleteDocumentsAsync(
-            string id,
+            string kbId,
 
             global::Speechify.BatchDeleteDocumentsRequest request,
             string? speechifyVersion = default,
@@ -67,7 +67,7 @@ namespace Speechify
             global::System.Threading.CancellationToken cancellationToken = default)
         {
             var __response = await BatchDeleteDocumentsAsResponseAsync(
-                id: id,
+                kbId: kbId,
 
                 request: request,
                 speechifyVersion: speechifyVersion,
@@ -84,14 +84,14 @@ namespace Speechify
         /// the request with 400 before any rows are touched. Capped at<br/>
         /// 200 ids per call.
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="kbId"></param>
         /// <param name="speechifyVersion"></param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
         public async global::System.Threading.Tasks.Task<global::Speechify.AutoSDKHttpResponse<string>> BatchDeleteDocumentsAsResponseAsync(
-            string id,
+            string kbId,
 
             global::Speechify.BatchDeleteDocumentsRequest request,
             string? speechifyVersion = default,
@@ -104,7 +104,7 @@ namespace Speechify
                 client: HttpClient);
             PrepareBatchDeleteDocumentsArguments(
                 httpClient: HttpClient,
-                id: ref id,
+                kbId: ref kbId,
                 speechifyVersion: ref speechifyVersion,
                 request: request);
 
@@ -132,7 +132,7 @@ namespace Speechify
             {
 
                             var __pathBuilder = new global::Speechify.PathBuilder(
-                                path: $"/v1/agents/knowledge-bases/{id}/documents/batch",
+                                path: $"/v1/agents/knowledge-bases/{kbId}/documents/batch",
                                 baseUri: HttpClient.BaseAddress);
                             var __path = __pathBuilder.ToString();
                 __path = global::Speechify.AutoSDKRequestOptionsSupport.AppendQueryParameters(
@@ -186,7 +186,7 @@ namespace Speechify
                 PrepareBatchDeleteDocumentsRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
-                    id: id!,
+                    kbId: kbId!,
                     speechifyVersion: speechifyVersion,
                     request: request);
 
@@ -207,7 +207,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "BatchDeleteDocuments",
                                 methodName: "BatchDeleteDocumentsAsync",
-                                pathTemplate: "$\"/v1/agents/knowledge-bases/{id}/documents/batch\"",
+                                pathTemplate: "$\"/v1/agents/knowledge-bases/{kbId}/documents/batch\"",
                                 httpMethod: "DELETE",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -241,7 +241,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "BatchDeleteDocuments",
                                 methodName: "BatchDeleteDocumentsAsync",
-                                pathTemplate: "$\"/v1/agents/knowledge-bases/{id}/documents/batch\"",
+                                pathTemplate: "$\"/v1/agents/knowledge-bases/{kbId}/documents/batch\"",
                                 httpMethod: "DELETE",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -282,7 +282,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "BatchDeleteDocuments",
                                 methodName: "BatchDeleteDocumentsAsync",
-                                pathTemplate: "$\"/v1/agents/knowledge-bases/{id}/documents/batch\"",
+                                pathTemplate: "$\"/v1/agents/knowledge-bases/{kbId}/documents/batch\"",
                                 httpMethod: "DELETE",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -330,7 +330,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "BatchDeleteDocuments",
                                 methodName: "BatchDeleteDocumentsAsync",
-                                pathTemplate: "$\"/v1/agents/knowledge-bases/{id}/documents/batch\"",
+                                pathTemplate: "$\"/v1/agents/knowledge-bases/{kbId}/documents/batch\"",
                                 httpMethod: "DELETE",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -352,7 +352,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "BatchDeleteDocuments",
                                 methodName: "BatchDeleteDocumentsAsync",
-                                pathTemplate: "$\"/v1/agents/knowledge-bases/{id}/documents/batch\"",
+                                pathTemplate: "$\"/v1/agents/knowledge-bases/{kbId}/documents/batch\"",
                                 httpMethod: "DELETE",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -577,14 +577,14 @@ namespace Speechify
         /// the request with 400 before any rows are touched. Capped at<br/>
         /// 200 ids per call.
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="kbId"></param>
         /// <param name="speechifyVersion"></param>
         /// <param name="ids"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::System.InvalidOperationException"></exception>
         public async global::System.Threading.Tasks.Task<string> BatchDeleteDocumentsAsync(
-            string id,
+            string kbId,
             global::System.Collections.Generic.IList<string> ids,
             string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
@@ -596,7 +596,7 @@ namespace Speechify
             };
 
             return await BatchDeleteDocumentsAsync(
-                id: id,
+                kbId: kbId,
                 speechifyVersion: speechifyVersion,
                 request: __request,
                 requestOptions: requestOptions,

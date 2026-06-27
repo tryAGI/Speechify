@@ -4,7 +4,7 @@
 namespace Speechify
 {
     /// <summary>
-    /// Optional body for `POST /v1/agents/{id}/sessions`. Widget embeds usually pass nothing.
+    /// Optional body for `POST /v1/agents/{agent_id}/sessions`. Widget embeds usually pass nothing.
     /// </summary>
     public sealed partial class CreateSessionRequest
     {

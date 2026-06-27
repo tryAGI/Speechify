@@ -27,14 +27,14 @@ namespace Speechify
             };
         partial void PrepareDeleteDocumentArguments(
             global::System.Net.Http.HttpClient httpClient,
-            ref string id,
-            ref string docId,
+            ref string kbId,
+            ref string documentId,
             ref string? speechifyVersion);
         partial void PrepareDeleteDocumentRequest(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpRequestMessage httpRequestMessage,
-            string id,
-            string docId,
+            string kbId,
+            string documentId,
             string? speechifyVersion);
         partial void ProcessDeleteDocumentResponse(
             global::System.Net.Http.HttpClient httpClient,
@@ -49,22 +49,22 @@ namespace Speechify
         /// Delete Knowledge Base Document<br/>
         /// Delete a document and all its chunks.
         /// </summary>
-        /// <param name="id"></param>
-        /// <param name="docId"></param>
+        /// <param name="kbId"></param>
+        /// <param name="documentId"></param>
         /// <param name="speechifyVersion"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
         public async global::System.Threading.Tasks.Task<string> DeleteDocumentAsync(
-            string id,
-            string docId,
+            string kbId,
+            string documentId,
             string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
             var __response = await DeleteDocumentAsResponseAsync(
-                id: id,
-                docId: docId,
+                kbId: kbId,
+                documentId: documentId,
                 speechifyVersion: speechifyVersion,
                 requestOptions: requestOptions,
                 cancellationToken: cancellationToken
@@ -76,15 +76,15 @@ namespace Speechify
         /// Delete Knowledge Base Document<br/>
         /// Delete a document and all its chunks.
         /// </summary>
-        /// <param name="id"></param>
-        /// <param name="docId"></param>
+        /// <param name="kbId"></param>
+        /// <param name="documentId"></param>
         /// <param name="speechifyVersion"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
         public async global::System.Threading.Tasks.Task<global::Speechify.AutoSDKHttpResponse<string>> DeleteDocumentAsResponseAsync(
-            string id,
-            string docId,
+            string kbId,
+            string documentId,
             string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
@@ -93,8 +93,8 @@ namespace Speechify
                 client: HttpClient);
             PrepareDeleteDocumentArguments(
                 httpClient: HttpClient,
-                id: ref id,
-                docId: ref docId,
+                kbId: ref kbId,
+                documentId: ref documentId,
                 speechifyVersion: ref speechifyVersion);
 
 
@@ -121,7 +121,7 @@ namespace Speechify
             {
 
                             var __pathBuilder = new global::Speechify.PathBuilder(
-                                path: $"/v1/agents/knowledge-bases/{id}/documents/{docId}",
+                                path: $"/v1/agents/knowledge-bases/{kbId}/documents/{documentId}",
                                 baseUri: HttpClient.BaseAddress);
                             var __path = __pathBuilder.ToString();
                 __path = global::Speechify.AutoSDKRequestOptionsSupport.AppendQueryParameters(
@@ -169,8 +169,8 @@ namespace Speechify
                 PrepareDeleteDocumentRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
-                    id: id!,
-                    docId: docId!,
+                    kbId: kbId!,
+                    documentId: documentId!,
                     speechifyVersion: speechifyVersion);
 
                 return __httpRequest;
@@ -190,7 +190,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "DeleteDocument",
                                 methodName: "DeleteDocumentAsync",
-                                pathTemplate: "$\"/v1/agents/knowledge-bases/{id}/documents/{docId}\"",
+                                pathTemplate: "$\"/v1/agents/knowledge-bases/{kbId}/documents/{documentId}\"",
                                 httpMethod: "DELETE",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -224,7 +224,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "DeleteDocument",
                                 methodName: "DeleteDocumentAsync",
-                                pathTemplate: "$\"/v1/agents/knowledge-bases/{id}/documents/{docId}\"",
+                                pathTemplate: "$\"/v1/agents/knowledge-bases/{kbId}/documents/{documentId}\"",
                                 httpMethod: "DELETE",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -265,7 +265,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "DeleteDocument",
                                 methodName: "DeleteDocumentAsync",
-                                pathTemplate: "$\"/v1/agents/knowledge-bases/{id}/documents/{docId}\"",
+                                pathTemplate: "$\"/v1/agents/knowledge-bases/{kbId}/documents/{documentId}\"",
                                 httpMethod: "DELETE",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -313,7 +313,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "DeleteDocument",
                                 methodName: "DeleteDocumentAsync",
-                                pathTemplate: "$\"/v1/agents/knowledge-bases/{id}/documents/{docId}\"",
+                                pathTemplate: "$\"/v1/agents/knowledge-bases/{kbId}/documents/{documentId}\"",
                                 httpMethod: "DELETE",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -335,7 +335,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "DeleteDocument",
                                 methodName: "DeleteDocumentAsync",
-                                pathTemplate: "$\"/v1/agents/knowledge-bases/{id}/documents/{docId}\"",
+                                pathTemplate: "$\"/v1/agents/knowledge-bases/{kbId}/documents/{documentId}\"",
                                 httpMethod: "DELETE",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,

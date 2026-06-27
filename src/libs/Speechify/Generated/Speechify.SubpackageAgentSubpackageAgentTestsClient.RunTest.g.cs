@@ -27,13 +27,13 @@ namespace Speechify
             };
         partial void PrepareRunTestArguments(
             global::System.Net.Http.HttpClient httpClient,
-            ref string id,
+            ref string testId,
             ref string? speechifyVersion,
             global::Speechify.RunTestRequest request);
         partial void PrepareRunTestRequest(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpRequestMessage httpRequestMessage,
-            string id,
+            string testId,
             string? speechifyVersion,
             global::Speechify.RunTestRequest request);
         partial void ProcessRunTestResponse(
@@ -48,17 +48,17 @@ namespace Speechify
         /// <summary>
         /// Run Agent Test<br/>
         /// Enqueue a single run of the test. The returned run starts in<br/>
-        /// `queued` status. Poll `GET /v1/agents/tests/runs/{id}` until the status<br/>
+        /// `queued` status. Poll `GET /v1/agents/tests/runs/{test_run_id}` until the status<br/>
         /// reaches a terminal state (`passed`, `failed`, or `error`).
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="testId"></param>
         /// <param name="speechifyVersion"></param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
         public async global::System.Threading.Tasks.Task<global::Speechify.AgentTestRun> RunTestAsync(
-            string id,
+            string testId,
 
             global::Speechify.RunTestRequest request,
             string? speechifyVersion = default,
@@ -66,7 +66,7 @@ namespace Speechify
             global::System.Threading.CancellationToken cancellationToken = default)
         {
             var __response = await RunTestAsResponseAsync(
-                id: id,
+                testId: testId,
 
                 request: request,
                 speechifyVersion: speechifyVersion,
@@ -79,17 +79,17 @@ namespace Speechify
         /// <summary>
         /// Run Agent Test<br/>
         /// Enqueue a single run of the test. The returned run starts in<br/>
-        /// `queued` status. Poll `GET /v1/agents/tests/runs/{id}` until the status<br/>
+        /// `queued` status. Poll `GET /v1/agents/tests/runs/{test_run_id}` until the status<br/>
         /// reaches a terminal state (`passed`, `failed`, or `error`).
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="testId"></param>
         /// <param name="speechifyVersion"></param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
         public async global::System.Threading.Tasks.Task<global::Speechify.AutoSDKHttpResponse<global::Speechify.AgentTestRun>> RunTestAsResponseAsync(
-            string id,
+            string testId,
 
             global::Speechify.RunTestRequest request,
             string? speechifyVersion = default,
@@ -102,7 +102,7 @@ namespace Speechify
                 client: HttpClient);
             PrepareRunTestArguments(
                 httpClient: HttpClient,
-                id: ref id,
+                testId: ref testId,
                 speechifyVersion: ref speechifyVersion,
                 request: request);
 
@@ -130,7 +130,7 @@ namespace Speechify
             {
 
                             var __pathBuilder = new global::Speechify.PathBuilder(
-                                path: $"/v1/agents/tests/{id}/runs",
+                                path: $"/v1/agents/tests/{testId}/runs",
                                 baseUri: HttpClient.BaseAddress);
                             var __path = __pathBuilder.ToString();
                 __path = global::Speechify.AutoSDKRequestOptionsSupport.AppendQueryParameters(
@@ -184,7 +184,7 @@ namespace Speechify
                 PrepareRunTestRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
-                    id: id!,
+                    testId: testId!,
                     speechifyVersion: speechifyVersion,
                     request: request);
 
@@ -205,7 +205,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "RunTest",
                                 methodName: "RunTestAsync",
-                                pathTemplate: "$\"/v1/agents/tests/{id}/runs\"",
+                                pathTemplate: "$\"/v1/agents/tests/{testId}/runs\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -239,7 +239,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "RunTest",
                                 methodName: "RunTestAsync",
-                                pathTemplate: "$\"/v1/agents/tests/{id}/runs\"",
+                                pathTemplate: "$\"/v1/agents/tests/{testId}/runs\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -280,7 +280,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "RunTest",
                                 methodName: "RunTestAsync",
-                                pathTemplate: "$\"/v1/agents/tests/{id}/runs\"",
+                                pathTemplate: "$\"/v1/agents/tests/{testId}/runs\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -328,7 +328,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "RunTest",
                                 methodName: "RunTestAsync",
-                                pathTemplate: "$\"/v1/agents/tests/{id}/runs\"",
+                                pathTemplate: "$\"/v1/agents/tests/{testId}/runs\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -350,7 +350,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "RunTest",
                                 methodName: "RunTestAsync",
-                                pathTemplate: "$\"/v1/agents/tests/{id}/runs\"",
+                                pathTemplate: "$\"/v1/agents/tests/{testId}/runs\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -538,10 +538,10 @@ namespace Speechify
         /// <summary>
         /// Run Agent Test<br/>
         /// Enqueue a single run of the test. The returned run starts in<br/>
-        /// `queued` status. Poll `GET /v1/agents/tests/runs/{id}` until the status<br/>
+        /// `queued` status. Poll `GET /v1/agents/tests/runs/{test_run_id}` until the status<br/>
         /// reaches a terminal state (`passed`, `failed`, or `error`).
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="testId"></param>
         /// <param name="speechifyVersion"></param>
         /// <param name="agentId">
         /// Run the test against this agent instead of the test's default agent.
@@ -550,7 +550,7 @@ namespace Speechify
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::System.InvalidOperationException"></exception>
         public async global::System.Threading.Tasks.Task<global::Speechify.AgentTestRun> RunTestAsync(
-            string id,
+            string testId,
             string? speechifyVersion = default,
             string? agentId = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
@@ -562,7 +562,7 @@ namespace Speechify
             };
 
             return await RunTestAsync(
-                id: id,
+                testId: testId,
                 speechifyVersion: speechifyVersion,
                 request: __request,
                 requestOptions: requestOptions,

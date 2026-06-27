@@ -14,13 +14,13 @@ namespace Speechify
         /// accompany every response so a privacy operator has direct<br/>
         /// evidence of the purge without re-querying.
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="callerId"></param>
         /// <param name="speechifyVersion"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
         global::System.Threading.Tasks.Task<global::Speechify.DeleteCallerResponse> DeleteAsync(
-            string id,
+            string callerId,
             string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
@@ -34,13 +34,13 @@ namespace Speechify
         /// accompany every response so a privacy operator has direct<br/>
         /// evidence of the purge without re-querying.
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="callerId"></param>
         /// <param name="speechifyVersion"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
         global::System.Threading.Tasks.Task<global::Speechify.AutoSDKHttpResponse<global::Speechify.DeleteCallerResponse>> DeleteAsResponseAsync(
-            string id,
+            string callerId,
             string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);

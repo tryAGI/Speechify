@@ -7,16 +7,16 @@ namespace Speechify
         /// <summary>
         /// Create Sitemap Import<br/>
         /// Kick off an async sitemap import. Returns 202 with the import<br/>
-        /// job row; client polls `GET /{id}/imports` for progress.
+        /// job row; client polls `GET /{kb_id}/imports` for progress.
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="kbId"></param>
         /// <param name="speechifyVersion"></param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
         global::System.Threading.Tasks.Task<global::Speechify.ImportJobResponse> CreateSitemapImportAsync(
-            string id,
+            string kbId,
 
             global::Speechify.CreateSitemapImportRequest request,
             string? speechifyVersion = default,
@@ -25,16 +25,16 @@ namespace Speechify
         /// <summary>
         /// Create Sitemap Import<br/>
         /// Kick off an async sitemap import. Returns 202 with the import<br/>
-        /// job row; client polls `GET /{id}/imports` for progress.
+        /// job row; client polls `GET /{kb_id}/imports` for progress.
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="kbId"></param>
         /// <param name="speechifyVersion"></param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
         global::System.Threading.Tasks.Task<global::Speechify.AutoSDKHttpResponse<global::Speechify.ImportJobResponse>> CreateSitemapImportAsResponseAsync(
-            string id,
+            string kbId,
 
             global::Speechify.CreateSitemapImportRequest request,
             string? speechifyVersion = default,
@@ -43,9 +43,9 @@ namespace Speechify
         /// <summary>
         /// Create Sitemap Import<br/>
         /// Kick off an async sitemap import. Returns 202 with the import<br/>
-        /// job row; client polls `GET /{id}/imports` for progress.
+        /// job row; client polls `GET /{kb_id}/imports` for progress.
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="kbId"></param>
         /// <param name="speechifyVersion"></param>
         /// <param name="url"></param>
         /// <param name="folderId">
@@ -56,7 +56,7 @@ namespace Speechify
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::System.InvalidOperationException"></exception>
         global::System.Threading.Tasks.Task<global::Speechify.ImportJobResponse> CreateSitemapImportAsync(
-            string id,
+            string kbId,
             string url,
             string? speechifyVersion = default,
             string? folderId = default,

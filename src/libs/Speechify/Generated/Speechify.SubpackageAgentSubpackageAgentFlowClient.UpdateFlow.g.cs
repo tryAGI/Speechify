@@ -27,13 +27,13 @@ namespace Speechify
             };
         partial void PrepareUpdateFlowArguments(
             global::System.Net.Http.HttpClient httpClient,
-            ref string id,
+            ref string agentId,
             ref string? speechifyVersion,
             global::Speechify.PutFlowRequest request);
         partial void PrepareUpdateFlowRequest(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpRequestMessage httpRequestMessage,
-            string id,
+            string agentId,
             string? speechifyVersion,
             global::Speechify.PutFlowRequest request);
         partial void ProcessUpdateFlowResponse(
@@ -50,14 +50,14 @@ namespace Speechify
         /// Replace the agent's draft flow graph. The graph is validated<br/>
         /// before it is stored; publish it separately to make it active.
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="agentId"></param>
         /// <param name="speechifyVersion"></param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
         public async global::System.Threading.Tasks.Task<global::Speechify.FlowGraph> UpdateFlowAsync(
-            string id,
+            string agentId,
 
             global::Speechify.PutFlowRequest request,
             string? speechifyVersion = default,
@@ -65,7 +65,7 @@ namespace Speechify
             global::System.Threading.CancellationToken cancellationToken = default)
         {
             var __response = await UpdateFlowAsResponseAsync(
-                id: id,
+                agentId: agentId,
 
                 request: request,
                 speechifyVersion: speechifyVersion,
@@ -80,14 +80,14 @@ namespace Speechify
         /// Replace the agent's draft flow graph. The graph is validated<br/>
         /// before it is stored; publish it separately to make it active.
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="agentId"></param>
         /// <param name="speechifyVersion"></param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
         public async global::System.Threading.Tasks.Task<global::Speechify.AutoSDKHttpResponse<global::Speechify.FlowGraph>> UpdateFlowAsResponseAsync(
-            string id,
+            string agentId,
 
             global::Speechify.PutFlowRequest request,
             string? speechifyVersion = default,
@@ -100,7 +100,7 @@ namespace Speechify
                 client: HttpClient);
             PrepareUpdateFlowArguments(
                 httpClient: HttpClient,
-                id: ref id,
+                agentId: ref agentId,
                 speechifyVersion: ref speechifyVersion,
                 request: request);
 
@@ -128,7 +128,7 @@ namespace Speechify
             {
 
                             var __pathBuilder = new global::Speechify.PathBuilder(
-                                path: $"/v1/agents/{id}/flow",
+                                path: $"/v1/agents/{agentId}/flow",
                                 baseUri: HttpClient.BaseAddress);
                             var __path = __pathBuilder.ToString();
                 __path = global::Speechify.AutoSDKRequestOptionsSupport.AppendQueryParameters(
@@ -182,7 +182,7 @@ namespace Speechify
                 PrepareUpdateFlowRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
-                    id: id!,
+                    agentId: agentId!,
                     speechifyVersion: speechifyVersion,
                     request: request);
 
@@ -203,7 +203,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "UpdateFlow",
                                 methodName: "UpdateFlowAsync",
-                                pathTemplate: "$\"/v1/agents/{id}/flow\"",
+                                pathTemplate: "$\"/v1/agents/{agentId}/flow\"",
                                 httpMethod: "PUT",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -237,7 +237,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "UpdateFlow",
                                 methodName: "UpdateFlowAsync",
-                                pathTemplate: "$\"/v1/agents/{id}/flow\"",
+                                pathTemplate: "$\"/v1/agents/{agentId}/flow\"",
                                 httpMethod: "PUT",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -278,7 +278,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "UpdateFlow",
                                 methodName: "UpdateFlowAsync",
-                                pathTemplate: "$\"/v1/agents/{id}/flow\"",
+                                pathTemplate: "$\"/v1/agents/{agentId}/flow\"",
                                 httpMethod: "PUT",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -326,7 +326,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "UpdateFlow",
                                 methodName: "UpdateFlowAsync",
-                                pathTemplate: "$\"/v1/agents/{id}/flow\"",
+                                pathTemplate: "$\"/v1/agents/{agentId}/flow\"",
                                 httpMethod: "PUT",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -348,7 +348,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "UpdateFlow",
                                 methodName: "UpdateFlowAsync",
-                                pathTemplate: "$\"/v1/agents/{id}/flow\"",
+                                pathTemplate: "$\"/v1/agents/{agentId}/flow\"",
                                 httpMethod: "PUT",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -649,7 +649,7 @@ namespace Speechify
         /// Replace the agent's draft flow graph. The graph is validated<br/>
         /// before it is stored; publish it separately to make it active.
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="agentId"></param>
         /// <param name="speechifyVersion"></param>
         /// <param name="name"></param>
         /// <param name="notes"></param>
@@ -660,7 +660,7 @@ namespace Speechify
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::System.InvalidOperationException"></exception>
         public async global::System.Threading.Tasks.Task<global::Speechify.FlowGraph> UpdateFlowAsync(
-            string id,
+            string agentId,
             global::System.Collections.Generic.IList<global::Speechify.PutFlowRequestNodesItems> nodes,
             global::System.Collections.Generic.IList<global::Speechify.PutFlowRequestEdgesItems> edges,
             string? speechifyVersion = default,
@@ -680,7 +680,7 @@ namespace Speechify
             };
 
             return await UpdateFlowAsync(
-                id: id,
+                agentId: agentId,
                 speechifyVersion: speechifyVersion,
                 request: __request,
                 requestOptions: requestOptions,

@@ -10,14 +10,14 @@ namespace Speechify
         /// Pass `folder_id: null` to move every doc to root. Capped at<br/>
         /// 200 ids per call.
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="kbId"></param>
         /// <param name="speechifyVersion"></param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
         global::System.Threading.Tasks.Task<string> BatchMoveDocumentsAsync(
-            string id,
+            string kbId,
 
             global::Speechify.BatchMoveDocumentsRequest request,
             string? speechifyVersion = default,
@@ -29,14 +29,14 @@ namespace Speechify
         /// Pass `folder_id: null` to move every doc to root. Capped at<br/>
         /// 200 ids per call.
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="kbId"></param>
         /// <param name="speechifyVersion"></param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
         global::System.Threading.Tasks.Task<global::Speechify.AutoSDKHttpResponse<string>> BatchMoveDocumentsAsResponseAsync(
-            string id,
+            string kbId,
 
             global::Speechify.BatchMoveDocumentsRequest request,
             string? speechifyVersion = default,
@@ -48,7 +48,7 @@ namespace Speechify
         /// Pass `folder_id: null` to move every doc to root. Capped at<br/>
         /// 200 ids per call.
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="kbId"></param>
         /// <param name="speechifyVersion"></param>
         /// <param name="ids"></param>
         /// <param name="folderId">
@@ -60,7 +60,7 @@ namespace Speechify
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::System.InvalidOperationException"></exception>
         global::System.Threading.Tasks.Task<string> BatchMoveDocumentsAsync(
-            string id,
+            string kbId,
             global::System.Collections.Generic.IList<string> ids,
             string? speechifyVersion = default,
             string? folderId = default,

@@ -27,13 +27,13 @@ namespace Speechify
             };
         partial void PrepareUpdateTestArguments(
             global::System.Net.Http.HttpClient httpClient,
-            ref string id,
+            ref string testId,
             ref string? speechifyVersion,
             global::Speechify.UpdateAgentTestRequest request);
         partial void PrepareUpdateTestRequest(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpRequestMessage httpRequestMessage,
-            string id,
+            string testId,
             string? speechifyVersion,
             global::Speechify.UpdateAgentTestRequest request);
         partial void ProcessUpdateTestResponse(
@@ -49,14 +49,14 @@ namespace Speechify
         /// Update Agent Test<br/>
         /// Update a test. Only fields present on the request body are changed.
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="testId"></param>
         /// <param name="speechifyVersion"></param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
         public async global::System.Threading.Tasks.Task<global::Speechify.AgentTest> UpdateTestAsync(
-            string id,
+            string testId,
 
             global::Speechify.UpdateAgentTestRequest request,
             string? speechifyVersion = default,
@@ -64,7 +64,7 @@ namespace Speechify
             global::System.Threading.CancellationToken cancellationToken = default)
         {
             var __response = await UpdateTestAsResponseAsync(
-                id: id,
+                testId: testId,
 
                 request: request,
                 speechifyVersion: speechifyVersion,
@@ -78,14 +78,14 @@ namespace Speechify
         /// Update Agent Test<br/>
         /// Update a test. Only fields present on the request body are changed.
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="testId"></param>
         /// <param name="speechifyVersion"></param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
         public async global::System.Threading.Tasks.Task<global::Speechify.AutoSDKHttpResponse<global::Speechify.AgentTest>> UpdateTestAsResponseAsync(
-            string id,
+            string testId,
 
             global::Speechify.UpdateAgentTestRequest request,
             string? speechifyVersion = default,
@@ -98,7 +98,7 @@ namespace Speechify
                 client: HttpClient);
             PrepareUpdateTestArguments(
                 httpClient: HttpClient,
-                id: ref id,
+                testId: ref testId,
                 speechifyVersion: ref speechifyVersion,
                 request: request);
 
@@ -126,7 +126,7 @@ namespace Speechify
             {
 
                             var __pathBuilder = new global::Speechify.PathBuilder(
-                                path: $"/v1/agents/tests/{id}",
+                                path: $"/v1/agents/tests/{testId}",
                                 baseUri: HttpClient.BaseAddress);
                             var __path = __pathBuilder.ToString();
                 __path = global::Speechify.AutoSDKRequestOptionsSupport.AppendQueryParameters(
@@ -180,7 +180,7 @@ namespace Speechify
                 PrepareUpdateTestRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
-                    id: id!,
+                    testId: testId!,
                     speechifyVersion: speechifyVersion,
                     request: request);
 
@@ -201,7 +201,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "UpdateTest",
                                 methodName: "UpdateTestAsync",
-                                pathTemplate: "$\"/v1/agents/tests/{id}\"",
+                                pathTemplate: "$\"/v1/agents/tests/{testId}\"",
                                 httpMethod: "PATCH",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -235,7 +235,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "UpdateTest",
                                 methodName: "UpdateTestAsync",
-                                pathTemplate: "$\"/v1/agents/tests/{id}\"",
+                                pathTemplate: "$\"/v1/agents/tests/{testId}\"",
                                 httpMethod: "PATCH",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -276,7 +276,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "UpdateTest",
                                 methodName: "UpdateTestAsync",
-                                pathTemplate: "$\"/v1/agents/tests/{id}\"",
+                                pathTemplate: "$\"/v1/agents/tests/{testId}\"",
                                 httpMethod: "PATCH",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -324,7 +324,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "UpdateTest",
                                 methodName: "UpdateTestAsync",
-                                pathTemplate: "$\"/v1/agents/tests/{id}\"",
+                                pathTemplate: "$\"/v1/agents/tests/{testId}\"",
                                 httpMethod: "PATCH",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -346,7 +346,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "UpdateTest",
                                 methodName: "UpdateTestAsync",
-                                pathTemplate: "$\"/v1/agents/tests/{id}\"",
+                                pathTemplate: "$\"/v1/agents/tests/{testId}\"",
                                 httpMethod: "PATCH",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -572,7 +572,7 @@ namespace Speechify
         /// Update Agent Test<br/>
         /// Update a test. Only fields present on the request body are changed.
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="testId"></param>
         /// <param name="speechifyVersion"></param>
         /// <param name="name"></param>
         /// <param name="description"></param>
@@ -594,7 +594,7 @@ namespace Speechify
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::System.InvalidOperationException"></exception>
         public async global::System.Threading.Tasks.Task<global::Speechify.AgentTest> UpdateTestAsync(
-            string id,
+            string testId,
             string? speechifyVersion = default,
             string? name = default,
             string? description = default,
@@ -616,7 +616,7 @@ namespace Speechify
             };
 
             return await UpdateTestAsync(
-                id: id,
+                testId: testId,
                 speechifyVersion: speechifyVersion,
                 request: __request,
                 requestOptions: requestOptions,

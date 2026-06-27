@@ -58,8 +58,8 @@ namespace Speechify
         /// <summary>
         /// 
         /// </summary>
-        [global::System.Text.Json.Serialization.JsonPropertyName("completed_at")]
-        public global::System.DateTime? CompletedAt { get; set; }
+        [global::System.Text.Json.Serialization.JsonPropertyName("ended_at")]
+        public global::System.DateTime? EndedAt { get; set; }
 
         /// <summary>
         /// Populated on terminal status only.
@@ -114,7 +114,7 @@ namespace Speechify
         /// </param>
         /// <param name="createdAt"></param>
         /// <param name="startedAt"></param>
-        /// <param name="completedAt"></param>
+        /// <param name="endedAt"></param>
         /// <param name="result">
         /// Populated on terminal status only.
         /// </param>
@@ -131,7 +131,7 @@ namespace Speechify
             global::Speechify.TestRunStatus status,
             global::System.DateTime createdAt,
             global::System.DateTime? startedAt,
-            global::System.DateTime? completedAt,
+            global::System.DateTime? endedAt,
             global::Speechify.OneOf<global::Speechify.TestRunResult, object>? result,
             string? error)
         {
@@ -140,7 +140,7 @@ namespace Speechify
             this.AgentId = agentId ?? throw new global::System.ArgumentNullException(nameof(agentId));
             this.Status = status;
             this.StartedAt = startedAt;
-            this.CompletedAt = completedAt;
+            this.EndedAt = endedAt;
             this.Result = result;
             this.Error = error;
             this.CreatedAt = createdAt;

@@ -4,7 +4,7 @@
 namespace Speechify
 {
     /// <summary>
-    /// Response for `GET /v1/agents/{id}/variables`. Returns both the<br/>
+    /// Response for `GET /v1/agents/{agent_id}/variables`. Returns both the<br/>
     /// customer-scope variable catalogue and the read-only `system__*`<br/>
     /// catalogue so the editor UI has a single source of truth.
     /// </summary>

@@ -33,8 +33,8 @@ namespace Speechify
         /// <summary>
         /// 
         /// </summary>
-        [global::System.Text.Json.Serialization.JsonPropertyName("finished_at")]
-        public global::System.DateTime? FinishedAt { get; set; }
+        [global::System.Text.Json.Serialization.JsonPropertyName("ended_at")]
+        public global::System.DateTime? EndedAt { get; set; }
 
         /// <summary>
         /// 
@@ -75,7 +75,7 @@ namespace Speechify
         /// <param name="documentId"></param>
         /// <param name="startedAt"></param>
         /// <param name="status"></param>
-        /// <param name="finishedAt"></param>
+        /// <param name="endedAt"></param>
         /// <param name="error"></param>
         /// <param name="previousHash"></param>
         /// <param name="newHash"></param>
@@ -87,7 +87,7 @@ namespace Speechify
             string documentId,
             global::System.DateTime startedAt,
             global::Speechify.RefreshHistoryEntryStatus status,
-            global::System.DateTime? finishedAt,
+            global::System.DateTime? endedAt,
             string? error,
             string? previousHash,
             string? newHash)
@@ -95,7 +95,7 @@ namespace Speechify
             this.Id = id ?? throw new global::System.ArgumentNullException(nameof(id));
             this.DocumentId = documentId ?? throw new global::System.ArgumentNullException(nameof(documentId));
             this.StartedAt = startedAt;
-            this.FinishedAt = finishedAt;
+            this.EndedAt = endedAt;
             this.Status = status;
             this.Error = error;
             this.PreviousHash = previousHash;

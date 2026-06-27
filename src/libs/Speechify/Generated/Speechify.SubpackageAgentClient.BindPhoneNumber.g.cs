@@ -27,13 +27,13 @@ namespace Speechify
             };
         partial void PrepareBindPhoneNumberArguments(
             global::System.Net.Http.HttpClient httpClient,
-            ref string id,
+            ref string agentId,
             ref string phoneNumberId,
             ref string? speechifyVersion);
         partial void PrepareBindPhoneNumberRequest(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpRequestMessage httpRequestMessage,
-            string id,
+            string agentId,
             string phoneNumberId,
             string? speechifyVersion);
         partial void ProcessBindPhoneNumberResponse(
@@ -52,21 +52,21 @@ namespace Speechify
         /// number already bound to another agent reassigns it. Verified<br/>
         /// caller IDs are outbound-only and cannot be bound (400).
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="agentId"></param>
         /// <param name="phoneNumberId"></param>
         /// <param name="speechifyVersion"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
         public async global::System.Threading.Tasks.Task<string> BindPhoneNumberAsync(
-            string id,
+            string agentId,
             string phoneNumberId,
             string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
             var __response = await BindPhoneNumberAsResponseAsync(
-                id: id,
+                agentId: agentId,
                 phoneNumberId: phoneNumberId,
                 speechifyVersion: speechifyVersion,
                 requestOptions: requestOptions,
@@ -82,14 +82,14 @@ namespace Speechify
         /// number already bound to another agent reassigns it. Verified<br/>
         /// caller IDs are outbound-only and cannot be bound (400).
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="agentId"></param>
         /// <param name="phoneNumberId"></param>
         /// <param name="speechifyVersion"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
         public async global::System.Threading.Tasks.Task<global::Speechify.AutoSDKHttpResponse<string>> BindPhoneNumberAsResponseAsync(
-            string id,
+            string agentId,
             string phoneNumberId,
             string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
@@ -99,7 +99,7 @@ namespace Speechify
                 client: HttpClient);
             PrepareBindPhoneNumberArguments(
                 httpClient: HttpClient,
-                id: ref id,
+                agentId: ref agentId,
                 phoneNumberId: ref phoneNumberId,
                 speechifyVersion: ref speechifyVersion);
 
@@ -127,7 +127,7 @@ namespace Speechify
             {
 
                             var __pathBuilder = new global::Speechify.PathBuilder(
-                                path: $"/v1/agents/{id}/phone-numbers/{phoneNumberId}",
+                                path: $"/v1/agents/{agentId}/phone-numbers/{phoneNumberId}",
                                 baseUri: HttpClient.BaseAddress);
                             var __path = __pathBuilder.ToString();
                 __path = global::Speechify.AutoSDKRequestOptionsSupport.AppendQueryParameters(
@@ -175,7 +175,7 @@ namespace Speechify
                 PrepareBindPhoneNumberRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
-                    id: id!,
+                    agentId: agentId!,
                     phoneNumberId: phoneNumberId!,
                     speechifyVersion: speechifyVersion);
 
@@ -196,7 +196,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "BindPhoneNumber",
                                 methodName: "BindPhoneNumberAsync",
-                                pathTemplate: "$\"/v1/agents/{id}/phone-numbers/{phoneNumberId}\"",
+                                pathTemplate: "$\"/v1/agents/{agentId}/phone-numbers/{phoneNumberId}\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -230,7 +230,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "BindPhoneNumber",
                                 methodName: "BindPhoneNumberAsync",
-                                pathTemplate: "$\"/v1/agents/{id}/phone-numbers/{phoneNumberId}\"",
+                                pathTemplate: "$\"/v1/agents/{agentId}/phone-numbers/{phoneNumberId}\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -271,7 +271,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "BindPhoneNumber",
                                 methodName: "BindPhoneNumberAsync",
-                                pathTemplate: "$\"/v1/agents/{id}/phone-numbers/{phoneNumberId}\"",
+                                pathTemplate: "$\"/v1/agents/{agentId}/phone-numbers/{phoneNumberId}\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -319,7 +319,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "BindPhoneNumber",
                                 methodName: "BindPhoneNumberAsync",
-                                pathTemplate: "$\"/v1/agents/{id}/phone-numbers/{phoneNumberId}\"",
+                                pathTemplate: "$\"/v1/agents/{agentId}/phone-numbers/{phoneNumberId}\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -341,7 +341,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "BindPhoneNumber",
                                 methodName: "BindPhoneNumberAsync",
-                                pathTemplate: "$\"/v1/agents/{id}/phone-numbers/{phoneNumberId}\"",
+                                pathTemplate: "$\"/v1/agents/{agentId}/phone-numbers/{phoneNumberId}\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,

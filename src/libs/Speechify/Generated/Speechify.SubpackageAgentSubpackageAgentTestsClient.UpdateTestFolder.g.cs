@@ -27,13 +27,13 @@ namespace Speechify
             };
         partial void PrepareUpdateTestFolderArguments(
             global::System.Net.Http.HttpClient httpClient,
-            ref string id,
+            ref string testFolderId,
             ref string? speechifyVersion,
             global::Speechify.UpdateAgentTestFolderRequest request);
         partial void PrepareUpdateTestFolderRequest(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpRequestMessage httpRequestMessage,
-            string id,
+            string testFolderId,
             string? speechifyVersion,
             global::Speechify.UpdateAgentTestFolderRequest request);
         partial void ProcessUpdateTestFolderResponse(
@@ -49,14 +49,14 @@ namespace Speechify
         /// Update Test Folder<br/>
         /// Rename or reparent a test folder. Cycles are rejected.
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="testFolderId"></param>
         /// <param name="speechifyVersion"></param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
         public async global::System.Threading.Tasks.Task<global::Speechify.AgentTestFolder> UpdateTestFolderAsync(
-            string id,
+            string testFolderId,
 
             global::Speechify.UpdateAgentTestFolderRequest request,
             string? speechifyVersion = default,
@@ -64,7 +64,7 @@ namespace Speechify
             global::System.Threading.CancellationToken cancellationToken = default)
         {
             var __response = await UpdateTestFolderAsResponseAsync(
-                id: id,
+                testFolderId: testFolderId,
 
                 request: request,
                 speechifyVersion: speechifyVersion,
@@ -78,14 +78,14 @@ namespace Speechify
         /// Update Test Folder<br/>
         /// Rename or reparent a test folder. Cycles are rejected.
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="testFolderId"></param>
         /// <param name="speechifyVersion"></param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
         public async global::System.Threading.Tasks.Task<global::Speechify.AutoSDKHttpResponse<global::Speechify.AgentTestFolder>> UpdateTestFolderAsResponseAsync(
-            string id,
+            string testFolderId,
 
             global::Speechify.UpdateAgentTestFolderRequest request,
             string? speechifyVersion = default,
@@ -98,7 +98,7 @@ namespace Speechify
                 client: HttpClient);
             PrepareUpdateTestFolderArguments(
                 httpClient: HttpClient,
-                id: ref id,
+                testFolderId: ref testFolderId,
                 speechifyVersion: ref speechifyVersion,
                 request: request);
 
@@ -126,7 +126,7 @@ namespace Speechify
             {
 
                             var __pathBuilder = new global::Speechify.PathBuilder(
-                                path: $"/v1/agents/tests/folders/{id}",
+                                path: $"/v1/agents/tests/folders/{testFolderId}",
                                 baseUri: HttpClient.BaseAddress);
                             var __path = __pathBuilder.ToString();
                 __path = global::Speechify.AutoSDKRequestOptionsSupport.AppendQueryParameters(
@@ -180,7 +180,7 @@ namespace Speechify
                 PrepareUpdateTestFolderRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
-                    id: id!,
+                    testFolderId: testFolderId!,
                     speechifyVersion: speechifyVersion,
                     request: request);
 
@@ -201,7 +201,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "UpdateTestFolder",
                                 methodName: "UpdateTestFolderAsync",
-                                pathTemplate: "$\"/v1/agents/tests/folders/{id}\"",
+                                pathTemplate: "$\"/v1/agents/tests/folders/{testFolderId}\"",
                                 httpMethod: "PATCH",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -235,7 +235,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "UpdateTestFolder",
                                 methodName: "UpdateTestFolderAsync",
-                                pathTemplate: "$\"/v1/agents/tests/folders/{id}\"",
+                                pathTemplate: "$\"/v1/agents/tests/folders/{testFolderId}\"",
                                 httpMethod: "PATCH",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -276,7 +276,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "UpdateTestFolder",
                                 methodName: "UpdateTestFolderAsync",
-                                pathTemplate: "$\"/v1/agents/tests/folders/{id}\"",
+                                pathTemplate: "$\"/v1/agents/tests/folders/{testFolderId}\"",
                                 httpMethod: "PATCH",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -324,7 +324,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "UpdateTestFolder",
                                 methodName: "UpdateTestFolderAsync",
-                                pathTemplate: "$\"/v1/agents/tests/folders/{id}\"",
+                                pathTemplate: "$\"/v1/agents/tests/folders/{testFolderId}\"",
                                 httpMethod: "PATCH",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -346,7 +346,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "UpdateTestFolder",
                                 methodName: "UpdateTestFolderAsync",
-                                pathTemplate: "$\"/v1/agents/tests/folders/{id}\"",
+                                pathTemplate: "$\"/v1/agents/tests/folders/{testFolderId}\"",
                                 httpMethod: "PATCH",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -572,7 +572,7 @@ namespace Speechify
         /// Update Test Folder<br/>
         /// Rename or reparent a test folder. Cycles are rejected.
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="testFolderId"></param>
         /// <param name="speechifyVersion"></param>
         /// <param name="name"></param>
         /// <param name="parentFolderId">
@@ -588,7 +588,7 @@ namespace Speechify
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::System.InvalidOperationException"></exception>
         public async global::System.Threading.Tasks.Task<global::Speechify.AgentTestFolder> UpdateTestFolderAsync(
-            string id,
+            string testFolderId,
             string? speechifyVersion = default,
             string? name = default,
             string? parentFolderId = default,
@@ -604,7 +604,7 @@ namespace Speechify
             };
 
             return await UpdateTestFolderAsync(
-                id: id,
+                testFolderId: testFolderId,
                 speechifyVersion: speechifyVersion,
                 request: __request,
                 requestOptions: requestOptions,

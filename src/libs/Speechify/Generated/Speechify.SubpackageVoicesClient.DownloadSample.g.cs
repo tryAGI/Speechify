@@ -27,12 +27,12 @@ namespace Speechify
             };
         partial void PrepareDownloadSampleArguments(
             global::System.Net.Http.HttpClient httpClient,
-            ref string id,
+            ref string voiceId,
             ref string? speechifyVersion);
         partial void PrepareDownloadSampleRequest(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpRequestMessage httpRequestMessage,
-            string id,
+            string voiceId,
             string? speechifyVersion);
         partial void ProcessDownloadSampleResponse(
             global::System.Net.Http.HttpClient httpClient,
@@ -47,19 +47,19 @@ namespace Speechify
         /// Download Voice Sample<br/>
         /// Download a personal (cloned) voice sample
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="voiceId"></param>
         /// <param name="speechifyVersion"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
         public async global::System.Threading.Tasks.Task<byte[]> DownloadSampleAsync(
-            string id,
+            string voiceId,
             string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
             var __response = await DownloadSampleAsResponseAsync(
-                id: id,
+                voiceId: voiceId,
                 speechifyVersion: speechifyVersion,
                 requestOptions: requestOptions,
                 cancellationToken: cancellationToken
@@ -71,13 +71,13 @@ namespace Speechify
         /// Download Voice Sample<br/>
         /// Download a personal (cloned) voice sample
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="voiceId"></param>
         /// <param name="speechifyVersion"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
         public async global::System.Threading.Tasks.Task<global::System.IO.Stream> DownloadSampleAsStreamAsync(
-            string id,
+            string voiceId,
             string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
@@ -86,7 +86,7 @@ namespace Speechify
                 client: HttpClient);
             PrepareDownloadSampleArguments(
                 httpClient: HttpClient,
-                id: ref id,
+                voiceId: ref voiceId,
                 speechifyVersion: ref speechifyVersion);
 
 
@@ -113,7 +113,7 @@ namespace Speechify
             {
 
                             var __pathBuilder = new global::Speechify.PathBuilder(
-                                path: $"/v1/voices/{id}/sample",
+                                path: $"/v1/voices/{voiceId}/sample",
                                 baseUri: HttpClient.BaseAddress);
                             var __path = __pathBuilder.ToString();
                 __path = global::Speechify.AutoSDKRequestOptionsSupport.AppendQueryParameters(
@@ -161,7 +161,7 @@ namespace Speechify
                 PrepareDownloadSampleRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
-                    id: id!,
+                    voiceId: voiceId!,
                     speechifyVersion: speechifyVersion);
 
                 return __httpRequest;
@@ -181,7 +181,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "DownloadSample",
                                 methodName: "DownloadSampleAsync",
-                                pathTemplate: "$\"/v1/voices/{id}/sample\"",
+                                pathTemplate: "$\"/v1/voices/{voiceId}/sample\"",
                                 httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -215,7 +215,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "DownloadSample",
                                 methodName: "DownloadSampleAsync",
-                                pathTemplate: "$\"/v1/voices/{id}/sample\"",
+                                pathTemplate: "$\"/v1/voices/{voiceId}/sample\"",
                                 httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -256,7 +256,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "DownloadSample",
                                 methodName: "DownloadSampleAsync",
-                                pathTemplate: "$\"/v1/voices/{id}/sample\"",
+                                pathTemplate: "$\"/v1/voices/{voiceId}/sample\"",
                                 httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -304,7 +304,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "DownloadSample",
                                 methodName: "DownloadSampleAsync",
-                                pathTemplate: "$\"/v1/voices/{id}/sample\"",
+                                pathTemplate: "$\"/v1/voices/{voiceId}/sample\"",
                                 httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -326,7 +326,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "DownloadSample",
                                 methodName: "DownloadSampleAsync",
-                                pathTemplate: "$\"/v1/voices/{id}/sample\"",
+                                pathTemplate: "$\"/v1/voices/{voiceId}/sample\"",
                                 httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -692,13 +692,13 @@ namespace Speechify
         /// Download Voice Sample<br/>
         /// Download a personal (cloned) voice sample
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="voiceId"></param>
         /// <param name="speechifyVersion"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
         public async global::System.Threading.Tasks.Task<global::Speechify.AutoSDKHttpResponse<byte[]>> DownloadSampleAsResponseAsync(
-            string id,
+            string voiceId,
             string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
@@ -707,7 +707,7 @@ namespace Speechify
                 client: HttpClient);
             PrepareDownloadSampleArguments(
                 httpClient: HttpClient,
-                id: ref id,
+                voiceId: ref voiceId,
                 speechifyVersion: ref speechifyVersion);
 
 
@@ -734,7 +734,7 @@ namespace Speechify
             {
 
                             var __pathBuilder = new global::Speechify.PathBuilder(
-                                path: $"/v1/voices/{id}/sample",
+                                path: $"/v1/voices/{voiceId}/sample",
                                 baseUri: HttpClient.BaseAddress);
                             var __path = __pathBuilder.ToString();
                 __path = global::Speechify.AutoSDKRequestOptionsSupport.AppendQueryParameters(
@@ -782,7 +782,7 @@ namespace Speechify
                 PrepareDownloadSampleRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
-                    id: id!,
+                    voiceId: voiceId!,
                     speechifyVersion: speechifyVersion);
 
                 return __httpRequest;
@@ -802,7 +802,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "DownloadSample",
                                 methodName: "DownloadSampleAsync",
-                                pathTemplate: "$\"/v1/voices/{id}/sample\"",
+                                pathTemplate: "$\"/v1/voices/{voiceId}/sample\"",
                                 httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -836,7 +836,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "DownloadSample",
                                 methodName: "DownloadSampleAsync",
-                                pathTemplate: "$\"/v1/voices/{id}/sample\"",
+                                pathTemplate: "$\"/v1/voices/{voiceId}/sample\"",
                                 httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -877,7 +877,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "DownloadSample",
                                 methodName: "DownloadSampleAsync",
-                                pathTemplate: "$\"/v1/voices/{id}/sample\"",
+                                pathTemplate: "$\"/v1/voices/{voiceId}/sample\"",
                                 httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -925,7 +925,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "DownloadSample",
                                 methodName: "DownloadSampleAsync",
-                                pathTemplate: "$\"/v1/voices/{id}/sample\"",
+                                pathTemplate: "$\"/v1/voices/{voiceId}/sample\"",
                                 httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -947,7 +947,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "DownloadSample",
                                 methodName: "DownloadSampleAsync",
-                                pathTemplate: "$\"/v1/voices/{id}/sample\"",
+                                pathTemplate: "$\"/v1/voices/{voiceId}/sample\"",
                                 httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,

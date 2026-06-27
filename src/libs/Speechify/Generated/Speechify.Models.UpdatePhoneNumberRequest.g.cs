@@ -4,11 +4,11 @@
 namespace Speechify
 {
     /// <summary>
-    /// PATCH body for `PATCH /v1/agents/phone-numbers/{id}`. Edits the<br/>
+    /// PATCH body for `PATCH /v1/agents/phone-numbers/{phone_number_id}`. Edits the<br/>
     /// number's own attributes only - today just `label`. The number's<br/>
     /// provider and `e164` are immutable after import. The agent binding is managed<br/>
     /// separately as a relationship, via<br/>
-    /// `POST`/`DELETE /v1/agents/{id}/phone-numbers/{phoneNumberId}`.
+    /// `POST`/`DELETE /v1/agents/{agent_id}/phone-numbers/{phone_number_id}`.
     /// </summary>
     public sealed partial class UpdatePhoneNumberRequest
     {

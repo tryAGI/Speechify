@@ -27,13 +27,13 @@ namespace Speechify
             };
         partial void PrepareCancelImportJobArguments(
             global::System.Net.Http.HttpClient httpClient,
-            ref string id,
+            ref string kbId,
             ref string importId,
             ref string? speechifyVersion);
         partial void PrepareCancelImportJobRequest(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpRequestMessage httpRequestMessage,
-            string id,
+            string kbId,
             string importId,
             string? speechifyVersion);
         partial void ProcessCancelImportJobResponse(
@@ -51,21 +51,21 @@ namespace Speechify
         /// (completed / failed / cancelled) — the cancel call returns the<br/>
         /// unchanged row.
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="kbId"></param>
         /// <param name="importId"></param>
         /// <param name="speechifyVersion"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
         public async global::System.Threading.Tasks.Task<global::Speechify.ImportJob> CancelImportJobAsync(
-            string id,
+            string kbId,
             string importId,
             string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
             var __response = await CancelImportJobAsResponseAsync(
-                id: id,
+                kbId: kbId,
                 importId: importId,
                 speechifyVersion: speechifyVersion,
                 requestOptions: requestOptions,
@@ -80,14 +80,14 @@ namespace Speechify
         /// (completed / failed / cancelled) — the cancel call returns the<br/>
         /// unchanged row.
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="kbId"></param>
         /// <param name="importId"></param>
         /// <param name="speechifyVersion"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
         public async global::System.Threading.Tasks.Task<global::Speechify.AutoSDKHttpResponse<global::Speechify.ImportJob>> CancelImportJobAsResponseAsync(
-            string id,
+            string kbId,
             string importId,
             string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
@@ -97,7 +97,7 @@ namespace Speechify
                 client: HttpClient);
             PrepareCancelImportJobArguments(
                 httpClient: HttpClient,
-                id: ref id,
+                kbId: ref kbId,
                 importId: ref importId,
                 speechifyVersion: ref speechifyVersion);
 
@@ -125,7 +125,7 @@ namespace Speechify
             {
 
                             var __pathBuilder = new global::Speechify.PathBuilder(
-                                path: $"/v1/agents/knowledge-bases/{id}/imports/{importId}/cancel",
+                                path: $"/v1/agents/knowledge-bases/{kbId}/imports/{importId}/cancel",
                                 baseUri: HttpClient.BaseAddress);
                             var __path = __pathBuilder.ToString();
                 __path = global::Speechify.AutoSDKRequestOptionsSupport.AppendQueryParameters(
@@ -173,7 +173,7 @@ namespace Speechify
                 PrepareCancelImportJobRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
-                    id: id!,
+                    kbId: kbId!,
                     importId: importId!,
                     speechifyVersion: speechifyVersion);
 
@@ -194,7 +194,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "CancelImportJob",
                                 methodName: "CancelImportJobAsync",
-                                pathTemplate: "$\"/v1/agents/knowledge-bases/{id}/imports/{importId}/cancel\"",
+                                pathTemplate: "$\"/v1/agents/knowledge-bases/{kbId}/imports/{importId}/cancel\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -228,7 +228,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "CancelImportJob",
                                 methodName: "CancelImportJobAsync",
-                                pathTemplate: "$\"/v1/agents/knowledge-bases/{id}/imports/{importId}/cancel\"",
+                                pathTemplate: "$\"/v1/agents/knowledge-bases/{kbId}/imports/{importId}/cancel\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -269,7 +269,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "CancelImportJob",
                                 methodName: "CancelImportJobAsync",
-                                pathTemplate: "$\"/v1/agents/knowledge-bases/{id}/imports/{importId}/cancel\"",
+                                pathTemplate: "$\"/v1/agents/knowledge-bases/{kbId}/imports/{importId}/cancel\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -317,7 +317,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "CancelImportJob",
                                 methodName: "CancelImportJobAsync",
-                                pathTemplate: "$\"/v1/agents/knowledge-bases/{id}/imports/{importId}/cancel\"",
+                                pathTemplate: "$\"/v1/agents/knowledge-bases/{kbId}/imports/{importId}/cancel\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -339,7 +339,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "CancelImportJob",
                                 methodName: "CancelImportJobAsync",
-                                pathTemplate: "$\"/v1/agents/knowledge-bases/{id}/imports/{importId}/cancel\"",
+                                pathTemplate: "$\"/v1/agents/knowledge-bases/{kbId}/imports/{importId}/cancel\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,

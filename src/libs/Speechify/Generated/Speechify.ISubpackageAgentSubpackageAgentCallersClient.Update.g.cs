@@ -11,14 +11,14 @@ namespace Speechify
         /// a nullable field (`display_name`, `external_ref`) pass an empty<br/>
         /// string. `metadata` REPLACES the existing JSONB blob when supplied.
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="callerId"></param>
         /// <param name="speechifyVersion"></param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
         global::System.Threading.Tasks.Task<global::Speechify.GetCallerResponse> UpdateAsync(
-            string id,
+            string callerId,
 
             global::Speechify.UpdateCallerRequest request,
             string? speechifyVersion = default,
@@ -31,14 +31,14 @@ namespace Speechify
         /// a nullable field (`display_name`, `external_ref`) pass an empty<br/>
         /// string. `metadata` REPLACES the existing JSONB blob when supplied.
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="callerId"></param>
         /// <param name="speechifyVersion"></param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
         global::System.Threading.Tasks.Task<global::Speechify.AutoSDKHttpResponse<global::Speechify.GetCallerResponse>> UpdateAsResponseAsync(
-            string id,
+            string callerId,
 
             global::Speechify.UpdateCallerRequest request,
             string? speechifyVersion = default,
@@ -51,7 +51,7 @@ namespace Speechify
         /// a nullable field (`display_name`, `external_ref`) pass an empty<br/>
         /// string. `metadata` REPLACES the existing JSONB blob when supplied.
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="callerId"></param>
         /// <param name="speechifyVersion"></param>
         /// <param name="displayName">
         /// Operator-editable display name. Empty string clears the column.
@@ -66,7 +66,7 @@ namespace Speechify
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::System.InvalidOperationException"></exception>
         global::System.Threading.Tasks.Task<global::Speechify.GetCallerResponse> UpdateAsync(
-            string id,
+            string callerId,
             string? speechifyVersion = default,
             string? displayName = default,
             string? externalRef = default,

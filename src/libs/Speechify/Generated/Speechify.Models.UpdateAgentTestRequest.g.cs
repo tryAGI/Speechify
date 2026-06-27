@@ -4,7 +4,7 @@
 namespace Speechify
 {
     /// <summary>
-    /// Payload for `PATCH /v1/agents/tests/{id}`. All fields are optional;<br/>
+    /// Payload for `PATCH /v1/agents/tests/{test_id}`. All fields are optional;<br/>
     /// omitting a field leaves it unchanged. Set `folder_id` to a target<br/>
     /// folder id to move the test into that folder; send<br/>
     /// `clear_folder_id: true` (folder_id omitted or ignored) to move<br/>

@@ -27,7 +27,7 @@ namespace Speechify
             };
         partial void PrepareListDocumentsArguments(
             global::System.Net.Http.HttpClient httpClient,
-            ref string id,
+            ref string kbId,
             ref string? folderId,
             ref string? q,
             ref string? sourceKind,
@@ -37,7 +37,7 @@ namespace Speechify
         partial void PrepareListDocumentsRequest(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpRequestMessage httpRequestMessage,
-            string id,
+            string kbId,
             string? folderId,
             string? q,
             string? sourceKind,
@@ -59,18 +59,20 @@ namespace Speechify
         /// omit `cursor` to fetch the first page. Default page size is 50<br/>
         /// and max is 200. Walk pages while `has_more` is true.
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="kbId"></param>
         /// <param name="folderId"></param>
         /// <param name="q"></param>
         /// <param name="sourceKind"></param>
         /// <param name="cursor"></param>
-        /// <param name="limit"></param>
+        /// <param name="limit">
+        /// Default Value: 50
+        /// </param>
         /// <param name="speechifyVersion"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
         public async global::System.Threading.Tasks.Task<global::Speechify.ListKnowledgeBaseDocumentsResponse> ListDocumentsAsync(
-            string id,
+            string kbId,
             string? folderId = default,
             string? q = default,
             string? sourceKind = default,
@@ -81,7 +83,7 @@ namespace Speechify
             global::System.Threading.CancellationToken cancellationToken = default)
         {
             var __response = await ListDocumentsAsResponseAsync(
-                id: id,
+                kbId: kbId,
                 folderId: folderId,
                 q: q,
                 sourceKind: sourceKind,
@@ -100,18 +102,20 @@ namespace Speechify
         /// omit `cursor` to fetch the first page. Default page size is 50<br/>
         /// and max is 200. Walk pages while `has_more` is true.
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="kbId"></param>
         /// <param name="folderId"></param>
         /// <param name="q"></param>
         /// <param name="sourceKind"></param>
         /// <param name="cursor"></param>
-        /// <param name="limit"></param>
+        /// <param name="limit">
+        /// Default Value: 50
+        /// </param>
         /// <param name="speechifyVersion"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
         public async global::System.Threading.Tasks.Task<global::Speechify.AutoSDKHttpResponse<global::Speechify.ListKnowledgeBaseDocumentsResponse>> ListDocumentsAsResponseAsync(
-            string id,
+            string kbId,
             string? folderId = default,
             string? q = default,
             string? sourceKind = default,
@@ -125,7 +129,7 @@ namespace Speechify
                 client: HttpClient);
             PrepareListDocumentsArguments(
                 httpClient: HttpClient,
-                id: ref id,
+                kbId: ref kbId,
                 folderId: ref folderId,
                 q: ref q,
                 sourceKind: ref sourceKind,
@@ -157,7 +161,7 @@ namespace Speechify
             {
 
                             var __pathBuilder = new global::Speechify.PathBuilder(
-                                path: $"/v1/agents/knowledge-bases/{id}/documents",
+                                path: $"/v1/agents/knowledge-bases/{kbId}/documents",
                                 baseUri: HttpClient.BaseAddress);
                             __pathBuilder
                                 .AddOptionalParameter("folder_id", folderId)
@@ -212,7 +216,7 @@ namespace Speechify
                 PrepareListDocumentsRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
-                    id: id!,
+                    kbId: kbId!,
                     folderId: folderId,
                     q: q,
                     sourceKind: sourceKind,
@@ -237,7 +241,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "ListDocuments",
                                 methodName: "ListDocumentsAsync",
-                                pathTemplate: "$\"/v1/agents/knowledge-bases/{id}/documents\"",
+                                pathTemplate: "$\"/v1/agents/knowledge-bases/{kbId}/documents\"",
                                 httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -271,7 +275,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "ListDocuments",
                                 methodName: "ListDocumentsAsync",
-                                pathTemplate: "$\"/v1/agents/knowledge-bases/{id}/documents\"",
+                                pathTemplate: "$\"/v1/agents/knowledge-bases/{kbId}/documents\"",
                                 httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -312,7 +316,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "ListDocuments",
                                 methodName: "ListDocumentsAsync",
-                                pathTemplate: "$\"/v1/agents/knowledge-bases/{id}/documents\"",
+                                pathTemplate: "$\"/v1/agents/knowledge-bases/{kbId}/documents\"",
                                 httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -360,7 +364,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "ListDocuments",
                                 methodName: "ListDocumentsAsync",
-                                pathTemplate: "$\"/v1/agents/knowledge-bases/{id}/documents\"",
+                                pathTemplate: "$\"/v1/agents/knowledge-bases/{kbId}/documents\"",
                                 httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -382,7 +386,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "ListDocuments",
                                 methodName: "ListDocumentsAsync",
-                                pathTemplate: "$\"/v1/agents/knowledge-bases/{id}/documents\"",
+                                pathTemplate: "$\"/v1/agents/knowledge-bases/{kbId}/documents\"",
                                 httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,

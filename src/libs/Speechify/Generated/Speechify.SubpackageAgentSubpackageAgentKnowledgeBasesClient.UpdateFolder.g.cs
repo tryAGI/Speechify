@@ -27,14 +27,14 @@ namespace Speechify
             };
         partial void PrepareUpdateFolderArguments(
             global::System.Net.Http.HttpClient httpClient,
-            ref string id,
+            ref string kbId,
             ref string folderId,
             ref string? speechifyVersion,
             global::Speechify.UpdateFolderRequest request);
         partial void PrepareUpdateFolderRequest(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpRequestMessage httpRequestMessage,
-            string id,
+            string kbId,
             string folderId,
             string? speechifyVersion,
             global::Speechify.UpdateFolderRequest request);
@@ -52,7 +52,7 @@ namespace Speechify
         /// Update a folder. Pass `parent_folder_id: null` to move to<br/>
         /// root; omit the field to leave it unchanged.
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="kbId"></param>
         /// <param name="folderId"></param>
         /// <param name="speechifyVersion"></param>
         /// <param name="request"></param>
@@ -60,7 +60,7 @@ namespace Speechify
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
         public async global::System.Threading.Tasks.Task<global::Speechify.KnowledgeBaseFolder> UpdateFolderAsync(
-            string id,
+            string kbId,
             string folderId,
 
             global::Speechify.UpdateFolderRequest request,
@@ -69,7 +69,7 @@ namespace Speechify
             global::System.Threading.CancellationToken cancellationToken = default)
         {
             var __response = await UpdateFolderAsResponseAsync(
-                id: id,
+                kbId: kbId,
                 folderId: folderId,
 
                 request: request,
@@ -85,7 +85,7 @@ namespace Speechify
         /// Update a folder. Pass `parent_folder_id: null` to move to<br/>
         /// root; omit the field to leave it unchanged.
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="kbId"></param>
         /// <param name="folderId"></param>
         /// <param name="speechifyVersion"></param>
         /// <param name="request"></param>
@@ -93,7 +93,7 @@ namespace Speechify
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
         public async global::System.Threading.Tasks.Task<global::Speechify.AutoSDKHttpResponse<global::Speechify.KnowledgeBaseFolder>> UpdateFolderAsResponseAsync(
-            string id,
+            string kbId,
             string folderId,
 
             global::Speechify.UpdateFolderRequest request,
@@ -107,7 +107,7 @@ namespace Speechify
                 client: HttpClient);
             PrepareUpdateFolderArguments(
                 httpClient: HttpClient,
-                id: ref id,
+                kbId: ref kbId,
                 folderId: ref folderId,
                 speechifyVersion: ref speechifyVersion,
                 request: request);
@@ -136,7 +136,7 @@ namespace Speechify
             {
 
                             var __pathBuilder = new global::Speechify.PathBuilder(
-                                path: $"/v1/agents/knowledge-bases/{id}/folders/{folderId}",
+                                path: $"/v1/agents/knowledge-bases/{kbId}/folders/{folderId}",
                                 baseUri: HttpClient.BaseAddress);
                             var __path = __pathBuilder.ToString();
                 __path = global::Speechify.AutoSDKRequestOptionsSupport.AppendQueryParameters(
@@ -190,7 +190,7 @@ namespace Speechify
                 PrepareUpdateFolderRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
-                    id: id!,
+                    kbId: kbId!,
                     folderId: folderId!,
                     speechifyVersion: speechifyVersion,
                     request: request);
@@ -212,7 +212,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "UpdateFolder",
                                 methodName: "UpdateFolderAsync",
-                                pathTemplate: "$\"/v1/agents/knowledge-bases/{id}/folders/{folderId}\"",
+                                pathTemplate: "$\"/v1/agents/knowledge-bases/{kbId}/folders/{folderId}\"",
                                 httpMethod: "PATCH",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -246,7 +246,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "UpdateFolder",
                                 methodName: "UpdateFolderAsync",
-                                pathTemplate: "$\"/v1/agents/knowledge-bases/{id}/folders/{folderId}\"",
+                                pathTemplate: "$\"/v1/agents/knowledge-bases/{kbId}/folders/{folderId}\"",
                                 httpMethod: "PATCH",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -287,7 +287,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "UpdateFolder",
                                 methodName: "UpdateFolderAsync",
-                                pathTemplate: "$\"/v1/agents/knowledge-bases/{id}/folders/{folderId}\"",
+                                pathTemplate: "$\"/v1/agents/knowledge-bases/{kbId}/folders/{folderId}\"",
                                 httpMethod: "PATCH",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -335,7 +335,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "UpdateFolder",
                                 methodName: "UpdateFolderAsync",
-                                pathTemplate: "$\"/v1/agents/knowledge-bases/{id}/folders/{folderId}\"",
+                                pathTemplate: "$\"/v1/agents/knowledge-bases/{kbId}/folders/{folderId}\"",
                                 httpMethod: "PATCH",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -357,7 +357,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "UpdateFolder",
                                 methodName: "UpdateFolderAsync",
-                                pathTemplate: "$\"/v1/agents/knowledge-bases/{id}/folders/{folderId}\"",
+                                pathTemplate: "$\"/v1/agents/knowledge-bases/{kbId}/folders/{folderId}\"",
                                 httpMethod: "PATCH",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -584,7 +584,7 @@ namespace Speechify
         /// Update a folder. Pass `parent_folder_id: null` to move to<br/>
         /// root; omit the field to leave it unchanged.
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="kbId"></param>
         /// <param name="folderId"></param>
         /// <param name="speechifyVersion"></param>
         /// <param name="name"></param>
@@ -601,7 +601,7 @@ namespace Speechify
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::System.InvalidOperationException"></exception>
         public async global::System.Threading.Tasks.Task<global::Speechify.KnowledgeBaseFolder> UpdateFolderAsync(
-            string id,
+            string kbId,
             string folderId,
             string? speechifyVersion = default,
             string? name = default,
@@ -618,7 +618,7 @@ namespace Speechify
             };
 
             return await UpdateFolderAsync(
-                id: id,
+                kbId: kbId,
                 folderId: folderId,
                 speechifyVersion: speechifyVersion,
                 request: __request,

@@ -4,7 +4,7 @@
 namespace Speechify
 {
     /// <summary>
-    /// Payload for `GET /v1/agents/knowledge-bases/{id}/imports`.
+    /// Payload for `GET /v1/agents/knowledge-bases/{kb_id}/imports`.
     /// </summary>
     public sealed partial class ListImportJobsResponse
     {

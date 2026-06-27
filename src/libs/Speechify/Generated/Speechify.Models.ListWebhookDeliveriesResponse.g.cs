@@ -4,7 +4,7 @@
 namespace Speechify
 {
     /// <summary>
-    /// Payload for `GET /v1/agents/conversations/{id}/webhook-deliveries`.
+    /// Payload for `GET /v1/agents/conversations/{conversation_id}/webhook-deliveries`.
     /// </summary>
     public sealed partial class ListWebhookDeliveriesResponse
     {

@@ -27,12 +27,16 @@ namespace Speechify
             };
         partial void PrepareListMemoriesArguments(
             global::System.Net.Http.HttpClient httpClient,
-            ref string id,
+            ref string conversationId,
+            ref string? cursor,
+            ref int? limit,
             ref string? speechifyVersion);
         partial void PrepareListMemoriesRequest(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpRequestMessage httpRequestMessage,
-            string id,
+            string conversationId,
+            string? cursor,
+            int? limit,
             string? speechifyVersion);
         partial void ProcessListMemoriesResponse(
             global::System.Net.Http.HttpClient httpClient,
@@ -47,19 +51,27 @@ namespace Speechify
         /// List Conversation Memories<br/>
         /// List memories extracted from a specific conversation.
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="conversationId"></param>
+        /// <param name="cursor"></param>
+        /// <param name="limit">
+        /// Default Value: 50
+        /// </param>
         /// <param name="speechifyVersion"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
         public async global::System.Threading.Tasks.Task<global::Speechify.ListMemoriesResponse> ListMemoriesAsync(
-            string id,
+            string conversationId,
+            string? cursor = default,
+            int? limit = default,
             string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
             var __response = await ListMemoriesAsResponseAsync(
-                id: id,
+                conversationId: conversationId,
+                cursor: cursor,
+                limit: limit,
                 speechifyVersion: speechifyVersion,
                 requestOptions: requestOptions,
                 cancellationToken: cancellationToken
@@ -71,13 +83,19 @@ namespace Speechify
         /// List Conversation Memories<br/>
         /// List memories extracted from a specific conversation.
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="conversationId"></param>
+        /// <param name="cursor"></param>
+        /// <param name="limit">
+        /// Default Value: 50
+        /// </param>
         /// <param name="speechifyVersion"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
         public async global::System.Threading.Tasks.Task<global::Speechify.AutoSDKHttpResponse<global::Speechify.ListMemoriesResponse>> ListMemoriesAsResponseAsync(
-            string id,
+            string conversationId,
+            string? cursor = default,
+            int? limit = default,
             string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
@@ -86,7 +104,9 @@ namespace Speechify
                 client: HttpClient);
             PrepareListMemoriesArguments(
                 httpClient: HttpClient,
-                id: ref id,
+                conversationId: ref conversationId,
+                cursor: ref cursor,
+                limit: ref limit,
                 speechifyVersion: ref speechifyVersion);
 
 
@@ -113,8 +133,12 @@ namespace Speechify
             {
 
                             var __pathBuilder = new global::Speechify.PathBuilder(
-                                path: $"/v1/agents/conversations/{id}/memories",
+                                path: $"/v1/agents/conversations/{conversationId}/memories",
                                 baseUri: HttpClient.BaseAddress);
+                            __pathBuilder
+                                .AddOptionalParameter("cursor", cursor)
+                                .AddOptionalParameter("limit", limit?.ToString())
+                                ;
                             var __path = __pathBuilder.ToString();
                 __path = global::Speechify.AutoSDKRequestOptionsSupport.AppendQueryParameters(
                     path: __path,
@@ -161,7 +185,9 @@ namespace Speechify
                 PrepareListMemoriesRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
-                    id: id!,
+                    conversationId: conversationId!,
+                    cursor: cursor,
+                    limit: limit,
                     speechifyVersion: speechifyVersion);
 
                 return __httpRequest;
@@ -181,7 +207,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "ListMemories",
                                 methodName: "ListMemoriesAsync",
-                                pathTemplate: "$\"/v1/agents/conversations/{id}/memories\"",
+                                pathTemplate: "$\"/v1/agents/conversations/{conversationId}/memories\"",
                                 httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -215,7 +241,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "ListMemories",
                                 methodName: "ListMemoriesAsync",
-                                pathTemplate: "$\"/v1/agents/conversations/{id}/memories\"",
+                                pathTemplate: "$\"/v1/agents/conversations/{conversationId}/memories\"",
                                 httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -256,7 +282,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "ListMemories",
                                 methodName: "ListMemoriesAsync",
-                                pathTemplate: "$\"/v1/agents/conversations/{id}/memories\"",
+                                pathTemplate: "$\"/v1/agents/conversations/{conversationId}/memories\"",
                                 httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -304,7 +330,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "ListMemories",
                                 methodName: "ListMemoriesAsync",
-                                pathTemplate: "$\"/v1/agents/conversations/{id}/memories\"",
+                                pathTemplate: "$\"/v1/agents/conversations/{conversationId}/memories\"",
                                 httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -326,7 +352,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "ListMemories",
                                 methodName: "ListMemoriesAsync",
-                                pathTemplate: "$\"/v1/agents/conversations/{id}/memories\"",
+                                pathTemplate: "$\"/v1/agents/conversations/{conversationId}/memories\"",
                                 httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -341,6 +367,43 @@ namespace Speechify
                                 retryReason: global::System.String.Empty,
                                 cancellationToken: __effectiveCancellationToken)).ConfigureAwait(false);
                 }
+                            // The request was malformed or failed validation. The response body is the standard `Error` envelope; for validation failures `error.fields` enumerates the offending fields as a `path -> message` map (code = `validation_failed`). 
+                            if ((int)__response.StatusCode == 400)
+                            {
+                                string? __content_400 = null;
+                                global::System.Exception? __exception_400 = null;
+                                global::Speechify.Error? __value_400 = null;
+                                try
+                                {
+                                    if (__effectiveReadResponseAsString)
+                                    {
+                                        __content_400 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+                                        __value_400 = global::Speechify.Error.FromJson(__content_400, JsonSerializerContext);
+                                    }
+                                    else
+                                    {
+                                        __content_400 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+
+                                        __value_400 = global::Speechify.Error.FromJson(__content_400, JsonSerializerContext);
+                                    }
+                                }
+                                catch (global::System.Exception __ex)
+                                {
+                                    __exception_400 = __ex;
+                                }
+
+
+                                throw global::Speechify.ApiException<global::Speechify.Error>.Create(
+                                    statusCode: __response.StatusCode,
+                                    message: __content_400 ?? __response.ReasonPhrase ?? string.Empty,
+                                    innerException: __exception_400,
+                                    responseBody: __content_400,
+                                    responseObject: __value_400,
+                                    responseHeaders: global::System.Linq.Enumerable.ToDictionary(
+                                        __response.Headers,
+                                        h => h.Key,
+                                        h => h.Value));
+                            }
                             // Authentication is missing or invalid. The request did not carry a recognised credential (Firebase ID token, API key, or worker JWT). 
                             if ((int)__response.StatusCode == 401)
                             {

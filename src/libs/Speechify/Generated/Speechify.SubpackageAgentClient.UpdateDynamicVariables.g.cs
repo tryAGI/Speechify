@@ -27,13 +27,13 @@ namespace Speechify
             };
         partial void PrepareUpdateDynamicVariablesArguments(
             global::System.Net.Http.HttpClient httpClient,
-            ref string id,
+            ref string agentId,
             ref string? speechifyVersion,
             global::Speechify.UpdateDynamicVariablesRequest request);
         partial void PrepareUpdateDynamicVariablesRequest(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpRequestMessage httpRequestMessage,
-            string id,
+            string agentId,
             string? speechifyVersion,
             global::Speechify.UpdateDynamicVariablesRequest request);
         partial void ProcessUpdateDynamicVariablesResponse(
@@ -54,14 +54,14 @@ namespace Speechify
         /// match `[a-zA-Z0-9_]+` and must not start with the reserved<br/>
         /// `system__` prefix.
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="agentId"></param>
         /// <param name="speechifyVersion"></param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
         public async global::System.Threading.Tasks.Task<global::Speechify.ListDynamicVariablesResponse> UpdateDynamicVariablesAsync(
-            string id,
+            string agentId,
 
             global::Speechify.UpdateDynamicVariablesRequest request,
             string? speechifyVersion = default,
@@ -69,7 +69,7 @@ namespace Speechify
             global::System.Threading.CancellationToken cancellationToken = default)
         {
             var __response = await UpdateDynamicVariablesAsResponseAsync(
-                id: id,
+                agentId: agentId,
 
                 request: request,
                 speechifyVersion: speechifyVersion,
@@ -88,14 +88,14 @@ namespace Speechify
         /// match `[a-zA-Z0-9_]+` and must not start with the reserved<br/>
         /// `system__` prefix.
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="agentId"></param>
         /// <param name="speechifyVersion"></param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
         public async global::System.Threading.Tasks.Task<global::Speechify.AutoSDKHttpResponse<global::Speechify.ListDynamicVariablesResponse>> UpdateDynamicVariablesAsResponseAsync(
-            string id,
+            string agentId,
 
             global::Speechify.UpdateDynamicVariablesRequest request,
             string? speechifyVersion = default,
@@ -108,7 +108,7 @@ namespace Speechify
                 client: HttpClient);
             PrepareUpdateDynamicVariablesArguments(
                 httpClient: HttpClient,
-                id: ref id,
+                agentId: ref agentId,
                 speechifyVersion: ref speechifyVersion,
                 request: request);
 
@@ -136,7 +136,7 @@ namespace Speechify
             {
 
                             var __pathBuilder = new global::Speechify.PathBuilder(
-                                path: $"/v1/agents/{id}/variables",
+                                path: $"/v1/agents/{agentId}/variables",
                                 baseUri: HttpClient.BaseAddress);
                             var __path = __pathBuilder.ToString();
                 __path = global::Speechify.AutoSDKRequestOptionsSupport.AppendQueryParameters(
@@ -190,7 +190,7 @@ namespace Speechify
                 PrepareUpdateDynamicVariablesRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
-                    id: id!,
+                    agentId: agentId!,
                     speechifyVersion: speechifyVersion,
                     request: request);
 
@@ -211,7 +211,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "UpdateDynamicVariables",
                                 methodName: "UpdateDynamicVariablesAsync",
-                                pathTemplate: "$\"/v1/agents/{id}/variables\"",
+                                pathTemplate: "$\"/v1/agents/{agentId}/variables\"",
                                 httpMethod: "PATCH",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -245,7 +245,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "UpdateDynamicVariables",
                                 methodName: "UpdateDynamicVariablesAsync",
-                                pathTemplate: "$\"/v1/agents/{id}/variables\"",
+                                pathTemplate: "$\"/v1/agents/{agentId}/variables\"",
                                 httpMethod: "PATCH",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -286,7 +286,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "UpdateDynamicVariables",
                                 methodName: "UpdateDynamicVariablesAsync",
-                                pathTemplate: "$\"/v1/agents/{id}/variables\"",
+                                pathTemplate: "$\"/v1/agents/{agentId}/variables\"",
                                 httpMethod: "PATCH",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -334,7 +334,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "UpdateDynamicVariables",
                                 methodName: "UpdateDynamicVariablesAsync",
-                                pathTemplate: "$\"/v1/agents/{id}/variables\"",
+                                pathTemplate: "$\"/v1/agents/{agentId}/variables\"",
                                 httpMethod: "PATCH",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -356,7 +356,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "UpdateDynamicVariables",
                                 methodName: "UpdateDynamicVariablesAsync",
-                                pathTemplate: "$\"/v1/agents/{id}/variables\"",
+                                pathTemplate: "$\"/v1/agents/{agentId}/variables\"",
                                 httpMethod: "PATCH",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -587,7 +587,7 @@ namespace Speechify
         /// match `[a-zA-Z0-9_]+` and must not start with the reserved<br/>
         /// `system__` prefix.
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="agentId"></param>
         /// <param name="speechifyVersion"></param>
         /// <param name="variables">
         /// The new variable list. Replaces the existing list entirely.
@@ -596,7 +596,7 @@ namespace Speechify
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::System.InvalidOperationException"></exception>
         public async global::System.Threading.Tasks.Task<global::Speechify.ListDynamicVariablesResponse> UpdateDynamicVariablesAsync(
-            string id,
+            string agentId,
             global::System.Collections.Generic.IList<global::Speechify.DynamicVariable> variables,
             string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
@@ -608,7 +608,7 @@ namespace Speechify
             };
 
             return await UpdateDynamicVariablesAsync(
-                id: id,
+                agentId: agentId,
                 speechifyVersion: speechifyVersion,
                 request: __request,
                 requestOptions: requestOptions,

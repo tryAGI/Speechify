@@ -27,13 +27,13 @@ namespace Speechify
             };
         partial void PrepareCreateSessionArguments(
             global::System.Net.Http.HttpClient httpClient,
-            ref string id,
+            ref string agentId,
             ref string? speechifyVersion,
             global::Speechify.CreateSessionRequest request);
         partial void PrepareCreateSessionRequest(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpRequestMessage httpRequestMessage,
-            string id,
+            string agentId,
             string? speechifyVersion,
             global::Speechify.CreateSessionRequest request);
         partial void ProcessCreateSessionResponse(
@@ -63,14 +63,14 @@ namespace Speechify
         /// Responds with the same `CreateConversationResponse` as<br/>
         /// `createConversation`.
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="agentId"></param>
         /// <param name="speechifyVersion"></param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
         public async global::System.Threading.Tasks.Task<global::Speechify.CreateConversationResponse> CreateSessionAsync(
-            string id,
+            string agentId,
 
             global::Speechify.CreateSessionRequest request,
             string? speechifyVersion = default,
@@ -78,7 +78,7 @@ namespace Speechify
             global::System.Threading.CancellationToken cancellationToken = default)
         {
             var __response = await CreateSessionAsResponseAsync(
-                id: id,
+                agentId: agentId,
 
                 request: request,
                 speechifyVersion: speechifyVersion,
@@ -106,14 +106,14 @@ namespace Speechify
         /// Responds with the same `CreateConversationResponse` as<br/>
         /// `createConversation`.
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="agentId"></param>
         /// <param name="speechifyVersion"></param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
         public async global::System.Threading.Tasks.Task<global::Speechify.AutoSDKHttpResponse<global::Speechify.CreateConversationResponse>> CreateSessionAsResponseAsync(
-            string id,
+            string agentId,
 
             global::Speechify.CreateSessionRequest request,
             string? speechifyVersion = default,
@@ -126,7 +126,7 @@ namespace Speechify
                 client: HttpClient);
             PrepareCreateSessionArguments(
                 httpClient: HttpClient,
-                id: ref id,
+                agentId: ref agentId,
                 speechifyVersion: ref speechifyVersion,
                 request: request);
 
@@ -154,7 +154,7 @@ namespace Speechify
             {
 
                             var __pathBuilder = new global::Speechify.PathBuilder(
-                                path: $"/v1/agents/{id}/sessions",
+                                path: $"/v1/agents/{agentId}/sessions",
                                 baseUri: HttpClient.BaseAddress);
                             var __path = __pathBuilder.ToString();
                 __path = global::Speechify.AutoSDKRequestOptionsSupport.AppendQueryParameters(
@@ -208,7 +208,7 @@ namespace Speechify
                 PrepareCreateSessionRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
-                    id: id!,
+                    agentId: agentId!,
                     speechifyVersion: speechifyVersion,
                     request: request);
 
@@ -229,7 +229,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "CreateSession",
                                 methodName: "CreateSessionAsync",
-                                pathTemplate: "$\"/v1/agents/{id}/sessions\"",
+                                pathTemplate: "$\"/v1/agents/{agentId}/sessions\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -263,7 +263,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "CreateSession",
                                 methodName: "CreateSessionAsync",
-                                pathTemplate: "$\"/v1/agents/{id}/sessions\"",
+                                pathTemplate: "$\"/v1/agents/{agentId}/sessions\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -304,7 +304,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "CreateSession",
                                 methodName: "CreateSessionAsync",
-                                pathTemplate: "$\"/v1/agents/{id}/sessions\"",
+                                pathTemplate: "$\"/v1/agents/{agentId}/sessions\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -352,7 +352,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "CreateSession",
                                 methodName: "CreateSessionAsync",
-                                pathTemplate: "$\"/v1/agents/{id}/sessions\"",
+                                pathTemplate: "$\"/v1/agents/{agentId}/sessions\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -374,7 +374,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "CreateSession",
                                 methodName: "CreateSessionAsync",
-                                pathTemplate: "$\"/v1/agents/{id}/sessions\"",
+                                pathTemplate: "$\"/v1/agents/{agentId}/sessions\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -614,7 +614,7 @@ namespace Speechify
         /// Responds with the same `CreateConversationResponse` as<br/>
         /// `createConversation`.
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="agentId"></param>
         /// <param name="speechifyVersion"></param>
         /// <param name="userIdentity">
         /// Opaque identifier for the end-user (e.g. your app's user ID). Stamped onto the conversation. Optional - defaults to an anonymous per-session ID.
@@ -631,7 +631,7 @@ namespace Speechify
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::System.InvalidOperationException"></exception>
         public async global::System.Threading.Tasks.Task<global::Speechify.CreateConversationResponse> CreateSessionAsync(
-            string id,
+            string agentId,
             string? speechifyVersion = default,
             string? userIdentity = default,
             object? dynamicVariables = default,
@@ -645,7 +645,7 @@ namespace Speechify
             };
 
             return await CreateSessionAsync(
-                id: id,
+                agentId: agentId,
                 speechifyVersion: speechifyVersion,
                 request: __request,
                 requestOptions: requestOptions,

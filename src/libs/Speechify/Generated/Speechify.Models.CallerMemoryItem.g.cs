@@ -5,7 +5,7 @@ namespace Speechify
 {
     /// <summary>
     /// Memory projection returned by the per-caller memories list. Mirrors<br/>
-    /// the legacy `/v1/agents/{id}/memories` shape so console code can<br/>
+    /// the legacy `/v1/agents/{agent_id}/memories` shape so console code can<br/>
     /// re-use existing renderers.
     /// </summary>
     public sealed partial class CallerMemoryItem

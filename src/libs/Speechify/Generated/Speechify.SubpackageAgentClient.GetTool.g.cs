@@ -27,13 +27,13 @@ namespace Speechify
             };
         partial void PrepareGetToolArguments(
             global::System.Net.Http.HttpClient httpClient,
-            ref string id,
+            ref string agentId,
             ref string toolId,
             ref string? speechifyVersion);
         partial void PrepareGetToolRequest(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpRequestMessage httpRequestMessage,
-            string id,
+            string agentId,
             string toolId,
             string? speechifyVersion);
         partial void ProcessGetToolResponse(
@@ -49,21 +49,21 @@ namespace Speechify
         /// Get Agent Tool<br/>
         /// Fetch one of the agent's tools by its id (built-in or attached definition).
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="agentId"></param>
         /// <param name="toolId"></param>
         /// <param name="speechifyVersion"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
         public async global::System.Threading.Tasks.Task<global::Speechify.AgentTool> GetToolAsync(
-            string id,
+            string agentId,
             string toolId,
             string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
             var __response = await GetToolAsResponseAsync(
-                id: id,
+                agentId: agentId,
                 toolId: toolId,
                 speechifyVersion: speechifyVersion,
                 requestOptions: requestOptions,
@@ -76,14 +76,14 @@ namespace Speechify
         /// Get Agent Tool<br/>
         /// Fetch one of the agent's tools by its id (built-in or attached definition).
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="agentId"></param>
         /// <param name="toolId"></param>
         /// <param name="speechifyVersion"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
         public async global::System.Threading.Tasks.Task<global::Speechify.AutoSDKHttpResponse<global::Speechify.AgentTool>> GetToolAsResponseAsync(
-            string id,
+            string agentId,
             string toolId,
             string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
@@ -93,7 +93,7 @@ namespace Speechify
                 client: HttpClient);
             PrepareGetToolArguments(
                 httpClient: HttpClient,
-                id: ref id,
+                agentId: ref agentId,
                 toolId: ref toolId,
                 speechifyVersion: ref speechifyVersion);
 
@@ -121,7 +121,7 @@ namespace Speechify
             {
 
                             var __pathBuilder = new global::Speechify.PathBuilder(
-                                path: $"/v1/agents/{id}/tools/{toolId}",
+                                path: $"/v1/agents/{agentId}/tools/{toolId}",
                                 baseUri: HttpClient.BaseAddress);
                             var __path = __pathBuilder.ToString();
                 __path = global::Speechify.AutoSDKRequestOptionsSupport.AppendQueryParameters(
@@ -169,7 +169,7 @@ namespace Speechify
                 PrepareGetToolRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
-                    id: id!,
+                    agentId: agentId!,
                     toolId: toolId!,
                     speechifyVersion: speechifyVersion);
 
@@ -190,7 +190,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "GetTool",
                                 methodName: "GetToolAsync",
-                                pathTemplate: "$\"/v1/agents/{id}/tools/{toolId}\"",
+                                pathTemplate: "$\"/v1/agents/{agentId}/tools/{toolId}\"",
                                 httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -224,7 +224,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "GetTool",
                                 methodName: "GetToolAsync",
-                                pathTemplate: "$\"/v1/agents/{id}/tools/{toolId}\"",
+                                pathTemplate: "$\"/v1/agents/{agentId}/tools/{toolId}\"",
                                 httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -265,7 +265,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "GetTool",
                                 methodName: "GetToolAsync",
-                                pathTemplate: "$\"/v1/agents/{id}/tools/{toolId}\"",
+                                pathTemplate: "$\"/v1/agents/{agentId}/tools/{toolId}\"",
                                 httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -313,7 +313,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "GetTool",
                                 methodName: "GetToolAsync",
-                                pathTemplate: "$\"/v1/agents/{id}/tools/{toolId}\"",
+                                pathTemplate: "$\"/v1/agents/{agentId}/tools/{toolId}\"",
                                 httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -335,7 +335,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "GetTool",
                                 methodName: "GetToolAsync",
-                                pathTemplate: "$\"/v1/agents/{id}/tools/{toolId}\"",
+                                pathTemplate: "$\"/v1/agents/{agentId}/tools/{toolId}\"",
                                 httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,

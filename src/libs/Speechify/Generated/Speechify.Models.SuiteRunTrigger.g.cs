@@ -5,9 +5,9 @@ namespace Speechify
 {
     /// <summary>
     /// Which entry point created a suite run.<br/>
-    /// - `run_all`  - POST /v1/agents/{id}/tests/runs.<br/>
+    /// - `run_all`  - POST /v1/agents/{agent_id}/tests/runs.<br/>
     /// - `batch`    - POST /v1/agents/tests/runs/batch.<br/>
-    /// - `resubmit` - POST /v1/agents/tests/suite-runs/{id}/resubmit.
+    /// - `resubmit` - POST /v1/agents/tests/suite-runs/{suite_run_id}/resubmit.
     /// </summary>
     public enum SuiteRunTrigger
     {

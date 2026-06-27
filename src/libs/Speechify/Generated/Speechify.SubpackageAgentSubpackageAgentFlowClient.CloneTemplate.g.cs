@@ -27,13 +27,13 @@ namespace Speechify
             };
         partial void PrepareCloneTemplateArguments(
             global::System.Net.Http.HttpClient httpClient,
-            ref string id,
+            ref string flowTemplateId,
             ref string? speechifyVersion,
             global::Speechify.CloneFlowTemplateRequest request);
         partial void PrepareCloneTemplateRequest(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpRequestMessage httpRequestMessage,
-            string id,
+            string flowTemplateId,
             string? speechifyVersion,
             global::Speechify.CloneFlowTemplateRequest request);
         partial void ProcessCloneTemplateResponse(
@@ -49,14 +49,14 @@ namespace Speechify
         /// Clone Flow Template<br/>
         /// Clone a flow template onto an agent as a new draft graph.
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="flowTemplateId"></param>
         /// <param name="speechifyVersion"></param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
         public async global::System.Threading.Tasks.Task<global::Speechify.FlowGraph> CloneTemplateAsync(
-            string id,
+            string flowTemplateId,
 
             global::Speechify.CloneFlowTemplateRequest request,
             string? speechifyVersion = default,
@@ -64,7 +64,7 @@ namespace Speechify
             global::System.Threading.CancellationToken cancellationToken = default)
         {
             var __response = await CloneTemplateAsResponseAsync(
-                id: id,
+                flowTemplateId: flowTemplateId,
 
                 request: request,
                 speechifyVersion: speechifyVersion,
@@ -78,14 +78,14 @@ namespace Speechify
         /// Clone Flow Template<br/>
         /// Clone a flow template onto an agent as a new draft graph.
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="flowTemplateId"></param>
         /// <param name="speechifyVersion"></param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
         public async global::System.Threading.Tasks.Task<global::Speechify.AutoSDKHttpResponse<global::Speechify.FlowGraph>> CloneTemplateAsResponseAsync(
-            string id,
+            string flowTemplateId,
 
             global::Speechify.CloneFlowTemplateRequest request,
             string? speechifyVersion = default,
@@ -98,7 +98,7 @@ namespace Speechify
                 client: HttpClient);
             PrepareCloneTemplateArguments(
                 httpClient: HttpClient,
-                id: ref id,
+                flowTemplateId: ref flowTemplateId,
                 speechifyVersion: ref speechifyVersion,
                 request: request);
 
@@ -126,7 +126,7 @@ namespace Speechify
             {
 
                             var __pathBuilder = new global::Speechify.PathBuilder(
-                                path: $"/v1/agents/flow/templates/{id}/clone",
+                                path: $"/v1/agents/flow/templates/{flowTemplateId}/clone",
                                 baseUri: HttpClient.BaseAddress);
                             var __path = __pathBuilder.ToString();
                 __path = global::Speechify.AutoSDKRequestOptionsSupport.AppendQueryParameters(
@@ -180,7 +180,7 @@ namespace Speechify
                 PrepareCloneTemplateRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
-                    id: id!,
+                    flowTemplateId: flowTemplateId!,
                     speechifyVersion: speechifyVersion,
                     request: request);
 
@@ -201,7 +201,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "CloneTemplate",
                                 methodName: "CloneTemplateAsync",
-                                pathTemplate: "$\"/v1/agents/flow/templates/{id}/clone\"",
+                                pathTemplate: "$\"/v1/agents/flow/templates/{flowTemplateId}/clone\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -235,7 +235,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "CloneTemplate",
                                 methodName: "CloneTemplateAsync",
-                                pathTemplate: "$\"/v1/agents/flow/templates/{id}/clone\"",
+                                pathTemplate: "$\"/v1/agents/flow/templates/{flowTemplateId}/clone\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -276,7 +276,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "CloneTemplate",
                                 methodName: "CloneTemplateAsync",
-                                pathTemplate: "$\"/v1/agents/flow/templates/{id}/clone\"",
+                                pathTemplate: "$\"/v1/agents/flow/templates/{flowTemplateId}/clone\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -324,7 +324,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "CloneTemplate",
                                 methodName: "CloneTemplateAsync",
-                                pathTemplate: "$\"/v1/agents/flow/templates/{id}/clone\"",
+                                pathTemplate: "$\"/v1/agents/flow/templates/{flowTemplateId}/clone\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -346,7 +346,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "CloneTemplate",
                                 methodName: "CloneTemplateAsync",
-                                pathTemplate: "$\"/v1/agents/flow/templates/{id}/clone\"",
+                                pathTemplate: "$\"/v1/agents/flow/templates/{flowTemplateId}/clone\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -646,7 +646,7 @@ namespace Speechify
         /// Clone Flow Template<br/>
         /// Clone a flow template onto an agent as a new draft graph.
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="flowTemplateId"></param>
         /// <param name="speechifyVersion"></param>
         /// <param name="agentId">
         /// The agent that receives the cloned graph as a new draft.
@@ -655,7 +655,7 @@ namespace Speechify
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::System.InvalidOperationException"></exception>
         public async global::System.Threading.Tasks.Task<global::Speechify.FlowGraph> CloneTemplateAsync(
-            string id,
+            string flowTemplateId,
             string agentId,
             string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
@@ -667,7 +667,7 @@ namespace Speechify
             };
 
             return await CloneTemplateAsync(
-                id: id,
+                flowTemplateId: flowTemplateId,
                 speechifyVersion: speechifyVersion,
                 request: __request,
                 requestOptions: requestOptions,

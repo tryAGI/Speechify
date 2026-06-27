@@ -8,7 +8,7 @@ namespace Speechify
         /// Run All Agent Tests<br/>
         /// Enqueue runs for every test on the agent concurrently. Up to 50<br/>
         /// tests are dispatched in one call. Each returned run starts in<br/>
-        /// `queued` status; poll `GET /v1/agents/tests/runs/{id}` for the terminal<br/>
+        /// `queued` status; poll `GET /v1/agents/tests/runs/{test_run_id}` for the terminal<br/>
         /// result.<br/>
         /// An optional request body runs the whole suite against<br/>
         /// a proposed config: a `config_override` (prompt / model / tools)<br/>
@@ -17,14 +17,14 @@ namespace Speechify
         /// the agent's active flow. Omit the body to run against the<br/>
         /// agent's live config and active flow.
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="agentId"></param>
         /// <param name="speechifyVersion"></param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
         global::System.Threading.Tasks.Task<global::Speechify.RunAgentTestsResponse> RunAllTestsAsync(
-            string id,
+            string agentId,
 
             global::Speechify.RunAllTestsRequest request,
             string? speechifyVersion = default,
@@ -34,7 +34,7 @@ namespace Speechify
         /// Run All Agent Tests<br/>
         /// Enqueue runs for every test on the agent concurrently. Up to 50<br/>
         /// tests are dispatched in one call. Each returned run starts in<br/>
-        /// `queued` status; poll `GET /v1/agents/tests/runs/{id}` for the terminal<br/>
+        /// `queued` status; poll `GET /v1/agents/tests/runs/{test_run_id}` for the terminal<br/>
         /// result.<br/>
         /// An optional request body runs the whole suite against<br/>
         /// a proposed config: a `config_override` (prompt / model / tools)<br/>
@@ -43,14 +43,14 @@ namespace Speechify
         /// the agent's active flow. Omit the body to run against the<br/>
         /// agent's live config and active flow.
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="agentId"></param>
         /// <param name="speechifyVersion"></param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
         global::System.Threading.Tasks.Task<global::Speechify.AutoSDKHttpResponse<global::Speechify.RunAgentTestsResponse>> RunAllTestsAsResponseAsync(
-            string id,
+            string agentId,
 
             global::Speechify.RunAllTestsRequest request,
             string? speechifyVersion = default,
@@ -60,7 +60,7 @@ namespace Speechify
         /// Run All Agent Tests<br/>
         /// Enqueue runs for every test on the agent concurrently. Up to 50<br/>
         /// tests are dispatched in one call. Each returned run starts in<br/>
-        /// `queued` status; poll `GET /v1/agents/tests/runs/{id}` for the terminal<br/>
+        /// `queued` status; poll `GET /v1/agents/tests/runs/{test_run_id}` for the terminal<br/>
         /// result.<br/>
         /// An optional request body runs the whole suite against<br/>
         /// a proposed config: a `config_override` (prompt / model / tools)<br/>
@@ -69,7 +69,7 @@ namespace Speechify
         /// the agent's active flow. Omit the body to run against the<br/>
         /// agent's live config and active flow.
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="agentId"></param>
         /// <param name="speechifyVersion"></param>
         /// <param name="configOverride">
         /// A run-level config override applied to every test in a Run All.<br/>
@@ -90,7 +90,7 @@ namespace Speechify
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::System.InvalidOperationException"></exception>
         global::System.Threading.Tasks.Task<global::Speechify.RunAgentTestsResponse> RunAllTestsAsync(
-            string id,
+            string agentId,
             string? speechifyVersion = default,
             global::Speechify.TestRunConfigOverride? configOverride = default,
             string? flowVersionId = default,

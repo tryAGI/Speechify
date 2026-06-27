@@ -27,13 +27,13 @@ namespace Speechify
             };
         partial void PrepareInvalidateArguments(
             global::System.Net.Http.HttpClient httpClient,
-            ref string id,
+            ref string ivrMenuId,
             ref string? speechifyVersion,
             global::Speechify.InvalidateIVRMenuRequest request);
         partial void PrepareInvalidateRequest(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpRequestMessage httpRequestMessage,
-            string id,
+            string ivrMenuId,
             string? speechifyVersion,
             global::Speechify.InvalidateIVRMenuRequest request);
         partial void ProcessInvalidateResponse(
@@ -54,14 +54,14 @@ namespace Speechify
         /// Reason is optional and is captured in structured logs for<br/>
         /// operator triage. A future audit table may persist it.
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="ivrMenuId"></param>
         /// <param name="speechifyVersion"></param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
         public async global::System.Threading.Tasks.Task<string> InvalidateAsync(
-            string id,
+            string ivrMenuId,
 
             global::Speechify.InvalidateIVRMenuRequest request,
             string? speechifyVersion = default,
@@ -69,7 +69,7 @@ namespace Speechify
             global::System.Threading.CancellationToken cancellationToken = default)
         {
             var __response = await InvalidateAsResponseAsync(
-                id: id,
+                ivrMenuId: ivrMenuId,
 
                 request: request,
                 speechifyVersion: speechifyVersion,
@@ -88,14 +88,14 @@ namespace Speechify
         /// Reason is optional and is captured in structured logs for<br/>
         /// operator triage. A future audit table may persist it.
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="ivrMenuId"></param>
         /// <param name="speechifyVersion"></param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
         public async global::System.Threading.Tasks.Task<global::Speechify.AutoSDKHttpResponse<string>> InvalidateAsResponseAsync(
-            string id,
+            string ivrMenuId,
 
             global::Speechify.InvalidateIVRMenuRequest request,
             string? speechifyVersion = default,
@@ -108,7 +108,7 @@ namespace Speechify
                 client: HttpClient);
             PrepareInvalidateArguments(
                 httpClient: HttpClient,
-                id: ref id,
+                ivrMenuId: ref ivrMenuId,
                 speechifyVersion: ref speechifyVersion,
                 request: request);
 
@@ -136,7 +136,7 @@ namespace Speechify
             {
 
                             var __pathBuilder = new global::Speechify.PathBuilder(
-                                path: $"/v1/agents/ivr-menus/{id}/invalidate",
+                                path: $"/v1/agents/ivr-menus/{ivrMenuId}/invalidate",
                                 baseUri: HttpClient.BaseAddress);
                             var __path = __pathBuilder.ToString();
                 __path = global::Speechify.AutoSDKRequestOptionsSupport.AppendQueryParameters(
@@ -190,7 +190,7 @@ namespace Speechify
                 PrepareInvalidateRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
-                    id: id!,
+                    ivrMenuId: ivrMenuId!,
                     speechifyVersion: speechifyVersion,
                     request: request);
 
@@ -211,7 +211,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "Invalidate",
                                 methodName: "InvalidateAsync",
-                                pathTemplate: "$\"/v1/agents/ivr-menus/{id}/invalidate\"",
+                                pathTemplate: "$\"/v1/agents/ivr-menus/{ivrMenuId}/invalidate\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -245,7 +245,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "Invalidate",
                                 methodName: "InvalidateAsync",
-                                pathTemplate: "$\"/v1/agents/ivr-menus/{id}/invalidate\"",
+                                pathTemplate: "$\"/v1/agents/ivr-menus/{ivrMenuId}/invalidate\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -286,7 +286,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "Invalidate",
                                 methodName: "InvalidateAsync",
-                                pathTemplate: "$\"/v1/agents/ivr-menus/{id}/invalidate\"",
+                                pathTemplate: "$\"/v1/agents/ivr-menus/{ivrMenuId}/invalidate\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -334,7 +334,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "Invalidate",
                                 methodName: "InvalidateAsync",
-                                pathTemplate: "$\"/v1/agents/ivr-menus/{id}/invalidate\"",
+                                pathTemplate: "$\"/v1/agents/ivr-menus/{ivrMenuId}/invalidate\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -356,7 +356,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "Invalidate",
                                 methodName: "InvalidateAsync",
-                                pathTemplate: "$\"/v1/agents/ivr-menus/{id}/invalidate\"",
+                                pathTemplate: "$\"/v1/agents/ivr-menus/{ivrMenuId}/invalidate\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -546,7 +546,7 @@ namespace Speechify
         /// Reason is optional and is captured in structured logs for<br/>
         /// operator triage. A future audit table may persist it.
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="ivrMenuId"></param>
         /// <param name="speechifyVersion"></param>
         /// <param name="reason">
         /// Operator-debug cause string. Bounded to 256 chars.
@@ -555,7 +555,7 @@ namespace Speechify
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::System.InvalidOperationException"></exception>
         public async global::System.Threading.Tasks.Task<string> InvalidateAsync(
-            string id,
+            string ivrMenuId,
             string? speechifyVersion = default,
             string? reason = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
@@ -567,7 +567,7 @@ namespace Speechify
             };
 
             return await InvalidateAsync(
-                id: id,
+                ivrMenuId: ivrMenuId,
                 speechifyVersion: speechifyVersion,
                 request: __request,
                 requestOptions: requestOptions,

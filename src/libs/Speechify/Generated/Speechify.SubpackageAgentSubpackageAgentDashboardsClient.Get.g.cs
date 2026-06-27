@@ -27,12 +27,12 @@ namespace Speechify
             };
         partial void PrepareGetArguments(
             global::System.Net.Http.HttpClient httpClient,
-            ref string id,
+            ref string dashboardId,
             ref string? speechifyVersion);
         partial void PrepareGetRequest(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpRequestMessage httpRequestMessage,
-            string id,
+            string dashboardId,
             string? speechifyVersion);
         partial void ProcessGetResponse(
             global::System.Net.Http.HttpClient httpClient,
@@ -46,19 +46,19 @@ namespace Speechify
         /// <summary>
         /// Get dashboard
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="dashboardId"></param>
         /// <param name="speechifyVersion"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
         public async global::System.Threading.Tasks.Task<global::Speechify.Dashboard> GetAsync(
-            string id,
+            string dashboardId,
             string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
             var __response = await GetAsResponseAsync(
-                id: id,
+                dashboardId: dashboardId,
                 speechifyVersion: speechifyVersion,
                 requestOptions: requestOptions,
                 cancellationToken: cancellationToken
@@ -69,13 +69,13 @@ namespace Speechify
         /// <summary>
         /// Get dashboard
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="dashboardId"></param>
         /// <param name="speechifyVersion"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
         public async global::System.Threading.Tasks.Task<global::Speechify.AutoSDKHttpResponse<global::Speechify.Dashboard>> GetAsResponseAsync(
-            string id,
+            string dashboardId,
             string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
@@ -84,7 +84,7 @@ namespace Speechify
                 client: HttpClient);
             PrepareGetArguments(
                 httpClient: HttpClient,
-                id: ref id,
+                dashboardId: ref dashboardId,
                 speechifyVersion: ref speechifyVersion);
 
 
@@ -111,7 +111,7 @@ namespace Speechify
             {
 
                             var __pathBuilder = new global::Speechify.PathBuilder(
-                                path: $"/v1/agents/dashboards/{id}",
+                                path: $"/v1/agents/dashboards/{dashboardId}",
                                 baseUri: HttpClient.BaseAddress);
                             var __path = __pathBuilder.ToString();
                 __path = global::Speechify.AutoSDKRequestOptionsSupport.AppendQueryParameters(
@@ -159,7 +159,7 @@ namespace Speechify
                 PrepareGetRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
-                    id: id!,
+                    dashboardId: dashboardId!,
                     speechifyVersion: speechifyVersion);
 
                 return __httpRequest;
@@ -179,7 +179,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "Get",
                                 methodName: "GetAsync",
-                                pathTemplate: "$\"/v1/agents/dashboards/{id}\"",
+                                pathTemplate: "$\"/v1/agents/dashboards/{dashboardId}\"",
                                 httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -213,7 +213,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "Get",
                                 methodName: "GetAsync",
-                                pathTemplate: "$\"/v1/agents/dashboards/{id}\"",
+                                pathTemplate: "$\"/v1/agents/dashboards/{dashboardId}\"",
                                 httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -254,7 +254,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "Get",
                                 methodName: "GetAsync",
-                                pathTemplate: "$\"/v1/agents/dashboards/{id}\"",
+                                pathTemplate: "$\"/v1/agents/dashboards/{dashboardId}\"",
                                 httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -302,7 +302,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "Get",
                                 methodName: "GetAsync",
-                                pathTemplate: "$\"/v1/agents/dashboards/{id}\"",
+                                pathTemplate: "$\"/v1/agents/dashboards/{dashboardId}\"",
                                 httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -324,7 +324,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "Get",
                                 methodName: "GetAsync",
-                                pathTemplate: "$\"/v1/agents/dashboards/{id}\"",
+                                pathTemplate: "$\"/v1/agents/dashboards/{dashboardId}\"",
                                 httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,

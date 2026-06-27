@@ -66,8 +66,8 @@ namespace Speechify
         /// <summary>
         /// 
         /// </summary>
-        [global::System.Text.Json.Serialization.JsonPropertyName("completed_at")]
-        public global::System.DateTime? CompletedAt { get; set; }
+        [global::System.Text.Json.Serialization.JsonPropertyName("ended_at")]
+        public global::System.DateTime? EndedAt { get; set; }
 
         /// <summary>
         /// Additional properties that are not explicitly defined in the schema
@@ -98,7 +98,7 @@ namespace Speechify
         /// Populated when this recipient fails.
         /// </param>
         /// <param name="attemptedAt"></param>
-        /// <param name="completedAt"></param>
+        /// <param name="endedAt"></param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
 #endif
@@ -111,7 +111,7 @@ namespace Speechify
             string? conversationId,
             string? error,
             global::System.DateTime? attemptedAt,
-            global::System.DateTime? completedAt)
+            global::System.DateTime? endedAt)
         {
             this.Id = id ?? throw new global::System.ArgumentNullException(nameof(id));
             this.BatchId = batchId ?? throw new global::System.ArgumentNullException(nameof(batchId));
@@ -121,7 +121,7 @@ namespace Speechify
             this.ConversationId = conversationId;
             this.Error = error;
             this.AttemptedAt = attemptedAt;
-            this.CompletedAt = completedAt;
+            this.EndedAt = endedAt;
         }
 
         /// <summary>

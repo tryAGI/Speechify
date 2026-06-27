@@ -27,12 +27,12 @@ namespace Speechify
             };
         partial void PrepareShadowTokenArguments(
             global::System.Net.Http.HttpClient httpClient,
-            ref string id,
+            ref string conversationId,
             ref string? speechifyVersion);
         partial void PrepareShadowTokenRequest(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpRequestMessage httpRequestMessage,
-            string id,
+            string conversationId,
             string? speechifyVersion);
         partial void ProcessShadowTokenResponse(
             global::System.Net.Http.HttpClient httpClient,
@@ -55,19 +55,19 @@ namespace Speechify
         /// — by being granted a role on the customer's workspace (typically<br/>
         /// under an NDA-backed support arrangement).
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="conversationId"></param>
         /// <param name="speechifyVersion"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
         public async global::System.Threading.Tasks.Task<global::Speechify.ShadowConversationResponse> ShadowTokenAsync(
-            string id,
+            string conversationId,
             string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
             var __response = await ShadowTokenAsResponseAsync(
-                id: id,
+                conversationId: conversationId,
                 speechifyVersion: speechifyVersion,
                 requestOptions: requestOptions,
                 cancellationToken: cancellationToken
@@ -87,13 +87,13 @@ namespace Speechify
         /// — by being granted a role on the customer's workspace (typically<br/>
         /// under an NDA-backed support arrangement).
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="conversationId"></param>
         /// <param name="speechifyVersion"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
         public async global::System.Threading.Tasks.Task<global::Speechify.AutoSDKHttpResponse<global::Speechify.ShadowConversationResponse>> ShadowTokenAsResponseAsync(
-            string id,
+            string conversationId,
             string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
@@ -102,7 +102,7 @@ namespace Speechify
                 client: HttpClient);
             PrepareShadowTokenArguments(
                 httpClient: HttpClient,
-                id: ref id,
+                conversationId: ref conversationId,
                 speechifyVersion: ref speechifyVersion);
 
 
@@ -129,7 +129,7 @@ namespace Speechify
             {
 
                             var __pathBuilder = new global::Speechify.PathBuilder(
-                                path: $"/v1/agents/conversations/{id}/shadow-token",
+                                path: $"/v1/agents/conversations/{conversationId}/shadow-token",
                                 baseUri: HttpClient.BaseAddress);
                             var __path = __pathBuilder.ToString();
                 __path = global::Speechify.AutoSDKRequestOptionsSupport.AppendQueryParameters(
@@ -177,7 +177,7 @@ namespace Speechify
                 PrepareShadowTokenRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
-                    id: id!,
+                    conversationId: conversationId!,
                     speechifyVersion: speechifyVersion);
 
                 return __httpRequest;
@@ -197,7 +197,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "ShadowToken",
                                 methodName: "ShadowTokenAsync",
-                                pathTemplate: "$\"/v1/agents/conversations/{id}/shadow-token\"",
+                                pathTemplate: "$\"/v1/agents/conversations/{conversationId}/shadow-token\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -231,7 +231,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "ShadowToken",
                                 methodName: "ShadowTokenAsync",
-                                pathTemplate: "$\"/v1/agents/conversations/{id}/shadow-token\"",
+                                pathTemplate: "$\"/v1/agents/conversations/{conversationId}/shadow-token\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -272,7 +272,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "ShadowToken",
                                 methodName: "ShadowTokenAsync",
-                                pathTemplate: "$\"/v1/agents/conversations/{id}/shadow-token\"",
+                                pathTemplate: "$\"/v1/agents/conversations/{conversationId}/shadow-token\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -320,7 +320,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "ShadowToken",
                                 methodName: "ShadowTokenAsync",
-                                pathTemplate: "$\"/v1/agents/conversations/{id}/shadow-token\"",
+                                pathTemplate: "$\"/v1/agents/conversations/{conversationId}/shadow-token\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -342,7 +342,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "ShadowToken",
                                 methodName: "ShadowTokenAsync",
-                                pathTemplate: "$\"/v1/agents/conversations/{id}/shadow-token\"",
+                                pathTemplate: "$\"/v1/agents/conversations/{conversationId}/shadow-token\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,

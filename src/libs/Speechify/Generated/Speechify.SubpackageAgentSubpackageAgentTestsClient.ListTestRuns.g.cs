@@ -27,14 +27,14 @@ namespace Speechify
             };
         partial void PrepareListTestRunsArguments(
             global::System.Net.Http.HttpClient httpClient,
-            ref string id,
+            ref string testId,
             ref string? cursor,
             ref int? limit,
             ref string? speechifyVersion);
         partial void PrepareListTestRunsRequest(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpRequestMessage httpRequestMessage,
-            string id,
+            string testId,
             string? cursor,
             int? limit,
             string? speechifyVersion);
@@ -52,7 +52,7 @@ namespace Speechify
         /// List one page of run history for a test, newest first.<br/>
         /// Paginate by passing `cursor` from the previous response.
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="testId"></param>
         /// <param name="cursor"></param>
         /// <param name="limit">
         /// Default Value: 50
@@ -62,7 +62,7 @@ namespace Speechify
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
         public async global::System.Threading.Tasks.Task<global::Speechify.ListAgentTestRunsResponse> ListTestRunsAsync(
-            string id,
+            string testId,
             string? cursor = default,
             int? limit = default,
             string? speechifyVersion = default,
@@ -70,7 +70,7 @@ namespace Speechify
             global::System.Threading.CancellationToken cancellationToken = default)
         {
             var __response = await ListTestRunsAsResponseAsync(
-                id: id,
+                testId: testId,
                 cursor: cursor,
                 limit: limit,
                 speechifyVersion: speechifyVersion,
@@ -85,7 +85,7 @@ namespace Speechify
         /// List one page of run history for a test, newest first.<br/>
         /// Paginate by passing `cursor` from the previous response.
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="testId"></param>
         /// <param name="cursor"></param>
         /// <param name="limit">
         /// Default Value: 50
@@ -95,7 +95,7 @@ namespace Speechify
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
         public async global::System.Threading.Tasks.Task<global::Speechify.AutoSDKHttpResponse<global::Speechify.ListAgentTestRunsResponse>> ListTestRunsAsResponseAsync(
-            string id,
+            string testId,
             string? cursor = default,
             int? limit = default,
             string? speechifyVersion = default,
@@ -106,7 +106,7 @@ namespace Speechify
                 client: HttpClient);
             PrepareListTestRunsArguments(
                 httpClient: HttpClient,
-                id: ref id,
+                testId: ref testId,
                 cursor: ref cursor,
                 limit: ref limit,
                 speechifyVersion: ref speechifyVersion);
@@ -135,7 +135,7 @@ namespace Speechify
             {
 
                             var __pathBuilder = new global::Speechify.PathBuilder(
-                                path: $"/v1/agents/tests/{id}/runs",
+                                path: $"/v1/agents/tests/{testId}/runs",
                                 baseUri: HttpClient.BaseAddress);
                             __pathBuilder
                                 .AddOptionalParameter("cursor", cursor)
@@ -187,7 +187,7 @@ namespace Speechify
                 PrepareListTestRunsRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
-                    id: id!,
+                    testId: testId!,
                     cursor: cursor,
                     limit: limit,
                     speechifyVersion: speechifyVersion);
@@ -209,7 +209,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "ListTestRuns",
                                 methodName: "ListTestRunsAsync",
-                                pathTemplate: "$\"/v1/agents/tests/{id}/runs\"",
+                                pathTemplate: "$\"/v1/agents/tests/{testId}/runs\"",
                                 httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -243,7 +243,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "ListTestRuns",
                                 methodName: "ListTestRunsAsync",
-                                pathTemplate: "$\"/v1/agents/tests/{id}/runs\"",
+                                pathTemplate: "$\"/v1/agents/tests/{testId}/runs\"",
                                 httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -284,7 +284,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "ListTestRuns",
                                 methodName: "ListTestRunsAsync",
-                                pathTemplate: "$\"/v1/agents/tests/{id}/runs\"",
+                                pathTemplate: "$\"/v1/agents/tests/{testId}/runs\"",
                                 httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -332,7 +332,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "ListTestRuns",
                                 methodName: "ListTestRunsAsync",
-                                pathTemplate: "$\"/v1/agents/tests/{id}/runs\"",
+                                pathTemplate: "$\"/v1/agents/tests/{testId}/runs\"",
                                 httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -354,7 +354,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "ListTestRuns",
                                 methodName: "ListTestRunsAsync",
-                                pathTemplate: "$\"/v1/agents/tests/{id}/runs\"",
+                                pathTemplate: "$\"/v1/agents/tests/{testId}/runs\"",
                                 httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,

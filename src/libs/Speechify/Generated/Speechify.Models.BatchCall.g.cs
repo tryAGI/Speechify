@@ -100,8 +100,8 @@ namespace Speechify
         /// <summary>
         /// When the last recipient was resolved.
         /// </summary>
-        [global::System.Text.Json.Serialization.JsonPropertyName("finished_at")]
-        public global::System.DateTime? FinishedAt { get; set; }
+        [global::System.Text.Json.Serialization.JsonPropertyName("ended_at")]
+        public global::System.DateTime? EndedAt { get; set; }
 
         /// <summary>
         /// If set, the batch waits until this time before dialing.
@@ -163,7 +163,7 @@ namespace Speechify
         /// <param name="startedAt">
         /// When the dispatcher started dialing.
         /// </param>
-        /// <param name="finishedAt">
+        /// <param name="endedAt">
         /// When the last recipient was resolved.
         /// </param>
         /// <param name="scheduledAt">
@@ -190,7 +190,7 @@ namespace Speechify
             string? phoneNumberId,
             string? error,
             global::System.DateTime? startedAt,
-            global::System.DateTime? finishedAt,
+            global::System.DateTime? endedAt,
             global::System.DateTime? scheduledAt,
             int? ringingTimeoutMs)
         {
@@ -206,7 +206,7 @@ namespace Speechify
             this.CreatedAt = createdAt;
             this.UpdatedAt = updatedAt;
             this.StartedAt = startedAt;
-            this.FinishedAt = finishedAt;
+            this.EndedAt = endedAt;
             this.ScheduledAt = scheduledAt;
             this.RingingTimeoutMs = ringingTimeoutMs;
         }

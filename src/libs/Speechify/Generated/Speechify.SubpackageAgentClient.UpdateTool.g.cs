@@ -27,14 +27,14 @@ namespace Speechify
             };
         partial void PrepareUpdateToolArguments(
             global::System.Net.Http.HttpClient httpClient,
-            ref string id,
+            ref string agentId,
             ref string toolId,
             ref string? speechifyVersion,
             global::Speechify.UpdateAgentToolRequest request);
         partial void PrepareUpdateToolRequest(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpRequestMessage httpRequestMessage,
-            string id,
+            string agentId,
             string toolId,
             string? speechifyVersion,
             global::Speechify.UpdateAgentToolRequest request);
@@ -52,11 +52,11 @@ namespace Speechify
         /// Update one of the agent's tools. For a built-in, every field<br/>
         /// applies. For an attached external tool, only `enabled` is<br/>
         /// editable here — its shared config/name is edited on the<br/>
-        /// definition (`PATCH /v1/agents/tool-definitions/{id}`), since the<br/>
+        /// definition (`PATCH /v1/agents/tool-definitions/{tool_definition_id}`), since the<br/>
         /// definition is referenced live by every agent it is attached to;<br/>
         /// attempting a shared-config edit here returns `tool_config_shared`.
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="agentId"></param>
         /// <param name="toolId"></param>
         /// <param name="speechifyVersion"></param>
         /// <param name="request"></param>
@@ -64,7 +64,7 @@ namespace Speechify
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
         public async global::System.Threading.Tasks.Task<global::Speechify.AgentTool> UpdateToolAsync(
-            string id,
+            string agentId,
             string toolId,
 
             global::Speechify.UpdateAgentToolRequest request,
@@ -73,7 +73,7 @@ namespace Speechify
             global::System.Threading.CancellationToken cancellationToken = default)
         {
             var __response = await UpdateToolAsResponseAsync(
-                id: id,
+                agentId: agentId,
                 toolId: toolId,
 
                 request: request,
@@ -89,11 +89,11 @@ namespace Speechify
         /// Update one of the agent's tools. For a built-in, every field<br/>
         /// applies. For an attached external tool, only `enabled` is<br/>
         /// editable here — its shared config/name is edited on the<br/>
-        /// definition (`PATCH /v1/agents/tool-definitions/{id}`), since the<br/>
+        /// definition (`PATCH /v1/agents/tool-definitions/{tool_definition_id}`), since the<br/>
         /// definition is referenced live by every agent it is attached to;<br/>
         /// attempting a shared-config edit here returns `tool_config_shared`.
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="agentId"></param>
         /// <param name="toolId"></param>
         /// <param name="speechifyVersion"></param>
         /// <param name="request"></param>
@@ -101,7 +101,7 @@ namespace Speechify
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
         public async global::System.Threading.Tasks.Task<global::Speechify.AutoSDKHttpResponse<global::Speechify.AgentTool>> UpdateToolAsResponseAsync(
-            string id,
+            string agentId,
             string toolId,
 
             global::Speechify.UpdateAgentToolRequest request,
@@ -115,7 +115,7 @@ namespace Speechify
                 client: HttpClient);
             PrepareUpdateToolArguments(
                 httpClient: HttpClient,
-                id: ref id,
+                agentId: ref agentId,
                 toolId: ref toolId,
                 speechifyVersion: ref speechifyVersion,
                 request: request);
@@ -144,7 +144,7 @@ namespace Speechify
             {
 
                             var __pathBuilder = new global::Speechify.PathBuilder(
-                                path: $"/v1/agents/{id}/tools/{toolId}",
+                                path: $"/v1/agents/{agentId}/tools/{toolId}",
                                 baseUri: HttpClient.BaseAddress);
                             var __path = __pathBuilder.ToString();
                 __path = global::Speechify.AutoSDKRequestOptionsSupport.AppendQueryParameters(
@@ -198,7 +198,7 @@ namespace Speechify
                 PrepareUpdateToolRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
-                    id: id!,
+                    agentId: agentId!,
                     toolId: toolId!,
                     speechifyVersion: speechifyVersion,
                     request: request);
@@ -220,7 +220,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "UpdateTool",
                                 methodName: "UpdateToolAsync",
-                                pathTemplate: "$\"/v1/agents/{id}/tools/{toolId}\"",
+                                pathTemplate: "$\"/v1/agents/{agentId}/tools/{toolId}\"",
                                 httpMethod: "PATCH",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -254,7 +254,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "UpdateTool",
                                 methodName: "UpdateToolAsync",
-                                pathTemplate: "$\"/v1/agents/{id}/tools/{toolId}\"",
+                                pathTemplate: "$\"/v1/agents/{agentId}/tools/{toolId}\"",
                                 httpMethod: "PATCH",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -295,7 +295,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "UpdateTool",
                                 methodName: "UpdateToolAsync",
-                                pathTemplate: "$\"/v1/agents/{id}/tools/{toolId}\"",
+                                pathTemplate: "$\"/v1/agents/{agentId}/tools/{toolId}\"",
                                 httpMethod: "PATCH",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -343,7 +343,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "UpdateTool",
                                 methodName: "UpdateToolAsync",
-                                pathTemplate: "$\"/v1/agents/{id}/tools/{toolId}\"",
+                                pathTemplate: "$\"/v1/agents/{agentId}/tools/{toolId}\"",
                                 httpMethod: "PATCH",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -365,7 +365,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "UpdateTool",
                                 methodName: "UpdateToolAsync",
-                                pathTemplate: "$\"/v1/agents/{id}/tools/{toolId}\"",
+                                pathTemplate: "$\"/v1/agents/{agentId}/tools/{toolId}\"",
                                 httpMethod: "PATCH",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -592,11 +592,11 @@ namespace Speechify
         /// Update one of the agent's tools. For a built-in, every field<br/>
         /// applies. For an attached external tool, only `enabled` is<br/>
         /// editable here — its shared config/name is edited on the<br/>
-        /// definition (`PATCH /v1/agents/tool-definitions/{id}`), since the<br/>
+        /// definition (`PATCH /v1/agents/tool-definitions/{tool_definition_id}`), since the<br/>
         /// definition is referenced live by every agent it is attached to;<br/>
         /// attempting a shared-config edit here returns `tool_config_shared`.
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="agentId"></param>
         /// <param name="toolId"></param>
         /// <param name="speechifyVersion"></param>
         /// <param name="name"></param>
@@ -610,7 +610,7 @@ namespace Speechify
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::System.InvalidOperationException"></exception>
         public async global::System.Threading.Tasks.Task<global::Speechify.AgentTool> UpdateToolAsync(
-            string id,
+            string agentId,
             string toolId,
             string? speechifyVersion = default,
             string? name = default,
@@ -631,7 +631,7 @@ namespace Speechify
             };
 
             return await UpdateToolAsync(
-                id: id,
+                agentId: agentId,
                 toolId: toolId,
                 speechifyVersion: speechifyVersion,
                 request: __request,

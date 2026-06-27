@@ -27,13 +27,13 @@ namespace Speechify
             };
         partial void PrepareUnbindPhoneNumberArguments(
             global::System.Net.Http.HttpClient httpClient,
-            ref string id,
+            ref string agentId,
             ref string phoneNumberId,
             ref string? speechifyVersion);
         partial void PrepareUnbindPhoneNumberRequest(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpRequestMessage httpRequestMessage,
-            string id,
+            string agentId,
             string phoneNumberId,
             string? speechifyVersion);
         partial void ProcessUnbindPhoneNumberResponse(
@@ -50,21 +50,21 @@ namespace Speechify
         /// Unbind a phone number from this agent. Returns 404 when the<br/>
         /// number is not currently bound to this agent.
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="agentId"></param>
         /// <param name="phoneNumberId"></param>
         /// <param name="speechifyVersion"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
         public async global::System.Threading.Tasks.Task<string> UnbindPhoneNumberAsync(
-            string id,
+            string agentId,
             string phoneNumberId,
             string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
             var __response = await UnbindPhoneNumberAsResponseAsync(
-                id: id,
+                agentId: agentId,
                 phoneNumberId: phoneNumberId,
                 speechifyVersion: speechifyVersion,
                 requestOptions: requestOptions,
@@ -78,14 +78,14 @@ namespace Speechify
         /// Unbind a phone number from this agent. Returns 404 when the<br/>
         /// number is not currently bound to this agent.
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="agentId"></param>
         /// <param name="phoneNumberId"></param>
         /// <param name="speechifyVersion"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
         public async global::System.Threading.Tasks.Task<global::Speechify.AutoSDKHttpResponse<string>> UnbindPhoneNumberAsResponseAsync(
-            string id,
+            string agentId,
             string phoneNumberId,
             string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
@@ -95,7 +95,7 @@ namespace Speechify
                 client: HttpClient);
             PrepareUnbindPhoneNumberArguments(
                 httpClient: HttpClient,
-                id: ref id,
+                agentId: ref agentId,
                 phoneNumberId: ref phoneNumberId,
                 speechifyVersion: ref speechifyVersion);
 
@@ -123,7 +123,7 @@ namespace Speechify
             {
 
                             var __pathBuilder = new global::Speechify.PathBuilder(
-                                path: $"/v1/agents/{id}/phone-numbers/{phoneNumberId}",
+                                path: $"/v1/agents/{agentId}/phone-numbers/{phoneNumberId}",
                                 baseUri: HttpClient.BaseAddress);
                             var __path = __pathBuilder.ToString();
                 __path = global::Speechify.AutoSDKRequestOptionsSupport.AppendQueryParameters(
@@ -171,7 +171,7 @@ namespace Speechify
                 PrepareUnbindPhoneNumberRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
-                    id: id!,
+                    agentId: agentId!,
                     phoneNumberId: phoneNumberId!,
                     speechifyVersion: speechifyVersion);
 
@@ -192,7 +192,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "UnbindPhoneNumber",
                                 methodName: "UnbindPhoneNumberAsync",
-                                pathTemplate: "$\"/v1/agents/{id}/phone-numbers/{phoneNumberId}\"",
+                                pathTemplate: "$\"/v1/agents/{agentId}/phone-numbers/{phoneNumberId}\"",
                                 httpMethod: "DELETE",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -226,7 +226,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "UnbindPhoneNumber",
                                 methodName: "UnbindPhoneNumberAsync",
-                                pathTemplate: "$\"/v1/agents/{id}/phone-numbers/{phoneNumberId}\"",
+                                pathTemplate: "$\"/v1/agents/{agentId}/phone-numbers/{phoneNumberId}\"",
                                 httpMethod: "DELETE",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -267,7 +267,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "UnbindPhoneNumber",
                                 methodName: "UnbindPhoneNumberAsync",
-                                pathTemplate: "$\"/v1/agents/{id}/phone-numbers/{phoneNumberId}\"",
+                                pathTemplate: "$\"/v1/agents/{agentId}/phone-numbers/{phoneNumberId}\"",
                                 httpMethod: "DELETE",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -315,7 +315,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "UnbindPhoneNumber",
                                 methodName: "UnbindPhoneNumberAsync",
-                                pathTemplate: "$\"/v1/agents/{id}/phone-numbers/{phoneNumberId}\"",
+                                pathTemplate: "$\"/v1/agents/{agentId}/phone-numbers/{phoneNumberId}\"",
                                 httpMethod: "DELETE",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -337,7 +337,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "UnbindPhoneNumber",
                                 methodName: "UnbindPhoneNumberAsync",
-                                pathTemplate: "$\"/v1/agents/{id}/phone-numbers/{phoneNumberId}\"",
+                                pathTemplate: "$\"/v1/agents/{agentId}/phone-numbers/{phoneNumberId}\"",
                                 httpMethod: "DELETE",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
