@@ -4,7 +4,7 @@
 namespace Speechify
 {
     /// <summary>
-    /// Body for `PATCH /v1/credentials/{id}`. Rotates a credential's secret<br/>
+    /// Body for `PATCH /v1/credentials/{credential_id}`. Rotates a credential's secret<br/>
     /// and/or renames it in place, keeping the same id so every referencing<br/>
     /// config picks up the change. Both fields are optional; provide at least<br/>
     /// one. The kind is immutable — a rotated `config` must populate the same<br/>

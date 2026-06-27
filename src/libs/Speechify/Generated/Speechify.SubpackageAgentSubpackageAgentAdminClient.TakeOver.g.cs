@@ -27,12 +27,12 @@ namespace Speechify
             };
         partial void PrepareTakeOverArguments(
             global::System.Net.Http.HttpClient httpClient,
-            ref string id,
+            ref string conversationId,
             ref string? speechifyVersion);
         partial void PrepareTakeOverRequest(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpRequestMessage httpRequestMessage,
-            string id,
+            string conversationId,
             string? speechifyVersion);
         partial void ProcessTakeOverResponse(
             global::System.Net.Http.HttpClient httpClient,
@@ -54,19 +54,19 @@ namespace Speechify
         /// Only an active call can be taken over; a pending or completed call<br/>
         /// returns 409.
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="conversationId"></param>
         /// <param name="speechifyVersion"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
         public async global::System.Threading.Tasks.Task<global::Speechify.TakeOverConversationResponse> TakeOverAsync(
-            string id,
+            string conversationId,
             string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
             var __response = await TakeOverAsResponseAsync(
-                id: id,
+                conversationId: conversationId,
                 speechifyVersion: speechifyVersion,
                 requestOptions: requestOptions,
                 cancellationToken: cancellationToken
@@ -85,13 +85,13 @@ namespace Speechify
         /// Only an active call can be taken over; a pending or completed call<br/>
         /// returns 409.
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="conversationId"></param>
         /// <param name="speechifyVersion"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
         public async global::System.Threading.Tasks.Task<global::Speechify.AutoSDKHttpResponse<global::Speechify.TakeOverConversationResponse>> TakeOverAsResponseAsync(
-            string id,
+            string conversationId,
             string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
@@ -100,7 +100,7 @@ namespace Speechify
                 client: HttpClient);
             PrepareTakeOverArguments(
                 httpClient: HttpClient,
-                id: ref id,
+                conversationId: ref conversationId,
                 speechifyVersion: ref speechifyVersion);
 
 
@@ -127,7 +127,7 @@ namespace Speechify
             {
 
                             var __pathBuilder = new global::Speechify.PathBuilder(
-                                path: $"/v1/agents/conversations/{id}/takeover",
+                                path: $"/v1/agents/conversations/{conversationId}/takeover",
                                 baseUri: HttpClient.BaseAddress);
                             var __path = __pathBuilder.ToString();
                 __path = global::Speechify.AutoSDKRequestOptionsSupport.AppendQueryParameters(
@@ -175,7 +175,7 @@ namespace Speechify
                 PrepareTakeOverRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
-                    id: id!,
+                    conversationId: conversationId!,
                     speechifyVersion: speechifyVersion);
 
                 return __httpRequest;
@@ -195,7 +195,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "TakeOver",
                                 methodName: "TakeOverAsync",
-                                pathTemplate: "$\"/v1/agents/conversations/{id}/takeover\"",
+                                pathTemplate: "$\"/v1/agents/conversations/{conversationId}/takeover\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -229,7 +229,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "TakeOver",
                                 methodName: "TakeOverAsync",
-                                pathTemplate: "$\"/v1/agents/conversations/{id}/takeover\"",
+                                pathTemplate: "$\"/v1/agents/conversations/{conversationId}/takeover\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -270,7 +270,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "TakeOver",
                                 methodName: "TakeOverAsync",
-                                pathTemplate: "$\"/v1/agents/conversations/{id}/takeover\"",
+                                pathTemplate: "$\"/v1/agents/conversations/{conversationId}/takeover\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -318,7 +318,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "TakeOver",
                                 methodName: "TakeOverAsync",
-                                pathTemplate: "$\"/v1/agents/conversations/{id}/takeover\"",
+                                pathTemplate: "$\"/v1/agents/conversations/{conversationId}/takeover\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -340,7 +340,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "TakeOver",
                                 methodName: "TakeOverAsync",
-                                pathTemplate: "$\"/v1/agents/conversations/{id}/takeover\"",
+                                pathTemplate: "$\"/v1/agents/conversations/{conversationId}/takeover\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,

@@ -13,14 +13,14 @@ namespace Speechify
         /// match `[a-zA-Z0-9_]+` and must not start with the reserved<br/>
         /// `system__` prefix.
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="agentId"></param>
         /// <param name="speechifyVersion"></param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
         global::System.Threading.Tasks.Task<global::Speechify.ListDynamicVariablesResponse> UpdateDynamicVariablesAsync(
-            string id,
+            string agentId,
 
             global::Speechify.UpdateDynamicVariablesRequest request,
             string? speechifyVersion = default,
@@ -35,14 +35,14 @@ namespace Speechify
         /// match `[a-zA-Z0-9_]+` and must not start with the reserved<br/>
         /// `system__` prefix.
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="agentId"></param>
         /// <param name="speechifyVersion"></param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
         global::System.Threading.Tasks.Task<global::Speechify.AutoSDKHttpResponse<global::Speechify.ListDynamicVariablesResponse>> UpdateDynamicVariablesAsResponseAsync(
-            string id,
+            string agentId,
 
             global::Speechify.UpdateDynamicVariablesRequest request,
             string? speechifyVersion = default,
@@ -57,7 +57,7 @@ namespace Speechify
         /// match `[a-zA-Z0-9_]+` and must not start with the reserved<br/>
         /// `system__` prefix.
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="agentId"></param>
         /// <param name="speechifyVersion"></param>
         /// <param name="variables">
         /// The new variable list. Replaces the existing list entirely.
@@ -66,7 +66,7 @@ namespace Speechify
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::System.InvalidOperationException"></exception>
         global::System.Threading.Tasks.Task<global::Speechify.ListDynamicVariablesResponse> UpdateDynamicVariablesAsync(
-            string id,
+            string agentId,
             global::System.Collections.Generic.IList<global::Speechify.DynamicVariable> variables,
             string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,

@@ -4,7 +4,7 @@
 namespace Speechify
 {
     /// <summary>
-    /// Payload for `GET /v1/agents/knowledge-bases/{id}/documents/{docId}/refresh-history`.
+    /// Payload for `GET /v1/agents/knowledge-bases/{kb_id}/documents/{document_id}/refresh-history`.
     /// </summary>
     public sealed partial class ListRefreshHistoryResponse
     {

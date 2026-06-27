@@ -27,13 +27,13 @@ namespace Speechify
             };
         partial void PrepareDetachKnowledgeBaseArguments(
             global::System.Net.Http.HttpClient httpClient,
-            ref string id,
+            ref string agentId,
             ref string kbId,
             ref string? speechifyVersion);
         partial void PrepareDetachKnowledgeBaseRequest(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpRequestMessage httpRequestMessage,
-            string id,
+            string agentId,
             string kbId,
             string? speechifyVersion);
         partial void ProcessDetachKnowledgeBaseResponse(
@@ -49,21 +49,21 @@ namespace Speechify
         /// Detach Agent Knowledge Base<br/>
         /// Detach a knowledge base from an agent.
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="agentId"></param>
         /// <param name="kbId"></param>
         /// <param name="speechifyVersion"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
         public async global::System.Threading.Tasks.Task<string> DetachKnowledgeBaseAsync(
-            string id,
+            string agentId,
             string kbId,
             string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
             var __response = await DetachKnowledgeBaseAsResponseAsync(
-                id: id,
+                agentId: agentId,
                 kbId: kbId,
                 speechifyVersion: speechifyVersion,
                 requestOptions: requestOptions,
@@ -76,14 +76,14 @@ namespace Speechify
         /// Detach Agent Knowledge Base<br/>
         /// Detach a knowledge base from an agent.
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="agentId"></param>
         /// <param name="kbId"></param>
         /// <param name="speechifyVersion"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
         public async global::System.Threading.Tasks.Task<global::Speechify.AutoSDKHttpResponse<string>> DetachKnowledgeBaseAsResponseAsync(
-            string id,
+            string agentId,
             string kbId,
             string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
@@ -93,7 +93,7 @@ namespace Speechify
                 client: HttpClient);
             PrepareDetachKnowledgeBaseArguments(
                 httpClient: HttpClient,
-                id: ref id,
+                agentId: ref agentId,
                 kbId: ref kbId,
                 speechifyVersion: ref speechifyVersion);
 
@@ -121,7 +121,7 @@ namespace Speechify
             {
 
                             var __pathBuilder = new global::Speechify.PathBuilder(
-                                path: $"/v1/agents/{id}/knowledge-bases/{kbId}",
+                                path: $"/v1/agents/{agentId}/knowledge-bases/{kbId}",
                                 baseUri: HttpClient.BaseAddress);
                             var __path = __pathBuilder.ToString();
                 __path = global::Speechify.AutoSDKRequestOptionsSupport.AppendQueryParameters(
@@ -169,7 +169,7 @@ namespace Speechify
                 PrepareDetachKnowledgeBaseRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
-                    id: id!,
+                    agentId: agentId!,
                     kbId: kbId!,
                     speechifyVersion: speechifyVersion);
 
@@ -190,7 +190,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "DetachKnowledgeBase",
                                 methodName: "DetachKnowledgeBaseAsync",
-                                pathTemplate: "$\"/v1/agents/{id}/knowledge-bases/{kbId}\"",
+                                pathTemplate: "$\"/v1/agents/{agentId}/knowledge-bases/{kbId}\"",
                                 httpMethod: "DELETE",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -224,7 +224,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "DetachKnowledgeBase",
                                 methodName: "DetachKnowledgeBaseAsync",
-                                pathTemplate: "$\"/v1/agents/{id}/knowledge-bases/{kbId}\"",
+                                pathTemplate: "$\"/v1/agents/{agentId}/knowledge-bases/{kbId}\"",
                                 httpMethod: "DELETE",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -265,7 +265,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "DetachKnowledgeBase",
                                 methodName: "DetachKnowledgeBaseAsync",
-                                pathTemplate: "$\"/v1/agents/{id}/knowledge-bases/{kbId}\"",
+                                pathTemplate: "$\"/v1/agents/{agentId}/knowledge-bases/{kbId}\"",
                                 httpMethod: "DELETE",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -313,7 +313,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "DetachKnowledgeBase",
                                 methodName: "DetachKnowledgeBaseAsync",
-                                pathTemplate: "$\"/v1/agents/{id}/knowledge-bases/{kbId}\"",
+                                pathTemplate: "$\"/v1/agents/{agentId}/knowledge-bases/{kbId}\"",
                                 httpMethod: "DELETE",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -335,7 +335,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "DetachKnowledgeBase",
                                 methodName: "DetachKnowledgeBaseAsync",
-                                pathTemplate: "$\"/v1/agents/{id}/knowledge-bases/{kbId}\"",
+                                pathTemplate: "$\"/v1/agents/{agentId}/knowledge-bases/{kbId}\"",
                                 httpMethod: "DELETE",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,

@@ -27,14 +27,14 @@ namespace Speechify
             };
         partial void PrepareListAttachedAgentsArguments(
             global::System.Net.Http.HttpClient httpClient,
-            ref string id,
+            ref string toolDefinitionId,
             ref string? cursor,
             ref int? limit,
             ref string? speechifyVersion);
         partial void PrepareListAttachedAgentsRequest(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpRequestMessage httpRequestMessage,
-            string id,
+            string toolDefinitionId,
             string? cursor,
             int? limit,
             string? speechifyVersion);
@@ -55,15 +55,17 @@ namespace Speechify
         /// out. Cursor-paginated: omit `cursor` for the first page; walk<br/>
         /// pages while `has_more` is true (default page size 50, max 200).
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="toolDefinitionId"></param>
         /// <param name="cursor"></param>
-        /// <param name="limit"></param>
+        /// <param name="limit">
+        /// Default Value: 50
+        /// </param>
         /// <param name="speechifyVersion"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
         public async global::System.Threading.Tasks.Task<global::Speechify.ListToolAttachedAgentsResponse> ListAttachedAgentsAsync(
-            string id,
+            string toolDefinitionId,
             string? cursor = default,
             int? limit = default,
             string? speechifyVersion = default,
@@ -71,7 +73,7 @@ namespace Speechify
             global::System.Threading.CancellationToken cancellationToken = default)
         {
             var __response = await ListAttachedAgentsAsResponseAsync(
-                id: id,
+                toolDefinitionId: toolDefinitionId,
                 cursor: cursor,
                 limit: limit,
                 speechifyVersion: speechifyVersion,
@@ -89,15 +91,17 @@ namespace Speechify
         /// out. Cursor-paginated: omit `cursor` for the first page; walk<br/>
         /// pages while `has_more` is true (default page size 50, max 200).
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="toolDefinitionId"></param>
         /// <param name="cursor"></param>
-        /// <param name="limit"></param>
+        /// <param name="limit">
+        /// Default Value: 50
+        /// </param>
         /// <param name="speechifyVersion"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
         public async global::System.Threading.Tasks.Task<global::Speechify.AutoSDKHttpResponse<global::Speechify.ListToolAttachedAgentsResponse>> ListAttachedAgentsAsResponseAsync(
-            string id,
+            string toolDefinitionId,
             string? cursor = default,
             int? limit = default,
             string? speechifyVersion = default,
@@ -108,7 +112,7 @@ namespace Speechify
                 client: HttpClient);
             PrepareListAttachedAgentsArguments(
                 httpClient: HttpClient,
-                id: ref id,
+                toolDefinitionId: ref toolDefinitionId,
                 cursor: ref cursor,
                 limit: ref limit,
                 speechifyVersion: ref speechifyVersion);
@@ -137,7 +141,7 @@ namespace Speechify
             {
 
                             var __pathBuilder = new global::Speechify.PathBuilder(
-                                path: $"/v1/agents/tool-definitions/{id}/attached-agents",
+                                path: $"/v1/agents/tool-definitions/{toolDefinitionId}/attached-agents",
                                 baseUri: HttpClient.BaseAddress);
                             __pathBuilder
                                 .AddOptionalParameter("cursor", cursor)
@@ -189,7 +193,7 @@ namespace Speechify
                 PrepareListAttachedAgentsRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
-                    id: id!,
+                    toolDefinitionId: toolDefinitionId!,
                     cursor: cursor,
                     limit: limit,
                     speechifyVersion: speechifyVersion);
@@ -211,7 +215,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "ListAttachedAgents",
                                 methodName: "ListAttachedAgentsAsync",
-                                pathTemplate: "$\"/v1/agents/tool-definitions/{id}/attached-agents\"",
+                                pathTemplate: "$\"/v1/agents/tool-definitions/{toolDefinitionId}/attached-agents\"",
                                 httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -245,7 +249,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "ListAttachedAgents",
                                 methodName: "ListAttachedAgentsAsync",
-                                pathTemplate: "$\"/v1/agents/tool-definitions/{id}/attached-agents\"",
+                                pathTemplate: "$\"/v1/agents/tool-definitions/{toolDefinitionId}/attached-agents\"",
                                 httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -286,7 +290,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "ListAttachedAgents",
                                 methodName: "ListAttachedAgentsAsync",
-                                pathTemplate: "$\"/v1/agents/tool-definitions/{id}/attached-agents\"",
+                                pathTemplate: "$\"/v1/agents/tool-definitions/{toolDefinitionId}/attached-agents\"",
                                 httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -334,7 +338,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "ListAttachedAgents",
                                 methodName: "ListAttachedAgentsAsync",
-                                pathTemplate: "$\"/v1/agents/tool-definitions/{id}/attached-agents\"",
+                                pathTemplate: "$\"/v1/agents/tool-definitions/{toolDefinitionId}/attached-agents\"",
                                 httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -356,7 +360,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "ListAttachedAgents",
                                 methodName: "ListAttachedAgentsAsync",
-                                pathTemplate: "$\"/v1/agents/tool-definitions/{id}/attached-agents\"",
+                                pathTemplate: "$\"/v1/agents/tool-definitions/{toolDefinitionId}/attached-agents\"",
                                 httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,

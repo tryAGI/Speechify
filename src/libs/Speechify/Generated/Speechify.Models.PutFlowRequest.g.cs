@@ -4,7 +4,7 @@
 namespace Speechify
 {
     /// <summary>
-    /// Request body for PUT /v1/agents/{id}/flow. Replaces the draft graph.
+    /// Request body for PUT /v1/agents/{agent_id}/flow. Replaces the draft graph.
     /// </summary>
     public sealed partial class PutFlowRequest
     {

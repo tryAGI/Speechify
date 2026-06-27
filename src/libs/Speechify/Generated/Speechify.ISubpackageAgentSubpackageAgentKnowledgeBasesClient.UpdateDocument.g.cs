@@ -9,16 +9,16 @@ namespace Speechify
         /// Update a document. Currently supports moving the document<br/>
         /// between folders via `folder_id`.
         /// </summary>
-        /// <param name="id"></param>
-        /// <param name="docId"></param>
+        /// <param name="kbId"></param>
+        /// <param name="documentId"></param>
         /// <param name="speechifyVersion"></param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
         global::System.Threading.Tasks.Task<string> UpdateDocumentAsync(
-            string id,
-            string docId,
+            string kbId,
+            string documentId,
 
             global::Speechify.UpdateDocumentRequest request,
             string? speechifyVersion = default,
@@ -29,16 +29,16 @@ namespace Speechify
         /// Update a document. Currently supports moving the document<br/>
         /// between folders via `folder_id`.
         /// </summary>
-        /// <param name="id"></param>
-        /// <param name="docId"></param>
+        /// <param name="kbId"></param>
+        /// <param name="documentId"></param>
         /// <param name="speechifyVersion"></param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
         global::System.Threading.Tasks.Task<global::Speechify.AutoSDKHttpResponse<string>> UpdateDocumentAsResponseAsync(
-            string id,
-            string docId,
+            string kbId,
+            string documentId,
 
             global::Speechify.UpdateDocumentRequest request,
             string? speechifyVersion = default,
@@ -49,8 +49,8 @@ namespace Speechify
         /// Update a document. Currently supports moving the document<br/>
         /// between folders via `folder_id`.
         /// </summary>
-        /// <param name="id"></param>
-        /// <param name="docId"></param>
+        /// <param name="kbId"></param>
+        /// <param name="documentId"></param>
         /// <param name="speechifyVersion"></param>
         /// <param name="folderId">
         /// Destination folder. Prefixed wire identifier<br/>
@@ -61,8 +61,8 @@ namespace Speechify
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::System.InvalidOperationException"></exception>
         global::System.Threading.Tasks.Task<string> UpdateDocumentAsync(
-            string id,
-            string docId,
+            string kbId,
+            string documentId,
             string? speechifyVersion = default,
             string? folderId = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,

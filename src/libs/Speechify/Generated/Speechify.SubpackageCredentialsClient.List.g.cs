@@ -55,7 +55,9 @@ namespace Speechify
         /// pages while `has_more` is true (default page size 50, max 200).
         /// </summary>
         /// <param name="cursor"></param>
-        /// <param name="limit"></param>
+        /// <param name="limit">
+        /// Default Value: 50
+        /// </param>
         /// <param name="speechifyVersion"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -87,7 +89,9 @@ namespace Speechify
         /// pages while `has_more` is true (default page size 50, max 200).
         /// </summary>
         /// <param name="cursor"></param>
-        /// <param name="limit"></param>
+        /// <param name="limit">
+        /// Default Value: 50
+        /// </param>
         /// <param name="speechifyVersion"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>

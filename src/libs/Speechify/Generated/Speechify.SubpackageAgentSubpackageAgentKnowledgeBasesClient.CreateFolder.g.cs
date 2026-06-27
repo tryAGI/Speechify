@@ -27,13 +27,13 @@ namespace Speechify
             };
         partial void PrepareCreateFolderArguments(
             global::System.Net.Http.HttpClient httpClient,
-            ref string id,
+            ref string kbId,
             ref string? speechifyVersion,
             global::Speechify.CreateFolderRequest request);
         partial void PrepareCreateFolderRequest(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpRequestMessage httpRequestMessage,
-            string id,
+            string kbId,
             string? speechifyVersion,
             global::Speechify.CreateFolderRequest request);
         partial void ProcessCreateFolderResponse(
@@ -49,14 +49,14 @@ namespace Speechify
         /// Create Folder<br/>
         /// Create a folder inside a knowledge base.
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="kbId"></param>
         /// <param name="speechifyVersion"></param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
         public async global::System.Threading.Tasks.Task<global::Speechify.KnowledgeBaseFolder> CreateFolderAsync(
-            string id,
+            string kbId,
 
             global::Speechify.CreateFolderRequest request,
             string? speechifyVersion = default,
@@ -64,7 +64,7 @@ namespace Speechify
             global::System.Threading.CancellationToken cancellationToken = default)
         {
             var __response = await CreateFolderAsResponseAsync(
-                id: id,
+                kbId: kbId,
 
                 request: request,
                 speechifyVersion: speechifyVersion,
@@ -78,14 +78,14 @@ namespace Speechify
         /// Create Folder<br/>
         /// Create a folder inside a knowledge base.
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="kbId"></param>
         /// <param name="speechifyVersion"></param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
         public async global::System.Threading.Tasks.Task<global::Speechify.AutoSDKHttpResponse<global::Speechify.KnowledgeBaseFolder>> CreateFolderAsResponseAsync(
-            string id,
+            string kbId,
 
             global::Speechify.CreateFolderRequest request,
             string? speechifyVersion = default,
@@ -98,7 +98,7 @@ namespace Speechify
                 client: HttpClient);
             PrepareCreateFolderArguments(
                 httpClient: HttpClient,
-                id: ref id,
+                kbId: ref kbId,
                 speechifyVersion: ref speechifyVersion,
                 request: request);
 
@@ -126,7 +126,7 @@ namespace Speechify
             {
 
                             var __pathBuilder = new global::Speechify.PathBuilder(
-                                path: $"/v1/agents/knowledge-bases/{id}/folders",
+                                path: $"/v1/agents/knowledge-bases/{kbId}/folders",
                                 baseUri: HttpClient.BaseAddress);
                             var __path = __pathBuilder.ToString();
                 __path = global::Speechify.AutoSDKRequestOptionsSupport.AppendQueryParameters(
@@ -180,7 +180,7 @@ namespace Speechify
                 PrepareCreateFolderRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
-                    id: id!,
+                    kbId: kbId!,
                     speechifyVersion: speechifyVersion,
                     request: request);
 
@@ -201,7 +201,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "CreateFolder",
                                 methodName: "CreateFolderAsync",
-                                pathTemplate: "$\"/v1/agents/knowledge-bases/{id}/folders\"",
+                                pathTemplate: "$\"/v1/agents/knowledge-bases/{kbId}/folders\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -235,7 +235,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "CreateFolder",
                                 methodName: "CreateFolderAsync",
-                                pathTemplate: "$\"/v1/agents/knowledge-bases/{id}/folders\"",
+                                pathTemplate: "$\"/v1/agents/knowledge-bases/{kbId}/folders\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -276,7 +276,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "CreateFolder",
                                 methodName: "CreateFolderAsync",
-                                pathTemplate: "$\"/v1/agents/knowledge-bases/{id}/folders\"",
+                                pathTemplate: "$\"/v1/agents/knowledge-bases/{kbId}/folders\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -324,7 +324,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "CreateFolder",
                                 methodName: "CreateFolderAsync",
-                                pathTemplate: "$\"/v1/agents/knowledge-bases/{id}/folders\"",
+                                pathTemplate: "$\"/v1/agents/knowledge-bases/{kbId}/folders\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -346,7 +346,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "CreateFolder",
                                 methodName: "CreateFolderAsync",
-                                pathTemplate: "$\"/v1/agents/knowledge-bases/{id}/folders\"",
+                                pathTemplate: "$\"/v1/agents/knowledge-bases/{kbId}/folders\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -572,7 +572,7 @@ namespace Speechify
         /// Create Folder<br/>
         /// Create a folder inside a knowledge base.
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="kbId"></param>
         /// <param name="speechifyVersion"></param>
         /// <param name="name"></param>
         /// <param name="parentFolderId">
@@ -584,7 +584,7 @@ namespace Speechify
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::System.InvalidOperationException"></exception>
         public async global::System.Threading.Tasks.Task<global::Speechify.KnowledgeBaseFolder> CreateFolderAsync(
-            string id,
+            string kbId,
             string name,
             string? speechifyVersion = default,
             string? parentFolderId = default,
@@ -598,7 +598,7 @@ namespace Speechify
             };
 
             return await CreateFolderAsync(
-                id: id,
+                kbId: kbId,
                 speechifyVersion: speechifyVersion,
                 request: __request,
                 requestOptions: requestOptions,

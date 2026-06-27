@@ -4,7 +4,7 @@
 namespace Speechify
 {
     /// <summary>
-    /// Body for PATCH /v1/agents/{id}. JSON merge-patch semantics: every<br/>
+    /// Body for PATCH /v1/agents/{agent_id}. JSON merge-patch semantics: every<br/>
     /// field is optional and omitting it leaves the stored value<br/>
     /// unchanged. Inside a nested config block (llm, tts, stt,<br/>
     /// turn_handling, memory, navigator, background_noise, amd) send only<br/>

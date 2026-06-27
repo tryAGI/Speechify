@@ -209,6 +209,10 @@ namespace Speechify
 
             typeof(global::Speechify.JsonConverters.MCPAuthDiscriminatorTypeNullableJsonConverter),
 
+            typeof(global::Speechify.JsonConverters.McpProbeErrorDetailsStageJsonConverter),
+
+            typeof(global::Speechify.JsonConverters.McpProbeErrorDetailsStageNullableJsonConverter),
+
             typeof(global::Speechify.JsonConverters.TestTypeJsonConverter),
 
             typeof(global::Speechify.JsonConverters.TestTypeNullableJsonConverter),
@@ -289,10 +293,6 @@ namespace Speechify
 
             typeof(global::Speechify.JsonConverters.SIPMediaEncryptionNullableJsonConverter),
 
-            typeof(global::Speechify.JsonConverters.McpProbeErrorDetailsStageJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.McpProbeErrorDetailsStageNullableJsonConverter),
-
             typeof(global::Speechify.JsonConverters.ConversationTraceEventKindJsonConverter),
 
             typeof(global::Speechify.JsonConverters.ConversationTraceEventKindNullableJsonConverter),
@@ -337,12 +337,6 @@ namespace Speechify
 
             typeof(global::Speechify.JsonConverters.AgentToolConfigJsonConverter),
 
-            typeof(global::Speechify.JsonConverters.AgentTestConfigJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.UpdateAgentTestRequestConfigJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.CreateAgentTestRequestConfigJsonConverter),
-
             typeof(global::Speechify.JsonConverters.CreateAgentToolRequestConfigJsonConverter),
 
             typeof(global::Speechify.JsonConverters.UpdateAgentToolRequestConfigJsonConverter),
@@ -352,6 +346,12 @@ namespace Speechify
             typeof(global::Speechify.JsonConverters.CreateToolRequestConfigJsonConverter),
 
             typeof(global::Speechify.JsonConverters.UpdateToolRequestConfigJsonConverter),
+
+            typeof(global::Speechify.JsonConverters.AgentTestConfigJsonConverter),
+
+            typeof(global::Speechify.JsonConverters.UpdateAgentTestRequestConfigJsonConverter),
+
+            typeof(global::Speechify.JsonConverters.CreateAgentTestRequestConfigJsonConverter),
 
             typeof(global::Speechify.JsonConverters.OneOfJsonConverter<global::Speechify.EvaluationStatus?, object>),
 
@@ -496,7 +496,6 @@ namespace Speechify
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Speechify.DataCollectionField>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.UpdateEvaluationConfigRequest))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.GetFlowResponse))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Speechify.FlowVersion>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.PutFlowRequestNodesItems))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.PutFlowRequestEdgesItems))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.PutFlowRequestVariablesItems))]
@@ -507,6 +506,7 @@ namespace Speechify
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.PublishFlowRequest))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.RollbackFlowRequest))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.ListFlowVersionsResponse))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Speechify.FlowVersion>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.GetFlowVersionResponse))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.DynamicVariableType), TypeInfoPropertyName = "DynamicVariableType2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.DynamicVariable))]
@@ -623,6 +623,32 @@ namespace Speechify
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.AgentTool))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.ListAgentToolsResponse))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Speechify.AgentTool>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.CreateAgentToolRequestConfig), TypeInfoPropertyName = "CreateAgentToolRequestConfig2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.CreateAgentToolRequest))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.UpdateAgentToolRequestConfig), TypeInfoPropertyName = "UpdateAgentToolRequestConfig2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.UpdateAgentToolRequest))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.SystemBuiltinInfo))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.ListSystemBuiltinsResponse))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Speechify.SystemBuiltinInfo>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.ToolConfig), TypeInfoPropertyName = "ToolConfig2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.Tool))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.ListToolsResponse))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Speechify.Tool>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.CreateToolRequestConfig), TypeInfoPropertyName = "CreateToolRequestConfig2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.CreateToolRequest))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.UpdateToolRequestConfig), TypeInfoPropertyName = "UpdateToolRequestConfig2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.UpdateToolRequest))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.ToolAttachedAgent))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.ListToolAttachedAgentsResponse))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Speechify.ToolAttachedAgent>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.TestMCPConnectionRequest))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.MCPProbeTool))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.McpProbeErrorDetailsStage), TypeInfoPropertyName = "McpProbeErrorDetailsStage2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.MCPProbeErrorDetails))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.MCPProbeResult))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Speechify.MCPProbeTool>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.TestWebhookConnectionRequest))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.WebhookProbeResult))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.TestType), TypeInfoPropertyName = "TestType2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.SimulationMessageRole), TypeInfoPropertyName = "SimulationMessageRole2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.SimulationMessage))]
@@ -766,32 +792,6 @@ namespace Speechify
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.LLMPlatformDefault))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.LLMModelsResponse))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Speechify.LLMModelInfo>))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.CreateAgentToolRequestConfig), TypeInfoPropertyName = "CreateAgentToolRequestConfig2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.CreateAgentToolRequest))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.UpdateAgentToolRequestConfig), TypeInfoPropertyName = "UpdateAgentToolRequestConfig2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.UpdateAgentToolRequest))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.SystemBuiltinInfo))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.ListSystemBuiltinsResponse))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Speechify.SystemBuiltinInfo>))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.ToolConfig), TypeInfoPropertyName = "ToolConfig2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.Tool))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.ListToolsResponse))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Speechify.Tool>))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.CreateToolRequestConfig), TypeInfoPropertyName = "CreateToolRequestConfig2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.CreateToolRequest))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.UpdateToolRequestConfig), TypeInfoPropertyName = "UpdateToolRequestConfig2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.UpdateToolRequest))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.ToolAttachedAgent))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.ListToolAttachedAgentsResponse))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Speechify.ToolAttachedAgent>))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.TestMCPConnectionRequest))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.MCPProbeTool))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.McpProbeErrorDetailsStage), TypeInfoPropertyName = "McpProbeErrorDetailsStage2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.MCPProbeErrorDetails))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.MCPProbeResult))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Speechify.MCPProbeTool>))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.TestWebhookConnectionRequest))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.WebhookProbeResult))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.ConversationTraceEventKind), TypeInfoPropertyName = "ConversationTraceEventKind2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.ConversationTraceEvent))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.ConversationTraceTurn))]
@@ -875,8 +875,8 @@ namespace Speechify
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.FlowValidationIssue>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.EvaluationCriterion>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.DataCollectionField>))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.FlowVersion>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.PutFlowRequestNodesItems>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.PutFlowRequestEdgesItems>))]
     internal sealed partial class SourceGenerationContextChunk0 : global::System.Text.Json.Serialization.JsonSerializerContext
     {
     }
@@ -1084,6 +1084,10 @@ namespace Speechify
 
             typeof(global::Speechify.JsonConverters.MCPAuthDiscriminatorTypeNullableJsonConverter),
 
+            typeof(global::Speechify.JsonConverters.McpProbeErrorDetailsStageJsonConverter),
+
+            typeof(global::Speechify.JsonConverters.McpProbeErrorDetailsStageNullableJsonConverter),
+
             typeof(global::Speechify.JsonConverters.TestTypeJsonConverter),
 
             typeof(global::Speechify.JsonConverters.TestTypeNullableJsonConverter),
@@ -1164,10 +1168,6 @@ namespace Speechify
 
             typeof(global::Speechify.JsonConverters.SIPMediaEncryptionNullableJsonConverter),
 
-            typeof(global::Speechify.JsonConverters.McpProbeErrorDetailsStageJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.McpProbeErrorDetailsStageNullableJsonConverter),
-
             typeof(global::Speechify.JsonConverters.ConversationTraceEventKindJsonConverter),
 
             typeof(global::Speechify.JsonConverters.ConversationTraceEventKindNullableJsonConverter),
@@ -1212,12 +1212,6 @@ namespace Speechify
 
             typeof(global::Speechify.JsonConverters.AgentToolConfigJsonConverter),
 
-            typeof(global::Speechify.JsonConverters.AgentTestConfigJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.UpdateAgentTestRequestConfigJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.CreateAgentTestRequestConfigJsonConverter),
-
             typeof(global::Speechify.JsonConverters.CreateAgentToolRequestConfigJsonConverter),
 
             typeof(global::Speechify.JsonConverters.UpdateAgentToolRequestConfigJsonConverter),
@@ -1227,6 +1221,12 @@ namespace Speechify
             typeof(global::Speechify.JsonConverters.CreateToolRequestConfigJsonConverter),
 
             typeof(global::Speechify.JsonConverters.UpdateToolRequestConfigJsonConverter),
+
+            typeof(global::Speechify.JsonConverters.AgentTestConfigJsonConverter),
+
+            typeof(global::Speechify.JsonConverters.UpdateAgentTestRequestConfigJsonConverter),
+
+            typeof(global::Speechify.JsonConverters.CreateAgentTestRequestConfigJsonConverter),
 
             typeof(global::Speechify.JsonConverters.OneOfJsonConverter<global::Speechify.EvaluationStatus?, object>),
 
@@ -1252,8 +1252,8 @@ namespace Speechify
 
             typeof(global::Speechify.JsonConverters.UnixTimestampJsonConverter),
         })]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.PutFlowRequestEdgesItems>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.PutFlowRequestVariablesItems>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.FlowVersion>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.DynamicVariable>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.SystemVariableDoc>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<object>))]
@@ -1275,6 +1275,10 @@ namespace Speechify
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.ImportJob>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.ToolParam>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.AgentTool>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.SystemBuiltinInfo>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.Tool>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.ToolAttachedAgent>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.MCPProbeTool>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.SimulationMessage>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.ParameterCheck>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.DataAssertion>))]
@@ -1302,10 +1306,6 @@ namespace Speechify
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.CallerMemoryItem>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.AudioAsset>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.LLMModelInfo>))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.SystemBuiltinInfo>))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.Tool>))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.ToolAttachedAgent>))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.MCPProbeTool>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.ConversationTraceEvent>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.ConversationTraceTurn>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.AnalyticsDimension>))]
@@ -1455,6 +1455,8 @@ namespace Speechify
             options.Converters.Add(new global::Speechify.JsonConverters.MCPAuthVariant3TypeNullableJsonConverter());
             options.Converters.Add(new global::Speechify.JsonConverters.MCPAuthDiscriminatorTypeJsonConverter());
             options.Converters.Add(new global::Speechify.JsonConverters.MCPAuthDiscriminatorTypeNullableJsonConverter());
+            options.Converters.Add(new global::Speechify.JsonConverters.McpProbeErrorDetailsStageJsonConverter());
+            options.Converters.Add(new global::Speechify.JsonConverters.McpProbeErrorDetailsStageNullableJsonConverter());
             options.Converters.Add(new global::Speechify.JsonConverters.TestTypeJsonConverter());
             options.Converters.Add(new global::Speechify.JsonConverters.TestTypeNullableJsonConverter());
             options.Converters.Add(new global::Speechify.JsonConverters.SimulationMessageRoleJsonConverter());
@@ -1495,8 +1497,6 @@ namespace Speechify
             options.Converters.Add(new global::Speechify.JsonConverters.SIPTransportNullableJsonConverter());
             options.Converters.Add(new global::Speechify.JsonConverters.SIPMediaEncryptionJsonConverter());
             options.Converters.Add(new global::Speechify.JsonConverters.SIPMediaEncryptionNullableJsonConverter());
-            options.Converters.Add(new global::Speechify.JsonConverters.McpProbeErrorDetailsStageJsonConverter());
-            options.Converters.Add(new global::Speechify.JsonConverters.McpProbeErrorDetailsStageNullableJsonConverter());
             options.Converters.Add(new global::Speechify.JsonConverters.ConversationTraceEventKindJsonConverter());
             options.Converters.Add(new global::Speechify.JsonConverters.ConversationTraceEventKindNullableJsonConverter());
             options.Converters.Add(new global::Speechify.JsonConverters.AnalyticsDimensionTypeJsonConverter());
@@ -1519,14 +1519,14 @@ namespace Speechify
             options.Converters.Add(new global::Speechify.JsonConverters.CredentialKindNullableJsonConverter());
             options.Converters.Add(new global::Speechify.JsonConverters.MCPAuthJsonConverter());
             options.Converters.Add(new global::Speechify.JsonConverters.AgentToolConfigJsonConverter());
-            options.Converters.Add(new global::Speechify.JsonConverters.AgentTestConfigJsonConverter());
-            options.Converters.Add(new global::Speechify.JsonConverters.UpdateAgentTestRequestConfigJsonConverter());
-            options.Converters.Add(new global::Speechify.JsonConverters.CreateAgentTestRequestConfigJsonConverter());
             options.Converters.Add(new global::Speechify.JsonConverters.CreateAgentToolRequestConfigJsonConverter());
             options.Converters.Add(new global::Speechify.JsonConverters.UpdateAgentToolRequestConfigJsonConverter());
             options.Converters.Add(new global::Speechify.JsonConverters.ToolConfigJsonConverter());
             options.Converters.Add(new global::Speechify.JsonConverters.CreateToolRequestConfigJsonConverter());
             options.Converters.Add(new global::Speechify.JsonConverters.UpdateToolRequestConfigJsonConverter());
+            options.Converters.Add(new global::Speechify.JsonConverters.AgentTestConfigJsonConverter());
+            options.Converters.Add(new global::Speechify.JsonConverters.UpdateAgentTestRequestConfigJsonConverter());
+            options.Converters.Add(new global::Speechify.JsonConverters.CreateAgentTestRequestConfigJsonConverter());
             options.Converters.Add(new global::Speechify.JsonConverters.OneOfJsonConverter<global::Speechify.EvaluationStatus?, object>());
             options.Converters.Add(new global::Speechify.JsonConverters.OneOfJsonConverter<global::Speechify.ReplyResult, object>());
             options.Converters.Add(new global::Speechify.JsonConverters.OneOfJsonConverter<global::Speechify.ToolCallResult, object>());

@@ -27,13 +27,13 @@ namespace Speechify
             };
         partial void PrepareCreateTextDocumentArguments(
             global::System.Net.Http.HttpClient httpClient,
-            ref string id,
+            ref string kbId,
             ref string? speechifyVersion,
             global::Speechify.CreateTextDocumentRequest request);
         partial void PrepareCreateTextDocumentRequest(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpRequestMessage httpRequestMessage,
-            string id,
+            string kbId,
             string? speechifyVersion,
             global::Speechify.CreateTextDocumentRequest request);
         partial void ProcessCreateTextDocumentResponse(
@@ -50,14 +50,14 @@ namespace Speechify
         /// Create a document from inline pasted text. Content is chunked,<br/>
         /// embedded, and indexed synchronously.
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="kbId"></param>
         /// <param name="speechifyVersion"></param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
         public async global::System.Threading.Tasks.Task<global::Speechify.KnowledgeBaseDocument> CreateTextDocumentAsync(
-            string id,
+            string kbId,
 
             global::Speechify.CreateTextDocumentRequest request,
             string? speechifyVersion = default,
@@ -65,7 +65,7 @@ namespace Speechify
             global::System.Threading.CancellationToken cancellationToken = default)
         {
             var __response = await CreateTextDocumentAsResponseAsync(
-                id: id,
+                kbId: kbId,
 
                 request: request,
                 speechifyVersion: speechifyVersion,
@@ -80,14 +80,14 @@ namespace Speechify
         /// Create a document from inline pasted text. Content is chunked,<br/>
         /// embedded, and indexed synchronously.
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="kbId"></param>
         /// <param name="speechifyVersion"></param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
         public async global::System.Threading.Tasks.Task<global::Speechify.AutoSDKHttpResponse<global::Speechify.KnowledgeBaseDocument>> CreateTextDocumentAsResponseAsync(
-            string id,
+            string kbId,
 
             global::Speechify.CreateTextDocumentRequest request,
             string? speechifyVersion = default,
@@ -100,7 +100,7 @@ namespace Speechify
                 client: HttpClient);
             PrepareCreateTextDocumentArguments(
                 httpClient: HttpClient,
-                id: ref id,
+                kbId: ref kbId,
                 speechifyVersion: ref speechifyVersion,
                 request: request);
 
@@ -128,7 +128,7 @@ namespace Speechify
             {
 
                             var __pathBuilder = new global::Speechify.PathBuilder(
-                                path: $"/v1/agents/knowledge-bases/{id}/documents/text",
+                                path: $"/v1/agents/knowledge-bases/{kbId}/documents/text",
                                 baseUri: HttpClient.BaseAddress);
                             var __path = __pathBuilder.ToString();
                 __path = global::Speechify.AutoSDKRequestOptionsSupport.AppendQueryParameters(
@@ -182,7 +182,7 @@ namespace Speechify
                 PrepareCreateTextDocumentRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
-                    id: id!,
+                    kbId: kbId!,
                     speechifyVersion: speechifyVersion,
                     request: request);
 
@@ -203,7 +203,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "CreateTextDocument",
                                 methodName: "CreateTextDocumentAsync",
-                                pathTemplate: "$\"/v1/agents/knowledge-bases/{id}/documents/text\"",
+                                pathTemplate: "$\"/v1/agents/knowledge-bases/{kbId}/documents/text\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -237,7 +237,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "CreateTextDocument",
                                 methodName: "CreateTextDocumentAsync",
-                                pathTemplate: "$\"/v1/agents/knowledge-bases/{id}/documents/text\"",
+                                pathTemplate: "$\"/v1/agents/knowledge-bases/{kbId}/documents/text\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -278,7 +278,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "CreateTextDocument",
                                 methodName: "CreateTextDocumentAsync",
-                                pathTemplate: "$\"/v1/agents/knowledge-bases/{id}/documents/text\"",
+                                pathTemplate: "$\"/v1/agents/knowledge-bases/{kbId}/documents/text\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -326,7 +326,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "CreateTextDocument",
                                 methodName: "CreateTextDocumentAsync",
-                                pathTemplate: "$\"/v1/agents/knowledge-bases/{id}/documents/text\"",
+                                pathTemplate: "$\"/v1/agents/knowledge-bases/{kbId}/documents/text\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -348,7 +348,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "CreateTextDocument",
                                 methodName: "CreateTextDocumentAsync",
-                                pathTemplate: "$\"/v1/agents/knowledge-bases/{id}/documents/text\"",
+                                pathTemplate: "$\"/v1/agents/knowledge-bases/{kbId}/documents/text\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -575,7 +575,7 @@ namespace Speechify
         /// Create a document from inline pasted text. Content is chunked,<br/>
         /// embedded, and indexed synchronously.
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="kbId"></param>
         /// <param name="speechifyVersion"></param>
         /// <param name="name"></param>
         /// <param name="content"></param>
@@ -587,7 +587,7 @@ namespace Speechify
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::System.InvalidOperationException"></exception>
         public async global::System.Threading.Tasks.Task<global::Speechify.KnowledgeBaseDocument> CreateTextDocumentAsync(
-            string id,
+            string kbId,
             string name,
             string content,
             string? speechifyVersion = default,
@@ -603,7 +603,7 @@ namespace Speechify
             };
 
             return await CreateTextDocumentAsync(
-                id: id,
+                kbId: kbId,
                 speechifyVersion: speechifyVersion,
                 request: __request,
                 requestOptions: requestOptions,

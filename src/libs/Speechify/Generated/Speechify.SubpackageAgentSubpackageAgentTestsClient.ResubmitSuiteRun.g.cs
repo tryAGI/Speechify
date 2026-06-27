@@ -27,12 +27,12 @@ namespace Speechify
             };
         partial void PrepareResubmitSuiteRunArguments(
             global::System.Net.Http.HttpClient httpClient,
-            ref string id,
+            ref string suiteRunId,
             ref string? speechifyVersion);
         partial void PrepareResubmitSuiteRunRequest(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpRequestMessage httpRequestMessage,
-            string id,
+            string suiteRunId,
             string? speechifyVersion);
         partial void ProcessResubmitSuiteRunResponse(
             global::System.Net.Http.HttpClient httpClient,
@@ -50,19 +50,19 @@ namespace Speechify
         /// `parent_suite_run_id`. Returns 400 when the suite run has no<br/>
         /// failed or errored tests to re-run.
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="suiteRunId"></param>
         /// <param name="speechifyVersion"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
         public async global::System.Threading.Tasks.Task<global::Speechify.RunAgentTestsResponse> ResubmitSuiteRunAsync(
-            string id,
+            string suiteRunId,
             string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
             var __response = await ResubmitSuiteRunAsResponseAsync(
-                id: id,
+                suiteRunId: suiteRunId,
                 speechifyVersion: speechifyVersion,
                 requestOptions: requestOptions,
                 cancellationToken: cancellationToken
@@ -77,13 +77,13 @@ namespace Speechify
         /// `parent_suite_run_id`. Returns 400 when the suite run has no<br/>
         /// failed or errored tests to re-run.
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="suiteRunId"></param>
         /// <param name="speechifyVersion"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
         public async global::System.Threading.Tasks.Task<global::Speechify.AutoSDKHttpResponse<global::Speechify.RunAgentTestsResponse>> ResubmitSuiteRunAsResponseAsync(
-            string id,
+            string suiteRunId,
             string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
@@ -92,7 +92,7 @@ namespace Speechify
                 client: HttpClient);
             PrepareResubmitSuiteRunArguments(
                 httpClient: HttpClient,
-                id: ref id,
+                suiteRunId: ref suiteRunId,
                 speechifyVersion: ref speechifyVersion);
 
 
@@ -119,7 +119,7 @@ namespace Speechify
             {
 
                             var __pathBuilder = new global::Speechify.PathBuilder(
-                                path: $"/v1/agents/tests/suite-runs/{id}/resubmit",
+                                path: $"/v1/agents/tests/suite-runs/{suiteRunId}/resubmit",
                                 baseUri: HttpClient.BaseAddress);
                             var __path = __pathBuilder.ToString();
                 __path = global::Speechify.AutoSDKRequestOptionsSupport.AppendQueryParameters(
@@ -167,7 +167,7 @@ namespace Speechify
                 PrepareResubmitSuiteRunRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
-                    id: id!,
+                    suiteRunId: suiteRunId!,
                     speechifyVersion: speechifyVersion);
 
                 return __httpRequest;
@@ -187,7 +187,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "ResubmitSuiteRun",
                                 methodName: "ResubmitSuiteRunAsync",
-                                pathTemplate: "$\"/v1/agents/tests/suite-runs/{id}/resubmit\"",
+                                pathTemplate: "$\"/v1/agents/tests/suite-runs/{suiteRunId}/resubmit\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -221,7 +221,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "ResubmitSuiteRun",
                                 methodName: "ResubmitSuiteRunAsync",
-                                pathTemplate: "$\"/v1/agents/tests/suite-runs/{id}/resubmit\"",
+                                pathTemplate: "$\"/v1/agents/tests/suite-runs/{suiteRunId}/resubmit\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -262,7 +262,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "ResubmitSuiteRun",
                                 methodName: "ResubmitSuiteRunAsync",
-                                pathTemplate: "$\"/v1/agents/tests/suite-runs/{id}/resubmit\"",
+                                pathTemplate: "$\"/v1/agents/tests/suite-runs/{suiteRunId}/resubmit\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -310,7 +310,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "ResubmitSuiteRun",
                                 methodName: "ResubmitSuiteRunAsync",
-                                pathTemplate: "$\"/v1/agents/tests/suite-runs/{id}/resubmit\"",
+                                pathTemplate: "$\"/v1/agents/tests/suite-runs/{suiteRunId}/resubmit\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -332,7 +332,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "ResubmitSuiteRun",
                                 methodName: "ResubmitSuiteRunAsync",
-                                pathTemplate: "$\"/v1/agents/tests/suite-runs/{id}/resubmit\"",
+                                pathTemplate: "$\"/v1/agents/tests/suite-runs/{suiteRunId}/resubmit\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,

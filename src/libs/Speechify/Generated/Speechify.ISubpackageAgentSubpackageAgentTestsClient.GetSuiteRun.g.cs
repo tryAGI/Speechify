@@ -9,13 +9,13 @@ namespace Speechify
         /// Retrieve a suite run by ID with its child runs and the derived<br/>
         /// aggregate status and pass/fail/error counts.
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="suiteRunId"></param>
         /// <param name="speechifyVersion"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
         global::System.Threading.Tasks.Task<global::Speechify.AgentTestSuiteRunWithRuns> GetSuiteRunAsync(
-            string id,
+            string suiteRunId,
             string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
@@ -24,13 +24,13 @@ namespace Speechify
         /// Retrieve a suite run by ID with its child runs and the derived<br/>
         /// aggregate status and pass/fail/error counts.
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="suiteRunId"></param>
         /// <param name="speechifyVersion"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
         global::System.Threading.Tasks.Task<global::Speechify.AutoSDKHttpResponse<global::Speechify.AgentTestSuiteRunWithRuns>> GetSuiteRunAsResponseAsync(
-            string id,
+            string suiteRunId,
             string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);

@@ -27,13 +27,13 @@ namespace Speechify
             };
         partial void PrepareUpdateArguments(
             global::System.Net.Http.HttpClient httpClient,
-            ref string id,
+            ref string callerId,
             ref string? speechifyVersion,
             global::Speechify.UpdateCallerRequest request);
         partial void PrepareUpdateRequest(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpRequestMessage httpRequestMessage,
-            string id,
+            string callerId,
             string? speechifyVersion,
             global::Speechify.UpdateCallerRequest request);
         partial void ProcessUpdateResponse(
@@ -52,14 +52,14 @@ namespace Speechify
         /// a nullable field (`display_name`, `external_ref`) pass an empty<br/>
         /// string. `metadata` REPLACES the existing JSONB blob when supplied.
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="callerId"></param>
         /// <param name="speechifyVersion"></param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
         public async global::System.Threading.Tasks.Task<global::Speechify.GetCallerResponse> UpdateAsync(
-            string id,
+            string callerId,
 
             global::Speechify.UpdateCallerRequest request,
             string? speechifyVersion = default,
@@ -67,7 +67,7 @@ namespace Speechify
             global::System.Threading.CancellationToken cancellationToken = default)
         {
             var __response = await UpdateAsResponseAsync(
-                id: id,
+                callerId: callerId,
 
                 request: request,
                 speechifyVersion: speechifyVersion,
@@ -84,14 +84,14 @@ namespace Speechify
         /// a nullable field (`display_name`, `external_ref`) pass an empty<br/>
         /// string. `metadata` REPLACES the existing JSONB blob when supplied.
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="callerId"></param>
         /// <param name="speechifyVersion"></param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
         public async global::System.Threading.Tasks.Task<global::Speechify.AutoSDKHttpResponse<global::Speechify.GetCallerResponse>> UpdateAsResponseAsync(
-            string id,
+            string callerId,
 
             global::Speechify.UpdateCallerRequest request,
             string? speechifyVersion = default,
@@ -104,7 +104,7 @@ namespace Speechify
                 client: HttpClient);
             PrepareUpdateArguments(
                 httpClient: HttpClient,
-                id: ref id,
+                callerId: ref callerId,
                 speechifyVersion: ref speechifyVersion,
                 request: request);
 
@@ -132,7 +132,7 @@ namespace Speechify
             {
 
                             var __pathBuilder = new global::Speechify.PathBuilder(
-                                path: $"/v1/agents/callers/{id}",
+                                path: $"/v1/agents/callers/{callerId}",
                                 baseUri: HttpClient.BaseAddress);
                             var __path = __pathBuilder.ToString();
                 __path = global::Speechify.AutoSDKRequestOptionsSupport.AppendQueryParameters(
@@ -186,7 +186,7 @@ namespace Speechify
                 PrepareUpdateRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
-                    id: id!,
+                    callerId: callerId!,
                     speechifyVersion: speechifyVersion,
                     request: request);
 
@@ -207,7 +207,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "Update",
                                 methodName: "UpdateAsync",
-                                pathTemplate: "$\"/v1/agents/callers/{id}\"",
+                                pathTemplate: "$\"/v1/agents/callers/{callerId}\"",
                                 httpMethod: "PATCH",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -241,7 +241,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "Update",
                                 methodName: "UpdateAsync",
-                                pathTemplate: "$\"/v1/agents/callers/{id}\"",
+                                pathTemplate: "$\"/v1/agents/callers/{callerId}\"",
                                 httpMethod: "PATCH",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -282,7 +282,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "Update",
                                 methodName: "UpdateAsync",
-                                pathTemplate: "$\"/v1/agents/callers/{id}\"",
+                                pathTemplate: "$\"/v1/agents/callers/{callerId}\"",
                                 httpMethod: "PATCH",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -330,7 +330,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "Update",
                                 methodName: "UpdateAsync",
-                                pathTemplate: "$\"/v1/agents/callers/{id}\"",
+                                pathTemplate: "$\"/v1/agents/callers/{callerId}\"",
                                 httpMethod: "PATCH",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -352,7 +352,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "Update",
                                 methodName: "UpdateAsync",
-                                pathTemplate: "$\"/v1/agents/callers/{id}\"",
+                                pathTemplate: "$\"/v1/agents/callers/{callerId}\"",
                                 httpMethod: "PATCH",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -544,7 +544,7 @@ namespace Speechify
         /// a nullable field (`display_name`, `external_ref`) pass an empty<br/>
         /// string. `metadata` REPLACES the existing JSONB blob when supplied.
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="callerId"></param>
         /// <param name="speechifyVersion"></param>
         /// <param name="displayName">
         /// Operator-editable display name. Empty string clears the column.
@@ -559,7 +559,7 @@ namespace Speechify
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::System.InvalidOperationException"></exception>
         public async global::System.Threading.Tasks.Task<global::Speechify.GetCallerResponse> UpdateAsync(
-            string id,
+            string callerId,
             string? speechifyVersion = default,
             string? displayName = default,
             string? externalRef = default,
@@ -575,7 +575,7 @@ namespace Speechify
             };
 
             return await UpdateAsync(
-                id: id,
+                callerId: callerId,
                 speechifyVersion: speechifyVersion,
                 request: __request,
                 requestOptions: requestOptions,

@@ -27,13 +27,13 @@ namespace Speechify
             };
         partial void PrepareUpdateTemplateArguments(
             global::System.Net.Http.HttpClient httpClient,
-            ref string id,
+            ref string flowTemplateId,
             ref string? speechifyVersion,
             global::Speechify.CreateFlowTemplateRequest request);
         partial void PrepareUpdateTemplateRequest(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpRequestMessage httpRequestMessage,
-            string id,
+            string flowTemplateId,
             string? speechifyVersion,
             global::Speechify.CreateFlowTemplateRequest request);
         partial void ProcessUpdateTemplateResponse(
@@ -49,14 +49,14 @@ namespace Speechify
         /// Update Flow Template<br/>
         /// Replace a flow template. The whole template is replaced, not patched field-by-field.
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="flowTemplateId"></param>
         /// <param name="speechifyVersion"></param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
         public async global::System.Threading.Tasks.Task<global::Speechify.FlowTemplate> UpdateTemplateAsync(
-            string id,
+            string flowTemplateId,
 
             global::Speechify.CreateFlowTemplateRequest request,
             string? speechifyVersion = default,
@@ -64,7 +64,7 @@ namespace Speechify
             global::System.Threading.CancellationToken cancellationToken = default)
         {
             var __response = await UpdateTemplateAsResponseAsync(
-                id: id,
+                flowTemplateId: flowTemplateId,
 
                 request: request,
                 speechifyVersion: speechifyVersion,
@@ -78,14 +78,14 @@ namespace Speechify
         /// Update Flow Template<br/>
         /// Replace a flow template. The whole template is replaced, not patched field-by-field.
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="flowTemplateId"></param>
         /// <param name="speechifyVersion"></param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
         public async global::System.Threading.Tasks.Task<global::Speechify.AutoSDKHttpResponse<global::Speechify.FlowTemplate>> UpdateTemplateAsResponseAsync(
-            string id,
+            string flowTemplateId,
 
             global::Speechify.CreateFlowTemplateRequest request,
             string? speechifyVersion = default,
@@ -98,7 +98,7 @@ namespace Speechify
                 client: HttpClient);
             PrepareUpdateTemplateArguments(
                 httpClient: HttpClient,
-                id: ref id,
+                flowTemplateId: ref flowTemplateId,
                 speechifyVersion: ref speechifyVersion,
                 request: request);
 
@@ -126,7 +126,7 @@ namespace Speechify
             {
 
                             var __pathBuilder = new global::Speechify.PathBuilder(
-                                path: $"/v1/agents/flow/templates/{id}",
+                                path: $"/v1/agents/flow/templates/{flowTemplateId}",
                                 baseUri: HttpClient.BaseAddress);
                             var __path = __pathBuilder.ToString();
                 __path = global::Speechify.AutoSDKRequestOptionsSupport.AppendQueryParameters(
@@ -180,7 +180,7 @@ namespace Speechify
                 PrepareUpdateTemplateRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
-                    id: id!,
+                    flowTemplateId: flowTemplateId!,
                     speechifyVersion: speechifyVersion,
                     request: request);
 
@@ -201,7 +201,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "UpdateTemplate",
                                 methodName: "UpdateTemplateAsync",
-                                pathTemplate: "$\"/v1/agents/flow/templates/{id}\"",
+                                pathTemplate: "$\"/v1/agents/flow/templates/{flowTemplateId}\"",
                                 httpMethod: "PATCH",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -235,7 +235,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "UpdateTemplate",
                                 methodName: "UpdateTemplateAsync",
-                                pathTemplate: "$\"/v1/agents/flow/templates/{id}\"",
+                                pathTemplate: "$\"/v1/agents/flow/templates/{flowTemplateId}\"",
                                 httpMethod: "PATCH",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -276,7 +276,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "UpdateTemplate",
                                 methodName: "UpdateTemplateAsync",
-                                pathTemplate: "$\"/v1/agents/flow/templates/{id}\"",
+                                pathTemplate: "$\"/v1/agents/flow/templates/{flowTemplateId}\"",
                                 httpMethod: "PATCH",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -324,7 +324,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "UpdateTemplate",
                                 methodName: "UpdateTemplateAsync",
-                                pathTemplate: "$\"/v1/agents/flow/templates/{id}\"",
+                                pathTemplate: "$\"/v1/agents/flow/templates/{flowTemplateId}\"",
                                 httpMethod: "PATCH",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -346,7 +346,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "UpdateTemplate",
                                 methodName: "UpdateTemplateAsync",
-                                pathTemplate: "$\"/v1/agents/flow/templates/{id}\"",
+                                pathTemplate: "$\"/v1/agents/flow/templates/{flowTemplateId}\"",
                                 httpMethod: "PATCH",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -646,7 +646,7 @@ namespace Speechify
         /// Update Flow Template<br/>
         /// Replace a flow template. The whole template is replaced, not patched field-by-field.
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="flowTemplateId"></param>
         /// <param name="speechifyVersion"></param>
         /// <param name="key"></param>
         /// <param name="name"></param>
@@ -663,7 +663,7 @@ namespace Speechify
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::System.InvalidOperationException"></exception>
         public async global::System.Threading.Tasks.Task<global::Speechify.FlowTemplate> UpdateTemplateAsync(
-            string id,
+            string flowTemplateId,
             string key,
             string name,
             global::Speechify.FlowGraphInput graph,
@@ -683,7 +683,7 @@ namespace Speechify
             };
 
             return await UpdateTemplateAsync(
-                id: id,
+                flowTemplateId: flowTemplateId,
                 speechifyVersion: speechifyVersion,
                 request: __request,
                 requestOptions: requestOptions,

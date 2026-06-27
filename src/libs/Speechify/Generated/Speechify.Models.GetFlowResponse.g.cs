@@ -4,7 +4,7 @@
 namespace Speechify
 {
     /// <summary>
-    /// Response for GET /v1/agents/{id}/flow.
+    /// Response for GET /v1/agents/{agent_id}/flow.
     /// </summary>
     public sealed partial class GetFlowResponse
     {
@@ -29,13 +29,6 @@ namespace Speechify
         public global::Speechify.FlowGraph? Active { get; set; }
 
         /// <summary>
-        /// 
-        /// </summary>
-        [global::System.Text.Json.Serialization.JsonPropertyName("history")]
-        [global::System.Text.Json.Serialization.JsonRequired]
-        public required global::System.Collections.Generic.IList<global::Speechify.FlowVersion> History { get; set; }
-
-        /// <summary>
         /// Additional properties that are not explicitly defined in the schema
         /// </summary>
         [global::System.Text.Json.Serialization.JsonExtensionData]
@@ -44,7 +37,6 @@ namespace Speechify
         /// <summary>
         /// Initializes a new instance of the <see cref="GetFlowResponse" /> class.
         /// </summary>
-        /// <param name="history"></param>
         /// <param name="draft">
         /// A flow graph: an ordered set of typed nodes connected by edges,<br/>
         /// plus flow variables. The node, edge, and variable shapes are<br/>
@@ -63,13 +55,11 @@ namespace Speechify
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
 #endif
         public GetFlowResponse(
-            global::System.Collections.Generic.IList<global::Speechify.FlowVersion> history,
             global::Speechify.FlowGraph? draft,
             global::Speechify.FlowGraph? active)
         {
             this.Draft = draft;
             this.Active = active;
-            this.History = history ?? throw new global::System.ArgumentNullException(nameof(history));
         }
 
         /// <summary>

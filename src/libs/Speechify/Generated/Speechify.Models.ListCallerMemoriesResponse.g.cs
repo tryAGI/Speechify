@@ -4,7 +4,7 @@
 namespace Speechify
 {
     /// <summary>
-    /// Payload for GET /v1/agents/callers/{id}/memories.
+    /// Payload for GET /v1/agents/callers/{caller_id}/memories.
     /// </summary>
     public sealed partial class ListCallerMemoriesResponse
     {

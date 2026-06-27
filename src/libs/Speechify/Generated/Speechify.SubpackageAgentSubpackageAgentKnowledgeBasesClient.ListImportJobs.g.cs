@@ -27,14 +27,14 @@ namespace Speechify
             };
         partial void PrepareListImportJobsArguments(
             global::System.Net.Http.HttpClient httpClient,
-            ref string id,
+            ref string kbId,
             ref string? cursor,
             ref int? limit,
             ref string? speechifyVersion);
         partial void PrepareListImportJobsRequest(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpRequestMessage httpRequestMessage,
-            string id,
+            string kbId,
             string? cursor,
             int? limit,
             string? speechifyVersion);
@@ -54,15 +54,17 @@ namespace Speechify
         /// first page. Default page size is 50 and max is 200. Walk pages<br/>
         /// while `has_more` is true.
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="kbId"></param>
         /// <param name="cursor"></param>
-        /// <param name="limit"></param>
+        /// <param name="limit">
+        /// Default Value: 50
+        /// </param>
         /// <param name="speechifyVersion"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
         public async global::System.Threading.Tasks.Task<global::Speechify.ListImportJobsResponse> ListImportJobsAsync(
-            string id,
+            string kbId,
             string? cursor = default,
             int? limit = default,
             string? speechifyVersion = default,
@@ -70,7 +72,7 @@ namespace Speechify
             global::System.Threading.CancellationToken cancellationToken = default)
         {
             var __response = await ListImportJobsAsResponseAsync(
-                id: id,
+                kbId: kbId,
                 cursor: cursor,
                 limit: limit,
                 speechifyVersion: speechifyVersion,
@@ -87,15 +89,17 @@ namespace Speechify
         /// first page. Default page size is 50 and max is 200. Walk pages<br/>
         /// while `has_more` is true.
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="kbId"></param>
         /// <param name="cursor"></param>
-        /// <param name="limit"></param>
+        /// <param name="limit">
+        /// Default Value: 50
+        /// </param>
         /// <param name="speechifyVersion"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
         public async global::System.Threading.Tasks.Task<global::Speechify.AutoSDKHttpResponse<global::Speechify.ListImportJobsResponse>> ListImportJobsAsResponseAsync(
-            string id,
+            string kbId,
             string? cursor = default,
             int? limit = default,
             string? speechifyVersion = default,
@@ -106,7 +110,7 @@ namespace Speechify
                 client: HttpClient);
             PrepareListImportJobsArguments(
                 httpClient: HttpClient,
-                id: ref id,
+                kbId: ref kbId,
                 cursor: ref cursor,
                 limit: ref limit,
                 speechifyVersion: ref speechifyVersion);
@@ -135,7 +139,7 @@ namespace Speechify
             {
 
                             var __pathBuilder = new global::Speechify.PathBuilder(
-                                path: $"/v1/agents/knowledge-bases/{id}/imports",
+                                path: $"/v1/agents/knowledge-bases/{kbId}/imports",
                                 baseUri: HttpClient.BaseAddress);
                             __pathBuilder
                                 .AddOptionalParameter("cursor", cursor)
@@ -187,7 +191,7 @@ namespace Speechify
                 PrepareListImportJobsRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
-                    id: id!,
+                    kbId: kbId!,
                     cursor: cursor,
                     limit: limit,
                     speechifyVersion: speechifyVersion);
@@ -209,7 +213,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "ListImportJobs",
                                 methodName: "ListImportJobsAsync",
-                                pathTemplate: "$\"/v1/agents/knowledge-bases/{id}/imports\"",
+                                pathTemplate: "$\"/v1/agents/knowledge-bases/{kbId}/imports\"",
                                 httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -243,7 +247,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "ListImportJobs",
                                 methodName: "ListImportJobsAsync",
-                                pathTemplate: "$\"/v1/agents/knowledge-bases/{id}/imports\"",
+                                pathTemplate: "$\"/v1/agents/knowledge-bases/{kbId}/imports\"",
                                 httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -284,7 +288,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "ListImportJobs",
                                 methodName: "ListImportJobsAsync",
-                                pathTemplate: "$\"/v1/agents/knowledge-bases/{id}/imports\"",
+                                pathTemplate: "$\"/v1/agents/knowledge-bases/{kbId}/imports\"",
                                 httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -332,7 +336,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "ListImportJobs",
                                 methodName: "ListImportJobsAsync",
-                                pathTemplate: "$\"/v1/agents/knowledge-bases/{id}/imports\"",
+                                pathTemplate: "$\"/v1/agents/knowledge-bases/{kbId}/imports\"",
                                 httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -354,7 +358,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "ListImportJobs",
                                 methodName: "ListImportJobsAsync",
-                                pathTemplate: "$\"/v1/agents/knowledge-bases/{id}/imports\"",
+                                pathTemplate: "$\"/v1/agents/knowledge-bases/{kbId}/imports\"",
                                 httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,

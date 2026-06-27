@@ -27,13 +27,13 @@ namespace Speechify
             };
         partial void PrepareRollbackArguments(
             global::System.Net.Http.HttpClient httpClient,
-            ref string id,
+            ref string agentId,
             ref string? speechifyVersion,
             global::Speechify.RollbackFlowRequest request);
         partial void PrepareRollbackRequest(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpRequestMessage httpRequestMessage,
-            string id,
+            string agentId,
             string? speechifyVersion,
             global::Speechify.RollbackFlowRequest request);
         partial void ProcessRollbackResponse(
@@ -49,14 +49,14 @@ namespace Speechify
         /// Roll Back Agent Flow<br/>
         /// Publish a prior flow version as the active graph.
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="agentId"></param>
         /// <param name="speechifyVersion"></param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
         public async global::System.Threading.Tasks.Task<global::Speechify.FlowVersion> RollbackAsync(
-            string id,
+            string agentId,
 
             global::Speechify.RollbackFlowRequest request,
             string? speechifyVersion = default,
@@ -64,7 +64,7 @@ namespace Speechify
             global::System.Threading.CancellationToken cancellationToken = default)
         {
             var __response = await RollbackAsResponseAsync(
-                id: id,
+                agentId: agentId,
 
                 request: request,
                 speechifyVersion: speechifyVersion,
@@ -78,14 +78,14 @@ namespace Speechify
         /// Roll Back Agent Flow<br/>
         /// Publish a prior flow version as the active graph.
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="agentId"></param>
         /// <param name="speechifyVersion"></param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
         public async global::System.Threading.Tasks.Task<global::Speechify.AutoSDKHttpResponse<global::Speechify.FlowVersion>> RollbackAsResponseAsync(
-            string id,
+            string agentId,
 
             global::Speechify.RollbackFlowRequest request,
             string? speechifyVersion = default,
@@ -98,7 +98,7 @@ namespace Speechify
                 client: HttpClient);
             PrepareRollbackArguments(
                 httpClient: HttpClient,
-                id: ref id,
+                agentId: ref agentId,
                 speechifyVersion: ref speechifyVersion,
                 request: request);
 
@@ -126,7 +126,7 @@ namespace Speechify
             {
 
                             var __pathBuilder = new global::Speechify.PathBuilder(
-                                path: $"/v1/agents/{id}/flow/rollback",
+                                path: $"/v1/agents/{agentId}/flow/rollback",
                                 baseUri: HttpClient.BaseAddress);
                             var __path = __pathBuilder.ToString();
                 __path = global::Speechify.AutoSDKRequestOptionsSupport.AppendQueryParameters(
@@ -180,7 +180,7 @@ namespace Speechify
                 PrepareRollbackRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
-                    id: id!,
+                    agentId: agentId!,
                     speechifyVersion: speechifyVersion,
                     request: request);
 
@@ -201,7 +201,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "Rollback",
                                 methodName: "RollbackAsync",
-                                pathTemplate: "$\"/v1/agents/{id}/flow/rollback\"",
+                                pathTemplate: "$\"/v1/agents/{agentId}/flow/rollback\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -235,7 +235,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "Rollback",
                                 methodName: "RollbackAsync",
-                                pathTemplate: "$\"/v1/agents/{id}/flow/rollback\"",
+                                pathTemplate: "$\"/v1/agents/{agentId}/flow/rollback\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -276,7 +276,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "Rollback",
                                 methodName: "RollbackAsync",
-                                pathTemplate: "$\"/v1/agents/{id}/flow/rollback\"",
+                                pathTemplate: "$\"/v1/agents/{agentId}/flow/rollback\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -324,7 +324,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "Rollback",
                                 methodName: "RollbackAsync",
-                                pathTemplate: "$\"/v1/agents/{id}/flow/rollback\"",
+                                pathTemplate: "$\"/v1/agents/{agentId}/flow/rollback\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -346,7 +346,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "Rollback",
                                 methodName: "RollbackAsync",
-                                pathTemplate: "$\"/v1/agents/{id}/flow/rollback\"",
+                                pathTemplate: "$\"/v1/agents/{agentId}/flow/rollback\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -609,7 +609,7 @@ namespace Speechify
         /// Roll Back Agent Flow<br/>
         /// Publish a prior flow version as the active graph.
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="agentId"></param>
         /// <param name="speechifyVersion"></param>
         /// <param name="versionId">
         /// The flow version to roll back to.
@@ -618,7 +618,7 @@ namespace Speechify
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::System.InvalidOperationException"></exception>
         public async global::System.Threading.Tasks.Task<global::Speechify.FlowVersion> RollbackAsync(
-            string id,
+            string agentId,
             string versionId,
             string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
@@ -630,7 +630,7 @@ namespace Speechify
             };
 
             return await RollbackAsync(
-                id: id,
+                agentId: agentId,
                 speechifyVersion: speechifyVersion,
                 request: __request,
                 requestOptions: requestOptions,

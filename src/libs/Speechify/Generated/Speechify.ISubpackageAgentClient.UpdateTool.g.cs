@@ -9,11 +9,11 @@ namespace Speechify
         /// Update one of the agent's tools. For a built-in, every field<br/>
         /// applies. For an attached external tool, only `enabled` is<br/>
         /// editable here — its shared config/name is edited on the<br/>
-        /// definition (`PATCH /v1/agents/tool-definitions/{id}`), since the<br/>
+        /// definition (`PATCH /v1/agents/tool-definitions/{tool_definition_id}`), since the<br/>
         /// definition is referenced live by every agent it is attached to;<br/>
         /// attempting a shared-config edit here returns `tool_config_shared`.
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="agentId"></param>
         /// <param name="toolId"></param>
         /// <param name="speechifyVersion"></param>
         /// <param name="request"></param>
@@ -21,7 +21,7 @@ namespace Speechify
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
         global::System.Threading.Tasks.Task<global::Speechify.AgentTool> UpdateToolAsync(
-            string id,
+            string agentId,
             string toolId,
 
             global::Speechify.UpdateAgentToolRequest request,
@@ -33,11 +33,11 @@ namespace Speechify
         /// Update one of the agent's tools. For a built-in, every field<br/>
         /// applies. For an attached external tool, only `enabled` is<br/>
         /// editable here — its shared config/name is edited on the<br/>
-        /// definition (`PATCH /v1/agents/tool-definitions/{id}`), since the<br/>
+        /// definition (`PATCH /v1/agents/tool-definitions/{tool_definition_id}`), since the<br/>
         /// definition is referenced live by every agent it is attached to;<br/>
         /// attempting a shared-config edit here returns `tool_config_shared`.
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="agentId"></param>
         /// <param name="toolId"></param>
         /// <param name="speechifyVersion"></param>
         /// <param name="request"></param>
@@ -45,7 +45,7 @@ namespace Speechify
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
         global::System.Threading.Tasks.Task<global::Speechify.AutoSDKHttpResponse<global::Speechify.AgentTool>> UpdateToolAsResponseAsync(
-            string id,
+            string agentId,
             string toolId,
 
             global::Speechify.UpdateAgentToolRequest request,
@@ -57,11 +57,11 @@ namespace Speechify
         /// Update one of the agent's tools. For a built-in, every field<br/>
         /// applies. For an attached external tool, only `enabled` is<br/>
         /// editable here — its shared config/name is edited on the<br/>
-        /// definition (`PATCH /v1/agents/tool-definitions/{id}`), since the<br/>
+        /// definition (`PATCH /v1/agents/tool-definitions/{tool_definition_id}`), since the<br/>
         /// definition is referenced live by every agent it is attached to;<br/>
         /// attempting a shared-config edit here returns `tool_config_shared`.
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="agentId"></param>
         /// <param name="toolId"></param>
         /// <param name="speechifyVersion"></param>
         /// <param name="name"></param>
@@ -75,7 +75,7 @@ namespace Speechify
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::System.InvalidOperationException"></exception>
         global::System.Threading.Tasks.Task<global::Speechify.AgentTool> UpdateToolAsync(
-            string id,
+            string agentId,
             string toolId,
             string? speechifyVersion = default,
             string? name = default,

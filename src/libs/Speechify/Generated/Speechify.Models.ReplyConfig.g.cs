@@ -47,7 +47,7 @@ namespace Speechify
 
         /// <summary>
         /// Deprecated. Prefer the run-level `config_override`<br/>
-        /// on `POST /v1/agents/{id}/tests/runs`, which applies a proposed<br/>
+        /// on `POST /v1/agents/{agent_id}/tests/runs`, which applies a proposed<br/>
         /// prompt to every test in the run without editing each one.<br/>
         /// Still honoured; the run-level override wins when both are set.<br/>
         /// Replaces the agent's system prompt for this run only.
@@ -63,7 +63,7 @@ namespace Speechify
 
         /// <summary>
         /// Deprecated. Prefer the run-level `config_override`<br/>
-        /// on `POST /v1/agents/{id}/tests/runs`. Still honoured; the<br/>
+        /// on `POST /v1/agents/{agent_id}/tests/runs`. Still honoured; the<br/>
         /// run-level override wins when both are set. Overrides the LLM<br/>
         /// model used by the agent for this run only.
         /// </summary>
@@ -96,7 +96,7 @@ namespace Speechify
         /// </param>
         /// <param name="systemPromptOverride">
         /// Deprecated. Prefer the run-level `config_override`<br/>
-        /// on `POST /v1/agents/{id}/tests/runs`, which applies a proposed<br/>
+        /// on `POST /v1/agents/{agent_id}/tests/runs`, which applies a proposed<br/>
         /// prompt to every test in the run without editing each one.<br/>
         /// Still honoured; the run-level override wins when both are set.<br/>
         /// Replaces the agent's system prompt for this run only.
@@ -106,7 +106,7 @@ namespace Speechify
         /// </param>
         /// <param name="modelOverride">
         /// Deprecated. Prefer the run-level `config_override`<br/>
-        /// on `POST /v1/agents/{id}/tests/runs`. Still honoured; the<br/>
+        /// on `POST /v1/agents/{agent_id}/tests/runs`. Still honoured; the<br/>
         /// run-level override wins when both are set. Overrides the LLM<br/>
         /// model used by the agent for this run only.
         /// </param>

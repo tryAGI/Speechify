@@ -12,16 +12,16 @@ namespace Speechify
         /// `kind=webhook`, `client`, or `mcp` this atomically creates a<br/>
         /// workspace tool definition AND attaches it to the agent in one<br/>
         /// call. To attach a definition that already exists, use<br/>
-        /// `PUT /v1/agents/{id}/tools/{toolId}` instead.
+        /// `PUT /v1/agents/{agent_id}/tools/{tool_id}` instead.
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="agentId"></param>
         /// <param name="speechifyVersion"></param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
         global::System.Threading.Tasks.Task<global::Speechify.AgentTool> CreateToolAsync(
-            string id,
+            string agentId,
 
             global::Speechify.CreateAgentToolRequest request,
             string? speechifyVersion = default,
@@ -35,16 +35,16 @@ namespace Speechify
         /// `kind=webhook`, `client`, or `mcp` this atomically creates a<br/>
         /// workspace tool definition AND attaches it to the agent in one<br/>
         /// call. To attach a definition that already exists, use<br/>
-        /// `PUT /v1/agents/{id}/tools/{toolId}` instead.
+        /// `PUT /v1/agents/{agent_id}/tools/{tool_id}` instead.
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="agentId"></param>
         /// <param name="speechifyVersion"></param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
         global::System.Threading.Tasks.Task<global::Speechify.AutoSDKHttpResponse<global::Speechify.AgentTool>> CreateToolAsResponseAsync(
-            string id,
+            string agentId,
 
             global::Speechify.CreateAgentToolRequest request,
             string? speechifyVersion = default,
@@ -58,9 +58,9 @@ namespace Speechify
         /// `kind=webhook`, `client`, or `mcp` this atomically creates a<br/>
         /// workspace tool definition AND attaches it to the agent in one<br/>
         /// call. To attach a definition that already exists, use<br/>
-        /// `PUT /v1/agents/{id}/tools/{toolId}` instead.
+        /// `PUT /v1/agents/{agent_id}/tools/{tool_id}` instead.
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="agentId"></param>
         /// <param name="speechifyVersion"></param>
         /// <param name="kind">
         /// What kind of tool this is, and where it executes.<br/>
@@ -79,7 +79,7 @@ namespace Speechify
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::System.InvalidOperationException"></exception>
         global::System.Threading.Tasks.Task<global::Speechify.AgentTool> CreateToolAsync(
-            string id,
+            string agentId,
             global::Speechify.ToolKind kind,
             string name,
             global::Speechify.CreateAgentToolRequestConfig config,

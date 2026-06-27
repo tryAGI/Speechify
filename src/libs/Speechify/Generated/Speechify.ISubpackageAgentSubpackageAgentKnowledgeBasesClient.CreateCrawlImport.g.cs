@@ -7,16 +7,16 @@ namespace Speechify
         /// <summary>
         /// Create Crawl Import<br/>
         /// Kick off an async website crawl. Returns 202 with the import<br/>
-        /// job row; client polls `GET /{id}/imports` for progress.
+        /// job row; client polls `GET /{kb_id}/imports` for progress.
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="kbId"></param>
         /// <param name="speechifyVersion"></param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
         global::System.Threading.Tasks.Task<global::Speechify.ImportJobResponse> CreateCrawlImportAsync(
-            string id,
+            string kbId,
 
             global::Speechify.CreateCrawlImportRequest request,
             string? speechifyVersion = default,
@@ -25,16 +25,16 @@ namespace Speechify
         /// <summary>
         /// Create Crawl Import<br/>
         /// Kick off an async website crawl. Returns 202 with the import<br/>
-        /// job row; client polls `GET /{id}/imports` for progress.
+        /// job row; client polls `GET /{kb_id}/imports` for progress.
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="kbId"></param>
         /// <param name="speechifyVersion"></param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
         global::System.Threading.Tasks.Task<global::Speechify.AutoSDKHttpResponse<global::Speechify.ImportJobResponse>> CreateCrawlImportAsResponseAsync(
-            string id,
+            string kbId,
 
             global::Speechify.CreateCrawlImportRequest request,
             string? speechifyVersion = default,
@@ -43,9 +43,9 @@ namespace Speechify
         /// <summary>
         /// Create Crawl Import<br/>
         /// Kick off an async website crawl. Returns 202 with the import<br/>
-        /// job row; client polls `GET /{id}/imports` for progress.
+        /// job row; client polls `GET /{kb_id}/imports` for progress.
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="kbId"></param>
         /// <param name="speechifyVersion"></param>
         /// <param name="url"></param>
         /// <param name="maxPages"></param>
@@ -58,7 +58,7 @@ namespace Speechify
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::System.InvalidOperationException"></exception>
         global::System.Threading.Tasks.Task<global::Speechify.ImportJobResponse> CreateCrawlImportAsync(
-            string id,
+            string kbId,
             string url,
             string? speechifyVersion = default,
             int? maxPages = default,

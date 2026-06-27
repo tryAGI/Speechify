@@ -4,7 +4,7 @@
 namespace Speechify
 {
     /// <summary>
-    /// Payload of GET /v1/knowledge-bases/documents/{docId}. Extends<br/>
+    /// Payload of GET /v1/knowledge-bases/documents/{document_id}. Extends<br/>
     /// the list-view document with a bounded content preview, the<br/>
     /// list of dependent agents, and (for url-sourced docs) the<br/>
     /// auto-refresh state.

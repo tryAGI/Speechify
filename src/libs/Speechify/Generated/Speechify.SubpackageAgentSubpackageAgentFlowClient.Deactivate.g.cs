@@ -27,12 +27,12 @@ namespace Speechify
             };
         partial void PrepareDeactivateArguments(
             global::System.Net.Http.HttpClient httpClient,
-            ref string id,
+            ref string agentId,
             ref string? speechifyVersion);
         partial void PrepareDeactivateRequest(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpRequestMessage httpRequestMessage,
-            string id,
+            string agentId,
             string? speechifyVersion);
         partial void ProcessDeactivateResponse(
             global::System.Net.Http.HttpClient httpClient,
@@ -47,19 +47,19 @@ namespace Speechify
         /// Deactivate Agent Flow<br/>
         /// Deactivate the agent's published flow so the agent runs the synthesized default flow.
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="agentId"></param>
         /// <param name="speechifyVersion"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
         public async global::System.Threading.Tasks.Task<string> DeactivateAsync(
-            string id,
+            string agentId,
             string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
             var __response = await DeactivateAsResponseAsync(
-                id: id,
+                agentId: agentId,
                 speechifyVersion: speechifyVersion,
                 requestOptions: requestOptions,
                 cancellationToken: cancellationToken
@@ -71,13 +71,13 @@ namespace Speechify
         /// Deactivate Agent Flow<br/>
         /// Deactivate the agent's published flow so the agent runs the synthesized default flow.
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="agentId"></param>
         /// <param name="speechifyVersion"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
         public async global::System.Threading.Tasks.Task<global::Speechify.AutoSDKHttpResponse<string>> DeactivateAsResponseAsync(
-            string id,
+            string agentId,
             string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
@@ -86,7 +86,7 @@ namespace Speechify
                 client: HttpClient);
             PrepareDeactivateArguments(
                 httpClient: HttpClient,
-                id: ref id,
+                agentId: ref agentId,
                 speechifyVersion: ref speechifyVersion);
 
 
@@ -113,7 +113,7 @@ namespace Speechify
             {
 
                             var __pathBuilder = new global::Speechify.PathBuilder(
-                                path: $"/v1/agents/{id}/flow/deactivate",
+                                path: $"/v1/agents/{agentId}/flow/deactivate",
                                 baseUri: HttpClient.BaseAddress);
                             var __path = __pathBuilder.ToString();
                 __path = global::Speechify.AutoSDKRequestOptionsSupport.AppendQueryParameters(
@@ -161,7 +161,7 @@ namespace Speechify
                 PrepareDeactivateRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
-                    id: id!,
+                    agentId: agentId!,
                     speechifyVersion: speechifyVersion);
 
                 return __httpRequest;
@@ -181,7 +181,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "Deactivate",
                                 methodName: "DeactivateAsync",
-                                pathTemplate: "$\"/v1/agents/{id}/flow/deactivate\"",
+                                pathTemplate: "$\"/v1/agents/{agentId}/flow/deactivate\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -215,7 +215,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "Deactivate",
                                 methodName: "DeactivateAsync",
-                                pathTemplate: "$\"/v1/agents/{id}/flow/deactivate\"",
+                                pathTemplate: "$\"/v1/agents/{agentId}/flow/deactivate\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -256,7 +256,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "Deactivate",
                                 methodName: "DeactivateAsync",
-                                pathTemplate: "$\"/v1/agents/{id}/flow/deactivate\"",
+                                pathTemplate: "$\"/v1/agents/{agentId}/flow/deactivate\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -304,7 +304,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "Deactivate",
                                 methodName: "DeactivateAsync",
-                                pathTemplate: "$\"/v1/agents/{id}/flow/deactivate\"",
+                                pathTemplate: "$\"/v1/agents/{agentId}/flow/deactivate\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -326,7 +326,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "Deactivate",
                                 methodName: "DeactivateAsync",
-                                pathTemplate: "$\"/v1/agents/{id}/flow/deactivate\"",
+                                pathTemplate: "$\"/v1/agents/{agentId}/flow/deactivate\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,

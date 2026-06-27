@@ -27,14 +27,14 @@ namespace Speechify
             };
         partial void PrepareListMemoriesArguments(
             global::System.Net.Http.HttpClient httpClient,
-            ref string id,
+            ref string callerId,
             ref string? cursor,
             ref int? limit,
             ref string? speechifyVersion);
         partial void PrepareListMemoriesRequest(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpRequestMessage httpRequestMessage,
-            string id,
+            string callerId,
             string? cursor,
             int? limit,
             string? speechifyVersion);
@@ -54,7 +54,7 @@ namespace Speechify
         /// soft-deleted are hidden — the GDPR purge semantics require the<br/>
         /// API to behave as if those rows do not exist.
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="callerId"></param>
         /// <param name="cursor"></param>
         /// <param name="limit">
         /// Default Value: 50
@@ -64,7 +64,7 @@ namespace Speechify
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
         public async global::System.Threading.Tasks.Task<global::Speechify.ListCallerMemoriesResponse> ListMemoriesAsync(
-            string id,
+            string callerId,
             string? cursor = default,
             int? limit = default,
             string? speechifyVersion = default,
@@ -72,7 +72,7 @@ namespace Speechify
             global::System.Threading.CancellationToken cancellationToken = default)
         {
             var __response = await ListMemoriesAsResponseAsync(
-                id: id,
+                callerId: callerId,
                 cursor: cursor,
                 limit: limit,
                 speechifyVersion: speechifyVersion,
@@ -89,7 +89,7 @@ namespace Speechify
         /// soft-deleted are hidden — the GDPR purge semantics require the<br/>
         /// API to behave as if those rows do not exist.
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="callerId"></param>
         /// <param name="cursor"></param>
         /// <param name="limit">
         /// Default Value: 50
@@ -99,7 +99,7 @@ namespace Speechify
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
         public async global::System.Threading.Tasks.Task<global::Speechify.AutoSDKHttpResponse<global::Speechify.ListCallerMemoriesResponse>> ListMemoriesAsResponseAsync(
-            string id,
+            string callerId,
             string? cursor = default,
             int? limit = default,
             string? speechifyVersion = default,
@@ -110,7 +110,7 @@ namespace Speechify
                 client: HttpClient);
             PrepareListMemoriesArguments(
                 httpClient: HttpClient,
-                id: ref id,
+                callerId: ref callerId,
                 cursor: ref cursor,
                 limit: ref limit,
                 speechifyVersion: ref speechifyVersion);
@@ -139,7 +139,7 @@ namespace Speechify
             {
 
                             var __pathBuilder = new global::Speechify.PathBuilder(
-                                path: $"/v1/agents/callers/{id}/memories",
+                                path: $"/v1/agents/callers/{callerId}/memories",
                                 baseUri: HttpClient.BaseAddress);
                             __pathBuilder
                                 .AddOptionalParameter("cursor", cursor)
@@ -191,7 +191,7 @@ namespace Speechify
                 PrepareListMemoriesRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
-                    id: id!,
+                    callerId: callerId!,
                     cursor: cursor,
                     limit: limit,
                     speechifyVersion: speechifyVersion);
@@ -213,7 +213,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "ListMemories",
                                 methodName: "ListMemoriesAsync",
-                                pathTemplate: "$\"/v1/agents/callers/{id}/memories\"",
+                                pathTemplate: "$\"/v1/agents/callers/{callerId}/memories\"",
                                 httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -247,7 +247,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "ListMemories",
                                 methodName: "ListMemoriesAsync",
-                                pathTemplate: "$\"/v1/agents/callers/{id}/memories\"",
+                                pathTemplate: "$\"/v1/agents/callers/{callerId}/memories\"",
                                 httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -288,7 +288,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "ListMemories",
                                 methodName: "ListMemoriesAsync",
-                                pathTemplate: "$\"/v1/agents/callers/{id}/memories\"",
+                                pathTemplate: "$\"/v1/agents/callers/{callerId}/memories\"",
                                 httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -336,7 +336,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "ListMemories",
                                 methodName: "ListMemoriesAsync",
-                                pathTemplate: "$\"/v1/agents/callers/{id}/memories\"",
+                                pathTemplate: "$\"/v1/agents/callers/{callerId}/memories\"",
                                 httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -358,7 +358,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "ListMemories",
                                 methodName: "ListMemoriesAsync",
-                                pathTemplate: "$\"/v1/agents/callers/{id}/memories\"",
+                                pathTemplate: "$\"/v1/agents/callers/{callerId}/memories\"",
                                 httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,

@@ -12,14 +12,14 @@ namespace Speechify
         /// to change a stored secret. The kind is immutable: a rotated `config`<br/>
         /// must populate the same block as the credential's existing kind.
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="credentialId"></param>
         /// <param name="speechifyVersion"></param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
         global::System.Threading.Tasks.Task<global::Speechify.Credential> UpdateAsync(
-            string id,
+            string credentialId,
 
             global::Speechify.UpdateCredentialRequest request,
             string? speechifyVersion = default,
@@ -33,14 +33,14 @@ namespace Speechify
         /// to change a stored secret. The kind is immutable: a rotated `config`<br/>
         /// must populate the same block as the credential's existing kind.
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="credentialId"></param>
         /// <param name="speechifyVersion"></param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
         global::System.Threading.Tasks.Task<global::Speechify.AutoSDKHttpResponse<global::Speechify.Credential>> UpdateAsResponseAsync(
-            string id,
+            string credentialId,
 
             global::Speechify.UpdateCredentialRequest request,
             string? speechifyVersion = default,
@@ -54,7 +54,7 @@ namespace Speechify
         /// to change a stored secret. The kind is immutable: a rotated `config`<br/>
         /// must populate the same block as the credential's existing kind.
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="credentialId"></param>
         /// <param name="speechifyVersion"></param>
         /// <param name="name">
         /// New human-readable label, unique per workspace.
@@ -70,7 +70,7 @@ namespace Speechify
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::System.InvalidOperationException"></exception>
         global::System.Threading.Tasks.Task<global::Speechify.Credential> UpdateAsync(
-            string id,
+            string credentialId,
             string? speechifyVersion = default,
             string? name = default,
             global::Speechify.CredentialConfig? config = default,

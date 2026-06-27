@@ -27,13 +27,13 @@ namespace Speechify
             };
         partial void PrepareDeleteToolArguments(
             global::System.Net.Http.HttpClient httpClient,
-            ref string id,
+            ref string agentId,
             ref string toolId,
             ref string? speechifyVersion);
         partial void PrepareDeleteToolRequest(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpRequestMessage httpRequestMessage,
-            string id,
+            string agentId,
             string toolId,
             string? speechifyVersion);
         partial void ProcessDeleteToolResponse(
@@ -51,21 +51,21 @@ namespace Speechify
         /// attached external tool is detached (the workspace definition<br/>
         /// survives and stays attachable elsewhere).
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="agentId"></param>
         /// <param name="toolId"></param>
         /// <param name="speechifyVersion"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
         public async global::System.Threading.Tasks.Task<string> DeleteToolAsync(
-            string id,
+            string agentId,
             string toolId,
             string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
             var __response = await DeleteToolAsResponseAsync(
-                id: id,
+                agentId: agentId,
                 toolId: toolId,
                 speechifyVersion: speechifyVersion,
                 requestOptions: requestOptions,
@@ -80,14 +80,14 @@ namespace Speechify
         /// attached external tool is detached (the workspace definition<br/>
         /// survives and stays attachable elsewhere).
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="agentId"></param>
         /// <param name="toolId"></param>
         /// <param name="speechifyVersion"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
         public async global::System.Threading.Tasks.Task<global::Speechify.AutoSDKHttpResponse<string>> DeleteToolAsResponseAsync(
-            string id,
+            string agentId,
             string toolId,
             string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
@@ -97,7 +97,7 @@ namespace Speechify
                 client: HttpClient);
             PrepareDeleteToolArguments(
                 httpClient: HttpClient,
-                id: ref id,
+                agentId: ref agentId,
                 toolId: ref toolId,
                 speechifyVersion: ref speechifyVersion);
 
@@ -125,7 +125,7 @@ namespace Speechify
             {
 
                             var __pathBuilder = new global::Speechify.PathBuilder(
-                                path: $"/v1/agents/{id}/tools/{toolId}",
+                                path: $"/v1/agents/{agentId}/tools/{toolId}",
                                 baseUri: HttpClient.BaseAddress);
                             var __path = __pathBuilder.ToString();
                 __path = global::Speechify.AutoSDKRequestOptionsSupport.AppendQueryParameters(
@@ -173,7 +173,7 @@ namespace Speechify
                 PrepareDeleteToolRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
-                    id: id!,
+                    agentId: agentId!,
                     toolId: toolId!,
                     speechifyVersion: speechifyVersion);
 
@@ -194,7 +194,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "DeleteTool",
                                 methodName: "DeleteToolAsync",
-                                pathTemplate: "$\"/v1/agents/{id}/tools/{toolId}\"",
+                                pathTemplate: "$\"/v1/agents/{agentId}/tools/{toolId}\"",
                                 httpMethod: "DELETE",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -228,7 +228,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "DeleteTool",
                                 methodName: "DeleteToolAsync",
-                                pathTemplate: "$\"/v1/agents/{id}/tools/{toolId}\"",
+                                pathTemplate: "$\"/v1/agents/{agentId}/tools/{toolId}\"",
                                 httpMethod: "DELETE",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -269,7 +269,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "DeleteTool",
                                 methodName: "DeleteToolAsync",
-                                pathTemplate: "$\"/v1/agents/{id}/tools/{toolId}\"",
+                                pathTemplate: "$\"/v1/agents/{agentId}/tools/{toolId}\"",
                                 httpMethod: "DELETE",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -317,7 +317,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "DeleteTool",
                                 methodName: "DeleteToolAsync",
-                                pathTemplate: "$\"/v1/agents/{id}/tools/{toolId}\"",
+                                pathTemplate: "$\"/v1/agents/{agentId}/tools/{toolId}\"",
                                 httpMethod: "DELETE",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -339,7 +339,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "DeleteTool",
                                 methodName: "DeleteToolAsync",
-                                pathTemplate: "$\"/v1/agents/{id}/tools/{toolId}\"",
+                                pathTemplate: "$\"/v1/agents/{agentId}/tools/{toolId}\"",
                                 httpMethod: "DELETE",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,

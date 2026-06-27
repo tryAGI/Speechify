@@ -27,13 +27,13 @@ namespace Speechify
             };
         partial void PrepareCreateCrawlImportArguments(
             global::System.Net.Http.HttpClient httpClient,
-            ref string id,
+            ref string kbId,
             ref string? speechifyVersion,
             global::Speechify.CreateCrawlImportRequest request);
         partial void PrepareCreateCrawlImportRequest(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpRequestMessage httpRequestMessage,
-            string id,
+            string kbId,
             string? speechifyVersion,
             global::Speechify.CreateCrawlImportRequest request);
         partial void ProcessCreateCrawlImportResponse(
@@ -48,16 +48,16 @@ namespace Speechify
         /// <summary>
         /// Create Crawl Import<br/>
         /// Kick off an async website crawl. Returns 202 with the import<br/>
-        /// job row; client polls `GET /{id}/imports` for progress.
+        /// job row; client polls `GET /{kb_id}/imports` for progress.
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="kbId"></param>
         /// <param name="speechifyVersion"></param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
         public async global::System.Threading.Tasks.Task<global::Speechify.ImportJobResponse> CreateCrawlImportAsync(
-            string id,
+            string kbId,
 
             global::Speechify.CreateCrawlImportRequest request,
             string? speechifyVersion = default,
@@ -65,7 +65,7 @@ namespace Speechify
             global::System.Threading.CancellationToken cancellationToken = default)
         {
             var __response = await CreateCrawlImportAsResponseAsync(
-                id: id,
+                kbId: kbId,
 
                 request: request,
                 speechifyVersion: speechifyVersion,
@@ -78,16 +78,16 @@ namespace Speechify
         /// <summary>
         /// Create Crawl Import<br/>
         /// Kick off an async website crawl. Returns 202 with the import<br/>
-        /// job row; client polls `GET /{id}/imports` for progress.
+        /// job row; client polls `GET /{kb_id}/imports` for progress.
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="kbId"></param>
         /// <param name="speechifyVersion"></param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
         public async global::System.Threading.Tasks.Task<global::Speechify.AutoSDKHttpResponse<global::Speechify.ImportJobResponse>> CreateCrawlImportAsResponseAsync(
-            string id,
+            string kbId,
 
             global::Speechify.CreateCrawlImportRequest request,
             string? speechifyVersion = default,
@@ -100,7 +100,7 @@ namespace Speechify
                 client: HttpClient);
             PrepareCreateCrawlImportArguments(
                 httpClient: HttpClient,
-                id: ref id,
+                kbId: ref kbId,
                 speechifyVersion: ref speechifyVersion,
                 request: request);
 
@@ -128,7 +128,7 @@ namespace Speechify
             {
 
                             var __pathBuilder = new global::Speechify.PathBuilder(
-                                path: $"/v1/agents/knowledge-bases/{id}/documents/crawl",
+                                path: $"/v1/agents/knowledge-bases/{kbId}/documents/crawl",
                                 baseUri: HttpClient.BaseAddress);
                             var __path = __pathBuilder.ToString();
                 __path = global::Speechify.AutoSDKRequestOptionsSupport.AppendQueryParameters(
@@ -182,7 +182,7 @@ namespace Speechify
                 PrepareCreateCrawlImportRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
-                    id: id!,
+                    kbId: kbId!,
                     speechifyVersion: speechifyVersion,
                     request: request);
 
@@ -203,7 +203,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "CreateCrawlImport",
                                 methodName: "CreateCrawlImportAsync",
-                                pathTemplate: "$\"/v1/agents/knowledge-bases/{id}/documents/crawl\"",
+                                pathTemplate: "$\"/v1/agents/knowledge-bases/{kbId}/documents/crawl\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -237,7 +237,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "CreateCrawlImport",
                                 methodName: "CreateCrawlImportAsync",
-                                pathTemplate: "$\"/v1/agents/knowledge-bases/{id}/documents/crawl\"",
+                                pathTemplate: "$\"/v1/agents/knowledge-bases/{kbId}/documents/crawl\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -278,7 +278,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "CreateCrawlImport",
                                 methodName: "CreateCrawlImportAsync",
-                                pathTemplate: "$\"/v1/agents/knowledge-bases/{id}/documents/crawl\"",
+                                pathTemplate: "$\"/v1/agents/knowledge-bases/{kbId}/documents/crawl\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -326,7 +326,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "CreateCrawlImport",
                                 methodName: "CreateCrawlImportAsync",
-                                pathTemplate: "$\"/v1/agents/knowledge-bases/{id}/documents/crawl\"",
+                                pathTemplate: "$\"/v1/agents/knowledge-bases/{kbId}/documents/crawl\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -348,7 +348,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "CreateCrawlImport",
                                 methodName: "CreateCrawlImportAsync",
-                                pathTemplate: "$\"/v1/agents/knowledge-bases/{id}/documents/crawl\"",
+                                pathTemplate: "$\"/v1/agents/knowledge-bases/{kbId}/documents/crawl\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -573,9 +573,9 @@ namespace Speechify
         /// <summary>
         /// Create Crawl Import<br/>
         /// Kick off an async website crawl. Returns 202 with the import<br/>
-        /// job row; client polls `GET /{id}/imports` for progress.
+        /// job row; client polls `GET /{kb_id}/imports` for progress.
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="kbId"></param>
         /// <param name="speechifyVersion"></param>
         /// <param name="url"></param>
         /// <param name="maxPages"></param>
@@ -588,7 +588,7 @@ namespace Speechify
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::System.InvalidOperationException"></exception>
         public async global::System.Threading.Tasks.Task<global::Speechify.ImportJobResponse> CreateCrawlImportAsync(
-            string id,
+            string kbId,
             string url,
             string? speechifyVersion = default,
             int? maxPages = default,
@@ -606,7 +606,7 @@ namespace Speechify
             };
 
             return await CreateCrawlImportAsync(
-                id: id,
+                kbId: kbId,
                 speechifyVersion: speechifyVersion,
                 request: __request,
                 requestOptions: requestOptions,

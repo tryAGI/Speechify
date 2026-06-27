@@ -13,15 +13,17 @@ namespace Speechify
         /// consumers should walk every page until `has_more` is `false`<br/>
         /// before rendering the tree.
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="kbId"></param>
         /// <param name="cursor"></param>
-        /// <param name="limit"></param>
+        /// <param name="limit">
+        /// Default Value: 50
+        /// </param>
         /// <param name="speechifyVersion"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
         global::System.Threading.Tasks.Task<global::Speechify.ListKnowledgeBaseFoldersResponse> ListFoldersAsync(
-            string id,
+            string kbId,
             string? cursor = default,
             int? limit = default,
             string? speechifyVersion = default,
@@ -36,15 +38,17 @@ namespace Speechify
         /// consumers should walk every page until `has_more` is `false`<br/>
         /// before rendering the tree.
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="kbId"></param>
         /// <param name="cursor"></param>
-        /// <param name="limit"></param>
+        /// <param name="limit">
+        /// Default Value: 50
+        /// </param>
         /// <param name="speechifyVersion"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
         global::System.Threading.Tasks.Task<global::Speechify.AutoSDKHttpResponse<global::Speechify.ListKnowledgeBaseFoldersResponse>> ListFoldersAsResponseAsync(
-            string id,
+            string kbId,
             string? cursor = default,
             int? limit = default,
             string? speechifyVersion = default,

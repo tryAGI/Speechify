@@ -71,7 +71,9 @@ namespace Speechify
         /// Walk pages while `has_more` is true.
         /// </summary>
         /// <param name="cursor"></param>
-        /// <param name="limit"></param>
+        /// <param name="limit">
+        /// Default Value: 50
+        /// </param>
         /// <param name="agentId"></param>
         /// <param name="status"></param>
         /// <param name="transport">
@@ -132,7 +134,9 @@ namespace Speechify
         /// Walk pages while `has_more` is true.
         /// </summary>
         /// <param name="cursor"></param>
-        /// <param name="limit"></param>
+        /// <param name="limit">
+        /// Default Value: 50
+        /// </param>
         /// <param name="agentId"></param>
         /// <param name="status"></param>
         /// <param name="transport">

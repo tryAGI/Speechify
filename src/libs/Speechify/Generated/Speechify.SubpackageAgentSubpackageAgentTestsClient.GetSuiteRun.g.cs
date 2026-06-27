@@ -27,12 +27,12 @@ namespace Speechify
             };
         partial void PrepareGetSuiteRunArguments(
             global::System.Net.Http.HttpClient httpClient,
-            ref string id,
+            ref string suiteRunId,
             ref string? speechifyVersion);
         partial void PrepareGetSuiteRunRequest(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpRequestMessage httpRequestMessage,
-            string id,
+            string suiteRunId,
             string? speechifyVersion);
         partial void ProcessGetSuiteRunResponse(
             global::System.Net.Http.HttpClient httpClient,
@@ -48,19 +48,19 @@ namespace Speechify
         /// Retrieve a suite run by ID with its child runs and the derived<br/>
         /// aggregate status and pass/fail/error counts.
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="suiteRunId"></param>
         /// <param name="speechifyVersion"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
         public async global::System.Threading.Tasks.Task<global::Speechify.AgentTestSuiteRunWithRuns> GetSuiteRunAsync(
-            string id,
+            string suiteRunId,
             string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
             var __response = await GetSuiteRunAsResponseAsync(
-                id: id,
+                suiteRunId: suiteRunId,
                 speechifyVersion: speechifyVersion,
                 requestOptions: requestOptions,
                 cancellationToken: cancellationToken
@@ -73,13 +73,13 @@ namespace Speechify
         /// Retrieve a suite run by ID with its child runs and the derived<br/>
         /// aggregate status and pass/fail/error counts.
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="suiteRunId"></param>
         /// <param name="speechifyVersion"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
         public async global::System.Threading.Tasks.Task<global::Speechify.AutoSDKHttpResponse<global::Speechify.AgentTestSuiteRunWithRuns>> GetSuiteRunAsResponseAsync(
-            string id,
+            string suiteRunId,
             string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
@@ -88,7 +88,7 @@ namespace Speechify
                 client: HttpClient);
             PrepareGetSuiteRunArguments(
                 httpClient: HttpClient,
-                id: ref id,
+                suiteRunId: ref suiteRunId,
                 speechifyVersion: ref speechifyVersion);
 
 
@@ -115,7 +115,7 @@ namespace Speechify
             {
 
                             var __pathBuilder = new global::Speechify.PathBuilder(
-                                path: $"/v1/agents/tests/suite-runs/{id}",
+                                path: $"/v1/agents/tests/suite-runs/{suiteRunId}",
                                 baseUri: HttpClient.BaseAddress);
                             var __path = __pathBuilder.ToString();
                 __path = global::Speechify.AutoSDKRequestOptionsSupport.AppendQueryParameters(
@@ -163,7 +163,7 @@ namespace Speechify
                 PrepareGetSuiteRunRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
-                    id: id!,
+                    suiteRunId: suiteRunId!,
                     speechifyVersion: speechifyVersion);
 
                 return __httpRequest;
@@ -183,7 +183,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "GetSuiteRun",
                                 methodName: "GetSuiteRunAsync",
-                                pathTemplate: "$\"/v1/agents/tests/suite-runs/{id}\"",
+                                pathTemplate: "$\"/v1/agents/tests/suite-runs/{suiteRunId}\"",
                                 httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -217,7 +217,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "GetSuiteRun",
                                 methodName: "GetSuiteRunAsync",
-                                pathTemplate: "$\"/v1/agents/tests/suite-runs/{id}\"",
+                                pathTemplate: "$\"/v1/agents/tests/suite-runs/{suiteRunId}\"",
                                 httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -258,7 +258,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "GetSuiteRun",
                                 methodName: "GetSuiteRunAsync",
-                                pathTemplate: "$\"/v1/agents/tests/suite-runs/{id}\"",
+                                pathTemplate: "$\"/v1/agents/tests/suite-runs/{suiteRunId}\"",
                                 httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -306,7 +306,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "GetSuiteRun",
                                 methodName: "GetSuiteRunAsync",
-                                pathTemplate: "$\"/v1/agents/tests/suite-runs/{id}\"",
+                                pathTemplate: "$\"/v1/agents/tests/suite-runs/{suiteRunId}\"",
                                 httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -328,7 +328,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "GetSuiteRun",
                                 methodName: "GetSuiteRunAsync",
-                                pathTemplate: "$\"/v1/agents/tests/suite-runs/{id}\"",
+                                pathTemplate: "$\"/v1/agents/tests/suite-runs/{suiteRunId}\"",
                                 httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,

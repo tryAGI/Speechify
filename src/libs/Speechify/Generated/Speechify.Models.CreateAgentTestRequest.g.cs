@@ -4,7 +4,7 @@
 namespace Speechify
 {
     /// <summary>
-    /// Payload for `POST /v1/agents/{id}/tests`.
+    /// Payload for `POST /v1/agents/{agent_id}/tests`.
     /// </summary>
     public sealed partial class CreateAgentTestRequest
     {

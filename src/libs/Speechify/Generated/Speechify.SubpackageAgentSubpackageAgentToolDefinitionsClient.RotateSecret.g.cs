@@ -27,12 +27,12 @@ namespace Speechify
             };
         partial void PrepareRotateSecretArguments(
             global::System.Net.Http.HttpClient httpClient,
-            ref string id,
+            ref string toolDefinitionId,
             ref string? speechifyVersion);
         partial void PrepareRotateSecretRequest(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpRequestMessage httpRequestMessage,
-            string id,
+            string toolDefinitionId,
             string? speechifyVersion);
         partial void ProcessRotateSecretResponse(
             global::System.Net.Http.HttpClient httpClient,
@@ -52,19 +52,19 @@ namespace Speechify
         /// return the masked placeholder. The previous secret is<br/>
         /// invalidated immediately on success.
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="toolDefinitionId"></param>
         /// <param name="speechifyVersion"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
         public async global::System.Threading.Tasks.Task<global::Speechify.Tool> RotateSecretAsync(
-            string id,
+            string toolDefinitionId,
             string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
             var __response = await RotateSecretAsResponseAsync(
-                id: id,
+                toolDefinitionId: toolDefinitionId,
                 speechifyVersion: speechifyVersion,
                 requestOptions: requestOptions,
                 cancellationToken: cancellationToken
@@ -81,13 +81,13 @@ namespace Speechify
         /// return the masked placeholder. The previous secret is<br/>
         /// invalidated immediately on success.
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="toolDefinitionId"></param>
         /// <param name="speechifyVersion"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
         public async global::System.Threading.Tasks.Task<global::Speechify.AutoSDKHttpResponse<global::Speechify.Tool>> RotateSecretAsResponseAsync(
-            string id,
+            string toolDefinitionId,
             string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
@@ -96,7 +96,7 @@ namespace Speechify
                 client: HttpClient);
             PrepareRotateSecretArguments(
                 httpClient: HttpClient,
-                id: ref id,
+                toolDefinitionId: ref toolDefinitionId,
                 speechifyVersion: ref speechifyVersion);
 
 
@@ -123,7 +123,7 @@ namespace Speechify
             {
 
                             var __pathBuilder = new global::Speechify.PathBuilder(
-                                path: $"/v1/agents/tool-definitions/{id}/rotate-secret",
+                                path: $"/v1/agents/tool-definitions/{toolDefinitionId}/rotate-secret",
                                 baseUri: HttpClient.BaseAddress);
                             var __path = __pathBuilder.ToString();
                 __path = global::Speechify.AutoSDKRequestOptionsSupport.AppendQueryParameters(
@@ -171,7 +171,7 @@ namespace Speechify
                 PrepareRotateSecretRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
-                    id: id!,
+                    toolDefinitionId: toolDefinitionId!,
                     speechifyVersion: speechifyVersion);
 
                 return __httpRequest;
@@ -191,7 +191,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "RotateSecret",
                                 methodName: "RotateSecretAsync",
-                                pathTemplate: "$\"/v1/agents/tool-definitions/{id}/rotate-secret\"",
+                                pathTemplate: "$\"/v1/agents/tool-definitions/{toolDefinitionId}/rotate-secret\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -225,7 +225,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "RotateSecret",
                                 methodName: "RotateSecretAsync",
-                                pathTemplate: "$\"/v1/agents/tool-definitions/{id}/rotate-secret\"",
+                                pathTemplate: "$\"/v1/agents/tool-definitions/{toolDefinitionId}/rotate-secret\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -266,7 +266,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "RotateSecret",
                                 methodName: "RotateSecretAsync",
-                                pathTemplate: "$\"/v1/agents/tool-definitions/{id}/rotate-secret\"",
+                                pathTemplate: "$\"/v1/agents/tool-definitions/{toolDefinitionId}/rotate-secret\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -314,7 +314,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "RotateSecret",
                                 methodName: "RotateSecretAsync",
-                                pathTemplate: "$\"/v1/agents/tool-definitions/{id}/rotate-secret\"",
+                                pathTemplate: "$\"/v1/agents/tool-definitions/{toolDefinitionId}/rotate-secret\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -336,7 +336,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "RotateSecret",
                                 methodName: "RotateSecretAsync",
-                                pathTemplate: "$\"/v1/agents/tool-definitions/{id}/rotate-secret\"",
+                                pathTemplate: "$\"/v1/agents/tool-definitions/{toolDefinitionId}/rotate-secret\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,

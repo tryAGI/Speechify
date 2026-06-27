@@ -27,12 +27,12 @@ namespace Speechify
             };
         partial void PrepareGetTemplateArguments(
             global::System.Net.Http.HttpClient httpClient,
-            ref string id,
+            ref string flowTemplateId,
             ref string? speechifyVersion);
         partial void PrepareGetTemplateRequest(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpRequestMessage httpRequestMessage,
-            string id,
+            string flowTemplateId,
             string? speechifyVersion);
         partial void ProcessGetTemplateResponse(
             global::System.Net.Http.HttpClient httpClient,
@@ -47,19 +47,19 @@ namespace Speechify
         /// Get Flow Template<br/>
         /// Retrieve a flow template by id.
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="flowTemplateId"></param>
         /// <param name="speechifyVersion"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
         public async global::System.Threading.Tasks.Task<global::Speechify.FlowTemplate> GetTemplateAsync(
-            string id,
+            string flowTemplateId,
             string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
             var __response = await GetTemplateAsResponseAsync(
-                id: id,
+                flowTemplateId: flowTemplateId,
                 speechifyVersion: speechifyVersion,
                 requestOptions: requestOptions,
                 cancellationToken: cancellationToken
@@ -71,13 +71,13 @@ namespace Speechify
         /// Get Flow Template<br/>
         /// Retrieve a flow template by id.
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="flowTemplateId"></param>
         /// <param name="speechifyVersion"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
         public async global::System.Threading.Tasks.Task<global::Speechify.AutoSDKHttpResponse<global::Speechify.FlowTemplate>> GetTemplateAsResponseAsync(
-            string id,
+            string flowTemplateId,
             string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
@@ -86,7 +86,7 @@ namespace Speechify
                 client: HttpClient);
             PrepareGetTemplateArguments(
                 httpClient: HttpClient,
-                id: ref id,
+                flowTemplateId: ref flowTemplateId,
                 speechifyVersion: ref speechifyVersion);
 
 
@@ -113,7 +113,7 @@ namespace Speechify
             {
 
                             var __pathBuilder = new global::Speechify.PathBuilder(
-                                path: $"/v1/agents/flow/templates/{id}",
+                                path: $"/v1/agents/flow/templates/{flowTemplateId}",
                                 baseUri: HttpClient.BaseAddress);
                             var __path = __pathBuilder.ToString();
                 __path = global::Speechify.AutoSDKRequestOptionsSupport.AppendQueryParameters(
@@ -161,7 +161,7 @@ namespace Speechify
                 PrepareGetTemplateRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
-                    id: id!,
+                    flowTemplateId: flowTemplateId!,
                     speechifyVersion: speechifyVersion);
 
                 return __httpRequest;
@@ -181,7 +181,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "GetTemplate",
                                 methodName: "GetTemplateAsync",
-                                pathTemplate: "$\"/v1/agents/flow/templates/{id}\"",
+                                pathTemplate: "$\"/v1/agents/flow/templates/{flowTemplateId}\"",
                                 httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -215,7 +215,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "GetTemplate",
                                 methodName: "GetTemplateAsync",
-                                pathTemplate: "$\"/v1/agents/flow/templates/{id}\"",
+                                pathTemplate: "$\"/v1/agents/flow/templates/{flowTemplateId}\"",
                                 httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -256,7 +256,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "GetTemplate",
                                 methodName: "GetTemplateAsync",
-                                pathTemplate: "$\"/v1/agents/flow/templates/{id}\"",
+                                pathTemplate: "$\"/v1/agents/flow/templates/{flowTemplateId}\"",
                                 httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -304,7 +304,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "GetTemplate",
                                 methodName: "GetTemplateAsync",
-                                pathTemplate: "$\"/v1/agents/flow/templates/{id}\"",
+                                pathTemplate: "$\"/v1/agents/flow/templates/{flowTemplateId}\"",
                                 httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -326,7 +326,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "GetTemplate",
                                 methodName: "GetTemplateAsync",
-                                pathTemplate: "$\"/v1/agents/flow/templates/{id}\"",
+                                pathTemplate: "$\"/v1/agents/flow/templates/{flowTemplateId}\"",
                                 httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,

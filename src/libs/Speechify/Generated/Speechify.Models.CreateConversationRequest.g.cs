@@ -4,7 +4,7 @@
 namespace Speechify
 {
     /// <summary>
-    /// Optional body for `POST /v1/agents/{id}/conversations`.
+    /// Optional body for `POST /v1/agents/{agent_id}/conversations`.
     /// </summary>
     public sealed partial class CreateConversationRequest
     {

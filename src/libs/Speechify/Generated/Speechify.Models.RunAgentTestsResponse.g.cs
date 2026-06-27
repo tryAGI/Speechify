@@ -4,7 +4,7 @@
 namespace Speechify
 {
     /// <summary>
-    /// Response from `POST /v1/agents/{id}/tests/runs` and the suite-run<br/>
+    /// Response from `POST /v1/agents/{agent_id}/tests/runs` and the suite-run<br/>
     /// resubmit endpoint. Contains every newly-queued run so the client<br/>
     /// can poll each for completion, plus the `suite_run` that groups<br/>
     /// them. `suite_run` is null only when a Run All found no tests.

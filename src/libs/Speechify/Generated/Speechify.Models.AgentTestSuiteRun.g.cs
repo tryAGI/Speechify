@@ -38,9 +38,9 @@ namespace Speechify
 
         /// <summary>
         /// Which entry point created a suite run.<br/>
-        /// - `run_all`  - POST /v1/agents/{id}/tests/runs.<br/>
+        /// - `run_all`  - POST /v1/agents/{agent_id}/tests/runs.<br/>
         /// - `batch`    - POST /v1/agents/tests/runs/batch.<br/>
-        /// - `resubmit` - POST /v1/agents/tests/suite-runs/{id}/resubmit.
+        /// - `resubmit` - POST /v1/agents/tests/suite-runs/{suite_run_id}/resubmit.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("trigger")]
         [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Speechify.JsonConverters.SuiteRunTriggerJsonConverter))]
@@ -113,8 +113,8 @@ namespace Speechify
         /// <summary>
         /// Newest child-run completion; null until every child run is terminal.
         /// </summary>
-        [global::System.Text.Json.Serialization.JsonPropertyName("completed_at")]
-        public global::System.DateTime? CompletedAt { get; set; }
+        [global::System.Text.Json.Serialization.JsonPropertyName("ended_at")]
+        public global::System.DateTime? EndedAt { get; set; }
 
         /// <summary>
         /// The run-level config override this suite was run<br/>
@@ -151,9 +151,9 @@ namespace Speechify
         /// </param>
         /// <param name="trigger">
         /// Which entry point created a suite run.<br/>
-        /// - `run_all`  - POST /v1/agents/{id}/tests/runs.<br/>
+        /// - `run_all`  - POST /v1/agents/{agent_id}/tests/runs.<br/>
         /// - `batch`    - POST /v1/agents/tests/runs/batch.<br/>
-        /// - `resubmit` - POST /v1/agents/tests/suite-runs/{id}/resubmit.
+        /// - `resubmit` - POST /v1/agents/tests/suite-runs/{suite_run_id}/resubmit.
         /// </param>
         /// <param name="status">
         /// Lifecycle of a test run: `queued` - `running` - terminal.<br/>
@@ -188,7 +188,7 @@ namespace Speechify
         /// the suite run whose failed/errored tests this one re-ran.<br/>
         /// Null for `run_all` and `batch`.
         /// </param>
-        /// <param name="completedAt">
+        /// <param name="endedAt">
         /// Newest child-run completion; null until every child run is terminal.
         /// </param>
         /// <param name="configOverride">
@@ -218,7 +218,7 @@ namespace Speechify
             string? agentId,
             string? agentName,
             string? parentSuiteRunId,
-            global::System.DateTime? completedAt,
+            global::System.DateTime? endedAt,
             global::Speechify.OneOf<global::Speechify.TestRunConfigOverride, object>? configOverride,
             string? flowVersionId,
             int? flowVersionNumber)
@@ -235,7 +235,7 @@ namespace Speechify
             this.ErroredCount = erroredCount;
             this.PendingCount = pendingCount;
             this.CreatedAt = createdAt;
-            this.CompletedAt = completedAt;
+            this.EndedAt = endedAt;
             this.ConfigOverride = configOverride;
             this.FlowVersionId = flowVersionId;
             this.FlowVersionNumber = flowVersionNumber;

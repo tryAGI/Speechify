@@ -56,7 +56,7 @@ namespace Speechify
         /// Provenance: the backing workspace tool definition id for<br/>
         /// shared kinds (webhook/client/mcp), or `null` for a built-in.<br/>
         /// Non-null ⟺ the tool's config is shared and edited at<br/>
-        /// `/v1/agents/tool-definitions/{id}`.
+        /// `/v1/agents/tool-definitions/{tool_definition_id}`.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("definition_id")]
         public string? DefinitionId { get; set; }
@@ -124,7 +124,7 @@ namespace Speechify
         /// Provenance: the backing workspace tool definition id for<br/>
         /// shared kinds (webhook/client/mcp), or `null` for a built-in.<br/>
         /// Non-null ⟺ the tool's config is shared and edited at<br/>
-        /// `/v1/agents/tool-definitions/{id}`.
+        /// `/v1/agents/tool-definitions/{tool_definition_id}`.
         /// </param>
         /// <param name="webhookSecret">
         /// HMAC signing secret for a `webhook` tool. Returned in full<br/>

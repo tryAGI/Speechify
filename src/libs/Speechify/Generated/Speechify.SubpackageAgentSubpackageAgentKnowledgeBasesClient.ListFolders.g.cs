@@ -27,14 +27,14 @@ namespace Speechify
             };
         partial void PrepareListFoldersArguments(
             global::System.Net.Http.HttpClient httpClient,
-            ref string id,
+            ref string kbId,
             ref string? cursor,
             ref int? limit,
             ref string? speechifyVersion);
         partial void PrepareListFoldersRequest(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpRequestMessage httpRequestMessage,
-            string id,
+            string kbId,
             string? cursor,
             int? limit,
             string? speechifyVersion);
@@ -56,15 +56,17 @@ namespace Speechify
         /// consumers should walk every page until `has_more` is `false`<br/>
         /// before rendering the tree.
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="kbId"></param>
         /// <param name="cursor"></param>
-        /// <param name="limit"></param>
+        /// <param name="limit">
+        /// Default Value: 50
+        /// </param>
         /// <param name="speechifyVersion"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
         public async global::System.Threading.Tasks.Task<global::Speechify.ListKnowledgeBaseFoldersResponse> ListFoldersAsync(
-            string id,
+            string kbId,
             string? cursor = default,
             int? limit = default,
             string? speechifyVersion = default,
@@ -72,7 +74,7 @@ namespace Speechify
             global::System.Threading.CancellationToken cancellationToken = default)
         {
             var __response = await ListFoldersAsResponseAsync(
-                id: id,
+                kbId: kbId,
                 cursor: cursor,
                 limit: limit,
                 speechifyVersion: speechifyVersion,
@@ -91,15 +93,17 @@ namespace Speechify
         /// consumers should walk every page until `has_more` is `false`<br/>
         /// before rendering the tree.
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="kbId"></param>
         /// <param name="cursor"></param>
-        /// <param name="limit"></param>
+        /// <param name="limit">
+        /// Default Value: 50
+        /// </param>
         /// <param name="speechifyVersion"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
         public async global::System.Threading.Tasks.Task<global::Speechify.AutoSDKHttpResponse<global::Speechify.ListKnowledgeBaseFoldersResponse>> ListFoldersAsResponseAsync(
-            string id,
+            string kbId,
             string? cursor = default,
             int? limit = default,
             string? speechifyVersion = default,
@@ -110,7 +114,7 @@ namespace Speechify
                 client: HttpClient);
             PrepareListFoldersArguments(
                 httpClient: HttpClient,
-                id: ref id,
+                kbId: ref kbId,
                 cursor: ref cursor,
                 limit: ref limit,
                 speechifyVersion: ref speechifyVersion);
@@ -139,7 +143,7 @@ namespace Speechify
             {
 
                             var __pathBuilder = new global::Speechify.PathBuilder(
-                                path: $"/v1/agents/knowledge-bases/{id}/folders",
+                                path: $"/v1/agents/knowledge-bases/{kbId}/folders",
                                 baseUri: HttpClient.BaseAddress);
                             __pathBuilder
                                 .AddOptionalParameter("cursor", cursor)
@@ -191,7 +195,7 @@ namespace Speechify
                 PrepareListFoldersRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
-                    id: id!,
+                    kbId: kbId!,
                     cursor: cursor,
                     limit: limit,
                     speechifyVersion: speechifyVersion);
@@ -213,7 +217,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "ListFolders",
                                 methodName: "ListFoldersAsync",
-                                pathTemplate: "$\"/v1/agents/knowledge-bases/{id}/folders\"",
+                                pathTemplate: "$\"/v1/agents/knowledge-bases/{kbId}/folders\"",
                                 httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -247,7 +251,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "ListFolders",
                                 methodName: "ListFoldersAsync",
-                                pathTemplate: "$\"/v1/agents/knowledge-bases/{id}/folders\"",
+                                pathTemplate: "$\"/v1/agents/knowledge-bases/{kbId}/folders\"",
                                 httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -288,7 +292,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "ListFolders",
                                 methodName: "ListFoldersAsync",
-                                pathTemplate: "$\"/v1/agents/knowledge-bases/{id}/folders\"",
+                                pathTemplate: "$\"/v1/agents/knowledge-bases/{kbId}/folders\"",
                                 httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -336,7 +340,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "ListFolders",
                                 methodName: "ListFoldersAsync",
-                                pathTemplate: "$\"/v1/agents/knowledge-bases/{id}/folders\"",
+                                pathTemplate: "$\"/v1/agents/knowledge-bases/{kbId}/folders\"",
                                 httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -358,7 +362,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "ListFolders",
                                 methodName: "ListFoldersAsync",
-                                pathTemplate: "$\"/v1/agents/knowledge-bases/{id}/folders\"",
+                                pathTemplate: "$\"/v1/agents/knowledge-bases/{kbId}/folders\"",
                                 httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,

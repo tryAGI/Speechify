@@ -11,14 +11,14 @@ namespace Speechify
         /// indexed synchronously; expect a few seconds per MB of input.<br/>
         /// Maximum 10 MB per upload.
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="kbId"></param>
         /// <param name="speechifyVersion"></param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
         global::System.Threading.Tasks.Task<global::Speechify.KnowledgeBaseDocument> UploadDocumentAsync(
-            string id,
+            string kbId,
 
             global::Speechify.UploadDocumentRequest request,
             string? speechifyVersion = default,
@@ -31,14 +31,14 @@ namespace Speechify
         /// indexed synchronously; expect a few seconds per MB of input.<br/>
         /// Maximum 10 MB per upload.
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="kbId"></param>
         /// <param name="speechifyVersion"></param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
         global::System.Threading.Tasks.Task<global::Speechify.AutoSDKHttpResponse<global::Speechify.KnowledgeBaseDocument>> UploadDocumentAsResponseAsync(
-            string id,
+            string kbId,
 
             global::Speechify.UploadDocumentRequest request,
             string? speechifyVersion = default,
@@ -51,7 +51,7 @@ namespace Speechify
         /// indexed synchronously; expect a few seconds per MB of input.<br/>
         /// Maximum 10 MB per upload.
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="kbId"></param>
         /// <param name="speechifyVersion"></param>
         /// <param name="file"></param>
         /// <param name="filename"></param>
@@ -59,7 +59,7 @@ namespace Speechify
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::System.InvalidOperationException"></exception>
         global::System.Threading.Tasks.Task<global::Speechify.KnowledgeBaseDocument> UploadDocumentAsync(
-            string id,
+            string kbId,
             byte[] file,
             string filename,
             string? speechifyVersion = default,
@@ -73,7 +73,7 @@ namespace Speechify
         /// indexed synchronously; expect a few seconds per MB of input.<br/>
         /// Maximum 10 MB per upload.
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="kbId"></param>
         /// <param name="speechifyVersion"></param>
         /// <param name="file">
         /// The stream to send as the multipart 'file' file part.
@@ -83,7 +83,7 @@ namespace Speechify
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
         global::System.Threading.Tasks.Task<global::Speechify.KnowledgeBaseDocument> UploadDocumentAsync(
-            string id,
+            string kbId,
             global::System.IO.Stream file,
             string filename,
             string? speechifyVersion = default,
@@ -96,7 +96,7 @@ namespace Speechify
         /// indexed synchronously; expect a few seconds per MB of input.<br/>
         /// Maximum 10 MB per upload.
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="kbId"></param>
         /// <param name="speechifyVersion"></param>
         /// <param name="file">
         /// The stream to send as the multipart 'file' file part.
@@ -106,7 +106,7 @@ namespace Speechify
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
         global::System.Threading.Tasks.Task<global::Speechify.AutoSDKHttpResponse<global::Speechify.KnowledgeBaseDocument>> UploadDocumentAsResponseAsync(
-            string id,
+            string kbId,
             global::System.IO.Stream file,
             string filename,
             string? speechifyVersion = default,

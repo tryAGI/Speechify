@@ -27,13 +27,13 @@ namespace Speechify
             };
         partial void PrepareAttachToolArguments(
             global::System.Net.Http.HttpClient httpClient,
-            ref string id,
+            ref string agentId,
             ref string toolId,
             ref string? speechifyVersion);
         partial void PrepareAttachToolRequest(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpRequestMessage httpRequestMessage,
-            string id,
+            string agentId,
             string toolId,
             string? speechifyVersion);
         partial void ProcessAttachToolResponse(
@@ -49,23 +49,23 @@ namespace Speechify
         /// Attach Tool<br/>
         /// Attach an existing workspace tool definition (webhook / client /<br/>
         /// MCP) to the agent by its definition id. Idempotent. To create and<br/>
-        /// attach in one step, POST to `/v1/agents/{id}/tools` instead.
+        /// attach in one step, POST to `/v1/agents/{agent_id}/tools` instead.
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="agentId"></param>
         /// <param name="toolId"></param>
         /// <param name="speechifyVersion"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
         public async global::System.Threading.Tasks.Task<string> AttachToolAsync(
-            string id,
+            string agentId,
             string toolId,
             string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
             var __response = await AttachToolAsResponseAsync(
-                id: id,
+                agentId: agentId,
                 toolId: toolId,
                 speechifyVersion: speechifyVersion,
                 requestOptions: requestOptions,
@@ -78,16 +78,16 @@ namespace Speechify
         /// Attach Tool<br/>
         /// Attach an existing workspace tool definition (webhook / client /<br/>
         /// MCP) to the agent by its definition id. Idempotent. To create and<br/>
-        /// attach in one step, POST to `/v1/agents/{id}/tools` instead.
+        /// attach in one step, POST to `/v1/agents/{agent_id}/tools` instead.
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="agentId"></param>
         /// <param name="toolId"></param>
         /// <param name="speechifyVersion"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
         public async global::System.Threading.Tasks.Task<global::Speechify.AutoSDKHttpResponse<string>> AttachToolAsResponseAsync(
-            string id,
+            string agentId,
             string toolId,
             string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
@@ -97,7 +97,7 @@ namespace Speechify
                 client: HttpClient);
             PrepareAttachToolArguments(
                 httpClient: HttpClient,
-                id: ref id,
+                agentId: ref agentId,
                 toolId: ref toolId,
                 speechifyVersion: ref speechifyVersion);
 
@@ -125,7 +125,7 @@ namespace Speechify
             {
 
                             var __pathBuilder = new global::Speechify.PathBuilder(
-                                path: $"/v1/agents/{id}/tools/{toolId}",
+                                path: $"/v1/agents/{agentId}/tools/{toolId}",
                                 baseUri: HttpClient.BaseAddress);
                             var __path = __pathBuilder.ToString();
                 __path = global::Speechify.AutoSDKRequestOptionsSupport.AppendQueryParameters(
@@ -173,7 +173,7 @@ namespace Speechify
                 PrepareAttachToolRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
-                    id: id!,
+                    agentId: agentId!,
                     toolId: toolId!,
                     speechifyVersion: speechifyVersion);
 
@@ -194,7 +194,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "AttachTool",
                                 methodName: "AttachToolAsync",
-                                pathTemplate: "$\"/v1/agents/{id}/tools/{toolId}\"",
+                                pathTemplate: "$\"/v1/agents/{agentId}/tools/{toolId}\"",
                                 httpMethod: "PUT",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -228,7 +228,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "AttachTool",
                                 methodName: "AttachToolAsync",
-                                pathTemplate: "$\"/v1/agents/{id}/tools/{toolId}\"",
+                                pathTemplate: "$\"/v1/agents/{agentId}/tools/{toolId}\"",
                                 httpMethod: "PUT",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -269,7 +269,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "AttachTool",
                                 methodName: "AttachToolAsync",
-                                pathTemplate: "$\"/v1/agents/{id}/tools/{toolId}\"",
+                                pathTemplate: "$\"/v1/agents/{agentId}/tools/{toolId}\"",
                                 httpMethod: "PUT",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -317,7 +317,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "AttachTool",
                                 methodName: "AttachToolAsync",
-                                pathTemplate: "$\"/v1/agents/{id}/tools/{toolId}\"",
+                                pathTemplate: "$\"/v1/agents/{agentId}/tools/{toolId}\"",
                                 httpMethod: "PUT",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -339,7 +339,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "AttachTool",
                                 methodName: "AttachToolAsync",
-                                pathTemplate: "$\"/v1/agents/{id}/tools/{toolId}\"",
+                                pathTemplate: "$\"/v1/agents/{agentId}/tools/{toolId}\"",
                                 httpMethod: "PUT",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,

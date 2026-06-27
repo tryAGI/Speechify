@@ -8,13 +8,13 @@ namespace Speechify
         /// Get Tool<br/>
         /// Retrieve a tool by ID. Webhook secrets are always masked here.
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="toolDefinitionId"></param>
         /// <param name="speechifyVersion"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
         global::System.Threading.Tasks.Task<global::Speechify.Tool> GetAsync(
-            string id,
+            string toolDefinitionId,
             string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
@@ -22,13 +22,13 @@ namespace Speechify
         /// Get Tool<br/>
         /// Retrieve a tool by ID. Webhook secrets are always masked here.
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="toolDefinitionId"></param>
         /// <param name="speechifyVersion"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
         global::System.Threading.Tasks.Task<global::Speechify.AutoSDKHttpResponse<global::Speechify.Tool>> GetAsResponseAsync(
-            string id,
+            string toolDefinitionId,
             string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);

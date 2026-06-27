@@ -27,14 +27,14 @@ namespace Speechify
             };
         partial void PrepareListConversationsArguments(
             global::System.Net.Http.HttpClient httpClient,
-            ref string id,
+            ref string callerId,
             ref string? cursor,
             ref int? limit,
             ref string? speechifyVersion);
         partial void PrepareListConversationsRequest(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpRequestMessage httpRequestMessage,
-            string id,
+            string callerId,
             string? cursor,
             int? limit,
             string? speechifyVersion);
@@ -53,7 +53,7 @@ namespace Speechify
         /// started first. Same wire envelope as the workspace-wide<br/>
         /// `GET /v1/agents/conversations`, narrowed to one caller.
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="callerId"></param>
         /// <param name="cursor"></param>
         /// <param name="limit">
         /// Default Value: 50
@@ -63,7 +63,7 @@ namespace Speechify
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
         public async global::System.Threading.Tasks.Task<global::Speechify.ListCallerConversationsResponse> ListConversationsAsync(
-            string id,
+            string callerId,
             string? cursor = default,
             int? limit = default,
             string? speechifyVersion = default,
@@ -71,7 +71,7 @@ namespace Speechify
             global::System.Threading.CancellationToken cancellationToken = default)
         {
             var __response = await ListConversationsAsResponseAsync(
-                id: id,
+                callerId: callerId,
                 cursor: cursor,
                 limit: limit,
                 speechifyVersion: speechifyVersion,
@@ -87,7 +87,7 @@ namespace Speechify
         /// started first. Same wire envelope as the workspace-wide<br/>
         /// `GET /v1/agents/conversations`, narrowed to one caller.
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="callerId"></param>
         /// <param name="cursor"></param>
         /// <param name="limit">
         /// Default Value: 50
@@ -97,7 +97,7 @@ namespace Speechify
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
         public async global::System.Threading.Tasks.Task<global::Speechify.AutoSDKHttpResponse<global::Speechify.ListCallerConversationsResponse>> ListConversationsAsResponseAsync(
-            string id,
+            string callerId,
             string? cursor = default,
             int? limit = default,
             string? speechifyVersion = default,
@@ -108,7 +108,7 @@ namespace Speechify
                 client: HttpClient);
             PrepareListConversationsArguments(
                 httpClient: HttpClient,
-                id: ref id,
+                callerId: ref callerId,
                 cursor: ref cursor,
                 limit: ref limit,
                 speechifyVersion: ref speechifyVersion);
@@ -137,7 +137,7 @@ namespace Speechify
             {
 
                             var __pathBuilder = new global::Speechify.PathBuilder(
-                                path: $"/v1/agents/callers/{id}/conversations",
+                                path: $"/v1/agents/callers/{callerId}/conversations",
                                 baseUri: HttpClient.BaseAddress);
                             __pathBuilder
                                 .AddOptionalParameter("cursor", cursor)
@@ -189,7 +189,7 @@ namespace Speechify
                 PrepareListConversationsRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
-                    id: id!,
+                    callerId: callerId!,
                     cursor: cursor,
                     limit: limit,
                     speechifyVersion: speechifyVersion);
@@ -211,7 +211,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "ListConversations",
                                 methodName: "ListConversationsAsync",
-                                pathTemplate: "$\"/v1/agents/callers/{id}/conversations\"",
+                                pathTemplate: "$\"/v1/agents/callers/{callerId}/conversations\"",
                                 httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -245,7 +245,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "ListConversations",
                                 methodName: "ListConversationsAsync",
-                                pathTemplate: "$\"/v1/agents/callers/{id}/conversations\"",
+                                pathTemplate: "$\"/v1/agents/callers/{callerId}/conversations\"",
                                 httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -286,7 +286,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "ListConversations",
                                 methodName: "ListConversationsAsync",
-                                pathTemplate: "$\"/v1/agents/callers/{id}/conversations\"",
+                                pathTemplate: "$\"/v1/agents/callers/{callerId}/conversations\"",
                                 httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -334,7 +334,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "ListConversations",
                                 methodName: "ListConversationsAsync",
-                                pathTemplate: "$\"/v1/agents/callers/{id}/conversations\"",
+                                pathTemplate: "$\"/v1/agents/callers/{callerId}/conversations\"",
                                 httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -356,7 +356,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "ListConversations",
                                 methodName: "ListConversationsAsync",
-                                pathTemplate: "$\"/v1/agents/callers/{id}/conversations\"",
+                                pathTemplate: "$\"/v1/agents/callers/{callerId}/conversations\"",
                                 httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,

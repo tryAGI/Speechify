@@ -4,7 +4,7 @@
 namespace Speechify
 {
     /// <summary>
-    /// Audit envelope returned by DELETE /v1/agents/callers/{id}. Surfaces<br/>
+    /// Audit envelope returned by DELETE /v1/agents/callers/{caller_id}. Surfaces<br/>
     /// the cascade row counts so a privacy operator has direct evidence<br/>
     /// of the purge without re-querying.
     /// </summary>

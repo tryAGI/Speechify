@@ -27,12 +27,12 @@ namespace Speechify
             };
         partial void PrepareStreamLiveArguments(
             global::System.Net.Http.HttpClient httpClient,
-            ref string id,
+            ref string conversationId,
             ref string? speechifyVersion);
         partial void PrepareStreamLiveRequest(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpRequestMessage httpRequestMessage,
-            string id,
+            string conversationId,
             string? speechifyVersion);
         partial void ProcessStreamLiveResponse(
             global::System.Net.Http.HttpClient httpClient,
@@ -49,13 +49,13 @@ namespace Speechify
         /// dropped connection via the standard `Last-Event-ID` header. Same<br/>
         /// read access as List Messages.
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="conversationId"></param>
         /// <param name="speechifyVersion"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
         public async global::System.Collections.Generic.IAsyncEnumerable<string> StreamLiveAsync(
-            string id,
+            string conversationId,
             string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             [global::System.Runtime.CompilerServices.EnumeratorCancellation] global::System.Threading.CancellationToken cancellationToken = default)
@@ -64,7 +64,7 @@ namespace Speechify
                 client: HttpClient);
             PrepareStreamLiveArguments(
                 httpClient: HttpClient,
-                id: ref id,
+                conversationId: ref conversationId,
                 speechifyVersion: ref speechifyVersion);
 
 
@@ -91,7 +91,7 @@ namespace Speechify
             {
 
                             var __pathBuilder = new global::Speechify.PathBuilder(
-                                path: $"/v1/agents/conversations/{id}/live",
+                                path: $"/v1/agents/conversations/{conversationId}/live",
                                 baseUri: HttpClient.BaseAddress);
                             var __path = __pathBuilder.ToString();
                 __path = global::Speechify.AutoSDKRequestOptionsSupport.AppendQueryParameters(
@@ -139,7 +139,7 @@ namespace Speechify
                 PrepareStreamLiveRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
-                    id: id!,
+                    conversationId: conversationId!,
                     speechifyVersion: speechifyVersion);
 
                 return __httpRequest;
@@ -159,7 +159,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "StreamLive",
                                 methodName: "StreamLiveAsync",
-                                pathTemplate: "$\"/v1/agents/conversations/{id}/live\"",
+                                pathTemplate: "$\"/v1/agents/conversations/{conversationId}/live\"",
                                 httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -193,7 +193,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "StreamLive",
                                 methodName: "StreamLiveAsync",
-                                pathTemplate: "$\"/v1/agents/conversations/{id}/live\"",
+                                pathTemplate: "$\"/v1/agents/conversations/{conversationId}/live\"",
                                 httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -234,7 +234,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "StreamLive",
                                 methodName: "StreamLiveAsync",
-                                pathTemplate: "$\"/v1/agents/conversations/{id}/live\"",
+                                pathTemplate: "$\"/v1/agents/conversations/{conversationId}/live\"",
                                 httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -282,7 +282,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "StreamLive",
                                 methodName: "StreamLiveAsync",
-                                pathTemplate: "$\"/v1/agents/conversations/{id}/live\"",
+                                pathTemplate: "$\"/v1/agents/conversations/{conversationId}/live\"",
                                 httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -304,7 +304,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "StreamLive",
                                 methodName: "StreamLiveAsync",
-                                pathTemplate: "$\"/v1/agents/conversations/{id}/live\"",
+                                pathTemplate: "$\"/v1/agents/conversations/{conversationId}/live\"",
                                 httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,

@@ -27,12 +27,12 @@ namespace Speechify
             };
         partial void PrepareGetArguments(
             global::System.Net.Http.HttpClient httpClient,
-            ref string id,
+            ref string batchCallId,
             ref string? speechifyVersion);
         partial void PrepareGetRequest(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpRequestMessage httpRequestMessage,
-            string id,
+            string batchCallId,
             string? speechifyVersion);
         partial void ProcessGetResponse(
             global::System.Net.Http.HttpClient httpClient,
@@ -48,19 +48,19 @@ namespace Speechify
         /// Returns the batch row plus all recipients so the detail view renders<br/>
         /// without a second round-trip.
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="batchCallId"></param>
         /// <param name="speechifyVersion"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
         public async global::System.Threading.Tasks.Task<global::Speechify.GetBatchCallResponse> GetAsync(
-            string id,
+            string batchCallId,
             string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
             var __response = await GetAsResponseAsync(
-                id: id,
+                batchCallId: batchCallId,
                 speechifyVersion: speechifyVersion,
                 requestOptions: requestOptions,
                 cancellationToken: cancellationToken
@@ -73,13 +73,13 @@ namespace Speechify
         /// Returns the batch row plus all recipients so the detail view renders<br/>
         /// without a second round-trip.
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="batchCallId"></param>
         /// <param name="speechifyVersion"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
         public async global::System.Threading.Tasks.Task<global::Speechify.AutoSDKHttpResponse<global::Speechify.GetBatchCallResponse>> GetAsResponseAsync(
-            string id,
+            string batchCallId,
             string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
@@ -88,7 +88,7 @@ namespace Speechify
                 client: HttpClient);
             PrepareGetArguments(
                 httpClient: HttpClient,
-                id: ref id,
+                batchCallId: ref batchCallId,
                 speechifyVersion: ref speechifyVersion);
 
 
@@ -115,7 +115,7 @@ namespace Speechify
             {
 
                             var __pathBuilder = new global::Speechify.PathBuilder(
-                                path: $"/v1/agents/batch-calls/{id}",
+                                path: $"/v1/agents/batch-calls/{batchCallId}",
                                 baseUri: HttpClient.BaseAddress);
                             var __path = __pathBuilder.ToString();
                 __path = global::Speechify.AutoSDKRequestOptionsSupport.AppendQueryParameters(
@@ -163,7 +163,7 @@ namespace Speechify
                 PrepareGetRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
-                    id: id!,
+                    batchCallId: batchCallId!,
                     speechifyVersion: speechifyVersion);
 
                 return __httpRequest;
@@ -183,7 +183,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "Get",
                                 methodName: "GetAsync",
-                                pathTemplate: "$\"/v1/agents/batch-calls/{id}\"",
+                                pathTemplate: "$\"/v1/agents/batch-calls/{batchCallId}\"",
                                 httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -217,7 +217,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "Get",
                                 methodName: "GetAsync",
-                                pathTemplate: "$\"/v1/agents/batch-calls/{id}\"",
+                                pathTemplate: "$\"/v1/agents/batch-calls/{batchCallId}\"",
                                 httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -258,7 +258,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "Get",
                                 methodName: "GetAsync",
-                                pathTemplate: "$\"/v1/agents/batch-calls/{id}\"",
+                                pathTemplate: "$\"/v1/agents/batch-calls/{batchCallId}\"",
                                 httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -306,7 +306,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "Get",
                                 methodName: "GetAsync",
-                                pathTemplate: "$\"/v1/agents/batch-calls/{id}\"",
+                                pathTemplate: "$\"/v1/agents/batch-calls/{batchCallId}\"",
                                 httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -328,7 +328,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "Get",
                                 methodName: "GetAsync",
-                                pathTemplate: "$\"/v1/agents/batch-calls/{id}\"",
+                                pathTemplate: "$\"/v1/agents/batch-calls/{batchCallId}\"",
                                 httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,

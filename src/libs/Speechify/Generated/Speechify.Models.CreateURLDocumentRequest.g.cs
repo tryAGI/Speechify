@@ -4,7 +4,7 @@
 namespace Speechify
 {
     /// <summary>
-    /// Body for POST /v1/knowledge-bases/{id}/documents/url.
+    /// Body for POST /v1/knowledge-bases/{kb_id}/documents/url.
     /// </summary>
     public sealed partial class CreateURLDocumentRequest
     {

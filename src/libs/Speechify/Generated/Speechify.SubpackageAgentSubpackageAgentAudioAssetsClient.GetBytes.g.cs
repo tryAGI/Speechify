@@ -27,12 +27,12 @@ namespace Speechify
             };
         partial void PrepareGetBytesArguments(
             global::System.Net.Http.HttpClient httpClient,
-            ref string id,
+            ref string audioAssetId,
             ref string? speechifyVersion);
         partial void PrepareGetBytesRequest(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpRequestMessage httpRequestMessage,
-            string id,
+            string audioAssetId,
             string? speechifyVersion);
         partial void ProcessGetBytesResponse(
             global::System.Net.Http.HttpClient httpClient,
@@ -46,24 +46,24 @@ namespace Speechify
         /// <summary>
         /// Get Audio Asset Bytes<br/>
         /// Stream the raw WAV bytes for an audio asset. Byte-stream<br/>
-        /// sibling of the metadata endpoint at /v1/agents/audio-assets/{id}.<br/>
+        /// sibling of the metadata endpoint at /v1/agents/audio-assets/{audio_asset_id}.<br/>
         /// The LiveKit worker fetches through here for the play_audio<br/>
         /// builtin; SDK consumers can also download originals. Returns 404<br/>
         /// for missing / soft-deleted / foreign-tenant assets.
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="audioAssetId"></param>
         /// <param name="speechifyVersion"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
         public async global::System.Threading.Tasks.Task<byte[]> GetBytesAsync(
-            string id,
+            string audioAssetId,
             string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
             var __response = await GetBytesAsResponseAsync(
-                id: id,
+                audioAssetId: audioAssetId,
                 speechifyVersion: speechifyVersion,
                 requestOptions: requestOptions,
                 cancellationToken: cancellationToken
@@ -74,18 +74,18 @@ namespace Speechify
         /// <summary>
         /// Get Audio Asset Bytes<br/>
         /// Stream the raw WAV bytes for an audio asset. Byte-stream<br/>
-        /// sibling of the metadata endpoint at /v1/agents/audio-assets/{id}.<br/>
+        /// sibling of the metadata endpoint at /v1/agents/audio-assets/{audio_asset_id}.<br/>
         /// The LiveKit worker fetches through here for the play_audio<br/>
         /// builtin; SDK consumers can also download originals. Returns 404<br/>
         /// for missing / soft-deleted / foreign-tenant assets.
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="audioAssetId"></param>
         /// <param name="speechifyVersion"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
         public async global::System.Threading.Tasks.Task<global::System.IO.Stream> GetBytesAsStreamAsync(
-            string id,
+            string audioAssetId,
             string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
@@ -94,7 +94,7 @@ namespace Speechify
                 client: HttpClient);
             PrepareGetBytesArguments(
                 httpClient: HttpClient,
-                id: ref id,
+                audioAssetId: ref audioAssetId,
                 speechifyVersion: ref speechifyVersion);
 
 
@@ -121,7 +121,7 @@ namespace Speechify
             {
 
                             var __pathBuilder = new global::Speechify.PathBuilder(
-                                path: $"/v1/agents/audio-assets/{id}/bytes",
+                                path: $"/v1/agents/audio-assets/{audioAssetId}/bytes",
                                 baseUri: HttpClient.BaseAddress);
                             var __path = __pathBuilder.ToString();
                 __path = global::Speechify.AutoSDKRequestOptionsSupport.AppendQueryParameters(
@@ -169,7 +169,7 @@ namespace Speechify
                 PrepareGetBytesRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
-                    id: id!,
+                    audioAssetId: audioAssetId!,
                     speechifyVersion: speechifyVersion);
 
                 return __httpRequest;
@@ -189,7 +189,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "GetBytes",
                                 methodName: "GetBytesAsync",
-                                pathTemplate: "$\"/v1/agents/audio-assets/{id}/bytes\"",
+                                pathTemplate: "$\"/v1/agents/audio-assets/{audioAssetId}/bytes\"",
                                 httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -223,7 +223,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "GetBytes",
                                 methodName: "GetBytesAsync",
-                                pathTemplate: "$\"/v1/agents/audio-assets/{id}/bytes\"",
+                                pathTemplate: "$\"/v1/agents/audio-assets/{audioAssetId}/bytes\"",
                                 httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -264,7 +264,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "GetBytes",
                                 methodName: "GetBytesAsync",
-                                pathTemplate: "$\"/v1/agents/audio-assets/{id}/bytes\"",
+                                pathTemplate: "$\"/v1/agents/audio-assets/{audioAssetId}/bytes\"",
                                 httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -312,7 +312,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "GetBytes",
                                 methodName: "GetBytesAsync",
-                                pathTemplate: "$\"/v1/agents/audio-assets/{id}/bytes\"",
+                                pathTemplate: "$\"/v1/agents/audio-assets/{audioAssetId}/bytes\"",
                                 httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -334,7 +334,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "GetBytes",
                                 methodName: "GetBytesAsync",
-                                pathTemplate: "$\"/v1/agents/audio-assets/{id}/bytes\"",
+                                pathTemplate: "$\"/v1/agents/audio-assets/{audioAssetId}/bytes\"",
                                 httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -403,18 +403,18 @@ namespace Speechify
         /// <summary>
         /// Get Audio Asset Bytes<br/>
         /// Stream the raw WAV bytes for an audio asset. Byte-stream<br/>
-        /// sibling of the metadata endpoint at /v1/agents/audio-assets/{id}.<br/>
+        /// sibling of the metadata endpoint at /v1/agents/audio-assets/{audio_asset_id}.<br/>
         /// The LiveKit worker fetches through here for the play_audio<br/>
         /// builtin; SDK consumers can also download originals. Returns 404<br/>
         /// for missing / soft-deleted / foreign-tenant assets.
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="audioAssetId"></param>
         /// <param name="speechifyVersion"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
         public async global::System.Threading.Tasks.Task<global::Speechify.AutoSDKHttpResponse<byte[]>> GetBytesAsResponseAsync(
-            string id,
+            string audioAssetId,
             string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
@@ -423,7 +423,7 @@ namespace Speechify
                 client: HttpClient);
             PrepareGetBytesArguments(
                 httpClient: HttpClient,
-                id: ref id,
+                audioAssetId: ref audioAssetId,
                 speechifyVersion: ref speechifyVersion);
 
 
@@ -450,7 +450,7 @@ namespace Speechify
             {
 
                             var __pathBuilder = new global::Speechify.PathBuilder(
-                                path: $"/v1/agents/audio-assets/{id}/bytes",
+                                path: $"/v1/agents/audio-assets/{audioAssetId}/bytes",
                                 baseUri: HttpClient.BaseAddress);
                             var __path = __pathBuilder.ToString();
                 __path = global::Speechify.AutoSDKRequestOptionsSupport.AppendQueryParameters(
@@ -498,7 +498,7 @@ namespace Speechify
                 PrepareGetBytesRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
-                    id: id!,
+                    audioAssetId: audioAssetId!,
                     speechifyVersion: speechifyVersion);
 
                 return __httpRequest;
@@ -518,7 +518,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "GetBytes",
                                 methodName: "GetBytesAsync",
-                                pathTemplate: "$\"/v1/agents/audio-assets/{id}/bytes\"",
+                                pathTemplate: "$\"/v1/agents/audio-assets/{audioAssetId}/bytes\"",
                                 httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -552,7 +552,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "GetBytes",
                                 methodName: "GetBytesAsync",
-                                pathTemplate: "$\"/v1/agents/audio-assets/{id}/bytes\"",
+                                pathTemplate: "$\"/v1/agents/audio-assets/{audioAssetId}/bytes\"",
                                 httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -593,7 +593,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "GetBytes",
                                 methodName: "GetBytesAsync",
-                                pathTemplate: "$\"/v1/agents/audio-assets/{id}/bytes\"",
+                                pathTemplate: "$\"/v1/agents/audio-assets/{audioAssetId}/bytes\"",
                                 httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -641,7 +641,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "GetBytes",
                                 methodName: "GetBytesAsync",
-                                pathTemplate: "$\"/v1/agents/audio-assets/{id}/bytes\"",
+                                pathTemplate: "$\"/v1/agents/audio-assets/{audioAssetId}/bytes\"",
                                 httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -663,7 +663,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "GetBytes",
                                 methodName: "GetBytesAsync",
-                                pathTemplate: "$\"/v1/agents/audio-assets/{id}/bytes\"",
+                                pathTemplate: "$\"/v1/agents/audio-assets/{audioAssetId}/bytes\"",
                                 httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,

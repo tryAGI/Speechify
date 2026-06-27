@@ -4,7 +4,7 @@
 namespace Speechify
 {
     /// <summary>
-    /// Optional body of `POST /v1/agents/{id}/tests/runs`. Omit it<br/>
+    /// Optional body of `POST /v1/agents/{agent_id}/tests/runs`. Omit it<br/>
     /// entirely to run every test against the agent's live config and<br/>
     /// active flow.
     /// </summary>

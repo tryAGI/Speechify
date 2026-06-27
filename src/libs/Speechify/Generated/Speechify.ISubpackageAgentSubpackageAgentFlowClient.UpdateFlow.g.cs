@@ -9,14 +9,14 @@ namespace Speechify
         /// Replace the agent's draft flow graph. The graph is validated<br/>
         /// before it is stored; publish it separately to make it active.
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="agentId"></param>
         /// <param name="speechifyVersion"></param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
         global::System.Threading.Tasks.Task<global::Speechify.FlowGraph> UpdateFlowAsync(
-            string id,
+            string agentId,
 
             global::Speechify.PutFlowRequest request,
             string? speechifyVersion = default,
@@ -27,14 +27,14 @@ namespace Speechify
         /// Replace the agent's draft flow graph. The graph is validated<br/>
         /// before it is stored; publish it separately to make it active.
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="agentId"></param>
         /// <param name="speechifyVersion"></param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
         global::System.Threading.Tasks.Task<global::Speechify.AutoSDKHttpResponse<global::Speechify.FlowGraph>> UpdateFlowAsResponseAsync(
-            string id,
+            string agentId,
 
             global::Speechify.PutFlowRequest request,
             string? speechifyVersion = default,
@@ -45,7 +45,7 @@ namespace Speechify
         /// Replace the agent's draft flow graph. The graph is validated<br/>
         /// before it is stored; publish it separately to make it active.
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="agentId"></param>
         /// <param name="speechifyVersion"></param>
         /// <param name="name"></param>
         /// <param name="notes"></param>
@@ -56,7 +56,7 @@ namespace Speechify
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::System.InvalidOperationException"></exception>
         global::System.Threading.Tasks.Task<global::Speechify.FlowGraph> UpdateFlowAsync(
-            string id,
+            string agentId,
             global::System.Collections.Generic.IList<global::Speechify.PutFlowRequestNodesItems> nodes,
             global::System.Collections.Generic.IList<global::Speechify.PutFlowRequestEdgesItems> edges,
             string? speechifyVersion = default,

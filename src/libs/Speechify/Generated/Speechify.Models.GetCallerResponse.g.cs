@@ -4,7 +4,7 @@
 namespace Speechify
 {
     /// <summary>
-    /// Single-resource envelope used by GET / PATCH /v1/agents/callers/{id}.
+    /// Single-resource envelope used by GET / PATCH /v1/agents/callers/{caller_id}.
     /// </summary>
     public sealed partial class GetCallerResponse
     {

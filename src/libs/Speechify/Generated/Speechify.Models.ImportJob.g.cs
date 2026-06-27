@@ -6,7 +6,7 @@ namespace Speechify
     /// <summary>
     /// Async URL import job (sitemap, crawl, plus<br/>
     /// the auto-refresh path). The console polls<br/>
-    /// `GET /v1/agents/knowledge-bases/{id}/imports` while the job is<br/>
+    /// `GET /v1/agents/knowledge-bases/{kb_id}/imports` while the job is<br/>
     /// non-terminal.
     /// </summary>
     public sealed partial class ImportJob
@@ -115,8 +115,8 @@ namespace Speechify
         /// <summary>
         /// 
         /// </summary>
-        [global::System.Text.Json.Serialization.JsonPropertyName("finished_at")]
-        public global::System.DateTime? FinishedAt { get; set; }
+        [global::System.Text.Json.Serialization.JsonPropertyName("ended_at")]
+        public global::System.DateTime? EndedAt { get; set; }
 
         /// <summary>
         /// Additional properties that are not explicitly defined in the schema
@@ -149,7 +149,7 @@ namespace Speechify
         /// <param name="error"></param>
         /// <param name="upstreamJobId"></param>
         /// <param name="startedAt"></param>
-        /// <param name="finishedAt"></param>
+        /// <param name="endedAt"></param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
 #endif
@@ -168,7 +168,7 @@ namespace Speechify
             string? error,
             string? upstreamJobId,
             global::System.DateTime? startedAt,
-            global::System.DateTime? finishedAt)
+            global::System.DateTime? endedAt)
         {
             this.Id = id ?? throw new global::System.ArgumentNullException(nameof(id));
             this.KbId = kbId ?? throw new global::System.ArgumentNullException(nameof(kbId));
@@ -184,7 +184,7 @@ namespace Speechify
             this.CreatedAt = createdAt;
             this.UpdatedAt = updatedAt;
             this.StartedAt = startedAt;
-            this.FinishedAt = finishedAt;
+            this.EndedAt = endedAt;
         }
 
         /// <summary>

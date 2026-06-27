@@ -4,12 +4,26 @@
 namespace Speechify
 {
     /// <summary>
-    /// Bare list of the knowledge bases attached to an agent. Not<br/>
-    /// paginated — an agent's KB attachment count is naturally<br/>
-    /// bounded (configuration, not data scale).
+    /// Cursor-paginated list of the knowledge bases attached to an agent.
     /// </summary>
     public sealed partial class AttachedKnowledgeBasesResponse
     {
+        /// <summary>
+        /// Opaque keyset cursor for the next page. Pass back as the<br/>
+        /// `cursor` request parameter. `null` when the caller has<br/>
+        /// reached the end of the list (`has_more` is also `false`<br/>
+        /// in that case).
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("next_cursor")]
+        public string? NextCursor { get; set; }
+
+        /// <summary>
+        /// True when more rows exist beyond this page.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("has_more")]
+        [global::System.Text.Json.Serialization.JsonRequired]
+        public required bool HasMore { get; set; }
+
         /// <summary>
         /// 
         /// </summary>
@@ -26,13 +40,26 @@ namespace Speechify
         /// <summary>
         /// Initializes a new instance of the <see cref="AttachedKnowledgeBasesResponse" /> class.
         /// </summary>
+        /// <param name="hasMore">
+        /// True when more rows exist beyond this page.
+        /// </param>
         /// <param name="knowledgeBases"></param>
+        /// <param name="nextCursor">
+        /// Opaque keyset cursor for the next page. Pass back as the<br/>
+        /// `cursor` request parameter. `null` when the caller has<br/>
+        /// reached the end of the list (`has_more` is also `false`<br/>
+        /// in that case).
+        /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
 #endif
         public AttachedKnowledgeBasesResponse(
-            global::System.Collections.Generic.IList<global::Speechify.KnowledgeBase> knowledgeBases)
+            bool hasMore,
+            global::System.Collections.Generic.IList<global::Speechify.KnowledgeBase> knowledgeBases,
+            string? nextCursor)
         {
+            this.NextCursor = nextCursor;
+            this.HasMore = hasMore;
             this.KnowledgeBases = knowledgeBases ?? throw new global::System.ArgumentNullException(nameof(knowledgeBases));
         }
 

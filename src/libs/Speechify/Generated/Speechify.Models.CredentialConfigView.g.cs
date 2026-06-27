@@ -8,7 +8,7 @@ namespace Speechify
     /// on every read (list / get / create / rotate response). Non-secret<br/>
     /// fields (token URLs, client ids, issuer, header names) pass through;<br/>
     /// each secret is replaced by a `*_set` boolean. Secret values are never<br/>
-    /// returned — to change one, rotate it via `PATCH /v1/credentials/{id}`.<br/>
+    /// returned — to change one, rotate it via `PATCH /v1/credentials/{credential_id}`.<br/>
     /// Exactly one block is populated, matching the credential's `kind`.
     /// </summary>
     public sealed partial class CredentialConfigView

@@ -11,7 +11,7 @@ namespace Speechify
         /// soft-deleted are hidden — the GDPR purge semantics require the<br/>
         /// API to behave as if those rows do not exist.
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="callerId"></param>
         /// <param name="cursor"></param>
         /// <param name="limit">
         /// Default Value: 50
@@ -21,7 +21,7 @@ namespace Speechify
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
         global::System.Threading.Tasks.Task<global::Speechify.ListCallerMemoriesResponse> ListMemoriesAsync(
-            string id,
+            string callerId,
             string? cursor = default,
             int? limit = default,
             string? speechifyVersion = default,
@@ -34,7 +34,7 @@ namespace Speechify
         /// soft-deleted are hidden — the GDPR purge semantics require the<br/>
         /// API to behave as if those rows do not exist.
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="callerId"></param>
         /// <param name="cursor"></param>
         /// <param name="limit">
         /// Default Value: 50
@@ -44,7 +44,7 @@ namespace Speechify
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
         global::System.Threading.Tasks.Task<global::Speechify.AutoSDKHttpResponse<global::Speechify.ListCallerMemoriesResponse>> ListMemoriesAsResponseAsync(
-            string id,
+            string callerId,
             string? cursor = default,
             int? limit = default,
             string? speechifyVersion = default,

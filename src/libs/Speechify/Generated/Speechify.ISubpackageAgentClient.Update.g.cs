@@ -8,14 +8,14 @@ namespace Speechify
         /// Update Agent<br/>
         /// Update a voice agent. Only fields present on the request body are changed.
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="agentId"></param>
         /// <param name="speechifyVersion"></param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
         global::System.Threading.Tasks.Task<global::Speechify.Agent> UpdateAsync(
-            string id,
+            string agentId,
 
             global::Speechify.UpdateAgentRequest request,
             string? speechifyVersion = default,
@@ -25,14 +25,14 @@ namespace Speechify
         /// Update Agent<br/>
         /// Update a voice agent. Only fields present on the request body are changed.
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="agentId"></param>
         /// <param name="speechifyVersion"></param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
         global::System.Threading.Tasks.Task<global::Speechify.AutoSDKHttpResponse<global::Speechify.Agent>> UpdateAsResponseAsync(
-            string id,
+            string agentId,
 
             global::Speechify.UpdateAgentRequest request,
             string? speechifyVersion = default,
@@ -42,7 +42,7 @@ namespace Speechify
         /// Update Agent<br/>
         /// Update a voice agent. Only fields present on the request body are changed.
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="agentId"></param>
         /// <param name="speechifyVersion"></param>
         /// <param name="name"></param>
         /// <param name="prompt"></param>
@@ -100,7 +100,7 @@ namespace Speechify
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::System.InvalidOperationException"></exception>
         global::System.Threading.Tasks.Task<global::Speechify.Agent> UpdateAsync(
-            string id,
+            string agentId,
             string? speechifyVersion = default,
             string? name = default,
             string? prompt = default,
