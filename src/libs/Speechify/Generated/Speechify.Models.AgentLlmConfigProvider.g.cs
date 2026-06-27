@@ -8,8 +8,8 @@ namespace Speechify
     /// resolved server-side at dispatch. `openai` and `speechify`<br/>
     /// pair with a `model` from the allowed table. `custom` points<br/>
     /// the worker at any OpenAI / vLLM-compatible endpoint - see<br/>
-    /// `base_url`, `api_key`, `extra_body`. Must be paired with a<br/>
-    /// non-null `model`; setting one without the other is rejected.
+    /// `base_url`, `credential_id`, `extra_body`. Must be paired with<br/>
+    /// a non-null `model`; setting one without the other is rejected.
     /// </summary>
     public enum AgentLlmConfigProvider
     {
