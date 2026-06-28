@@ -26,7 +26,7 @@ namespace Speechify
         /// Targets a specific flow version (an `agent_versions` row)<br/>
         /// instead of the agent's active flow — version-targeted<br/>
         /// regression. Must be a flow version of the agent under test.<br/>
-        /// Raw UUID; flow versions carry no prefixed wire id.
+        /// Prefixed external id (`fver_...`).
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("flow_version_id")]
         public string? FlowVersionId { get; set; }
@@ -53,7 +53,7 @@ namespace Speechify
         /// Targets a specific flow version (an `agent_versions` row)<br/>
         /// instead of the agent's active flow — version-targeted<br/>
         /// regression. Must be a flow version of the agent under test.<br/>
-        /// Raw UUID; flow versions carry no prefixed wire id.
+        /// Prefixed external id (`fver_...`).
         /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]

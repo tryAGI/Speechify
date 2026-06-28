@@ -9,7 +9,7 @@ namespace Speechify
     public sealed partial class FlowVersion
     {
         /// <summary>
-        /// Flow version id. A raw UUID, not a prefixed external id.
+        /// Flow version id (prefixed external id, `fver_...`).
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("id")]
         [global::System.Text.Json.Serialization.JsonRequired]
@@ -30,7 +30,7 @@ namespace Speechify
         public required int Version { get; set; }
 
         /// <summary>
-        /// 
+        /// Parent flow version id (prefixed external id, `fver_...`); null for the first version.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("parent_version_id")]
         public string? ParentVersionId { get; set; }
@@ -89,7 +89,7 @@ namespace Speechify
         /// Initializes a new instance of the <see cref="FlowVersion" /> class.
         /// </summary>
         /// <param name="id">
-        /// Flow version id. A raw UUID, not a prefixed external id.
+        /// Flow version id (prefixed external id, `fver_...`).
         /// </param>
         /// <param name="agentId"></param>
         /// <param name="version">
@@ -97,7 +97,9 @@ namespace Speechify
         /// </param>
         /// <param name="isActive"></param>
         /// <param name="isDraft"></param>
-        /// <param name="parentVersionId"></param>
+        /// <param name="parentVersionId">
+        /// Parent flow version id (prefixed external id, `fver_...`); null for the first version.
+        /// </param>
         /// <param name="name"></param>
         /// <param name="notes"></param>
         /// <param name="publishedBy"></param>

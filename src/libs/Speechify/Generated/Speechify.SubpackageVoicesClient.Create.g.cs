@@ -52,7 +52,7 @@ namespace Speechify
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
-        public async global::System.Threading.Tasks.Task<global::Speechify.CreatedVoice> CreateAsync(
+        public async global::System.Threading.Tasks.Task<global::Speechify.GetVoice> CreateAsync(
 
             global::Speechify.CreateRequest request,
             string? speechifyVersion = default,
@@ -78,7 +78,7 @@ namespace Speechify
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
-        public async global::System.Threading.Tasks.Task<global::Speechify.AutoSDKHttpResponse<global::Speechify.CreatedVoice>> CreateAsResponseAsync(
+        public async global::System.Threading.Tasks.Task<global::Speechify.AutoSDKHttpResponse<global::Speechify.GetVoice>> CreateAsResponseAsync(
 
             global::Speechify.CreateRequest request,
             string? speechifyVersion = default,
@@ -813,9 +813,9 @@ namespace Speechify
                                 {
                                     __response.EnsureSuccessStatusCode();
 
-                                    var __value = global::Speechify.CreatedVoice.FromJson(__content, JsonSerializerContext) ??
+                                    var __value = global::Speechify.GetVoice.FromJson(__content, JsonSerializerContext) ??
                                         throw new global::System.InvalidOperationException($"Response deserialization failed for \"{__content}\" ");
-                                    return new global::Speechify.AutoSDKHttpResponse<global::Speechify.CreatedVoice>(
+                                    return new global::Speechify.AutoSDKHttpResponse<global::Speechify.GetVoice>(
                                         statusCode: __response.StatusCode,
                                         headers: global::Speechify.AutoSDKHttpResponse.CreateHeaders(__response),
                                         requestUri: __response.RequestMessage?.RequestUri,
@@ -845,9 +845,9 @@ namespace Speechify
                 #endif
                                     ).ConfigureAwait(false);
 
-                                    var __value = await global::Speechify.CreatedVoice.FromJsonStreamAsync(__content, JsonSerializerContext).ConfigureAwait(false) ??
+                                    var __value = await global::Speechify.GetVoice.FromJsonStreamAsync(__content, JsonSerializerContext).ConfigureAwait(false) ??
                                         throw new global::System.InvalidOperationException("Response deserialization failed.");
-                                    return new global::Speechify.AutoSDKHttpResponse<global::Speechify.CreatedVoice>(
+                                    return new global::Speechify.AutoSDKHttpResponse<global::Speechify.GetVoice>(
                                         statusCode: __response.StatusCode,
                                         headers: global::Speechify.AutoSDKHttpResponse.CreateHeaders(__response),
                                         requestUri: __response.RequestMessage?.RequestUri,
@@ -925,7 +925,7 @@ namespace Speechify
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::System.InvalidOperationException"></exception>
-        public async global::System.Threading.Tasks.Task<global::Speechify.CreatedVoice> CreateAsync(
+        public async global::System.Threading.Tasks.Task<global::Speechify.GetVoice> CreateAsync(
             string name,
             global::Speechify.V1VoicesPostRequestBodyContentMultipartFormDataSchemaGender gender,
             byte[] sample,
@@ -995,7 +995,7 @@ namespace Speechify
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
-        public async global::System.Threading.Tasks.Task<global::Speechify.CreatedVoice> CreateAsync(
+        public async global::System.Threading.Tasks.Task<global::Speechify.GetVoice> CreateAsync(
             string name,
             global::Speechify.V1VoicesPostRequestBodyContentMultipartFormDataSchemaGender gender,
             global::System.IO.Stream sample,
@@ -1748,7 +1748,7 @@ namespace Speechify
                                     __response.EnsureSuccessStatusCode();
 
                                     return
-                                        global::Speechify.CreatedVoice.FromJson(__content, JsonSerializerContext) ??
+                                        global::Speechify.GetVoice.FromJson(__content, JsonSerializerContext) ??
                                         throw new global::System.InvalidOperationException($"Response deserialization failed for \"{__content}\" ");
                                 }
                                 catch (global::System.Exception __ex)
@@ -1776,7 +1776,7 @@ namespace Speechify
                                     ).ConfigureAwait(false);
 
                                     return
-                                        await global::Speechify.CreatedVoice.FromJsonStreamAsync(__content, JsonSerializerContext).ConfigureAwait(false) ??
+                                        await global::Speechify.GetVoice.FromJsonStreamAsync(__content, JsonSerializerContext).ConfigureAwait(false) ??
                                         throw new global::System.InvalidOperationException("Response deserialization failed.");
                                 }
                                 catch (global::System.Exception __ex)
@@ -1851,7 +1851,7 @@ namespace Speechify
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
-        public async global::System.Threading.Tasks.Task<global::Speechify.AutoSDKHttpResponse<global::Speechify.CreatedVoice>> CreateAsResponseAsync(
+        public async global::System.Threading.Tasks.Task<global::Speechify.AutoSDKHttpResponse<global::Speechify.GetVoice>> CreateAsResponseAsync(
             string name,
             global::Speechify.V1VoicesPostRequestBodyContentMultipartFormDataSchemaGender gender,
             global::System.IO.Stream sample,
@@ -2603,9 +2603,9 @@ namespace Speechify
                                 {
                                     __response.EnsureSuccessStatusCode();
 
-                                    var __value = global::Speechify.CreatedVoice.FromJson(__content, JsonSerializerContext) ??
+                                    var __value = global::Speechify.GetVoice.FromJson(__content, JsonSerializerContext) ??
                                         throw new global::System.InvalidOperationException($"Response deserialization failed for \"{__content}\" ");
-                                    return new global::Speechify.AutoSDKHttpResponse<global::Speechify.CreatedVoice>(
+                                    return new global::Speechify.AutoSDKHttpResponse<global::Speechify.GetVoice>(
                                         statusCode: __response.StatusCode,
                                         headers: global::Speechify.AutoSDKHttpResponse.CreateHeaders(__response),
                                         requestUri: __response.RequestMessage?.RequestUri,
@@ -2635,9 +2635,9 @@ namespace Speechify
                 #endif
                                     ).ConfigureAwait(false);
 
-                                    var __value = await global::Speechify.CreatedVoice.FromJsonStreamAsync(__content, JsonSerializerContext).ConfigureAwait(false) ??
+                                    var __value = await global::Speechify.GetVoice.FromJsonStreamAsync(__content, JsonSerializerContext).ConfigureAwait(false) ??
                                         throw new global::System.InvalidOperationException("Response deserialization failed.");
-                                    return new global::Speechify.AutoSDKHttpResponse<global::Speechify.CreatedVoice>(
+                                    return new global::Speechify.AutoSDKHttpResponse<global::Speechify.GetVoice>(
                                         statusCode: __response.StatusCode,
                                         headers: global::Speechify.AutoSDKHttpResponse.CreateHeaders(__response),
                                         requestUri: __response.RequestMessage?.RequestUri,

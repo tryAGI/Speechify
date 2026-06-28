@@ -93,19 +93,6 @@ namespace Speechify
         /// <summary>
         /// 
         /// </summary>
-        [global::System.Text.Json.Serialization.JsonPropertyName("upstream_job_id")]
-        public string? UpstreamJobId { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        [global::System.Text.Json.Serialization.JsonPropertyName("created_by_uid")]
-        [global::System.Text.Json.Serialization.JsonRequired]
-        public required string CreatedByUid { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("created_at")]
         [global::System.Text.Json.Serialization.JsonRequired]
         public required global::System.DateTime CreatedAt { get; set; }
@@ -171,11 +158,9 @@ namespace Speechify
         /// `max_pages`, `max_depth`. The console reads it for display<br/>
         /// only.
         /// </param>
-        /// <param name="createdByUid"></param>
         /// <param name="createdAt"></param>
         /// <param name="updatedAt"></param>
         /// <param name="error"></param>
-        /// <param name="upstreamJobId"></param>
         /// <param name="startedAt"></param>
         /// <param name="endedAt"></param>
 #if NET7_0_OR_GREATER
@@ -190,11 +175,9 @@ namespace Speechify
             int completed,
             int failed,
             object @params,
-            string createdByUid,
             global::System.DateTime createdAt,
             global::System.DateTime updatedAt,
             string? error,
-            string? upstreamJobId,
             global::System.DateTime? startedAt,
             global::System.DateTime? endedAt)
         {
@@ -207,8 +190,6 @@ namespace Speechify
             this.Failed = failed;
             this.Params = @params ?? throw new global::System.ArgumentNullException(nameof(@params));
             this.Error = error;
-            this.UpstreamJobId = upstreamJobId;
-            this.CreatedByUid = createdByUid ?? throw new global::System.ArgumentNullException(nameof(createdByUid));
             this.CreatedAt = createdAt;
             this.UpdatedAt = updatedAt;
             this.StartedAt = startedAt;
