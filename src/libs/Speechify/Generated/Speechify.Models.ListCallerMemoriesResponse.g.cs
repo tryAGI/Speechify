@@ -29,7 +29,7 @@ namespace Speechify
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("memories")]
         [global::System.Text.Json.Serialization.JsonRequired]
-        public required global::System.Collections.Generic.IList<global::Speechify.CallerMemoryItem> Memories { get; set; }
+        public required global::System.Collections.Generic.IList<global::Speechify.Memory> Memories { get; set; }
 
         /// <summary>
         /// Additional properties that are not explicitly defined in the schema
@@ -55,7 +55,7 @@ namespace Speechify
 #endif
         public ListCallerMemoriesResponse(
             bool hasMore,
-            global::System.Collections.Generic.IList<global::Speechify.CallerMemoryItem> memories,
+            global::System.Collections.Generic.IList<global::Speechify.Memory> memories,
             string? nextCursor)
         {
             this.NextCursor = nextCursor;

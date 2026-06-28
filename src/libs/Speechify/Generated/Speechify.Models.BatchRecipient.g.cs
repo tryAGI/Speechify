@@ -33,8 +33,8 @@ namespace Speechify
         /// <summary>
         /// Per-recipient variable overrides injected into the agent prompt.
         /// </summary>
-        [global::System.Text.Json.Serialization.JsonPropertyName("dynamic_vars")]
-        public object? DynamicVars { get; set; }
+        [global::System.Text.Json.Serialization.JsonPropertyName("dynamic_variables")]
+        public object? DynamicVariables { get; set; }
 
         /// <summary>
         /// 
@@ -87,7 +87,7 @@ namespace Speechify
         /// Recipient phone number in E.164 format.
         /// </param>
         /// <param name="status"></param>
-        /// <param name="dynamicVars">
+        /// <param name="dynamicVariables">
         /// Per-recipient variable overrides injected into the agent prompt.
         /// </param>
         /// <param name="conversationId">
@@ -107,7 +107,7 @@ namespace Speechify
             string batchId,
             string phone,
             global::Speechify.BatchRecipientStatus status,
-            object? dynamicVars,
+            object? dynamicVariables,
             string? conversationId,
             string? error,
             global::System.DateTime? attemptedAt,
@@ -116,7 +116,7 @@ namespace Speechify
             this.Id = id ?? throw new global::System.ArgumentNullException(nameof(id));
             this.BatchId = batchId ?? throw new global::System.ArgumentNullException(nameof(batchId));
             this.Phone = phone ?? throw new global::System.ArgumentNullException(nameof(phone));
-            this.DynamicVars = dynamicVars;
+            this.DynamicVariables = dynamicVariables;
             this.Status = status;
             this.ConversationId = conversationId;
             this.Error = error;

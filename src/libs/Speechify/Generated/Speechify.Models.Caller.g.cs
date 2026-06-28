@@ -40,9 +40,9 @@ namespace Speechify
         /// The raw identifier the caller arrived with (E.164 phone for SIP, LiveKit<br/>
         /// participant id for web). Stable for the life of the caller row.
         /// </summary>
-        [global::System.Text.Json.Serialization.JsonPropertyName("identity")]
+        [global::System.Text.Json.Serialization.JsonPropertyName("caller_identity")]
         [global::System.Text.Json.Serialization.JsonRequired]
-        public required string Identity { get; set; }
+        public required string CallerIdentity { get; set; }
 
         /// <summary>
         /// Operator-editable display name, nullable.
@@ -121,7 +121,7 @@ namespace Speechify
         /// Prefixed wire identifier (`agent_&lt;26 char Crockford base32&gt;`)<br/>
         /// of the agent the caller is scoped under.
         /// </param>
-        /// <param name="identity">
+        /// <param name="callerIdentity">
         /// The raw identifier the caller arrived with (E.164 phone for SIP, LiveKit<br/>
         /// participant id for web). Stable for the life of the caller row.
         /// </param>
@@ -152,7 +152,7 @@ namespace Speechify
             string id,
             string tenantId,
             string agentId,
-            string identity,
+            string callerIdentity,
             object metadata,
             global::System.DateTime firstSeenAt,
             global::System.DateTime lastSeenAt,
@@ -165,7 +165,7 @@ namespace Speechify
             this.Id = id ?? throw new global::System.ArgumentNullException(nameof(id));
             this.TenantId = tenantId ?? throw new global::System.ArgumentNullException(nameof(tenantId));
             this.AgentId = agentId ?? throw new global::System.ArgumentNullException(nameof(agentId));
-            this.Identity = identity ?? throw new global::System.ArgumentNullException(nameof(identity));
+            this.CallerIdentity = callerIdentity ?? throw new global::System.ArgumentNullException(nameof(callerIdentity));
             this.DisplayName = displayName;
             this.ExternalRef = externalRef;
             this.Metadata = metadata ?? throw new global::System.ArgumentNullException(nameof(metadata));

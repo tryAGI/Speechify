@@ -77,14 +77,6 @@ namespace Speechify
         public required global::System.Collections.Generic.IList<global::Speechify.PhoneNumberCapability> Capabilities { get; set; }
 
         /// <summary>
-        /// The upstream provider's own identifier for this number, when<br/>
-        /// the provider exposes one (e.g. LiveKit's phone number ID for<br/>
-        /// `type=livekit`, or the Twilio number SID for `type=twilio_purchased`).
-        /// </summary>
-        [global::System.Text.Json.Serialization.JsonPropertyName("provider_phone_number_id")]
-        public string? ProviderPhoneNumberId { get; set; }
-
-        /// <summary>
         /// When the number was imported.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("created_at")]
@@ -153,11 +145,6 @@ namespace Speechify
         /// <param name="agentId">
         /// ID of the agent that answers calls to this number. Null when unbound.
         /// </param>
-        /// <param name="providerPhoneNumberId">
-        /// The upstream provider's own identifier for this number, when<br/>
-        /// the provider exposes one (e.g. LiveKit's phone number ID for<br/>
-        /// `type=livekit`, or the Twilio number SID for `type=twilio_purchased`).
-        /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
 #endif
@@ -170,8 +157,7 @@ namespace Speechify
             global::System.DateTime updatedAt,
             string? label,
             string? trunkId,
-            string? agentId,
-            string? providerPhoneNumberId)
+            string? agentId)
         {
             this.Id = id ?? throw new global::System.ArgumentNullException(nameof(id));
             this.E164 = e164 ?? throw new global::System.ArgumentNullException(nameof(e164));
@@ -180,7 +166,6 @@ namespace Speechify
             this.TrunkId = trunkId;
             this.AgentId = agentId;
             this.Capabilities = capabilities ?? throw new global::System.ArgumentNullException(nameof(capabilities));
-            this.ProviderPhoneNumberId = providerPhoneNumberId;
             this.CreatedAt = createdAt;
             this.UpdatedAt = updatedAt;
         }

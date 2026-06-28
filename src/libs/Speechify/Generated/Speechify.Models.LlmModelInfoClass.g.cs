@@ -4,55 +4,53 @@
 namespace Speechify
 {
     /// <summary>
-    /// Speaker gender as classified by VMS. `not_specified` is used<br/>
-    /// when the source dataset didn't carry the metadata; the<br/>
-    /// console treats it as a neutral display label rather than a<br/>
-    /// filter gap.
+    /// Access class controlling which plans may select the model.<br/>
+    /// `premium` models are available only on higher plans.
     /// </summary>
-    public enum AgentVoiceGender
+    public enum LlmModelInfoClass
     {
         /// <summary>
         /// 
         /// </summary>
-        Female,
+        Managed,
         /// <summary>
         /// 
         /// </summary>
-        Male,
+        Premium,
         /// <summary>
         /// 
         /// </summary>
-        NotSpecified,
+        Standard,
     }
 
     /// <summary>
     /// Enum extensions to do fast conversions without the reflection.
     /// </summary>
-    public static class AgentVoiceGenderExtensions
+    public static class LlmModelInfoClassExtensions
     {
         /// <summary>
         /// Converts an enum to a string.
         /// </summary>
-        public static string ToValueString(this AgentVoiceGender value)
+        public static string ToValueString(this LlmModelInfoClass value)
         {
             return value switch
             {
-                AgentVoiceGender.Female => "female",
-                AgentVoiceGender.Male => "male",
-                AgentVoiceGender.NotSpecified => "not_specified",
+                LlmModelInfoClass.Managed => "managed",
+                LlmModelInfoClass.Premium => "premium",
+                LlmModelInfoClass.Standard => "standard",
                 _ => throw new global::System.ArgumentOutOfRangeException(nameof(value), value, null),
             };
         }
         /// <summary>
         /// Converts an string to a enum.
         /// </summary>
-        public static AgentVoiceGender? ToEnum(string value)
+        public static LlmModelInfoClass? ToEnum(string value)
         {
             return value switch
             {
-                "female" => AgentVoiceGender.Female,
-                "male" => AgentVoiceGender.Male,
-                "not_specified" => AgentVoiceGender.NotSpecified,
+                "managed" => LlmModelInfoClass.Managed,
+                "premium" => LlmModelInfoClass.Premium,
+                "standard" => LlmModelInfoClass.Standard,
                 _ => null,
             };
         }

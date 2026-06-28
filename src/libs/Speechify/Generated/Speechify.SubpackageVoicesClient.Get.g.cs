@@ -458,7 +458,7 @@ namespace Speechify
                                         h => h.Key,
                                         h => h.Value));
                             }
-                            // Rate limit or concurrency limit exceeded. The response may include a `Retry-After` header. 
+                            // Rate limit or concurrency limit exceeded. `error.code` distinguishes request-rate limiting (`rate_limited`) from concurrency exhaustion (`concurrency_limit_reached`). Carries `Retry-After` and the request-rate budget headers; a concurrency-exhaustion 429 also carries `RateLimit-Remaining-Calls: 0` (api-guidelines §11). 
                             if ((int)__response.StatusCode == 429)
                             {
                                 string? __content_429 = null;

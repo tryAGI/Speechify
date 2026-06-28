@@ -4,9 +4,9 @@
 namespace Speechify
 {
     /// <summary>
-    /// Per-recipient variable overrides injected into the agent prompt.
+    /// Any type
     /// </summary>
-    public sealed partial class BatchRecipientDynamicVars
+    public sealed partial class BatchRecipientRequestDynamicVariables2
     {
 
         /// <summary>
