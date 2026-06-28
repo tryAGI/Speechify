@@ -17,7 +17,7 @@ namespace Speechify
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
-        global::System.Threading.Tasks.Task<global::Speechify.RunBatchResponse> RunTestsBatchAsync(
+        global::System.Threading.Tasks.Task<global::Speechify.RunAgentTestsResponse> RunTestsBatchAsync(
 
             global::Speechify.RunBatchRequest request,
             string? speechifyVersion = default,
@@ -36,7 +36,7 @@ namespace Speechify
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
-        global::System.Threading.Tasks.Task<global::Speechify.AutoSDKHttpResponse<global::Speechify.RunBatchResponse>> RunTestsBatchAsResponseAsync(
+        global::System.Threading.Tasks.Task<global::Speechify.AutoSDKHttpResponse<global::Speechify.RunAgentTestsResponse>> RunTestsBatchAsResponseAsync(
 
             global::Speechify.RunBatchRequest request,
             string? speechifyVersion = default,
@@ -55,7 +55,7 @@ namespace Speechify
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::System.InvalidOperationException"></exception>
-        global::System.Threading.Tasks.Task<global::Speechify.RunBatchResponse> RunTestsBatchAsync(
+        global::System.Threading.Tasks.Task<global::Speechify.RunAgentTestsResponse> RunTestsBatchAsync(
             global::System.Collections.Generic.IList<global::Speechify.BatchRunEntry> entries,
             string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
