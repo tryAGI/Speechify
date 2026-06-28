@@ -47,9 +47,10 @@ namespace Speechify
 
         /// <summary>
         /// Cancel Import Job<br/>
-        /// Cancel a non-terminal import job. Idempotent on terminal jobs<br/>
-        /// (completed / failed / cancelled) — the cancel call returns the<br/>
-        /// unchanged row.
+        /// Cancel a non-terminal import job. Returns 204 with no body on<br/>
+        /// success. Returns 404 when the job is already terminal<br/>
+        /// (completed / failed / cancelled), unknown, or its kb_id does not<br/>
+        /// match the `{kb_id}` path segment.
         /// </summary>
         /// <param name="kbId"></param>
         /// <param name="importId"></param>
@@ -57,7 +58,7 @@ namespace Speechify
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
-        public async global::System.Threading.Tasks.Task<global::Speechify.ImportJob> CancelImportJobAsync(
+        public async global::System.Threading.Tasks.Task<string> CancelImportJobAsync(
             string kbId,
             string importId,
             string? speechifyVersion = default,
@@ -76,9 +77,10 @@ namespace Speechify
         }
         /// <summary>
         /// Cancel Import Job<br/>
-        /// Cancel a non-terminal import job. Idempotent on terminal jobs<br/>
-        /// (completed / failed / cancelled) — the cancel call returns the<br/>
-        /// unchanged row.
+        /// Cancel a non-terminal import job. Returns 204 with no body on<br/>
+        /// success. Returns 404 when the job is already terminal<br/>
+        /// (completed / failed / cancelled), unknown, or its kb_id does not<br/>
+        /// match the `{kb_id}` path segment.
         /// </summary>
         /// <param name="kbId"></param>
         /// <param name="importId"></param>
@@ -86,7 +88,7 @@ namespace Speechify
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
-        public async global::System.Threading.Tasks.Task<global::Speechify.AutoSDKHttpResponse<global::Speechify.ImportJob>> CancelImportJobAsResponseAsync(
+        public async global::System.Threading.Tasks.Task<global::Speechify.AutoSDKHttpResponse<string>> CancelImportJobAsResponseAsync(
             string kbId,
             string importId,
             string? speechifyVersion = default,
@@ -450,13 +452,11 @@ namespace Speechify
                                 {
                                     __response.EnsureSuccessStatusCode();
 
-                                    var __value = global::Speechify.ImportJob.FromJson(__content, JsonSerializerContext) ??
-                                        throw new global::System.InvalidOperationException($"Response deserialization failed for \"{__content}\" ");
-                                    return new global::Speechify.AutoSDKHttpResponse<global::Speechify.ImportJob>(
+                                    return new global::Speechify.AutoSDKHttpResponse<string>(
                                         statusCode: __response.StatusCode,
                                         headers: global::Speechify.AutoSDKHttpResponse.CreateHeaders(__response),
                                         requestUri: __response.RequestMessage?.RequestUri,
-                                        body: __value);
+                                        body: __content);
                                 }
                                 catch (global::System.Exception __ex)
                                 {
@@ -476,19 +476,17 @@ namespace Speechify
                                 try
                                 {
                                     __response.EnsureSuccessStatusCode();
-                                    using var __content = await __response.Content.ReadAsStreamAsync(
+                                    var __content = await __response.Content.ReadAsStringAsync(
                 #if NET5_0_OR_GREATER
                                         __effectiveCancellationToken
                 #endif
                                     ).ConfigureAwait(false);
 
-                                    var __value = await global::Speechify.ImportJob.FromJsonStreamAsync(__content, JsonSerializerContext).ConfigureAwait(false) ??
-                                        throw new global::System.InvalidOperationException("Response deserialization failed.");
-                                    return new global::Speechify.AutoSDKHttpResponse<global::Speechify.ImportJob>(
+                                    return new global::Speechify.AutoSDKHttpResponse<string>(
                                         statusCode: __response.StatusCode,
                                         headers: global::Speechify.AutoSDKHttpResponse.CreateHeaders(__response),
                                         requestUri: __response.RequestMessage?.RequestUri,
-                                        body: __value);
+                                        body: __content);
                                 }
                                 catch (global::System.Exception __ex)
                                 {

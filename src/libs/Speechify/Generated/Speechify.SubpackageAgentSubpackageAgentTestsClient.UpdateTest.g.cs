@@ -584,11 +584,8 @@ namespace Speechify
         /// </param>
         /// <param name="folderId">
         /// Prefixed wire identifier (`folder_&lt;26 char Crockford base32&gt;`)<br/>
-        /// of the folder to move the test into.
-        /// </param>
-        /// <param name="clearFolderId">
-        /// When `true`, moves the test back to root (clears<br/>
-        /// `folder_id`). Wins over `folder_id` when both are sent.
+        /// of the folder to move the test into, or `null` to move the<br/>
+        /// test back to root. Omit to leave unchanged.
         /// </param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -601,7 +598,6 @@ namespace Speechify
             global::Speechify.UpdateAgentTestRequestConfig? config = default,
             global::Speechify.ToolMockConfig? toolMockConfig = default,
             string? folderId = default,
-            bool? clearFolderId = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
@@ -612,7 +608,6 @@ namespace Speechify
                 Config = config,
                 ToolMockConfig = toolMockConfig,
                 FolderId = folderId,
-                ClearFolderId = clearFolderId,
             };
 
             return await UpdateTestAsync(

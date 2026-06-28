@@ -549,16 +549,20 @@ namespace Speechify
         /// </summary>
         /// <param name="agentId"></param>
         /// <param name="speechifyVersion"></param>
-        /// <param name="requestAgentId"></param>
+        /// <param name="requestAgentId">
+        /// Optional. The agent is taken from the `{agent_id}` URL path,<br/>
+        /// which is authoritative; if supplied here it must match the<br/>
+        /// path or the request is rejected.
+        /// </param>
         /// <param name="callerIdentity"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::System.InvalidOperationException"></exception>
         public async global::System.Threading.Tasks.Task<global::Speechify.DeleteMemoriesByCallerResponse> DeleteMemoriesByCallerAsync(
             string agentId,
-            string requestAgentId,
             string callerIdentity,
             string? speechifyVersion = default,
+            string? requestAgentId = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {

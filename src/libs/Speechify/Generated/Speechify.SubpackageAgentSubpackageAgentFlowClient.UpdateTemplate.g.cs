@@ -134,7 +134,7 @@ namespace Speechify
                     clientParameters: Options.QueryParameters,
                     requestParameters: requestOptions?.QueryParameters);
                 var __httpRequest = new global::System.Net.Http.HttpRequestMessage(
-                    method: new global::System.Net.Http.HttpMethod("PATCH"),
+                    method: global::System.Net.Http.HttpMethod.Put,
                     requestUri: new global::System.Uri(__path, global::System.UriKind.RelativeOrAbsolute));
 #if NET6_0_OR_GREATER
                 __httpRequest.Version = global::System.Net.HttpVersion.Version11;
@@ -202,7 +202,7 @@ namespace Speechify
                                 operationId: "UpdateTemplate",
                                 methodName: "UpdateTemplateAsync",
                                 pathTemplate: "$\"/v1/agents/flow/templates/{flowTemplateId}\"",
-                                httpMethod: "PATCH",
+                                httpMethod: "PUT",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
                                 response: null,
@@ -236,7 +236,7 @@ namespace Speechify
                                 operationId: "UpdateTemplate",
                                 methodName: "UpdateTemplateAsync",
                                 pathTemplate: "$\"/v1/agents/flow/templates/{flowTemplateId}\"",
-                                httpMethod: "PATCH",
+                                httpMethod: "PUT",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
                                 response: null,
@@ -277,7 +277,7 @@ namespace Speechify
                                 operationId: "UpdateTemplate",
                                 methodName: "UpdateTemplateAsync",
                                 pathTemplate: "$\"/v1/agents/flow/templates/{flowTemplateId}\"",
-                                httpMethod: "PATCH",
+                                httpMethod: "PUT",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
                                 response: __response,
@@ -325,7 +325,7 @@ namespace Speechify
                                 operationId: "UpdateTemplate",
                                 methodName: "UpdateTemplateAsync",
                                 pathTemplate: "$\"/v1/agents/flow/templates/{flowTemplateId}\"",
-                                httpMethod: "PATCH",
+                                httpMethod: "PUT",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
                                 response: __response,
@@ -347,7 +347,7 @@ namespace Speechify
                                 operationId: "UpdateTemplate",
                                 methodName: "UpdateTemplateAsync",
                                 pathTemplate: "$\"/v1/agents/flow/templates/{flowTemplateId}\"",
-                                httpMethod: "PATCH",
+                                httpMethod: "PUT",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
                                 response: __response,

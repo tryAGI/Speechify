@@ -4,13 +4,10 @@
 namespace Speechify
 {
     /// <summary>
-    /// Payload for `PATCH /v1/agents/tests/{test_id}`. All fields are optional;<br/>
-    /// omitting a field leaves it unchanged. Set `folder_id` to a target<br/>
-    /// folder id to move the test into that folder; send<br/>
-    /// `clear_folder_id: true` (folder_id omitted or ignored) to move<br/>
-    /// the test back to root. The clear flag is the explicit signal<br/>
-    /// because JSON `null` is indistinguishable from absent for<br/>
-    /// pointer fields in Go's encoding/json.
+    /// Payload for `PATCH /v1/agents/tests/{test_id}` (JSON merge-patch).<br/>
+    /// All fields are optional; omitting a field leaves it unchanged. Set<br/>
+    /// `folder_id` to a target folder id to move the test into that<br/>
+    /// folder, or send `folder_id: null` to move the test back to root.
     /// </summary>
     public sealed partial class UpdateAgentTestRequest
     {
@@ -41,17 +38,11 @@ namespace Speechify
 
         /// <summary>
         /// Prefixed wire identifier (`folder_&lt;26 char Crockford base32&gt;`)<br/>
-        /// of the folder to move the test into.
+        /// of the folder to move the test into, or `null` to move the<br/>
+        /// test back to root. Omit to leave unchanged.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("folder_id")]
         public string? FolderId { get; set; }
-
-        /// <summary>
-        /// When `true`, moves the test back to root (clears<br/>
-        /// `folder_id`). Wins over `folder_id` when both are sent.
-        /// </summary>
-        [global::System.Text.Json.Serialization.JsonPropertyName("clear_folder_id")]
-        public bool? ClearFolderId { get; set; }
 
         /// <summary>
         /// Additional properties that are not explicitly defined in the schema
@@ -72,11 +63,8 @@ namespace Speechify
         /// </param>
         /// <param name="folderId">
         /// Prefixed wire identifier (`folder_&lt;26 char Crockford base32&gt;`)<br/>
-        /// of the folder to move the test into.
-        /// </param>
-        /// <param name="clearFolderId">
-        /// When `true`, moves the test back to root (clears<br/>
-        /// `folder_id`). Wins over `folder_id` when both are sent.
+        /// of the folder to move the test into, or `null` to move the<br/>
+        /// test back to root. Omit to leave unchanged.
         /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
@@ -86,15 +74,13 @@ namespace Speechify
             string? description,
             global::Speechify.UpdateAgentTestRequestConfig? config,
             global::Speechify.ToolMockConfig? toolMockConfig,
-            string? folderId,
-            bool? clearFolderId)
+            string? folderId)
         {
             this.Name = name;
             this.Description = description;
             this.Config = config;
             this.ToolMockConfig = toolMockConfig;
             this.FolderId = folderId;
-            this.ClearFolderId = clearFolderId;
         }
 
         /// <summary>

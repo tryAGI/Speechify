@@ -21,7 +21,7 @@ namespace Speechify
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
-        global::System.Threading.Tasks.Task<global::Speechify.CreateBatchCallResponse> CreateAsync(
+        global::System.Threading.Tasks.Task<global::Speechify.BatchCall> CreateAsync(
 
             global::Speechify.CreateBatchCallRequest request,
             string? speechifyVersion = default,
@@ -45,7 +45,7 @@ namespace Speechify
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
-        global::System.Threading.Tasks.Task<global::Speechify.AutoSDKHttpResponse<global::Speechify.CreateBatchCallResponse>> CreateAsResponseAsync(
+        global::System.Threading.Tasks.Task<global::Speechify.AutoSDKHttpResponse<global::Speechify.BatchCall>> CreateAsResponseAsync(
 
             global::Speechify.CreateBatchCallRequest request,
             string? speechifyVersion = default,
@@ -88,7 +88,7 @@ namespace Speechify
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::System.InvalidOperationException"></exception>
-        global::System.Threading.Tasks.Task<global::Speechify.CreateBatchCallResponse> CreateAsync(
+        global::System.Threading.Tasks.Task<global::Speechify.BatchCall> CreateAsync(
             string name,
             string agentId,
             global::System.Collections.Generic.IList<global::Speechify.BatchRecipientRequest> recipients,

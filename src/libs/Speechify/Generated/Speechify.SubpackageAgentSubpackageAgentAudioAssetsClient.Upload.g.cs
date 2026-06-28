@@ -60,7 +60,7 @@ namespace Speechify
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
-        public async global::System.Threading.Tasks.Task<global::Speechify.UploadAudioAssetResponse> UploadAsync(
+        public async global::System.Threading.Tasks.Task<global::Speechify.AudioAsset> UploadAsync(
 
             global::Speechify.UploadRequest request,
             string? speechifyVersion = default,
@@ -94,7 +94,7 @@ namespace Speechify
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
-        public async global::System.Threading.Tasks.Task<global::Speechify.AutoSDKHttpResponse<global::Speechify.UploadAudioAssetResponse>> UploadAsResponseAsync(
+        public async global::System.Threading.Tasks.Task<global::Speechify.AutoSDKHttpResponse<global::Speechify.AudioAsset>> UploadAsResponseAsync(
 
             global::Speechify.UploadRequest request,
             string? speechifyVersion = default,
@@ -508,9 +508,9 @@ namespace Speechify
                                 {
                                     __response.EnsureSuccessStatusCode();
 
-                                    var __value = global::Speechify.UploadAudioAssetResponse.FromJson(__content, JsonSerializerContext) ??
+                                    var __value = global::Speechify.AudioAsset.FromJson(__content, JsonSerializerContext) ??
                                         throw new global::System.InvalidOperationException($"Response deserialization failed for \"{__content}\" ");
-                                    return new global::Speechify.AutoSDKHttpResponse<global::Speechify.UploadAudioAssetResponse>(
+                                    return new global::Speechify.AutoSDKHttpResponse<global::Speechify.AudioAsset>(
                                         statusCode: __response.StatusCode,
                                         headers: global::Speechify.AutoSDKHttpResponse.CreateHeaders(__response),
                                         requestUri: __response.RequestMessage?.RequestUri,
@@ -540,9 +540,9 @@ namespace Speechify
                 #endif
                                     ).ConfigureAwait(false);
 
-                                    var __value = await global::Speechify.UploadAudioAssetResponse.FromJsonStreamAsync(__content, JsonSerializerContext).ConfigureAwait(false) ??
+                                    var __value = await global::Speechify.AudioAsset.FromJsonStreamAsync(__content, JsonSerializerContext).ConfigureAwait(false) ??
                                         throw new global::System.InvalidOperationException("Response deserialization failed.");
-                                    return new global::Speechify.AutoSDKHttpResponse<global::Speechify.UploadAudioAssetResponse>(
+                                    return new global::Speechify.AutoSDKHttpResponse<global::Speechify.AudioAsset>(
                                         statusCode: __response.StatusCode,
                                         headers: global::Speechify.AutoSDKHttpResponse.CreateHeaders(__response),
                                         requestUri: __response.RequestMessage?.RequestUri,
@@ -606,7 +606,7 @@ namespace Speechify
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::System.InvalidOperationException"></exception>
-        public async global::System.Threading.Tasks.Task<global::Speechify.UploadAudioAssetResponse> UploadAsync(
+        public async global::System.Threading.Tasks.Task<global::Speechify.AudioAsset> UploadAsync(
             byte[] file,
             string filename,
             string? speechifyVersion = default,
@@ -650,7 +650,7 @@ namespace Speechify
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
-        public async global::System.Threading.Tasks.Task<global::Speechify.UploadAudioAssetResponse> UploadAsync(
+        public async global::System.Threading.Tasks.Task<global::Speechify.AudioAsset> UploadAsync(
             global::System.IO.Stream file,
             string filename,
             string? speechifyVersion = default,
@@ -1070,7 +1070,7 @@ namespace Speechify
                                     __response.EnsureSuccessStatusCode();
 
                                     return
-                                        global::Speechify.UploadAudioAssetResponse.FromJson(__content, JsonSerializerContext) ??
+                                        global::Speechify.AudioAsset.FromJson(__content, JsonSerializerContext) ??
                                         throw new global::System.InvalidOperationException($"Response deserialization failed for \"{__content}\" ");
                                 }
                                 catch (global::System.Exception __ex)
@@ -1098,7 +1098,7 @@ namespace Speechify
                                     ).ConfigureAwait(false);
 
                                     return
-                                        await global::Speechify.UploadAudioAssetResponse.FromJsonStreamAsync(__content, JsonSerializerContext).ConfigureAwait(false) ??
+                                        await global::Speechify.AudioAsset.FromJsonStreamAsync(__content, JsonSerializerContext).ConfigureAwait(false) ??
                                         throw new global::System.InvalidOperationException("Response deserialization failed.");
                                 }
                                 catch (global::System.Exception __ex)
@@ -1159,7 +1159,7 @@ namespace Speechify
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
-        public async global::System.Threading.Tasks.Task<global::Speechify.AutoSDKHttpResponse<global::Speechify.UploadAudioAssetResponse>> UploadAsResponseAsync(
+        public async global::System.Threading.Tasks.Task<global::Speechify.AutoSDKHttpResponse<global::Speechify.AudioAsset>> UploadAsResponseAsync(
             global::System.IO.Stream file,
             string filename,
             string? speechifyVersion = default,
@@ -1578,9 +1578,9 @@ namespace Speechify
                                 {
                                     __response.EnsureSuccessStatusCode();
 
-                                    var __value = global::Speechify.UploadAudioAssetResponse.FromJson(__content, JsonSerializerContext) ??
+                                    var __value = global::Speechify.AudioAsset.FromJson(__content, JsonSerializerContext) ??
                                         throw new global::System.InvalidOperationException($"Response deserialization failed for \"{__content}\" ");
-                                    return new global::Speechify.AutoSDKHttpResponse<global::Speechify.UploadAudioAssetResponse>(
+                                    return new global::Speechify.AutoSDKHttpResponse<global::Speechify.AudioAsset>(
                                         statusCode: __response.StatusCode,
                                         headers: global::Speechify.AutoSDKHttpResponse.CreateHeaders(__response),
                                         requestUri: __response.RequestMessage?.RequestUri,
@@ -1610,9 +1610,9 @@ namespace Speechify
                 #endif
                                     ).ConfigureAwait(false);
 
-                                    var __value = await global::Speechify.UploadAudioAssetResponse.FromJsonStreamAsync(__content, JsonSerializerContext).ConfigureAwait(false) ??
+                                    var __value = await global::Speechify.AudioAsset.FromJsonStreamAsync(__content, JsonSerializerContext).ConfigureAwait(false) ??
                                         throw new global::System.InvalidOperationException("Response deserialization failed.");
-                                    return new global::Speechify.AutoSDKHttpResponse<global::Speechify.UploadAudioAssetResponse>(
+                                    return new global::Speechify.AutoSDKHttpResponse<global::Speechify.AudioAsset>(
                                         statusCode: __response.StatusCode,
                                         headers: global::Speechify.AutoSDKHttpResponse.CreateHeaders(__response),
                                         requestUri: __response.RequestMessage?.RequestUri,

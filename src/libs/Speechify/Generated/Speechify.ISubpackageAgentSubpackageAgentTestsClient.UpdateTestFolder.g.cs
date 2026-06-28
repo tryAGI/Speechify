@@ -47,12 +47,8 @@ namespace Speechify
         /// <param name="name"></param>
         /// <param name="parentFolderId">
         /// Prefixed wire identifier (`folder_&lt;26 char Crockford base32&gt;`)<br/>
-        /// of the folder to reparent this folder under.
-        /// </param>
-        /// <param name="clearParentFolderId">
-        /// When `true`, reparents this folder to root (clears<br/>
-        /// `parent_folder_id`). Wins over `parent_folder_id` when<br/>
-        /// both are sent.
+        /// of the folder to reparent this folder under, or `null` to<br/>
+        /// reparent it to root. Omit to leave unchanged.
         /// </param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -62,7 +58,6 @@ namespace Speechify
             string? speechifyVersion = default,
             string? name = default,
             string? parentFolderId = default,
-            bool? clearParentFolderId = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
     }
