@@ -20,13 +20,6 @@ namespace Speechify
         public required string ConversationId { get; set; }
 
         /// <summary>
-        /// 
-        /// </summary>
-        [global::System.Text.Json.Serialization.JsonPropertyName("room_name")]
-        [global::System.Text.Json.Serialization.JsonRequired]
-        public required string RoomName { get; set; }
-
-        /// <summary>
         /// Signaling URL the real-time client connects to.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("signaling_url")]
@@ -65,7 +58,6 @@ namespace Speechify
         /// Initializes a new instance of the <see cref="TakeOverConversationResponse" /> class.
         /// </summary>
         /// <param name="conversationId"></param>
-        /// <param name="roomName"></param>
         /// <param name="signalingUrl">
         /// Signaling URL the real-time client connects to.
         /// </param>
@@ -84,14 +76,12 @@ namespace Speechify
 #endif
         public TakeOverConversationResponse(
             string conversationId,
-            string roomName,
             string signalingUrl,
             string token,
             string identity,
             global::System.DateTime expiresAt)
         {
             this.ConversationId = conversationId ?? throw new global::System.ArgumentNullException(nameof(conversationId));
-            this.RoomName = roomName ?? throw new global::System.ArgumentNullException(nameof(roomName));
             this.SignalingUrl = signalingUrl ?? throw new global::System.ArgumentNullException(nameof(signalingUrl));
             this.Token = token ?? throw new global::System.ArgumentNullException(nameof(token));
             this.Identity = identity ?? throw new global::System.ArgumentNullException(nameof(identity));
