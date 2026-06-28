@@ -3,11 +3,11 @@
 
 namespace Speechify
 {
-    public partial class SubpackageAgentClient
+    public partial class SubpackageAgentSubpackageAgentTestsClient
     {
 
 
-        private static readonly global::Speechify.EndPointSecurityRequirement s_ListMemoriesSecurityRequirement0 =
+        private static readonly global::Speechify.EndPointSecurityRequirement s_GetTestFolderSecurityRequirement0 =
             new global::Speechify.EndPointSecurityRequirement
             {
                 Authorizations = new global::Speechify.EndPointAuthorizationRequirement[]
@@ -21,61 +21,45 @@ namespace Speechify
                     },
                 },
             };
-        private static readonly global::Speechify.EndPointSecurityRequirement[] s_ListMemoriesSecurityRequirements =
+        private static readonly global::Speechify.EndPointSecurityRequirement[] s_GetTestFolderSecurityRequirements =
             new global::Speechify.EndPointSecurityRequirement[]
-            {                s_ListMemoriesSecurityRequirement0,
+            {                s_GetTestFolderSecurityRequirement0,
             };
-        partial void PrepareListMemoriesArguments(
+        partial void PrepareGetTestFolderArguments(
             global::System.Net.Http.HttpClient httpClient,
-            ref string agentId,
-            ref string? cursor,
-            ref int? limit,
+            ref string testFolderId,
             ref string? speechifyVersion);
-        partial void PrepareListMemoriesRequest(
+        partial void PrepareGetTestFolderRequest(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpRequestMessage httpRequestMessage,
-            string agentId,
-            string? cursor,
-            int? limit,
+            string testFolderId,
             string? speechifyVersion);
-        partial void ProcessListMemoriesResponse(
+        partial void ProcessGetTestFolderResponse(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpResponseMessage httpResponseMessage);
 
-        partial void ProcessListMemoriesResponseContent(
+        partial void ProcessGetTestFolderResponseContent(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpResponseMessage httpResponseMessage,
             ref string content);
 
         /// <summary>
-        /// List Agent Memories<br/>
-        /// List per-caller memories extracted for an agent. Memories are<br/>
-        /// written post-call by the built-in extractor when `memory_enabled`<br/>
-        /// is true on the agent; the list is sorted newest-first.<br/>
-        /// Cursor-paginated: omit `cursor` for the first page; walk pages<br/>
-        /// while `has_more` is true (default page size 50, max 200).
+        /// Get Test Folder<br/>
+        /// Fetch a single agent-test folder by id.
         /// </summary>
-        /// <param name="agentId"></param>
-        /// <param name="cursor"></param>
-        /// <param name="limit">
-        /// Default Value: 50
-        /// </param>
+        /// <param name="testFolderId"></param>
         /// <param name="speechifyVersion"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
-        public async global::System.Threading.Tasks.Task<global::Speechify.ListMemoriesResponse> ListMemoriesAsync(
-            string agentId,
-            string? cursor = default,
-            int? limit = default,
+        public async global::System.Threading.Tasks.Task<global::Speechify.AgentTestFolder> GetTestFolderAsync(
+            string testFolderId,
             string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
-            var __response = await ListMemoriesAsResponseAsync(
-                agentId: agentId,
-                cursor: cursor,
-                limit: limit,
+            var __response = await GetTestFolderAsResponseAsync(
+                testFolderId: testFolderId,
                 speechifyVersion: speechifyVersion,
                 requestOptions: requestOptions,
                 cancellationToken: cancellationToken
@@ -84,44 +68,32 @@ namespace Speechify
             return __response.Body;
         }
         /// <summary>
-        /// List Agent Memories<br/>
-        /// List per-caller memories extracted for an agent. Memories are<br/>
-        /// written post-call by the built-in extractor when `memory_enabled`<br/>
-        /// is true on the agent; the list is sorted newest-first.<br/>
-        /// Cursor-paginated: omit `cursor` for the first page; walk pages<br/>
-        /// while `has_more` is true (default page size 50, max 200).
+        /// Get Test Folder<br/>
+        /// Fetch a single agent-test folder by id.
         /// </summary>
-        /// <param name="agentId"></param>
-        /// <param name="cursor"></param>
-        /// <param name="limit">
-        /// Default Value: 50
-        /// </param>
+        /// <param name="testFolderId"></param>
         /// <param name="speechifyVersion"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
-        public async global::System.Threading.Tasks.Task<global::Speechify.AutoSDKHttpResponse<global::Speechify.ListMemoriesResponse>> ListMemoriesAsResponseAsync(
-            string agentId,
-            string? cursor = default,
-            int? limit = default,
+        public async global::System.Threading.Tasks.Task<global::Speechify.AutoSDKHttpResponse<global::Speechify.AgentTestFolder>> GetTestFolderAsResponseAsync(
+            string testFolderId,
             string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
             PrepareArguments(
                 client: HttpClient);
-            PrepareListMemoriesArguments(
+            PrepareGetTestFolderArguments(
                 httpClient: HttpClient,
-                agentId: ref agentId,
-                cursor: ref cursor,
-                limit: ref limit,
+                testFolderId: ref testFolderId,
                 speechifyVersion: ref speechifyVersion);
 
 
             var __authorizations = global::Speechify.EndPointSecurityResolver.ResolveAuthorizations(
                 availableAuthorizations: Authorizations,
-                securityRequirements: s_ListMemoriesSecurityRequirements,
-                operationName: "ListMemoriesAsync");
+                securityRequirements: s_GetTestFolderSecurityRequirements,
+                operationName: "GetTestFolderAsync");
 
             using var __timeoutCancellationTokenSource = global::Speechify.AutoSDKRequestOptionsSupport.CreateTimeoutCancellationTokenSource(
                 clientOptions: Options,
@@ -141,12 +113,8 @@ namespace Speechify
             {
 
                             var __pathBuilder = new global::Speechify.PathBuilder(
-                                path: $"/v1/agents/{agentId}/memories",
+                                path: $"/v1/agents/tests/folders/{testFolderId}",
                                 baseUri: HttpClient.BaseAddress);
-                            __pathBuilder
-                                .AddOptionalParameter("cursor", cursor)
-                                .AddOptionalParameter("limit", limit?.ToString())
-                                ;
                             var __path = __pathBuilder.ToString();
                 __path = global::Speechify.AutoSDKRequestOptionsSupport.AppendQueryParameters(
                     path: __path,
@@ -190,12 +158,10 @@ namespace Speechify
                 PrepareRequest(
                     client: HttpClient,
                     request: __httpRequest);
-                PrepareListMemoriesRequest(
+                PrepareGetTestFolderRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
-                    agentId: agentId!,
-                    cursor: cursor,
-                    limit: limit,
+                    testFolderId: testFolderId!,
                     speechifyVersion: speechifyVersion);
 
                 return __httpRequest;
@@ -213,9 +179,9 @@ namespace Speechify
                     await global::Speechify.AutoSDKRequestOptionsSupport.OnBeforeRequestAsync(
                             clientOptions: Options,
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "ListMemories",
-                                methodName: "ListMemoriesAsync",
-                                pathTemplate: "$\"/v1/agents/{agentId}/memories\"",
+                                operationId: "GetTestFolder",
+                                methodName: "GetTestFolderAsync",
+                                pathTemplate: "$\"/v1/agents/tests/folders/{testFolderId}\"",
                                 httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -247,9 +213,9 @@ namespace Speechify
                         await global::Speechify.AutoSDKRequestOptionsSupport.OnAfterErrorAsync(
                             clientOptions: Options,
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "ListMemories",
-                                methodName: "ListMemoriesAsync",
-                                pathTemplate: "$\"/v1/agents/{agentId}/memories\"",
+                                operationId: "GetTestFolder",
+                                methodName: "GetTestFolderAsync",
+                                pathTemplate: "$\"/v1/agents/tests/folders/{testFolderId}\"",
                                 httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -288,9 +254,9 @@ namespace Speechify
                         await global::Speechify.AutoSDKRequestOptionsSupport.OnAfterErrorAsync(
                             clientOptions: Options,
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "ListMemories",
-                                methodName: "ListMemoriesAsync",
-                                pathTemplate: "$\"/v1/agents/{agentId}/memories\"",
+                                operationId: "GetTestFolder",
+                                methodName: "GetTestFolderAsync",
+                                pathTemplate: "$\"/v1/agents/tests/folders/{testFolderId}\"",
                                 httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -328,7 +294,7 @@ namespace Speechify
                 ProcessResponse(
                     client: HttpClient,
                     response: __response);
-                ProcessListMemoriesResponse(
+                ProcessGetTestFolderResponse(
                     httpClient: HttpClient,
                     httpResponseMessage: __response);
                 if (__response.IsSuccessStatusCode)
@@ -336,9 +302,9 @@ namespace Speechify
                     await global::Speechify.AutoSDKRequestOptionsSupport.OnAfterSuccessAsync(
                             clientOptions: Options,
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "ListMemories",
-                                methodName: "ListMemoriesAsync",
-                                pathTemplate: "$\"/v1/agents/{agentId}/memories\"",
+                                operationId: "GetTestFolder",
+                                methodName: "GetTestFolderAsync",
+                                pathTemplate: "$\"/v1/agents/tests/folders/{testFolderId}\"",
                                 httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -358,9 +324,9 @@ namespace Speechify
                     await global::Speechify.AutoSDKRequestOptionsSupport.OnAfterErrorAsync(
                             clientOptions: Options,
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "ListMemories",
-                                methodName: "ListMemoriesAsync",
-                                pathTemplate: "$\"/v1/agents/{agentId}/memories\"",
+                                operationId: "GetTestFolder",
+                                methodName: "GetTestFolderAsync",
+                                pathTemplate: "$\"/v1/agents/tests/folders/{testFolderId}\"",
                                 httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -375,43 +341,6 @@ namespace Speechify
                                 retryReason: global::System.String.Empty,
                                 cancellationToken: __effectiveCancellationToken)).ConfigureAwait(false);
                 }
-                            // The request was malformed or failed validation. The response body is the standard `Error` envelope; for validation failures `error.fields` enumerates the offending fields as a `path -> message` map (code = `validation_failed`). 
-                            if ((int)__response.StatusCode == 400)
-                            {
-                                string? __content_400 = null;
-                                global::System.Exception? __exception_400 = null;
-                                global::Speechify.Error? __value_400 = null;
-                                try
-                                {
-                                    if (__effectiveReadResponseAsString)
-                                    {
-                                        __content_400 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
-                                        __value_400 = global::Speechify.Error.FromJson(__content_400, JsonSerializerContext);
-                                    }
-                                    else
-                                    {
-                                        __content_400 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
-
-                                        __value_400 = global::Speechify.Error.FromJson(__content_400, JsonSerializerContext);
-                                    }
-                                }
-                                catch (global::System.Exception __ex)
-                                {
-                                    __exception_400 = __ex;
-                                }
-
-
-                                throw global::Speechify.ApiException<global::Speechify.Error>.Create(
-                                    statusCode: __response.StatusCode,
-                                    message: __content_400 ?? __response.ReasonPhrase ?? string.Empty,
-                                    innerException: __exception_400,
-                                    responseBody: __content_400,
-                                    responseObject: __value_400,
-                                    responseHeaders: global::System.Linq.Enumerable.ToDictionary(
-                                        __response.Headers,
-                                        h => h.Key,
-                                        h => h.Value));
-                            }
                             // Authentication is missing or invalid. The request did not carry a recognised credential (Firebase ID token, API key, or worker JWT). 
                             if ((int)__response.StatusCode == 401)
                             {
@@ -499,7 +428,7 @@ namespace Speechify
                                     client: HttpClient,
                                     response: __response,
                                     content: ref __content);
-                                ProcessListMemoriesResponseContent(
+                                ProcessGetTestFolderResponseContent(
                                     httpClient: HttpClient,
                                     httpResponseMessage: __response,
                                     content: ref __content);
@@ -508,9 +437,9 @@ namespace Speechify
                                 {
                                     __response.EnsureSuccessStatusCode();
 
-                                    var __value = global::Speechify.ListMemoriesResponse.FromJson(__content, JsonSerializerContext) ??
+                                    var __value = global::Speechify.AgentTestFolder.FromJson(__content, JsonSerializerContext) ??
                                         throw new global::System.InvalidOperationException($"Response deserialization failed for \"{__content}\" ");
-                                    return new global::Speechify.AutoSDKHttpResponse<global::Speechify.ListMemoriesResponse>(
+                                    return new global::Speechify.AutoSDKHttpResponse<global::Speechify.AgentTestFolder>(
                                         statusCode: __response.StatusCode,
                                         headers: global::Speechify.AutoSDKHttpResponse.CreateHeaders(__response),
                                         requestUri: __response.RequestMessage?.RequestUri,
@@ -540,9 +469,9 @@ namespace Speechify
                 #endif
                                     ).ConfigureAwait(false);
 
-                                    var __value = await global::Speechify.ListMemoriesResponse.FromJsonStreamAsync(__content, JsonSerializerContext).ConfigureAwait(false) ??
+                                    var __value = await global::Speechify.AgentTestFolder.FromJsonStreamAsync(__content, JsonSerializerContext).ConfigureAwait(false) ??
                                         throw new global::System.InvalidOperationException("Response deserialization failed.");
-                                    return new global::Speechify.AutoSDKHttpResponse<global::Speechify.ListMemoriesResponse>(
+                                    return new global::Speechify.AutoSDKHttpResponse<global::Speechify.AgentTestFolder>(
                                         statusCode: __response.StatusCode,
                                         headers: global::Speechify.AutoSDKHttpResponse.CreateHeaders(__response),
                                         requestUri: __response.RequestMessage?.RequestUri,

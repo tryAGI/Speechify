@@ -15,9 +15,9 @@ namespace Speechify
         /// <summary>
         /// Prefixed wire identifier (`menu_&lt;26 char Crockford base32&gt;`).
         /// </summary>
-        [global::System.Text.Json.Serialization.JsonPropertyName("menu_id")]
+        [global::System.Text.Json.Serialization.JsonPropertyName("id")]
         [global::System.Text.Json.Serialization.JsonRequired]
-        public required string MenuId { get; set; }
+        public required string Id { get; set; }
 
         /// <summary>
         /// 
@@ -112,7 +112,7 @@ namespace Speechify
         /// <summary>
         /// Initializes a new instance of the <see cref="IVRMenuListEntry" /> class.
         /// </summary>
-        /// <param name="menuId">
+        /// <param name="id">
         /// Prefixed wire identifier (`menu_&lt;26 char Crockford base32&gt;`).
         /// </param>
         /// <param name="fingerprintId"></param>
@@ -131,7 +131,7 @@ namespace Speechify
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
 #endif
         public IVRMenuListEntry(
-            string menuId,
+            string id,
             string fingerprintId,
             string fingerprintHash,
             string transcriptSample,
@@ -145,7 +145,7 @@ namespace Speechify
             int occurrenceCount,
             global::System.DateTime createdAt)
         {
-            this.MenuId = menuId ?? throw new global::System.ArgumentNullException(nameof(menuId));
+            this.Id = id ?? throw new global::System.ArgumentNullException(nameof(id));
             this.FingerprintId = fingerprintId ?? throw new global::System.ArgumentNullException(nameof(fingerprintId));
             this.FingerprintHash = fingerprintHash ?? throw new global::System.ArgumentNullException(nameof(fingerprintHash));
             this.TranscriptSample = transcriptSample ?? throw new global::System.ArgumentNullException(nameof(transcriptSample));

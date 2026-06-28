@@ -377,8 +377,6 @@ namespace Speechify
 
             typeof(global::Speechify.JsonConverters.OneOfJsonConverter<global::Speechify.TestRunConfigOverride, object>),
 
-            typeof(global::Speechify.JsonConverters.OneOfJsonConverter<global::Speechify.AgentTestSuiteRun, object>),
-
             typeof(global::Speechify.JsonConverters.UnixTimestampJsonConverter),
         })]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.JsonSerializerContextTypes))]
@@ -709,7 +707,7 @@ namespace Speechify
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.TestRunConfigOverride))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.AgentTestSuiteRun))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.OneOf<global::Speechify.TestRunConfigOverride, object>), TypeInfoPropertyName = "OneOfTestRunConfigOverrideObject2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.RunBatchResponse))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.RunAgentTestsResponse))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Speechify.AgentTestRun>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.OneOf<global::Speechify.AgentTestSuiteRun, object>), TypeInfoPropertyName = "OneOfAgentTestSuiteRunObject2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.TestStatsBucket))]
@@ -722,7 +720,6 @@ namespace Speechify
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.SuiteChildRun))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.AgentTestSuiteRunWithRuns))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Speechify.SuiteChildRun>))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.RunAgentTestsResponse))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.AgentTest))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.UpdateAgentTestRequestConfig), TypeInfoPropertyName = "UpdateAgentTestRequestConfig2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.UpdateAgentTestRequest))]
@@ -783,7 +780,6 @@ namespace Speechify
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.CallerMemoryItem))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.ListCallerMemoriesResponse))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Speechify.CallerMemoryItem>))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.ListAgentMemoriesResponse))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.DeleteMemoriesByCallerRequest))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.DeleteMemoriesByCallerResponse))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.AudioAsset))]
@@ -881,6 +877,8 @@ namespace Speechify
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.PutFlowRequestEdgesItems>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.PutFlowRequestVariablesItems>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.FlowVersion>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.DynamicVariable>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.SystemVariableDoc>))]
     internal sealed partial class SourceGenerationContextChunk0 : global::System.Text.Json.Serialization.JsonSerializerContext
     {
     }
@@ -1256,12 +1254,8 @@ namespace Speechify
 
             typeof(global::Speechify.JsonConverters.OneOfJsonConverter<global::Speechify.TestRunConfigOverride, object>),
 
-            typeof(global::Speechify.JsonConverters.OneOfJsonConverter<global::Speechify.AgentTestSuiteRun, object>),
-
             typeof(global::Speechify.JsonConverters.UnixTimestampJsonConverter),
         })]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.DynamicVariable>))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.SystemVariableDoc>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<object>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.Conversation>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.RecentCallee>))]
@@ -1545,7 +1539,6 @@ namespace Speechify
             options.Converters.Add(new global::Speechify.JsonConverters.OneOfJsonConverter<global::Speechify.TestRunResult, object>());
             options.Converters.Add(new global::Speechify.JsonConverters.OneOfJsonConverter<global::Speechify.TestVerdict?, object>());
             options.Converters.Add(new global::Speechify.JsonConverters.OneOfJsonConverter<global::Speechify.TestRunConfigOverride, object>());
-            options.Converters.Add(new global::Speechify.JsonConverters.OneOfJsonConverter<global::Speechify.AgentTestSuiteRun, object>());
             options.Converters.Add(new global::Speechify.JsonConverters.UnixTimestampJsonConverter());
 
             return options;
