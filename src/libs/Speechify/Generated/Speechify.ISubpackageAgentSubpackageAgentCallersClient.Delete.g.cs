@@ -12,7 +12,12 @@ namespace Speechify
         /// Idempotent — re-deleting an already-purged caller returns<br/>
         /// `{caller_purged: 0, memories_purged: 0}`. Audit row counts<br/>
         /// accompany every response so a privacy operator has direct<br/>
-        /// evidence of the purge without re-querying.
+        /// evidence of the purge without re-querying.<br/>
+        /// Returns `200` with the row-count body rather than a bodiless<br/>
+        /// `204`: the counts are GDPR-purge audit evidence. This is a<br/>
+        /// deliberate exception to the delete-returns-204 convention,<br/>
+        /// shared with the bulk memory purge<br/>
+        /// (`DELETE /v1/agents/{agent_id}/memories`).
         /// </summary>
         /// <param name="callerId"></param>
         /// <param name="speechifyVersion"></param>
@@ -32,7 +37,12 @@ namespace Speechify
         /// Idempotent — re-deleting an already-purged caller returns<br/>
         /// `{caller_purged: 0, memories_purged: 0}`. Audit row counts<br/>
         /// accompany every response so a privacy operator has direct<br/>
-        /// evidence of the purge without re-querying.
+        /// evidence of the purge without re-querying.<br/>
+        /// Returns `200` with the row-count body rather than a bodiless<br/>
+        /// `204`: the counts are GDPR-purge audit evidence. This is a<br/>
+        /// deliberate exception to the delete-returns-204 convention,<br/>
+        /// shared with the bulk memory purge<br/>
+        /// (`DELETE /v1/agents/{agent_id}/memories`).
         /// </summary>
         /// <param name="callerId"></param>
         /// <param name="speechifyVersion"></param>

@@ -28,14 +28,14 @@ namespace Speechify
         partial void PrepareDeleteMemoriesByCallerArguments(
             global::System.Net.Http.HttpClient httpClient,
             ref string agentId,
-            ref string? speechifyVersion,
-            global::Speechify.DeleteMemoriesByCallerRequest request);
+            ref string callerIdentity,
+            ref string? speechifyVersion);
         partial void PrepareDeleteMemoriesByCallerRequest(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpRequestMessage httpRequestMessage,
             string agentId,
-            string? speechifyVersion,
-            global::Speechify.DeleteMemoriesByCallerRequest request);
+            string callerIdentity,
+            string? speechifyVersion);
         partial void ProcessDeleteMemoriesByCallerResponse(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpResponseMessage httpResponseMessage);
@@ -48,29 +48,33 @@ namespace Speechify
         /// <summary>
         /// Delete Memories by Caller<br/>
         /// Delete every memory ever extracted for a specific caller on<br/>
-        /// this agent. Privacy / GDPR surface. Returns the count of rows<br/>
-        /// soft-deleted; rows become permanently unreachable immediately<br/>
-        /// and are hard-deleted by the retention job after the tenant's<br/>
-        /// configured retention window.
+        /// this agent, addressed by `caller_identity`. Privacy / GDPR<br/>
+        /// surface. Rows become permanently unreachable immediately and are<br/>
+        /// hard-deleted by the retention job after the tenant's configured<br/>
+        /// retention window.<br/>
+        /// Returns `200` with the soft-deleted row count rather than a<br/>
+        /// bodiless `204`: the count is GDPR-purge audit evidence, so a<br/>
+        /// privacy operator has direct proof of the purge without<br/>
+        /// re-querying. This is a deliberate exception to the<br/>
+        /// delete-returns-204 convention, shared with the caller-purge<br/>
+        /// cascade (`DELETE /v1/agents/callers/{caller_id}`).
         /// </summary>
         /// <param name="agentId"></param>
+        /// <param name="callerIdentity"></param>
         /// <param name="speechifyVersion"></param>
-        /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
         public async global::System.Threading.Tasks.Task<global::Speechify.DeleteMemoriesByCallerResponse> DeleteMemoriesByCallerAsync(
             string agentId,
-
-            global::Speechify.DeleteMemoriesByCallerRequest request,
+            string callerIdentity,
             string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
             var __response = await DeleteMemoriesByCallerAsResponseAsync(
                 agentId: agentId,
-
-                request: request,
+                callerIdentity: callerIdentity,
                 speechifyVersion: speechifyVersion,
                 requestOptions: requestOptions,
                 cancellationToken: cancellationToken
@@ -81,34 +85,37 @@ namespace Speechify
         /// <summary>
         /// Delete Memories by Caller<br/>
         /// Delete every memory ever extracted for a specific caller on<br/>
-        /// this agent. Privacy / GDPR surface. Returns the count of rows<br/>
-        /// soft-deleted; rows become permanently unreachable immediately<br/>
-        /// and are hard-deleted by the retention job after the tenant's<br/>
-        /// configured retention window.
+        /// this agent, addressed by `caller_identity`. Privacy / GDPR<br/>
+        /// surface. Rows become permanently unreachable immediately and are<br/>
+        /// hard-deleted by the retention job after the tenant's configured<br/>
+        /// retention window.<br/>
+        /// Returns `200` with the soft-deleted row count rather than a<br/>
+        /// bodiless `204`: the count is GDPR-purge audit evidence, so a<br/>
+        /// privacy operator has direct proof of the purge without<br/>
+        /// re-querying. This is a deliberate exception to the<br/>
+        /// delete-returns-204 convention, shared with the caller-purge<br/>
+        /// cascade (`DELETE /v1/agents/callers/{caller_id}`).
         /// </summary>
         /// <param name="agentId"></param>
+        /// <param name="callerIdentity"></param>
         /// <param name="speechifyVersion"></param>
-        /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
         public async global::System.Threading.Tasks.Task<global::Speechify.AutoSDKHttpResponse<global::Speechify.DeleteMemoriesByCallerResponse>> DeleteMemoriesByCallerAsResponseAsync(
             string agentId,
-
-            global::Speechify.DeleteMemoriesByCallerRequest request,
+            string callerIdentity,
             string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
-            request = request ?? throw new global::System.ArgumentNullException(nameof(request));
-
             PrepareArguments(
                 client: HttpClient);
             PrepareDeleteMemoriesByCallerArguments(
                 httpClient: HttpClient,
                 agentId: ref agentId,
-                speechifyVersion: ref speechifyVersion,
-                request: request);
+                callerIdentity: ref callerIdentity,
+                speechifyVersion: ref speechifyVersion);
 
 
             var __authorizations = global::Speechify.EndPointSecurityResolver.ResolveAuthorizations(
@@ -134,15 +141,18 @@ namespace Speechify
             {
 
                             var __pathBuilder = new global::Speechify.PathBuilder(
-                                path: $"/v1/agents/{agentId}/memories/delete",
+                                path: $"/v1/agents/{agentId}/memories",
                                 baseUri: HttpClient.BaseAddress);
+                            __pathBuilder
+                                .AddRequiredParameter("caller_identity", callerIdentity)
+                                ;
                             var __path = __pathBuilder.ToString();
                 __path = global::Speechify.AutoSDKRequestOptionsSupport.AppendQueryParameters(
                     path: __path,
                     clientParameters: Options.QueryParameters,
                     requestParameters: requestOptions?.QueryParameters);
                 var __httpRequest = new global::System.Net.Http.HttpRequestMessage(
-                    method: global::System.Net.Http.HttpMethod.Post,
+                    method: global::System.Net.Http.HttpMethod.Delete,
                     requestUri: new global::System.Uri(__path, global::System.UriKind.RelativeOrAbsolute));
 #if NET6_0_OR_GREATER
                 __httpRequest.Version = global::System.Net.HttpVersion.Version11;
@@ -171,12 +181,6 @@ namespace Speechify
                 __httpRequest.Headers.TryAddWithoutValidation("Speechify-Version", speechifyVersion.ToString());
             }
 
-                            var __httpRequestContentBody = request.ToJson(JsonSerializerContext);
-                            var __httpRequestContent = new global::System.Net.Http.StringContent(
-                                content: __httpRequestContentBody,
-                                encoding: global::System.Text.Encoding.UTF8,
-                                mediaType: "application/json");
-                            __httpRequest.Content = __httpRequestContent;
                 global::Speechify.AutoSDKRequestOptionsSupport.ApplyHeaders(
                     request: __httpRequest,
                     clientHeaders: Options.Headers,
@@ -189,8 +193,8 @@ namespace Speechify
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
                     agentId: agentId!,
-                    speechifyVersion: speechifyVersion,
-                    request: request);
+                    callerIdentity: callerIdentity!,
+                    speechifyVersion: speechifyVersion);
 
                 return __httpRequest;
             }
@@ -209,8 +213,8 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "DeleteMemoriesByCaller",
                                 methodName: "DeleteMemoriesByCallerAsync",
-                                pathTemplate: "$\"/v1/agents/{agentId}/memories/delete\"",
-                                httpMethod: "POST",
+                                pathTemplate: "$\"/v1/agents/{agentId}/memories\"",
+                                httpMethod: "DELETE",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
                                 response: null,
@@ -243,8 +247,8 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "DeleteMemoriesByCaller",
                                 methodName: "DeleteMemoriesByCallerAsync",
-                                pathTemplate: "$\"/v1/agents/{agentId}/memories/delete\"",
-                                httpMethod: "POST",
+                                pathTemplate: "$\"/v1/agents/{agentId}/memories\"",
+                                httpMethod: "DELETE",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
                                 response: null,
@@ -284,8 +288,8 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "DeleteMemoriesByCaller",
                                 methodName: "DeleteMemoriesByCallerAsync",
-                                pathTemplate: "$\"/v1/agents/{agentId}/memories/delete\"",
-                                httpMethod: "POST",
+                                pathTemplate: "$\"/v1/agents/{agentId}/memories\"",
+                                httpMethod: "DELETE",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
                                 response: __response,
@@ -332,8 +336,8 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "DeleteMemoriesByCaller",
                                 methodName: "DeleteMemoriesByCallerAsync",
-                                pathTemplate: "$\"/v1/agents/{agentId}/memories/delete\"",
-                                httpMethod: "POST",
+                                pathTemplate: "$\"/v1/agents/{agentId}/memories\"",
+                                httpMethod: "DELETE",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
                                 response: __response,
@@ -354,8 +358,8 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "DeleteMemoriesByCaller",
                                 methodName: "DeleteMemoriesByCallerAsync",
-                                pathTemplate: "$\"/v1/agents/{agentId}/memories/delete\"",
-                                httpMethod: "POST",
+                                pathTemplate: "$\"/v1/agents/{agentId}/memories\"",
+                                httpMethod: "DELETE",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
                                 response: __response,
@@ -538,46 +542,6 @@ namespace Speechify
             {
                 __httpRequest?.Dispose();
             }
-        }
-        /// <summary>
-        /// Delete Memories by Caller<br/>
-        /// Delete every memory ever extracted for a specific caller on<br/>
-        /// this agent. Privacy / GDPR surface. Returns the count of rows<br/>
-        /// soft-deleted; rows become permanently unreachable immediately<br/>
-        /// and are hard-deleted by the retention job after the tenant's<br/>
-        /// configured retention window.
-        /// </summary>
-        /// <param name="agentId"></param>
-        /// <param name="speechifyVersion"></param>
-        /// <param name="requestAgentId">
-        /// Optional. The agent is taken from the `{agent_id}` URL path,<br/>
-        /// which is authoritative; if supplied here it must match the<br/>
-        /// path or the request is rejected.
-        /// </param>
-        /// <param name="callerIdentity"></param>
-        /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
-        /// <param name="cancellationToken">The token to cancel the operation with</param>
-        /// <exception cref="global::System.InvalidOperationException"></exception>
-        public async global::System.Threading.Tasks.Task<global::Speechify.DeleteMemoriesByCallerResponse> DeleteMemoriesByCallerAsync(
-            string agentId,
-            string callerIdentity,
-            string? speechifyVersion = default,
-            string? requestAgentId = default,
-            global::Speechify.AutoSDKRequestOptions? requestOptions = default,
-            global::System.Threading.CancellationToken cancellationToken = default)
-        {
-            var __request = new global::Speechify.DeleteMemoriesByCallerRequest
-            {
-                AgentId = requestAgentId,
-                CallerIdentity = callerIdentity,
-            };
-
-            return await DeleteMemoriesByCallerAsync(
-                agentId: agentId,
-                speechifyVersion: speechifyVersion,
-                request: __request,
-                requestOptions: requestOptions,
-                cancellationToken: cancellationToken).ConfigureAwait(false);
         }
     }
 }
