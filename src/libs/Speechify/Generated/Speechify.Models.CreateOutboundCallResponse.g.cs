@@ -18,13 +18,6 @@ namespace Speechify
         public required string ConversationId { get; set; }
 
         /// <summary>
-        /// LiveKit room name the answered call joins.
-        /// </summary>
-        [global::System.Text.Json.Serialization.JsonPropertyName("room")]
-        [global::System.Text.Json.Serialization.JsonRequired]
-        public required string Room { get; set; }
-
-        /// <summary>
         /// LiveKit participant ID for the outbound SIP call leg.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("sip_participant_id")]
@@ -43,9 +36,6 @@ namespace Speechify
         /// <param name="conversationId">
         /// ID of the conversation created for this call. Use to poll status.
         /// </param>
-        /// <param name="room">
-        /// LiveKit room name the answered call joins.
-        /// </param>
         /// <param name="sipParticipantId">
         /// LiveKit participant ID for the outbound SIP call leg.
         /// </param>
@@ -54,11 +44,9 @@ namespace Speechify
 #endif
         public CreateOutboundCallResponse(
             string conversationId,
-            string room,
             string sipParticipantId)
         {
             this.ConversationId = conversationId ?? throw new global::System.ArgumentNullException(nameof(conversationId));
-            this.Room = room ?? throw new global::System.ArgumentNullException(nameof(room));
             this.SipParticipantId = sipParticipantId ?? throw new global::System.ArgumentNullException(nameof(sipParticipantId));
         }
 

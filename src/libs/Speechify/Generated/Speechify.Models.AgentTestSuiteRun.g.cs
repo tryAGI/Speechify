@@ -158,8 +158,9 @@ namespace Speechify
         public global::Speechify.OneOf<global::Speechify.TestRunConfigOverride, object>? ConfigOverride { get; set; }
 
         /// <summary>
-        /// The flow version (`agent_versions` row) this suite targeted,<br/>
-        /// or null for the agent's active / synthesized flow.
+        /// The flow version (`agent_versions` row) this suite targeted<br/>
+        /// (prefixed external id, `fver_...`), or null for the agent's<br/>
+        /// active / synthesized flow.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("flow_version_id")]
         public string? FlowVersionId { get; set; }
@@ -253,8 +254,9 @@ namespace Speechify
         /// with, or null for an ordinary Run All / batch.
         /// </param>
         /// <param name="flowVersionId">
-        /// The flow version (`agent_versions` row) this suite targeted,<br/>
-        /// or null for the agent's active / synthesized flow.
+        /// The flow version (`agent_versions` row) this suite targeted<br/>
+        /// (prefixed external id, `fver_...`), or null for the agent's<br/>
+        /// active / synthesized flow.
         /// </param>
         /// <param name="flowVersionNumber">
         /// Human-facing version number of `flow_version_id`; null when no version was targeted.

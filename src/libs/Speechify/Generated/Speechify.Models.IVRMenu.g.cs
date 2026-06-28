@@ -40,12 +40,6 @@ namespace Speechify
         public required string FingerprintId { get; set; }
 
         /// <summary>
-        /// Null on the cross-tenant promoted slot.
-        /// </summary>
-        [global::System.Text.Json.Serialization.JsonPropertyName("tenant_id")]
-        public string? TenantId { get; set; }
-
-        /// <summary>
         /// 
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("schema_version")]
@@ -133,9 +127,6 @@ namespace Speechify
         /// <param name="lastValidatedAt"></param>
         /// <param name="createdAt"></param>
         /// <param name="updatedAt"></param>
-        /// <param name="tenantId">
-        /// Null on the cross-tenant promoted slot.
-        /// </param>
         /// <param name="invalidatedAt"></param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
@@ -151,12 +142,10 @@ namespace Speechify
             global::System.DateTime lastValidatedAt,
             global::System.DateTime createdAt,
             global::System.DateTime updatedAt,
-            string? tenantId,
             global::System.DateTime? invalidatedAt)
         {
             this.Id = id ?? throw new global::System.ArgumentNullException(nameof(id));
             this.FingerprintId = fingerprintId ?? throw new global::System.ArgumentNullException(nameof(fingerprintId));
-            this.TenantId = tenantId;
             this.SchemaVersion = schemaVersion;
             this.MenuTree = menuTree ?? throw new global::System.ArgumentNullException(nameof(menuTree));
             this.ConfidenceScore = confidenceScore;

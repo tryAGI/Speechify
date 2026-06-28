@@ -4,7 +4,7 @@
 namespace Speechify
 {
     /// <summary>
-    /// 
+    /// Validated menu_tree per contracts/agents/ivr_menu.schema.json. Opaque to consumers other than the worker.
     /// </summary>
     public sealed partial class IvrMenuListEntryMenuTree
     {

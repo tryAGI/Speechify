@@ -4,11 +4,11 @@
 namespace Speechify
 {
     /// <summary>
-    /// One row in the list-IVR-menus response. Carries the fingerprint<br/>
-    /// hash + sample transcript so the console can render the IVR<br/>
-    /// identity without a second round-trip. `last_observed_at` and<br/>
-    /// `occurrence_count` are projected from `ivr_fingerprints` for<br/>
-    /// the "when did we last see this IVR" signal.
+    /// One row in the list-IVR-menus response. Carries the sample<br/>
+    /// transcript so the console can render the IVR identity (keyed on<br/>
+    /// the prefixed `fingerprint_id`) without a second round-trip.<br/>
+    /// `last_observed_at` and `occurrence_count` are projected from<br/>
+    /// `ivr_fingerprints` for the "when did we last see this IVR" signal.
     /// </summary>
     public sealed partial class IVRMenuListEntry
     {
@@ -29,13 +29,6 @@ namespace Speechify
         /// <summary>
         /// 
         /// </summary>
-        [global::System.Text.Json.Serialization.JsonPropertyName("fingerprint_hash")]
-        [global::System.Text.Json.Serialization.JsonRequired]
-        public required string FingerprintHash { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("transcript_sample")]
         [global::System.Text.Json.Serialization.JsonRequired]
         public required string TranscriptSample { get; set; }
@@ -48,7 +41,7 @@ namespace Speechify
         public required int SchemaVersion { get; set; }
 
         /// <summary>
-        /// 
+        /// Validated menu_tree per contracts/agents/ivr_menu.schema.json. Opaque to consumers other than the worker.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("menu_tree")]
         [global::System.Text.Json.Serialization.JsonRequired]
@@ -116,10 +109,11 @@ namespace Speechify
         /// Prefixed wire identifier (`menu_&lt;26 char Crockford base32&gt;`).
         /// </param>
         /// <param name="fingerprintId"></param>
-        /// <param name="fingerprintHash"></param>
         /// <param name="transcriptSample"></param>
         /// <param name="schemaVersion"></param>
-        /// <param name="menuTree"></param>
+        /// <param name="menuTree">
+        /// Validated menu_tree per contracts/agents/ivr_menu.schema.json. Opaque to consumers other than the worker.
+        /// </param>
         /// <param name="confidenceScore"></param>
         /// <param name="succeededTraversals"></param>
         /// <param name="totalTraversals"></param>
@@ -133,7 +127,6 @@ namespace Speechify
         public IVRMenuListEntry(
             string id,
             string fingerprintId,
-            string fingerprintHash,
             string transcriptSample,
             int schemaVersion,
             global::Speechify.IvrMenuListEntryMenuTree menuTree,
@@ -147,7 +140,6 @@ namespace Speechify
         {
             this.Id = id ?? throw new global::System.ArgumentNullException(nameof(id));
             this.FingerprintId = fingerprintId ?? throw new global::System.ArgumentNullException(nameof(fingerprintId));
-            this.FingerprintHash = fingerprintHash ?? throw new global::System.ArgumentNullException(nameof(fingerprintHash));
             this.TranscriptSample = transcriptSample ?? throw new global::System.ArgumentNullException(nameof(transcriptSample));
             this.SchemaVersion = schemaVersion;
             this.MenuTree = menuTree ?? throw new global::System.ArgumentNullException(nameof(menuTree));
