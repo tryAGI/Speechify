@@ -3,11 +3,11 @@
 
 namespace Speechify
 {
-    public partial class SubpackageAgentSubpackageAgentKnowledgeBasesClient
+    public partial class SubpackageVoicesClient
     {
 
 
-        private static readonly global::Speechify.EndPointSecurityRequirement s_CreateUrlBatchImportSecurityRequirement0 =
+        private static readonly global::Speechify.EndPointSecurityRequirement s_GetSecurityRequirement0 =
             new global::Speechify.EndPointSecurityRequirement
             {
                 Authorizations = new global::Speechify.EndPointAuthorizationRequirement[]
@@ -21,56 +21,48 @@ namespace Speechify
                     },
                 },
             };
-        private static readonly global::Speechify.EndPointSecurityRequirement[] s_CreateUrlBatchImportSecurityRequirements =
+        private static readonly global::Speechify.EndPointSecurityRequirement[] s_GetSecurityRequirements =
             new global::Speechify.EndPointSecurityRequirement[]
-            {                s_CreateUrlBatchImportSecurityRequirement0,
+            {                s_GetSecurityRequirement0,
             };
-        partial void PrepareCreateUrlBatchImportArguments(
+        partial void PrepareGetArguments(
             global::System.Net.Http.HttpClient httpClient,
-            ref string kbId,
-            ref string? speechifyVersion,
-            global::Speechify.CreateURLBatchImportRequest request);
-        partial void PrepareCreateUrlBatchImportRequest(
+            ref string voiceId,
+            ref string? speechifyVersion);
+        partial void PrepareGetRequest(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpRequestMessage httpRequestMessage,
-            string kbId,
-            string? speechifyVersion,
-            global::Speechify.CreateURLBatchImportRequest request);
-        partial void ProcessCreateUrlBatchImportResponse(
+            string voiceId,
+            string? speechifyVersion);
+        partial void ProcessGetResponse(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpResponseMessage httpResponseMessage);
 
-        partial void ProcessCreateUrlBatchImportResponseContent(
+        partial void ProcessGetResponseContent(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpResponseMessage httpResponseMessage,
             ref string content);
 
         /// <summary>
-        /// Create Multi-URL Import<br/>
-        /// Kick off an async multi-URL import. Accepts 1..N URLs in a<br/>
-        /// single job (capped per-deployment, default 50) and runs the<br/>
-        /// same per-URL pipeline as the sitemap worker. Returns 202 with<br/>
-        /// the import job row; client polls `GET /{kb_id}/imports` for<br/>
-        /// progress.
+        /// Get Voice<br/>
+        /// Fetch a single voice by id - a shared catalogue voice or one of<br/>
+        /// the caller's own personal (cloned) voices. A personal voice that<br/>
+        /// belongs to another workspace returns 404, identical to an<br/>
+        /// unknown id, so voice inventory is never enumerable across tenants.
         /// </summary>
-        /// <param name="kbId"></param>
+        /// <param name="voiceId"></param>
         /// <param name="speechifyVersion"></param>
-        /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
-        public async global::System.Threading.Tasks.Task<global::Speechify.ImportJob> CreateUrlBatchImportAsync(
-            string kbId,
-
-            global::Speechify.CreateURLBatchImportRequest request,
+        public async global::System.Threading.Tasks.Task<global::Speechify.GetVoice> GetAsync(
+            string voiceId,
             string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
-            var __response = await CreateUrlBatchImportAsResponseAsync(
-                kbId: kbId,
-
-                request: request,
+            var __response = await GetAsResponseAsync(
+                voiceId: voiceId,
                 speechifyVersion: speechifyVersion,
                 requestOptions: requestOptions,
                 cancellationToken: cancellationToken
@@ -79,42 +71,35 @@ namespace Speechify
             return __response.Body;
         }
         /// <summary>
-        /// Create Multi-URL Import<br/>
-        /// Kick off an async multi-URL import. Accepts 1..N URLs in a<br/>
-        /// single job (capped per-deployment, default 50) and runs the<br/>
-        /// same per-URL pipeline as the sitemap worker. Returns 202 with<br/>
-        /// the import job row; client polls `GET /{kb_id}/imports` for<br/>
-        /// progress.
+        /// Get Voice<br/>
+        /// Fetch a single voice by id - a shared catalogue voice or one of<br/>
+        /// the caller's own personal (cloned) voices. A personal voice that<br/>
+        /// belongs to another workspace returns 404, identical to an<br/>
+        /// unknown id, so voice inventory is never enumerable across tenants.
         /// </summary>
-        /// <param name="kbId"></param>
+        /// <param name="voiceId"></param>
         /// <param name="speechifyVersion"></param>
-        /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
-        public async global::System.Threading.Tasks.Task<global::Speechify.AutoSDKHttpResponse<global::Speechify.ImportJob>> CreateUrlBatchImportAsResponseAsync(
-            string kbId,
-
-            global::Speechify.CreateURLBatchImportRequest request,
+        public async global::System.Threading.Tasks.Task<global::Speechify.AutoSDKHttpResponse<global::Speechify.GetVoice>> GetAsResponseAsync(
+            string voiceId,
             string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
-            request = request ?? throw new global::System.ArgumentNullException(nameof(request));
-
             PrepareArguments(
                 client: HttpClient);
-            PrepareCreateUrlBatchImportArguments(
+            PrepareGetArguments(
                 httpClient: HttpClient,
-                kbId: ref kbId,
-                speechifyVersion: ref speechifyVersion,
-                request: request);
+                voiceId: ref voiceId,
+                speechifyVersion: ref speechifyVersion);
 
 
             var __authorizations = global::Speechify.EndPointSecurityResolver.ResolveAuthorizations(
                 availableAuthorizations: Authorizations,
-                securityRequirements: s_CreateUrlBatchImportSecurityRequirements,
-                operationName: "CreateUrlBatchImportAsync");
+                securityRequirements: s_GetSecurityRequirements,
+                operationName: "GetAsync");
 
             using var __timeoutCancellationTokenSource = global::Speechify.AutoSDKRequestOptionsSupport.CreateTimeoutCancellationTokenSource(
                 clientOptions: Options,
@@ -134,7 +119,7 @@ namespace Speechify
             {
 
                             var __pathBuilder = new global::Speechify.PathBuilder(
-                                path: $"/v1/agents/knowledge-bases/{kbId}/documents/urls",
+                                path: $"/v1/voices/{voiceId}",
                                 baseUri: HttpClient.BaseAddress);
                             var __path = __pathBuilder.ToString();
                 __path = global::Speechify.AutoSDKRequestOptionsSupport.AppendQueryParameters(
@@ -142,7 +127,7 @@ namespace Speechify
                     clientParameters: Options.QueryParameters,
                     requestParameters: requestOptions?.QueryParameters);
                 var __httpRequest = new global::System.Net.Http.HttpRequestMessage(
-                    method: global::System.Net.Http.HttpMethod.Post,
+                    method: global::System.Net.Http.HttpMethod.Get,
                     requestUri: new global::System.Uri(__path, global::System.UriKind.RelativeOrAbsolute));
 #if NET6_0_OR_GREATER
                 __httpRequest.Version = global::System.Net.HttpVersion.Version11;
@@ -171,12 +156,6 @@ namespace Speechify
                 __httpRequest.Headers.TryAddWithoutValidation("Speechify-Version", speechifyVersion.ToString());
             }
 
-                            var __httpRequestContentBody = request.ToJson(JsonSerializerContext);
-                            var __httpRequestContent = new global::System.Net.Http.StringContent(
-                                content: __httpRequestContentBody,
-                                encoding: global::System.Text.Encoding.UTF8,
-                                mediaType: "application/json");
-                            __httpRequest.Content = __httpRequestContent;
                 global::Speechify.AutoSDKRequestOptionsSupport.ApplyHeaders(
                     request: __httpRequest,
                     clientHeaders: Options.Headers,
@@ -185,12 +164,11 @@ namespace Speechify
                 PrepareRequest(
                     client: HttpClient,
                     request: __httpRequest);
-                PrepareCreateUrlBatchImportRequest(
+                PrepareGetRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
-                    kbId: kbId!,
-                    speechifyVersion: speechifyVersion,
-                    request: request);
+                    voiceId: voiceId!,
+                    speechifyVersion: speechifyVersion);
 
                 return __httpRequest;
             }
@@ -207,10 +185,10 @@ namespace Speechify
                     await global::Speechify.AutoSDKRequestOptionsSupport.OnBeforeRequestAsync(
                             clientOptions: Options,
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "CreateUrlBatchImport",
-                                methodName: "CreateUrlBatchImportAsync",
-                                pathTemplate: "$\"/v1/agents/knowledge-bases/{kbId}/documents/urls\"",
-                                httpMethod: "POST",
+                                operationId: "Get",
+                                methodName: "GetAsync",
+                                pathTemplate: "$\"/v1/voices/{voiceId}\"",
+                                httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
                                 response: null,
@@ -241,10 +219,10 @@ namespace Speechify
                         await global::Speechify.AutoSDKRequestOptionsSupport.OnAfterErrorAsync(
                             clientOptions: Options,
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "CreateUrlBatchImport",
-                                methodName: "CreateUrlBatchImportAsync",
-                                pathTemplate: "$\"/v1/agents/knowledge-bases/{kbId}/documents/urls\"",
-                                httpMethod: "POST",
+                                operationId: "Get",
+                                methodName: "GetAsync",
+                                pathTemplate: "$\"/v1/voices/{voiceId}\"",
+                                httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
                                 response: null,
@@ -282,10 +260,10 @@ namespace Speechify
                         await global::Speechify.AutoSDKRequestOptionsSupport.OnAfterErrorAsync(
                             clientOptions: Options,
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "CreateUrlBatchImport",
-                                methodName: "CreateUrlBatchImportAsync",
-                                pathTemplate: "$\"/v1/agents/knowledge-bases/{kbId}/documents/urls\"",
-                                httpMethod: "POST",
+                                operationId: "Get",
+                                methodName: "GetAsync",
+                                pathTemplate: "$\"/v1/voices/{voiceId}\"",
+                                httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
                                 response: __response,
@@ -322,7 +300,7 @@ namespace Speechify
                 ProcessResponse(
                     client: HttpClient,
                     response: __response);
-                ProcessCreateUrlBatchImportResponse(
+                ProcessGetResponse(
                     httpClient: HttpClient,
                     httpResponseMessage: __response);
                 if (__response.IsSuccessStatusCode)
@@ -330,10 +308,10 @@ namespace Speechify
                     await global::Speechify.AutoSDKRequestOptionsSupport.OnAfterSuccessAsync(
                             clientOptions: Options,
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "CreateUrlBatchImport",
-                                methodName: "CreateUrlBatchImportAsync",
-                                pathTemplate: "$\"/v1/agents/knowledge-bases/{kbId}/documents/urls\"",
-                                httpMethod: "POST",
+                                operationId: "Get",
+                                methodName: "GetAsync",
+                                pathTemplate: "$\"/v1/voices/{voiceId}\"",
+                                httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
                                 response: __response,
@@ -352,10 +330,10 @@ namespace Speechify
                     await global::Speechify.AutoSDKRequestOptionsSupport.OnAfterErrorAsync(
                             clientOptions: Options,
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "CreateUrlBatchImport",
-                                methodName: "CreateUrlBatchImportAsync",
-                                pathTemplate: "$\"/v1/agents/knowledge-bases/{kbId}/documents/urls\"",
-                                httpMethod: "POST",
+                                operationId: "Get",
+                                methodName: "GetAsync",
+                                pathTemplate: "$\"/v1/voices/{voiceId}\"",
+                                httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
                                 response: __response,
@@ -480,6 +458,154 @@ namespace Speechify
                                         h => h.Key,
                                         h => h.Value));
                             }
+                            // Rate limit or concurrency limit exceeded. The response may include a `Retry-After` header. 
+                            if ((int)__response.StatusCode == 429)
+                            {
+                                string? __content_429 = null;
+                                global::System.Exception? __exception_429 = null;
+                                global::Speechify.Error? __value_429 = null;
+                                try
+                                {
+                                    if (__effectiveReadResponseAsString)
+                                    {
+                                        __content_429 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+                                        __value_429 = global::Speechify.Error.FromJson(__content_429, JsonSerializerContext);
+                                    }
+                                    else
+                                    {
+                                        __content_429 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+
+                                        __value_429 = global::Speechify.Error.FromJson(__content_429, JsonSerializerContext);
+                                    }
+                                }
+                                catch (global::System.Exception __ex)
+                                {
+                                    __exception_429 = __ex;
+                                }
+
+
+                                throw global::Speechify.ApiException<global::Speechify.Error>.Create(
+                                    statusCode: __response.StatusCode,
+                                    message: __content_429 ?? __response.ReasonPhrase ?? string.Empty,
+                                    innerException: __exception_429,
+                                    responseBody: __content_429,
+                                    responseObject: __value_429,
+                                    responseHeaders: global::System.Linq.Enumerable.ToDictionary(
+                                        __response.Headers,
+                                        h => h.Key,
+                                        h => h.Value));
+                            }
+                            // An unexpected server-side error occurred. Safe to retry with exponential backoff for idempotent requests. 
+                            if ((int)__response.StatusCode == 500)
+                            {
+                                string? __content_500 = null;
+                                global::System.Exception? __exception_500 = null;
+                                global::Speechify.Error? __value_500 = null;
+                                try
+                                {
+                                    if (__effectiveReadResponseAsString)
+                                    {
+                                        __content_500 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+                                        __value_500 = global::Speechify.Error.FromJson(__content_500, JsonSerializerContext);
+                                    }
+                                    else
+                                    {
+                                        __content_500 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+
+                                        __value_500 = global::Speechify.Error.FromJson(__content_500, JsonSerializerContext);
+                                    }
+                                }
+                                catch (global::System.Exception __ex)
+                                {
+                                    __exception_500 = __ex;
+                                }
+
+
+                                throw global::Speechify.ApiException<global::Speechify.Error>.Create(
+                                    statusCode: __response.StatusCode,
+                                    message: __content_500 ?? __response.ReasonPhrase ?? string.Empty,
+                                    innerException: __exception_500,
+                                    responseBody: __content_500,
+                                    responseObject: __value_500,
+                                    responseHeaders: global::System.Linq.Enumerable.ToDictionary(
+                                        __response.Headers,
+                                        h => h.Key,
+                                        h => h.Value));
+                            }
+                            // An upstream dependency (the TTS composer or voice-metadata service) returned a 5xx. The raw upstream detail is not forwarded - the cause is in the server log; the response is a fixed `upstream_failure` envelope. Safe to retry. 
+                            if ((int)__response.StatusCode == 502)
+                            {
+                                string? __content_502 = null;
+                                global::System.Exception? __exception_502 = null;
+                                global::Speechify.Error? __value_502 = null;
+                                try
+                                {
+                                    if (__effectiveReadResponseAsString)
+                                    {
+                                        __content_502 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+                                        __value_502 = global::Speechify.Error.FromJson(__content_502, JsonSerializerContext);
+                                    }
+                                    else
+                                    {
+                                        __content_502 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+
+                                        __value_502 = global::Speechify.Error.FromJson(__content_502, JsonSerializerContext);
+                                    }
+                                }
+                                catch (global::System.Exception __ex)
+                                {
+                                    __exception_502 = __ex;
+                                }
+
+
+                                throw global::Speechify.ApiException<global::Speechify.Error>.Create(
+                                    statusCode: __response.StatusCode,
+                                    message: __content_502 ?? __response.ReasonPhrase ?? string.Empty,
+                                    innerException: __exception_502,
+                                    responseBody: __content_502,
+                                    responseObject: __value_502,
+                                    responseHeaders: global::System.Linq.Enumerable.ToDictionary(
+                                        __response.Headers,
+                                        h => h.Key,
+                                        h => h.Value));
+                            }
+                            // A downstream dependency is degraded or the endpoint is intentionally disabled (e.g. phone-number purchase before ops setup). 
+                            if ((int)__response.StatusCode == 503)
+                            {
+                                string? __content_503 = null;
+                                global::System.Exception? __exception_503 = null;
+                                global::Speechify.Error? __value_503 = null;
+                                try
+                                {
+                                    if (__effectiveReadResponseAsString)
+                                    {
+                                        __content_503 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+                                        __value_503 = global::Speechify.Error.FromJson(__content_503, JsonSerializerContext);
+                                    }
+                                    else
+                                    {
+                                        __content_503 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+
+                                        __value_503 = global::Speechify.Error.FromJson(__content_503, JsonSerializerContext);
+                                    }
+                                }
+                                catch (global::System.Exception __ex)
+                                {
+                                    __exception_503 = __ex;
+                                }
+
+
+                                throw global::Speechify.ApiException<global::Speechify.Error>.Create(
+                                    statusCode: __response.StatusCode,
+                                    message: __content_503 ?? __response.ReasonPhrase ?? string.Empty,
+                                    innerException: __exception_503,
+                                    responseBody: __content_503,
+                                    responseObject: __value_503,
+                                    responseHeaders: global::System.Linq.Enumerable.ToDictionary(
+                                        __response.Headers,
+                                        h => h.Key,
+                                        h => h.Value));
+                            }
 
                             if (__effectiveReadResponseAsString)
                             {
@@ -493,7 +619,7 @@ namespace Speechify
                                     client: HttpClient,
                                     response: __response,
                                     content: ref __content);
-                                ProcessCreateUrlBatchImportResponseContent(
+                                ProcessGetResponseContent(
                                     httpClient: HttpClient,
                                     httpResponseMessage: __response,
                                     content: ref __content);
@@ -502,9 +628,9 @@ namespace Speechify
                                 {
                                     __response.EnsureSuccessStatusCode();
 
-                                    var __value = global::Speechify.ImportJob.FromJson(__content, JsonSerializerContext) ??
+                                    var __value = global::Speechify.GetVoice.FromJson(__content, JsonSerializerContext) ??
                                         throw new global::System.InvalidOperationException($"Response deserialization failed for \"{__content}\" ");
-                                    return new global::Speechify.AutoSDKHttpResponse<global::Speechify.ImportJob>(
+                                    return new global::Speechify.AutoSDKHttpResponse<global::Speechify.GetVoice>(
                                         statusCode: __response.StatusCode,
                                         headers: global::Speechify.AutoSDKHttpResponse.CreateHeaders(__response),
                                         requestUri: __response.RequestMessage?.RequestUri,
@@ -534,9 +660,9 @@ namespace Speechify
                 #endif
                                     ).ConfigureAwait(false);
 
-                                    var __value = await global::Speechify.ImportJob.FromJsonStreamAsync(__content, JsonSerializerContext).ConfigureAwait(false) ??
+                                    var __value = await global::Speechify.GetVoice.FromJsonStreamAsync(__content, JsonSerializerContext).ConfigureAwait(false) ??
                                         throw new global::System.InvalidOperationException("Response deserialization failed.");
-                                    return new global::Speechify.AutoSDKHttpResponse<global::Speechify.ImportJob>(
+                                    return new global::Speechify.AutoSDKHttpResponse<global::Speechify.GetVoice>(
                                         statusCode: __response.StatusCode,
                                         headers: global::Speechify.AutoSDKHttpResponse.CreateHeaders(__response),
                                         requestUri: __response.RequestMessage?.RequestUri,
@@ -575,45 +701,6 @@ namespace Speechify
             {
                 __httpRequest?.Dispose();
             }
-        }
-        /// <summary>
-        /// Create Multi-URL Import<br/>
-        /// Kick off an async multi-URL import. Accepts 1..N URLs in a<br/>
-        /// single job (capped per-deployment, default 50) and runs the<br/>
-        /// same per-URL pipeline as the sitemap worker. Returns 202 with<br/>
-        /// the import job row; client polls `GET /{kb_id}/imports` for<br/>
-        /// progress.
-        /// </summary>
-        /// <param name="kbId"></param>
-        /// <param name="speechifyVersion"></param>
-        /// <param name="urls"></param>
-        /// <param name="folderId">
-        /// Folder to import the documents into. Prefixed wire identifier<br/>
-        /// (`kfolder_&lt;26 char Crockford base32&gt;`); null/omitted = root.
-        /// </param>
-        /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
-        /// <param name="cancellationToken">The token to cancel the operation with</param>
-        /// <exception cref="global::System.InvalidOperationException"></exception>
-        public async global::System.Threading.Tasks.Task<global::Speechify.ImportJob> CreateUrlBatchImportAsync(
-            string kbId,
-            global::System.Collections.Generic.IList<string> urls,
-            string? speechifyVersion = default,
-            string? folderId = default,
-            global::Speechify.AutoSDKRequestOptions? requestOptions = default,
-            global::System.Threading.CancellationToken cancellationToken = default)
-        {
-            var __request = new global::Speechify.CreateURLBatchImportRequest
-            {
-                Urls = urls,
-                FolderId = folderId,
-            };
-
-            return await CreateUrlBatchImportAsync(
-                kbId: kbId,
-                speechifyVersion: speechifyVersion,
-                request: __request,
-                requestOptions: requestOptions,
-                cancellationToken: cancellationToken).ConfigureAwait(false);
         }
     }
 }

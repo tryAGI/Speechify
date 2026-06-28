@@ -15,7 +15,7 @@ namespace Speechify
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
-        global::System.Threading.Tasks.Task<global::Speechify.ImportJobResponse> CreateCrawlImportAsync(
+        global::System.Threading.Tasks.Task<global::Speechify.ImportJob> CreateCrawlImportAsync(
             string kbId,
 
             global::Speechify.CreateCrawlImportRequest request,
@@ -33,7 +33,7 @@ namespace Speechify
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
-        global::System.Threading.Tasks.Task<global::Speechify.AutoSDKHttpResponse<global::Speechify.ImportJobResponse>> CreateCrawlImportAsResponseAsync(
+        global::System.Threading.Tasks.Task<global::Speechify.AutoSDKHttpResponse<global::Speechify.ImportJob>> CreateCrawlImportAsResponseAsync(
             string kbId,
 
             global::Speechify.CreateCrawlImportRequest request,
@@ -57,7 +57,7 @@ namespace Speechify
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::System.InvalidOperationException"></exception>
-        global::System.Threading.Tasks.Task<global::Speechify.ImportJobResponse> CreateCrawlImportAsync(
+        global::System.Threading.Tasks.Task<global::Speechify.ImportJob> CreateCrawlImportAsync(
             string kbId,
             string url,
             string? speechifyVersion = default,

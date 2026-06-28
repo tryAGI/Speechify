@@ -51,6 +51,12 @@ namespace Speechify
         public required global::Speechify.AnalyticsQueryMeta Meta { get; set; }
 
         /// <summary>
+        /// Display names for open-enum group values the client can't resolve from its own list endpoints, keyed by dimension then by the group value. Populated for `agent_id` so a soft-deleted agent (absent from the live agent list) renders "&lt;name&gt; (deleted)" instead of a bare `agent_&lt;id&gt;`. Absent when no group needs server-side resolution.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("labels")]
+        public global::System.Collections.Generic.Dictionary<string, global::System.Collections.Generic.Dictionary<string, string>>? Labels { get; set; }
+
+        /// <summary>
         /// Additional properties that are not explicitly defined in the schema
         /// </summary>
         [global::System.Text.Json.Serialization.JsonExtensionData]
@@ -69,6 +75,9 @@ namespace Speechify
         /// <param name="previous">
         /// The same query over the immediately preceding period.
         /// </param>
+        /// <param name="labels">
+        /// Display names for open-enum group values the client can't resolve from its own list endpoints, keyed by dimension then by the group value. Populated for `agent_id` so a soft-deleted agent (absent from the live agent list) renders "&lt;name&gt; (deleted)" instead of a bare `agent_&lt;id&gt;`. Absent when no group needs server-side resolution.
+        /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
 #endif
@@ -78,7 +87,8 @@ namespace Speechify
             global::Speechify.AnalyticsQueryResultBucket bucket,
             global::System.Collections.Generic.IList<global::Speechify.AnalyticsSeries> series,
             global::Speechify.AnalyticsQueryMeta meta,
-            global::Speechify.AnalyticsPreviousResult? previous)
+            global::Speechify.AnalyticsPreviousResult? previous,
+            global::System.Collections.Generic.Dictionary<string, global::System.Collections.Generic.Dictionary<string, string>>? labels)
         {
             this.Metric = metric ?? throw new global::System.ArgumentNullException(nameof(metric));
             this.GroupBy = groupBy ?? throw new global::System.ArgumentNullException(nameof(groupBy));
@@ -86,6 +96,7 @@ namespace Speechify
             this.Series = series ?? throw new global::System.ArgumentNullException(nameof(series));
             this.Previous = previous;
             this.Meta = meta ?? throw new global::System.ArgumentNullException(nameof(meta));
+            this.Labels = labels;
         }
 
         /// <summary>

@@ -62,7 +62,7 @@ namespace Speechify
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
-        public async global::System.Threading.Tasks.Task<global::Speechify.CreateBatchCallResponse> CreateAsync(
+        public async global::System.Threading.Tasks.Task<global::Speechify.BatchCall> CreateAsync(
 
             global::Speechify.CreateBatchCallRequest request,
             string? speechifyVersion = default,
@@ -98,7 +98,7 @@ namespace Speechify
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
-        public async global::System.Threading.Tasks.Task<global::Speechify.AutoSDKHttpResponse<global::Speechify.CreateBatchCallResponse>> CreateAsResponseAsync(
+        public async global::System.Threading.Tasks.Task<global::Speechify.AutoSDKHttpResponse<global::Speechify.BatchCall>> CreateAsResponseAsync(
 
             global::Speechify.CreateBatchCallRequest request,
             string? speechifyVersion = default,
@@ -438,9 +438,9 @@ namespace Speechify
                                 {
                                     __response.EnsureSuccessStatusCode();
 
-                                    var __value = global::Speechify.CreateBatchCallResponse.FromJson(__content, JsonSerializerContext) ??
+                                    var __value = global::Speechify.BatchCall.FromJson(__content, JsonSerializerContext) ??
                                         throw new global::System.InvalidOperationException($"Response deserialization failed for \"{__content}\" ");
-                                    return new global::Speechify.AutoSDKHttpResponse<global::Speechify.CreateBatchCallResponse>(
+                                    return new global::Speechify.AutoSDKHttpResponse<global::Speechify.BatchCall>(
                                         statusCode: __response.StatusCode,
                                         headers: global::Speechify.AutoSDKHttpResponse.CreateHeaders(__response),
                                         requestUri: __response.RequestMessage?.RequestUri,
@@ -470,9 +470,9 @@ namespace Speechify
                 #endif
                                     ).ConfigureAwait(false);
 
-                                    var __value = await global::Speechify.CreateBatchCallResponse.FromJsonStreamAsync(__content, JsonSerializerContext).ConfigureAwait(false) ??
+                                    var __value = await global::Speechify.BatchCall.FromJsonStreamAsync(__content, JsonSerializerContext).ConfigureAwait(false) ??
                                         throw new global::System.InvalidOperationException("Response deserialization failed.");
-                                    return new global::Speechify.AutoSDKHttpResponse<global::Speechify.CreateBatchCallResponse>(
+                                    return new global::Speechify.AutoSDKHttpResponse<global::Speechify.BatchCall>(
                                         statusCode: __response.StatusCode,
                                         headers: global::Speechify.AutoSDKHttpResponse.CreateHeaders(__response),
                                         requestUri: __response.RequestMessage?.RequestUri,
@@ -548,7 +548,7 @@ namespace Speechify
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::System.InvalidOperationException"></exception>
-        public async global::System.Threading.Tasks.Task<global::Speechify.CreateBatchCallResponse> CreateAsync(
+        public async global::System.Threading.Tasks.Task<global::Speechify.BatchCall> CreateAsync(
             string name,
             string agentId,
             global::System.Collections.Generic.IList<global::Speechify.BatchRecipientRequest> recipients,

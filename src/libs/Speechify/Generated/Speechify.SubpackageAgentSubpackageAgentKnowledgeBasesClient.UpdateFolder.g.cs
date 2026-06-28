@@ -589,13 +589,9 @@ namespace Speechify
         /// <param name="speechifyVersion"></param>
         /// <param name="name"></param>
         /// <param name="parentFolderId">
-        /// Folder to reparent under. Prefixed wire identifier<br/>
-        /// (`kfolder_&lt;26 char Crockford base32&gt;`).
-        /// </param>
-        /// <param name="clearParentFolderId">
-        /// When `true`, moves the folder to root (clears<br/>
-        /// `parent_folder_id`). Wins over `parent_folder_id` when both<br/>
-        /// are sent.
+        /// Folder to reparent under (prefixed wire identifier<br/>
+        /// `kfolder_&lt;26 char Crockford base32&gt;`), or `null` to move the<br/>
+        /// folder to the knowledge base root. Omit to leave unchanged.
         /// </param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -606,7 +602,6 @@ namespace Speechify
             string? speechifyVersion = default,
             string? name = default,
             string? parentFolderId = default,
-            bool? clearParentFolderId = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
@@ -614,7 +609,6 @@ namespace Speechify
             {
                 Name = name,
                 ParentFolderId = parentFolderId,
-                ClearParentFolderId = clearParentFolderId,
             };
 
             return await UpdateFolderAsync(

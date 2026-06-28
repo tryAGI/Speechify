@@ -9,11 +9,12 @@ namespace Speechify
     public sealed partial class DeleteMemoriesByCallerRequest
     {
         /// <summary>
-        /// 
+        /// Optional. The agent is taken from the `{agent_id}` URL path,<br/>
+        /// which is authoritative; if supplied here it must match the<br/>
+        /// path or the request is rejected.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("agent_id")]
-        [global::System.Text.Json.Serialization.JsonRequired]
-        public required string AgentId { get; set; }
+        public string? AgentId { get; set; }
 
         /// <summary>
         /// 
@@ -31,16 +32,20 @@ namespace Speechify
         /// <summary>
         /// Initializes a new instance of the <see cref="DeleteMemoriesByCallerRequest" /> class.
         /// </summary>
-        /// <param name="agentId"></param>
         /// <param name="callerIdentity"></param>
+        /// <param name="agentId">
+        /// Optional. The agent is taken from the `{agent_id}` URL path,<br/>
+        /// which is authoritative; if supplied here it must match the<br/>
+        /// path or the request is rejected.
+        /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
 #endif
         public DeleteMemoriesByCallerRequest(
-            string agentId,
-            string callerIdentity)
+            string callerIdentity,
+            string? agentId)
         {
-            this.AgentId = agentId ?? throw new global::System.ArgumentNullException(nameof(agentId));
+            this.AgentId = agentId;
             this.CallerIdentity = callerIdentity ?? throw new global::System.ArgumentNullException(nameof(callerIdentity));
         }
 

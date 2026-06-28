@@ -6,8 +6,10 @@ namespace Speechify
     {
         /// <summary>
         /// Delete Folder<br/>
-        /// Delete a folder. Documents inside the folder are moved to root<br/>
-        /// (not deleted). Sub-folders are detached likewise.
+        /// Delete a folder. By default a folder that still contains<br/>
+        /// documents or sub-folders is refused with `409` - pass<br/>
+        /// `?force=true` to delete it anyway, which recursively moves its<br/>
+        /// documents to root and removes its sub-folders.
         /// </summary>
         /// <param name="kbId"></param>
         /// <param name="folderId"></param>
@@ -25,8 +27,10 @@ namespace Speechify
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Delete Folder<br/>
-        /// Delete a folder. Documents inside the folder are moved to root<br/>
-        /// (not deleted). Sub-folders are detached likewise.
+        /// Delete a folder. By default a folder that still contains<br/>
+        /// documents or sub-folders is refused with `409` - pass<br/>
+        /// `?force=true` to delete it anyway, which recursively moves its<br/>
+        /// documents to root and removes its sub-folders.
         /// </summary>
         /// <param name="kbId"></param>
         /// <param name="folderId"></param>

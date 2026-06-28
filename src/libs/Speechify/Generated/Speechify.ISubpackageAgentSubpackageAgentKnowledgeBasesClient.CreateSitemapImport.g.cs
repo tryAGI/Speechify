@@ -15,7 +15,7 @@ namespace Speechify
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
-        global::System.Threading.Tasks.Task<global::Speechify.ImportJobResponse> CreateSitemapImportAsync(
+        global::System.Threading.Tasks.Task<global::Speechify.ImportJob> CreateSitemapImportAsync(
             string kbId,
 
             global::Speechify.CreateSitemapImportRequest request,
@@ -33,7 +33,7 @@ namespace Speechify
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
-        global::System.Threading.Tasks.Task<global::Speechify.AutoSDKHttpResponse<global::Speechify.ImportJobResponse>> CreateSitemapImportAsResponseAsync(
+        global::System.Threading.Tasks.Task<global::Speechify.AutoSDKHttpResponse<global::Speechify.ImportJob>> CreateSitemapImportAsResponseAsync(
             string kbId,
 
             global::Speechify.CreateSitemapImportRequest request,
@@ -55,7 +55,7 @@ namespace Speechify
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::System.InvalidOperationException"></exception>
-        global::System.Threading.Tasks.Task<global::Speechify.ImportJobResponse> CreateSitemapImportAsync(
+        global::System.Threading.Tasks.Task<global::Speechify.ImportJob> CreateSitemapImportAsync(
             string kbId,
             string url,
             string? speechifyVersion = default,
