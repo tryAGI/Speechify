@@ -51,7 +51,7 @@ namespace Speechify
         /// <param name="kbIds">
         /// Knowledge bases to search across. Results scoped to caller-owned entries; unknown IDs are silently ignored.
         /// </param>
-        /// <param name="topK">
+        /// <param name="limit">
         /// Max hits to return (default 5, capped at 50).<br/>
         /// Default Value: 5
         /// </param>
@@ -62,7 +62,7 @@ namespace Speechify
             string query,
             global::System.Collections.Generic.IList<string> kbIds,
             string? speechifyVersion = default,
-            int? topK = default,
+            int? limit = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
     }

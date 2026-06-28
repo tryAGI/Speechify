@@ -48,6 +48,10 @@ namespace Speechify
         /// <summary>
         /// 
         /// </summary>
+        ConcurrencyLimitReached,
+        /// <summary>
+        /// 
+        /// </summary>
         Conflict,
         /// <summary>
         /// 
@@ -211,6 +215,7 @@ namespace Speechify
                 ErrorCode.BatchNotFound => "batch_not_found",
                 ErrorCode.BuiltinNotFound => "builtin_not_found",
                 ErrorCode.CallerNotFound => "caller_not_found",
+                ErrorCode.ConcurrencyLimitReached => "concurrency_limit_reached",
                 ErrorCode.Conflict => "conflict",
                 ErrorCode.ConversationNotFound => "conversation_not_found",
                 ErrorCode.CredentialInUse => "credential_in_use",
@@ -265,6 +270,7 @@ namespace Speechify
                 "batch_not_found" => ErrorCode.BatchNotFound,
                 "builtin_not_found" => ErrorCode.BuiltinNotFound,
                 "caller_not_found" => ErrorCode.CallerNotFound,
+                "concurrency_limit_reached" => ErrorCode.ConcurrencyLimitReached,
                 "conflict" => ErrorCode.Conflict,
                 "conversation_not_found" => ErrorCode.ConversationNotFound,
                 "credential_in_use" => ErrorCode.CredentialInUse,

@@ -41,7 +41,7 @@ namespace Speechify
         public required global::System.Collections.Generic.IList<global::Speechify.AgentVoiceModel> Models { get; set; }
 
         /// <summary>
-        /// Speaker gender as classified by VMS. `notSpecified` is used<br/>
+        /// Speaker gender as classified by VMS. `not_specified` is used<br/>
         /// when the source dataset didn't carry the metadata; the<br/>
         /// console treats it as a neutral display label rather than a<br/>
         /// filter gap.
@@ -93,7 +93,7 @@ namespace Speechify
         /// <param name="displayName"></param>
         /// <param name="models"></param>
         /// <param name="gender">
-        /// Speaker gender as classified by VMS. `notSpecified` is used<br/>
+        /// Speaker gender as classified by VMS. `not_specified` is used<br/>
         /// when the source dataset didn't carry the metadata; the<br/>
         /// console treats it as a neutral display label rather than a<br/>
         /// filter gap.

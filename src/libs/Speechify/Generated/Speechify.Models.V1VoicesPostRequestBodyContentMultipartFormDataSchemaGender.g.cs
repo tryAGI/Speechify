@@ -7,7 +7,7 @@ namespace Speechify
     /// Gender marker for the personal voice<br/>
     /// male GenderMale<br/>
     /// female GenderFemale<br/>
-    /// notSpecified GenderNotSpecified
+    /// not_specified GenderNotSpecified
     /// </summary>
     public enum V1VoicesPostRequestBodyContentMultipartFormDataSchemaGender
     {
@@ -39,7 +39,7 @@ namespace Speechify
             {
                 V1VoicesPostRequestBodyContentMultipartFormDataSchemaGender.Female => "female",
                 V1VoicesPostRequestBodyContentMultipartFormDataSchemaGender.Male => "male",
-                V1VoicesPostRequestBodyContentMultipartFormDataSchemaGender.NotSpecified => "notSpecified",
+                V1VoicesPostRequestBodyContentMultipartFormDataSchemaGender.NotSpecified => "not_specified",
                 _ => throw new global::System.ArgumentOutOfRangeException(nameof(value), value, null),
             };
         }
@@ -52,7 +52,7 @@ namespace Speechify
             {
                 "female" => V1VoicesPostRequestBodyContentMultipartFormDataSchemaGender.Female,
                 "male" => V1VoicesPostRequestBodyContentMultipartFormDataSchemaGender.Male,
-                "notSpecified" => V1VoicesPostRequestBodyContentMultipartFormDataSchemaGender.NotSpecified,
+                "not_specified" => V1VoicesPostRequestBodyContentMultipartFormDataSchemaGender.NotSpecified,
                 _ => null,
             };
         }

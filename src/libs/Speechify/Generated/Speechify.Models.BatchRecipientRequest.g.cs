@@ -16,10 +16,13 @@ namespace Speechify
         public required string Phone { get; set; }
 
         /// <summary>
-        /// Per-recipient variable overrides injected into the agent prompt.
+        /// Per-recipient variable overrides injected into the agent prompt.<br/>
+        /// Values may be any JSON type, matching the outbound-call and<br/>
+        /// web-session `dynamic_variables` surfaces. CSV uploads carry<br/>
+        /// string values.
         /// </summary>
-        [global::System.Text.Json.Serialization.JsonPropertyName("dynamic_vars")]
-        public global::System.Collections.Generic.Dictionary<string, string>? DynamicVars { get; set; }
+        [global::System.Text.Json.Serialization.JsonPropertyName("dynamic_variables")]
+        public object? DynamicVariables { get; set; }
 
         /// <summary>
         /// Additional properties that are not explicitly defined in the schema
@@ -33,18 +36,21 @@ namespace Speechify
         /// <param name="phone">
         /// Recipient phone number in E.164 format.
         /// </param>
-        /// <param name="dynamicVars">
-        /// Per-recipient variable overrides injected into the agent prompt.
+        /// <param name="dynamicVariables">
+        /// Per-recipient variable overrides injected into the agent prompt.<br/>
+        /// Values may be any JSON type, matching the outbound-call and<br/>
+        /// web-session `dynamic_variables` surfaces. CSV uploads carry<br/>
+        /// string values.
         /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
 #endif
         public BatchRecipientRequest(
             string phone,
-            global::System.Collections.Generic.Dictionary<string, string>? dynamicVars)
+            object? dynamicVariables)
         {
             this.Phone = phone ?? throw new global::System.ArgumentNullException(nameof(phone));
-            this.DynamicVars = dynamicVars;
+            this.DynamicVariables = dynamicVariables;
         }
 
         /// <summary>

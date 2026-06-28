@@ -51,22 +51,10 @@ namespace Speechify
         public required global::Speechify.SIPTrunkDirection Direction { get; set; }
 
         /// <summary>
-        /// The provider's inbound trunk ID (present when direction is `inbound` or `both`).
+        /// Whether an outbound trunk is provisioned for this trunk (i.e. it can place outbound calls).
         /// </summary>
-        [global::System.Text.Json.Serialization.JsonPropertyName("provider_inbound_trunk_id")]
-        public string? ProviderInboundTrunkId { get; set; }
-
-        /// <summary>
-        /// The provider's outbound trunk ID (present when direction is `outbound` or `both`).
-        /// </summary>
-        [global::System.Text.Json.Serialization.JsonPropertyName("provider_outbound_trunk_id")]
-        public string? ProviderOutboundTrunkId { get; set; }
-
-        /// <summary>
-        /// The provider's dispatch rule ID that routes inbound calls into rooms.
-        /// </summary>
-        [global::System.Text.Json.Serialization.JsonPropertyName("provider_dispatch_rule_id")]
-        public string? ProviderDispatchRuleId { get; set; }
+        [global::System.Text.Json.Serialization.JsonPropertyName("outbound_trunk_set")]
+        public bool? OutboundTrunkSet { get; set; }
 
         /// <summary>
         /// SIP endpoint hostname (e.g. `sip.telnyx.com`). Required for `provider=byoc`.
@@ -184,14 +172,8 @@ namespace Speechify
         /// </param>
         /// <param name="createdAt"></param>
         /// <param name="updatedAt"></param>
-        /// <param name="providerInboundTrunkId">
-        /// The provider's inbound trunk ID (present when direction is `inbound` or `both`).
-        /// </param>
-        /// <param name="providerOutboundTrunkId">
-        /// The provider's outbound trunk ID (present when direction is `outbound` or `both`).
-        /// </param>
-        /// <param name="providerDispatchRuleId">
-        /// The provider's dispatch rule ID that routes inbound calls into rooms.
+        /// <param name="outboundTrunkSet">
+        /// Whether an outbound trunk is provisioned for this trunk (i.e. it can place outbound calls).
         /// </param>
         /// <param name="sipAddress">
         /// SIP endpoint hostname (e.g. `sip.telnyx.com`). Required for `provider=byoc`.
@@ -220,9 +202,7 @@ namespace Speechify
             global::Speechify.SIPMediaEncryption mediaEncryption,
             global::System.DateTime createdAt,
             global::System.DateTime updatedAt,
-            string? providerInboundTrunkId,
-            string? providerOutboundTrunkId,
-            string? providerDispatchRuleId,
+            bool? outboundTrunkSet,
             string? sipAddress,
             string? authUsername,
             bool? authPasswordSet,
@@ -232,9 +212,7 @@ namespace Speechify
             this.Name = name ?? throw new global::System.ArgumentNullException(nameof(name));
             this.Provider = provider;
             this.Direction = direction;
-            this.ProviderInboundTrunkId = providerInboundTrunkId;
-            this.ProviderOutboundTrunkId = providerOutboundTrunkId;
-            this.ProviderDispatchRuleId = providerDispatchRuleId;
+            this.OutboundTrunkSet = outboundTrunkSet;
             this.SipAddress = sipAddress;
             this.AuthUsername = authUsername;
             this.AuthPasswordSet = authPasswordSet;

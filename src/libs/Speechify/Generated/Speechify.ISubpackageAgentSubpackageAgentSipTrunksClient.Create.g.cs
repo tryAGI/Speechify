@@ -6,10 +6,10 @@ namespace Speechify
     {
         /// <summary>
         /// Create SIP Trunk<br/>
-        /// Create a SIP trunk. For `kind=byoc` supply `sip_address` plus<br/>
-        /// optional digest credentials and IP allowlist. For `kind=twilio`<br/>
+        /// Create a SIP trunk. For `provider=byoc` supply `sip_address` plus<br/>
+        /// optional digest credentials and IP allowlist. For `provider=twilio`<br/>
         /// use `ImportPhoneNumber` with a `twilio` spec instead - trunk<br/>
-        /// creation is handled automatically. Returns 402 when the workspace<br/>
+        /// creation is handled automatically. Returns 422 when the workspace<br/>
         /// has reached the 20-trunk cap.
         /// </summary>
         /// <param name="speechifyVersion"></param>
@@ -25,10 +25,10 @@ namespace Speechify
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Create SIP Trunk<br/>
-        /// Create a SIP trunk. For `kind=byoc` supply `sip_address` plus<br/>
-        /// optional digest credentials and IP allowlist. For `kind=twilio`<br/>
+        /// Create a SIP trunk. For `provider=byoc` supply `sip_address` plus<br/>
+        /// optional digest credentials and IP allowlist. For `provider=twilio`<br/>
         /// use `ImportPhoneNumber` with a `twilio` spec instead - trunk<br/>
-        /// creation is handled automatically. Returns 402 when the workspace<br/>
+        /// creation is handled automatically. Returns 422 when the workspace<br/>
         /// has reached the 20-trunk cap.
         /// </summary>
         /// <param name="speechifyVersion"></param>
@@ -44,10 +44,10 @@ namespace Speechify
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Create SIP Trunk<br/>
-        /// Create a SIP trunk. For `kind=byoc` supply `sip_address` plus<br/>
-        /// optional digest credentials and IP allowlist. For `kind=twilio`<br/>
+        /// Create a SIP trunk. For `provider=byoc` supply `sip_address` plus<br/>
+        /// optional digest credentials and IP allowlist. For `provider=twilio`<br/>
         /// use `ImportPhoneNumber` with a `twilio` spec instead - trunk<br/>
-        /// creation is handled automatically. Returns 402 when the workspace<br/>
+        /// creation is handled automatically. Returns 422 when the workspace<br/>
         /// has reached the 20-trunk cap.
         /// </summary>
         /// <param name="speechifyVersion"></param>

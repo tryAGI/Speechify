@@ -50,7 +50,7 @@ namespace Speechify
         /// Gender marker for the personal voice<br/>
         /// male GenderMale<br/>
         /// female GenderFemale<br/>
-        /// notSpecified GenderNotSpecified
+        /// not_specified GenderNotSpecified
         /// </param>
         /// <param name="sample">
         /// Audio sample file
@@ -101,7 +101,7 @@ namespace Speechify
         /// Gender marker for the personal voice<br/>
         /// male GenderMale<br/>
         /// female GenderFemale<br/>
-        /// notSpecified GenderNotSpecified
+        /// not_specified GenderNotSpecified
         /// </param>
         /// <param name="sample">
         /// Audio sample file
@@ -151,7 +151,7 @@ namespace Speechify
         /// Gender marker for the personal voice<br/>
         /// male GenderMale<br/>
         /// female GenderFemale<br/>
-        /// notSpecified GenderNotSpecified
+        /// not_specified GenderNotSpecified
         /// </param>
         /// <param name="sample">
         /// Audio sample file

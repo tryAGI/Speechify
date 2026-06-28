@@ -6,9 +6,11 @@ namespace Speechify
     {
         /// <summary>
         /// List SIP Trunks<br/>
-        /// List all SIP trunks in the caller's workspace. Cursor-paginated:<br/>
-        /// omit `cursor` for the first page; walk pages while `has_more` is<br/>
-        /// true (default page size 50, max 200).
+        /// List all SIP trunks in the caller's workspace. Cursor-paginated<br/>
+        /// for uniformity with the other list endpoints: omit `cursor` for<br/>
+        /// the first page; walk pages while `has_more` is true (default page<br/>
+        /// size 50, max 200). In practice the workspace is capped at 20<br/>
+        /// trunks, so every response fits in a single page.
         /// </summary>
         /// <param name="cursor"></param>
         /// <param name="limit">
@@ -26,9 +28,11 @@ namespace Speechify
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// List SIP Trunks<br/>
-        /// List all SIP trunks in the caller's workspace. Cursor-paginated:<br/>
-        /// omit `cursor` for the first page; walk pages while `has_more` is<br/>
-        /// true (default page size 50, max 200).
+        /// List all SIP trunks in the caller's workspace. Cursor-paginated<br/>
+        /// for uniformity with the other list endpoints: omit `cursor` for<br/>
+        /// the first page; walk pages while `has_more` is true (default page<br/>
+        /// size 50, max 200). In practice the workspace is capped at 20<br/>
+        /// trunks, so every response fits in a single page.
         /// </summary>
         /// <param name="cursor"></param>
         /// <param name="limit">

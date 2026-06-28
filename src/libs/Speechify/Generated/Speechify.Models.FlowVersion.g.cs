@@ -64,12 +64,6 @@ namespace Speechify
         /// <summary>
         /// 
         /// </summary>
-        [global::System.Text.Json.Serialization.JsonPropertyName("published_by")]
-        public string? PublishedBy { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("published_at")]
         public global::System.DateTime? PublishedAt { get; set; }
 
@@ -102,7 +96,6 @@ namespace Speechify
         /// </param>
         /// <param name="name"></param>
         /// <param name="notes"></param>
-        /// <param name="publishedBy"></param>
         /// <param name="publishedAt"></param>
         /// <param name="updatedAt"></param>
 #if NET7_0_OR_GREATER
@@ -117,7 +110,6 @@ namespace Speechify
             string? parentVersionId,
             string? name,
             string? notes,
-            string? publishedBy,
             global::System.DateTime? publishedAt,
             global::System.DateTime? updatedAt)
         {
@@ -129,7 +121,6 @@ namespace Speechify
             this.IsDraft = isDraft;
             this.Name = name;
             this.Notes = notes;
-            this.PublishedBy = publishedBy;
             this.PublishedAt = publishedAt;
             this.UpdatedAt = updatedAt;
         }

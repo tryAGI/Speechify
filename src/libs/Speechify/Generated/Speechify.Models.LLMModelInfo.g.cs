@@ -37,13 +37,13 @@ namespace Speechify
         public required string Description { get; set; }
 
         /// <summary>
-        /// Access class controlling which plans may select the model:<br/>
-        /// 0 = managed, 1 = standard, 2 = premium. Premium models are<br/>
-        /// available only on higher plans.
+        /// Access class controlling which plans may select the model.<br/>
+        /// `premium` models are available only on higher plans.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("class")]
+        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Speechify.JsonConverters.LlmModelInfoClassJsonConverter))]
         [global::System.Text.Json.Serialization.JsonRequired]
-        public required int Class { get; set; }
+        public required global::Speechify.LlmModelInfoClass Class { get; set; }
 
         /// <summary>
         /// Additional properties that are not explicitly defined in the schema
@@ -67,9 +67,8 @@ namespace Speechify
         /// One-line picker description.
         /// </param>
         /// <param name="class">
-        /// Access class controlling which plans may select the model:<br/>
-        /// 0 = managed, 1 = standard, 2 = premium. Premium models are<br/>
-        /// available only on higher plans.
+        /// Access class controlling which plans may select the model.<br/>
+        /// `premium` models are available only on higher plans.
         /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
@@ -79,7 +78,7 @@ namespace Speechify
             string model,
             string label,
             string description,
-            int @class)
+            global::Speechify.LlmModelInfoClass @class)
         {
             this.Provider = provider ?? throw new global::System.ArgumentNullException(nameof(provider));
             this.Model = model ?? throw new global::System.ArgumentNullException(nameof(model));
