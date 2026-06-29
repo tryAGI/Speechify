@@ -285,6 +285,14 @@ namespace Speechify
 
             typeof(global::Speechify.JsonConverters.ChatMessageRoleNullableJsonConverter),
 
+            typeof(global::Speechify.JsonConverters.AnthropicMessageRequestModelJsonConverter),
+
+            typeof(global::Speechify.JsonConverters.AnthropicMessageRequestModelNullableJsonConverter),
+
+            typeof(global::Speechify.JsonConverters.AnthropicMessageRequestMessagesItemsRoleJsonConverter),
+
+            typeof(global::Speechify.JsonConverters.AnthropicMessageRequestMessagesItemsRoleNullableJsonConverter),
+
             typeof(global::Speechify.JsonConverters.LlmModelInfoClassJsonConverter),
 
             typeof(global::Speechify.JsonConverters.LlmModelInfoClassNullableJsonConverter),
@@ -350,6 +358,10 @@ namespace Speechify
             typeof(global::Speechify.JsonConverters.CreateAgentTestRequestConfigJsonConverter),
 
             typeof(global::Speechify.JsonConverters.ChatMessageContentJsonConverter),
+
+            typeof(global::Speechify.JsonConverters.AnthropicMessageRequestMessagesItemsContentJsonConverter),
+
+            typeof(global::Speechify.JsonConverters.AnthropicMessageRequestSystemJsonConverter),
 
             typeof(global::Speechify.JsonConverters.OneOfJsonConverter<global::Speechify.EvaluationStatus?, object>),
 
@@ -786,6 +798,15 @@ namespace Speechify
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Speechify.WaymarkModelUsage>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.ChatCompletionResponse))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.DateTimeOffset))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.AnthropicMessageRequestModel), TypeInfoPropertyName = "AnthropicMessageRequestModel2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.AnthropicMessageRequestMessagesItemsRole), TypeInfoPropertyName = "AnthropicMessageRequestMessagesItemsRole2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.AnthropicMessageRequestMessagesItemsContent), TypeInfoPropertyName = "AnthropicMessageRequestMessagesItemsContent2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.AnthropicMessageRequestMessagesItems))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.AnthropicMessageRequestSystem), TypeInfoPropertyName = "AnthropicMessageRequestSystem2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.AnthropicMessageRequest))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Speechify.AnthropicMessageRequestMessagesItems>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.AnthropicMessageUsage))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.AnthropicMessage))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.LlmModelInfoClass), TypeInfoPropertyName = "LlmModelInfoClass2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.LLMModelInfo))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.LLMPlatformDefault))]
@@ -872,15 +893,6 @@ namespace Speechify
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.Agent>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.AgentVoiceLanguage>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.AgentVoiceModel>))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.AgentVoice>))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.FlowGraphNodesItems>))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.FlowGraphEdgesItems>))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.FlowGraphVariablesItems>))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.FlowTemplate>))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.FlowGraphInputNodesItems>))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.FlowGraphInputEdgesItems>))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.FlowGraphInputVariablesItems>))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.FlowValidationIssue>))]
     internal sealed partial class SourceGenerationContextChunk0 : global::System.Text.Json.Serialization.JsonSerializerContext
     {
     }
@@ -1164,6 +1176,14 @@ namespace Speechify
 
             typeof(global::Speechify.JsonConverters.ChatMessageRoleNullableJsonConverter),
 
+            typeof(global::Speechify.JsonConverters.AnthropicMessageRequestModelJsonConverter),
+
+            typeof(global::Speechify.JsonConverters.AnthropicMessageRequestModelNullableJsonConverter),
+
+            typeof(global::Speechify.JsonConverters.AnthropicMessageRequestMessagesItemsRoleJsonConverter),
+
+            typeof(global::Speechify.JsonConverters.AnthropicMessageRequestMessagesItemsRoleNullableJsonConverter),
+
             typeof(global::Speechify.JsonConverters.LlmModelInfoClassJsonConverter),
 
             typeof(global::Speechify.JsonConverters.LlmModelInfoClassNullableJsonConverter),
@@ -1230,6 +1250,10 @@ namespace Speechify
 
             typeof(global::Speechify.JsonConverters.ChatMessageContentJsonConverter),
 
+            typeof(global::Speechify.JsonConverters.AnthropicMessageRequestMessagesItemsContentJsonConverter),
+
+            typeof(global::Speechify.JsonConverters.AnthropicMessageRequestSystemJsonConverter),
+
             typeof(global::Speechify.JsonConverters.OneOfJsonConverter<global::Speechify.EvaluationStatus?, object>),
 
             typeof(global::Speechify.JsonConverters.OneOfJsonConverter<global::Speechify.ReplyResult, object>),
@@ -1260,6 +1284,15 @@ namespace Speechify
 
             typeof(global::Speechify.JsonConverters.UnixTimestampJsonConverter),
         })]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.AgentVoice>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.FlowGraphNodesItems>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.FlowGraphEdgesItems>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.FlowGraphVariablesItems>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.FlowTemplate>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.FlowGraphInputNodesItems>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.FlowGraphInputEdgesItems>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.FlowGraphInputVariablesItems>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.FlowValidationIssue>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.EvaluationCriterion>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.DataCollectionField>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.PutFlowRequestNodesItems>))]
@@ -1318,6 +1351,7 @@ namespace Speechify
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.AudioAsset>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.ChatMessage>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.WaymarkModelUsage>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.AnthropicMessageRequestMessagesItems>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.LLMModelInfo>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.ConversationTraceEvent>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.ConversationTraceTurn>))]
@@ -1508,6 +1542,10 @@ namespace Speechify
             options.Converters.Add(new global::Speechify.JsonConverters.ChatCompletionRequestModelNullableJsonConverter());
             options.Converters.Add(new global::Speechify.JsonConverters.ChatMessageRoleJsonConverter());
             options.Converters.Add(new global::Speechify.JsonConverters.ChatMessageRoleNullableJsonConverter());
+            options.Converters.Add(new global::Speechify.JsonConverters.AnthropicMessageRequestModelJsonConverter());
+            options.Converters.Add(new global::Speechify.JsonConverters.AnthropicMessageRequestModelNullableJsonConverter());
+            options.Converters.Add(new global::Speechify.JsonConverters.AnthropicMessageRequestMessagesItemsRoleJsonConverter());
+            options.Converters.Add(new global::Speechify.JsonConverters.AnthropicMessageRequestMessagesItemsRoleNullableJsonConverter());
             options.Converters.Add(new global::Speechify.JsonConverters.LlmModelInfoClassJsonConverter());
             options.Converters.Add(new global::Speechify.JsonConverters.LlmModelInfoClassNullableJsonConverter());
             options.Converters.Add(new global::Speechify.JsonConverters.ConversationTraceEventKindJsonConverter());
@@ -1541,6 +1579,8 @@ namespace Speechify
             options.Converters.Add(new global::Speechify.JsonConverters.UpdateAgentTestRequestConfigJsonConverter());
             options.Converters.Add(new global::Speechify.JsonConverters.CreateAgentTestRequestConfigJsonConverter());
             options.Converters.Add(new global::Speechify.JsonConverters.ChatMessageContentJsonConverter());
+            options.Converters.Add(new global::Speechify.JsonConverters.AnthropicMessageRequestMessagesItemsContentJsonConverter());
+            options.Converters.Add(new global::Speechify.JsonConverters.AnthropicMessageRequestSystemJsonConverter());
             options.Converters.Add(new global::Speechify.JsonConverters.OneOfJsonConverter<global::Speechify.EvaluationStatus?, object>());
             options.Converters.Add(new global::Speechify.JsonConverters.OneOfJsonConverter<global::Speechify.ReplyResult, object>());
             options.Converters.Add(new global::Speechify.JsonConverters.OneOfJsonConverter<global::Speechify.ToolCallResult, object>());
