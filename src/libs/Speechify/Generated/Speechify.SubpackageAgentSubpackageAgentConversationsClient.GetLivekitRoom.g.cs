@@ -3,11 +3,11 @@
 
 namespace Speechify
 {
-    public partial class SubpackageAgentSubpackageAgentToolDefinitionsClient
+    public partial class SubpackageAgentSubpackageAgentConversationsClient
     {
 
 
-        private static readonly global::Speechify.EndPointSecurityRequirement s_TestWebhookConnectionSecurityRequirement0 =
+        private static readonly global::Speechify.EndPointSecurityRequirement s_GetLivekitRoomSecurityRequirement0 =
             new global::Speechify.EndPointSecurityRequirement
             {
                 Authorizations = new global::Speechify.EndPointAuthorizationRequirement[]
@@ -21,56 +21,51 @@ namespace Speechify
                     },
                 },
             };
-        private static readonly global::Speechify.EndPointSecurityRequirement[] s_TestWebhookConnectionSecurityRequirements =
+        private static readonly global::Speechify.EndPointSecurityRequirement[] s_GetLivekitRoomSecurityRequirements =
             new global::Speechify.EndPointSecurityRequirement[]
-            {                s_TestWebhookConnectionSecurityRequirement0,
+            {                s_GetLivekitRoomSecurityRequirement0,
             };
-        partial void PrepareTestWebhookConnectionArguments(
+        partial void PrepareGetLivekitRoomArguments(
             global::System.Net.Http.HttpClient httpClient,
-            ref string? speechifyVersion,
-            global::Speechify.TestWebhookConnectionRequest request);
-        partial void PrepareTestWebhookConnectionRequest(
+            ref string conversationId,
+            ref string? speechifyVersion);
+        partial void PrepareGetLivekitRoomRequest(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpRequestMessage httpRequestMessage,
-            string? speechifyVersion,
-            global::Speechify.TestWebhookConnectionRequest request);
-        partial void ProcessTestWebhookConnectionResponse(
+            string conversationId,
+            string? speechifyVersion);
+        partial void ProcessGetLivekitRoomResponse(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpResponseMessage httpResponseMessage);
 
-        partial void ProcessTestWebhookConnectionResponseContent(
+        partial void ProcessGetLivekitRoomResponseContent(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpResponseMessage httpResponseMessage,
             ref string content);
 
         /// <summary>
-        /// Test Webhook Connection<br/>
-        /// Probe a customer-supplied webhook tool config without persisting<br/>
-        /// anything. The server fires the exact request shape the worker<br/>
-        /// sends on a real invocation — same JSON body, same HMAC-SHA256<br/>
-        /// signature — with an empty argument set, and reports the<br/>
-        /// endpoint's status code, latency, and a truncated response body,<br/>
-        /// or a transport-level failure reason. The probe carries a<br/>
-        /// `Speechify-Webhook-Test: true` header so a careful endpoint<br/>
-        /// can recognise the test and skip its real side effect. Pass<br/>
-        /// `tool_id` from the edit-form flow so the server signs the probe<br/>
-        /// with the tool's stored HMAC secret.
+        /// Get Conversation LiveKit Room<br/>
+        /// Operator-only: return a conversation's internal LiveKit runtime<br/>
+        /// handles (the room name and `RM_` room SID). These are deliberately<br/>
+        /// absent from the conversation read responses so they never freeze<br/>
+        /// into the public contract; only Speechify staff can act on them (they<br/>
+        /// index a session in Speechify's own LiveKit Cloud project). The<br/>
+        /// console renders them, and builds its Speechify-staff LiveKit-Cloud<br/>
+        /// deep-link, for staff sessions only.
         /// </summary>
+        /// <param name="conversationId"></param>
         /// <param name="speechifyVersion"></param>
-        /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
-        public async global::System.Threading.Tasks.Task<global::Speechify.WebhookProbeResult> TestWebhookConnectionAsync(
-
-            global::Speechify.TestWebhookConnectionRequest request,
+        public async global::System.Threading.Tasks.Task<global::Speechify.ConversationLiveKitRoom> GetLivekitRoomAsync(
+            string conversationId,
             string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
-            var __response = await TestWebhookConnectionAsResponseAsync(
-
-                request: request,
+            var __response = await GetLivekitRoomAsResponseAsync(
+                conversationId: conversationId,
                 speechifyVersion: speechifyVersion,
                 requestOptions: requestOptions,
                 cancellationToken: cancellationToken
@@ -79,44 +74,38 @@ namespace Speechify
             return __response.Body;
         }
         /// <summary>
-        /// Test Webhook Connection<br/>
-        /// Probe a customer-supplied webhook tool config without persisting<br/>
-        /// anything. The server fires the exact request shape the worker<br/>
-        /// sends on a real invocation — same JSON body, same HMAC-SHA256<br/>
-        /// signature — with an empty argument set, and reports the<br/>
-        /// endpoint's status code, latency, and a truncated response body,<br/>
-        /// or a transport-level failure reason. The probe carries a<br/>
-        /// `Speechify-Webhook-Test: true` header so a careful endpoint<br/>
-        /// can recognise the test and skip its real side effect. Pass<br/>
-        /// `tool_id` from the edit-form flow so the server signs the probe<br/>
-        /// with the tool's stored HMAC secret.
+        /// Get Conversation LiveKit Room<br/>
+        /// Operator-only: return a conversation's internal LiveKit runtime<br/>
+        /// handles (the room name and `RM_` room SID). These are deliberately<br/>
+        /// absent from the conversation read responses so they never freeze<br/>
+        /// into the public contract; only Speechify staff can act on them (they<br/>
+        /// index a session in Speechify's own LiveKit Cloud project). The<br/>
+        /// console renders them, and builds its Speechify-staff LiveKit-Cloud<br/>
+        /// deep-link, for staff sessions only.
         /// </summary>
+        /// <param name="conversationId"></param>
         /// <param name="speechifyVersion"></param>
-        /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
-        public async global::System.Threading.Tasks.Task<global::Speechify.AutoSDKHttpResponse<global::Speechify.WebhookProbeResult>> TestWebhookConnectionAsResponseAsync(
-
-            global::Speechify.TestWebhookConnectionRequest request,
+        public async global::System.Threading.Tasks.Task<global::Speechify.AutoSDKHttpResponse<global::Speechify.ConversationLiveKitRoom>> GetLivekitRoomAsResponseAsync(
+            string conversationId,
             string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
-            request = request ?? throw new global::System.ArgumentNullException(nameof(request));
-
             PrepareArguments(
                 client: HttpClient);
-            PrepareTestWebhookConnectionArguments(
+            PrepareGetLivekitRoomArguments(
                 httpClient: HttpClient,
-                speechifyVersion: ref speechifyVersion,
-                request: request);
+                conversationId: ref conversationId,
+                speechifyVersion: ref speechifyVersion);
 
 
             var __authorizations = global::Speechify.EndPointSecurityResolver.ResolveAuthorizations(
                 availableAuthorizations: Authorizations,
-                securityRequirements: s_TestWebhookConnectionSecurityRequirements,
-                operationName: "TestWebhookConnectionAsync");
+                securityRequirements: s_GetLivekitRoomSecurityRequirements,
+                operationName: "GetLivekitRoomAsync");
 
             using var __timeoutCancellationTokenSource = global::Speechify.AutoSDKRequestOptionsSupport.CreateTimeoutCancellationTokenSource(
                 clientOptions: Options,
@@ -136,7 +125,7 @@ namespace Speechify
             {
 
                             var __pathBuilder = new global::Speechify.PathBuilder(
-                                path: "/v1/agents/tool-definitions/test-webhook-connection",
+                                path: $"/v1/agents/conversations/{conversationId}/livekit-room",
                                 baseUri: HttpClient.BaseAddress);
                             var __path = __pathBuilder.ToString();
                 __path = global::Speechify.AutoSDKRequestOptionsSupport.AppendQueryParameters(
@@ -144,7 +133,7 @@ namespace Speechify
                     clientParameters: Options.QueryParameters,
                     requestParameters: requestOptions?.QueryParameters);
                 var __httpRequest = new global::System.Net.Http.HttpRequestMessage(
-                    method: global::System.Net.Http.HttpMethod.Post,
+                    method: global::System.Net.Http.HttpMethod.Get,
                     requestUri: new global::System.Uri(__path, global::System.UriKind.RelativeOrAbsolute));
 #if NET6_0_OR_GREATER
                 __httpRequest.Version = global::System.Net.HttpVersion.Version11;
@@ -173,12 +162,6 @@ namespace Speechify
                 __httpRequest.Headers.TryAddWithoutValidation("Speechify-Version", speechifyVersion.ToString());
             }
 
-                            var __httpRequestContentBody = request.ToJson(JsonSerializerContext);
-                            var __httpRequestContent = new global::System.Net.Http.StringContent(
-                                content: __httpRequestContentBody,
-                                encoding: global::System.Text.Encoding.UTF8,
-                                mediaType: "application/json");
-                            __httpRequest.Content = __httpRequestContent;
                 global::Speechify.AutoSDKRequestOptionsSupport.ApplyHeaders(
                     request: __httpRequest,
                     clientHeaders: Options.Headers,
@@ -187,11 +170,11 @@ namespace Speechify
                 PrepareRequest(
                     client: HttpClient,
                     request: __httpRequest);
-                PrepareTestWebhookConnectionRequest(
+                PrepareGetLivekitRoomRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
-                    speechifyVersion: speechifyVersion,
-                    request: request);
+                    conversationId: conversationId!,
+                    speechifyVersion: speechifyVersion);
 
                 return __httpRequest;
             }
@@ -208,10 +191,10 @@ namespace Speechify
                     await global::Speechify.AutoSDKRequestOptionsSupport.OnBeforeRequestAsync(
                             clientOptions: Options,
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "TestWebhookConnection",
-                                methodName: "TestWebhookConnectionAsync",
-                                pathTemplate: "\"/v1/agents/tool-definitions/test-webhook-connection\"",
-                                httpMethod: "POST",
+                                operationId: "GetLivekitRoom",
+                                methodName: "GetLivekitRoomAsync",
+                                pathTemplate: "$\"/v1/agents/conversations/{conversationId}/livekit-room\"",
+                                httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
                                 response: null,
@@ -242,10 +225,10 @@ namespace Speechify
                         await global::Speechify.AutoSDKRequestOptionsSupport.OnAfterErrorAsync(
                             clientOptions: Options,
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "TestWebhookConnection",
-                                methodName: "TestWebhookConnectionAsync",
-                                pathTemplate: "\"/v1/agents/tool-definitions/test-webhook-connection\"",
-                                httpMethod: "POST",
+                                operationId: "GetLivekitRoom",
+                                methodName: "GetLivekitRoomAsync",
+                                pathTemplate: "$\"/v1/agents/conversations/{conversationId}/livekit-room\"",
+                                httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
                                 response: null,
@@ -283,10 +266,10 @@ namespace Speechify
                         await global::Speechify.AutoSDKRequestOptionsSupport.OnAfterErrorAsync(
                             clientOptions: Options,
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "TestWebhookConnection",
-                                methodName: "TestWebhookConnectionAsync",
-                                pathTemplate: "\"/v1/agents/tool-definitions/test-webhook-connection\"",
-                                httpMethod: "POST",
+                                operationId: "GetLivekitRoom",
+                                methodName: "GetLivekitRoomAsync",
+                                pathTemplate: "$\"/v1/agents/conversations/{conversationId}/livekit-room\"",
+                                httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
                                 response: __response,
@@ -323,7 +306,7 @@ namespace Speechify
                 ProcessResponse(
                     client: HttpClient,
                     response: __response);
-                ProcessTestWebhookConnectionResponse(
+                ProcessGetLivekitRoomResponse(
                     httpClient: HttpClient,
                     httpResponseMessage: __response);
                 if (__response.IsSuccessStatusCode)
@@ -331,10 +314,10 @@ namespace Speechify
                     await global::Speechify.AutoSDKRequestOptionsSupport.OnAfterSuccessAsync(
                             clientOptions: Options,
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "TestWebhookConnection",
-                                methodName: "TestWebhookConnectionAsync",
-                                pathTemplate: "\"/v1/agents/tool-definitions/test-webhook-connection\"",
-                                httpMethod: "POST",
+                                operationId: "GetLivekitRoom",
+                                methodName: "GetLivekitRoomAsync",
+                                pathTemplate: "$\"/v1/agents/conversations/{conversationId}/livekit-room\"",
+                                httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
                                 response: __response,
@@ -353,10 +336,10 @@ namespace Speechify
                     await global::Speechify.AutoSDKRequestOptionsSupport.OnAfterErrorAsync(
                             clientOptions: Options,
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "TestWebhookConnection",
-                                methodName: "TestWebhookConnectionAsync",
-                                pathTemplate: "\"/v1/agents/tool-definitions/test-webhook-connection\"",
-                                httpMethod: "POST",
+                                operationId: "GetLivekitRoom",
+                                methodName: "GetLivekitRoomAsync",
+                                pathTemplate: "$\"/v1/agents/conversations/{conversationId}/livekit-room\"",
+                                httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
                                 response: __response,
@@ -370,43 +353,6 @@ namespace Speechify
                                 retryReason: global::System.String.Empty,
                                 cancellationToken: __effectiveCancellationToken)).ConfigureAwait(false);
                 }
-                            // The request was malformed or failed validation. The response body is the standard `Error` envelope; for validation failures `error.fields` enumerates the offending fields as a `path -> message` map (code = `validation_failed`). 
-                            if ((int)__response.StatusCode == 400)
-                            {
-                                string? __content_400 = null;
-                                global::System.Exception? __exception_400 = null;
-                                global::Speechify.Error? __value_400 = null;
-                                try
-                                {
-                                    if (__effectiveReadResponseAsString)
-                                    {
-                                        __content_400 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
-                                        __value_400 = global::Speechify.Error.FromJson(__content_400, JsonSerializerContext);
-                                    }
-                                    else
-                                    {
-                                        __content_400 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
-
-                                        __value_400 = global::Speechify.Error.FromJson(__content_400, JsonSerializerContext);
-                                    }
-                                }
-                                catch (global::System.Exception __ex)
-                                {
-                                    __exception_400 = __ex;
-                                }
-
-
-                                throw global::Speechify.ApiException<global::Speechify.Error>.Create(
-                                    statusCode: __response.StatusCode,
-                                    message: __content_400 ?? __response.ReasonPhrase ?? string.Empty,
-                                    innerException: __exception_400,
-                                    responseBody: __content_400,
-                                    responseObject: __value_400,
-                                    responseHeaders: global::System.Linq.Enumerable.ToDictionary(
-                                        __response.Headers,
-                                        h => h.Key,
-                                        h => h.Value));
-                            }
                             // Authentication is missing or invalid. The request did not carry a recognised credential (Firebase ID token, API key, or worker JWT). 
                             if ((int)__response.StatusCode == 401)
                             {
@@ -444,6 +390,43 @@ namespace Speechify
                                         h => h.Key,
                                         h => h.Value));
                             }
+                            // The referenced resource does not exist or is not visible to the caller's workspace. 
+                            if ((int)__response.StatusCode == 404)
+                            {
+                                string? __content_404 = null;
+                                global::System.Exception? __exception_404 = null;
+                                global::Speechify.Error? __value_404 = null;
+                                try
+                                {
+                                    if (__effectiveReadResponseAsString)
+                                    {
+                                        __content_404 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+                                        __value_404 = global::Speechify.Error.FromJson(__content_404, JsonSerializerContext);
+                                    }
+                                    else
+                                    {
+                                        __content_404 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+
+                                        __value_404 = global::Speechify.Error.FromJson(__content_404, JsonSerializerContext);
+                                    }
+                                }
+                                catch (global::System.Exception __ex)
+                                {
+                                    __exception_404 = __ex;
+                                }
+
+
+                                throw global::Speechify.ApiException<global::Speechify.Error>.Create(
+                                    statusCode: __response.StatusCode,
+                                    message: __content_404 ?? __response.ReasonPhrase ?? string.Empty,
+                                    innerException: __exception_404,
+                                    responseBody: __content_404,
+                                    responseObject: __value_404,
+                                    responseHeaders: global::System.Linq.Enumerable.ToDictionary(
+                                        __response.Headers,
+                                        h => h.Key,
+                                        h => h.Value));
+                            }
 
                             if (__effectiveReadResponseAsString)
                             {
@@ -457,7 +440,7 @@ namespace Speechify
                                     client: HttpClient,
                                     response: __response,
                                     content: ref __content);
-                                ProcessTestWebhookConnectionResponseContent(
+                                ProcessGetLivekitRoomResponseContent(
                                     httpClient: HttpClient,
                                     httpResponseMessage: __response,
                                     content: ref __content);
@@ -466,9 +449,9 @@ namespace Speechify
                                 {
                                     __response.EnsureSuccessStatusCode();
 
-                                    var __value = global::Speechify.WebhookProbeResult.FromJson(__content, JsonSerializerContext) ??
+                                    var __value = global::Speechify.ConversationLiveKitRoom.FromJson(__content, JsonSerializerContext) ??
                                         throw new global::System.InvalidOperationException($"Response deserialization failed for \"{__content}\" ");
-                                    return new global::Speechify.AutoSDKHttpResponse<global::Speechify.WebhookProbeResult>(
+                                    return new global::Speechify.AutoSDKHttpResponse<global::Speechify.ConversationLiveKitRoom>(
                                         statusCode: __response.StatusCode,
                                         headers: global::Speechify.AutoSDKHttpResponse.CreateHeaders(__response),
                                         requestUri: __response.RequestMessage?.RequestUri,
@@ -498,9 +481,9 @@ namespace Speechify
                 #endif
                                     ).ConfigureAwait(false);
 
-                                    var __value = await global::Speechify.WebhookProbeResult.FromJsonStreamAsync(__content, JsonSerializerContext).ConfigureAwait(false) ??
+                                    var __value = await global::Speechify.ConversationLiveKitRoom.FromJsonStreamAsync(__content, JsonSerializerContext).ConfigureAwait(false) ??
                                         throw new global::System.InvalidOperationException("Response deserialization failed.");
-                                    return new global::Speechify.AutoSDKHttpResponse<global::Speechify.WebhookProbeResult>(
+                                    return new global::Speechify.AutoSDKHttpResponse<global::Speechify.ConversationLiveKitRoom>(
                                         statusCode: __response.StatusCode,
                                         headers: global::Speechify.AutoSDKHttpResponse.CreateHeaders(__response),
                                         requestUri: __response.RequestMessage?.RequestUri,
@@ -539,50 +522,6 @@ namespace Speechify
             {
                 __httpRequest?.Dispose();
             }
-        }
-        /// <summary>
-        /// Test Webhook Connection<br/>
-        /// Probe a customer-supplied webhook tool config without persisting<br/>
-        /// anything. The server fires the exact request shape the worker<br/>
-        /// sends on a real invocation — same JSON body, same HMAC-SHA256<br/>
-        /// signature — with an empty argument set, and reports the<br/>
-        /// endpoint's status code, latency, and a truncated response body,<br/>
-        /// or a transport-level failure reason. The probe carries a<br/>
-        /// `Speechify-Webhook-Test: true` header so a careful endpoint<br/>
-        /// can recognise the test and skip its real side effect. Pass<br/>
-        /// `tool_id` from the edit-form flow so the server signs the probe<br/>
-        /// with the tool's stored HMAC secret.
-        /// </summary>
-        /// <param name="speechifyVersion"></param>
-        /// <param name="config">
-        /// Config shape for `kind=webhook`.
-        /// </param>
-        /// <param name="toolId">
-        /// Optional `tool_&lt;crockford&gt;` id of the existing tool to sign<br/>
-        /// the probe with. Raw UUIDs and other-resource prefixes are<br/>
-        /// rejected.
-        /// </param>
-        /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
-        /// <param name="cancellationToken">The token to cancel the operation with</param>
-        /// <exception cref="global::System.InvalidOperationException"></exception>
-        public async global::System.Threading.Tasks.Task<global::Speechify.WebhookProbeResult> TestWebhookConnectionAsync(
-            global::Speechify.WebhookToolConfig config,
-            string? speechifyVersion = default,
-            string? toolId = default,
-            global::Speechify.AutoSDKRequestOptions? requestOptions = default,
-            global::System.Threading.CancellationToken cancellationToken = default)
-        {
-            var __request = new global::Speechify.TestWebhookConnectionRequest
-            {
-                Config = config,
-                ToolId = toolId,
-            };
-
-            return await TestWebhookConnectionAsync(
-                speechifyVersion: speechifyVersion,
-                request: __request,
-                requestOptions: requestOptions,
-                cancellationToken: cancellationToken).ConfigureAwait(false);
         }
     }
 }

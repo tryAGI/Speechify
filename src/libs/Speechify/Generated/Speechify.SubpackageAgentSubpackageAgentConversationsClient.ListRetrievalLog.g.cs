@@ -52,7 +52,7 @@ namespace Speechify
         /// Per-conversation retrieval log, newest first — one row per<br/>
         /// `search_knowledge` invocation made during the call. Each entry<br/>
         /// records the query, ranked chunks (denormalised so deletions<br/>
-        /// don't render history unreadable), `top_k`, and hit count.<br/>
+        /// don't render history unreadable), `limit`, and hit count.<br/>
         /// Powers the Retrieval panel on the conversation detail view.<br/>
         /// Cursor-paginated: omit `cursor` to fetch the first page.<br/>
         /// Default page size is 50 and max is 200. Walk pages while<br/>
@@ -91,7 +91,7 @@ namespace Speechify
         /// Per-conversation retrieval log, newest first — one row per<br/>
         /// `search_knowledge` invocation made during the call. Each entry<br/>
         /// records the query, ranked chunks (denormalised so deletions<br/>
-        /// don't render history unreadable), `top_k`, and hit count.<br/>
+        /// don't render history unreadable), `limit`, and hit count.<br/>
         /// Powers the Retrieval panel on the conversation detail view.<br/>
         /// Cursor-paginated: omit `cursor` to fetch the first page.<br/>
         /// Default page size is 50 and max is 200. Walk pages while<br/>

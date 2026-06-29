@@ -23,7 +23,7 @@ namespace Speechify
         public global::Speechify.WebhookToolConfigMethod? Method { get; set; }
 
         /// <summary>
-        /// Static headers sent with every call. `Authorization` and `X-Speechify-Signature` are reserved.
+        /// Static headers sent with every call. `Authorization` and `Speechify-Signature` are reserved.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("headers")]
         public global::System.Collections.Generic.Dictionary<string, string>? Headers { get; set; }
@@ -66,7 +66,7 @@ namespace Speechify
         /// <param name="url"></param>
         /// <param name="method"></param>
         /// <param name="headers">
-        /// Static headers sent with every call. `Authorization` and `X-Speechify-Signature` are reserved.
+        /// Static headers sent with every call. `Authorization` and `Speechify-Signature` are reserved.
         /// </param>
         /// <param name="timeoutMs">
         /// Per-call timeout in milliseconds. Defaults to 10000 server-side when omitted.

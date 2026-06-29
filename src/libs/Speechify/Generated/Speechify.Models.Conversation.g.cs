@@ -27,21 +27,6 @@ namespace Speechify
         public required string AgentId { get; set; }
 
         /// <summary>
-        /// LiveKit room name. Equals the conversation `id` for `web`<br/>
-        /// and `sip_outbound` transports; `sip_inbound` rooms use a<br/>
-        /// `sip_&lt;e164&gt;_&lt;random&gt;` name assigned by the SIP dispatch rule.
-        /// </summary>
-        [global::System.Text.Json.Serialization.JsonPropertyName("room_name")]
-        [global::System.Text.Json.Serialization.JsonRequired]
-        public required string RoomName { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        [global::System.Text.Json.Serialization.JsonPropertyName("room_sid")]
-        public string? RoomSid { get; set; }
-
-        /// <summary>
         /// 
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("status")]
@@ -265,11 +250,6 @@ namespace Speechify
         /// Prefixed wire identifier (`agent_&lt;26 char Crockford base32&gt;`)<br/>
         /// for the agent that answers this conversation.
         /// </param>
-        /// <param name="roomName">
-        /// LiveKit room name. Equals the conversation `id` for `web`<br/>
-        /// and `sip_outbound` transports; `sip_inbound` rooms use a<br/>
-        /// `sip_&lt;e164&gt;_&lt;random&gt;` name assigned by the SIP dispatch rule.
-        /// </param>
         /// <param name="status"></param>
         /// <param name="transport">
         /// How the caller reached the agent. `web` is the browser /<br/>
@@ -288,7 +268,6 @@ namespace Speechify
         /// subquery. Zero on single-row reads where the join cost<br/>
         /// isn't paid.
         /// </param>
-        /// <param name="roomSid"></param>
         /// <param name="startedAt">
         /// Set when the first user participant joins the realtime<br/>
         /// voice session. Null between CreateConversation and the<br/>
@@ -401,13 +380,11 @@ namespace Speechify
         public Conversation(
             string id,
             string agentId,
-            string roomName,
             global::Speechify.ConversationStatus status,
             global::Speechify.ConversationTransport transport,
             global::System.DateTime createdAt,
             object metadata,
             int messageCount,
-            string? roomSid,
             global::System.DateTime? startedAt,
             global::System.DateTime? endedAt,
             int? durationMs,
@@ -426,8 +403,6 @@ namespace Speechify
         {
             this.Id = id ?? throw new global::System.ArgumentNullException(nameof(id));
             this.AgentId = agentId ?? throw new global::System.ArgumentNullException(nameof(agentId));
-            this.RoomName = roomName ?? throw new global::System.ArgumentNullException(nameof(roomName));
-            this.RoomSid = roomSid;
             this.Status = status;
             this.Transport = transport;
             this.CreatedAt = createdAt;
