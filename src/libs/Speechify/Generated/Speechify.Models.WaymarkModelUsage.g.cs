@@ -30,6 +30,13 @@ namespace Speechify
         public required long OutputTokens { get; set; }
 
         /// <summary>
+        /// Input tokens served from provider cache reads.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("cached_input_tokens")]
+        [global::System.Text.Json.Serialization.JsonRequired]
+        public required long CachedInputTokens { get; set; }
+
+        /// <summary>
         /// Additional properties that are not explicitly defined in the schema
         /// </summary>
         [global::System.Text.Json.Serialization.JsonExtensionData]
@@ -47,17 +54,22 @@ namespace Speechify
         /// <param name="outputTokens">
         /// Completion (output) tokens this model produced.
         /// </param>
+        /// <param name="cachedInputTokens">
+        /// Input tokens served from provider cache reads.
+        /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
 #endif
         public WaymarkModelUsage(
             string model,
             long inputTokens,
-            long outputTokens)
+            long outputTokens,
+            long cachedInputTokens)
         {
             this.Model = model ?? throw new global::System.ArgumentNullException(nameof(model));
             this.InputTokens = inputTokens;
             this.OutputTokens = outputTokens;
+            this.CachedInputTokens = cachedInputTokens;
         }
 
         /// <summary>

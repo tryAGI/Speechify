@@ -5,7 +5,7 @@ namespace Speechify
 {
     /// <summary>
     /// Per-request routing and token breakdown. Reports the route taken,<br/>
-    /// whether it escalated, and the input/output token counts for each<br/>
+    /// whether it escalated, and the input, output, and cached-input token counts for each<br/>
     /// upstream model that ran. Token counts only — no pricing or cost.
     /// </summary>
     public sealed partial class WaymarkUsage
