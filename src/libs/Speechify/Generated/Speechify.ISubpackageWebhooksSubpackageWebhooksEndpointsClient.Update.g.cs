@@ -46,6 +46,10 @@ namespace Speechify
         /// <param name="speechifyVersion"></param>
         /// <param name="url"></param>
         /// <param name="enabledEvents"></param>
+        /// <param name="include">
+        /// Payload-shaping keys (see `WebhookEndpoint.include`). Send `[]` to<br/>
+        /// clear back to the lean default.
+        /// </param>
         /// <param name="description"></param>
         /// <param name="disabled"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
@@ -56,6 +60,7 @@ namespace Speechify
             string? speechifyVersion = default,
             string? url = default,
             global::System.Collections.Generic.IList<string>? enabledEvents = default,
+            global::System.Collections.Generic.IList<string>? include = default,
             string? description = default,
             bool? disabled = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,

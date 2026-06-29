@@ -9,10 +9,8 @@ namespace Speechify
     public sealed partial class SystemBuiltinInfo
     {
         /// <summary>
-        /// Identifier of a worker-resident system builtin. New entries are<br/>
-        /// added together on the server (a new `tool_builtin_&lt;name&gt;.go`<br/>
-        /// file) and worker (`tools/builtins/&lt;name&gt;.py`) - the 2-file rule<br/>
-        /// the server pins. Customers read the catalogue from<br/>
+        /// Identifier of a built-in system tool. New builtins are added by<br/>
+        /// Speechify across releases. Read the catalogue from<br/>
         /// `GET /v1/agents/tool-capabilities` rather than depending on this<br/>
         /// string set staying stable across releases.
         /// </summary>
@@ -21,14 +19,14 @@ namespace Speechify
         public required string Name { get; set; }
 
         /// <summary>
-        /// Console-facing display label for the builtin.
+        /// Human-readable display label for the builtin.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("label")]
         [global::System.Text.Json.Serialization.JsonRequired]
         public required string Label { get; set; }
 
         /// <summary>
-        /// Console-facing one-line summary of what the builtin does.
+        /// One-line summary of what the builtin does.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("description")]
         [global::System.Text.Json.Serialization.JsonRequired]
@@ -44,18 +42,16 @@ namespace Speechify
         /// Initializes a new instance of the <see cref="SystemBuiltinInfo" /> class.
         /// </summary>
         /// <param name="name">
-        /// Identifier of a worker-resident system builtin. New entries are<br/>
-        /// added together on the server (a new `tool_builtin_&lt;name&gt;.go`<br/>
-        /// file) and worker (`tools/builtins/&lt;name&gt;.py`) - the 2-file rule<br/>
-        /// the server pins. Customers read the catalogue from<br/>
+        /// Identifier of a built-in system tool. New builtins are added by<br/>
+        /// Speechify across releases. Read the catalogue from<br/>
         /// `GET /v1/agents/tool-capabilities` rather than depending on this<br/>
         /// string set staying stable across releases.
         /// </param>
         /// <param name="label">
-        /// Console-facing display label for the builtin.
+        /// Human-readable display label for the builtin.
         /// </param>
         /// <param name="description">
-        /// Console-facing one-line summary of what the builtin does.
+        /// One-line summary of what the builtin does.
         /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]

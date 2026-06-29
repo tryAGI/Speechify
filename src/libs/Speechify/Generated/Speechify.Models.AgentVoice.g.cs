@@ -41,10 +41,9 @@ namespace Speechify
         public required global::System.Collections.Generic.IList<global::Speechify.AgentVoiceModel> Models { get; set; }
 
         /// <summary>
-        /// Speaker gender as classified by VMS. `not_specified` is used<br/>
-        /// when the source dataset didn't carry the metadata; the<br/>
-        /// console treats it as a neutral display label rather than a<br/>
-        /// filter gap.
+        /// Speaker gender classification for the voice. `not_specified` is<br/>
+        /// used when the source dataset didn't carry the metadata; treat it<br/>
+        /// as a neutral display label rather than a filter gap.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("gender")]
         [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Speechify.JsonConverters.AgentVoiceGenderJsonConverter))]
@@ -93,10 +92,9 @@ namespace Speechify
         /// <param name="displayName"></param>
         /// <param name="models"></param>
         /// <param name="gender">
-        /// Speaker gender as classified by VMS. `not_specified` is used<br/>
-        /// when the source dataset didn't carry the metadata; the<br/>
-        /// console treats it as a neutral display label rather than a<br/>
-        /// filter gap.
+        /// Speaker gender classification for the voice. `not_specified` is<br/>
+        /// used when the source dataset didn't carry the metadata; treat it<br/>
+        /// as a neutral display label rather than a filter gap.
         /// </param>
         /// <param name="locale">
         /// Default locale for the voice (BCP-47-ish, e.g. `en-US`).

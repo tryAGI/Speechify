@@ -41,7 +41,7 @@ namespace Speechify
         /// <summary>
         /// Stream Live Conversation<br/>
         /// Server-Sent Events stream of an in-progress conversation's<br/>
-        /// transcript and status, for the live-monitoring console surface.<br/>
+        /// transcript and status, for live-monitoring surfaces.<br/>
         /// Holds the connection open and tails the transcript: emits a<br/>
         /// `message` event per turn (its `data` is a Message object), a<br/>
         /// `status` event when the conversation status changes, and a<br/>

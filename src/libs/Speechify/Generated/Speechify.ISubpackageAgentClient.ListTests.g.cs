@@ -7,7 +7,7 @@ namespace Speechify
         /// <summary>
         /// List Agent Tests<br/>
         /// List all tests configured for the agent. Each entry includes the<br/>
-        /// most recent run so the console can render pass/fail badges without<br/>
+        /// most recent run so a client can render pass/fail badges without<br/>
         /// an extra round-trip. Cursor-paginated: omit `cursor` for the first<br/>
         /// page; walk pages while `has_more` is true (default page size 50,<br/>
         /// max 200).
@@ -31,7 +31,7 @@ namespace Speechify
         /// <summary>
         /// List Agent Tests<br/>
         /// List all tests configured for the agent. Each entry includes the<br/>
-        /// most recent run so the console can render pass/fail badges without<br/>
+        /// most recent run so a client can render pass/fail badges without<br/>
         /// an extra round-trip. Cursor-paginated: omit `cursor` for the first<br/>
         /// page; walk pages while `has_more` is true (default page size 50,<br/>
         /// max 200).

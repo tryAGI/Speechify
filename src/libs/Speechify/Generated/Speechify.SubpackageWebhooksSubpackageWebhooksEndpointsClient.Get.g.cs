@@ -44,7 +44,8 @@ namespace Speechify
             ref string content);
 
         /// <summary>
-        /// Get webhook endpoint
+        /// Get webhook endpoint<br/>
+        /// Fetch a webhook endpoint by id. The signing secret is never returned.
         /// </summary>
         /// <param name="webhookEndpointId"></param>
         /// <param name="speechifyVersion"></param>
@@ -67,7 +68,8 @@ namespace Speechify
             return __response.Body;
         }
         /// <summary>
-        /// Get webhook endpoint
+        /// Get webhook endpoint<br/>
+        /// Fetch a webhook endpoint by id. The signing secret is never returned.
         /// </summary>
         /// <param name="webhookEndpointId"></param>
         /// <param name="speechifyVersion"></param>

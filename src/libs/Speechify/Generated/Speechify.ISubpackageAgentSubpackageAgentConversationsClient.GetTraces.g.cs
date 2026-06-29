@@ -6,7 +6,7 @@ namespace Speechify
     {
         /// <summary>
         /// Get Conversation Traces<br/>
-        /// Retrieve the per-call trace timeline for a conversation: the worker<br/>
+        /// Retrieve the per-call trace timeline for a conversation: the agent<br/>
         /// pipeline spans (STT, end-of-turn, LLM, TTS, tool calls, DTMF) in call<br/>
         /// order, each with its start offset from the beginning of the call and<br/>
         /// its duration, for rendering a latency waterfall. Returns an empty<br/>
@@ -24,7 +24,7 @@ namespace Speechify
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Get Conversation Traces<br/>
-        /// Retrieve the per-call trace timeline for a conversation: the worker<br/>
+        /// Retrieve the per-call trace timeline for a conversation: the agent<br/>
         /// pipeline spans (STT, end-of-turn, LLM, TTS, tool calls, DTMF) in call<br/>
         /// order, each with its start offset from the beginning of the call and<br/>
         /// its duration, for rendering a latency waterfall. Returns an empty<br/>

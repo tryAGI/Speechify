@@ -10,8 +10,9 @@ namespace Speechify
     /// their values. Reserved `system__*` keys are excluded —<br/>
     /// they are runtime-derived and not part of the audit<br/>
     /// snapshot. Omitted for SIP inbound calls (which take no<br/>
-    /// per-session variables) and for any pre-rollout<br/>
-    /// conversation. Populated only on detail responses; the<br/>
+    /// per-session variables) and for legacy conversations<br/>
+    /// recorded before this field existed. Populated only on<br/>
+    /// detail responses; the<br/>
     /// list endpoint skips it, mirroring `agent_snapshot`.
     /// </summary>
     public sealed partial class ConversationDynamicVariables

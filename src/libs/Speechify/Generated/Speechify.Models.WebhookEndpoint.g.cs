@@ -35,6 +35,18 @@ namespace Speechify
         public required global::System.Collections.Generic.IList<string> EnabledEvents { get; set; }
 
         /// <summary>
+        /// Per-event payload shaping. Deliveries are lean by default:<br/>
+        /// `data.object` carries only the resource GET snapshot. List heavy<br/>
+        /// collections here to have them appended under the event's `data`<br/>
+        /// alongside `object`, so receivers behind hard request-size caps stay<br/>
+        /// lean unless they opt in. Recognised keys (conversation events only):<br/>
+        /// `messages` (the full transcript) and `evaluations`. Empty = lean.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("include")]
+        [global::System.Text.Json.Serialization.JsonRequired]
+        public required global::System.Collections.Generic.IList<string> Include { get; set; }
+
+        /// <summary>
         /// Optional human-readable label for the endpoint.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("description")]
@@ -89,6 +101,14 @@ namespace Speechify
         /// (see `WebhookEventType`) or `["*"]` for every event, current and<br/>
         /// future.
         /// </param>
+        /// <param name="include">
+        /// Per-event payload shaping. Deliveries are lean by default:<br/>
+        /// `data.object` carries only the resource GET snapshot. List heavy<br/>
+        /// collections here to have them appended under the event's `data`<br/>
+        /// alongside `object`, so receivers behind hard request-size caps stay<br/>
+        /// lean unless they opt in. Recognised keys (conversation events only):<br/>
+        /// `messages` (the full transcript) and `evaluations`. Empty = lean.
+        /// </param>
         /// <param name="disabled">
         /// When true, Speechify stops delivering to this endpoint.
         /// </param>
@@ -109,6 +129,7 @@ namespace Speechify
             string id,
             string url,
             global::System.Collections.Generic.IList<string> enabledEvents,
+            global::System.Collections.Generic.IList<string> include,
             bool disabled,
             global::System.DateTime createdAt,
             global::System.DateTime updatedAt,
@@ -118,6 +139,7 @@ namespace Speechify
             this.Id = id ?? throw new global::System.ArgumentNullException(nameof(id));
             this.Url = url ?? throw new global::System.ArgumentNullException(nameof(url));
             this.EnabledEvents = enabledEvents ?? throw new global::System.ArgumentNullException(nameof(enabledEvents));
+            this.Include = include ?? throw new global::System.ArgumentNullException(nameof(include));
             this.Description = description;
             this.Disabled = disabled;
             this.Secret = secret;

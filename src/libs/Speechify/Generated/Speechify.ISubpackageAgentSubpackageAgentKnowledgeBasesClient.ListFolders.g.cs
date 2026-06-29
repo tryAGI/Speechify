@@ -9,9 +9,9 @@ namespace Speechify
         /// List folders inside a knowledge base. Root-level folders have<br/>
         /// `parent_folder_id: null`. Cursor-paginated: omit `cursor` to<br/>
         /// fetch the first page. Default page size is 50 and max is 200.<br/>
-        /// The console builds the folder tree from `parent_folder_id`, so<br/>
-        /// consumers should walk every page until `has_more` is `false`<br/>
-        /// before rendering the tree.
+        /// Build the folder tree from `parent_folder_id`, so consumers<br/>
+        /// should walk every page until `has_more` is `false` before<br/>
+        /// rendering the tree.
         /// </summary>
         /// <param name="kbId"></param>
         /// <param name="cursor"></param>
@@ -34,9 +34,9 @@ namespace Speechify
         /// List folders inside a knowledge base. Root-level folders have<br/>
         /// `parent_folder_id: null`. Cursor-paginated: omit `cursor` to<br/>
         /// fetch the first page. Default page size is 50 and max is 200.<br/>
-        /// The console builds the folder tree from `parent_folder_id`, so<br/>
-        /// consumers should walk every page until `has_more` is `false`<br/>
-        /// before rendering the tree.
+        /// Build the folder tree from `parent_folder_id`, so consumers<br/>
+        /// should walk every page until `has_more` is `false` before<br/>
+        /// rendering the tree.
         /// </summary>
         /// <param name="kbId"></param>
         /// <param name="cursor"></param>

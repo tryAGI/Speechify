@@ -5,7 +5,7 @@ namespace Speechify
 {
     /// <summary>
     /// List-view projection of a test that includes the most recent run<br/>
-    /// so the console can display pass/fail badges without an extra<br/>
+    /// so a client can display pass/fail badges without an extra<br/>
     /// round-trip.
     /// </summary>
     public sealed partial class AgentTestWithLastRun

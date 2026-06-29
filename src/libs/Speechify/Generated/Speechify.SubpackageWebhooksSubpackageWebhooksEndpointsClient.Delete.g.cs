@@ -44,7 +44,8 @@ namespace Speechify
             ref string content);
 
         /// <summary>
-        /// Delete webhook endpoint
+        /// Delete webhook endpoint<br/>
+        /// Delete a webhook endpoint. In-flight deliveries stop; returns 204 on success.
         /// </summary>
         /// <param name="webhookEndpointId"></param>
         /// <param name="speechifyVersion"></param>
@@ -67,7 +68,8 @@ namespace Speechify
             return __response.Body;
         }
         /// <summary>
-        /// Delete webhook endpoint
+        /// Delete webhook endpoint<br/>
+        /// Delete a webhook endpoint. In-flight deliveries stop; returns 204 on success.
         /// </summary>
         /// <param name="webhookEndpointId"></param>
         /// <param name="speechifyVersion"></param>

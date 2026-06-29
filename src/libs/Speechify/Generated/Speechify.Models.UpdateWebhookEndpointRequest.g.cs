@@ -21,6 +21,13 @@ namespace Speechify
         public global::System.Collections.Generic.IList<string>? EnabledEvents { get; set; }
 
         /// <summary>
+        /// Payload-shaping keys (see `WebhookEndpoint.include`). Send `[]` to<br/>
+        /// clear back to the lean default.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("include")]
+        public global::System.Collections.Generic.IList<string>? Include { get; set; }
+
+        /// <summary>
         /// 
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("description")]
@@ -43,6 +50,10 @@ namespace Speechify
         /// </summary>
         /// <param name="url"></param>
         /// <param name="enabledEvents"></param>
+        /// <param name="include">
+        /// Payload-shaping keys (see `WebhookEndpoint.include`). Send `[]` to<br/>
+        /// clear back to the lean default.
+        /// </param>
         /// <param name="description"></param>
         /// <param name="disabled"></param>
 #if NET7_0_OR_GREATER
@@ -51,11 +62,13 @@ namespace Speechify
         public UpdateWebhookEndpointRequest(
             string? url,
             global::System.Collections.Generic.IList<string>? enabledEvents,
+            global::System.Collections.Generic.IList<string>? include,
             string? description,
             bool? disabled)
         {
             this.Url = url;
             this.EnabledEvents = enabledEvents;
+            this.Include = include;
             this.Description = description;
             this.Disabled = disabled;
         }

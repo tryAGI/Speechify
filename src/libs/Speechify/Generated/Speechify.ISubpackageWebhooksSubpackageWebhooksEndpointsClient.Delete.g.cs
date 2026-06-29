@@ -5,7 +5,8 @@ namespace Speechify
     public partial interface ISubpackageWebhooksSubpackageWebhooksEndpointsClient
     {
         /// <summary>
-        /// Delete webhook endpoint
+        /// Delete webhook endpoint<br/>
+        /// Delete a webhook endpoint. In-flight deliveries stop; returns 204 on success.
         /// </summary>
         /// <param name="webhookEndpointId"></param>
         /// <param name="speechifyVersion"></param>
@@ -18,7 +19,8 @@ namespace Speechify
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
-        /// Delete webhook endpoint
+        /// Delete webhook endpoint<br/>
+        /// Delete a webhook endpoint. In-flight deliveries stop; returns 204 on success.
         /// </summary>
         /// <param name="webhookEndpointId"></param>
         /// <param name="speechifyVersion"></param>

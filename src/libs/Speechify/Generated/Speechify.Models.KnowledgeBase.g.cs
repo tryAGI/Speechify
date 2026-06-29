@@ -18,7 +18,7 @@ namespace Speechify
         public required string Id { get; set; }
 
         /// <summary>
-        /// Human-readable label, shown in the console.
+        /// Human-readable label for the knowledge base.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("name")]
         [global::System.Text.Json.Serialization.JsonRequired]
@@ -65,7 +65,7 @@ namespace Speechify
         /// Prefixed wire identifier (`kb_&lt;26 char Crockford base32&gt;`).
         /// </param>
         /// <param name="name">
-        /// Human-readable label, shown in the console.
+        /// Human-readable label for the knowledge base.
         /// </param>
         /// <param name="description">
         /// Optional description.

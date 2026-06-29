@@ -49,7 +49,7 @@ namespace Speechify
         /// Create Outbound Call<br/>
         /// Place an outbound call from an agent to a phone number. LiveKit<br/>
         /// originates the SIP INVITE through the outbound trunk bound to the<br/>
-        /// agent's workspace; the agent worker is dispatched into the room<br/>
+        /// agent's workspace; the agent is dispatched into the call<br/>
         /// automatically.<br/>
         /// The response is returned as soon as LiveKit accepts the INVITE.<br/>
         /// Poll `GET /v1/agents/conversations/{conversation_id}` for status<br/>
@@ -88,7 +88,7 @@ namespace Speechify
         /// Create Outbound Call<br/>
         /// Place an outbound call from an agent to a phone number. LiveKit<br/>
         /// originates the SIP INVITE through the outbound trunk bound to the<br/>
-        /// agent's workspace; the agent worker is dispatched into the room<br/>
+        /// agent's workspace; the agent is dispatched into the call<br/>
         /// automatically.<br/>
         /// The response is returned as soon as LiveKit accepts the INVITE.<br/>
         /// Poll `GET /v1/agents/conversations/{conversation_id}` for status<br/>
@@ -670,7 +670,7 @@ namespace Speechify
         /// Create Outbound Call<br/>
         /// Place an outbound call from an agent to a phone number. LiveKit<br/>
         /// originates the SIP INVITE through the outbound trunk bound to the<br/>
-        /// agent's workspace; the agent worker is dispatched into the room<br/>
+        /// agent's workspace; the agent is dispatched into the call<br/>
         /// automatically.<br/>
         /// The response is returned as soon as LiveKit accepts the INVITE.<br/>
         /// Poll `GET /v1/agents/conversations/{conversation_id}` for status<br/>

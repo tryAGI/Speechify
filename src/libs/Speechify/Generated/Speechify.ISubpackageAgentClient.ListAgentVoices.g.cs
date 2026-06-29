@@ -11,8 +11,8 @@ namespace Speechify
         /// slug set is accepted by POST/PATCH /v1/agents. Personal<br/>
         /// (cloned) voices are NOT included — they stay on<br/>
         /// `GET /v1/voices`. The JSON layout intentionally mirrors the<br/>
-        /// TTS `/v1/voices` shape so the console feeds both endpoints<br/>
-        /// into the same voice-picker component. Returns the full set in a<br/>
+        /// TTS `/v1/voices` shape so a single voice picker can consume both<br/>
+        /// endpoints. Returns the full set in a<br/>
         /// single response: bounded by the curated agent voice catalogue, so<br/>
         /// this list is intentionally not paginated.
         /// </summary>
@@ -31,8 +31,8 @@ namespace Speechify
         /// slug set is accepted by POST/PATCH /v1/agents. Personal<br/>
         /// (cloned) voices are NOT included — they stay on<br/>
         /// `GET /v1/voices`. The JSON layout intentionally mirrors the<br/>
-        /// TTS `/v1/voices` shape so the console feeds both endpoints<br/>
-        /// into the same voice-picker component. Returns the full set in a<br/>
+        /// TTS `/v1/voices` shape so a single voice picker can consume both<br/>
+        /// endpoints. Returns the full set in a<br/>
         /// single response: bounded by the curated agent voice catalogue, so<br/>
         /// this list is intentionally not paginated.
         /// </summary>

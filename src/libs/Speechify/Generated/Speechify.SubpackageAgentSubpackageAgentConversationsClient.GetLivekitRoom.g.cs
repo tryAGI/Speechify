@@ -45,13 +45,11 @@ namespace Speechify
 
         /// <summary>
         /// Get Conversation LiveKit Room<br/>
-        /// Operator-only: return a conversation's internal LiveKit runtime<br/>
+        /// Operator-only: return a conversation's internal LiveKit room<br/>
         /// handles (the room name and `RM_` room SID). These are deliberately<br/>
         /// absent from the conversation read responses so they never freeze<br/>
-        /// into the public contract; only Speechify staff can act on them (they<br/>
-        /// index a session in Speechify's own LiveKit Cloud project). The<br/>
-        /// console renders them, and builds its Speechify-staff LiveKit-Cloud<br/>
-        /// deep-link, for staff sessions only.
+        /// into the public contract, and are available only to Speechify<br/>
+        /// operators for support and debugging.
         /// </summary>
         /// <param name="conversationId"></param>
         /// <param name="speechifyVersion"></param>
@@ -75,13 +73,11 @@ namespace Speechify
         }
         /// <summary>
         /// Get Conversation LiveKit Room<br/>
-        /// Operator-only: return a conversation's internal LiveKit runtime<br/>
+        /// Operator-only: return a conversation's internal LiveKit room<br/>
         /// handles (the room name and `RM_` room SID). These are deliberately<br/>
         /// absent from the conversation read responses so they never freeze<br/>
-        /// into the public contract; only Speechify staff can act on them (they<br/>
-        /// index a session in Speechify's own LiveKit Cloud project). The<br/>
-        /// console renders them, and builds its Speechify-staff LiveKit-Cloud<br/>
-        /// deep-link, for staff sessions only.
+        /// into the public contract, and are available only to Speechify<br/>
+        /// operators for support and debugging.
         /// </summary>
         /// <param name="conversationId"></param>
         /// <param name="speechifyVersion"></param>

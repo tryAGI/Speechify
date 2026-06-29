@@ -5,7 +5,8 @@ namespace Speechify
     public partial interface ISubpackageAgentSubpackageAgentDashboardsClient
     {
         /// <summary>
-        /// Delete dashboard
+        /// Delete dashboard<br/>
+        /// Delete a saved analytics dashboard. Returns 204 on success.
         /// </summary>
         /// <param name="dashboardId"></param>
         /// <param name="speechifyVersion"></param>
@@ -18,7 +19,8 @@ namespace Speechify
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
-        /// Delete dashboard
+        /// Delete dashboard<br/>
+        /// Delete a saved analytics dashboard. Returns 204 on success.
         /// </summary>
         /// <param name="dashboardId"></param>
         /// <param name="speechifyVersion"></param>

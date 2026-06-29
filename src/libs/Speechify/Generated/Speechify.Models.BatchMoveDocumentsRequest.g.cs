@@ -4,7 +4,7 @@
 namespace Speechify
 {
     /// <summary>
-    /// Body for PATCH /v1/knowledge-bases/{kb_id}/documents/batch/move.<br/>
+    /// Body for PATCH /v1/agents/knowledge-bases/{kb_id}/documents/batch/move.<br/>
     /// Capped at 200 ids per call. Pass `folder_id: null` to move to<br/>
     /// root.
     /// </summary>

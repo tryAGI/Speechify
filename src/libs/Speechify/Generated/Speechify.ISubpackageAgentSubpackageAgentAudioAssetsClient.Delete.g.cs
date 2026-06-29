@@ -8,8 +8,8 @@ namespace Speechify
         /// Delete Audio Asset<br/>
         /// Soft-delete an audio asset. The underlying GCS object is<br/>
         /// retained so any flow node or tool still referencing the asset<br/>
-        /// keeps working until the config is updated; the worker logs<br/>
-        /// and skips on missing-row at session start (fail-soft).
+        /// keeps working until the config is updated; the agent runtime logs<br/>
+        /// and skips on a missing row at session start (fail-soft).
         /// </summary>
         /// <param name="audioAssetId"></param>
         /// <param name="speechifyVersion"></param>
@@ -25,8 +25,8 @@ namespace Speechify
         /// Delete Audio Asset<br/>
         /// Soft-delete an audio asset. The underlying GCS object is<br/>
         /// retained so any flow node or tool still referencing the asset<br/>
-        /// keeps working until the config is updated; the worker logs<br/>
-        /// and skips on missing-row at session start (fail-soft).
+        /// keeps working until the config is updated; the agent runtime logs<br/>
+        /// and skips on a missing row at session start (fail-soft).
         /// </summary>
         /// <param name="audioAssetId"></param>
         /// <param name="speechifyVersion"></param>
