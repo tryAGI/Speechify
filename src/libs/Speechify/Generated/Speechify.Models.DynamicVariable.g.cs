@@ -41,7 +41,7 @@ namespace Speechify
         public object? Default { get; set; }
 
         /// <summary>
-        /// Human-readable note shown in the console variable editor.
+        /// Human-readable note describing the variable.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("description")]
         public string? Description { get; set; }
@@ -73,7 +73,7 @@ namespace Speechify
         /// supplied. Must conform to the declared `type`.
         /// </param>
         /// <param name="description">
-        /// Human-readable note shown in the console variable editor.
+        /// Human-readable note describing the variable.
         /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]

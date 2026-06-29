@@ -8,7 +8,7 @@ namespace Speechify
         /// Get Audio Asset Bytes<br/>
         /// Stream the raw WAV bytes for an audio asset. Byte-stream<br/>
         /// sibling of the metadata endpoint at /v1/agents/audio-assets/{audio_asset_id}.<br/>
-        /// The LiveKit worker fetches through here for the play_audio<br/>
+        /// The agent runtime fetches through here for the play_audio<br/>
         /// builtin; SDK consumers can also download originals. Returns 404<br/>
         /// for missing / soft-deleted / foreign-tenant assets.
         /// </summary>
@@ -26,7 +26,7 @@ namespace Speechify
         /// Get Audio Asset Bytes<br/>
         /// Stream the raw WAV bytes for an audio asset. Byte-stream<br/>
         /// sibling of the metadata endpoint at /v1/agents/audio-assets/{audio_asset_id}.<br/>
-        /// The LiveKit worker fetches through here for the play_audio<br/>
+        /// The agent runtime fetches through here for the play_audio<br/>
         /// builtin; SDK consumers can also download originals. Returns 404<br/>
         /// for missing / soft-deleted / foreign-tenant assets.
         /// </summary>
@@ -44,7 +44,7 @@ namespace Speechify
         /// Get Audio Asset Bytes<br/>
         /// Stream the raw WAV bytes for an audio asset. Byte-stream<br/>
         /// sibling of the metadata endpoint at /v1/agents/audio-assets/{audio_asset_id}.<br/>
-        /// The LiveKit worker fetches through here for the play_audio<br/>
+        /// The agent runtime fetches through here for the play_audio<br/>
         /// builtin; SDK consumers can also download originals. Returns 404<br/>
         /// for missing / soft-deleted / foreign-tenant assets.
         /// </summary>

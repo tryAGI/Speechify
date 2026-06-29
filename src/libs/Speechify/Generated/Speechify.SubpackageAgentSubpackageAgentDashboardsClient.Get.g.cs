@@ -44,7 +44,8 @@ namespace Speechify
             ref string content);
 
         /// <summary>
-        /// Get dashboard
+        /// Get dashboard<br/>
+        /// Fetch a saved analytics dashboard by id.
         /// </summary>
         /// <param name="dashboardId"></param>
         /// <param name="speechifyVersion"></param>
@@ -67,7 +68,8 @@ namespace Speechify
             return __response.Body;
         }
         /// <summary>
-        /// Get dashboard
+        /// Get dashboard<br/>
+        /// Fetch a saved analytics dashboard by id.
         /// </summary>
         /// <param name="dashboardId"></param>
         /// <param name="speechifyVersion"></param>

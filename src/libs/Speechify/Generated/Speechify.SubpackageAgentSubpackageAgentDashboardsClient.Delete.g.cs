@@ -44,7 +44,8 @@ namespace Speechify
             ref string content);
 
         /// <summary>
-        /// Delete dashboard
+        /// Delete dashboard<br/>
+        /// Delete a saved analytics dashboard. Returns 204 on success.
         /// </summary>
         /// <param name="dashboardId"></param>
         /// <param name="speechifyVersion"></param>
@@ -67,7 +68,8 @@ namespace Speechify
             return __response.Body;
         }
         /// <summary>
-        /// Delete dashboard
+        /// Delete dashboard<br/>
+        /// Delete a saved analytics dashboard. Returns 204 on success.
         /// </summary>
         /// <param name="dashboardId"></param>
         /// <param name="speechifyVersion"></param>

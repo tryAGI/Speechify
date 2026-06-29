@@ -5,7 +5,7 @@ namespace Speechify
 {
     /// <summary>
     /// One row in the list-IVR-menus response. Carries the sample<br/>
-    /// transcript so the console can render the IVR identity (keyed on<br/>
+    /// transcript so a client can render the IVR identity (keyed on<br/>
     /// the prefixed `fingerprint_id`) without a second round-trip.<br/>
     /// `last_observed_at` and `occurrence_count` are projected from<br/>
     /// `ivr_fingerprints` for the "when did we last see this IVR" signal.

@@ -4,10 +4,9 @@
 namespace Speechify
 {
     /// <summary>
-    /// One ranked chunk inside a retrieval log row. Mirrors<br/>
-    /// `RetrievalLogResult` in apps/server/internal/kb/types.go —<br/>
-    /// denormalised so deleting a chunk or document after the call<br/>
-    /// doesn't render historical logs unreadable.
+    /// One ranked chunk inside a retrieval log row. Denormalised so<br/>
+    /// deleting a chunk or document after the call doesn't render<br/>
+    /// historical logs unreadable.
     /// </summary>
     public sealed partial class RetrievalLogResult
     {

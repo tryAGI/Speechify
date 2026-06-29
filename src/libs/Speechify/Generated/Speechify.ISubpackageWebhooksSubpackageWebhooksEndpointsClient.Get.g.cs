@@ -5,7 +5,8 @@ namespace Speechify
     public partial interface ISubpackageWebhooksSubpackageWebhooksEndpointsClient
     {
         /// <summary>
-        /// Get webhook endpoint
+        /// Get webhook endpoint<br/>
+        /// Fetch a webhook endpoint by id. The signing secret is never returned.
         /// </summary>
         /// <param name="webhookEndpointId"></param>
         /// <param name="speechifyVersion"></param>
@@ -18,7 +19,8 @@ namespace Speechify
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
-        /// Get webhook endpoint
+        /// Get webhook endpoint<br/>
+        /// Fetch a webhook endpoint by id. The signing secret is never returned.
         /// </summary>
         /// <param name="webhookEndpointId"></param>
         /// <param name="speechifyVersion"></param>

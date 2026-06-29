@@ -44,7 +44,7 @@ namespace Speechify
         public required string Identity { get; set; }
 
         /// <summary>
-        /// When the token stops being accepted by the realtime provider. The console should re-mint past this point.
+        /// When the token stops being accepted by the realtime provider. Re-mint past this point.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("expires_at")]
         [global::System.Text.Json.Serialization.JsonRequired]
@@ -73,7 +73,7 @@ namespace Speechify
         /// Opaque participant identity tag (e.g. shadow_&lt;hex&gt;). Visible only to admin tooling.
         /// </param>
         /// <param name="expiresAt">
-        /// When the token stops being accepted by the realtime provider. The console should re-mint past this point.
+        /// When the token stops being accepted by the realtime provider. Re-mint past this point.
         /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]

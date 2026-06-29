@@ -7,17 +7,15 @@ namespace Speechify
     /// Config shape for `kind=builtin`. The `builtin` value names the<br/>
     /// worker-resident capability; the catalogue served by<br/>
     /// `GET /v1/agents/tool-capabilities` is the runtime source of truth<br/>
-    /// for valid names plus their console-facing labels. `builtin_config`<br/>
+    /// for valid names plus their human-readable labels. `builtin_config`<br/>
     /// carries per-instance extras (e.g. allowed_numbers for<br/>
     /// transfer_to_number, audio_asset_id for play_audio).
     /// </summary>
     public sealed partial class BuiltinToolConfig
     {
         /// <summary>
-        /// Identifier of a worker-resident system builtin. New entries are<br/>
-        /// added together on the server (a new `tool_builtin_&lt;name&gt;.go`<br/>
-        /// file) and worker (`tools/builtins/&lt;name&gt;.py`) - the 2-file rule<br/>
-        /// the server pins. Customers read the catalogue from<br/>
+        /// Identifier of a built-in system tool. New builtins are added by<br/>
+        /// Speechify across releases. Read the catalogue from<br/>
         /// `GET /v1/agents/tool-capabilities` rather than depending on this<br/>
         /// string set staying stable across releases.
         /// </summary>
@@ -47,10 +45,8 @@ namespace Speechify
         /// Initializes a new instance of the <see cref="BuiltinToolConfig" /> class.
         /// </summary>
         /// <param name="builtin">
-        /// Identifier of a worker-resident system builtin. New entries are<br/>
-        /// added together on the server (a new `tool_builtin_&lt;name&gt;.go`<br/>
-        /// file) and worker (`tools/builtins/&lt;name&gt;.py`) - the 2-file rule<br/>
-        /// the server pins. Customers read the catalogue from<br/>
+        /// Identifier of a built-in system tool. New builtins are added by<br/>
+        /// Speechify across releases. Read the catalogue from<br/>
         /// `GET /v1/agents/tool-capabilities` rather than depending on this<br/>
         /// string set staying stable across releases.
         /// </param>

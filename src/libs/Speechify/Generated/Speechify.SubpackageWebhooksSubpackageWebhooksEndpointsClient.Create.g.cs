@@ -619,6 +619,10 @@ namespace Speechify
         /// <param name="enabledEvents">
         /// Catalog event names to subscribe to, or `["*"]` for all events.
         /// </param>
+        /// <param name="include">
+        /// Optional payload-shaping keys (see `WebhookEndpoint.include`):<br/>
+        /// `messages`, `evaluations`. Omit for the lean default.
+        /// </param>
         /// <param name="description"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -627,6 +631,7 @@ namespace Speechify
             string url,
             global::System.Collections.Generic.IList<string> enabledEvents,
             string? speechifyVersion = default,
+            global::System.Collections.Generic.IList<string>? include = default,
             string? description = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
@@ -635,6 +640,7 @@ namespace Speechify
             {
                 Url = url,
                 EnabledEvents = enabledEvents,
+                Include = include,
                 Description = description,
             };
 

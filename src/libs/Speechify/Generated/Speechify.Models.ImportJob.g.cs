@@ -5,7 +5,7 @@ namespace Speechify
 {
     /// <summary>
     /// Async URL import job (sitemap, crawl, plus<br/>
-    /// the auto-refresh path). The console polls<br/>
+    /// the auto-refresh path). Poll<br/>
     /// `GET /v1/agents/knowledge-bases/{kb_id}/imports` while the job is<br/>
     /// non-terminal.
     /// </summary>
@@ -77,7 +77,7 @@ namespace Speechify
 
         /// <summary>
         /// JSON blob whose shape depends on `kind` — typically `url`,<br/>
-        /// `max_pages`, `max_depth`. The console reads it for display<br/>
+        /// `max_pages`, `max_depth`. Read it for display<br/>
         /// only.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("params")]
@@ -155,7 +155,7 @@ namespace Speechify
         /// </param>
         /// <param name="params">
         /// JSON blob whose shape depends on `kind` — typically `url`,<br/>
-        /// `max_pages`, `max_depth`. The console reads it for display<br/>
+        /// `max_pages`, `max_depth`. Read it for display<br/>
         /// only.
         /// </param>
         /// <param name="createdAt"></param>

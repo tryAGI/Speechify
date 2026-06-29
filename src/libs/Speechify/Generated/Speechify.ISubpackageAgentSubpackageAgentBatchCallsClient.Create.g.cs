@@ -81,8 +81,7 @@ namespace Speechify
         /// Ringing timeout in milliseconds applied to every call in the<br/>
         /// batch (how long each recipient rings before the dial gives<br/>
         /// up). Range 1000-80000 (1-80s). Omit to use the 30s default.<br/>
-        /// The console collects this in seconds and converts to<br/>
-        /// milliseconds.
+        /// Express this in milliseconds even if a UI collects seconds.
         /// </param>
         /// <param name="recipients"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>

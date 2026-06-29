@@ -4,7 +4,7 @@
 namespace Speechify
 {
     /// <summary>
-    /// Payload of GET /v1/knowledge-bases/documents/{document_id}. Extends<br/>
+    /// Payload of GET /v1/agents/knowledge-bases/documents/{document_id}. Extends<br/>
     /// the list-view document with a bounded content preview, the<br/>
     /// list of dependent agents, and (for url-sourced docs) the<br/>
     /// auto-refresh state.
@@ -141,7 +141,7 @@ namespace Speechify
         /// <summary>
         /// Per-document auto-refresh state. Only populated<br/>
         /// for url-sourced documents; file and text rows omit this and<br/>
-        /// the console's auto-refresh panel hides accordingly.
+        /// clients hide auto-refresh affordances accordingly.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("refresh")]
         public global::Speechify.RefreshConfig? Refresh { get; set; }
@@ -196,7 +196,7 @@ namespace Speechify
         /// <param name="refresh">
         /// Per-document auto-refresh state. Only populated<br/>
         /// for url-sourced documents; file and text rows omit this and<br/>
-        /// the console's auto-refresh panel hides accordingly.
+        /// clients hide auto-refresh affordances accordingly.
         /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]

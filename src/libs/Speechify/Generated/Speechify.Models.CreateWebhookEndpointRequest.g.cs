@@ -23,6 +23,13 @@ namespace Speechify
         public required global::System.Collections.Generic.IList<string> EnabledEvents { get; set; }
 
         /// <summary>
+        /// Optional payload-shaping keys (see `WebhookEndpoint.include`):<br/>
+        /// `messages`, `evaluations`. Omit for the lean default.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("include")]
+        public global::System.Collections.Generic.IList<string>? Include { get; set; }
+
+        /// <summary>
         /// 
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("description")]
@@ -43,6 +50,10 @@ namespace Speechify
         /// <param name="enabledEvents">
         /// Catalog event names to subscribe to, or `["*"]` for all events.
         /// </param>
+        /// <param name="include">
+        /// Optional payload-shaping keys (see `WebhookEndpoint.include`):<br/>
+        /// `messages`, `evaluations`. Omit for the lean default.
+        /// </param>
         /// <param name="description"></param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
@@ -50,10 +61,12 @@ namespace Speechify
         public CreateWebhookEndpointRequest(
             string url,
             global::System.Collections.Generic.IList<string> enabledEvents,
+            global::System.Collections.Generic.IList<string>? include,
             string? description)
         {
             this.Url = url ?? throw new global::System.ArgumentNullException(nameof(url));
             this.EnabledEvents = enabledEvents ?? throw new global::System.ArgumentNullException(nameof(enabledEvents));
+            this.Include = include;
             this.Description = description;
         }
 

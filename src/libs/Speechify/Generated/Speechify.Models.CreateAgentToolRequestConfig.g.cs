@@ -13,7 +13,7 @@ namespace Speechify
         /// Config shape for `kind=builtin`. The `builtin` value names the<br/>
         /// worker-resident capability; the catalogue served by<br/>
         /// `GET /v1/agents/tool-capabilities` is the runtime source of truth<br/>
-        /// for valid names plus their console-facing labels. `builtin_config`<br/>
+        /// for valid names plus their human-readable labels. `builtin_config`<br/>
         /// carries per-instance extras (e.g. allowed_numbers for<br/>
         /// transfer_to_number, audio_asset_id for play_audio).
         /// </summary>

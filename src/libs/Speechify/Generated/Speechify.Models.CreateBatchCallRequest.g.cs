@@ -40,8 +40,7 @@ namespace Speechify
         /// Ringing timeout in milliseconds applied to every call in the<br/>
         /// batch (how long each recipient rings before the dial gives<br/>
         /// up). Range 1000-80000 (1-80s). Omit to use the 30s default.<br/>
-        /// The console collects this in seconds and converts to<br/>
-        /// milliseconds.
+        /// Express this in milliseconds even if a UI collects seconds.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("ringing_timeout_ms")]
         public int? RingingTimeoutMs { get; set; }
@@ -79,8 +78,7 @@ namespace Speechify
         /// Ringing timeout in milliseconds applied to every call in the<br/>
         /// batch (how long each recipient rings before the dial gives<br/>
         /// up). Range 1000-80000 (1-80s). Omit to use the 30s default.<br/>
-        /// The console collects this in seconds and converts to<br/>
-        /// milliseconds.
+        /// Express this in milliseconds even if a UI collects seconds.
         /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]

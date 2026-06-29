@@ -4,7 +4,7 @@
 namespace Speechify
 {
     /// <summary>
-    /// Body for DELETE /v1/knowledge-bases/{kb_id}/documents/batch. All<br/>
+    /// Body for DELETE /v1/agents/knowledge-bases/{kb_id}/documents/batch. All<br/>
     /// ids must belong to the supplied KB; capped at 200 ids per<br/>
     /// call.
     /// </summary>

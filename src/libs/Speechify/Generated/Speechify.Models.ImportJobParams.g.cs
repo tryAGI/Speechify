@@ -5,7 +5,7 @@ namespace Speechify
 {
     /// <summary>
     /// JSON blob whose shape depends on `kind` — typically `url`,<br/>
-    /// `max_pages`, `max_depth`. The console reads it for display<br/>
+    /// `max_pages`, `max_depth`. Read it for display<br/>
     /// only.
     /// </summary>
     public sealed partial class ImportJobParams

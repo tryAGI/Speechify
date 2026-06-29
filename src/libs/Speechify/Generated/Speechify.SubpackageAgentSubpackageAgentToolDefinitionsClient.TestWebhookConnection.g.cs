@@ -46,8 +46,8 @@ namespace Speechify
         /// <summary>
         /// Test Webhook Connection<br/>
         /// Probe a customer-supplied webhook tool config without persisting<br/>
-        /// anything. The server fires the exact request shape the worker<br/>
-        /// sends on a real invocation — same JSON body, same HMAC-SHA256<br/>
+        /// anything. The server fires the exact request shape used on a real<br/>
+        /// invocation — same JSON body, same HMAC-SHA256<br/>
         /// signature — with an empty argument set, and reports the<br/>
         /// endpoint's status code, latency, and a truncated response body,<br/>
         /// or a transport-level failure reason. The probe carries a<br/>
@@ -81,8 +81,8 @@ namespace Speechify
         /// <summary>
         /// Test Webhook Connection<br/>
         /// Probe a customer-supplied webhook tool config without persisting<br/>
-        /// anything. The server fires the exact request shape the worker<br/>
-        /// sends on a real invocation — same JSON body, same HMAC-SHA256<br/>
+        /// anything. The server fires the exact request shape used on a real<br/>
+        /// invocation — same JSON body, same HMAC-SHA256<br/>
         /// signature — with an empty argument set, and reports the<br/>
         /// endpoint's status code, latency, and a truncated response body,<br/>
         /// or a transport-level failure reason. The probe carries a<br/>
@@ -543,8 +543,8 @@ namespace Speechify
         /// <summary>
         /// Test Webhook Connection<br/>
         /// Probe a customer-supplied webhook tool config without persisting<br/>
-        /// anything. The server fires the exact request shape the worker<br/>
-        /// sends on a real invocation — same JSON body, same HMAC-SHA256<br/>
+        /// anything. The server fires the exact request shape used on a real<br/>
+        /// invocation — same JSON body, same HMAC-SHA256<br/>
         /// signature — with an empty argument set, and reports the<br/>
         /// endpoint's status code, latency, and a truncated response body,<br/>
         /// or a transport-level failure reason. The probe carries a<br/>

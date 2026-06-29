@@ -29,8 +29,7 @@ namespace Speechify
         /// <summary>
         /// Caller-ID override. When set, prefixed wire identifier<br/>
         /// (`phone_&lt;26 char Crockford base32&gt;`) of the phone number to<br/>
-        /// use; falls back to the agent's bound number when null. ADR<br/>
-        /// 0015 FK consistency.
+        /// use; falls back to the agent's bound number when null.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("phone_number_id")]
         public string? PhoneNumberId { get; set; }
@@ -162,8 +161,7 @@ namespace Speechify
         /// <param name="phoneNumberId">
         /// Caller-ID override. When set, prefixed wire identifier<br/>
         /// (`phone_&lt;26 char Crockford base32&gt;`) of the phone number to<br/>
-        /// use; falls back to the agent's bound number when null. ADR<br/>
-        /// 0015 FK consistency.
+        /// use; falls back to the agent's bound number when null.
         /// </param>
         /// <param name="error">
         /// Populated when the batch itself fails.

@@ -5,7 +5,8 @@ namespace Speechify
     public partial interface ISubpackageAgentSubpackageAgentDashboardsClient
     {
         /// <summary>
-        /// Get dashboard
+        /// Get dashboard<br/>
+        /// Fetch a saved analytics dashboard by id.
         /// </summary>
         /// <param name="dashboardId"></param>
         /// <param name="speechifyVersion"></param>
@@ -18,7 +19,8 @@ namespace Speechify
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
-        /// Get dashboard
+        /// Get dashboard<br/>
+        /// Fetch a saved analytics dashboard by id.
         /// </summary>
         /// <param name="dashboardId"></param>
         /// <param name="speechifyVersion"></param>

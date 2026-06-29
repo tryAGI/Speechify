@@ -149,10 +149,15 @@ namespace Speechify
         public global::System.Collections.Generic.IList<string>? HostnameAllowlist { get; set; }
 
         /// <summary>
-        /// Customer-facing post-call webhook target. When non-empty,<br/>
-        /// the control plane POSTs a signed payload (transcript +<br/>
-        /// evals + extractors + recording URL) once the conversation<br/>
-        /// completes. Empty disables the fire path.
+        /// Per-agent override of the workspace webhook endpoints for this<br/>
+        /// agent's post-call event. When non-empty, the control plane POSTs a<br/>
+        /// signed payload (transcript + evals + extractors + recording URL) here<br/>
+        /// once the conversation completes, and the workspace endpoints'<br/>
+        /// `conversation.completed` is suppressed for this agent (the override<br/>
+        /// wins, so the two planes no longer both fire). Empty routes<br/>
+        /// `conversation.completed` to your workspace webhook endpoints instead.<br/>
+        /// `conversation.started` / `conversation.failed` always ride the<br/>
+        /// workspace endpoints regardless of this field.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("webhook_url")]
         public string? WebhookUrl { get; set; }
@@ -293,10 +298,15 @@ namespace Speechify
         /// enforcement (public agents accept any hostname).
         /// </param>
         /// <param name="webhookUrl">
-        /// Customer-facing post-call webhook target. When non-empty,<br/>
-        /// the control plane POSTs a signed payload (transcript +<br/>
-        /// evals + extractors + recording URL) once the conversation<br/>
-        /// completes. Empty disables the fire path.
+        /// Per-agent override of the workspace webhook endpoints for this<br/>
+        /// agent's post-call event. When non-empty, the control plane POSTs a<br/>
+        /// signed payload (transcript + evals + extractors + recording URL) here<br/>
+        /// once the conversation completes, and the workspace endpoints'<br/>
+        /// `conversation.completed` is suppressed for this agent (the override<br/>
+        /// wins, so the two planes no longer both fire). Empty routes<br/>
+        /// `conversation.completed` to your workspace webhook endpoints instead.<br/>
+        /// `conversation.started` / `conversation.failed` always ride the<br/>
+        /// workspace endpoints regardless of this field.
         /// </param>
         /// <param name="webhookSecretSet">
         /// True when an HMAC-SHA256 webhook secret is configured. The<br/>

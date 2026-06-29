@@ -5,11 +5,11 @@ namespace Speechify
 {
     /// <summary>
     /// Operator-only projection of a conversation's internal LiveKit<br/>
-    /// runtime handles, returned by<br/>
+    /// room handles, returned by<br/>
     /// `GET /v1/agents/conversations/{conversation_id}/livekit-room`.<br/>
     /// These are kept off the conversation read responses so they never<br/>
-    /// freeze into the public contract; only Speechify staff can act on<br/>
-    /// them.
+    /// freeze into the public contract, and are available only to<br/>
+    /// Speechify operators.
     /// </summary>
     public sealed partial class ConversationLiveKitRoom
     {

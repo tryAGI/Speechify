@@ -49,7 +49,7 @@ namespace Speechify
         /// Create Multi-URL Import<br/>
         /// Kick off an async multi-URL import. Accepts 1..N URLs in a<br/>
         /// single job (capped per-deployment, default 50) and runs the<br/>
-        /// same per-URL pipeline as the sitemap worker. Returns 202 with<br/>
+        /// same per-URL pipeline as the sitemap importer. Returns 202 with<br/>
         /// the import job row; client polls `GET /{kb_id}/imports` for<br/>
         /// progress.
         /// </summary>
@@ -82,7 +82,7 @@ namespace Speechify
         /// Create Multi-URL Import<br/>
         /// Kick off an async multi-URL import. Accepts 1..N URLs in a<br/>
         /// single job (capped per-deployment, default 50) and runs the<br/>
-        /// same per-URL pipeline as the sitemap worker. Returns 202 with<br/>
+        /// same per-URL pipeline as the sitemap importer. Returns 202 with<br/>
         /// the import job row; client polls `GET /{kb_id}/imports` for<br/>
         /// progress.
         /// </summary>
@@ -580,7 +580,7 @@ namespace Speechify
         /// Create Multi-URL Import<br/>
         /// Kick off an async multi-URL import. Accepts 1..N URLs in a<br/>
         /// single job (capped per-deployment, default 50) and runs the<br/>
-        /// same per-URL pipeline as the sitemap worker. Returns 202 with<br/>
+        /// same per-URL pipeline as the sitemap importer. Returns 202 with<br/>
         /// the import job row; client polls `GET /{kb_id}/imports` for<br/>
         /// progress.
         /// </summary>

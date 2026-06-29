@@ -13,7 +13,7 @@ namespace Speechify
     /// absent in that case. `signed` reports whether the probe carried<br/>
     /// a `Speechify-Signature` header — false on the create-form<br/>
     /// flow, which has no stored secret yet. Both success and failure<br/>
-    /// use the 200 envelope so the console renders them inline.
+    /// use the 200 envelope so a client can render them inline.
     /// </summary>
     public sealed partial class WebhookProbeResult
     {

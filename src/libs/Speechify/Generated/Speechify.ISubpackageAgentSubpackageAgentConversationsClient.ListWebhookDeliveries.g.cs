@@ -7,9 +7,9 @@ namespace Speechify
         /// <summary>
         /// List Webhook Deliveries<br/>
         /// List post-call webhook delivery attempts for a conversation,<br/>
-        /// newest first. Rows appear once the LiveKit `room_finished`<br/>
-        /// webhook has fired and the post-call webhook has been<br/>
-        /// dispatched to the agent's configured URL. One row per<br/>
+        /// newest first. Rows appear once the call ends and the post-call<br/>
+        /// webhook has been dispatched to the agent's configured URL. One<br/>
+        /// row per<br/>
         /// `(conversation, webhook-url)`, updated in place across retries.<br/>
         /// Each row includes the exact request payload and signed headers<br/>
         /// Speechify sent (`request_body`, `request_headers`) and the<br/>
@@ -39,9 +39,9 @@ namespace Speechify
         /// <summary>
         /// List Webhook Deliveries<br/>
         /// List post-call webhook delivery attempts for a conversation,<br/>
-        /// newest first. Rows appear once the LiveKit `room_finished`<br/>
-        /// webhook has fired and the post-call webhook has been<br/>
-        /// dispatched to the agent's configured URL. One row per<br/>
+        /// newest first. Rows appear once the call ends and the post-call<br/>
+        /// webhook has been dispatched to the agent's configured URL. One<br/>
+        /// row per<br/>
         /// `(conversation, webhook-url)`, updated in place across retries.<br/>
         /// Each row includes the exact request payload and signed headers<br/>
         /// Speechify sent (`request_body`, `request_headers`) and the<br/>

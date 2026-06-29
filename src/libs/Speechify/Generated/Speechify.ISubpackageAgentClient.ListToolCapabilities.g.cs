@@ -6,12 +6,12 @@ namespace Speechify
     {
         /// <summary>
         /// List Tool Capabilities<br/>
-        /// Read-only catalogue of every built-in tool capability the worker<br/>
-        /// knows about (the names usable as `config.builtin` when adding a<br/>
-        /// `kind=builtin` tool to an agent). The console fetches this at<br/>
-        /// runtime rather than maintaining a parallel client-side list; the<br/>
-        /// server is the single source of truth for the label and<br/>
-        /// description copy a customer sees in the capability picker. Returns<br/>
+        /// Read-only catalogue of every built-in tool capability the agent<br/>
+        /// runtime supports (the names usable as `config.builtin` when adding a<br/>
+        /// `kind=builtin` tool to an agent). Fetch this at runtime rather<br/>
+        /// than maintaining a parallel client-side list; the server is the<br/>
+        /// single source of truth for the label and description text a<br/>
+        /// customer sees in the capability picker. Returns<br/>
         /// the full set in a single response: bounded by the platform's<br/>
         /// built-in tool-capability registry, so this list is intentionally<br/>
         /// not paginated.
@@ -26,12 +26,12 @@ namespace Speechify
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// List Tool Capabilities<br/>
-        /// Read-only catalogue of every built-in tool capability the worker<br/>
-        /// knows about (the names usable as `config.builtin` when adding a<br/>
-        /// `kind=builtin` tool to an agent). The console fetches this at<br/>
-        /// runtime rather than maintaining a parallel client-side list; the<br/>
-        /// server is the single source of truth for the label and<br/>
-        /// description copy a customer sees in the capability picker. Returns<br/>
+        /// Read-only catalogue of every built-in tool capability the agent<br/>
+        /// runtime supports (the names usable as `config.builtin` when adding a<br/>
+        /// `kind=builtin` tool to an agent). Fetch this at runtime rather<br/>
+        /// than maintaining a parallel client-side list; the server is the<br/>
+        /// single source of truth for the label and description text a<br/>
+        /// customer sees in the capability picker. Returns<br/>
         /// the full set in a single response: bounded by the platform's<br/>
         /// built-in tool-capability registry, so this list is intentionally<br/>
         /// not paginated.

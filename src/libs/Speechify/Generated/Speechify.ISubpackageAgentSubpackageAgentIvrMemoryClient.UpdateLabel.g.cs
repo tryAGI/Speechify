@@ -7,9 +7,9 @@ namespace Speechify
         /// <summary>
         /// Update IVR Menu Option Label<br/>
         /// Re-label one option in the stored menu_tree, matched on the<br/>
-        /// supplied DTMF value. The label is what the console displays in<br/>
-        /// the detail panel and what the worker reads back at navigate<br/>
-        /// time to surface the option semantically. Unknown DTMF values<br/>
+        /// supplied DTMF value. The label is shown when reviewing the menu<br/>
+        /// and is read back to the agent at navigate time to surface the<br/>
+        /// option semantically. Unknown DTMF values<br/>
         /// are a no-op (the response echoes the unchanged menu).
         /// </summary>
         /// <param name="ivrMenuId"></param>
@@ -28,9 +28,9 @@ namespace Speechify
         /// <summary>
         /// Update IVR Menu Option Label<br/>
         /// Re-label one option in the stored menu_tree, matched on the<br/>
-        /// supplied DTMF value. The label is what the console displays in<br/>
-        /// the detail panel and what the worker reads back at navigate<br/>
-        /// time to surface the option semantically. Unknown DTMF values<br/>
+        /// supplied DTMF value. The label is shown when reviewing the menu<br/>
+        /// and is read back to the agent at navigate time to surface the<br/>
+        /// option semantically. Unknown DTMF values<br/>
         /// are a no-op (the response echoes the unchanged menu).
         /// </summary>
         /// <param name="ivrMenuId"></param>
@@ -49,9 +49,9 @@ namespace Speechify
         /// <summary>
         /// Update IVR Menu Option Label<br/>
         /// Re-label one option in the stored menu_tree, matched on the<br/>
-        /// supplied DTMF value. The label is what the console displays in<br/>
-        /// the detail panel and what the worker reads back at navigate<br/>
-        /// time to surface the option semantically. Unknown DTMF values<br/>
+        /// supplied DTMF value. The label is shown when reviewing the menu<br/>
+        /// and is read back to the agent at navigate time to surface the<br/>
+        /// option semantically. Unknown DTMF values<br/>
         /// are a no-op (the response echoes the unchanged menu).
         /// </summary>
         /// <param name="ivrMenuId"></param>

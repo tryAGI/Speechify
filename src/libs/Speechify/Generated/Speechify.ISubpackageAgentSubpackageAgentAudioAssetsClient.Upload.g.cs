@@ -10,9 +10,8 @@ namespace Speechify
         /// request with a single `file` field carrying the WAV bytes.<br/>
         /// The WAV is validated server-side against a strict format<br/>
         /// contract — PCM 16-bit signed, mono, 48000 Hz, ≤30s, ≤4 MiB —<br/>
-        /// before any bytes hit storage. The strict shape matches the<br/>
-        /// LiveKit room sample rate so the worker reads bytes straight<br/>
-        /// into `rtc.AudioFrame` with no decode dependency on either side;<br/>
+        /// before any bytes hit storage. The format matches what voice<br/>
+        /// agents play back natively, so clips stream with no transcoding;<br/>
         /// convert MP3 sources with `ffmpeg -i in.mp3 -ar 48000 -ac 1<br/>
         /// -sample_fmt s16 out.wav`.
         /// </summary>
@@ -33,9 +32,8 @@ namespace Speechify
         /// request with a single `file` field carrying the WAV bytes.<br/>
         /// The WAV is validated server-side against a strict format<br/>
         /// contract — PCM 16-bit signed, mono, 48000 Hz, ≤30s, ≤4 MiB —<br/>
-        /// before any bytes hit storage. The strict shape matches the<br/>
-        /// LiveKit room sample rate so the worker reads bytes straight<br/>
-        /// into `rtc.AudioFrame` with no decode dependency on either side;<br/>
+        /// before any bytes hit storage. The format matches what voice<br/>
+        /// agents play back natively, so clips stream with no transcoding;<br/>
         /// convert MP3 sources with `ffmpeg -i in.mp3 -ar 48000 -ac 1<br/>
         /// -sample_fmt s16 out.wav`.
         /// </summary>
@@ -56,9 +54,8 @@ namespace Speechify
         /// request with a single `file` field carrying the WAV bytes.<br/>
         /// The WAV is validated server-side against a strict format<br/>
         /// contract — PCM 16-bit signed, mono, 48000 Hz, ≤30s, ≤4 MiB —<br/>
-        /// before any bytes hit storage. The strict shape matches the<br/>
-        /// LiveKit room sample rate so the worker reads bytes straight<br/>
-        /// into `rtc.AudioFrame` with no decode dependency on either side;<br/>
+        /// before any bytes hit storage. The format matches what voice<br/>
+        /// agents play back natively, so clips stream with no transcoding;<br/>
         /// convert MP3 sources with `ffmpeg -i in.mp3 -ar 48000 -ac 1<br/>
         /// -sample_fmt s16 out.wav`.
         /// </summary>
@@ -87,9 +84,8 @@ namespace Speechify
         /// request with a single `file` field carrying the WAV bytes.<br/>
         /// The WAV is validated server-side against a strict format<br/>
         /// contract — PCM 16-bit signed, mono, 48000 Hz, ≤30s, ≤4 MiB —<br/>
-        /// before any bytes hit storage. The strict shape matches the<br/>
-        /// LiveKit room sample rate so the worker reads bytes straight<br/>
-        /// into `rtc.AudioFrame` with no decode dependency on either side;<br/>
+        /// before any bytes hit storage. The format matches what voice<br/>
+        /// agents play back natively, so clips stream with no transcoding;<br/>
         /// convert MP3 sources with `ffmpeg -i in.mp3 -ar 48000 -ac 1<br/>
         /// -sample_fmt s16 out.wav`.
         /// </summary>
@@ -117,9 +113,8 @@ namespace Speechify
         /// request with a single `file` field carrying the WAV bytes.<br/>
         /// The WAV is validated server-side against a strict format<br/>
         /// contract — PCM 16-bit signed, mono, 48000 Hz, ≤30s, ≤4 MiB —<br/>
-        /// before any bytes hit storage. The strict shape matches the<br/>
-        /// LiveKit room sample rate so the worker reads bytes straight<br/>
-        /// into `rtc.AudioFrame` with no decode dependency on either side;<br/>
+        /// before any bytes hit storage. The format matches what voice<br/>
+        /// agents play back natively, so clips stream with no transcoding;<br/>
         /// convert MP3 sources with `ffmpeg -i in.mp3 -ar 48000 -ac 1<br/>
         /// -sample_fmt s16 out.wav`.
         /// </summary>
