@@ -11,8 +11,8 @@ namespace Speechify
         /// sends on a real invocation — same JSON body, same HMAC-SHA256<br/>
         /// signature — with an empty argument set, and reports the<br/>
         /// endpoint's status code, latency, and a truncated response body,<br/>
-        /// or a transport-level failure reason. The probe carries an<br/>
-        /// `X-Speechify-Webhook-Test: true` header so a careful endpoint<br/>
+        /// or a transport-level failure reason. The probe carries a<br/>
+        /// `Speechify-Webhook-Test: true` header so a careful endpoint<br/>
         /// can recognise the test and skip its real side effect. Pass<br/>
         /// `tool_id` from the edit-form flow so the server signs the probe<br/>
         /// with the tool's stored HMAC secret.
@@ -35,8 +35,8 @@ namespace Speechify
         /// sends on a real invocation — same JSON body, same HMAC-SHA256<br/>
         /// signature — with an empty argument set, and reports the<br/>
         /// endpoint's status code, latency, and a truncated response body,<br/>
-        /// or a transport-level failure reason. The probe carries an<br/>
-        /// `X-Speechify-Webhook-Test: true` header so a careful endpoint<br/>
+        /// or a transport-level failure reason. The probe carries a<br/>
+        /// `Speechify-Webhook-Test: true` header so a careful endpoint<br/>
         /// can recognise the test and skip its real side effect. Pass<br/>
         /// `tool_id` from the edit-form flow so the server signs the probe<br/>
         /// with the tool's stored HMAC secret.
@@ -59,8 +59,8 @@ namespace Speechify
         /// sends on a real invocation — same JSON body, same HMAC-SHA256<br/>
         /// signature — with an empty argument set, and reports the<br/>
         /// endpoint's status code, latency, and a truncated response body,<br/>
-        /// or a transport-level failure reason. The probe carries an<br/>
-        /// `X-Speechify-Webhook-Test: true` header so a careful endpoint<br/>
+        /// or a transport-level failure reason. The probe carries a<br/>
+        /// `Speechify-Webhook-Test: true` header so a careful endpoint<br/>
         /// can recognise the test and skip its real side effect. Pass<br/>
         /// `tool_id` from the edit-form flow so the server signs the probe<br/>
         /// with the tool's stored HMAC secret.

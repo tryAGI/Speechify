@@ -91,18 +91,19 @@ namespace Speechify
 
         /// <summary>
         /// The exact JSON body Speechify POSTed to your webhook URL. This<br/>
-        /// is the verbatim payload the `X-Speechify-Signature` HMAC was<br/>
-        /// computed over, so you can re-verify the signature against it.<br/>
-        /// Absent on deliveries that pre-date this capture.
+        /// is the verbatim payload the `Speechify-Signature` HMAC was<br/>
+        /// computed over (as `&lt;t&gt;.&lt;raw_body&gt;`), so you can re-verify the<br/>
+        /// signature against it. Absent on deliveries that pre-date this<br/>
+        /// capture.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("request_body")]
         public string? RequestBody { get; set; }
 
         /// <summary>
         /// The HTTP headers Speechify sent with the delivery, including<br/>
-        /// `X-Speechify-Signature`, `X-Speechify-Timestamp`,<br/>
-        /// `X-Speechify-Event`, and `X-Speechify-Delivery-Id`. Reflects<br/>
-        /// the most recent attempt.
+        /// `Speechify-Signature` (`t=&lt;unix&gt;,v0=&lt;hmac-sha256-hex&gt;`),<br/>
+        /// `Speechify-Event`, and `Speechify-Delivery-Id`. Reflects the<br/>
+        /// most recent attempt.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("request_headers")]
         public global::System.Collections.Generic.Dictionary<string, string>? RequestHeaders { get; set; }
@@ -155,15 +156,16 @@ namespace Speechify
         /// <param name="lastError"></param>
         /// <param name="requestBody">
         /// The exact JSON body Speechify POSTed to your webhook URL. This<br/>
-        /// is the verbatim payload the `X-Speechify-Signature` HMAC was<br/>
-        /// computed over, so you can re-verify the signature against it.<br/>
-        /// Absent on deliveries that pre-date this capture.
+        /// is the verbatim payload the `Speechify-Signature` HMAC was<br/>
+        /// computed over (as `&lt;t&gt;.&lt;raw_body&gt;`), so you can re-verify the<br/>
+        /// signature against it. Absent on deliveries that pre-date this<br/>
+        /// capture.
         /// </param>
         /// <param name="requestHeaders">
         /// The HTTP headers Speechify sent with the delivery, including<br/>
-        /// `X-Speechify-Signature`, `X-Speechify-Timestamp`,<br/>
-        /// `X-Speechify-Event`, and `X-Speechify-Delivery-Id`. Reflects<br/>
-        /// the most recent attempt.
+        /// `Speechify-Signature` (`t=&lt;unix&gt;,v0=&lt;hmac-sha256-hex&gt;`),<br/>
+        /// `Speechify-Event`, and `Speechify-Delivery-Id`. Reflects the<br/>
+        /// most recent attempt.
         /// </param>
         /// <param name="lastResponseBody">
         /// The response body your server returned on the most recent<br/>

@@ -244,6 +244,16 @@ namespace Speechify
         };
 
         /// <summary>
+        /// 
+        /// </summary>
+        public SubpackageWebhooksSubpackageWebhooksEndpointsClient SubpackageWebhooksSubpackageWebhooksEndpoints => new SubpackageWebhooksSubpackageWebhooksEndpointsClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
+        {
+            ReadResponseAsString = ReadResponseAsString,
+            CreateIdempotencyKey = CreateIdempotencyKey,
+            JsonSerializerContext = JsonSerializerContext,
+        };
+
+        /// <summary>
         /// Creates a new instance of the SpeechifyClient.
         /// If no httpClient is provided, a new one will be created.
         /// If no baseUri is provided, the default baseUri from OpenAPI spec will be used.

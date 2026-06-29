@@ -4,7 +4,7 @@
 namespace Speechify
 {
     /// <summary>
-    /// Static headers sent with every call. `Authorization` and `X-Speechify-Signature` are reserved.
+    /// Static headers sent with every call. `Authorization` and `Speechify-Signature` are reserved.
     /// </summary>
     public sealed partial class WebhookToolConfigHeaders
     {

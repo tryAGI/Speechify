@@ -148,5 +148,10 @@ namespace Speechify
         /// </summary>
         public SubpackageVoicesClient SubpackageVoices { get; }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        public SubpackageWebhooksSubpackageWebhooksEndpointsClient SubpackageWebhooksSubpackageWebhooksEndpoints { get; }
+
     }
 }

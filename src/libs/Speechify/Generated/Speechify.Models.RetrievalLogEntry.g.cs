@@ -42,9 +42,9 @@ namespace Speechify
         /// <summary>
         /// 
         /// </summary>
-        [global::System.Text.Json.Serialization.JsonPropertyName("top_k")]
+        [global::System.Text.Json.Serialization.JsonPropertyName("limit")]
         [global::System.Text.Json.Serialization.JsonRequired]
-        public required int TopK { get; set; }
+        public required int Limit { get; set; }
 
         /// <summary>
         /// 
@@ -76,7 +76,7 @@ namespace Speechify
         /// </param>
         /// <param name="query"></param>
         /// <param name="results"></param>
-        /// <param name="topK"></param>
+        /// <param name="limit"></param>
         /// <param name="hitCount"></param>
         /// <param name="createdAt"></param>
 #if NET7_0_OR_GREATER
@@ -87,7 +87,7 @@ namespace Speechify
             string conversationId,
             string query,
             global::System.Collections.Generic.IList<global::Speechify.RetrievalLogResult> results,
-            int topK,
+            int limit,
             int hitCount,
             global::System.DateTime createdAt)
         {
@@ -95,7 +95,7 @@ namespace Speechify
             this.ConversationId = conversationId ?? throw new global::System.ArgumentNullException(nameof(conversationId));
             this.Query = query ?? throw new global::System.ArgumentNullException(nameof(query));
             this.Results = results ?? throw new global::System.ArgumentNullException(nameof(results));
-            this.TopK = topK;
+            this.Limit = limit;
             this.HitCount = hitCount;
             this.CreatedAt = createdAt;
         }

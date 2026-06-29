@@ -11,7 +11,7 @@ namespace Speechify
     /// transport-level failures (DNS, connect, TLS, timeout, blocked<br/>
     /// address range) where no response was received; `status_code` is<br/>
     /// absent in that case. `signed` reports whether the probe carried<br/>
-    /// an `X-Speechify-Signature` header — false on the create-form<br/>
+    /// a `Speechify-Signature` header — false on the create-form<br/>
     /// flow, which has no stored secret yet. Both success and failure<br/>
     /// use the 200 envelope so the console renders them inline.
     /// </summary>
