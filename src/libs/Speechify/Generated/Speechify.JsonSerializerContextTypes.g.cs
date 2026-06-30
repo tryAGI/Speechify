@@ -1972,23 +1972,95 @@ namespace Speechify
         /// <summary>
         /// 
         /// </summary>
-        public global::Speechify.CreateRequest? Type486 { get; set; }
+        public global::Speechify.V1UsageRequestsGetParametersMethodSchemaItems? Type486 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::Speechify.UploadDocumentRequest? Type487 { get; set; }
+        public global::Speechify.V1UsageRequestsGetParametersPrincipalType? Type487 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::Speechify.UpdateDocumentRequest? Type488 { get; set; }
+        public global::Speechify.RequestLogEntryPrincipalType? Type488 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::Speechify.RunTestRequest? Type489 { get; set; }
+        public global::Speechify.RequestLogEntry? Type489 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::Speechify.UploadRequest? Type490 { get; set; }
+        public global::Speechify.RequestLogResponse? Type490 { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public global::System.Collections.Generic.IList<global::Speechify.RequestLogEntry>? Type491 { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public global::Speechify.V1UsageRequestsAnalyticsGetParametersGranularity? Type492 { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public global::Speechify.V1UsageRequestsAnalyticsGetParametersMethodSchemaItems? Type493 { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public global::Speechify.V1UsageRequestsAnalyticsGetParametersPrincipalType? Type494 { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public global::Speechify.RequestAnalyticsTotals? Type495 { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public global::Speechify.RequestAnalyticsBucket? Type496 { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public global::Speechify.RequestTopPath? Type497 { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public global::Speechify.RequestAnalyticsResponse? Type498 { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public global::System.Collections.Generic.IList<global::Speechify.RequestAnalyticsBucket>? Type499 { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public global::System.Collections.Generic.IList<global::Speechify.RequestTopPath>? Type500 { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public global::Speechify.CreateRequest? Type501 { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public global::Speechify.UploadDocumentRequest? Type502 { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public global::Speechify.UpdateDocumentRequest? Type503 { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public global::Speechify.RunTestRequest? Type504 { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public global::Speechify.UploadRequest? Type505 { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public global::System.Collections.Generic.IList<global::Speechify.V1UsageRequestsGetParametersMethodSchemaItems>? Type506 { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public global::System.Collections.Generic.IList<int>? Type507 { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public global::System.Collections.Generic.IList<global::Speechify.V1UsageRequestsAnalyticsGetParametersMethodSchemaItems>? Type508 { get; set; }
 
         /// <summary>
         /// 
@@ -2342,5 +2414,29 @@ namespace Speechify
         /// 
         /// </summary>
         public global::System.Collections.Generic.List<global::Speechify.WebhookEndpointDelivery>? ListType87 { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public global::System.Collections.Generic.List<global::Speechify.RequestLogEntry>? ListType88 { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public global::System.Collections.Generic.List<global::Speechify.RequestAnalyticsBucket>? ListType89 { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public global::System.Collections.Generic.List<global::Speechify.RequestTopPath>? ListType90 { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public global::System.Collections.Generic.List<global::Speechify.V1UsageRequestsGetParametersMethodSchemaItems>? ListType91 { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public global::System.Collections.Generic.List<int>? ListType92 { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public global::System.Collections.Generic.List<global::Speechify.V1UsageRequestsAnalyticsGetParametersMethodSchemaItems>? ListType93 { get; set; }
     }
 }

@@ -151,6 +151,11 @@ namespace Speechify
         /// <summary>
         /// 
         /// </summary>
+        public SubpackageUsageClient SubpackageUsage { get; }
+
+        /// <summary>
+        /// 
+        /// </summary>
         public SubpackageVoicesClient SubpackageVoices { get; }
 
         /// <summary>
