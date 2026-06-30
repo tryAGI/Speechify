@@ -148,6 +148,10 @@ namespace Speechify
         /// <summary>
         /// 
         /// </summary>
+        ServiceAccountsNotInPlan,
+        /// <summary>
+        /// 
+        /// </summary>
         ServiceUnavailable,
         /// <summary>
         /// 
@@ -244,6 +248,7 @@ namespace Speechify
                 ErrorCode.PurchasedNumbersNotIncluded => "purchased_numbers_not_included",
                 ErrorCode.RateLimited => "rate_limited",
                 ErrorCode.ServiceAccountLimitReached => "service_account_limit_reached",
+                ErrorCode.ServiceAccountsNotInPlan => "service_accounts_not_in_plan",
                 ErrorCode.ServiceUnavailable => "service_unavailable",
                 ErrorCode.SipTrunkNotFound => "sip_trunk_not_found",
                 ErrorCode.ToolConfigShared => "tool_config_shared",
@@ -300,6 +305,7 @@ namespace Speechify
                 "purchased_numbers_not_included" => ErrorCode.PurchasedNumbersNotIncluded,
                 "rate_limited" => ErrorCode.RateLimited,
                 "service_account_limit_reached" => ErrorCode.ServiceAccountLimitReached,
+                "service_accounts_not_in_plan" => ErrorCode.ServiceAccountsNotInPlan,
                 "service_unavailable" => ErrorCode.ServiceUnavailable,
                 "sip_trunk_not_found" => ErrorCode.SipTrunkNotFound,
                 "tool_config_shared" => ErrorCode.ToolConfigShared,
