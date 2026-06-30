@@ -246,6 +246,16 @@ namespace Speechify
         /// <summary>
         /// 
         /// </summary>
+        public SubpackageUsageClient SubpackageUsage => new SubpackageUsageClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
+        {
+            ReadResponseAsString = ReadResponseAsString,
+            CreateIdempotencyKey = CreateIdempotencyKey,
+            JsonSerializerContext = JsonSerializerContext,
+        };
+
+        /// <summary>
+        /// 
+        /// </summary>
         public SubpackageVoicesClient SubpackageVoices => new SubpackageVoicesClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
         {
             ReadResponseAsString = ReadResponseAsString,
