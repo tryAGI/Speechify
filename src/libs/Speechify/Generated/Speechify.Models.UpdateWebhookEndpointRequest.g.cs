@@ -28,6 +28,14 @@ namespace Speechify
         public global::System.Collections.Generic.IList<string>? Include { get; set; }
 
         /// <summary>
+        /// Opt the endpoint into a different (typically newer) payload shape<br/>
+        /// (`YYYY-MM-DD`, see `WebhookEndpoint.api_version`). Omit to leave it<br/>
+        /// unchanged. An unknown version is rejected.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("api_version")]
+        public global::System.DateTime? ApiVersion { get; set; }
+
+        /// <summary>
         /// 
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("description")]
@@ -54,6 +62,11 @@ namespace Speechify
         /// Payload-shaping keys (see `WebhookEndpoint.include`). Send `[]` to<br/>
         /// clear back to the lean default.
         /// </param>
+        /// <param name="apiVersion">
+        /// Opt the endpoint into a different (typically newer) payload shape<br/>
+        /// (`YYYY-MM-DD`, see `WebhookEndpoint.api_version`). Omit to leave it<br/>
+        /// unchanged. An unknown version is rejected.
+        /// </param>
         /// <param name="description"></param>
         /// <param name="disabled"></param>
 #if NET7_0_OR_GREATER
@@ -63,12 +76,14 @@ namespace Speechify
             string? url,
             global::System.Collections.Generic.IList<string>? enabledEvents,
             global::System.Collections.Generic.IList<string>? include,
+            global::System.DateTime? apiVersion,
             string? description,
             bool? disabled)
         {
             this.Url = url;
             this.EnabledEvents = enabledEvents;
             this.Include = include;
+            this.ApiVersion = apiVersion;
             this.Description = description;
             this.Disabled = disabled;
         }

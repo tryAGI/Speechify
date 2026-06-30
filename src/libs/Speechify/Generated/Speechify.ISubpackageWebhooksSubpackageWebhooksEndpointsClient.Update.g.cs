@@ -50,6 +50,11 @@ namespace Speechify
         /// Payload-shaping keys (see `WebhookEndpoint.include`). Send `[]` to<br/>
         /// clear back to the lean default.
         /// </param>
+        /// <param name="apiVersion">
+        /// Opt the endpoint into a different (typically newer) payload shape<br/>
+        /// (`YYYY-MM-DD`, see `WebhookEndpoint.api_version`). Omit to leave it<br/>
+        /// unchanged. An unknown version is rejected.
+        /// </param>
         /// <param name="description"></param>
         /// <param name="disabled"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
@@ -61,6 +66,7 @@ namespace Speechify
             string? url = default,
             global::System.Collections.Generic.IList<string>? enabledEvents = default,
             global::System.Collections.Generic.IList<string>? include = default,
+            global::System.DateTime? apiVersion = default,
             string? description = default,
             bool? disabled = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,

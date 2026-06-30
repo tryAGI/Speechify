@@ -47,6 +47,18 @@ namespace Speechify
         public required global::System.Collections.Generic.IList<string> Include { get; set; }
 
         /// <summary>
+        /// The dated payload shape this endpoint receives (`YYYY-MM-DD`), the<br/>
+        /// same versioning vocabulary the REST API uses. Every delivery is<br/>
+        /// rendered back to this version and carries it in the<br/>
+        /// `Speechify-Version` header and the payload's top-level `version`<br/>
+        /// field. Defaults to your workspace's current version at creation;<br/>
+        /// change it to opt into a newer shape.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("api_version")]
+        [global::System.Text.Json.Serialization.JsonRequired]
+        public required global::System.DateTime ApiVersion { get; set; }
+
+        /// <summary>
         /// Optional human-readable label for the endpoint.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("description")]
@@ -109,6 +121,14 @@ namespace Speechify
         /// lean unless they opt in. Recognised keys (conversation events only):<br/>
         /// `messages` (the full transcript) and `evaluations`. Empty = lean.
         /// </param>
+        /// <param name="apiVersion">
+        /// The dated payload shape this endpoint receives (`YYYY-MM-DD`), the<br/>
+        /// same versioning vocabulary the REST API uses. Every delivery is<br/>
+        /// rendered back to this version and carries it in the<br/>
+        /// `Speechify-Version` header and the payload's top-level `version`<br/>
+        /// field. Defaults to your workspace's current version at creation;<br/>
+        /// change it to opt into a newer shape.
+        /// </param>
         /// <param name="disabled">
         /// When true, Speechify stops delivering to this endpoint.
         /// </param>
@@ -130,6 +150,7 @@ namespace Speechify
             string url,
             global::System.Collections.Generic.IList<string> enabledEvents,
             global::System.Collections.Generic.IList<string> include,
+            global::System.DateTime apiVersion,
             bool disabled,
             global::System.DateTime createdAt,
             global::System.DateTime updatedAt,
@@ -140,6 +161,7 @@ namespace Speechify
             this.Url = url ?? throw new global::System.ArgumentNullException(nameof(url));
             this.EnabledEvents = enabledEvents ?? throw new global::System.ArgumentNullException(nameof(enabledEvents));
             this.Include = include ?? throw new global::System.ArgumentNullException(nameof(include));
+            this.ApiVersion = apiVersion;
             this.Description = description;
             this.Disabled = disabled;
             this.Secret = secret;
