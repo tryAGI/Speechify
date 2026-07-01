@@ -611,7 +611,11 @@ namespace Speechify
         /// </summary>
         /// <param name="webhookEndpointId"></param>
         /// <param name="speechifyVersion"></param>
-        /// <param name="url"></param>
+        /// <param name="url">
+        /// HTTPS destination for event deliveries. Must be a publicly<br/>
+        /// reachable host: loopback, private, link-local, and cloud-metadata<br/>
+        /// addresses (and reserved hostnames like `localhost`) are rejected.
+        /// </param>
         /// <param name="enabledEvents"></param>
         /// <param name="include">
         /// Payload-shaping keys (see `WebhookEndpoint.include`). Send `[]` to<br/>

@@ -9,7 +9,9 @@ namespace Speechify
     public sealed partial class CreateWebhookEndpointRequest
     {
         /// <summary>
-        /// HTTPS destination for event deliveries.
+        /// HTTPS destination for event deliveries. Must be a publicly<br/>
+        /// reachable host: loopback, private, link-local, and cloud-metadata<br/>
+        /// addresses (and reserved hostnames like `localhost`) are rejected.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("url")]
         [global::System.Text.Json.Serialization.JsonRequired]
@@ -53,7 +55,9 @@ namespace Speechify
         /// Initializes a new instance of the <see cref="CreateWebhookEndpointRequest" /> class.
         /// </summary>
         /// <param name="url">
-        /// HTTPS destination for event deliveries.
+        /// HTTPS destination for event deliveries. Must be a publicly<br/>
+        /// reachable host: loopback, private, link-local, and cloud-metadata<br/>
+        /// addresses (and reserved hostnames like `localhost`) are rejected.
         /// </param>
         /// <param name="enabledEvents">
         /// Catalog event names to subscribe to, or `["*"]` for all events.

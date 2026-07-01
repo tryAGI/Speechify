@@ -52,7 +52,9 @@ namespace Speechify
         /// </summary>
         /// <param name="speechifyVersion"></param>
         /// <param name="url">
-        /// HTTPS destination for event deliveries.
+        /// HTTPS destination for event deliveries. Must be a publicly<br/>
+        /// reachable host: loopback, private, link-local, and cloud-metadata<br/>
+        /// addresses (and reserved hostnames like `localhost`) are rejected.
         /// </param>
         /// <param name="enabledEvents">
         /// Catalog event names to subscribe to, or `["*"]` for all events.
