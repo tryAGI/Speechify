@@ -9,6 +9,9 @@ namespace Speechify
         /// Create a personal (cloned) voice for the user
         /// </summary>
         /// <param name="speechifyVersion"></param>
+        /// <param name="idempotencyKey">
+        /// Optional idempotency key. When omitted, the SDK generates one for this request.
+        /// </param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -17,6 +20,7 @@ namespace Speechify
 
             global::Speechify.CreateRequest request,
             string? speechifyVersion = default,
+            string? idempotencyKey = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
@@ -24,6 +28,9 @@ namespace Speechify
         /// Create a personal (cloned) voice for the user
         /// </summary>
         /// <param name="speechifyVersion"></param>
+        /// <param name="idempotencyKey">
+        /// Optional idempotency key. When omitted, the SDK generates one for this request.
+        /// </param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -32,6 +39,7 @@ namespace Speechify
 
             global::Speechify.CreateRequest request,
             string? speechifyVersion = default,
+            string? idempotencyKey = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
@@ -39,6 +47,9 @@ namespace Speechify
         /// Create a personal (cloned) voice for the user
         /// </summary>
         /// <param name="speechifyVersion"></param>
+        /// <param name="idempotencyKey">
+        /// Optional idempotency key. When omitted, the SDK generates one for this request.
+        /// </param>
         /// <param name="name">
         /// Name of the personal voice
         /// </param>
@@ -79,6 +90,7 @@ namespace Speechify
             string samplename,
             string consent,
             string? speechifyVersion = default,
+            string? idempotencyKey = default,
             string? locale = default,
             byte[]? avatar = default,
             string? avatarname = default,
@@ -90,6 +102,9 @@ namespace Speechify
         /// Create a personal (cloned) voice for the user
         /// </summary>
         /// <param name="speechifyVersion"></param>
+        /// <param name="idempotencyKey">
+        /// Optional idempotency key. When omitted, the SDK generates one for this request.
+        /// </param>
         /// <param name="name">
         /// Name of the personal voice
         /// </param>
@@ -130,6 +145,7 @@ namespace Speechify
             string samplename,
             string consent,
             string? speechifyVersion = default,
+            string? idempotencyKey = default,
             string? locale = default,
             global::System.IO.Stream? avatar = default,
             string? avatarname = default,
@@ -140,6 +156,9 @@ namespace Speechify
         /// Create a personal (cloned) voice for the user
         /// </summary>
         /// <param name="speechifyVersion"></param>
+        /// <param name="idempotencyKey">
+        /// Optional idempotency key. When omitted, the SDK generates one for this request.
+        /// </param>
         /// <param name="name">
         /// Name of the personal voice
         /// </param>
@@ -180,6 +199,7 @@ namespace Speechify
             string samplename,
             string consent,
             string? speechifyVersion = default,
+            string? idempotencyKey = default,
             string? locale = default,
             global::System.IO.Stream? avatar = default,
             string? avatarname = default,

@@ -19,6 +19,9 @@ namespace Speechify
         /// </summary>
         /// <param name="agentId"></param>
         /// <param name="speechifyVersion"></param>
+        /// <param name="idempotencyKey">
+        /// Optional idempotency key. When omitted, the SDK generates one for this request.
+        /// </param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -28,6 +31,7 @@ namespace Speechify
 
             global::Speechify.RunAllTestsRequest request,
             string? speechifyVersion = default,
+            string? idempotencyKey = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
@@ -45,6 +49,9 @@ namespace Speechify
         /// </summary>
         /// <param name="agentId"></param>
         /// <param name="speechifyVersion"></param>
+        /// <param name="idempotencyKey">
+        /// Optional idempotency key. When omitted, the SDK generates one for this request.
+        /// </param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -54,6 +61,7 @@ namespace Speechify
 
             global::Speechify.RunAllTestsRequest request,
             string? speechifyVersion = default,
+            string? idempotencyKey = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
@@ -71,6 +79,9 @@ namespace Speechify
         /// </summary>
         /// <param name="agentId"></param>
         /// <param name="speechifyVersion"></param>
+        /// <param name="idempotencyKey">
+        /// Optional idempotency key. When omitted, the SDK generates one for this request.
+        /// </param>
         /// <param name="configOverride">
         /// A run-level config override applied to every test in a Run All.<br/>
         /// Layered on top of the agent's stored config for the duration of<br/>
@@ -92,6 +103,7 @@ namespace Speechify
         global::System.Threading.Tasks.Task<global::Speechify.RunAgentTestsResponse> RunAllTestsAsync(
             string agentId,
             string? speechifyVersion = default,
+            string? idempotencyKey = default,
             global::Speechify.TestRunConfigOverride? configOverride = default,
             string? flowVersionId = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
