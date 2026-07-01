@@ -56,82 +56,72 @@ namespace Speechify
         /// <summary>
         /// 
         /// </summary>
-        public SubpackageAgentSubpackageAgentAdminClient SubpackageAgentSubpackageAgentAdmin { get; }
+        public SubpackageAgentAdminClient SubpackageAgentAdmin { get; }
 
         /// <summary>
         /// 
         /// </summary>
-        public SubpackageAgentSubpackageAgentAnalyticsClient SubpackageAgentSubpackageAgentAnalytics { get; }
+        public SubpackageAgentAudioAssetsClient SubpackageAgentAudioAssets { get; }
 
         /// <summary>
         /// 
         /// </summary>
-        public SubpackageAgentSubpackageAgentAudioAssetsClient SubpackageAgentSubpackageAgentAudioAssets { get; }
+        public SubpackageAgentBatchCallsClient SubpackageAgentBatchCalls { get; }
 
         /// <summary>
         /// 
         /// </summary>
-        public SubpackageAgentSubpackageAgentBatchCallsClient SubpackageAgentSubpackageAgentBatchCalls { get; }
+        public SubpackageAgentCallersClient SubpackageAgentCallers { get; }
 
         /// <summary>
         /// 
         /// </summary>
-        public SubpackageAgentSubpackageAgentCallersClient SubpackageAgentSubpackageAgentCallers { get; }
+        public SubpackageAgentConversationsClient SubpackageAgentConversations { get; }
 
         /// <summary>
         /// 
         /// </summary>
-        public SubpackageAgentSubpackageAgentConversationsClient SubpackageAgentSubpackageAgentConversations { get; }
+        public SubpackageAgentFlowClient SubpackageAgentFlow { get; }
 
         /// <summary>
         /// 
         /// </summary>
-        public SubpackageAgentSubpackageAgentDashboardsClient SubpackageAgentSubpackageAgentDashboards { get; }
+        public SubpackageAgentIvrMemoryClient SubpackageAgentIvrMemory { get; }
 
         /// <summary>
         /// 
         /// </summary>
-        public SubpackageAgentSubpackageAgentFlowClient SubpackageAgentSubpackageAgentFlow { get; }
+        public SubpackageAgentKnowledgeBasesClient SubpackageAgentKnowledgeBases { get; }
 
         /// <summary>
         /// 
         /// </summary>
-        public SubpackageAgentSubpackageAgentIvrMemoryClient SubpackageAgentSubpackageAgentIvrMemory { get; }
+        public SubpackageAgentMemoriesClient SubpackageAgentMemories { get; }
 
         /// <summary>
         /// 
         /// </summary>
-        public SubpackageAgentSubpackageAgentKnowledgeBasesClient SubpackageAgentSubpackageAgentKnowledgeBases { get; }
+        public SubpackageAgentOutboundCallsClient SubpackageAgentOutboundCalls { get; }
 
         /// <summary>
         /// 
         /// </summary>
-        public SubpackageAgentSubpackageAgentMemoriesClient SubpackageAgentSubpackageAgentMemories { get; }
+        public SubpackageAgentPhoneNumbersClient SubpackageAgentPhoneNumbers { get; }
 
         /// <summary>
         /// 
         /// </summary>
-        public SubpackageAgentSubpackageAgentOutboundCallsClient SubpackageAgentSubpackageAgentOutboundCalls { get; }
+        public SubpackageAgentSipTrunksClient SubpackageAgentSipTrunks { get; }
 
         /// <summary>
         /// 
         /// </summary>
-        public SubpackageAgentSubpackageAgentPhoneNumbersClient SubpackageAgentSubpackageAgentPhoneNumbers { get; }
+        public SubpackageAgentTestsClient SubpackageAgentTests { get; }
 
         /// <summary>
         /// 
         /// </summary>
-        public SubpackageAgentSubpackageAgentSipTrunksClient SubpackageAgentSubpackageAgentSipTrunks { get; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public SubpackageAgentSubpackageAgentTestsClient SubpackageAgentSubpackageAgentTests { get; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public SubpackageAgentSubpackageAgentToolDefinitionsClient SubpackageAgentSubpackageAgentToolDefinitions { get; }
+        public SubpackageAgentToolDefinitionsClient SubpackageAgentToolDefinitions { get; }
 
         /// <summary>
         /// 
@@ -141,27 +131,7 @@ namespace Speechify
         /// <summary>
         /// 
         /// </summary>
-        public SubpackageChatClient SubpackageChat { get; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public SubpackageCredentialsClient SubpackageCredentials { get; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public SubpackageUsageClient SubpackageUsage { get; }
-
-        /// <summary>
-        /// 
-        /// </summary>
         public SubpackageVoicesClient SubpackageVoices { get; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public SubpackageWebhooksSubpackageWebhooksEndpointsClient SubpackageWebhooksSubpackageWebhooksEndpoints { get; }
 
     }
 }

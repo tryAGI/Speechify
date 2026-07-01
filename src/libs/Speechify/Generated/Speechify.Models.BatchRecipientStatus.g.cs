@@ -4,10 +4,16 @@
 namespace Speechify
 {
     /// <summary>
-    /// 
+    /// `cancelled` marks a recipient the batch cancel spared before it<br/>
+    /// was dialed - distinct from `failed` (a dial that was attempted<br/>
+    /// and failed).
     /// </summary>
     public enum BatchRecipientStatus
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        Cancelled,
         /// <summary>
         /// 
         /// </summary>
@@ -38,6 +44,7 @@ namespace Speechify
         {
             return value switch
             {
+                BatchRecipientStatus.Cancelled => "cancelled",
                 BatchRecipientStatus.Completed => "completed",
                 BatchRecipientStatus.Dialing => "dialing",
                 BatchRecipientStatus.Failed => "failed",
@@ -52,6 +59,7 @@ namespace Speechify
         {
             return value switch
             {
+                "cancelled" => BatchRecipientStatus.Cancelled,
                 "completed" => BatchRecipientStatus.Completed,
                 "dialing" => BatchRecipientStatus.Dialing,
                 "failed" => BatchRecipientStatus.Failed,

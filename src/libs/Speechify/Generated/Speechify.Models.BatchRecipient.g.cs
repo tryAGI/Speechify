@@ -37,7 +37,9 @@ namespace Speechify
         public object? DynamicVariables { get; set; }
 
         /// <summary>
-        /// 
+        /// `cancelled` marks a recipient the batch cancel spared before it<br/>
+        /// was dialed - distinct from `failed` (a dial that was attempted<br/>
+        /// and failed).
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("status")]
         [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Speechify.JsonConverters.BatchRecipientStatusJsonConverter))]
@@ -86,7 +88,11 @@ namespace Speechify
         /// <param name="phone">
         /// Recipient phone number in E.164 format.
         /// </param>
-        /// <param name="status"></param>
+        /// <param name="status">
+        /// `cancelled` marks a recipient the batch cancel spared before it<br/>
+        /// was dialed - distinct from `failed` (a dial that was attempted<br/>
+        /// and failed).
+        /// </param>
         /// <param name="dynamicVariables">
         /// Per-recipient variable overrides injected into the agent prompt.
         /// </param>
