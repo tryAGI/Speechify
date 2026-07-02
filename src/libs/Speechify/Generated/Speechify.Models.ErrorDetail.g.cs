@@ -43,6 +43,17 @@ namespace Speechify
         public global::System.Collections.Generic.Dictionary<string, string>? Fields { get; set; }
 
         /// <summary>
+        /// Structured, endpoint-specific context beyond the flat<br/>
+        /// `fields` map. Present only on the few errors that carry<br/>
+        /// it (e.g. the `used_by` referrer list on a credential<br/>
+        /// delete-conflict); its shape depends on the error `code`.<br/>
+        /// Clients that don't recognise a `details` shape can ignore<br/>
+        /// it - the `code` + `message` contract is unchanged.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("details")]
+        public object? Details { get; set; }
+
+        /// <summary>
         /// Additional properties that are not explicitly defined in the schema
         /// </summary>
         [global::System.Text.Json.Serialization.JsonExtensionData]
@@ -73,17 +84,27 @@ namespace Speechify
         /// human explanations safe to inline-surface next to the<br/>
         /// offending form field.
         /// </param>
+        /// <param name="details">
+        /// Structured, endpoint-specific context beyond the flat<br/>
+        /// `fields` map. Present only on the few errors that carry<br/>
+        /// it (e.g. the `used_by` referrer list on a credential<br/>
+        /// delete-conflict); its shape depends on the error `code`.<br/>
+        /// Clients that don't recognise a `details` shape can ignore<br/>
+        /// it - the `code` + `message` contract is unchanged.
+        /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
 #endif
         public ErrorDetail(
             global::Speechify.ErrorCode code,
             string message,
-            global::System.Collections.Generic.Dictionary<string, string>? fields)
+            global::System.Collections.Generic.Dictionary<string, string>? fields,
+            object? details)
         {
             this.Code = code;
             this.Message = message ?? throw new global::System.ArgumentNullException(nameof(message));
             this.Fields = fields;
+            this.Details = details;
         }
 
         /// <summary>

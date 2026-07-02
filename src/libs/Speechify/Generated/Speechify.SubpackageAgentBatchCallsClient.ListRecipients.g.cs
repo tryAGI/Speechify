@@ -7,7 +7,7 @@ namespace Speechify
     {
 
 
-        private static readonly global::Speechify.EndPointSecurityRequirement s_GetSecurityRequirement0 =
+        private static readonly global::Speechify.EndPointSecurityRequirement s_ListRecipientsSecurityRequirement0 =
             new global::Speechify.EndPointSecurityRequirement
             {
                 Authorizations = new global::Speechify.EndPointAuthorizationRequirement[]
@@ -21,46 +21,58 @@ namespace Speechify
                     },
                 },
             };
-        private static readonly global::Speechify.EndPointSecurityRequirement[] s_GetSecurityRequirements =
+        private static readonly global::Speechify.EndPointSecurityRequirement[] s_ListRecipientsSecurityRequirements =
             new global::Speechify.EndPointSecurityRequirement[]
-            {                s_GetSecurityRequirement0,
+            {                s_ListRecipientsSecurityRequirement0,
             };
-        partial void PrepareGetArguments(
+        partial void PrepareListRecipientsArguments(
             global::System.Net.Http.HttpClient httpClient,
             ref string batchCallId,
+            ref string? cursor,
+            ref int? limit,
             ref string? speechifyVersion);
-        partial void PrepareGetRequest(
+        partial void PrepareListRecipientsRequest(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpRequestMessage httpRequestMessage,
             string batchCallId,
+            string? cursor,
+            int? limit,
             string? speechifyVersion);
-        partial void ProcessGetResponse(
+        partial void ProcessListRecipientsResponse(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpResponseMessage httpResponseMessage);
 
-        partial void ProcessGetResponseContent(
+        partial void ProcessListRecipientsResponseContent(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpResponseMessage httpResponseMessage,
             ref string content);
 
         /// <summary>
-        /// Get Batch Call<br/>
-        /// Returns the batch call. List its recipients with<br/>
-        /// `GET /v1/agents/batch-calls/{batch_call_id}/recipients`.
+        /// List Batch Call Recipients<br/>
+        /// Returns one page of recipients for a batch call, ordered by id.<br/>
+        /// Paginate by passing `cursor` from the previous response.
         /// </summary>
         /// <param name="batchCallId"></param>
+        /// <param name="cursor"></param>
+        /// <param name="limit">
+        /// Default Value: 50
+        /// </param>
         /// <param name="speechifyVersion"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
-        public async global::System.Threading.Tasks.Task<global::Speechify.BatchCall> GetAsync(
+        public async global::System.Threading.Tasks.Task<global::Speechify.ListBatchRecipientsResponse> ListRecipientsAsync(
             string batchCallId,
+            string? cursor = default,
+            int? limit = default,
             string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
-            var __response = await GetAsResponseAsync(
+            var __response = await ListRecipientsAsResponseAsync(
                 batchCallId: batchCallId,
+                cursor: cursor,
+                limit: limit,
                 speechifyVersion: speechifyVersion,
                 requestOptions: requestOptions,
                 cancellationToken: cancellationToken
@@ -69,33 +81,41 @@ namespace Speechify
             return __response.Body;
         }
         /// <summary>
-        /// Get Batch Call<br/>
-        /// Returns the batch call. List its recipients with<br/>
-        /// `GET /v1/agents/batch-calls/{batch_call_id}/recipients`.
+        /// List Batch Call Recipients<br/>
+        /// Returns one page of recipients for a batch call, ordered by id.<br/>
+        /// Paginate by passing `cursor` from the previous response.
         /// </summary>
         /// <param name="batchCallId"></param>
+        /// <param name="cursor"></param>
+        /// <param name="limit">
+        /// Default Value: 50
+        /// </param>
         /// <param name="speechifyVersion"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
-        public async global::System.Threading.Tasks.Task<global::Speechify.AutoSDKHttpResponse<global::Speechify.BatchCall>> GetAsResponseAsync(
+        public async global::System.Threading.Tasks.Task<global::Speechify.AutoSDKHttpResponse<global::Speechify.ListBatchRecipientsResponse>> ListRecipientsAsResponseAsync(
             string batchCallId,
+            string? cursor = default,
+            int? limit = default,
             string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
             PrepareArguments(
                 client: HttpClient);
-            PrepareGetArguments(
+            PrepareListRecipientsArguments(
                 httpClient: HttpClient,
                 batchCallId: ref batchCallId,
+                cursor: ref cursor,
+                limit: ref limit,
                 speechifyVersion: ref speechifyVersion);
 
 
             var __authorizations = global::Speechify.EndPointSecurityResolver.ResolveAuthorizations(
                 availableAuthorizations: Authorizations,
-                securityRequirements: s_GetSecurityRequirements,
-                operationName: "GetAsync");
+                securityRequirements: s_ListRecipientsSecurityRequirements,
+                operationName: "ListRecipientsAsync");
 
             using var __timeoutCancellationTokenSource = global::Speechify.AutoSDKRequestOptionsSupport.CreateTimeoutCancellationTokenSource(
                 clientOptions: Options,
@@ -115,8 +135,12 @@ namespace Speechify
             {
 
                             var __pathBuilder = new global::Speechify.PathBuilder(
-                                path: $"/v1/agents/batch-calls/{batchCallId}",
+                                path: $"/v1/agents/batch-calls/{batchCallId}/recipients",
                                 baseUri: HttpClient.BaseAddress);
+                            __pathBuilder
+                                .AddOptionalParameter("cursor", cursor)
+                                .AddOptionalParameter("limit", limit?.ToString())
+                                ;
                             var __path = __pathBuilder.ToString();
                 __path = global::Speechify.AutoSDKRequestOptionsSupport.AppendQueryParameters(
                     path: __path,
@@ -160,10 +184,12 @@ namespace Speechify
                 PrepareRequest(
                     client: HttpClient,
                     request: __httpRequest);
-                PrepareGetRequest(
+                PrepareListRecipientsRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
                     batchCallId: batchCallId!,
+                    cursor: cursor,
+                    limit: limit,
                     speechifyVersion: speechifyVersion);
 
                 return __httpRequest;
@@ -181,9 +207,9 @@ namespace Speechify
                     await global::Speechify.AutoSDKRequestOptionsSupport.OnBeforeRequestAsync(
                             clientOptions: Options,
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "Get",
-                                methodName: "GetAsync",
-                                pathTemplate: "$\"/v1/agents/batch-calls/{batchCallId}\"",
+                                operationId: "ListRecipients",
+                                methodName: "ListRecipientsAsync",
+                                pathTemplate: "$\"/v1/agents/batch-calls/{batchCallId}/recipients\"",
                                 httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -215,9 +241,9 @@ namespace Speechify
                         await global::Speechify.AutoSDKRequestOptionsSupport.OnAfterErrorAsync(
                             clientOptions: Options,
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "Get",
-                                methodName: "GetAsync",
-                                pathTemplate: "$\"/v1/agents/batch-calls/{batchCallId}\"",
+                                operationId: "ListRecipients",
+                                methodName: "ListRecipientsAsync",
+                                pathTemplate: "$\"/v1/agents/batch-calls/{batchCallId}/recipients\"",
                                 httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -256,9 +282,9 @@ namespace Speechify
                         await global::Speechify.AutoSDKRequestOptionsSupport.OnAfterErrorAsync(
                             clientOptions: Options,
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "Get",
-                                methodName: "GetAsync",
-                                pathTemplate: "$\"/v1/agents/batch-calls/{batchCallId}\"",
+                                operationId: "ListRecipients",
+                                methodName: "ListRecipientsAsync",
+                                pathTemplate: "$\"/v1/agents/batch-calls/{batchCallId}/recipients\"",
                                 httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -296,7 +322,7 @@ namespace Speechify
                 ProcessResponse(
                     client: HttpClient,
                     response: __response);
-                ProcessGetResponse(
+                ProcessListRecipientsResponse(
                     httpClient: HttpClient,
                     httpResponseMessage: __response);
                 if (__response.IsSuccessStatusCode)
@@ -304,9 +330,9 @@ namespace Speechify
                     await global::Speechify.AutoSDKRequestOptionsSupport.OnAfterSuccessAsync(
                             clientOptions: Options,
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "Get",
-                                methodName: "GetAsync",
-                                pathTemplate: "$\"/v1/agents/batch-calls/{batchCallId}\"",
+                                operationId: "ListRecipients",
+                                methodName: "ListRecipientsAsync",
+                                pathTemplate: "$\"/v1/agents/batch-calls/{batchCallId}/recipients\"",
                                 httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -326,9 +352,9 @@ namespace Speechify
                     await global::Speechify.AutoSDKRequestOptionsSupport.OnAfterErrorAsync(
                             clientOptions: Options,
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "Get",
-                                methodName: "GetAsync",
-                                pathTemplate: "$\"/v1/agents/batch-calls/{batchCallId}\"",
+                                operationId: "ListRecipients",
+                                methodName: "ListRecipientsAsync",
+                                pathTemplate: "$\"/v1/agents/batch-calls/{batchCallId}/recipients\"",
                                 httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -393,7 +419,7 @@ namespace Speechify
                                     client: HttpClient,
                                     response: __response,
                                     content: ref __content);
-                                ProcessGetResponseContent(
+                                ProcessListRecipientsResponseContent(
                                     httpClient: HttpClient,
                                     httpResponseMessage: __response,
                                     content: ref __content);
@@ -402,9 +428,9 @@ namespace Speechify
                                 {
                                     __response.EnsureSuccessStatusCode();
 
-                                    var __value = global::Speechify.BatchCall.FromJson(__content, JsonSerializerContext) ??
+                                    var __value = global::Speechify.ListBatchRecipientsResponse.FromJson(__content, JsonSerializerContext) ??
                                         throw new global::System.InvalidOperationException($"Response deserialization failed for \"{__content}\" ");
-                                    return new global::Speechify.AutoSDKHttpResponse<global::Speechify.BatchCall>(
+                                    return new global::Speechify.AutoSDKHttpResponse<global::Speechify.ListBatchRecipientsResponse>(
                                         statusCode: __response.StatusCode,
                                         headers: global::Speechify.AutoSDKHttpResponse.CreateHeaders(__response),
                                         requestUri: __response.RequestMessage?.RequestUri,
@@ -434,9 +460,9 @@ namespace Speechify
                 #endif
                                     ).ConfigureAwait(false);
 
-                                    var __value = await global::Speechify.BatchCall.FromJsonStreamAsync(__content, JsonSerializerContext).ConfigureAwait(false) ??
+                                    var __value = await global::Speechify.ListBatchRecipientsResponse.FromJsonStreamAsync(__content, JsonSerializerContext).ConfigureAwait(false) ??
                                         throw new global::System.InvalidOperationException("Response deserialization failed.");
-                                    return new global::Speechify.AutoSDKHttpResponse<global::Speechify.BatchCall>(
+                                    return new global::Speechify.AutoSDKHttpResponse<global::Speechify.ListBatchRecipientsResponse>(
                                         statusCode: __response.StatusCode,
                                         headers: global::Speechify.AutoSDKHttpResponse.CreateHeaders(__response),
                                         requestUri: __response.RequestMessage?.RequestUri,

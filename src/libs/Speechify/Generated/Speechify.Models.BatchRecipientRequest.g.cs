@@ -25,6 +25,15 @@ namespace Speechify
         public object? DynamicVariables { get; set; }
 
         /// <summary>
+        /// Optional client-supplied correlation key, echoed back on the<br/>
+        /// recipient read shape so results can be reconciled to the caller's<br/>
+        /// own identifier (an order id, a CRM lead id). A CSV upload sets it<br/>
+        /// from a `custom_id` column. Max 256 characters.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("custom_id")]
+        public string? CustomId { get; set; }
+
+        /// <summary>
         /// Additional properties that are not explicitly defined in the schema
         /// </summary>
         [global::System.Text.Json.Serialization.JsonExtensionData]
@@ -42,15 +51,23 @@ namespace Speechify
         /// web-session `dynamic_variables` surfaces. CSV uploads carry<br/>
         /// string values.
         /// </param>
+        /// <param name="customId">
+        /// Optional client-supplied correlation key, echoed back on the<br/>
+        /// recipient read shape so results can be reconciled to the caller's<br/>
+        /// own identifier (an order id, a CRM lead id). A CSV upload sets it<br/>
+        /// from a `custom_id` column. Max 256 characters.
+        /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
 #endif
         public BatchRecipientRequest(
             string phone,
-            object? dynamicVariables)
+            object? dynamicVariables,
+            string? customId)
         {
             this.Phone = phone ?? throw new global::System.ArgumentNullException(nameof(phone));
             this.DynamicVariables = dynamicVariables;
+            this.CustomId = customId;
         }
 
         /// <summary>

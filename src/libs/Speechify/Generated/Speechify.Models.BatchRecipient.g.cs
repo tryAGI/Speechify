@@ -54,6 +54,14 @@ namespace Speechify
         public string? ConversationId { get; set; }
 
         /// <summary>
+        /// Client-supplied correlation key echoed back from the create<br/>
+        /// request, so results can be reconciled to the caller's own<br/>
+        /// identifier. Absent when the recipient carried none.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("custom_id")]
+        public string? CustomId { get; set; }
+
+        /// <summary>
         /// Populated when this recipient fails.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("error")]
@@ -100,6 +108,11 @@ namespace Speechify
         /// Set once the call is placed. Prefixed wire identifier<br/>
         /// (`conv_&lt;26 char Crockford base32&gt;`).
         /// </param>
+        /// <param name="customId">
+        /// Client-supplied correlation key echoed back from the create<br/>
+        /// request, so results can be reconciled to the caller's own<br/>
+        /// identifier. Absent when the recipient carried none.
+        /// </param>
         /// <param name="error">
         /// Populated when this recipient fails.
         /// </param>
@@ -115,6 +128,7 @@ namespace Speechify
             global::Speechify.BatchRecipientStatus status,
             object? dynamicVariables,
             string? conversationId,
+            string? customId,
             string? error,
             global::System.DateTime? attemptedAt,
             global::System.DateTime? endedAt)
@@ -125,6 +139,7 @@ namespace Speechify
             this.DynamicVariables = dynamicVariables;
             this.Status = status;
             this.ConversationId = conversationId;
+            this.CustomId = customId;
             this.Error = error;
             this.AttemptedAt = attemptedAt;
             this.EndedAt = endedAt;
