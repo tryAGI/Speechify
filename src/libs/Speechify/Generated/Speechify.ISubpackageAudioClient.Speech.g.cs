@@ -8,7 +8,9 @@ namespace Speechify
         /// Create Speech<br/>
         /// Synthesize speech audio from text or SSML. Returns the complete audio<br/>
         /// file plus billing and speech-mark metadata in a single JSON response.<br/>
-        /// For low-latency playback or long-form text, use POST /v1/audio/stream.
+        /// For low-latency playback or long-form text, use POST /v1/audio/stream.<br/>
+        /// Set `output_format` for explicit sample-rate/bitrate control (e.g.<br/>
+        /// `pcm_16000` or `ulaw_8000` for telephony).
         /// </summary>
         /// <param name="speechifyVersion"></param>
         /// <param name="request"></param>
@@ -25,7 +27,9 @@ namespace Speechify
         /// Create Speech<br/>
         /// Synthesize speech audio from text or SSML. Returns the complete audio<br/>
         /// file plus billing and speech-mark metadata in a single JSON response.<br/>
-        /// For low-latency playback or long-form text, use POST /v1/audio/stream.
+        /// For low-latency playback or long-form text, use POST /v1/audio/stream.<br/>
+        /// Set `output_format` for explicit sample-rate/bitrate control (e.g.<br/>
+        /// `pcm_16000` or `ulaw_8000` for telephony).
         /// </summary>
         /// <param name="speechifyVersion"></param>
         /// <param name="request"></param>
@@ -42,7 +46,9 @@ namespace Speechify
         /// Create Speech<br/>
         /// Synthesize speech audio from text or SSML. Returns the complete audio<br/>
         /// file plus billing and speech-mark metadata in a single JSON response.<br/>
-        /// For low-latency playback or long-form text, use POST /v1/audio/stream.
+        /// For low-latency playback or long-form text, use POST /v1/audio/stream.<br/>
+        /// Set `output_format` for explicit sample-rate/bitrate control (e.g.<br/>
+        /// `pcm_16000` or `ulaw_8000` for telephony).
         /// </summary>
         /// <param name="speechifyVersion"></param>
         /// <param name="audioFormat">
@@ -65,6 +71,9 @@ namespace Speechify
         /// <param name="options">
         /// GetSpeechOptionsRequest is the wrapper for request parameters to the client
         /// </param>
+        /// <param name="outputFormat">
+        /// The output audio format as a `codec_sampleRate_bitrate` string. Takes precedence over `audio_format` when set.
+        /// </param>
         /// <param name="voiceId">
         /// Id of the voice to be used for synthesizing speech. Refer to /v1/voices endpoint for available voices
         /// </param>
@@ -79,6 +88,7 @@ namespace Speechify
             string? language = default,
             global::Speechify.GetSpeechRequestModel? model = default,
             global::Speechify.GetSpeechOptionsRequest? options = default,
+            global::Speechify.AudioOutputFormat? outputFormat = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
     }

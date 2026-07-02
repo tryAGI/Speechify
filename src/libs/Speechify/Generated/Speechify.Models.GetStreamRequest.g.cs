@@ -39,6 +39,13 @@ namespace Speechify
         public global::Speechify.GetStreamOptionsRequest? Options { get; set; }
 
         /// <summary>
+        /// The output audio format as a `codec_sampleRate_bitrate` string. Takes precedence over the `Accept` header when set, so you can request formats the `Accept` enum does not cover (e.g. `pcm_16000`, `ulaw_8000`).
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("output_format")]
+        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Speechify.JsonConverters.AudioOutputFormatJsonConverter))]
+        public global::Speechify.AudioOutputFormat? OutputFormat { get; set; }
+
+        /// <summary>
         /// Id of the voice to be used for synthesizing speech. Refer to /v1/voices endpoint for available voices
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("voice_id")]
@@ -73,6 +80,9 @@ namespace Speechify
         /// <param name="options">
         /// GetStreamOptionsRequest is the wrapper for request parameters to the client
         /// </param>
+        /// <param name="outputFormat">
+        /// The output audio format as a `codec_sampleRate_bitrate` string. Takes precedence over the `Accept` header when set, so you can request formats the `Accept` enum does not cover (e.g. `pcm_16000`, `ulaw_8000`).
+        /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
 #endif
@@ -81,12 +91,14 @@ namespace Speechify
             string voiceId,
             string? language,
             global::Speechify.GetStreamRequestModel? model,
-            global::Speechify.GetStreamOptionsRequest? options)
+            global::Speechify.GetStreamOptionsRequest? options,
+            global::Speechify.AudioOutputFormat? outputFormat)
         {
             this.Input = input ?? throw new global::System.ArgumentNullException(nameof(input));
             this.Language = language;
             this.Model = model;
             this.Options = options;
+            this.OutputFormat = outputFormat;
             this.VoiceId = voiceId ?? throw new global::System.ArgumentNullException(nameof(voiceId));
         }
 
