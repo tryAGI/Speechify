@@ -34,7 +34,7 @@ namespace Speechify
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("score")]
         [global::System.Text.Json.Serialization.JsonRequired]
-        public required double Score { get; set; }
+        public required string Score { get; set; }
 
         /// <summary>
         /// Wall-clock time for the run in milliseconds.
@@ -72,13 +72,13 @@ namespace Speechify
             string agentResponse,
             bool passed,
             string rationale,
-            double score,
+            string score,
             long durationMs)
         {
             this.AgentResponse = agentResponse ?? throw new global::System.ArgumentNullException(nameof(agentResponse));
             this.Passed = passed;
             this.Rationale = rationale ?? throw new global::System.ArgumentNullException(nameof(rationale));
-            this.Score = score;
+            this.Score = score ?? throw new global::System.ArgumentNullException(nameof(score));
             this.DurationMs = durationMs;
         }
 

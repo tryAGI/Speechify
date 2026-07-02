@@ -15,7 +15,7 @@ namespace Speechify
         /// stacks that use semantic turn detection ignore it.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("response_delay_seconds")]
-        public double? ResponseDelaySeconds { get; set; }
+        public string? ResponseDelaySeconds { get; set; }
 
         /// <summary>
         /// How long the agent tolerates silence before ending the call,<br/>
@@ -47,7 +47,7 @@ namespace Speechify
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
 #endif
         public AgentTurnHandlingConfig(
-            double? responseDelaySeconds,
+            string? responseDelaySeconds,
             int? inactivityTimeoutSeconds)
         {
             this.ResponseDelaySeconds = responseDelaySeconds;
