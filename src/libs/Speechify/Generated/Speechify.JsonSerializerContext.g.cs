@@ -21,6 +21,10 @@ namespace Speechify
 
             typeof(global::Speechify.JsonConverters.GetSpeechRequestModelNullableJsonConverter),
 
+            typeof(global::Speechify.JsonConverters.AudioOutputFormatJsonConverter),
+
+            typeof(global::Speechify.JsonConverters.AudioOutputFormatNullableJsonConverter),
+
             typeof(global::Speechify.JsonConverters.GetSpeechResponseAudioFormatJsonConverter),
 
             typeof(global::Speechify.JsonConverters.GetSpeechResponseAudioFormatNullableJsonConverter),
@@ -332,6 +336,7 @@ namespace Speechify
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.GetSpeechRequestModel), TypeInfoPropertyName = "GetSpeechRequestModel2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.GetSpeechOptionsRequest))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(bool))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.AudioOutputFormat), TypeInfoPropertyName = "AudioOutputFormat2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.GetSpeechRequest))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(string))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.GetSpeechResponseAudioFormat), TypeInfoPropertyName = "GetSpeechResponseAudioFormat2")]

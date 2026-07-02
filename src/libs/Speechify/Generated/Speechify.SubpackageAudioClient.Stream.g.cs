@@ -28,13 +28,13 @@ namespace Speechify
         partial void PrepareStreamArguments(
             global::System.Net.Http.HttpClient httpClient,
             ref string? speechifyVersion,
-            ref global::Speechify.V1AudioStreamPostParametersAccept accept,
+            ref global::Speechify.V1AudioStreamPostParametersAccept? accept,
             global::Speechify.GetStreamRequest request);
         partial void PrepareStreamRequest(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpRequestMessage httpRequestMessage,
             string? speechifyVersion,
-            global::Speechify.V1AudioStreamPostParametersAccept accept,
+            global::Speechify.V1AudioStreamPostParametersAccept? accept,
             global::Speechify.GetStreamRequest request);
         partial void ProcessStreamResponse(
             global::System.Net.Http.HttpClient httpClient,
@@ -48,9 +48,11 @@ namespace Speechify
         /// <summary>
         /// Stream Speech<br/>
         /// Synthesize speech and stream the audio back as it is generated, for<br/>
-        /// low-latency playback. The Accept header selects the audio container;<br/>
-        /// the response is raw audio bytes (HTTP chunked). For Base64-encoded<br/>
-        /// audio with speech-mark metadata in a single JSON response, use<br/>
+        /// low-latency playback. Set `output_format` in the body for explicit<br/>
+        /// codec/sample-rate/bitrate control (e.g. `pcm_16000` or `ulaw_8000` for<br/>
+        /// telephony), or fall back to the Accept header for the container; the<br/>
+        /// response is raw audio bytes (HTTP chunked). For Base64-encoded audio<br/>
+        /// with speech-mark metadata in a single JSON response, use<br/>
         /// POST /v1/audio/speech.
         /// </summary>
         /// <param name="speechifyVersion"></param>
@@ -60,18 +62,18 @@ namespace Speechify
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
         public async global::System.Threading.Tasks.Task<byte[]> StreamAsync(
-            global::Speechify.V1AudioStreamPostParametersAccept accept,
 
             global::Speechify.GetStreamRequest request,
             string? speechifyVersion = default,
+            global::Speechify.V1AudioStreamPostParametersAccept? accept = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
             var __response = await StreamAsResponseAsync(
-                accept: accept,
 
                 request: request,
                 speechifyVersion: speechifyVersion,
+                accept: accept,
                 requestOptions: requestOptions,
                 cancellationToken: cancellationToken
             ).ConfigureAwait(false);
@@ -81,9 +83,11 @@ namespace Speechify
         /// <summary>
         /// Stream Speech<br/>
         /// Synthesize speech and stream the audio back as it is generated, for<br/>
-        /// low-latency playback. The Accept header selects the audio container;<br/>
-        /// the response is raw audio bytes (HTTP chunked). For Base64-encoded<br/>
-        /// audio with speech-mark metadata in a single JSON response, use<br/>
+        /// low-latency playback. Set `output_format` in the body for explicit<br/>
+        /// codec/sample-rate/bitrate control (e.g. `pcm_16000` or `ulaw_8000` for<br/>
+        /// telephony), or fall back to the Accept header for the container; the<br/>
+        /// response is raw audio bytes (HTTP chunked). For Base64-encoded audio<br/>
+        /// with speech-mark metadata in a single JSON response, use<br/>
         /// POST /v1/audio/speech.
         /// </summary>
         /// <param name="speechifyVersion"></param>
@@ -93,10 +97,10 @@ namespace Speechify
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
         public async global::System.Threading.Tasks.Task<global::System.IO.Stream> StreamAsStreamAsync(
-            global::Speechify.V1AudioStreamPostParametersAccept accept,
 
             global::Speechify.GetStreamRequest request,
             string? speechifyVersion = default,
+            global::Speechify.V1AudioStreamPostParametersAccept? accept = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
@@ -166,10 +170,13 @@ namespace Speechify
                 } 
             }
 
-                __httpRequest.Headers.TryAddWithoutValidation("Accept", accept.ToValueString());
             if (speechifyVersion != default)
             {
                 __httpRequest.Headers.TryAddWithoutValidation("Speechify-Version", speechifyVersion.ToString());
+            }
+            if (accept != default)
+            {
+                __httpRequest.Headers.TryAddWithoutValidation("Accept", accept?.ToValueString() ?? string.Empty);
             }
 
                             var __httpRequestContentBody = request.ToJson(JsonSerializerContext);
@@ -190,7 +197,7 @@ namespace Speechify
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
                     speechifyVersion: speechifyVersion,
-                    accept: accept!,
+                    accept: accept,
                     request: request);
 
                 return __httpRequest;
@@ -757,9 +764,11 @@ namespace Speechify
         /// <summary>
         /// Stream Speech<br/>
         /// Synthesize speech and stream the audio back as it is generated, for<br/>
-        /// low-latency playback. The Accept header selects the audio container;<br/>
-        /// the response is raw audio bytes (HTTP chunked). For Base64-encoded<br/>
-        /// audio with speech-mark metadata in a single JSON response, use<br/>
+        /// low-latency playback. Set `output_format` in the body for explicit<br/>
+        /// codec/sample-rate/bitrate control (e.g. `pcm_16000` or `ulaw_8000` for<br/>
+        /// telephony), or fall back to the Accept header for the container; the<br/>
+        /// response is raw audio bytes (HTTP chunked). For Base64-encoded audio<br/>
+        /// with speech-mark metadata in a single JSON response, use<br/>
         /// POST /v1/audio/speech.
         /// </summary>
         /// <param name="speechifyVersion"></param>
@@ -769,10 +778,10 @@ namespace Speechify
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
         public async global::System.Threading.Tasks.Task<global::Speechify.AutoSDKHttpResponse<byte[]>> StreamAsResponseAsync(
-            global::Speechify.V1AudioStreamPostParametersAccept accept,
 
             global::Speechify.GetStreamRequest request,
             string? speechifyVersion = default,
+            global::Speechify.V1AudioStreamPostParametersAccept? accept = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
@@ -842,10 +851,13 @@ namespace Speechify
                 } 
             }
 
-                __httpRequest.Headers.TryAddWithoutValidation("Accept", accept.ToValueString());
             if (speechifyVersion != default)
             {
                 __httpRequest.Headers.TryAddWithoutValidation("Speechify-Version", speechifyVersion.ToString());
+            }
+            if (accept != default)
+            {
+                __httpRequest.Headers.TryAddWithoutValidation("Accept", accept?.ToValueString() ?? string.Empty);
             }
 
                             var __httpRequestContentBody = request.ToJson(JsonSerializerContext);
@@ -866,7 +878,7 @@ namespace Speechify
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
                     speechifyVersion: speechifyVersion,
-                    accept: accept!,
+                    accept: accept,
                     request: request);
 
                 return __httpRequest;
@@ -1470,9 +1482,11 @@ namespace Speechify
         /// <summary>
         /// Stream Speech<br/>
         /// Synthesize speech and stream the audio back as it is generated, for<br/>
-        /// low-latency playback. The Accept header selects the audio container;<br/>
-        /// the response is raw audio bytes (HTTP chunked). For Base64-encoded<br/>
-        /// audio with speech-mark metadata in a single JSON response, use<br/>
+        /// low-latency playback. Set `output_format` in the body for explicit<br/>
+        /// codec/sample-rate/bitrate control (e.g. `pcm_16000` or `ulaw_8000` for<br/>
+        /// telephony), or fall back to the Accept header for the container; the<br/>
+        /// response is raw audio bytes (HTTP chunked). For Base64-encoded audio<br/>
+        /// with speech-mark metadata in a single JSON response, use<br/>
         /// POST /v1/audio/speech.
         /// </summary>
         /// <param name="speechifyVersion"></param>
@@ -1493,6 +1507,9 @@ namespace Speechify
         /// <param name="options">
         /// GetStreamOptionsRequest is the wrapper for request parameters to the client
         /// </param>
+        /// <param name="outputFormat">
+        /// The output audio format as a `codec_sampleRate_bitrate` string. Takes precedence over the `Accept` header when set, so you can request formats the `Accept` enum does not cover (e.g. `pcm_16000`, `ulaw_8000`).
+        /// </param>
         /// <param name="voiceId">
         /// Id of the voice to be used for synthesizing speech. Refer to /v1/voices endpoint for available voices
         /// </param>
@@ -1500,13 +1517,14 @@ namespace Speechify
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::System.InvalidOperationException"></exception>
         public async global::System.Threading.Tasks.Task<byte[]> StreamAsync(
-            global::Speechify.V1AudioStreamPostParametersAccept accept,
             string input,
             string voiceId,
             string? speechifyVersion = default,
+            global::Speechify.V1AudioStreamPostParametersAccept? accept = default,
             string? language = default,
             global::Speechify.GetStreamRequestModel? model = default,
             global::Speechify.GetStreamOptionsRequest? options = default,
+            global::Speechify.AudioOutputFormat? outputFormat = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
@@ -1516,6 +1534,7 @@ namespace Speechify
                 Language = language,
                 Model = model,
                 Options = options,
+                OutputFormat = outputFormat,
                 VoiceId = voiceId,
             };
 

@@ -4,7 +4,7 @@
 namespace Speechify
 {
     /// <summary>
-    /// The format of the audio data
+    /// The codec of the audio data
     /// </summary>
     public enum GetSpeechResponseAudioFormat
     {
@@ -27,6 +27,10 @@ namespace Speechify
         /// <summary>
         /// 
         /// </summary>
+        Ulaw,
+        /// <summary>
+        /// 
+        /// </summary>
         Wav,
     }
 
@@ -46,6 +50,7 @@ namespace Speechify
                 GetSpeechResponseAudioFormat.Mp3 => "mp3",
                 GetSpeechResponseAudioFormat.Ogg => "ogg",
                 GetSpeechResponseAudioFormat.Pcm => "pcm",
+                GetSpeechResponseAudioFormat.Ulaw => "ulaw",
                 GetSpeechResponseAudioFormat.Wav => "wav",
                 _ => throw new global::System.ArgumentOutOfRangeException(nameof(value), value, null),
             };
@@ -61,6 +66,7 @@ namespace Speechify
                 "mp3" => GetSpeechResponseAudioFormat.Mp3,
                 "ogg" => GetSpeechResponseAudioFormat.Ogg,
                 "pcm" => GetSpeechResponseAudioFormat.Pcm,
+                "ulaw" => GetSpeechResponseAudioFormat.Ulaw,
                 "wav" => GetSpeechResponseAudioFormat.Wav,
                 _ => null,
             };
