@@ -23,7 +23,7 @@ namespace Speechify
         /// from the telephony stack.
         /// </param>
         /// <param name="callerIdentity"></param>
-        /// <param name="search"></param>
+        /// <param name="q"></param>
         /// <param name="startedAfter"></param>
         /// <param name="startedBefore"></param>
         /// <param name="durationMinMs"></param>
@@ -39,7 +39,7 @@ namespace Speechify
             global::Speechify.ConversationStatus? status = default,
             global::Speechify.ConversationTransport? transport = default,
             string? callerIdentity = default,
-            string? search = default,
+            string? q = default,
             global::System.DateTime? startedAfter = default,
             global::System.DateTime? startedBefore = default,
             int? durationMinMs = default,
@@ -66,7 +66,7 @@ namespace Speechify
         /// from the telephony stack.
         /// </param>
         /// <param name="callerIdentity"></param>
-        /// <param name="search"></param>
+        /// <param name="q"></param>
         /// <param name="startedAfter"></param>
         /// <param name="startedBefore"></param>
         /// <param name="durationMinMs"></param>
@@ -82,7 +82,7 @@ namespace Speechify
             global::Speechify.ConversationStatus? status = default,
             global::Speechify.ConversationTransport? transport = default,
             string? callerIdentity = default,
-            string? search = default,
+            string? q = default,
             global::System.DateTime? startedAfter = default,
             global::System.DateTime? startedBefore = default,
             int? durationMinMs = default,

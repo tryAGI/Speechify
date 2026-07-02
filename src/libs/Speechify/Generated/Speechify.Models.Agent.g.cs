@@ -150,9 +150,12 @@ namespace Speechify
 
         /// <summary>
         /// Per-agent override of the workspace webhook endpoints for this<br/>
-        /// agent's post-call event. When non-empty, the control plane POSTs a<br/>
-        /// signed payload (transcript + evals + extractors + recording URL) here<br/>
-        /// once the conversation completes, and the workspace endpoints'<br/>
+        /// agent's post-call event. When non-empty, the control plane POSTs the<br/>
+        /// standard signed `WebhookEvent` envelope here once the conversation<br/>
+        /// completes. This is the same shape workspace endpoints receive:<br/>
+        /// `data.object` is the completed Conversation (equal to a direct GET),<br/>
+        /// with the full transcript under `data.messages` and evaluations +<br/>
+        /// data extractors under `data.evaluations`. The workspace endpoints'<br/>
         /// `conversation.completed` is suppressed for this agent (the override<br/>
         /// wins, so the two planes no longer both fire). Empty routes<br/>
         /// `conversation.completed` to your workspace webhook endpoints instead.<br/>
@@ -299,9 +302,12 @@ namespace Speechify
         /// </param>
         /// <param name="webhookUrl">
         /// Per-agent override of the workspace webhook endpoints for this<br/>
-        /// agent's post-call event. When non-empty, the control plane POSTs a<br/>
-        /// signed payload (transcript + evals + extractors + recording URL) here<br/>
-        /// once the conversation completes, and the workspace endpoints'<br/>
+        /// agent's post-call event. When non-empty, the control plane POSTs the<br/>
+        /// standard signed `WebhookEvent` envelope here once the conversation<br/>
+        /// completes. This is the same shape workspace endpoints receive:<br/>
+        /// `data.object` is the completed Conversation (equal to a direct GET),<br/>
+        /// with the full transcript under `data.messages` and evaluations +<br/>
+        /// data extractors under `data.evaluations`. The workspace endpoints'<br/>
         /// `conversation.completed` is suppressed for this agent (the override<br/>
         /// wins, so the two planes no longer both fire). Empty routes<br/>
         /// `conversation.completed` to your workspace webhook endpoints instead.<br/>

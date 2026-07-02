@@ -6,7 +6,8 @@ namespace Speechify
     /// <summary>
     /// Body for `POST /v1/agents/batch-calls`. Also accepts `multipart/form-data`<br/>
     /// with a CSV file upload (`csv_file` field) where the `phone` column is<br/>
-    /// required and remaining columns become per-recipient `dynamic_variables`.
+    /// required, an optional `custom_id` column sets the recipient correlation<br/>
+    /// key, and remaining columns become per-recipient `dynamic_variables`.
     /// </summary>
     public sealed partial class CreateBatchCallRequest
     {

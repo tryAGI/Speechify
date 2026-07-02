@@ -160,6 +160,10 @@ namespace Speechify
         /// <summary>
         /// 
         /// </summary>
+        SpendBudgetExceeded,
+        /// <summary>
+        /// 
+        /// </summary>
         SpendCapExceeded,
         /// <summary>
         /// 
@@ -255,6 +259,7 @@ namespace Speechify
                 ErrorCode.ServiceAccountsNotInPlan => "service_accounts_not_in_plan",
                 ErrorCode.ServiceUnavailable => "service_unavailable",
                 ErrorCode.SipTrunkNotFound => "sip_trunk_not_found",
+                ErrorCode.SpendBudgetExceeded => "spend_budget_exceeded",
                 ErrorCode.SpendCapExceeded => "spend_cap_exceeded",
                 ErrorCode.ToolConfigShared => "tool_config_shared",
                 ErrorCode.ToolNotFound => "tool_not_found",
@@ -313,6 +318,7 @@ namespace Speechify
                 "service_accounts_not_in_plan" => ErrorCode.ServiceAccountsNotInPlan,
                 "service_unavailable" => ErrorCode.ServiceUnavailable,
                 "sip_trunk_not_found" => ErrorCode.SipTrunkNotFound,
+                "spend_budget_exceeded" => ErrorCode.SpendBudgetExceeded,
                 "spend_cap_exceeded" => ErrorCode.SpendCapExceeded,
                 "tool_config_shared" => ErrorCode.ToolConfigShared,
                 "tool_not_found" => ErrorCode.ToolNotFound,

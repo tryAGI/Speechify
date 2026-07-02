@@ -49,7 +49,7 @@ namespace Speechify
         /// Batch Move Documents<br/>
         /// Move multiple documents into a folder in a single transaction.<br/>
         /// Pass `folder_id: null` to move every doc to root. Capped at<br/>
-        /// 200 ids per call.
+        /// 200 ids per call. Returns the moved documents.
         /// </summary>
         /// <param name="kbId"></param>
         /// <param name="speechifyVersion"></param>
@@ -57,7 +57,7 @@ namespace Speechify
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
-        public async global::System.Threading.Tasks.Task<string> BatchMoveDocumentsAsync(
+        public async global::System.Threading.Tasks.Task<global::Speechify.BatchMoveDocumentsResponse> BatchMoveDocumentsAsync(
             string kbId,
 
             global::Speechify.BatchMoveDocumentsRequest request,
@@ -80,7 +80,7 @@ namespace Speechify
         /// Batch Move Documents<br/>
         /// Move multiple documents into a folder in a single transaction.<br/>
         /// Pass `folder_id: null` to move every doc to root. Capped at<br/>
-        /// 200 ids per call.
+        /// 200 ids per call. Returns the moved documents.
         /// </summary>
         /// <param name="kbId"></param>
         /// <param name="speechifyVersion"></param>
@@ -88,7 +88,7 @@ namespace Speechify
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
-        public async global::System.Threading.Tasks.Task<global::Speechify.AutoSDKHttpResponse<string>> BatchMoveDocumentsAsResponseAsync(
+        public async global::System.Threading.Tasks.Task<global::Speechify.AutoSDKHttpResponse<global::Speechify.BatchMoveDocumentsResponse>> BatchMoveDocumentsAsResponseAsync(
             string kbId,
 
             global::Speechify.BatchMoveDocumentsRequest request,
@@ -130,7 +130,7 @@ namespace Speechify
             {
 
                             var __pathBuilder = new global::Speechify.PathBuilder(
-                                path: $"/v1/agents/knowledge-bases/{kbId}/documents/batch/move",
+                                path: $"/v1/agents/knowledge-bases/{kbId}/documents/batch",
                                 baseUri: HttpClient.BaseAddress);
                             var __path = __pathBuilder.ToString();
                 __path = global::Speechify.AutoSDKRequestOptionsSupport.AppendQueryParameters(
@@ -205,7 +205,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "BatchMoveDocuments",
                                 methodName: "BatchMoveDocumentsAsync",
-                                pathTemplate: "$\"/v1/agents/knowledge-bases/{kbId}/documents/batch/move\"",
+                                pathTemplate: "$\"/v1/agents/knowledge-bases/{kbId}/documents/batch\"",
                                 httpMethod: "PATCH",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -239,7 +239,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "BatchMoveDocuments",
                                 methodName: "BatchMoveDocumentsAsync",
-                                pathTemplate: "$\"/v1/agents/knowledge-bases/{kbId}/documents/batch/move\"",
+                                pathTemplate: "$\"/v1/agents/knowledge-bases/{kbId}/documents/batch\"",
                                 httpMethod: "PATCH",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -280,7 +280,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "BatchMoveDocuments",
                                 methodName: "BatchMoveDocumentsAsync",
-                                pathTemplate: "$\"/v1/agents/knowledge-bases/{kbId}/documents/batch/move\"",
+                                pathTemplate: "$\"/v1/agents/knowledge-bases/{kbId}/documents/batch\"",
                                 httpMethod: "PATCH",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -328,7 +328,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "BatchMoveDocuments",
                                 methodName: "BatchMoveDocumentsAsync",
-                                pathTemplate: "$\"/v1/agents/knowledge-bases/{kbId}/documents/batch/move\"",
+                                pathTemplate: "$\"/v1/agents/knowledge-bases/{kbId}/documents/batch\"",
                                 httpMethod: "PATCH",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -350,7 +350,7 @@ namespace Speechify
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "BatchMoveDocuments",
                                 methodName: "BatchMoveDocumentsAsync",
-                                pathTemplate: "$\"/v1/agents/knowledge-bases/{kbId}/documents/batch/move\"",
+                                pathTemplate: "$\"/v1/agents/knowledge-bases/{kbId}/documents/batch\"",
                                 httpMethod: "PATCH",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -498,11 +498,13 @@ namespace Speechify
                                 {
                                     __response.EnsureSuccessStatusCode();
 
-                                    return new global::Speechify.AutoSDKHttpResponse<string>(
+                                    var __value = global::Speechify.BatchMoveDocumentsResponse.FromJson(__content, JsonSerializerContext) ??
+                                        throw new global::System.InvalidOperationException($"Response deserialization failed for \"{__content}\" ");
+                                    return new global::Speechify.AutoSDKHttpResponse<global::Speechify.BatchMoveDocumentsResponse>(
                                         statusCode: __response.StatusCode,
                                         headers: global::Speechify.AutoSDKHttpResponse.CreateHeaders(__response),
                                         requestUri: __response.RequestMessage?.RequestUri,
-                                        body: __content);
+                                        body: __value);
                                 }
                                 catch (global::System.Exception __ex)
                                 {
@@ -522,17 +524,19 @@ namespace Speechify
                                 try
                                 {
                                     __response.EnsureSuccessStatusCode();
-                                    var __content = await __response.Content.ReadAsStringAsync(
+                                    using var __content = await __response.Content.ReadAsStreamAsync(
                 #if NET5_0_OR_GREATER
                                         __effectiveCancellationToken
                 #endif
                                     ).ConfigureAwait(false);
 
-                                    return new global::Speechify.AutoSDKHttpResponse<string>(
+                                    var __value = await global::Speechify.BatchMoveDocumentsResponse.FromJsonStreamAsync(__content, JsonSerializerContext).ConfigureAwait(false) ??
+                                        throw new global::System.InvalidOperationException("Response deserialization failed.");
+                                    return new global::Speechify.AutoSDKHttpResponse<global::Speechify.BatchMoveDocumentsResponse>(
                                         statusCode: __response.StatusCode,
                                         headers: global::Speechify.AutoSDKHttpResponse.CreateHeaders(__response),
                                         requestUri: __response.RequestMessage?.RequestUri,
-                                        body: __content);
+                                        body: __value);
                                 }
                                 catch (global::System.Exception __ex)
                                 {
@@ -572,7 +576,7 @@ namespace Speechify
         /// Batch Move Documents<br/>
         /// Move multiple documents into a folder in a single transaction.<br/>
         /// Pass `folder_id: null` to move every doc to root. Capped at<br/>
-        /// 200 ids per call.
+        /// 200 ids per call. Returns the moved documents.
         /// </summary>
         /// <param name="kbId"></param>
         /// <param name="speechifyVersion"></param>
@@ -585,7 +589,7 @@ namespace Speechify
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::System.InvalidOperationException"></exception>
-        public async global::System.Threading.Tasks.Task<string> BatchMoveDocumentsAsync(
+        public async global::System.Threading.Tasks.Task<global::Speechify.BatchMoveDocumentsResponse> BatchMoveDocumentsAsync(
             string kbId,
             global::System.Collections.Generic.IList<string> ids,
             string? speechifyVersion = default,

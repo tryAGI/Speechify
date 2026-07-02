@@ -33,7 +33,7 @@ namespace Speechify
             ref global::Speechify.ConversationStatus? status,
             ref global::Speechify.ConversationTransport? transport,
             ref string? callerIdentity,
-            ref string? search,
+            ref string? q,
             ref global::System.DateTime? startedAfter,
             ref global::System.DateTime? startedBefore,
             ref int? durationMinMs,
@@ -48,7 +48,7 @@ namespace Speechify
             global::Speechify.ConversationStatus? status,
             global::Speechify.ConversationTransport? transport,
             string? callerIdentity,
-            string? search,
+            string? q,
             global::System.DateTime? startedAfter,
             global::System.DateTime? startedBefore,
             int? durationMinMs,
@@ -82,7 +82,7 @@ namespace Speechify
         /// from the telephony stack.
         /// </param>
         /// <param name="callerIdentity"></param>
-        /// <param name="search"></param>
+        /// <param name="q"></param>
         /// <param name="startedAfter"></param>
         /// <param name="startedBefore"></param>
         /// <param name="durationMinMs"></param>
@@ -98,7 +98,7 @@ namespace Speechify
             global::Speechify.ConversationStatus? status = default,
             global::Speechify.ConversationTransport? transport = default,
             string? callerIdentity = default,
-            string? search = default,
+            string? q = default,
             global::System.DateTime? startedAfter = default,
             global::System.DateTime? startedBefore = default,
             int? durationMinMs = default,
@@ -114,7 +114,7 @@ namespace Speechify
                 status: status,
                 transport: transport,
                 callerIdentity: callerIdentity,
-                search: search,
+                q: q,
                 startedAfter: startedAfter,
                 startedBefore: startedBefore,
                 durationMinMs: durationMinMs,
@@ -145,7 +145,7 @@ namespace Speechify
         /// from the telephony stack.
         /// </param>
         /// <param name="callerIdentity"></param>
-        /// <param name="search"></param>
+        /// <param name="q"></param>
         /// <param name="startedAfter"></param>
         /// <param name="startedBefore"></param>
         /// <param name="durationMinMs"></param>
@@ -161,7 +161,7 @@ namespace Speechify
             global::Speechify.ConversationStatus? status = default,
             global::Speechify.ConversationTransport? transport = default,
             string? callerIdentity = default,
-            string? search = default,
+            string? q = default,
             global::System.DateTime? startedAfter = default,
             global::System.DateTime? startedBefore = default,
             int? durationMinMs = default,
@@ -180,7 +180,7 @@ namespace Speechify
                 status: ref status,
                 transport: ref transport,
                 callerIdentity: ref callerIdentity,
-                search: ref search,
+                q: ref q,
                 startedAfter: ref startedAfter,
                 startedBefore: ref startedBefore,
                 durationMinMs: ref durationMinMs,
@@ -220,7 +220,7 @@ namespace Speechify
                                 .AddOptionalParameter("status", status?.ToValueString())
                                 .AddOptionalParameter("transport", transport?.ToValueString())
                                 .AddOptionalParameter("caller_identity", callerIdentity)
-                                .AddOptionalParameter("search", search)
+                                .AddOptionalParameter("q", q)
                                 .AddOptionalParameter("started_after", startedAfter?.ToString("yyyy-MM-ddTHH:mm:ssZ"))
                                 .AddOptionalParameter("started_before", startedBefore?.ToString("yyyy-MM-ddTHH:mm:ssZ"))
                                 .AddOptionalParameter("duration_min_ms", durationMinMs?.ToString())
@@ -278,7 +278,7 @@ namespace Speechify
                     status: status,
                     transport: transport,
                     callerIdentity: callerIdentity,
-                    search: search,
+                    q: q,
                     startedAfter: startedAfter,
                     startedBefore: startedBefore,
                     durationMinMs: durationMinMs,
