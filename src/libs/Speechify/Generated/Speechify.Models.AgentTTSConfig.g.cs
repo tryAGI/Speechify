@@ -21,7 +21,7 @@ namespace Speechify
         /// double, 1.0 = unchanged). Null means no time-stretch.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("speed")]
-        public double? Speed { get; set; }
+        public string? Speed { get; set; }
 
         /// <summary>
         /// Additional properties that are not explicitly defined in the schema
@@ -45,7 +45,7 @@ namespace Speechify
 #endif
         public AgentTTSConfig(
             string voiceId,
-            double? speed)
+            string? speed)
         {
             this.VoiceId = voiceId ?? throw new global::System.ArgumentNullException(nameof(voiceId));
             this.Speed = speed;

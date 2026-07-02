@@ -66,7 +66,7 @@ namespace Speechify
         /// Sampling temperature in the range 0.0-1.0. Defaults to 0.5.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("temperature")]
-        public double? Temperature { get; set; }
+        public string? Temperature { get; set; }
 
         /// <summary>
         /// Additional properties that are not explicitly defined in the schema
@@ -122,7 +122,7 @@ namespace Speechify
             string? baseUrl,
             string? credentialId,
             object? extraBody,
-            double? temperature)
+            string? temperature)
         {
             this.Provider = provider;
             this.Model = model;

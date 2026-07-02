@@ -19,7 +19,7 @@ namespace Speechify
         /// Volume of the background-noise bed (0.0-1.0). Null disables.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("volume")]
-        public double? Volume { get; set; }
+        public string? Volume { get; set; }
 
         /// <summary>
         /// Additional properties that are not explicitly defined in the schema
@@ -41,7 +41,7 @@ namespace Speechify
 #endif
         public AgentBackgroundNoiseConfig(
             global::Speechify.AgentBackgroundNoiseConfigPreset? preset,
-            double? volume)
+            string? volume)
         {
             this.Preset = preset;
             this.Volume = volume;

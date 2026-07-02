@@ -87,7 +87,7 @@ namespace Speechify
         /// 
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("temperature")]
-        public double? Temperature { get; set; }
+        public string? Temperature { get; set; }
 
         /// <summary>
         /// 
@@ -105,13 +105,13 @@ namespace Speechify
         /// Post-process time-stretch at call time; null = no time-stretch (1x).
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("tts_playback_rate")]
-        public double? TtsPlaybackRate { get; set; }
+        public string? TtsPlaybackRate { get; set; }
 
         /// <summary>
         /// Silence-wait override at call time; null = stack default endpointing.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("response_delay_seconds")]
-        public double? ResponseDelaySeconds { get; set; }
+        public string? ResponseDelaySeconds { get; set; }
 
         /// <summary>
         /// Streaming-STT stack the call dispatched with; null = the worker's platform default.
@@ -165,7 +165,7 @@ namespace Speechify
         /// 
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("background_noise_volume")]
-        public double? BackgroundNoiseVolume { get; set; }
+        public string? BackgroundNoiseVolume { get; set; }
 
         /// <summary>
         /// Additional properties that are not explicitly defined in the schema
@@ -239,11 +239,11 @@ namespace Speechify
             string? llmBaseUrl,
             object? llmExtraBody,
             string? voiceId,
-            double? temperature,
+            string? temperature,
             bool? memoryEnabled,
             int? memoryRetentionDays,
-            double? ttsPlaybackRate,
-            double? responseDelaySeconds,
+            string? ttsPlaybackRate,
+            string? responseDelaySeconds,
             string? sttOverride,
             global::Speechify.AMDConfig? amd,
             bool? saveAudioRecording,
@@ -251,7 +251,7 @@ namespace Speechify
             bool? ivrMemoryEnabled,
             int? inactivityTimeoutSeconds,
             global::Speechify.AgentSnapshotBackgroundNoisePreset? backgroundNoisePreset,
-            double? backgroundNoiseVolume)
+            string? backgroundNoiseVolume)
         {
             this.SchemaVersion = schemaVersion;
             this.CapturedAt = capturedAt;

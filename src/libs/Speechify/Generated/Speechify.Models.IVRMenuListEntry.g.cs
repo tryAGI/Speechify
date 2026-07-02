@@ -52,7 +52,7 @@ namespace Speechify
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("confidence_score")]
         [global::System.Text.Json.Serialization.JsonRequired]
-        public required double ConfidenceScore { get; set; }
+        public required string ConfidenceScore { get; set; }
 
         /// <summary>
         /// 
@@ -130,7 +130,7 @@ namespace Speechify
             string transcriptSample,
             int schemaVersion,
             global::Speechify.IvrMenuListEntryMenuTree menuTree,
-            double confidenceScore,
+            string confidenceScore,
             int succeededTraversals,
             int totalTraversals,
             global::System.DateTime lastValidatedAt,
@@ -143,7 +143,7 @@ namespace Speechify
             this.TranscriptSample = transcriptSample ?? throw new global::System.ArgumentNullException(nameof(transcriptSample));
             this.SchemaVersion = schemaVersion;
             this.MenuTree = menuTree ?? throw new global::System.ArgumentNullException(nameof(menuTree));
-            this.ConfidenceScore = confidenceScore;
+            this.ConfidenceScore = confidenceScore ?? throw new global::System.ArgumentNullException(nameof(confidenceScore));
             this.SucceededTraversals = succeededTraversals;
             this.TotalTraversals = totalTraversals;
             this.LastValidatedAt = lastValidatedAt;

@@ -67,7 +67,7 @@ namespace Speechify
         /// 
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("score")]
-        public double? Score { get; set; }
+        public string? Score { get; set; }
 
         /// <summary>
         /// 
@@ -129,7 +129,7 @@ namespace Speechify
             string? criterionId,
             global::Speechify.OneOf<global::Speechify.EvaluationStatus?, object>? status,
             bool? passed,
-            double? score,
+            string? score,
             object? data)
         {
             this.Id = id ?? throw new global::System.ArgumentNullException(nameof(id));

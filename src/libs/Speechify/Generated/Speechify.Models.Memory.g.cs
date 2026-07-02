@@ -57,13 +57,13 @@ namespace Speechify
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("confidence")]
         [global::System.Text.Json.Serialization.JsonRequired]
-        public required double Confidence { get; set; }
+        public required string Confidence { get; set; }
 
         /// <summary>
         /// Populated only on retrieval hits — recency-weighted cosine similarity.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("score")]
-        public double? Score { get; set; }
+        public string? Score { get; set; }
 
         /// <summary>
         /// 
@@ -118,17 +118,17 @@ namespace Speechify
             string agentId,
             string callerIdentity,
             string fact,
-            double confidence,
+            string confidence,
             global::System.DateTime createdAt,
             string? sourceConversationId,
-            double? score)
+            string? score)
         {
             this.Id = id ?? throw new global::System.ArgumentNullException(nameof(id));
             this.AgentId = agentId ?? throw new global::System.ArgumentNullException(nameof(agentId));
             this.CallerIdentity = callerIdentity ?? throw new global::System.ArgumentNullException(nameof(callerIdentity));
             this.Fact = fact ?? throw new global::System.ArgumentNullException(nameof(fact));
             this.SourceConversationId = sourceConversationId;
-            this.Confidence = confidence;
+            this.Confidence = confidence ?? throw new global::System.ArgumentNullException(nameof(confidence));
             this.Score = score;
             this.CreatedAt = createdAt;
         }
