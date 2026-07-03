@@ -8,8 +8,9 @@ namespace Speechify
         /// Run All Agent Tests<br/>
         /// Enqueue runs for every test on the agent concurrently. Up to 50<br/>
         /// tests are dispatched in one call. Each returned run starts in<br/>
-        /// `queued` status; poll `GET /v1/agents/tests/runs/{test_run_id}` for the terminal<br/>
-        /// result.<br/>
+        /// `pending` status; poll `GET /v1/agents/tests/runs/{test_run_id}` for the terminal<br/>
+        /// result (`completed` / `failed` / `cancelled`, with the pass/fail<br/>
+        /// judgment in the separate `verdict` field).<br/>
         /// An optional request body runs the whole suite against<br/>
         /// a proposed config: a `config_override` (prompt / model / tools)<br/>
         /// applied to every test without editing the tests, and/or a<br/>
@@ -38,8 +39,9 @@ namespace Speechify
         /// Run All Agent Tests<br/>
         /// Enqueue runs for every test on the agent concurrently. Up to 50<br/>
         /// tests are dispatched in one call. Each returned run starts in<br/>
-        /// `queued` status; poll `GET /v1/agents/tests/runs/{test_run_id}` for the terminal<br/>
-        /// result.<br/>
+        /// `pending` status; poll `GET /v1/agents/tests/runs/{test_run_id}` for the terminal<br/>
+        /// result (`completed` / `failed` / `cancelled`, with the pass/fail<br/>
+        /// judgment in the separate `verdict` field).<br/>
         /// An optional request body runs the whole suite against<br/>
         /// a proposed config: a `config_override` (prompt / model / tools)<br/>
         /// applied to every test without editing the tests, and/or a<br/>
@@ -68,8 +70,9 @@ namespace Speechify
         /// Run All Agent Tests<br/>
         /// Enqueue runs for every test on the agent concurrently. Up to 50<br/>
         /// tests are dispatched in one call. Each returned run starts in<br/>
-        /// `queued` status; poll `GET /v1/agents/tests/runs/{test_run_id}` for the terminal<br/>
-        /// result.<br/>
+        /// `pending` status; poll `GET /v1/agents/tests/runs/{test_run_id}` for the terminal<br/>
+        /// result (`completed` / `failed` / `cancelled`, with the pass/fail<br/>
+        /// judgment in the separate `verdict` field).<br/>
         /// An optional request body runs the whole suite against<br/>
         /// a proposed config: a `config_override` (prompt / model / tools)<br/>
         /// applied to every test without editing the tests, and/or a<br/>

@@ -50,8 +50,10 @@ namespace Speechify
         /// <summary>
         /// Run Agent Test<br/>
         /// Enqueue a single run of the test. The returned run starts in<br/>
-        /// `queued` status. Poll `GET /v1/agents/tests/runs/{test_run_id}` until the status<br/>
-        /// reaches a terminal state (`passed`, `failed`, or `error`).
+        /// `pending` status. Poll `GET /v1/agents/tests/runs/{test_run_id}` until the status<br/>
+        /// reaches a terminal state (`completed`, `failed`, or `cancelled`). A<br/>
+        /// run that reached `completed` produced a judgment - read the separate<br/>
+        /// `verdict` field (`passed` / `failed`) for the pass/fail result.
         /// </summary>
         /// <param name="testId"></param>
         /// <param name="speechifyVersion"></param>
@@ -86,8 +88,10 @@ namespace Speechify
         /// <summary>
         /// Run Agent Test<br/>
         /// Enqueue a single run of the test. The returned run starts in<br/>
-        /// `queued` status. Poll `GET /v1/agents/tests/runs/{test_run_id}` until the status<br/>
-        /// reaches a terminal state (`passed`, `failed`, or `error`).
+        /// `pending` status. Poll `GET /v1/agents/tests/runs/{test_run_id}` until the status<br/>
+        /// reaches a terminal state (`completed`, `failed`, or `cancelled`). A<br/>
+        /// run that reached `completed` produced a judgment - read the separate<br/>
+        /// `verdict` field (`passed` / `failed`) for the pass/fail result.
         /// </summary>
         /// <param name="testId"></param>
         /// <param name="speechifyVersion"></param>
@@ -592,8 +596,10 @@ namespace Speechify
         /// <summary>
         /// Run Agent Test<br/>
         /// Enqueue a single run of the test. The returned run starts in<br/>
-        /// `queued` status. Poll `GET /v1/agents/tests/runs/{test_run_id}` until the status<br/>
-        /// reaches a terminal state (`passed`, `failed`, or `error`).
+        /// `pending` status. Poll `GET /v1/agents/tests/runs/{test_run_id}` until the status<br/>
+        /// reaches a terminal state (`completed`, `failed`, or `cancelled`). A<br/>
+        /// run that reached `completed` produced a judgment - read the separate<br/>
+        /// `verdict` field (`passed` / `failed`) for the pass/fail result.
         /// </summary>
         /// <param name="testId"></param>
         /// <param name="speechifyVersion"></param>
