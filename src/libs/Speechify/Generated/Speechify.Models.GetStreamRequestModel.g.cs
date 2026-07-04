@@ -4,7 +4,7 @@
 namespace Speechify
 {
     /// <summary>
-    /// Model used for audio synthesis. `simba-english` is optimized for English, `simba-multilingual` for non-English or mixed input. `simba-3.0` is the streaming-native model with lower TTFB and richer expressivity. Currently English only; multilingual coming soon. Non-English voices return 400 until multilingual support ships.<br/>
+    /// Model used for audio synthesis. `simba-english` is optimized for English, `simba-multilingual` for non-English or mixed input. `simba-3.2` is the streaming-native model with lower TTFB and richer expressivity, and the recommended Simba 3 model. `simba-3.0` is the earlier Simba 3.0 model, still available. `simba-3.0` and `simba-3.2` are currently English only; multilingual coming soon, and non-English voices return 400 until it ships.<br/>
     /// Default Value: simba-english
     /// </summary>
     public enum GetStreamRequestModel
@@ -13,6 +13,10 @@ namespace Speechify
         /// 
         /// </summary>
         Simba30,
+        /// <summary>
+        /// 
+        /// </summary>
+        Simba32,
         /// <summary>
         /// 
         /// </summary>
@@ -36,6 +40,7 @@ namespace Speechify
             return value switch
             {
                 GetStreamRequestModel.Simba30 => "simba-3.0",
+                GetStreamRequestModel.Simba32 => "simba-3.2",
                 GetStreamRequestModel.SimbaEnglish => "simba-english",
                 GetStreamRequestModel.SimbaMultilingual => "simba-multilingual",
                 _ => throw new global::System.ArgumentOutOfRangeException(nameof(value), value, null),
@@ -49,6 +54,7 @@ namespace Speechify
             return value switch
             {
                 "simba-3.0" => GetStreamRequestModel.Simba30,
+                "simba-3.2" => GetStreamRequestModel.Simba32,
                 "simba-english" => GetStreamRequestModel.SimbaEnglish,
                 "simba-multilingual" => GetStreamRequestModel.SimbaMultilingual,
                 _ => null,
