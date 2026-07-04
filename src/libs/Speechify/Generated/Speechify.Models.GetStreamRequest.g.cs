@@ -25,7 +25,7 @@ namespace Speechify
         public string? Language { get; set; }
 
         /// <summary>
-        /// Model used for audio synthesis. `simba-english` is optimized for English, `simba-multilingual` for non-English or mixed input. `simba-3.0` is the streaming-native model with lower TTFB and richer expressivity. Currently English only; multilingual coming soon. Non-English voices return 400 until multilingual support ships.<br/>
+        /// Model used for audio synthesis. `simba-english` is optimized for English, `simba-multilingual` for non-English or mixed input. `simba-3.2` is the streaming-native model with lower TTFB and richer expressivity, and the recommended Simba 3 model. `simba-3.0` is the earlier Simba 3.0 model, still available. `simba-3.0` and `simba-3.2` are currently English only; multilingual coming soon, and non-English voices return 400 until it ships.<br/>
         /// Default Value: simba-english
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("model")]
@@ -74,7 +74,7 @@ namespace Speechify
         /// Please refer to the list of the supported languages and recommendations regarding this parameter: https://docs.speechify.ai/docs/language-support.
         /// </param>
         /// <param name="model">
-        /// Model used for audio synthesis. `simba-english` is optimized for English, `simba-multilingual` for non-English or mixed input. `simba-3.0` is the streaming-native model with lower TTFB and richer expressivity. Currently English only; multilingual coming soon. Non-English voices return 400 until multilingual support ships.<br/>
+        /// Model used for audio synthesis. `simba-english` is optimized for English, `simba-multilingual` for non-English or mixed input. `simba-3.2` is the streaming-native model with lower TTFB and richer expressivity, and the recommended Simba 3 model. `simba-3.0` is the earlier Simba 3.0 model, still available. `simba-3.0` and `simba-3.2` are currently English only; multilingual coming soon, and non-English voices return 400 until it ships.<br/>
         /// Default Value: simba-english
         /// </param>
         /// <param name="options">
