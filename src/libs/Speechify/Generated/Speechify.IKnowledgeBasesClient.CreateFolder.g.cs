@@ -1,0 +1,64 @@
+#nullable enable
+
+namespace Speechify
+{
+    public partial interface IKnowledgeBasesClient
+    {
+        /// <summary>
+        /// Create Folder<br/>
+        /// Create a folder inside a knowledge base.
+        /// </summary>
+        /// <param name="kbId"></param>
+        /// <param name="speechifyVersion"></param>
+        /// <param name="request"></param>
+        /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
+        /// <param name="cancellationToken">The token to cancel the operation with</param>
+        /// <exception cref="global::Speechify.ApiException"></exception>
+        global::System.Threading.Tasks.Task<global::Speechify.KnowledgeBaseFolder> CreateFolderAsync(
+            string kbId,
+
+            global::Speechify.CreateFolderRequest request,
+            string? speechifyVersion = default,
+            global::Speechify.AutoSDKRequestOptions? requestOptions = default,
+            global::System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Create Folder<br/>
+        /// Create a folder inside a knowledge base.
+        /// </summary>
+        /// <param name="kbId"></param>
+        /// <param name="speechifyVersion"></param>
+        /// <param name="request"></param>
+        /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
+        /// <param name="cancellationToken">The token to cancel the operation with</param>
+        /// <exception cref="global::Speechify.ApiException"></exception>
+        global::System.Threading.Tasks.Task<global::Speechify.AutoSDKHttpResponse<global::Speechify.KnowledgeBaseFolder>> CreateFolderAsResponseAsync(
+            string kbId,
+
+            global::Speechify.CreateFolderRequest request,
+            string? speechifyVersion = default,
+            global::Speechify.AutoSDKRequestOptions? requestOptions = default,
+            global::System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Create Folder<br/>
+        /// Create a folder inside a knowledge base.
+        /// </summary>
+        /// <param name="kbId"></param>
+        /// <param name="speechifyVersion"></param>
+        /// <param name="name"></param>
+        /// <param name="parentFolderId">
+        /// Parent folder. Prefixed wire identifier<br/>
+        /// (`kfolder_&lt;26 char Crockford base32&gt;`); null/omitted creates a<br/>
+        /// root-level folder.
+        /// </param>
+        /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
+        /// <param name="cancellationToken">The token to cancel the operation with</param>
+        /// <exception cref="global::System.InvalidOperationException"></exception>
+        global::System.Threading.Tasks.Task<global::Speechify.KnowledgeBaseFolder> CreateFolderAsync(
+            string kbId,
+            string name,
+            string? speechifyVersion = default,
+            string? parentFolderId = default,
+            global::Speechify.AutoSDKRequestOptions? requestOptions = default,
+            global::System.Threading.CancellationToken cancellationToken = default);
+    }
+}
