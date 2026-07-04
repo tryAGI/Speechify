@@ -1,0 +1,127 @@
+#nullable enable
+
+namespace Speechify
+{
+    public partial interface IAgentClient
+    {
+        /// <summary>
+        /// Update Agent<br/>
+        /// Update a voice agent. Only fields present on the request body are changed.
+        /// </summary>
+        /// <param name="agentId"></param>
+        /// <param name="speechifyVersion"></param>
+        /// <param name="request"></param>
+        /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
+        /// <param name="cancellationToken">The token to cancel the operation with</param>
+        /// <exception cref="global::Speechify.ApiException"></exception>
+        global::System.Threading.Tasks.Task<global::Speechify.Agent> UpdateAsync(
+            string agentId,
+
+            global::Speechify.UpdateAgentRequest request,
+            string? speechifyVersion = default,
+            global::Speechify.AutoSDKRequestOptions? requestOptions = default,
+            global::System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Update Agent<br/>
+        /// Update a voice agent. Only fields present on the request body are changed.
+        /// </summary>
+        /// <param name="agentId"></param>
+        /// <param name="speechifyVersion"></param>
+        /// <param name="request"></param>
+        /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
+        /// <param name="cancellationToken">The token to cancel the operation with</param>
+        /// <exception cref="global::Speechify.ApiException"></exception>
+        global::System.Threading.Tasks.Task<global::Speechify.AutoSDKHttpResponse<global::Speechify.Agent>> UpdateAsResponseAsync(
+            string agentId,
+
+            global::Speechify.UpdateAgentRequest request,
+            string? speechifyVersion = default,
+            global::Speechify.AutoSDKRequestOptions? requestOptions = default,
+            global::System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Update Agent<br/>
+        /// Update a voice agent. Only fields present on the request body are changed.
+        /// </summary>
+        /// <param name="agentId"></param>
+        /// <param name="speechifyVersion"></param>
+        /// <param name="name"></param>
+        /// <param name="prompt"></param>
+        /// <param name="firstMessage"></param>
+        /// <param name="language"></param>
+        /// <param name="llm">
+        /// Language-model configuration. Omit the whole block on create to<br/>
+        /// run on the platform default model. On update (merge-patch) send<br/>
+        /// only the sub-fields you want to change: an explicit null clears a<br/>
+        /// nullable field to its default, a value sets it, and anything<br/>
+        /// omitted is left unchanged. `provider`/`model` are validated as a<br/>
+        /// pair, inheriting the omitted half from the stored value.
+        /// </param>
+        /// <param name="tts">
+        /// Text-to-speech voice and delivery configuration.
+        /// </param>
+        /// <param name="stt">
+        /// Speech-to-text configuration.
+        /// </param>
+        /// <param name="turnHandling">
+        /// Turn-handling and silence-timeout configuration.
+        /// </param>
+        /// <param name="memory">
+        /// Per-caller long-term memory configuration.
+        /// </param>
+        /// <param name="navigator">
+        /// Autonomous IVR-navigation configuration for outbound calls.
+        /// </param>
+        /// <param name="backgroundNoise">
+        /// Optional ambient background-noise bed mixed into the call.
+        /// </param>
+        /// <param name="widgetConfig">
+        /// Customer-editable appearance + behaviour payload for the<br/>
+        /// embedded `&lt;speechify-agent&gt;` pill: button text, avatar style,<br/>
+        /// orb colours, terms-and-conditions markdown, transcript display.<br/>
+        /// Every field is optional - empty fields fall back to the<br/>
+        /// widget's compile-time defaults.
+        /// </param>
+        /// <param name="isPublic"></param>
+        /// <param name="allowedOrigins"></param>
+        /// <param name="hostnameAllowlist">
+        /// When supplied, replaces the stored list. Pass an empty<br/>
+        /// array to clear enforcement (public agent is open again).<br/>
+        /// Omit the field to leave the existing value unchanged.
+        /// </param>
+        /// <param name="webhookUrl"></param>
+        /// <param name="webhookSecret">
+        /// Rotate the HMAC secret. Write-only.
+        /// </param>
+        /// <param name="amd">
+        /// AMD routing config (PATCH-replace, wholesale). Omit to leave the stored config unchanged.
+        /// </param>
+        /// <param name="saveAudioRecording"></param>
+        /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
+        /// <param name="cancellationToken">The token to cancel the operation with</param>
+        /// <exception cref="global::System.InvalidOperationException"></exception>
+        global::System.Threading.Tasks.Task<global::Speechify.Agent> UpdateAsync(
+            string agentId,
+            string? speechifyVersion = default,
+            string? name = default,
+            string? prompt = default,
+            string? firstMessage = default,
+            string? language = default,
+            global::Speechify.AgentLLMConfig? llm = default,
+            global::Speechify.AgentTTSConfig? tts = default,
+            global::Speechify.AgentSTTConfig? stt = default,
+            global::Speechify.AgentTurnHandlingConfig? turnHandling = default,
+            global::Speechify.AgentMemoryConfig? memory = default,
+            global::Speechify.AgentNavigatorConfig? navigator = default,
+            global::Speechify.AgentBackgroundNoiseConfig? backgroundNoise = default,
+            global::Speechify.WidgetConfig? widgetConfig = default,
+            bool? isPublic = default,
+            global::System.Collections.Generic.IList<string>? allowedOrigins = default,
+            global::System.Collections.Generic.IList<string>? hostnameAllowlist = default,
+            string? webhookUrl = default,
+            string? webhookSecret = default,
+            global::Speechify.AMDConfig? amd = default,
+            bool? saveAudioRecording = default,
+            global::Speechify.AutoSDKRequestOptions? requestOptions = default,
+            global::System.Threading.CancellationToken cancellationToken = default);
+    }
+}

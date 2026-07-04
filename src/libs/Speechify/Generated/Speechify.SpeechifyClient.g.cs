@@ -46,7 +46,7 @@ namespace Speechify
         /// <summary>
         /// 
         /// </summary>
-        public SubpackageAgentClient SubpackageAgent => new SubpackageAgentClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
+        public AdminClient Admin => new AdminClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
         {
             ReadResponseAsString = ReadResponseAsString,
             CreateIdempotencyKey = CreateIdempotencyKey,
@@ -56,7 +56,7 @@ namespace Speechify
         /// <summary>
         /// 
         /// </summary>
-        public SubpackageAgentAdminClient SubpackageAgentAdmin => new SubpackageAgentAdminClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
+        public AgentClient Agent => new AgentClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
         {
             ReadResponseAsString = ReadResponseAsString,
             CreateIdempotencyKey = CreateIdempotencyKey,
@@ -66,7 +66,7 @@ namespace Speechify
         /// <summary>
         /// 
         /// </summary>
-        public SubpackageAgentAudioAssetsClient SubpackageAgentAudioAssets => new SubpackageAgentAudioAssetsClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
+        public AudioClient Audio => new AudioClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
         {
             ReadResponseAsString = ReadResponseAsString,
             CreateIdempotencyKey = CreateIdempotencyKey,
@@ -76,7 +76,7 @@ namespace Speechify
         /// <summary>
         /// 
         /// </summary>
-        public SubpackageAgentBatchCallsClient SubpackageAgentBatchCalls => new SubpackageAgentBatchCallsClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
+        public AudioAssetsClient AudioAssets => new AudioAssetsClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
         {
             ReadResponseAsString = ReadResponseAsString,
             CreateIdempotencyKey = CreateIdempotencyKey,
@@ -86,7 +86,7 @@ namespace Speechify
         /// <summary>
         /// 
         /// </summary>
-        public SubpackageAgentCallersClient SubpackageAgentCallers => new SubpackageAgentCallersClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
+        public BatchCallsClient BatchCalls => new BatchCallsClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
         {
             ReadResponseAsString = ReadResponseAsString,
             CreateIdempotencyKey = CreateIdempotencyKey,
@@ -96,7 +96,7 @@ namespace Speechify
         /// <summary>
         /// 
         /// </summary>
-        public SubpackageAgentConversationsClient SubpackageAgentConversations => new SubpackageAgentConversationsClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
+        public CallersClient Callers => new CallersClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
         {
             ReadResponseAsString = ReadResponseAsString,
             CreateIdempotencyKey = CreateIdempotencyKey,
@@ -106,7 +106,7 @@ namespace Speechify
         /// <summary>
         /// 
         /// </summary>
-        public SubpackageAgentFlowClient SubpackageAgentFlow => new SubpackageAgentFlowClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
+        public ConversationsClient Conversations => new ConversationsClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
         {
             ReadResponseAsString = ReadResponseAsString,
             CreateIdempotencyKey = CreateIdempotencyKey,
@@ -116,7 +116,7 @@ namespace Speechify
         /// <summary>
         /// 
         /// </summary>
-        public SubpackageAgentIvrMemoryClient SubpackageAgentIvrMemory => new SubpackageAgentIvrMemoryClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
+        public FlowClient Flow => new FlowClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
         {
             ReadResponseAsString = ReadResponseAsString,
             CreateIdempotencyKey = CreateIdempotencyKey,
@@ -126,7 +126,7 @@ namespace Speechify
         /// <summary>
         /// 
         /// </summary>
-        public SubpackageAgentKnowledgeBasesClient SubpackageAgentKnowledgeBases => new SubpackageAgentKnowledgeBasesClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
+        public IvrMemoryClient IvrMemory => new IvrMemoryClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
         {
             ReadResponseAsString = ReadResponseAsString,
             CreateIdempotencyKey = CreateIdempotencyKey,
@@ -136,7 +136,7 @@ namespace Speechify
         /// <summary>
         /// 
         /// </summary>
-        public SubpackageAgentMemoriesClient SubpackageAgentMemories => new SubpackageAgentMemoriesClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
+        public KnowledgeBasesClient KnowledgeBases => new KnowledgeBasesClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
         {
             ReadResponseAsString = ReadResponseAsString,
             CreateIdempotencyKey = CreateIdempotencyKey,
@@ -146,7 +146,7 @@ namespace Speechify
         /// <summary>
         /// 
         /// </summary>
-        public SubpackageAgentOutboundCallsClient SubpackageAgentOutboundCalls => new SubpackageAgentOutboundCallsClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
+        public MemoriesClient Memories => new MemoriesClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
         {
             ReadResponseAsString = ReadResponseAsString,
             CreateIdempotencyKey = CreateIdempotencyKey,
@@ -156,7 +156,7 @@ namespace Speechify
         /// <summary>
         /// 
         /// </summary>
-        public SubpackageAgentPhoneNumbersClient SubpackageAgentPhoneNumbers => new SubpackageAgentPhoneNumbersClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
+        public OutboundCallsClient OutboundCalls => new OutboundCallsClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
         {
             ReadResponseAsString = ReadResponseAsString,
             CreateIdempotencyKey = CreateIdempotencyKey,
@@ -166,7 +166,7 @@ namespace Speechify
         /// <summary>
         /// 
         /// </summary>
-        public SubpackageAgentSipTrunksClient SubpackageAgentSipTrunks => new SubpackageAgentSipTrunksClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
+        public PhoneNumbersClient PhoneNumbers => new PhoneNumbersClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
         {
             ReadResponseAsString = ReadResponseAsString,
             CreateIdempotencyKey = CreateIdempotencyKey,
@@ -176,7 +176,7 @@ namespace Speechify
         /// <summary>
         /// 
         /// </summary>
-        public SubpackageAgentTestsClient SubpackageAgentTests => new SubpackageAgentTestsClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
+        public SipTrunksClient SipTrunks => new SipTrunksClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
         {
             ReadResponseAsString = ReadResponseAsString,
             CreateIdempotencyKey = CreateIdempotencyKey,
@@ -186,7 +186,7 @@ namespace Speechify
         /// <summary>
         /// 
         /// </summary>
-        public SubpackageAgentToolDefinitionsClient SubpackageAgentToolDefinitions => new SubpackageAgentToolDefinitionsClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
+        public TestsClient Tests => new TestsClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
         {
             ReadResponseAsString = ReadResponseAsString,
             CreateIdempotencyKey = CreateIdempotencyKey,
@@ -196,7 +196,7 @@ namespace Speechify
         /// <summary>
         /// 
         /// </summary>
-        public SubpackageAudioClient SubpackageAudio => new SubpackageAudioClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
+        public ToolDefinitionsClient ToolDefinitions => new ToolDefinitionsClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
         {
             ReadResponseAsString = ReadResponseAsString,
             CreateIdempotencyKey = CreateIdempotencyKey,
@@ -206,7 +206,7 @@ namespace Speechify
         /// <summary>
         /// 
         /// </summary>
-        public SubpackageVoicesClient SubpackageVoices => new SubpackageVoicesClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
+        public VoicesClient Voices => new VoicesClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
         {
             ReadResponseAsString = ReadResponseAsString,
             CreateIdempotencyKey = CreateIdempotencyKey,

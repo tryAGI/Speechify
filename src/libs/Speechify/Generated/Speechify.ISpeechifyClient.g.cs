@@ -51,87 +51,87 @@ namespace Speechify
         /// <summary>
         /// 
         /// </summary>
-        public SubpackageAgentClient SubpackageAgent { get; }
+        public AdminClient Admin { get; }
 
         /// <summary>
         /// 
         /// </summary>
-        public SubpackageAgentAdminClient SubpackageAgentAdmin { get; }
+        public AgentClient Agent { get; }
 
         /// <summary>
         /// 
         /// </summary>
-        public SubpackageAgentAudioAssetsClient SubpackageAgentAudioAssets { get; }
+        public AudioClient Audio { get; }
 
         /// <summary>
         /// 
         /// </summary>
-        public SubpackageAgentBatchCallsClient SubpackageAgentBatchCalls { get; }
+        public AudioAssetsClient AudioAssets { get; }
 
         /// <summary>
         /// 
         /// </summary>
-        public SubpackageAgentCallersClient SubpackageAgentCallers { get; }
+        public BatchCallsClient BatchCalls { get; }
 
         /// <summary>
         /// 
         /// </summary>
-        public SubpackageAgentConversationsClient SubpackageAgentConversations { get; }
+        public CallersClient Callers { get; }
 
         /// <summary>
         /// 
         /// </summary>
-        public SubpackageAgentFlowClient SubpackageAgentFlow { get; }
+        public ConversationsClient Conversations { get; }
 
         /// <summary>
         /// 
         /// </summary>
-        public SubpackageAgentIvrMemoryClient SubpackageAgentIvrMemory { get; }
+        public FlowClient Flow { get; }
 
         /// <summary>
         /// 
         /// </summary>
-        public SubpackageAgentKnowledgeBasesClient SubpackageAgentKnowledgeBases { get; }
+        public IvrMemoryClient IvrMemory { get; }
 
         /// <summary>
         /// 
         /// </summary>
-        public SubpackageAgentMemoriesClient SubpackageAgentMemories { get; }
+        public KnowledgeBasesClient KnowledgeBases { get; }
 
         /// <summary>
         /// 
         /// </summary>
-        public SubpackageAgentOutboundCallsClient SubpackageAgentOutboundCalls { get; }
+        public MemoriesClient Memories { get; }
 
         /// <summary>
         /// 
         /// </summary>
-        public SubpackageAgentPhoneNumbersClient SubpackageAgentPhoneNumbers { get; }
+        public OutboundCallsClient OutboundCalls { get; }
 
         /// <summary>
         /// 
         /// </summary>
-        public SubpackageAgentSipTrunksClient SubpackageAgentSipTrunks { get; }
+        public PhoneNumbersClient PhoneNumbers { get; }
 
         /// <summary>
         /// 
         /// </summary>
-        public SubpackageAgentTestsClient SubpackageAgentTests { get; }
+        public SipTrunksClient SipTrunks { get; }
 
         /// <summary>
         /// 
         /// </summary>
-        public SubpackageAgentToolDefinitionsClient SubpackageAgentToolDefinitions { get; }
+        public TestsClient Tests { get; }
 
         /// <summary>
         /// 
         /// </summary>
-        public SubpackageAudioClient SubpackageAudio { get; }
+        public ToolDefinitionsClient ToolDefinitions { get; }
 
         /// <summary>
         /// 
         /// </summary>
-        public SubpackageVoicesClient SubpackageVoices { get; }
+        public VoicesClient Voices { get; }
 
     }
 }
