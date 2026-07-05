@@ -68,6 +68,10 @@ namespace Speechify
         /// <summary>
         /// 
         /// </summary>
+        DestinationNotAllowed,
+        /// <summary>
+        /// 
+        /// </summary>
         Forbidden,
         /// <summary>
         /// 
@@ -81,6 +85,10 @@ namespace Speechify
         /// 
         /// </summary>
         InternalError,
+        /// <summary>
+        /// 
+        /// </summary>
+        InternationalDialingNotEnabled,
         /// <summary>
         /// 
         /// </summary>
@@ -236,10 +244,12 @@ namespace Speechify
                 ErrorCode.ConversationNotFound => "conversation_not_found",
                 ErrorCode.CredentialInUse => "credential_in_use",
                 ErrorCode.CredentialNotFound => "credential_not_found",
+                ErrorCode.DestinationNotAllowed => "destination_not_allowed",
                 ErrorCode.Forbidden => "forbidden",
                 ErrorCode.IdempotencyConflict => "idempotency_conflict",
                 ErrorCode.InsufficientScope => "insufficient_scope",
                 ErrorCode.InternalError => "internal_error",
+                ErrorCode.InternationalDialingNotEnabled => "international_dialing_not_enabled",
                 ErrorCode.InvalidApiVersion => "invalid_api_version",
                 ErrorCode.InviteAlreadyPending => "invite_already_pending",
                 ErrorCode.InviteEmailMismatch => "invite_email_mismatch",
@@ -295,10 +305,12 @@ namespace Speechify
                 "conversation_not_found" => ErrorCode.ConversationNotFound,
                 "credential_in_use" => ErrorCode.CredentialInUse,
                 "credential_not_found" => ErrorCode.CredentialNotFound,
+                "destination_not_allowed" => ErrorCode.DestinationNotAllowed,
                 "forbidden" => ErrorCode.Forbidden,
                 "idempotency_conflict" => ErrorCode.IdempotencyConflict,
                 "insufficient_scope" => ErrorCode.InsufficientScope,
                 "internal_error" => ErrorCode.InternalError,
+                "international_dialing_not_enabled" => ErrorCode.InternationalDialingNotEnabled,
                 "invalid_api_version" => ErrorCode.InvalidApiVersion,
                 "invite_already_pending" => ErrorCode.InviteAlreadyPending,
                 "invite_email_mismatch" => ErrorCode.InviteEmailMismatch,
