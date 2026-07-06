@@ -118,6 +118,7 @@ namespace Speechify
         /// * `dial_busy` — outbound dial: the line was busy (SIP 486/600).<br/>
         /// * `dial_rejected` — outbound dial: the call was actively refused (SIP 401/403/407 carrier auth/permission, or 603/607/608 callee decline).<br/>
         /// * `dial_failed` — outbound dial: any other failure to connect (invalid number, carrier 5xx, malformed trunk address, TLS requirement, transport error). On a `failed` conversation with NULL `duration_ms`.<br/>
+        /// * `transferred` — the caller's leg was handed off to a phone number via SIP REFER (`transfer_to_number`); the carrier moved the leg and the agent's side ended.<br/>
         /// * `null` — the termination category was not recorded. Legacy calls only; current calls always carry a reason.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("end_reason")]
@@ -306,6 +307,7 @@ namespace Speechify
         /// * `dial_busy` — outbound dial: the line was busy (SIP 486/600).<br/>
         /// * `dial_rejected` — outbound dial: the call was actively refused (SIP 401/403/407 carrier auth/permission, or 603/607/608 callee decline).<br/>
         /// * `dial_failed` — outbound dial: any other failure to connect (invalid number, carrier 5xx, malformed trunk address, TLS requirement, transport error). On a `failed` conversation with NULL `duration_ms`.<br/>
+        /// * `transferred` — the caller's leg was handed off to a phone number via SIP REFER (`transfer_to_number`); the carrier moved the leg and the agent's side ended.<br/>
         /// * `null` — the termination category was not recorded. Legacy calls only; current calls always carry a reason.
         /// </param>
         /// <param name="callerIdentity">

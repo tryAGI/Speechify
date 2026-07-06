@@ -23,6 +23,7 @@ namespace Speechify
     /// * `dial_busy` — outbound dial: the line was busy (SIP 486/600).<br/>
     /// * `dial_rejected` — outbound dial: the call was actively refused (SIP 401/403/407 carrier auth/permission, or 603/607/608 callee decline).<br/>
     /// * `dial_failed` — outbound dial: any other failure to connect (invalid number, carrier 5xx, malformed trunk address, TLS requirement, transport error). On a `failed` conversation with NULL `duration_ms`.<br/>
+    /// * `transferred` — the caller's leg was handed off to a phone number via SIP REFER (`transfer_to_number`); the carrier moved the leg and the agent's side ended.<br/>
     /// * `null` — the termination category was not recorded. Legacy calls only; current calls always carry a reason.
     /// </summary>
     public enum ConversationEndReason
@@ -74,6 +75,10 @@ namespace Speechify
         /// <summary>
         /// 
         /// </summary>
+        Transferred,
+        /// <summary>
+        /// 
+        /// </summary>
         UnavailableHangup,
         /// <summary>
         /// 
@@ -108,6 +113,7 @@ namespace Speechify
                 ConversationEndReason.LoopDetected => "loop_detected",
                 ConversationEndReason.MaxDurationReached => "max_duration_reached",
                 ConversationEndReason.OverCapacity => "over_capacity",
+                ConversationEndReason.Transferred => "transferred",
                 ConversationEndReason.UnavailableHangup => "unavailable_hangup",
                 ConversationEndReason.VoicemailHangup => "voicemail_hangup",
                 ConversationEndReason.VoicemailMessageLeft => "voicemail_message_left",
@@ -132,6 +138,7 @@ namespace Speechify
                 "loop_detected" => ConversationEndReason.LoopDetected,
                 "max_duration_reached" => ConversationEndReason.MaxDurationReached,
                 "over_capacity" => ConversationEndReason.OverCapacity,
+                "transferred" => ConversationEndReason.Transferred,
                 "unavailable_hangup" => ConversationEndReason.UnavailableHangup,
                 "voicemail_hangup" => ConversationEndReason.VoicemailHangup,
                 "voicemail_message_left" => ConversationEndReason.VoicemailMessageLeft,
