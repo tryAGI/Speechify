@@ -39,11 +39,11 @@ namespace Speechify
         public global::Speechify.GetStreamOptionsRequest? Options { get; set; }
 
         /// <summary>
-        /// The output audio format as a `codec_sampleRate_bitrate` string. Takes precedence over the `Accept` header when set, so you can request formats the `Accept` enum does not cover (e.g. `pcm_16000`, `ulaw_8000`).
+        /// The output audio format as a `codec_sampleRate_bitrate` string. Takes precedence over the `Accept` header when set, so you can request formats the `Accept` enum does not cover (e.g. `pcm_16000`, `ulaw_8000`). `wav_*` formats are not supported on streaming - use `POST /v1/audio/speech` for wav.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("output_format")]
-        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Speechify.JsonConverters.AudioOutputFormatJsonConverter))]
-        public global::Speechify.AudioOutputFormat? OutputFormat { get; set; }
+        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Speechify.JsonConverters.AudioStreamOutputFormatJsonConverter))]
+        public global::Speechify.AudioStreamOutputFormat? OutputFormat { get; set; }
 
         /// <summary>
         /// Id of the voice to be used for synthesizing speech. Refer to /v1/voices endpoint for available voices
@@ -81,7 +81,7 @@ namespace Speechify
         /// GetStreamOptionsRequest is the wrapper for request parameters to the client
         /// </param>
         /// <param name="outputFormat">
-        /// The output audio format as a `codec_sampleRate_bitrate` string. Takes precedence over the `Accept` header when set, so you can request formats the `Accept` enum does not cover (e.g. `pcm_16000`, `ulaw_8000`).
+        /// The output audio format as a `codec_sampleRate_bitrate` string. Takes precedence over the `Accept` header when set, so you can request formats the `Accept` enum does not cover (e.g. `pcm_16000`, `ulaw_8000`). `wav_*` formats are not supported on streaming - use `POST /v1/audio/speech` for wav.
         /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
@@ -92,7 +92,7 @@ namespace Speechify
             string? language,
             global::Speechify.GetStreamRequestModel? model,
             global::Speechify.GetStreamOptionsRequest? options,
-            global::Speechify.AudioOutputFormat? outputFormat)
+            global::Speechify.AudioStreamOutputFormat? outputFormat)
         {
             this.Input = input ?? throw new global::System.ArgumentNullException(nameof(input));
             this.Language = language;
