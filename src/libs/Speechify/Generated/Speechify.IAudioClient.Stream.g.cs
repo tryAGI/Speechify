@@ -102,7 +102,7 @@ namespace Speechify
         /// GetStreamOptionsRequest is the wrapper for request parameters to the client
         /// </param>
         /// <param name="outputFormat">
-        /// The output audio format as a `codec_sampleRate_bitrate` string. Takes precedence over the `Accept` header when set, so you can request formats the `Accept` enum does not cover (e.g. `pcm_16000`, `ulaw_8000`).
+        /// The output audio format as a `codec_sampleRate_bitrate` string. Takes precedence over the `Accept` header when set, so you can request formats the `Accept` enum does not cover (e.g. `pcm_16000`, `ulaw_8000`). `wav_*` formats are not supported on streaming - use `POST /v1/audio/speech` for wav.
         /// </param>
         /// <param name="voiceId">
         /// Id of the voice to be used for synthesizing speech. Refer to /v1/voices endpoint for available voices
@@ -118,7 +118,7 @@ namespace Speechify
             string? language = default,
             global::Speechify.GetStreamRequestModel? model = default,
             global::Speechify.GetStreamOptionsRequest? options = default,
-            global::Speechify.AudioOutputFormat? outputFormat = default,
+            global::Speechify.AudioStreamOutputFormat? outputFormat = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
     }
