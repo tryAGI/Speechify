@@ -4,10 +4,12 @@
 namespace Speechify
 {
     /// <summary>
-    /// One TTS engine the voice can be synthesised through. Each<br/>
-    /// agent voice exposes a multilingual model, plus an<br/>
-    /// english-specific model for voices whose locale starts with<br/>
-    /// `en`.
+    /// One Simba model version the voice can be synthesised through.<br/>
+    /// Every agent voice supports `simba-3.0`; voices curated for<br/>
+    /// Simba 3.2 additionally expose `simba-3.2` (streaming-native,<br/>
+    /// English only). The English-vs-multilingual split is an internal<br/>
+    /// routing detail the worker resolves per call, not a selectable<br/>
+    /// model.
     /// </summary>
     public sealed partial class AgentVoiceModel
     {

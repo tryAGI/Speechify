@@ -11,11 +11,11 @@ namespace Speechify
         /// <summary>
         /// 
         /// </summary>
-        SimbaEnglish,
+        Simba30,
         /// <summary>
         /// 
         /// </summary>
-        SimbaMultilingual,
+        Simba32,
     }
 
     /// <summary>
@@ -30,8 +30,8 @@ namespace Speechify
         {
             return value switch
             {
-                AgentVoiceModelName.SimbaEnglish => "simba-english",
-                AgentVoiceModelName.SimbaMultilingual => "simba-multilingual",
+                AgentVoiceModelName.Simba30 => "simba-3.0",
+                AgentVoiceModelName.Simba32 => "simba-3.2",
                 _ => throw new global::System.ArgumentOutOfRangeException(nameof(value), value, null),
             };
         }
@@ -42,8 +42,8 @@ namespace Speechify
         {
             return value switch
             {
-                "simba-english" => AgentVoiceModelName.SimbaEnglish,
-                "simba-multilingual" => AgentVoiceModelName.SimbaMultilingual,
+                "simba-3.0" => AgentVoiceModelName.Simba30,
+                "simba-3.2" => AgentVoiceModelName.Simba32,
                 _ => null,
             };
         }
