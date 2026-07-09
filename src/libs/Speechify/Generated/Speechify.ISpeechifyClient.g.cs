@@ -106,6 +106,11 @@ namespace Speechify
         /// <summary>
         /// 
         /// </summary>
+        public ModelsClient Models { get; }
+
+        /// <summary>
+        /// 
+        /// </summary>
         public OutboundCallsClient OutboundCalls { get; }
 
         /// <summary>
