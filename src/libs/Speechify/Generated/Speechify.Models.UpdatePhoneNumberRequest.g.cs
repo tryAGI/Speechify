@@ -4,12 +4,11 @@
 namespace Speechify
 {
     /// <summary>
-    /// PATCH body for `PATCH /v1/agents/phone-numbers/{id}`. Only `label`,<br/>
-    /// `agent_id`, and `clear_agent_id` are mutable; `source` and `e164`<br/>
-    /// are immutable after import. Set `agent_id` to bind a new agent;<br/>
-    /// send `clear_agent_id: true` to unbind. The clear flag is the<br/>
-    /// explicit signal because JSON `null` is indistinguishable from<br/>
-    /// absent for pointer fields in Go's encoding/json.
+    /// PATCH body for `PATCH /v1/agents/phone-numbers/{phone_number_id}`. Edits the<br/>
+    /// number's own attributes only - today just `label`. The number's<br/>
+    /// provider and `e164` are immutable after import. The agent binding is managed<br/>
+    /// separately as a relationship, via<br/>
+    /// `POST`/`DELETE /v1/agents/{agent_id}/phone-numbers/{phone_number_id}`.
     /// </summary>
     public sealed partial class UpdatePhoneNumberRequest
     {
@@ -18,20 +17,6 @@ namespace Speechify
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("label")]
         public string? Label { get; set; }
-
-        /// <summary>
-        /// Agent to bind the number to. Prefixed wire identifier<br/>
-        /// (`agent_&lt;26 char Crockford base32&gt;`).
-        /// </summary>
-        [global::System.Text.Json.Serialization.JsonPropertyName("agent_id")]
-        public string? AgentId { get; set; }
-
-        /// <summary>
-        /// When `true`, unbinds the current agent (clears `agent_id`).<br/>
-        /// Wins over `agent_id` when both are sent.
-        /// </summary>
-        [global::System.Text.Json.Serialization.JsonPropertyName("clear_agent_id")]
-        public bool? ClearAgentId { get; set; }
 
         /// <summary>
         /// Additional properties that are not explicitly defined in the schema
@@ -45,25 +30,13 @@ namespace Speechify
         /// <param name="label">
         /// New label. Pass an empty string to clear.
         /// </param>
-        /// <param name="agentId">
-        /// Agent to bind the number to. Prefixed wire identifier<br/>
-        /// (`agent_&lt;26 char Crockford base32&gt;`).
-        /// </param>
-        /// <param name="clearAgentId">
-        /// When `true`, unbinds the current agent (clears `agent_id`).<br/>
-        /// Wins over `agent_id` when both are sent.
-        /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
 #endif
         public UpdatePhoneNumberRequest(
-            string? label,
-            string? agentId,
-            bool? clearAgentId)
+            string? label)
         {
             this.Label = label;
-            this.AgentId = agentId;
-            this.ClearAgentId = clearAgentId;
         }
 
         /// <summary>

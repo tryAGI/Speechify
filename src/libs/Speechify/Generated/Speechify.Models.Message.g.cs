@@ -24,7 +24,10 @@ namespace Speechify
         public required string ConversationId { get; set; }
 
         /// <summary>
-        /// 
+        /// Who produced the turn: `user` is the caller, `assistant` the AI<br/>
+        /// agent, `tool` a tool call, `system` a transcript annotation (such<br/>
+        /// as the take-over window markers), and `operator` a human<br/>
+        /// operator's speech while they have taken the call over.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("role")]
         [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Speechify.JsonConverters.MessageRoleJsonConverter))]
@@ -83,7 +86,12 @@ namespace Speechify
         /// Prefixed wire identifier (`conv_&lt;26 char Crockford base32&gt;`)<br/>
         /// of the parent conversation.
         /// </param>
-        /// <param name="role"></param>
+        /// <param name="role">
+        /// Who produced the turn: `user` is the caller, `assistant` the AI<br/>
+        /// agent, `tool` a tool call, `system` a transcript annotation (such<br/>
+        /// as the take-over window markers), and `operator` a human<br/>
+        /// operator's speech while they have taken the call over.
+        /// </param>
         /// <param name="content"></param>
         /// <param name="startedAt"></param>
         /// <param name="toolName"></param>

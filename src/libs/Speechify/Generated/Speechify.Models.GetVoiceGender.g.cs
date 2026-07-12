@@ -36,7 +36,7 @@ namespace Speechify
             {
                 GetVoiceGender.Female => "female",
                 GetVoiceGender.Male => "male",
-                GetVoiceGender.NotSpecified => "notSpecified",
+                GetVoiceGender.NotSpecified => "not_specified",
                 _ => throw new global::System.ArgumentOutOfRangeException(nameof(value), value, null),
             };
         }
@@ -49,7 +49,7 @@ namespace Speechify
             {
                 "female" => GetVoiceGender.Female,
                 "male" => GetVoiceGender.Male,
-                "notSpecified" => GetVoiceGender.NotSpecified,
+                "not_specified" => GetVoiceGender.NotSpecified,
                 _ => null,
             };
         }

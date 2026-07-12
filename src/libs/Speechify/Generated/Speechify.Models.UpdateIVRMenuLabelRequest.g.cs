@@ -6,7 +6,7 @@ namespace Speechify
     /// <summary>
     /// Re-label one option in the stored menu_tree. The option is<br/>
     /// matched by its DTMF value; the label is the human-readable text<br/>
-    /// rendered in the console + surfaced to the LLM at navigate time.
+    /// shown for review and surfaced to the agent at navigate time.
     /// </summary>
     public sealed partial class UpdateIVRMenuLabelRequest
     {

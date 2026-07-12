@@ -4,13 +4,12 @@
 namespace Speechify
 {
     /// <summary>
-    /// Body for `POST /v1/agents/tools/test-mcp-connection`. `config` is the<br/>
-    /// same MCPToolConfig shape `POST /v1/agents/tools` would persist; nothing<br/>
-    /// is persisted by the probe itself. `tool_id` is only meaningful<br/>
-    /// in the edit-form flow — when set, the server hydrates stored<br/>
-    /// bearer / oauth2 secrets from the encrypted column before<br/>
-    /// probing, so customers can hit "Test Connection" on an existing<br/>
-    /// tool without re-typing the secret.
+    /// Body for `POST /v1/agents/tool-definitions/test-mcp-connection`. `config` is the<br/>
+    /// same MCPToolConfig shape `POST /v1/agents/tool-definitions` would persist; nothing<br/>
+    /// is persisted by the probe itself. For a non-none auth, the server<br/>
+    /// resolves `auth.credential_id` to the vault secret before probing —<br/>
+    /// the credential is created up front via `POST /v1/credentials`, so it<br/>
+    /// resolves independently of any tool.
     /// </summary>
     public sealed partial class TestMCPConnectionRequest
     {
@@ -24,14 +23,6 @@ namespace Speechify
         [global::System.Text.Json.Serialization.JsonPropertyName("config")]
         [global::System.Text.Json.Serialization.JsonRequired]
         public required global::Speechify.MCPToolConfig Config { get; set; }
-
-        /// <summary>
-        /// Optional `tool_&lt;crockford&gt;` id of the existing tool to hydrate<br/>
-        /// stored secrets from. Raw UUIDs and other-resource prefixes are<br/>
-        /// rejected.
-        /// </summary>
-        [global::System.Text.Json.Serialization.JsonPropertyName("tool_id")]
-        public string? ToolId { get; set; }
 
         /// <summary>
         /// Additional properties that are not explicitly defined in the schema
@@ -49,20 +40,13 @@ namespace Speechify
         /// livekit-agents function_tool proxying through the long-lived<br/>
         /// ClientSession.
         /// </param>
-        /// <param name="toolId">
-        /// Optional `tool_&lt;crockford&gt;` id of the existing tool to hydrate<br/>
-        /// stored secrets from. Raw UUIDs and other-resource prefixes are<br/>
-        /// rejected.
-        /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
 #endif
         public TestMCPConnectionRequest(
-            global::Speechify.MCPToolConfig config,
-            string? toolId)
+            global::Speechify.MCPToolConfig config)
         {
             this.Config = config ?? throw new global::System.ArgumentNullException(nameof(config));
-            this.ToolId = toolId;
         }
 
         /// <summary>

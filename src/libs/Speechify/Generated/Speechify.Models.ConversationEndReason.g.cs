@@ -4,21 +4,27 @@
 namespace Speechify
 {
     /// <summary>
-    /// Coarse termination category. Worker-stamped reasons arrive<br/>
-    /// before `terminate_call` fires; `caller_hangup` has two<br/>
-    /// emit sites (worker-observed SIP disconnect, plus a<br/>
-    /// server-side post-call catch-all).<br/>
+    /// Coarse termination category. Most reasons are assigned by the<br/>
+    /// agent runtime as the call ends; `caller_hangup` may also be<br/>
+    /// applied server-side as a post-call catch-all. The `dial_*`<br/>
+    /// reasons are assigned server-side on a `failed` conversation<br/>
+    /// for an outbound call that never connected.<br/>
     /// * `voicemail_message_left` — AMD machine-vm + we spoke the configured drop-message.<br/>
     /// * `voicemail_hangup` — AMD machine-vm + we terminated silently (action=hangup or empty-message bypass).<br/>
     /// * `ivr_hangup` — AMD machine-ivr + action=hangup.<br/>
     /// * `unavailable_hangup` — AMD machine-unavailable (mailbox full / disconnected).<br/>
     /// * `agent_ended` — LLM-driven end_call builtin.<br/>
-    /// * `inactivity_timeout` — worker's inactivity handler fired terminate after the configured silence window.<br/>
-    /// * `loop_detected` — worker's runtime loop guard force-ended the call after N consecutive near-identical user turns (typically an IVR replaying its menu while the LLM kept reacting instead of calling end_call).<br/>
-    /// * `max_duration_reached` - worker's max-call-duration watchdog force-ended the call at the platform ceiling (a safety bound on runaway calls).<br/>
+    /// * `inactivity_timeout` — the call ended after the configured silence window elapsed with no activity.<br/>
+    /// * `loop_detected` — a loop guard force-ended the call after several consecutive near-identical user turns (typically an IVR replaying its menu while the agent kept reacting instead of ending the call).<br/>
+    /// * `max_duration_reached` - the max-call-duration limit force-ended the call at the platform ceiling (a safety bound on runaway calls).<br/>
     /// * `over_capacity` — inbound call refused because the workspace was over its active-call concurrency cap; the busy message played and the call hung up. Stamped server-side and excluded from billing.<br/>
-    /// * `caller_hangup` — caller's leg went away. Precise when the worker observed the SIP `participant_disconnected` event (stamped immediately); otherwise stamped server-side ~10s after `room_finished` as a catch-all (web tab close, network blip, worker crash, etc.).<br/>
-    /// * `null` — pre-rollout calls only (anything that landed after the rollout completes without a stamp gets `caller_hangup` from the post-call goroutine).
+    /// * `caller_hangup` — the caller's leg went away. Stamped immediately when a SIP disconnect is observed; otherwise applied server-side shortly after the call ends as a catch-all (web tab close, network blip, etc.).<br/>
+    /// * `dial_no_answer` — outbound dial: callee did not pick up (SIP 408/480/487, the ringing timeout expired).<br/>
+    /// * `dial_busy` — outbound dial: the line was busy (SIP 486/600).<br/>
+    /// * `dial_rejected` — outbound dial: the call was actively refused (SIP 401/403/407 carrier auth/permission, or 603/607/608 callee decline).<br/>
+    /// * `dial_failed` — outbound dial: any other failure to connect (invalid number, carrier 5xx, malformed trunk address, TLS requirement, transport error). On a `failed` conversation with NULL `duration_ms`.<br/>
+    /// * `transferred` — the caller's leg was handed off to a phone number via SIP REFER (`transfer_to_number`); the carrier moved the leg and the agent's side ended.<br/>
+    /// * `null` — the termination category was not recorded. Legacy calls only; current calls always carry a reason.
     /// </summary>
     public enum ConversationEndReason
     {
@@ -30,6 +36,22 @@ namespace Speechify
         /// 
         /// </summary>
         CallerHangup,
+        /// <summary>
+        /// the line was busy (SIP 486/600).
+        /// </summary>
+        DialBusy,
+        /// <summary>
+        /// any other failure to connect (invalid number, carrier 5xx, malformed trunk address, TLS requirement, transport error). On a `failed` conversation with NULL `duration_ms`.
+        /// </summary>
+        DialFailed,
+        /// <summary>
+        /// callee did not pick up (SIP 408/480/487, the ringing timeout expired).
+        /// </summary>
+        DialNoAnswer,
+        /// <summary>
+        /// the call was actively refused (SIP 401/403/407 carrier auth/permission, or 603/607/608 callee decline).
+        /// </summary>
+        DialRejected,
         /// <summary>
         /// 
         /// </summary>
@@ -50,6 +72,10 @@ namespace Speechify
         /// 
         /// </summary>
         OverCapacity,
+        /// <summary>
+        /// 
+        /// </summary>
+        Transferred,
         /// <summary>
         /// 
         /// </summary>
@@ -78,11 +104,16 @@ namespace Speechify
             {
                 ConversationEndReason.AgentEnded => "agent_ended",
                 ConversationEndReason.CallerHangup => "caller_hangup",
+                ConversationEndReason.DialBusy => "dial_busy",
+                ConversationEndReason.DialFailed => "dial_failed",
+                ConversationEndReason.DialNoAnswer => "dial_no_answer",
+                ConversationEndReason.DialRejected => "dial_rejected",
                 ConversationEndReason.InactivityTimeout => "inactivity_timeout",
                 ConversationEndReason.IvrHangup => "ivr_hangup",
                 ConversationEndReason.LoopDetected => "loop_detected",
                 ConversationEndReason.MaxDurationReached => "max_duration_reached",
                 ConversationEndReason.OverCapacity => "over_capacity",
+                ConversationEndReason.Transferred => "transferred",
                 ConversationEndReason.UnavailableHangup => "unavailable_hangup",
                 ConversationEndReason.VoicemailHangup => "voicemail_hangup",
                 ConversationEndReason.VoicemailMessageLeft => "voicemail_message_left",
@@ -98,11 +129,16 @@ namespace Speechify
             {
                 "agent_ended" => ConversationEndReason.AgentEnded,
                 "caller_hangup" => ConversationEndReason.CallerHangup,
+                "dial_busy" => ConversationEndReason.DialBusy,
+                "dial_failed" => ConversationEndReason.DialFailed,
+                "dial_no_answer" => ConversationEndReason.DialNoAnswer,
+                "dial_rejected" => ConversationEndReason.DialRejected,
                 "inactivity_timeout" => ConversationEndReason.InactivityTimeout,
                 "ivr_hangup" => ConversationEndReason.IvrHangup,
                 "loop_detected" => ConversationEndReason.LoopDetected,
                 "max_duration_reached" => ConversationEndReason.MaxDurationReached,
                 "over_capacity" => ConversationEndReason.OverCapacity,
+                "transferred" => ConversationEndReason.Transferred,
                 "unavailable_hangup" => ConversationEndReason.UnavailableHangup,
                 "voicemail_hangup" => ConversationEndReason.VoicemailHangup,
                 "voicemail_message_left" => ConversationEndReason.VoicemailMessageLeft,

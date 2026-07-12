@@ -33,6 +33,10 @@ namespace Speechify
 
         /// <inheritdoc/>
         public global::Speechify.AutoSDKClientOptions Options { get; }
+
+
+        /// <inheritdoc/>
+        public global::System.Func<string> CreateIdempotencyKey { get; set; } = () => global::System.Guid.NewGuid().ToString("D");
         /// <summary>
         /// 
         /// </summary>
@@ -42,153 +46,180 @@ namespace Speechify
         /// <summary>
         /// 
         /// </summary>
-        public SubpackageAgentClient SubpackageAgent => new SubpackageAgentClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
+        public AdminClient Admin => new AdminClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
         {
             ReadResponseAsString = ReadResponseAsString,
+            CreateIdempotencyKey = CreateIdempotencyKey,
             JsonSerializerContext = JsonSerializerContext,
         };
 
         /// <summary>
         /// 
         /// </summary>
-        public SubpackageAgentSubpackageAgentAdminClient SubpackageAgentSubpackageAgentAdmin => new SubpackageAgentSubpackageAgentAdminClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
+        public AgentClient Agent => new AgentClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
         {
             ReadResponseAsString = ReadResponseAsString,
+            CreateIdempotencyKey = CreateIdempotencyKey,
             JsonSerializerContext = JsonSerializerContext,
         };
 
         /// <summary>
         /// 
         /// </summary>
-        public SubpackageAgentSubpackageAgentAudioAssetsClient SubpackageAgentSubpackageAgentAudioAssets => new SubpackageAgentSubpackageAgentAudioAssetsClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
+        public AudioClient Audio => new AudioClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
         {
             ReadResponseAsString = ReadResponseAsString,
+            CreateIdempotencyKey = CreateIdempotencyKey,
             JsonSerializerContext = JsonSerializerContext,
         };
 
         /// <summary>
         /// 
         /// </summary>
-        public SubpackageAgentSubpackageAgentBatchCallsClient SubpackageAgentSubpackageAgentBatchCalls => new SubpackageAgentSubpackageAgentBatchCallsClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
+        public AudioAssetsClient AudioAssets => new AudioAssetsClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
         {
             ReadResponseAsString = ReadResponseAsString,
+            CreateIdempotencyKey = CreateIdempotencyKey,
             JsonSerializerContext = JsonSerializerContext,
         };
 
         /// <summary>
         /// 
         /// </summary>
-        public SubpackageAgentSubpackageAgentCallersClient SubpackageAgentSubpackageAgentCallers => new SubpackageAgentSubpackageAgentCallersClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
+        public BatchCallsClient BatchCalls => new BatchCallsClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
         {
             ReadResponseAsString = ReadResponseAsString,
+            CreateIdempotencyKey = CreateIdempotencyKey,
             JsonSerializerContext = JsonSerializerContext,
         };
 
         /// <summary>
         /// 
         /// </summary>
-        public SubpackageAgentSubpackageAgentConversationsClient SubpackageAgentSubpackageAgentConversations => new SubpackageAgentSubpackageAgentConversationsClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
+        public CallersClient Callers => new CallersClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
         {
             ReadResponseAsString = ReadResponseAsString,
+            CreateIdempotencyKey = CreateIdempotencyKey,
             JsonSerializerContext = JsonSerializerContext,
         };
 
         /// <summary>
         /// 
         /// </summary>
-        public SubpackageAgentSubpackageAgentFlowClient SubpackageAgentSubpackageAgentFlow => new SubpackageAgentSubpackageAgentFlowClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
+        public ConversationsClient Conversations => new ConversationsClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
         {
             ReadResponseAsString = ReadResponseAsString,
+            CreateIdempotencyKey = CreateIdempotencyKey,
             JsonSerializerContext = JsonSerializerContext,
         };
 
         /// <summary>
         /// 
         /// </summary>
-        public SubpackageAgentSubpackageAgentIvrMemoryClient SubpackageAgentSubpackageAgentIvrMemory => new SubpackageAgentSubpackageAgentIvrMemoryClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
+        public FlowClient Flow => new FlowClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
         {
             ReadResponseAsString = ReadResponseAsString,
+            CreateIdempotencyKey = CreateIdempotencyKey,
             JsonSerializerContext = JsonSerializerContext,
         };
 
         /// <summary>
         /// 
         /// </summary>
-        public SubpackageAgentSubpackageAgentKnowledgeBasesClient SubpackageAgentSubpackageAgentKnowledgeBases => new SubpackageAgentSubpackageAgentKnowledgeBasesClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
+        public IvrMemoryClient IvrMemory => new IvrMemoryClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
         {
             ReadResponseAsString = ReadResponseAsString,
+            CreateIdempotencyKey = CreateIdempotencyKey,
             JsonSerializerContext = JsonSerializerContext,
         };
 
         /// <summary>
         /// 
         /// </summary>
-        public SubpackageAgentSubpackageAgentMemoriesClient SubpackageAgentSubpackageAgentMemories => new SubpackageAgentSubpackageAgentMemoriesClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
+        public KnowledgeBasesClient KnowledgeBases => new KnowledgeBasesClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
         {
             ReadResponseAsString = ReadResponseAsString,
+            CreateIdempotencyKey = CreateIdempotencyKey,
             JsonSerializerContext = JsonSerializerContext,
         };
 
         /// <summary>
         /// 
         /// </summary>
-        public SubpackageAgentSubpackageAgentOutboundCallsClient SubpackageAgentSubpackageAgentOutboundCalls => new SubpackageAgentSubpackageAgentOutboundCallsClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
+        public MemoriesClient Memories => new MemoriesClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
         {
             ReadResponseAsString = ReadResponseAsString,
+            CreateIdempotencyKey = CreateIdempotencyKey,
             JsonSerializerContext = JsonSerializerContext,
         };
 
         /// <summary>
         /// 
         /// </summary>
-        public SubpackageAgentSubpackageAgentPhoneNumbersClient SubpackageAgentSubpackageAgentPhoneNumbers => new SubpackageAgentSubpackageAgentPhoneNumbersClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
+        public ModelsClient Models => new ModelsClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
         {
             ReadResponseAsString = ReadResponseAsString,
+            CreateIdempotencyKey = CreateIdempotencyKey,
             JsonSerializerContext = JsonSerializerContext,
         };
 
         /// <summary>
         /// 
         /// </summary>
-        public SubpackageAgentSubpackageAgentSipTrunksClient SubpackageAgentSubpackageAgentSipTrunks => new SubpackageAgentSubpackageAgentSipTrunksClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
+        public OutboundCallsClient OutboundCalls => new OutboundCallsClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
         {
             ReadResponseAsString = ReadResponseAsString,
+            CreateIdempotencyKey = CreateIdempotencyKey,
             JsonSerializerContext = JsonSerializerContext,
         };
 
         /// <summary>
         /// 
         /// </summary>
-        public SubpackageAgentSubpackageAgentTestsClient SubpackageAgentSubpackageAgentTests => new SubpackageAgentSubpackageAgentTestsClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
+        public PhoneNumbersClient PhoneNumbers => new PhoneNumbersClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
         {
             ReadResponseAsString = ReadResponseAsString,
+            CreateIdempotencyKey = CreateIdempotencyKey,
             JsonSerializerContext = JsonSerializerContext,
         };
 
         /// <summary>
         /// 
         /// </summary>
-        public SubpackageAgentSubpackageAgentToolsClient SubpackageAgentSubpackageAgentTools => new SubpackageAgentSubpackageAgentToolsClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
+        public SipTrunksClient SipTrunks => new SipTrunksClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
         {
             ReadResponseAsString = ReadResponseAsString,
+            CreateIdempotencyKey = CreateIdempotencyKey,
             JsonSerializerContext = JsonSerializerContext,
         };
 
         /// <summary>
         /// 
         /// </summary>
-        public SubpackageTtsSubpackageTtsAudioClient SubpackageTtsSubpackageTtsAudio => new SubpackageTtsSubpackageTtsAudioClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
+        public TestsClient Tests => new TestsClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
         {
             ReadResponseAsString = ReadResponseAsString,
+            CreateIdempotencyKey = CreateIdempotencyKey,
             JsonSerializerContext = JsonSerializerContext,
         };
 
         /// <summary>
         /// 
         /// </summary>
-        public SubpackageTtsSubpackageTtsVoicesClient SubpackageTtsSubpackageTtsVoices => new SubpackageTtsSubpackageTtsVoicesClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
+        public ToolDefinitionsClient ToolDefinitions => new ToolDefinitionsClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
         {
             ReadResponseAsString = ReadResponseAsString,
+            CreateIdempotencyKey = CreateIdempotencyKey,
+            JsonSerializerContext = JsonSerializerContext,
+        };
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public VoicesClient Voices => new VoicesClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
+        {
+            ReadResponseAsString = ReadResponseAsString,
+            CreateIdempotencyKey = CreateIdempotencyKey,
             JsonSerializerContext = JsonSerializerContext,
         };
 

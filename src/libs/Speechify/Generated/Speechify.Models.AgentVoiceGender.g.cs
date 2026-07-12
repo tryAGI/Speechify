@@ -4,10 +4,9 @@
 namespace Speechify
 {
     /// <summary>
-    /// Speaker gender as classified by VMS. `notSpecified` is used<br/>
-    /// when the source dataset didn't carry the metadata; the<br/>
-    /// console treats it as a neutral display label rather than a<br/>
-    /// filter gap.
+    /// Speaker gender classification for the voice. `not_specified` is<br/>
+    /// used when the source dataset didn't carry the metadata; treat it<br/>
+    /// as a neutral display label rather than a filter gap.
     /// </summary>
     public enum AgentVoiceGender
     {
@@ -39,7 +38,7 @@ namespace Speechify
             {
                 AgentVoiceGender.Female => "female",
                 AgentVoiceGender.Male => "male",
-                AgentVoiceGender.NotSpecified => "notSpecified",
+                AgentVoiceGender.NotSpecified => "not_specified",
                 _ => throw new global::System.ArgumentOutOfRangeException(nameof(value), value, null),
             };
         }
@@ -52,7 +51,7 @@ namespace Speechify
             {
                 "female" => AgentVoiceGender.Female,
                 "male" => AgentVoiceGender.Male,
-                "notSpecified" => AgentVoiceGender.NotSpecified,
+                "not_specified" => AgentVoiceGender.NotSpecified,
                 _ => null,
             };
         }

@@ -4,9 +4,9 @@
 namespace Speechify
 {
     /// <summary>
-    /// Flat list of folders for a knowledge base. The console builds<br/>
-    /// the folder tree from `parent_folder_id` references, so callers<br/>
-    /// should walk every page before rendering.
+    /// Flat list of folders for a knowledge base. Build the folder<br/>
+    /// tree from `parent_folder_id` references, so callers should<br/>
+    /// walk every page before rendering.
     /// </summary>
     public sealed partial class ListKnowledgeBaseFoldersResponse
     {

@@ -4,9 +4,10 @@
 namespace Speechify
 {
     /// <summary>
-    /// Payload for `GET /v1/agents/tools` — the workspace-level tool<br/>
-    /// catalog. Cursor-paginated; the per-agent attached-tools endpoint<br/>
-    /// uses a different (bare) shape — see AttachedToolsResponse.
+    /// Payload for `GET /v1/agents/tool-definitions` — the workspace-level<br/>
+    /// tool-definition catalog. Cursor-paginated; the per-agent toolbelt<br/>
+    /// endpoint uses a different (bare, mixed-kind) shape — see<br/>
+    /// ListAgentToolsResponse.
     /// </summary>
     public sealed partial class ListToolsResponse
     {

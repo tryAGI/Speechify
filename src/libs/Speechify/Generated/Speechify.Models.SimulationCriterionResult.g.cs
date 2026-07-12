@@ -39,7 +39,7 @@ namespace Speechify
         /// 0.0..1.0 continuous estimate of how well the criterion was met.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("score")]
-        public double? Score { get; set; }
+        public string? Score { get; set; }
 
         /// <summary>
         /// 
@@ -76,7 +76,7 @@ namespace Speechify
             string name,
             global::Speechify.SimulationCriterionResultStatus status,
             string rationale,
-            double? score)
+            string? score)
         {
             this.CriterionId = criterionId ?? throw new global::System.ArgumentNullException(nameof(criterionId));
             this.Name = name ?? throw new global::System.ArgumentNullException(nameof(name));

@@ -4,8 +4,8 @@
 namespace Speechify
 {
     /// <summary>
-    /// One entry in a batch-run request. Omit `agent_id` to fan out to<br/>
-    /// every agent the test is attached to.
+    /// One entry in a batch-run request. Omit `agent_id` to run the test<br/>
+    /// against its owner agent.
     /// </summary>
     public sealed partial class BatchRunEntry
     {
@@ -19,8 +19,8 @@ namespace Speechify
 
         /// <summary>
         /// Prefixed wire identifier (`agent_&lt;26 char Crockford base32&gt;`)<br/>
-        /// of the agent to run the test against. Omit to fan out to<br/>
-        /// every agent the test is attached to.
+        /// of the agent to run the test against. Omit to run against the<br/>
+        /// test's owner agent.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("agent_id")]
         public string? AgentId { get; set; }
@@ -40,8 +40,8 @@ namespace Speechify
         /// </param>
         /// <param name="agentId">
         /// Prefixed wire identifier (`agent_&lt;26 char Crockford base32&gt;`)<br/>
-        /// of the agent to run the test against. Omit to fan out to<br/>
-        /// every agent the test is attached to.
+        /// of the agent to run the test against. Omit to run against the<br/>
+        /// test's owner agent.
         /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]

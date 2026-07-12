@@ -9,7 +9,7 @@ namespace Speechify
     public sealed partial class FlowTemplate
     {
         /// <summary>
-        /// Flow template id. A raw UUID, not a prefixed external id.
+        /// Flow template id (prefixed external id, `tmpl_...`).
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("id")]
         [global::System.Text.Json.Serialization.JsonRequired]
@@ -84,7 +84,7 @@ namespace Speechify
         /// Initializes a new instance of the <see cref="FlowTemplate" /> class.
         /// </summary>
         /// <param name="id">
-        /// Flow template id. A raw UUID, not a prefixed external id.
+        /// Flow template id (prefixed external id, `tmpl_...`).
         /// </param>
         /// <param name="key">
         /// Stable unique key for the template.

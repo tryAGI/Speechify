@@ -26,8 +26,8 @@ namespace Speechify
         /// Max hits to return (default 5, capped at 50).<br/>
         /// Default Value: 5
         /// </summary>
-        [global::System.Text.Json.Serialization.JsonPropertyName("top_k")]
-        public int? TopK { get; set; }
+        [global::System.Text.Json.Serialization.JsonPropertyName("limit")]
+        public int? Limit { get; set; }
 
         /// <summary>
         /// Additional properties that are not explicitly defined in the schema
@@ -44,7 +44,7 @@ namespace Speechify
         /// <param name="kbIds">
         /// Knowledge bases to search across. Results scoped to caller-owned entries; unknown IDs are silently ignored.
         /// </param>
-        /// <param name="topK">
+        /// <param name="limit">
         /// Max hits to return (default 5, capped at 50).<br/>
         /// Default Value: 5
         /// </param>
@@ -54,11 +54,11 @@ namespace Speechify
         public SearchKnowledgeBasesRequest(
             string query,
             global::System.Collections.Generic.IList<string> kbIds,
-            int? topK)
+            int? limit)
         {
             this.Query = query ?? throw new global::System.ArgumentNullException(nameof(query));
             this.KbIds = kbIds ?? throw new global::System.ArgumentNullException(nameof(kbIds));
-            this.TopK = topK;
+            this.Limit = limit;
         }
 
         /// <summary>

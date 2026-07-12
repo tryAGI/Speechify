@@ -4,7 +4,13 @@
 namespace Speechify
 {
     /// <summary>
-    /// A batch of outbound calls dispatched to a list of recipients.
+    /// A batch of outbound calls dispatched to a list of recipients. This<br/>
+    /// summary object (counts + status, no recipients) is the payload of the<br/>
+    /// `batch_call.completed` / `batch_call.failed` webhook events. Per-recipient<br/>
+    /// results - including each recipient's `custom_id` and `conversation_id` -<br/>
+    /// are reconciled by polling<br/>
+    /// `GET /v1/agents/batch-calls/{batch_call_id}/recipients`, not through the<br/>
+    /// webhook.
     /// </summary>
     public sealed partial class BatchCall
     {
@@ -29,8 +35,7 @@ namespace Speechify
         /// <summary>
         /// Caller-ID override. When set, prefixed wire identifier<br/>
         /// (`phone_&lt;26 char Crockford base32&gt;`) of the phone number to<br/>
-        /// use; falls back to the agent's bound number when null. ADR<br/>
-        /// 0015 FK consistency.
+        /// use; falls back to the agent's bound number when null.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("phone_number_id")]
         public string? PhoneNumberId { get; set; }
@@ -43,15 +48,18 @@ namespace Speechify
         public required string Name { get; set; }
 
         /// <summary>
-        /// 
+        /// Lifecycle status. A batch deferred to a future time is<br/>
+        /// `pending` with a non-null `scheduled_at`; it moves to `running`<br/>
+        /// once the scheduled time arrives and the dispatcher starts<br/>
+        /// dialing.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("status")]
-        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Speechify.JsonConverters.BatchCallStatusJsonConverter))]
+        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Speechify.JsonConverters.JobStatusJsonConverter))]
         [global::System.Text.Json.Serialization.JsonRequired]
-        public required global::Speechify.BatchCallStatus Status { get; set; }
+        public required global::Speechify.JobStatus Status { get; set; }
 
         /// <summary>
-        /// Total number of recipients.
+        /// Total number of recipients (the progress denominator).
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("total")]
         [global::System.Text.Json.Serialization.JsonRequired]
@@ -100,8 +108,8 @@ namespace Speechify
         /// <summary>
         /// When the last recipient was resolved.
         /// </summary>
-        [global::System.Text.Json.Serialization.JsonPropertyName("finished_at")]
-        public global::System.DateTime? FinishedAt { get; set; }
+        [global::System.Text.Json.Serialization.JsonPropertyName("ended_at")]
+        public global::System.DateTime? EndedAt { get; set; }
 
         /// <summary>
         /// If set, the batch waits until this time before dialing.
@@ -139,9 +147,14 @@ namespace Speechify
         /// <param name="name">
         /// Human-readable batch name.
         /// </param>
-        /// <param name="status"></param>
+        /// <param name="status">
+        /// Lifecycle status. A batch deferred to a future time is<br/>
+        /// `pending` with a non-null `scheduled_at`; it moves to `running`<br/>
+        /// once the scheduled time arrives and the dispatcher starts<br/>
+        /// dialing.
+        /// </param>
         /// <param name="total">
-        /// Total number of recipients.
+        /// Total number of recipients (the progress denominator).
         /// </param>
         /// <param name="completed">
         /// Recipients successfully dialed.
@@ -154,8 +167,7 @@ namespace Speechify
         /// <param name="phoneNumberId">
         /// Caller-ID override. When set, prefixed wire identifier<br/>
         /// (`phone_&lt;26 char Crockford base32&gt;`) of the phone number to<br/>
-        /// use; falls back to the agent's bound number when null. ADR<br/>
-        /// 0015 FK consistency.
+        /// use; falls back to the agent's bound number when null.
         /// </param>
         /// <param name="error">
         /// Populated when the batch itself fails.
@@ -163,7 +175,7 @@ namespace Speechify
         /// <param name="startedAt">
         /// When the dispatcher started dialing.
         /// </param>
-        /// <param name="finishedAt">
+        /// <param name="endedAt">
         /// When the last recipient was resolved.
         /// </param>
         /// <param name="scheduledAt">
@@ -181,7 +193,7 @@ namespace Speechify
             string id,
             string agentId,
             string name,
-            global::Speechify.BatchCallStatus status,
+            global::Speechify.JobStatus status,
             int total,
             int completed,
             int failed,
@@ -190,7 +202,7 @@ namespace Speechify
             string? phoneNumberId,
             string? error,
             global::System.DateTime? startedAt,
-            global::System.DateTime? finishedAt,
+            global::System.DateTime? endedAt,
             global::System.DateTime? scheduledAt,
             int? ringingTimeoutMs)
         {
@@ -206,7 +218,7 @@ namespace Speechify
             this.CreatedAt = createdAt;
             this.UpdatedAt = updatedAt;
             this.StartedAt = startedAt;
-            this.FinishedAt = finishedAt;
+            this.EndedAt = endedAt;
             this.ScheduledAt = scheduledAt;
             this.RingingTimeoutMs = ringingTimeoutMs;
         }

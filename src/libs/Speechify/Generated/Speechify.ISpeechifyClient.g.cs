@@ -37,6 +37,10 @@ namespace Speechify
         /// </summary>
         public global::Speechify.AutoSDKClientOptions Options { get; }
 
+        /// <summary>
+        /// Creates idempotency keys for generated idempotent requests when the caller does not provide one.
+        /// </summary>
+        public global::System.Func<string> CreateIdempotencyKey { get; set; }
 
         /// <summary>
         /// 
@@ -47,87 +51,92 @@ namespace Speechify
         /// <summary>
         /// 
         /// </summary>
-        public SubpackageAgentClient SubpackageAgent { get; }
+        public AdminClient Admin { get; }
 
         /// <summary>
         /// 
         /// </summary>
-        public SubpackageAgentSubpackageAgentAdminClient SubpackageAgentSubpackageAgentAdmin { get; }
+        public AgentClient Agent { get; }
 
         /// <summary>
         /// 
         /// </summary>
-        public SubpackageAgentSubpackageAgentAudioAssetsClient SubpackageAgentSubpackageAgentAudioAssets { get; }
+        public AudioClient Audio { get; }
 
         /// <summary>
         /// 
         /// </summary>
-        public SubpackageAgentSubpackageAgentBatchCallsClient SubpackageAgentSubpackageAgentBatchCalls { get; }
+        public AudioAssetsClient AudioAssets { get; }
 
         /// <summary>
         /// 
         /// </summary>
-        public SubpackageAgentSubpackageAgentCallersClient SubpackageAgentSubpackageAgentCallers { get; }
+        public BatchCallsClient BatchCalls { get; }
 
         /// <summary>
         /// 
         /// </summary>
-        public SubpackageAgentSubpackageAgentConversationsClient SubpackageAgentSubpackageAgentConversations { get; }
+        public CallersClient Callers { get; }
 
         /// <summary>
         /// 
         /// </summary>
-        public SubpackageAgentSubpackageAgentFlowClient SubpackageAgentSubpackageAgentFlow { get; }
+        public ConversationsClient Conversations { get; }
 
         /// <summary>
         /// 
         /// </summary>
-        public SubpackageAgentSubpackageAgentIvrMemoryClient SubpackageAgentSubpackageAgentIvrMemory { get; }
+        public FlowClient Flow { get; }
 
         /// <summary>
         /// 
         /// </summary>
-        public SubpackageAgentSubpackageAgentKnowledgeBasesClient SubpackageAgentSubpackageAgentKnowledgeBases { get; }
+        public IvrMemoryClient IvrMemory { get; }
 
         /// <summary>
         /// 
         /// </summary>
-        public SubpackageAgentSubpackageAgentMemoriesClient SubpackageAgentSubpackageAgentMemories { get; }
+        public KnowledgeBasesClient KnowledgeBases { get; }
 
         /// <summary>
         /// 
         /// </summary>
-        public SubpackageAgentSubpackageAgentOutboundCallsClient SubpackageAgentSubpackageAgentOutboundCalls { get; }
+        public MemoriesClient Memories { get; }
 
         /// <summary>
         /// 
         /// </summary>
-        public SubpackageAgentSubpackageAgentPhoneNumbersClient SubpackageAgentSubpackageAgentPhoneNumbers { get; }
+        public ModelsClient Models { get; }
 
         /// <summary>
         /// 
         /// </summary>
-        public SubpackageAgentSubpackageAgentSipTrunksClient SubpackageAgentSubpackageAgentSipTrunks { get; }
+        public OutboundCallsClient OutboundCalls { get; }
 
         /// <summary>
         /// 
         /// </summary>
-        public SubpackageAgentSubpackageAgentTestsClient SubpackageAgentSubpackageAgentTests { get; }
+        public PhoneNumbersClient PhoneNumbers { get; }
 
         /// <summary>
         /// 
         /// </summary>
-        public SubpackageAgentSubpackageAgentToolsClient SubpackageAgentSubpackageAgentTools { get; }
+        public SipTrunksClient SipTrunks { get; }
 
         /// <summary>
         /// 
         /// </summary>
-        public SubpackageTtsSubpackageTtsAudioClient SubpackageTtsSubpackageTtsAudio { get; }
+        public TestsClient Tests { get; }
 
         /// <summary>
         /// 
         /// </summary>
-        public SubpackageTtsSubpackageTtsVoicesClient SubpackageTtsSubpackageTtsVoices { get; }
+        public ToolDefinitionsClient ToolDefinitions { get; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public VoicesClient Voices { get; }
 
     }
 }

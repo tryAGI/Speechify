@@ -6,10 +6,13 @@ namespace Speechify
     /// <summary>
     /// A suite run (test invocation): the grouping object over every<br/>
     /// test run dispatched by one Run All, batch, or resubmit call.<br/>
-    /// `status` and the count fields are derived from the child runs.<br/>
-    /// `status` is `running` while any child run is still queued or<br/>
-    /// running, then `passed` (all passed), `failed` (at least one<br/>
-    /// failed), or `error` (at least one errored, none failed).
+    /// `status`, `verdict`, and the count fields are derived from the<br/>
+    /// child runs. `status` is the unified async-job lifecycle: `running`<br/>
+    /// while any child is pending/running, then `cancelled` (any child<br/>
+    /// cancelled), `failed` (any child could not execute), or `completed`<br/>
+    /// (every child produced a verdict). When `completed`, `verdict` is<br/>
+    /// `passed` if every child passed, else `failed`. `results` carries<br/>
+    /// the per-verdict breakdown.
     /// </summary>
     public sealed partial class AgentTestSuiteRun
     {
@@ -38,9 +41,9 @@ namespace Speechify
 
         /// <summary>
         /// Which entry point created a suite run.<br/>
-        /// - `run_all`  - POST /v1/agents/{id}/tests/runs.<br/>
+        /// - `run_all`  - POST /v1/agents/{agent_id}/tests/runs.<br/>
         /// - `batch`    - POST /v1/agents/tests/runs/batch.<br/>
-        /// - `resubmit` - POST /v1/agents/tests/suite-runs/{id}/resubmit.
+        /// - `resubmit` - POST /v1/agents/tests/suite-runs/{suite_run_id}/resubmit.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("trigger")]
         [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Speechify.JsonConverters.SuiteRunTriggerJsonConverter))]
@@ -56,52 +59,82 @@ namespace Speechify
         public string? ParentSuiteRunId { get; set; }
 
         /// <summary>
-        /// Lifecycle of a test run: `queued` - `running` - terminal.<br/>
-        /// Terminal states:<br/>
-        /// - `passed` - the agent behaviour met the success criteria.<br/>
-        /// - `failed` - the agent behaviour did not meet the success criteria.<br/>
-        /// - `error` - the runner itself could not complete (LLM outage, network error, etc.),<br/>
-        ///   distinct from `failed` which means the agent behaviour was judged and found lacking.
+        /// The one lifecycle vocabulary shared by every async job (batch<br/>
+        /// calls, knowledge-base imports, agent-test runs, suite runs):<br/>
+        /// `pending` → `running` → a terminal state.<br/>
+        /// - `pending` - accepted but not yet executing (queued for a worker,<br/>
+        ///   or deferred to a future scheduled time).<br/>
+        /// - `running` - actively executing.<br/>
+        /// - `completed` - ran to conclusion. The single terminal-success<br/>
+        ///   verb. For a job that produces a pass/fail judgment (an agent-test<br/>
+        ///   run), this means it produced a verdict - read the separate<br/>
+        ///   `verdict` field for the judgment, not this status.<br/>
+        /// - `failed` - could not complete (an infrastructure or input<br/>
+        ///   failure), distinct from a `completed` job whose `verdict` is<br/>
+        ///   `failed`.<br/>
+        /// - `cancelled` - cancelled before reaching a natural terminal state.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("status")]
-        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Speechify.JsonConverters.TestRunStatusJsonConverter))]
+        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Speechify.JsonConverters.JobStatusJsonConverter))]
         [global::System.Text.Json.Serialization.JsonRequired]
-        public required global::Speechify.TestRunStatus Status { get; set; }
+        public required global::Speechify.JobStatus Status { get; set; }
+
+        /// <summary>
+        /// The suite's pass/fail judgment, present only when `status` is<br/>
+        /// `completed`.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("verdict")]
+        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Speechify.JsonConverters.OneOfJsonConverter<global::Speechify.TestVerdict?, object>))]
+        public global::Speechify.OneOf<global::Speechify.TestVerdict?, object>? Verdict { get; set; }
 
         /// <summary>
         /// Number of child runs in the suite.
         /// </summary>
-        [global::System.Text.Json.Serialization.JsonPropertyName("total_runs")]
+        [global::System.Text.Json.Serialization.JsonPropertyName("total")]
         [global::System.Text.Json.Serialization.JsonRequired]
-        public required int TotalRuns { get; set; }
+        public required int Total { get; set; }
 
         /// <summary>
-        /// 
+        /// Child runs that produced a verdict.
         /// </summary>
-        [global::System.Text.Json.Serialization.JsonPropertyName("passed_count")]
+        [global::System.Text.Json.Serialization.JsonPropertyName("completed")]
         [global::System.Text.Json.Serialization.JsonRequired]
-        public required int PassedCount { get; set; }
+        public required int Completed { get; set; }
 
         /// <summary>
-        /// 
+        /// Child runs that could not execute (an infrastructure failure).
         /// </summary>
-        [global::System.Text.Json.Serialization.JsonPropertyName("failed_count")]
+        [global::System.Text.Json.Serialization.JsonPropertyName("failed")]
         [global::System.Text.Json.Serialization.JsonRequired]
-        public required int FailedCount { get; set; }
+        public required int Failed { get; set; }
 
         /// <summary>
-        /// 
+        /// Child runs actively executing.
         /// </summary>
-        [global::System.Text.Json.Serialization.JsonPropertyName("errored_count")]
+        [global::System.Text.Json.Serialization.JsonPropertyName("running")]
         [global::System.Text.Json.Serialization.JsonRequired]
-        public required int ErroredCount { get; set; }
+        public required int Running { get; set; }
 
         /// <summary>
-        /// Child runs still queued or running.
+        /// Child runs queued, not yet executing.
         /// </summary>
-        [global::System.Text.Json.Serialization.JsonPropertyName("pending_count")]
+        [global::System.Text.Json.Serialization.JsonPropertyName("pending")]
         [global::System.Text.Json.Serialization.JsonRequired]
-        public required int PendingCount { get; set; }
+        public required int Pending { get; set; }
+
+        /// <summary>
+        /// Child runs cancelled.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("cancelled")]
+        [global::System.Text.Json.Serialization.JsonRequired]
+        public required int Cancelled { get; set; }
+
+        /// <summary>
+        /// Per-verdict breakdown among the `completed` child runs.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("results")]
+        [global::System.Text.Json.Serialization.JsonRequired]
+        public required global::Speechify.AgentTestSuiteRunResults Results { get; set; }
 
         /// <summary>
         /// 
@@ -113,8 +146,8 @@ namespace Speechify
         /// <summary>
         /// Newest child-run completion; null until every child run is terminal.
         /// </summary>
-        [global::System.Text.Json.Serialization.JsonPropertyName("completed_at")]
-        public global::System.DateTime? CompletedAt { get; set; }
+        [global::System.Text.Json.Serialization.JsonPropertyName("ended_at")]
+        public global::System.DateTime? EndedAt { get; set; }
 
         /// <summary>
         /// The run-level config override this suite was run<br/>
@@ -125,8 +158,9 @@ namespace Speechify
         public global::Speechify.OneOf<global::Speechify.TestRunConfigOverride, object>? ConfigOverride { get; set; }
 
         /// <summary>
-        /// The flow version (`agent_versions` row) this suite targeted,<br/>
-        /// or null for the agent's active / synthesized flow.
+        /// The flow version (`agent_versions` row) this suite targeted<br/>
+        /// (prefixed external id, `fver_...`), or null for the agent's<br/>
+        /// active / synthesized flow.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("flow_version_id")]
         public string? FlowVersionId { get; set; }
@@ -151,26 +185,46 @@ namespace Speechify
         /// </param>
         /// <param name="trigger">
         /// Which entry point created a suite run.<br/>
-        /// - `run_all`  - POST /v1/agents/{id}/tests/runs.<br/>
+        /// - `run_all`  - POST /v1/agents/{agent_id}/tests/runs.<br/>
         /// - `batch`    - POST /v1/agents/tests/runs/batch.<br/>
-        /// - `resubmit` - POST /v1/agents/tests/suite-runs/{id}/resubmit.
+        /// - `resubmit` - POST /v1/agents/tests/suite-runs/{suite_run_id}/resubmit.
         /// </param>
         /// <param name="status">
-        /// Lifecycle of a test run: `queued` - `running` - terminal.<br/>
-        /// Terminal states:<br/>
-        /// - `passed` - the agent behaviour met the success criteria.<br/>
-        /// - `failed` - the agent behaviour did not meet the success criteria.<br/>
-        /// - `error` - the runner itself could not complete (LLM outage, network error, etc.),<br/>
-        ///   distinct from `failed` which means the agent behaviour was judged and found lacking.
+        /// The one lifecycle vocabulary shared by every async job (batch<br/>
+        /// calls, knowledge-base imports, agent-test runs, suite runs):<br/>
+        /// `pending` → `running` → a terminal state.<br/>
+        /// - `pending` - accepted but not yet executing (queued for a worker,<br/>
+        ///   or deferred to a future scheduled time).<br/>
+        /// - `running` - actively executing.<br/>
+        /// - `completed` - ran to conclusion. The single terminal-success<br/>
+        ///   verb. For a job that produces a pass/fail judgment (an agent-test<br/>
+        ///   run), this means it produced a verdict - read the separate<br/>
+        ///   `verdict` field for the judgment, not this status.<br/>
+        /// - `failed` - could not complete (an infrastructure or input<br/>
+        ///   failure), distinct from a `completed` job whose `verdict` is<br/>
+        ///   `failed`.<br/>
+        /// - `cancelled` - cancelled before reaching a natural terminal state.
         /// </param>
-        /// <param name="totalRuns">
+        /// <param name="total">
         /// Number of child runs in the suite.
         /// </param>
-        /// <param name="passedCount"></param>
-        /// <param name="failedCount"></param>
-        /// <param name="erroredCount"></param>
-        /// <param name="pendingCount">
-        /// Child runs still queued or running.
+        /// <param name="completed">
+        /// Child runs that produced a verdict.
+        /// </param>
+        /// <param name="failed">
+        /// Child runs that could not execute (an infrastructure failure).
+        /// </param>
+        /// <param name="running">
+        /// Child runs actively executing.
+        /// </param>
+        /// <param name="pending">
+        /// Child runs queued, not yet executing.
+        /// </param>
+        /// <param name="cancelled">
+        /// Child runs cancelled.
+        /// </param>
+        /// <param name="results">
+        /// Per-verdict breakdown among the `completed` child runs.
         /// </param>
         /// <param name="createdAt"></param>
         /// <param name="agentId">
@@ -188,7 +242,11 @@ namespace Speechify
         /// the suite run whose failed/errored tests this one re-ran.<br/>
         /// Null for `run_all` and `batch`.
         /// </param>
-        /// <param name="completedAt">
+        /// <param name="verdict">
+        /// The suite's pass/fail judgment, present only when `status` is<br/>
+        /// `completed`.
+        /// </param>
+        /// <param name="endedAt">
         /// Newest child-run completion; null until every child run is terminal.
         /// </param>
         /// <param name="configOverride">
@@ -196,8 +254,9 @@ namespace Speechify
         /// with, or null for an ordinary Run All / batch.
         /// </param>
         /// <param name="flowVersionId">
-        /// The flow version (`agent_versions` row) this suite targeted,<br/>
-        /// or null for the agent's active / synthesized flow.
+        /// The flow version (`agent_versions` row) this suite targeted<br/>
+        /// (prefixed external id, `fver_...`), or null for the agent's<br/>
+        /// active / synthesized flow.
         /// </param>
         /// <param name="flowVersionNumber">
         /// Human-facing version number of `flow_version_id`; null when no version was targeted.
@@ -208,17 +267,20 @@ namespace Speechify
         public AgentTestSuiteRun(
             string id,
             global::Speechify.SuiteRunTrigger trigger,
-            global::Speechify.TestRunStatus status,
-            int totalRuns,
-            int passedCount,
-            int failedCount,
-            int erroredCount,
-            int pendingCount,
+            global::Speechify.JobStatus status,
+            int total,
+            int completed,
+            int failed,
+            int running,
+            int pending,
+            int cancelled,
+            global::Speechify.AgentTestSuiteRunResults results,
             global::System.DateTime createdAt,
             string? agentId,
             string? agentName,
             string? parentSuiteRunId,
-            global::System.DateTime? completedAt,
+            global::Speechify.OneOf<global::Speechify.TestVerdict?, object>? verdict,
+            global::System.DateTime? endedAt,
             global::Speechify.OneOf<global::Speechify.TestRunConfigOverride, object>? configOverride,
             string? flowVersionId,
             int? flowVersionNumber)
@@ -229,13 +291,16 @@ namespace Speechify
             this.Trigger = trigger;
             this.ParentSuiteRunId = parentSuiteRunId;
             this.Status = status;
-            this.TotalRuns = totalRuns;
-            this.PassedCount = passedCount;
-            this.FailedCount = failedCount;
-            this.ErroredCount = erroredCount;
-            this.PendingCount = pendingCount;
+            this.Verdict = verdict;
+            this.Total = total;
+            this.Completed = completed;
+            this.Failed = failed;
+            this.Running = running;
+            this.Pending = pending;
+            this.Cancelled = cancelled;
+            this.Results = results ?? throw new global::System.ArgumentNullException(nameof(results));
             this.CreatedAt = createdAt;
-            this.CompletedAt = completedAt;
+            this.EndedAt = endedAt;
             this.ConfigOverride = configOverride;
             this.FlowVersionId = flowVersionId;
             this.FlowVersionNumber = flowVersionNumber;

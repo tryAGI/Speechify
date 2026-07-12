@@ -4,7 +4,7 @@
 namespace Speechify
 {
     /// <summary>
-    /// Optional body for POST /v1/agents/{id}/flow/publish.
+    /// Optional body for POST /v1/agents/{agent_id}/flow/publish.
     /// </summary>
     public sealed partial class PublishFlowRequest
     {

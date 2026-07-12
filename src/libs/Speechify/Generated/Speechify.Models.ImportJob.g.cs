@@ -5,8 +5,8 @@ namespace Speechify
 {
     /// <summary>
     /// Async URL import job (sitemap, crawl, plus<br/>
-    /// the auto-refresh path). The console polls<br/>
-    /// `GET /v1/agents/knowledge-bases/{id}/imports` while the job is<br/>
+    /// the auto-refresh path). Poll<br/>
+    /// `GET /v1/agents/knowledge-bases/{kb_id}/imports` while the job is<br/>
     /// non-terminal.
     /// </summary>
     public sealed partial class ImportJob
@@ -34,39 +34,50 @@ namespace Speechify
         public required global::Speechify.ImportJobKind Kind { get; set; }
 
         /// <summary>
-        /// `pending` is the brief window between insert and the worker<br/>
-        /// picking up; `running` is the bulk of the job's life;<br/>
-        /// `completed` / `failed` / `cancelled` are terminal.
+        /// The one lifecycle vocabulary shared by every async job (batch<br/>
+        /// calls, knowledge-base imports, agent-test runs, suite runs):<br/>
+        /// `pending` → `running` → a terminal state.<br/>
+        /// - `pending` - accepted but not yet executing (queued for a worker,<br/>
+        ///   or deferred to a future scheduled time).<br/>
+        /// - `running` - actively executing.<br/>
+        /// - `completed` - ran to conclusion. The single terminal-success<br/>
+        ///   verb. For a job that produces a pass/fail judgment (an agent-test<br/>
+        ///   run), this means it produced a verdict - read the separate<br/>
+        ///   `verdict` field for the judgment, not this status.<br/>
+        /// - `failed` - could not complete (an infrastructure or input<br/>
+        ///   failure), distinct from a `completed` job whose `verdict` is<br/>
+        ///   `failed`.<br/>
+        /// - `cancelled` - cancelled before reaching a natural terminal state.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("status")]
-        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Speechify.JsonConverters.ImportJobStatusJsonConverter))]
+        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Speechify.JsonConverters.JobStatusJsonConverter))]
         [global::System.Text.Json.Serialization.JsonRequired]
-        public required global::Speechify.ImportJobStatus Status { get; set; }
+        public required global::Speechify.JobStatus Status { get; set; }
 
         /// <summary>
-        /// 
+        /// Total URLs to process (the progress denominator).
         /// </summary>
-        [global::System.Text.Json.Serialization.JsonPropertyName("requested_count")]
+        [global::System.Text.Json.Serialization.JsonPropertyName("total")]
         [global::System.Text.Json.Serialization.JsonRequired]
-        public required int RequestedCount { get; set; }
+        public required int Total { get; set; }
 
         /// <summary>
-        /// 
+        /// URLs imported successfully.
         /// </summary>
-        [global::System.Text.Json.Serialization.JsonPropertyName("completed_count")]
+        [global::System.Text.Json.Serialization.JsonPropertyName("completed")]
         [global::System.Text.Json.Serialization.JsonRequired]
-        public required int CompletedCount { get; set; }
+        public required int Completed { get; set; }
 
         /// <summary>
-        /// 
+        /// URLs that failed to import.
         /// </summary>
-        [global::System.Text.Json.Serialization.JsonPropertyName("failed_count")]
+        [global::System.Text.Json.Serialization.JsonPropertyName("failed")]
         [global::System.Text.Json.Serialization.JsonRequired]
-        public required int FailedCount { get; set; }
+        public required int Failed { get; set; }
 
         /// <summary>
         /// JSON blob whose shape depends on `kind` — typically `url`,<br/>
-        /// `max_pages`, `max_depth`. The console reads it for display<br/>
+        /// `max_pages`, `max_depth`. Read it for display<br/>
         /// only.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("params")]
@@ -78,19 +89,6 @@ namespace Speechify
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("error")]
         public string? Error { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        [global::System.Text.Json.Serialization.JsonPropertyName("upstream_job_id")]
-        public string? UpstreamJobId { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        [global::System.Text.Json.Serialization.JsonPropertyName("created_by_uid")]
-        [global::System.Text.Json.Serialization.JsonRequired]
-        public required string CreatedByUid { get; set; }
 
         /// <summary>
         /// 
@@ -115,8 +113,8 @@ namespace Speechify
         /// <summary>
         /// 
         /// </summary>
-        [global::System.Text.Json.Serialization.JsonPropertyName("finished_at")]
-        public global::System.DateTime? FinishedAt { get; set; }
+        [global::System.Text.Json.Serialization.JsonPropertyName("ended_at")]
+        public global::System.DateTime? EndedAt { get; set; }
 
         /// <summary>
         /// Additional properties that are not explicitly defined in the schema
@@ -131,25 +129,40 @@ namespace Speechify
         /// <param name="kbId"></param>
         /// <param name="kind"></param>
         /// <param name="status">
-        /// `pending` is the brief window between insert and the worker<br/>
-        /// picking up; `running` is the bulk of the job's life;<br/>
-        /// `completed` / `failed` / `cancelled` are terminal.
+        /// The one lifecycle vocabulary shared by every async job (batch<br/>
+        /// calls, knowledge-base imports, agent-test runs, suite runs):<br/>
+        /// `pending` → `running` → a terminal state.<br/>
+        /// - `pending` - accepted but not yet executing (queued for a worker,<br/>
+        ///   or deferred to a future scheduled time).<br/>
+        /// - `running` - actively executing.<br/>
+        /// - `completed` - ran to conclusion. The single terminal-success<br/>
+        ///   verb. For a job that produces a pass/fail judgment (an agent-test<br/>
+        ///   run), this means it produced a verdict - read the separate<br/>
+        ///   `verdict` field for the judgment, not this status.<br/>
+        /// - `failed` - could not complete (an infrastructure or input<br/>
+        ///   failure), distinct from a `completed` job whose `verdict` is<br/>
+        ///   `failed`.<br/>
+        /// - `cancelled` - cancelled before reaching a natural terminal state.
         /// </param>
-        /// <param name="requestedCount"></param>
-        /// <param name="completedCount"></param>
-        /// <param name="failedCount"></param>
+        /// <param name="total">
+        /// Total URLs to process (the progress denominator).
+        /// </param>
+        /// <param name="completed">
+        /// URLs imported successfully.
+        /// </param>
+        /// <param name="failed">
+        /// URLs that failed to import.
+        /// </param>
         /// <param name="params">
         /// JSON blob whose shape depends on `kind` — typically `url`,<br/>
-        /// `max_pages`, `max_depth`. The console reads it for display<br/>
+        /// `max_pages`, `max_depth`. Read it for display<br/>
         /// only.
         /// </param>
-        /// <param name="createdByUid"></param>
         /// <param name="createdAt"></param>
         /// <param name="updatedAt"></param>
         /// <param name="error"></param>
-        /// <param name="upstreamJobId"></param>
         /// <param name="startedAt"></param>
-        /// <param name="finishedAt"></param>
+        /// <param name="endedAt"></param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
 #endif
@@ -157,34 +170,30 @@ namespace Speechify
             string id,
             string kbId,
             global::Speechify.ImportJobKind kind,
-            global::Speechify.ImportJobStatus status,
-            int requestedCount,
-            int completedCount,
-            int failedCount,
+            global::Speechify.JobStatus status,
+            int total,
+            int completed,
+            int failed,
             object @params,
-            string createdByUid,
             global::System.DateTime createdAt,
             global::System.DateTime updatedAt,
             string? error,
-            string? upstreamJobId,
             global::System.DateTime? startedAt,
-            global::System.DateTime? finishedAt)
+            global::System.DateTime? endedAt)
         {
             this.Id = id ?? throw new global::System.ArgumentNullException(nameof(id));
             this.KbId = kbId ?? throw new global::System.ArgumentNullException(nameof(kbId));
             this.Kind = kind;
             this.Status = status;
-            this.RequestedCount = requestedCount;
-            this.CompletedCount = completedCount;
-            this.FailedCount = failedCount;
+            this.Total = total;
+            this.Completed = completed;
+            this.Failed = failed;
             this.Params = @params ?? throw new global::System.ArgumentNullException(nameof(@params));
             this.Error = error;
-            this.UpstreamJobId = upstreamJobId;
-            this.CreatedByUid = createdByUid ?? throw new global::System.ArgumentNullException(nameof(createdByUid));
             this.CreatedAt = createdAt;
             this.UpdatedAt = updatedAt;
             this.StartedAt = startedAt;
-            this.FinishedAt = finishedAt;
+            this.EndedAt = endedAt;
         }
 
         /// <summary>

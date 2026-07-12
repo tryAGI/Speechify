@@ -55,7 +55,7 @@ namespace Speechify
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("score")]
         [global::System.Text.Json.Serialization.JsonRequired]
-        public required double Score { get; set; }
+        public required string Score { get; set; }
 
         /// <summary>
         /// Additional properties that are not explicitly defined in the schema
@@ -85,7 +85,7 @@ namespace Speechify
             string filename,
             int chunkIndex,
             string content,
-            double score)
+            string score)
         {
             this.ChunkId = chunkId ?? throw new global::System.ArgumentNullException(nameof(chunkId));
             this.DocumentId = documentId ?? throw new global::System.ArgumentNullException(nameof(documentId));
@@ -93,7 +93,7 @@ namespace Speechify
             this.Filename = filename ?? throw new global::System.ArgumentNullException(nameof(filename));
             this.ChunkIndex = chunkIndex;
             this.Content = content ?? throw new global::System.ArgumentNullException(nameof(content));
-            this.Score = score;
+            this.Score = score ?? throw new global::System.ArgumentNullException(nameof(score));
         }
 
         /// <summary>

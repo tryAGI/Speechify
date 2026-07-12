@@ -6,12 +6,12 @@ namespace Speechify
     /// <summary>
     /// Result of an MCP probe. On success, `tools` is the discovered<br/>
     /// catalogue and `error` is absent. On failure, `tools` is `null`<br/>
-    /// and `error` carries a human-readable reason the console renders<br/>
+    /// and `error` carries a human-readable reason a client can render<br/>
     /// inline next to the form. `details` is optional structured<br/>
     /// signal from the upstream (OAuth2 RFC 6749 fields, HTTP status,<br/>
-    /// truncated upstream body, form field hint) the console uses to<br/>
+    /// truncated upstream body, form field hint) a client can use to<br/>
     /// expand the inline banner and highlight the offending input.<br/>
-    /// Older consoles ignore `details` and fall back to `error`. Both<br/>
+    /// Older clients ignore `details` and fall back to `error`. Both<br/>
     /// validation and network failures land in `error` rather than<br/>
     /// non-2xx responses, so consumers must check `error` before<br/>
     /// reading `tools`.
@@ -32,7 +32,7 @@ namespace Speechify
 
         /// <summary>
         /// Structured upstream signal for an MCP probe failure. All fields<br/>
-        /// are optional; the console renders what's present. `stage` names<br/>
+        /// are optional; a client renders what's present. `stage` names<br/>
         /// the phase the probe was in (`validation`, `oauth2_token`,<br/>
         /// `mcp_connect`, `mcp_initialize`, `mcp_notify`, `mcp_list_tools`).<br/>
         /// `oauth2_error` / `oauth2_error_description` mirror RFC 6749 §5.2<br/>
@@ -42,7 +42,7 @@ namespace Speechify
         /// the upstream response body when the failure isn't structured.<br/>
         /// `field_hint` names a form field (`endpoint`, `transport`,<br/>
         /// `token`, `token_url`, `client_id`, `client_secret`, `scope`)<br/>
-        /// the console should highlight so the customer knows what to fix.
+        /// a client should highlight so the customer knows what to fix.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("details")]
         public global::Speechify.MCPProbeErrorDetails? Details { get; set; }
@@ -60,7 +60,7 @@ namespace Speechify
         /// <param name="error"></param>
         /// <param name="details">
         /// Structured upstream signal for an MCP probe failure. All fields<br/>
-        /// are optional; the console renders what's present. `stage` names<br/>
+        /// are optional; a client renders what's present. `stage` names<br/>
         /// the phase the probe was in (`validation`, `oauth2_token`,<br/>
         /// `mcp_connect`, `mcp_initialize`, `mcp_notify`, `mcp_list_tools`).<br/>
         /// `oauth2_error` / `oauth2_error_description` mirror RFC 6749 §5.2<br/>
@@ -70,7 +70,7 @@ namespace Speechify
         /// the upstream response body when the failure isn't structured.<br/>
         /// `field_hint` names a form field (`endpoint`, `transport`,<br/>
         /// `token`, `token_url`, `client_id`, `client_secret`, `scope`)<br/>
-        /// the console should highlight so the customer knows what to fix.
+        /// a client should highlight so the customer knows what to fix.
         /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]

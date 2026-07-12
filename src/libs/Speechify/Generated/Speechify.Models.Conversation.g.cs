@@ -27,21 +27,6 @@ namespace Speechify
         public required string AgentId { get; set; }
 
         /// <summary>
-        /// LiveKit room name. Equals the conversation `id` for `web`<br/>
-        /// and `sip_outbound` transports; `sip_inbound` rooms use a<br/>
-        /// `sip_&lt;e164&gt;_&lt;random&gt;` name assigned by the SIP dispatch rule.
-        /// </summary>
-        [global::System.Text.Json.Serialization.JsonPropertyName("room_name")]
-        [global::System.Text.Json.Serialization.JsonRequired]
-        public required string RoomName { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        [global::System.Text.Json.Serialization.JsonPropertyName("room_sid")]
-        public string? RoomSid { get; set; }
-
-        /// <summary>
         /// 
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("status")]
@@ -114,21 +99,27 @@ namespace Speechify
         public global::System.DateTime? RecordingStartedAt { get; set; }
 
         /// <summary>
-        /// Coarse termination category. Worker-stamped reasons arrive<br/>
-        /// before `terminate_call` fires; `caller_hangup` has two<br/>
-        /// emit sites (worker-observed SIP disconnect, plus a<br/>
-        /// server-side post-call catch-all).<br/>
+        /// Coarse termination category. Most reasons are assigned by the<br/>
+        /// agent runtime as the call ends; `caller_hangup` may also be<br/>
+        /// applied server-side as a post-call catch-all. The `dial_*`<br/>
+        /// reasons are assigned server-side on a `failed` conversation<br/>
+        /// for an outbound call that never connected.<br/>
         /// * `voicemail_message_left` — AMD machine-vm + we spoke the configured drop-message.<br/>
         /// * `voicemail_hangup` — AMD machine-vm + we terminated silently (action=hangup or empty-message bypass).<br/>
         /// * `ivr_hangup` — AMD machine-ivr + action=hangup.<br/>
         /// * `unavailable_hangup` — AMD machine-unavailable (mailbox full / disconnected).<br/>
         /// * `agent_ended` — LLM-driven end_call builtin.<br/>
-        /// * `inactivity_timeout` — worker's inactivity handler fired terminate after the configured silence window.<br/>
-        /// * `loop_detected` — worker's runtime loop guard force-ended the call after N consecutive near-identical user turns (typically an IVR replaying its menu while the LLM kept reacting instead of calling end_call).<br/>
-        /// * `max_duration_reached` - worker's max-call-duration watchdog force-ended the call at the platform ceiling (a safety bound on runaway calls).<br/>
+        /// * `inactivity_timeout` — the call ended after the configured silence window elapsed with no activity.<br/>
+        /// * `loop_detected` — a loop guard force-ended the call after several consecutive near-identical user turns (typically an IVR replaying its menu while the agent kept reacting instead of ending the call).<br/>
+        /// * `max_duration_reached` - the max-call-duration limit force-ended the call at the platform ceiling (a safety bound on runaway calls).<br/>
         /// * `over_capacity` — inbound call refused because the workspace was over its active-call concurrency cap; the busy message played and the call hung up. Stamped server-side and excluded from billing.<br/>
-        /// * `caller_hangup` — caller's leg went away. Precise when the worker observed the SIP `participant_disconnected` event (stamped immediately); otherwise stamped server-side ~10s after `room_finished` as a catch-all (web tab close, network blip, worker crash, etc.).<br/>
-        /// * `null` — pre-rollout calls only (anything that landed after the rollout completes without a stamp gets `caller_hangup` from the post-call goroutine).
+        /// * `caller_hangup` — the caller's leg went away. Stamped immediately when a SIP disconnect is observed; otherwise applied server-side shortly after the call ends as a catch-all (web tab close, network blip, etc.).<br/>
+        /// * `dial_no_answer` — outbound dial: callee did not pick up (SIP 408/480/487, the ringing timeout expired).<br/>
+        /// * `dial_busy` — outbound dial: the line was busy (SIP 486/600).<br/>
+        /// * `dial_rejected` — outbound dial: the call was actively refused (SIP 401/403/407 carrier auth/permission, or 603/607/608 callee decline).<br/>
+        /// * `dial_failed` — outbound dial: any other failure to connect (invalid number, carrier 5xx, malformed trunk address, TLS requirement, transport error). On a `failed` conversation with NULL `duration_ms`.<br/>
+        /// * `transferred` — the caller's leg was handed off to a phone number via SIP REFER (`transfer_to_number`); the carrier moved the leg and the agent's side ended.<br/>
+        /// * `null` — the termination category was not recorded. Legacy calls only; current calls always carry a reason.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("end_reason")]
         [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Speechify.JsonConverters.ConversationEndReasonJsonConverter))]
@@ -187,8 +178,9 @@ namespace Speechify
         /// their values. Reserved `system__*` keys are excluded —<br/>
         /// they are runtime-derived and not part of the audit<br/>
         /// snapshot. Omitted for SIP inbound calls (which take no<br/>
-        /// per-session variables) and for any pre-rollout<br/>
-        /// conversation. Populated only on detail responses; the<br/>
+        /// per-session variables) and for legacy conversations<br/>
+        /// recorded before this field existed. Populated only on<br/>
+        /// detail responses; the<br/>
         /// list endpoint skips it, mirroring `agent_snapshot`.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("dynamic_variables")]
@@ -259,11 +251,6 @@ namespace Speechify
         /// Prefixed wire identifier (`agent_&lt;26 char Crockford base32&gt;`)<br/>
         /// for the agent that answers this conversation.
         /// </param>
-        /// <param name="roomName">
-        /// LiveKit room name. Equals the conversation `id` for `web`<br/>
-        /// and `sip_outbound` transports; `sip_inbound` rooms use a<br/>
-        /// `sip_&lt;e164&gt;_&lt;random&gt;` name assigned by the SIP dispatch rule.
-        /// </param>
         /// <param name="status"></param>
         /// <param name="transport">
         /// How the caller reached the agent. `web` is the browser /<br/>
@@ -282,7 +269,6 @@ namespace Speechify
         /// subquery. Zero on single-row reads where the join cost<br/>
         /// isn't paid.
         /// </param>
-        /// <param name="roomSid"></param>
         /// <param name="startedAt">
         /// Set when the first user participant joins the realtime<br/>
         /// voice session. Null between CreateConversation and the<br/>
@@ -302,21 +288,27 @@ namespace Speechify
         /// there is no recording or the row pre-dates the field.
         /// </param>
         /// <param name="endReason">
-        /// Coarse termination category. Worker-stamped reasons arrive<br/>
-        /// before `terminate_call` fires; `caller_hangup` has two<br/>
-        /// emit sites (worker-observed SIP disconnect, plus a<br/>
-        /// server-side post-call catch-all).<br/>
+        /// Coarse termination category. Most reasons are assigned by the<br/>
+        /// agent runtime as the call ends; `caller_hangup` may also be<br/>
+        /// applied server-side as a post-call catch-all. The `dial_*`<br/>
+        /// reasons are assigned server-side on a `failed` conversation<br/>
+        /// for an outbound call that never connected.<br/>
         /// * `voicemail_message_left` — AMD machine-vm + we spoke the configured drop-message.<br/>
         /// * `voicemail_hangup` — AMD machine-vm + we terminated silently (action=hangup or empty-message bypass).<br/>
         /// * `ivr_hangup` — AMD machine-ivr + action=hangup.<br/>
         /// * `unavailable_hangup` — AMD machine-unavailable (mailbox full / disconnected).<br/>
         /// * `agent_ended` — LLM-driven end_call builtin.<br/>
-        /// * `inactivity_timeout` — worker's inactivity handler fired terminate after the configured silence window.<br/>
-        /// * `loop_detected` — worker's runtime loop guard force-ended the call after N consecutive near-identical user turns (typically an IVR replaying its menu while the LLM kept reacting instead of calling end_call).<br/>
-        /// * `max_duration_reached` - worker's max-call-duration watchdog force-ended the call at the platform ceiling (a safety bound on runaway calls).<br/>
+        /// * `inactivity_timeout` — the call ended after the configured silence window elapsed with no activity.<br/>
+        /// * `loop_detected` — a loop guard force-ended the call after several consecutive near-identical user turns (typically an IVR replaying its menu while the agent kept reacting instead of ending the call).<br/>
+        /// * `max_duration_reached` - the max-call-duration limit force-ended the call at the platform ceiling (a safety bound on runaway calls).<br/>
         /// * `over_capacity` — inbound call refused because the workspace was over its active-call concurrency cap; the busy message played and the call hung up. Stamped server-side and excluded from billing.<br/>
-        /// * `caller_hangup` — caller's leg went away. Precise when the worker observed the SIP `participant_disconnected` event (stamped immediately); otherwise stamped server-side ~10s after `room_finished` as a catch-all (web tab close, network blip, worker crash, etc.).<br/>
-        /// * `null` — pre-rollout calls only (anything that landed after the rollout completes without a stamp gets `caller_hangup` from the post-call goroutine).
+        /// * `caller_hangup` — the caller's leg went away. Stamped immediately when a SIP disconnect is observed; otherwise applied server-side shortly after the call ends as a catch-all (web tab close, network blip, etc.).<br/>
+        /// * `dial_no_answer` — outbound dial: callee did not pick up (SIP 408/480/487, the ringing timeout expired).<br/>
+        /// * `dial_busy` — outbound dial: the line was busy (SIP 486/600).<br/>
+        /// * `dial_rejected` — outbound dial: the call was actively refused (SIP 401/403/407 carrier auth/permission, or 603/607/608 callee decline).<br/>
+        /// * `dial_failed` — outbound dial: any other failure to connect (invalid number, carrier 5xx, malformed trunk address, TLS requirement, transport error). On a `failed` conversation with NULL `duration_ms`.<br/>
+        /// * `transferred` — the caller's leg was handed off to a phone number via SIP REFER (`transfer_to_number`); the carrier moved the leg and the agent's side ended.<br/>
+        /// * `null` — the termination category was not recorded. Legacy calls only; current calls always carry a reason.
         /// </param>
         /// <param name="callerIdentity">
         /// Stable caller key (LiveKit participant identity) persisted<br/>
@@ -352,8 +344,9 @@ namespace Speechify
         /// their values. Reserved `system__*` keys are excluded —<br/>
         /// they are runtime-derived and not part of the audit<br/>
         /// snapshot. Omitted for SIP inbound calls (which take no<br/>
-        /// per-session variables) and for any pre-rollout<br/>
-        /// conversation. Populated only on detail responses; the<br/>
+        /// per-session variables) and for legacy conversations<br/>
+        /// recorded before this field existed. Populated only on<br/>
+        /// detail responses; the<br/>
         /// list endpoint skips it, mirroring `agent_snapshot`.
         /// </param>
         /// <param name="ivrMenuId">
@@ -389,13 +382,11 @@ namespace Speechify
         public Conversation(
             string id,
             string agentId,
-            string roomName,
             global::Speechify.ConversationStatus status,
             global::Speechify.ConversationTransport transport,
             global::System.DateTime createdAt,
             object metadata,
             int messageCount,
-            string? roomSid,
             global::System.DateTime? startedAt,
             global::System.DateTime? endedAt,
             int? durationMs,
@@ -414,8 +405,6 @@ namespace Speechify
         {
             this.Id = id ?? throw new global::System.ArgumentNullException(nameof(id));
             this.AgentId = agentId ?? throw new global::System.ArgumentNullException(nameof(agentId));
-            this.RoomName = roomName ?? throw new global::System.ArgumentNullException(nameof(roomName));
-            this.RoomSid = roomSid;
             this.Status = status;
             this.Transport = transport;
             this.CreatedAt = createdAt;

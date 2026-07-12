@@ -16,7 +16,7 @@ namespace Speechify
         public required byte[] AudioData { get; set; }
 
         /// <summary>
-        /// The format of the audio data
+        /// The codec of the audio data
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("audio_format")]
         [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Speechify.JsonConverters.GetSpeechResponseAudioFormatJsonConverter))]
@@ -29,6 +29,13 @@ namespace Speechify
         [global::System.Text.Json.Serialization.JsonPropertyName("billable_characters_count")]
         [global::System.Text.Json.Serialization.JsonRequired]
         public required long BillableCharactersCount { get; set; }
+
+        /// <summary>
+        /// The full `codec_sampleRate_bitrate` format, echoed back when the request set `output_format`.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("output_format")]
+        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Speechify.JsonConverters.AudioOutputFormatJsonConverter))]
+        public global::Speechify.AudioOutputFormat? OutputFormat { get; set; }
 
         /// <summary>
         /// It is used to annotate the audio data with metadata about the synthesis process, like word timing or phoneme details.
@@ -50,13 +57,16 @@ namespace Speechify
         /// Synthesized speech audio, Base64-encoded
         /// </param>
         /// <param name="audioFormat">
-        /// The format of the audio data
+        /// The codec of the audio data
         /// </param>
         /// <param name="billableCharactersCount">
         /// The number of billable characters processed in the request.
         /// </param>
         /// <param name="speechMarks">
         /// It is used to annotate the audio data with metadata about the synthesis process, like word timing or phoneme details.
+        /// </param>
+        /// <param name="outputFormat">
+        /// The full `codec_sampleRate_bitrate` format, echoed back when the request set `output_format`.
         /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
@@ -65,11 +75,13 @@ namespace Speechify
             byte[] audioData,
             global::Speechify.GetSpeechResponseAudioFormat audioFormat,
             long billableCharactersCount,
-            global::Speechify.SpeechMarks speechMarks)
+            global::Speechify.SpeechMarks speechMarks,
+            global::Speechify.AudioOutputFormat? outputFormat)
         {
             this.AudioData = audioData ?? throw new global::System.ArgumentNullException(nameof(audioData));
             this.AudioFormat = audioFormat;
             this.BillableCharactersCount = billableCharactersCount;
+            this.OutputFormat = outputFormat;
             this.SpeechMarks = speechMarks ?? throw new global::System.ArgumentNullException(nameof(speechMarks));
         }
 

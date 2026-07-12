@@ -19,13 +19,6 @@ namespace Speechify
         public required global::Speechify.Conversation Conversation { get; set; }
 
         /// <summary>
-        /// 
-        /// </summary>
-        [global::System.Text.Json.Serialization.JsonPropertyName("room")]
-        [global::System.Text.Json.Serialization.JsonRequired]
-        public required string Room { get; set; }
-
-        /// <summary>
         /// Short-lived realtime session access token (JWT).
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("token")]
@@ -49,7 +42,6 @@ namespace Speechify
         /// Initializes a new instance of the <see cref="CreateConversationResponse" /> class.
         /// </summary>
         /// <param name="conversation"></param>
-        /// <param name="room"></param>
         /// <param name="token">
         /// Short-lived realtime session access token (JWT).
         /// </param>
@@ -61,12 +53,10 @@ namespace Speechify
 #endif
         public CreateConversationResponse(
             global::Speechify.Conversation conversation,
-            string room,
             string token,
             string url)
         {
             this.Conversation = conversation ?? throw new global::System.ArgumentNullException(nameof(conversation));
-            this.Room = room ?? throw new global::System.ArgumentNullException(nameof(room));
             this.Token = token ?? throw new global::System.ArgumentNullException(nameof(token));
             this.Url = url ?? throw new global::System.ArgumentNullException(nameof(url));
         }

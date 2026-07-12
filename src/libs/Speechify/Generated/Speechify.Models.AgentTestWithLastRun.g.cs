@@ -5,10 +5,8 @@ namespace Speechify
 {
     /// <summary>
     /// List-view projection of a test that includes the most recent run<br/>
-    /// so the console can display pass/fail badges without an extra<br/>
-    /// round-trip. On the global `/v1/agents/tests` surface, also carries<br/>
-    /// `attached_agent_ids` so the row can render agent chips without a<br/>
-    /// follow-up request.
+    /// so a client can display pass/fail badges without an extra<br/>
+    /// round-trip.
     /// </summary>
     public sealed partial class AgentTestWithLastRun
     {
@@ -107,12 +105,6 @@ namespace Speechify
         public global::Speechify.OneOf<global::Speechify.AgentTestRun, object>? LastRun { get; set; }
 
         /// <summary>
-        /// Every agent this test runs against. Always includes the owner agent.
-        /// </summary>
-        [global::System.Text.Json.Serialization.JsonPropertyName("attached_agent_ids")]
-        public global::System.Collections.Generic.IList<string>? AttachedAgentIds { get; set; }
-
-        /// <summary>
         /// Additional properties that are not explicitly defined in the schema
         /// </summary>
         [global::System.Text.Json.Serialization.JsonExtensionData]
@@ -160,9 +152,6 @@ namespace Speechify
         /// <param name="lastRun">
         /// The most recent run, or null if the test has never been run.
         /// </param>
-        /// <param name="attachedAgentIds">
-        /// Every agent this test runs against. Always includes the owner agent.
-        /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
 #endif
@@ -178,8 +167,7 @@ namespace Speechify
             global::Speechify.ToolMockConfig? toolMockConfig,
             object? variables,
             string? folderId,
-            global::Speechify.OneOf<global::Speechify.AgentTestRun, object>? lastRun,
-            global::System.Collections.Generic.IList<string>? attachedAgentIds)
+            global::Speechify.OneOf<global::Speechify.AgentTestRun, object>? lastRun)
         {
             this.Id = id ?? throw new global::System.ArgumentNullException(nameof(id));
             this.AgentId = agentId ?? throw new global::System.ArgumentNullException(nameof(agentId));
@@ -193,7 +181,6 @@ namespace Speechify
             this.CreatedAt = createdAt;
             this.UpdatedAt = updatedAt;
             this.LastRun = lastRun;
-            this.AttachedAgentIds = attachedAgentIds;
         }
 
         /// <summary>

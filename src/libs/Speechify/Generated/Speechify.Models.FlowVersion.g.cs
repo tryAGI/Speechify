@@ -9,7 +9,7 @@ namespace Speechify
     public sealed partial class FlowVersion
     {
         /// <summary>
-        /// Flow version id. A raw UUID, not a prefixed external id.
+        /// Flow version id (prefixed external id, `fver_...`).
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("id")]
         [global::System.Text.Json.Serialization.JsonRequired]
@@ -30,7 +30,7 @@ namespace Speechify
         public required int Version { get; set; }
 
         /// <summary>
-        /// 
+        /// Parent flow version id (prefixed external id, `fver_...`); null for the first version.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("parent_version_id")]
         public string? ParentVersionId { get; set; }
@@ -64,12 +64,6 @@ namespace Speechify
         /// <summary>
         /// 
         /// </summary>
-        [global::System.Text.Json.Serialization.JsonPropertyName("published_by")]
-        public string? PublishedBy { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("published_at")]
         public global::System.DateTime? PublishedAt { get; set; }
 
@@ -89,7 +83,7 @@ namespace Speechify
         /// Initializes a new instance of the <see cref="FlowVersion" /> class.
         /// </summary>
         /// <param name="id">
-        /// Flow version id. A raw UUID, not a prefixed external id.
+        /// Flow version id (prefixed external id, `fver_...`).
         /// </param>
         /// <param name="agentId"></param>
         /// <param name="version">
@@ -97,10 +91,11 @@ namespace Speechify
         /// </param>
         /// <param name="isActive"></param>
         /// <param name="isDraft"></param>
-        /// <param name="parentVersionId"></param>
+        /// <param name="parentVersionId">
+        /// Parent flow version id (prefixed external id, `fver_...`); null for the first version.
+        /// </param>
         /// <param name="name"></param>
         /// <param name="notes"></param>
-        /// <param name="publishedBy"></param>
         /// <param name="publishedAt"></param>
         /// <param name="updatedAt"></param>
 #if NET7_0_OR_GREATER
@@ -115,7 +110,6 @@ namespace Speechify
             string? parentVersionId,
             string? name,
             string? notes,
-            string? publishedBy,
             global::System.DateTime? publishedAt,
             global::System.DateTime? updatedAt)
         {
@@ -127,7 +121,6 @@ namespace Speechify
             this.IsDraft = isDraft;
             this.Name = name;
             this.Notes = notes;
-            this.PublishedBy = publishedBy;
             this.PublishedAt = publishedAt;
             this.UpdatedAt = updatedAt;
         }

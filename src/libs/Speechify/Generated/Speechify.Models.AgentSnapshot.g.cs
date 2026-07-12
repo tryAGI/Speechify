@@ -87,7 +87,7 @@ namespace Speechify
         /// 
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("temperature")]
-        public double? Temperature { get; set; }
+        public string? Temperature { get; set; }
 
         /// <summary>
         /// 
@@ -102,22 +102,16 @@ namespace Speechify
         public int? MemoryRetentionDays { get; set; }
 
         /// <summary>
-        /// Per-agent speaking-rate override at call time; null = the resolved voice's default rate.
-        /// </summary>
-        [global::System.Text.Json.Serialization.JsonPropertyName("tts_speaking_rate")]
-        public double? TtsSpeakingRate { get; set; }
-
-        /// <summary>
         /// Post-process time-stretch at call time; null = no time-stretch (1x).
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("tts_playback_rate")]
-        public double? TtsPlaybackRate { get; set; }
+        public string? TtsPlaybackRate { get; set; }
 
         /// <summary>
         /// Silence-wait override at call time; null = stack default endpointing.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("response_delay_seconds")]
-        public double? ResponseDelaySeconds { get; set; }
+        public string? ResponseDelaySeconds { get; set; }
 
         /// <summary>
         /// Streaming-STT stack the call dispatched with; null = the worker's platform default.
@@ -171,7 +165,7 @@ namespace Speechify
         /// 
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("background_noise_volume")]
-        public double? BackgroundNoiseVolume { get; set; }
+        public string? BackgroundNoiseVolume { get; set; }
 
         /// <summary>
         /// Additional properties that are not explicitly defined in the schema
@@ -203,9 +197,6 @@ namespace Speechify
         /// <param name="temperature"></param>
         /// <param name="memoryEnabled"></param>
         /// <param name="memoryRetentionDays"></param>
-        /// <param name="ttsSpeakingRate">
-        /// Per-agent speaking-rate override at call time; null = the resolved voice's default rate.
-        /// </param>
         /// <param name="ttsPlaybackRate">
         /// Post-process time-stretch at call time; null = no time-stretch (1x).
         /// </param>
@@ -248,12 +239,11 @@ namespace Speechify
             string? llmBaseUrl,
             object? llmExtraBody,
             string? voiceId,
-            double? temperature,
+            string? temperature,
             bool? memoryEnabled,
             int? memoryRetentionDays,
-            double? ttsSpeakingRate,
-            double? ttsPlaybackRate,
-            double? responseDelaySeconds,
+            string? ttsPlaybackRate,
+            string? responseDelaySeconds,
             string? sttOverride,
             global::Speechify.AMDConfig? amd,
             bool? saveAudioRecording,
@@ -261,7 +251,7 @@ namespace Speechify
             bool? ivrMemoryEnabled,
             int? inactivityTimeoutSeconds,
             global::Speechify.AgentSnapshotBackgroundNoisePreset? backgroundNoisePreset,
-            double? backgroundNoiseVolume)
+            string? backgroundNoiseVolume)
         {
             this.SchemaVersion = schemaVersion;
             this.CapturedAt = capturedAt;
@@ -277,7 +267,6 @@ namespace Speechify
             this.Temperature = temperature;
             this.MemoryEnabled = memoryEnabled;
             this.MemoryRetentionDays = memoryRetentionDays;
-            this.TtsSpeakingRate = ttsSpeakingRate;
             this.TtsPlaybackRate = ttsPlaybackRate;
             this.ResponseDelaySeconds = responseDelaySeconds;
             this.SttOverride = sttOverride;

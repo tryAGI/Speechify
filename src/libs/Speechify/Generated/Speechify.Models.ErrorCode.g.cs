@@ -48,6 +48,10 @@ namespace Speechify
         /// <summary>
         /// 
         /// </summary>
+        ConcurrencyLimitReached,
+        /// <summary>
+        /// 
+        /// </summary>
         Conflict,
         /// <summary>
         /// 
@@ -56,11 +60,23 @@ namespace Speechify
         /// <summary>
         /// 
         /// </summary>
+        CredentialInUse,
+        /// <summary>
+        /// 
+        /// </summary>
         CredentialNotFound,
         /// <summary>
         /// 
         /// </summary>
+        DestinationNotAllowed,
+        /// <summary>
+        /// 
+        /// </summary>
         Forbidden,
+        /// <summary>
+        /// 
+        /// </summary>
+        IdempotencyConflict,
         /// <summary>
         /// 
         /// </summary>
@@ -69,6 +85,18 @@ namespace Speechify
         /// 
         /// </summary>
         InternalError,
+        /// <summary>
+        /// 
+        /// </summary>
+        InternationalDialingNotEnabled,
+        /// <summary>
+        /// 
+        /// </summary>
+        InvalidApiVersion,
+        /// <summary>
+        /// 
+        /// </summary>
+        InviteAlreadyPending,
         /// <summary>
         /// 
         /// </summary>
@@ -124,11 +152,31 @@ namespace Speechify
         /// <summary>
         /// 
         /// </summary>
+        ServiceAccountLimitReached,
+        /// <summary>
+        /// 
+        /// </summary>
+        ServiceAccountsNotInPlan,
+        /// <summary>
+        /// 
+        /// </summary>
         ServiceUnavailable,
         /// <summary>
         /// 
         /// </summary>
         SipTrunkNotFound,
+        /// <summary>
+        /// 
+        /// </summary>
+        SpendBudgetExceeded,
+        /// <summary>
+        /// 
+        /// </summary>
+        SpendCapExceeded,
+        /// <summary>
+        /// 
+        /// </summary>
+        ToolConfigShared,
         /// <summary>
         /// 
         /// </summary>
@@ -191,12 +239,19 @@ namespace Speechify
                 ErrorCode.BatchNotFound => "batch_not_found",
                 ErrorCode.BuiltinNotFound => "builtin_not_found",
                 ErrorCode.CallerNotFound => "caller_not_found",
+                ErrorCode.ConcurrencyLimitReached => "concurrency_limit_reached",
                 ErrorCode.Conflict => "conflict",
                 ErrorCode.ConversationNotFound => "conversation_not_found",
+                ErrorCode.CredentialInUse => "credential_in_use",
                 ErrorCode.CredentialNotFound => "credential_not_found",
+                ErrorCode.DestinationNotAllowed => "destination_not_allowed",
                 ErrorCode.Forbidden => "forbidden",
+                ErrorCode.IdempotencyConflict => "idempotency_conflict",
                 ErrorCode.InsufficientScope => "insufficient_scope",
                 ErrorCode.InternalError => "internal_error",
+                ErrorCode.InternationalDialingNotEnabled => "international_dialing_not_enabled",
+                ErrorCode.InvalidApiVersion => "invalid_api_version",
+                ErrorCode.InviteAlreadyPending => "invite_already_pending",
                 ErrorCode.InviteEmailMismatch => "invite_email_mismatch",
                 ErrorCode.InviteNotFound => "invite_not_found",
                 ErrorCode.KbDocumentNotFound => "kb_document_not_found",
@@ -210,8 +265,13 @@ namespace Speechify
                 ErrorCode.PhoneNumberQuotaReached => "phone_number_quota_reached",
                 ErrorCode.PurchasedNumbersNotIncluded => "purchased_numbers_not_included",
                 ErrorCode.RateLimited => "rate_limited",
+                ErrorCode.ServiceAccountLimitReached => "service_account_limit_reached",
+                ErrorCode.ServiceAccountsNotInPlan => "service_accounts_not_in_plan",
                 ErrorCode.ServiceUnavailable => "service_unavailable",
                 ErrorCode.SipTrunkNotFound => "sip_trunk_not_found",
+                ErrorCode.SpendBudgetExceeded => "spend_budget_exceeded",
+                ErrorCode.SpendCapExceeded => "spend_cap_exceeded",
+                ErrorCode.ToolConfigShared => "tool_config_shared",
                 ErrorCode.ToolNotFound => "tool_not_found",
                 ErrorCode.Unauthorized => "unauthorized",
                 ErrorCode.UnsupportedMediaType => "unsupported_media_type",
@@ -240,12 +300,19 @@ namespace Speechify
                 "batch_not_found" => ErrorCode.BatchNotFound,
                 "builtin_not_found" => ErrorCode.BuiltinNotFound,
                 "caller_not_found" => ErrorCode.CallerNotFound,
+                "concurrency_limit_reached" => ErrorCode.ConcurrencyLimitReached,
                 "conflict" => ErrorCode.Conflict,
                 "conversation_not_found" => ErrorCode.ConversationNotFound,
+                "credential_in_use" => ErrorCode.CredentialInUse,
                 "credential_not_found" => ErrorCode.CredentialNotFound,
+                "destination_not_allowed" => ErrorCode.DestinationNotAllowed,
                 "forbidden" => ErrorCode.Forbidden,
+                "idempotency_conflict" => ErrorCode.IdempotencyConflict,
                 "insufficient_scope" => ErrorCode.InsufficientScope,
                 "internal_error" => ErrorCode.InternalError,
+                "international_dialing_not_enabled" => ErrorCode.InternationalDialingNotEnabled,
+                "invalid_api_version" => ErrorCode.InvalidApiVersion,
+                "invite_already_pending" => ErrorCode.InviteAlreadyPending,
                 "invite_email_mismatch" => ErrorCode.InviteEmailMismatch,
                 "invite_not_found" => ErrorCode.InviteNotFound,
                 "kb_document_not_found" => ErrorCode.KbDocumentNotFound,
@@ -259,8 +326,13 @@ namespace Speechify
                 "phone_number_quota_reached" => ErrorCode.PhoneNumberQuotaReached,
                 "purchased_numbers_not_included" => ErrorCode.PurchasedNumbersNotIncluded,
                 "rate_limited" => ErrorCode.RateLimited,
+                "service_account_limit_reached" => ErrorCode.ServiceAccountLimitReached,
+                "service_accounts_not_in_plan" => ErrorCode.ServiceAccountsNotInPlan,
                 "service_unavailable" => ErrorCode.ServiceUnavailable,
                 "sip_trunk_not_found" => ErrorCode.SipTrunkNotFound,
+                "spend_budget_exceeded" => ErrorCode.SpendBudgetExceeded,
+                "spend_cap_exceeded" => ErrorCode.SpendCapExceeded,
+                "tool_config_shared" => ErrorCode.ToolConfigShared,
                 "tool_not_found" => ErrorCode.ToolNotFound,
                 "unauthorized" => ErrorCode.Unauthorized,
                 "unsupported_media_type" => ErrorCode.UnsupportedMediaType,

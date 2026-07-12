@@ -9,7 +9,7 @@ namespace Speechify
     public sealed partial class RollbackFlowRequest
     {
         /// <summary>
-        /// The flow version to roll back to.
+        /// The flow version to roll back to (prefixed external id, `fver_...`).
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("version_id")]
         [global::System.Text.Json.Serialization.JsonRequired]
@@ -25,7 +25,7 @@ namespace Speechify
         /// Initializes a new instance of the <see cref="RollbackFlowRequest" /> class.
         /// </summary>
         /// <param name="versionId">
-        /// The flow version to roll back to.
+        /// The flow version to roll back to (prefixed external id, `fver_...`).
         /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]

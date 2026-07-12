@@ -5,7 +5,7 @@ namespace Speechify
 {
     /// <summary>
     /// Twilio credentials for the one-click import flow. Used only when<br/>
-    /// `source=twilio`. The Account SID and Auth Token are used to<br/>
+    /// `provider=twilio`. The Account SID and Auth Token are used to<br/>
     /// provision an Elastic SIP Trunk on the customer's Twilio account<br/>
     /// pointing at LiveKit's SIP endpoint, then stored for future trunk<br/>
     /// management operations.

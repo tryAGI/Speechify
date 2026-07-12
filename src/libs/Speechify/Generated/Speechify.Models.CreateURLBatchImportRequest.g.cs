@@ -4,7 +4,7 @@
 namespace Speechify
 {
     /// <summary>
-    /// Body for POST /v1/knowledge-bases/{id}/documents/urls. Submit<br/>
+    /// Body for POST /v1/agents/knowledge-bases/{kb_id}/documents/urls. Submit<br/>
     /// 1..N URLs in a single async import. The server dedupes and<br/>
     /// validates each entry before queueing. The per-import cap is<br/>
     /// operator-tunable (default 250) via kbUrlBatchMaxUrls; the<br/>

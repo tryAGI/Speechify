@@ -51,7 +51,7 @@ namespace Speechify
         public required int DurationMs { get; set; }
 
         /// <summary>
-        /// WAV sample rate. Always 48000 (matches the LiveKit room rate).
+        /// WAV sample rate. Always 48000 (the rate voice agents play back natively).
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("sample_rate_hz")]
         [global::System.Text.Json.Serialization.JsonRequired]
@@ -108,7 +108,7 @@ namespace Speechify
         /// Clip duration in milliseconds. Capped at 30000 (30s) at upload time.
         /// </param>
         /// <param name="sampleRateHz">
-        /// WAV sample rate. Always 48000 (matches the LiveKit room rate).
+        /// WAV sample rate. Always 48000 (the rate voice agents play back natively).
         /// </param>
         /// <param name="channels">
         /// Channel count. Always 1 (mono).

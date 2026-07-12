@@ -4,8 +4,8 @@
 namespace Speechify
 {
     /// <summary>
-    /// Minimal agent identity returned alongside a tool so the console<br/>
-    /// can render "this tool is attached to: X, Y" copy before a<br/>
+    /// Minimal agent identity returned alongside a tool so a client<br/>
+    /// can render "this tool is attached to: X, Y" before a<br/>
     /// destructive action runs.
     /// </summary>
     public sealed partial class ToolAttachedAgent
