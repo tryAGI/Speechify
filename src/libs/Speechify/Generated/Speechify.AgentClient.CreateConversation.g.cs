@@ -427,7 +427,7 @@ namespace Speechify
                                         h => h.Key,
                                         h => h.Value));
                             }
-                            // Authentication is missing or invalid. The request did not carry a recognised credential (Firebase ID token, API key, or worker JWT). 
+                            // Authentication is missing or invalid. The request did not carry a recognised credential (console session token, API key, or worker JWT). 
                             if ((int)__response.StatusCode == 401)
                             {
                                 string? __content_401 = null;
