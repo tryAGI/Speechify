@@ -54,6 +54,15 @@ namespace Speechify
         public object? Details { get; set; }
 
         /// <summary>
+        /// Link to the documentation that resolves this class of<br/>
+        /// error, when a stable page exists. Rate and concurrency<br/>
+        /// 429s link the API limits reference, which lists each<br/>
+        /// plan's limits and how to raise them.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("docs_url")]
+        public string? DocsUrl { get; set; }
+
+        /// <summary>
         /// Additional properties that are not explicitly defined in the schema
         /// </summary>
         [global::System.Text.Json.Serialization.JsonExtensionData]
@@ -92,6 +101,12 @@ namespace Speechify
         /// Clients that don't recognise a `details` shape can ignore<br/>
         /// it - the `code` + `message` contract is unchanged.
         /// </param>
+        /// <param name="docsUrl">
+        /// Link to the documentation that resolves this class of<br/>
+        /// error, when a stable page exists. Rate and concurrency<br/>
+        /// 429s link the API limits reference, which lists each<br/>
+        /// plan's limits and how to raise them.
+        /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
 #endif
@@ -99,12 +114,14 @@ namespace Speechify
             global::Speechify.ErrorCode code,
             string message,
             global::System.Collections.Generic.Dictionary<string, string>? fields,
-            object? details)
+            object? details,
+            string? docsUrl)
         {
             this.Code = code;
             this.Message = message ?? throw new global::System.ArgumentNullException(nameof(message));
             this.Fields = fields;
             this.Details = details;
+            this.DocsUrl = docsUrl;
         }
 
         /// <summary>
