@@ -29,12 +29,20 @@ namespace Speechify
             global::System.Net.Http.HttpClient httpClient,
             ref string? cursor,
             ref int? limit,
+            ref global::Speechify.V1VoicesGetParametersType? type,
+            ref string? locale,
+            ref global::Speechify.V1VoicesGetParametersGender? gender,
+            ref string? model,
             ref string? speechifyVersion);
         partial void PrepareListRequest(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpRequestMessage httpRequestMessage,
             string? cursor,
             int? limit,
+            global::Speechify.V1VoicesGetParametersType? type,
+            string? locale,
+            global::Speechify.V1VoicesGetParametersGender? gender,
+            string? model,
             string? speechifyVersion);
         partial void ProcessListResponse(
             global::System.Net.Http.HttpClient httpClient,
@@ -52,12 +60,17 @@ namespace Speechify
         /// the full catalogue is returned in one response. Pagination is<br/>
         /// opt-in: pass `limit` (and then `cursor` from the previous<br/>
         /// response) to page through the list while `has_more` is true. Max<br/>
-        /// page size is 200.
+        /// page size is 200. Narrow the list with the `type` and `locale`<br/>
+        /// filters (applied before pagination, so pages stay full).
         /// </summary>
         /// <param name="cursor"></param>
         /// <param name="limit">
         /// Default Value: 50
         /// </param>
+        /// <param name="type"></param>
+        /// <param name="locale"></param>
+        /// <param name="gender"></param>
+        /// <param name="model"></param>
         /// <param name="speechifyVersion"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -65,6 +78,10 @@ namespace Speechify
         public async global::System.Threading.Tasks.Task<global::Speechify.ListVoicesResponse> ListAsync(
             string? cursor = default,
             int? limit = default,
+            global::Speechify.V1VoicesGetParametersType? type = default,
+            string? locale = default,
+            global::Speechify.V1VoicesGetParametersGender? gender = default,
+            string? model = default,
             string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
@@ -72,6 +89,10 @@ namespace Speechify
             var __response = await ListAsResponseAsync(
                 cursor: cursor,
                 limit: limit,
+                type: type,
+                locale: locale,
+                gender: gender,
+                model: model,
                 speechifyVersion: speechifyVersion,
                 requestOptions: requestOptions,
                 cancellationToken: cancellationToken
@@ -86,12 +107,17 @@ namespace Speechify
         /// the full catalogue is returned in one response. Pagination is<br/>
         /// opt-in: pass `limit` (and then `cursor` from the previous<br/>
         /// response) to page through the list while `has_more` is true. Max<br/>
-        /// page size is 200.
+        /// page size is 200. Narrow the list with the `type` and `locale`<br/>
+        /// filters (applied before pagination, so pages stay full).
         /// </summary>
         /// <param name="cursor"></param>
         /// <param name="limit">
         /// Default Value: 50
         /// </param>
+        /// <param name="type"></param>
+        /// <param name="locale"></param>
+        /// <param name="gender"></param>
+        /// <param name="model"></param>
         /// <param name="speechifyVersion"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -99,6 +125,10 @@ namespace Speechify
         public async global::System.Threading.Tasks.Task<global::Speechify.AutoSDKHttpResponse<global::Speechify.ListVoicesResponse>> ListAsResponseAsync(
             string? cursor = default,
             int? limit = default,
+            global::Speechify.V1VoicesGetParametersType? type = default,
+            string? locale = default,
+            global::Speechify.V1VoicesGetParametersGender? gender = default,
+            string? model = default,
             string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
@@ -109,6 +139,10 @@ namespace Speechify
                 httpClient: HttpClient,
                 cursor: ref cursor,
                 limit: ref limit,
+                type: ref type,
+                locale: ref locale,
+                gender: ref gender,
+                model: ref model,
                 speechifyVersion: ref speechifyVersion);
 
 
@@ -140,6 +174,10 @@ namespace Speechify
                             __pathBuilder
                                 .AddOptionalParameter("cursor", cursor)
                                 .AddOptionalParameter("limit", limit?.ToString())
+                                .AddOptionalParameter("type", type?.ToValueString())
+                                .AddOptionalParameter("locale", locale)
+                                .AddOptionalParameter("gender", gender?.ToValueString())
+                                .AddOptionalParameter("model", model)
                                 ;
                             var __path = __pathBuilder.ToString();
                 __path = global::Speechify.AutoSDKRequestOptionsSupport.AppendQueryParameters(
@@ -189,6 +227,10 @@ namespace Speechify
                     httpRequestMessage: __httpRequest,
                     cursor: cursor,
                     limit: limit,
+                    type: type,
+                    locale: locale,
+                    gender: gender,
+                    model: model,
                     speechifyVersion: speechifyVersion);
 
                 return __httpRequest;

@@ -11,12 +11,17 @@ namespace Speechify
         /// the full catalogue is returned in one response. Pagination is<br/>
         /// opt-in: pass `limit` (and then `cursor` from the previous<br/>
         /// response) to page through the list while `has_more` is true. Max<br/>
-        /// page size is 200.
+        /// page size is 200. Narrow the list with the `type` and `locale`<br/>
+        /// filters (applied before pagination, so pages stay full).
         /// </summary>
         /// <param name="cursor"></param>
         /// <param name="limit">
         /// Default Value: 50
         /// </param>
+        /// <param name="type"></param>
+        /// <param name="locale"></param>
+        /// <param name="gender"></param>
+        /// <param name="model"></param>
         /// <param name="speechifyVersion"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -24,6 +29,10 @@ namespace Speechify
         global::System.Threading.Tasks.Task<global::Speechify.ListVoicesResponse> ListAsync(
             string? cursor = default,
             int? limit = default,
+            global::Speechify.V1VoicesGetParametersType? type = default,
+            string? locale = default,
+            global::Speechify.V1VoicesGetParametersGender? gender = default,
+            string? model = default,
             string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
@@ -34,12 +43,17 @@ namespace Speechify
         /// the full catalogue is returned in one response. Pagination is<br/>
         /// opt-in: pass `limit` (and then `cursor` from the previous<br/>
         /// response) to page through the list while `has_more` is true. Max<br/>
-        /// page size is 200.
+        /// page size is 200. Narrow the list with the `type` and `locale`<br/>
+        /// filters (applied before pagination, so pages stay full).
         /// </summary>
         /// <param name="cursor"></param>
         /// <param name="limit">
         /// Default Value: 50
         /// </param>
+        /// <param name="type"></param>
+        /// <param name="locale"></param>
+        /// <param name="gender"></param>
+        /// <param name="model"></param>
         /// <param name="speechifyVersion"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -47,6 +61,10 @@ namespace Speechify
         global::System.Threading.Tasks.Task<global::Speechify.AutoSDKHttpResponse<global::Speechify.ListVoicesResponse>> ListAsResponseAsync(
             string? cursor = default,
             int? limit = default,
+            global::Speechify.V1VoicesGetParametersType? type = default,
+            string? locale = default,
+            global::Speechify.V1VoicesGetParametersGender? gender = default,
+            string? model = default,
             string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
