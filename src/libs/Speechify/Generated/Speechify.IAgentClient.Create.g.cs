@@ -100,6 +100,14 @@ namespace Speechify
         /// <param name="amd">
         /// AMD routing config. Optional on create; omitted means AMD off. See AMDConfig schema.
         /// </param>
+        /// <param name="maxCallDurationSeconds">
+        /// Hard cap on the wall-clock length of a single call on this<br/>
+        /// agent, in seconds. When a call reaches it the agent ends the<br/>
+        /// call automatically. Voice agents only. Null means no<br/>
+        /// per-agent cap: the call is bounded only by your plan's call<br/>
+        /// ceiling, which is also the hard upper bound for this field -<br/>
+        /// a value above it is rejected.
+        /// </param>
         /// <param name="saveAudioRecording">
         /// When set, opts the agent into per-conversation audio recording. Defaults to false when omitted.
         /// </param>
@@ -127,6 +135,7 @@ namespace Speechify
             string? webhookUrl = default,
             string? webhookSecret = default,
             global::Speechify.AMDConfig? amd = default,
+            int? maxCallDurationSeconds = default,
             bool? saveAudioRecording = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);

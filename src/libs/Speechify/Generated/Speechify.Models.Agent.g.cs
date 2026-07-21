@@ -186,6 +186,17 @@ namespace Speechify
         public required global::Speechify.AMDConfig Amd { get; set; }
 
         /// <summary>
+        /// Hard cap on the wall-clock length of a single call on this<br/>
+        /// agent, in seconds. When a call reaches it the agent ends the<br/>
+        /// call automatically. Voice agents only. Null means no<br/>
+        /// per-agent cap: the call is bounded only by your plan's call<br/>
+        /// ceiling, which is also the hard upper bound for this field -<br/>
+        /// a value above it is rejected.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("max_call_duration_seconds")]
+        public int? MaxCallDurationSeconds { get; set; }
+
+        /// <summary>
         /// When true, every conversation produces a room-composite<br/>
         /// OGG egress uploaded to the recordings bucket. Defaults<br/>
         /// FALSE for new agents (privacy by default).
@@ -319,6 +330,14 @@ namespace Speechify
         /// secret itself is write-only — supplied on PATCH and never<br/>
         /// echoed back on reads.
         /// </param>
+        /// <param name="maxCallDurationSeconds">
+        /// Hard cap on the wall-clock length of a single call on this<br/>
+        /// agent, in seconds. When a call reaches it the agent ends the<br/>
+        /// call automatically. Voice agents only. Null means no<br/>
+        /// per-agent cap: the call is bounded only by your plan's call<br/>
+        /// ceiling, which is also the hard upper bound for this field -<br/>
+        /// a value above it is rejected.
+        /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
 #endif
@@ -345,7 +364,8 @@ namespace Speechify
             global::Speechify.WidgetConfig? widgetConfig,
             global::System.Collections.Generic.IList<string>? hostnameAllowlist,
             string? webhookUrl,
-            bool? webhookSecretSet)
+            bool? webhookSecretSet,
+            int? maxCallDurationSeconds)
         {
             this.Id = id ?? throw new global::System.ArgumentNullException(nameof(id));
             this.Name = name ?? throw new global::System.ArgumentNullException(nameof(name));
@@ -367,6 +387,7 @@ namespace Speechify
             this.WebhookUrl = webhookUrl;
             this.WebhookSecretSet = webhookSecretSet;
             this.Amd = amd ?? throw new global::System.ArgumentNullException(nameof(amd));
+            this.MaxCallDurationSeconds = maxCallDurationSeconds;
             this.SaveAudioRecording = saveAudioRecording;
             this.CreatedAt = createdAt;
             this.UpdatedAt = updatedAt;

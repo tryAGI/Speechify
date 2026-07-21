@@ -95,6 +95,15 @@ namespace Speechify
         /// <param name="amd">
         /// AMD routing config (PATCH-replace, wholesale). Omit to leave the stored config unchanged.
         /// </param>
+        /// <param name="maxCallDurationSeconds">
+        /// Hard cap on the wall-clock length of a single call on this<br/>
+        /// agent, in seconds. When a call reaches it the agent ends the<br/>
+        /// call automatically. Voice agents only. Null means no<br/>
+        /// per-agent cap: the call is bounded only by your plan's call<br/>
+        /// ceiling, which is also the hard upper bound for this field -<br/>
+        /// a value above it is rejected. On a PATCH, null clears a<br/>
+        /// previously set cap.
+        /// </param>
         /// <param name="saveAudioRecording"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -120,6 +129,7 @@ namespace Speechify
             string? webhookUrl = default,
             string? webhookSecret = default,
             global::Speechify.AMDConfig? amd = default,
+            int? maxCallDurationSeconds = default,
             bool? saveAudioRecording = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
