@@ -155,6 +155,14 @@ namespace Speechify
         public int? InactivityTimeoutSeconds { get; set; }
 
         /// <summary>
+        /// Per-agent call cap as configured at call time; null = bounded<br/>
+        /// only by the plan ceiling. This is the configured value, not the<br/>
+        /// effective one - a plan downgrade can lower what was enforced.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("max_call_duration_seconds")]
+        public int? MaxCallDurationSeconds { get; set; }
+
+        /// <summary>
         /// Ambient-bed preset at call time; null = no background noise.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("background_noise_preset")]
@@ -220,6 +228,11 @@ namespace Speechify
         /// <param name="inactivityTimeoutSeconds">
         /// Silence-tolerance override at call time; null = platform default.
         /// </param>
+        /// <param name="maxCallDurationSeconds">
+        /// Per-agent call cap as configured at call time; null = bounded<br/>
+        /// only by the plan ceiling. This is the configured value, not the<br/>
+        /// effective one - a plan downgrade can lower what was enforced.
+        /// </param>
         /// <param name="backgroundNoisePreset">
         /// Ambient-bed preset at call time; null = no background noise.
         /// </param>
@@ -250,6 +263,7 @@ namespace Speechify
             bool? navigatorMode,
             bool? ivrMemoryEnabled,
             int? inactivityTimeoutSeconds,
+            int? maxCallDurationSeconds,
             global::Speechify.AgentSnapshotBackgroundNoisePreset? backgroundNoisePreset,
             string? backgroundNoiseVolume)
         {
@@ -275,6 +289,7 @@ namespace Speechify
             this.NavigatorMode = navigatorMode;
             this.IvrMemoryEnabled = ivrMemoryEnabled;
             this.InactivityTimeoutSeconds = inactivityTimeoutSeconds;
+            this.MaxCallDurationSeconds = maxCallDurationSeconds;
             this.BackgroundNoisePreset = backgroundNoisePreset;
             this.BackgroundNoiseVolume = backgroundNoiseVolume;
         }

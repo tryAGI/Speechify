@@ -137,6 +137,17 @@ namespace Speechify
         public global::Speechify.AMDConfig? Amd { get; set; }
 
         /// <summary>
+        /// Hard cap on the wall-clock length of a single call on this<br/>
+        /// agent, in seconds. When a call reaches it the agent ends the<br/>
+        /// call automatically. Voice agents only. Null means no<br/>
+        /// per-agent cap: the call is bounded only by your plan's call<br/>
+        /// ceiling, which is also the hard upper bound for this field -<br/>
+        /// a value above it is rejected.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("max_call_duration_seconds")]
+        public int? MaxCallDurationSeconds { get; set; }
+
+        /// <summary>
         /// When set, opts the agent into per-conversation audio recording. Defaults to false when omitted.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("save_audio_recording")]
@@ -212,6 +223,14 @@ namespace Speechify
         /// <param name="amd">
         /// AMD routing config. Optional on create; omitted means AMD off. See AMDConfig schema.
         /// </param>
+        /// <param name="maxCallDurationSeconds">
+        /// Hard cap on the wall-clock length of a single call on this<br/>
+        /// agent, in seconds. When a call reaches it the agent ends the<br/>
+        /// call automatically. Voice agents only. Null means no<br/>
+        /// per-agent cap: the call is bounded only by your plan's call<br/>
+        /// ceiling, which is also the hard upper bound for this field -<br/>
+        /// a value above it is rejected.
+        /// </param>
         /// <param name="saveAudioRecording">
         /// When set, opts the agent into per-conversation audio recording. Defaults to false when omitted.
         /// </param>
@@ -238,6 +257,7 @@ namespace Speechify
             string? webhookUrl,
             string? webhookSecret,
             global::Speechify.AMDConfig? amd,
+            int? maxCallDurationSeconds,
             bool? saveAudioRecording)
         {
             this.Name = name ?? throw new global::System.ArgumentNullException(nameof(name));
@@ -259,6 +279,7 @@ namespace Speechify
             this.WebhookUrl = webhookUrl;
             this.WebhookSecret = webhookSecret;
             this.Amd = amd;
+            this.MaxCallDurationSeconds = maxCallDurationSeconds;
             this.SaveAudioRecording = saveAudioRecording;
         }
 
