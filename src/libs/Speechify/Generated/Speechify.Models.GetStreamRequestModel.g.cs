@@ -4,25 +4,25 @@
 namespace Speechify
 {
     /// <summary>
-    /// Model used for audio synthesis. `simba-english` is optimized for English, `simba-multilingual` for non-English or mixed input. `simba-3.2` is the streaming-native model with lower TTFB and richer expressivity, and the recommended Simba 3 model. `simba-3.0` is the earlier Simba 3.0 model, still available. `simba-3.0` and `simba-3.2` are currently English only; multilingual coming soon, and non-English voices return 400 until it ships.<br/>
+    /// Model used for audio synthesis. `simba-english` is optimized for English, `simba-multilingual` for non-English or mixed input. `simba-3.2` is the streaming-native model with the lowest TTFB and richest expressivity, and the recommended Simba 3 model; it is English only, so a non-English voice returns 400. `simba-3.0` is streaming-native and multilingual: it officially supports English plus `de-DE`, `es-ES`, `es-MX`, `fr-FR`, `it-IT` and `pt-BR`, and routes each request to its English or its multilingual training based on `language` (falling back to the voice's locale when `language` is omitted).<br/>
     /// Default Value: simba-english
     /// </summary>
     public enum GetStreamRequestModel
     {
         /// <summary>
-        /// 
+        /// it officially supports English plus `de-DE`, `es-ES`, `es-MX`, `fr-FR`, `it-IT` and `pt-BR`, and routes each request to its English or its multilingual training based on `language` (falling back to the voice's locale when `language` is omitted).
         /// </summary>
         Simba30,
         /// <summary>
-        /// 
+        /// it officially supports English plus `de-DE`, `es-ES`, `es-MX`, `fr-FR`, `it-IT` and `pt-BR`, and routes each request to its English or its multilingual training based on `language` (falling back to the voice's locale when `language` is omitted).
         /// </summary>
         Simba32,
         /// <summary>
-        /// 
+        /// it officially supports English plus `de-DE`, `es-ES`, `es-MX`, `fr-FR`, `it-IT` and `pt-BR`, and routes each request to its English or its multilingual training based on `language` (falling back to the voice's locale when `language` is omitted).
         /// </summary>
         SimbaEnglish,
         /// <summary>
-        /// 
+        /// it officially supports English plus `de-DE`, `es-ES`, `es-MX`, `fr-FR`, `it-IT` and `pt-BR`, and routes each request to its English or its multilingual training based on `language` (falling back to the voice's locale when `language` is omitted).
         /// </summary>
         SimbaMultilingual,
     }
