@@ -184,6 +184,10 @@ namespace Speechify
         /// <summary>
         /// 
         /// </summary>
+        TopupNotInPlan,
+        /// <summary>
+        /// 
+        /// </summary>
         Unauthorized,
         /// <summary>
         /// 
@@ -273,6 +277,7 @@ namespace Speechify
                 ErrorCode.SpendCapExceeded => "spend_cap_exceeded",
                 ErrorCode.ToolConfigShared => "tool_config_shared",
                 ErrorCode.ToolNotFound => "tool_not_found",
+                ErrorCode.TopupNotInPlan => "topup_not_in_plan",
                 ErrorCode.Unauthorized => "unauthorized",
                 ErrorCode.UnsupportedMediaType => "unsupported_media_type",
                 ErrorCode.UpstreamFailure => "upstream_failure",
@@ -334,6 +339,7 @@ namespace Speechify
                 "spend_cap_exceeded" => ErrorCode.SpendCapExceeded,
                 "tool_config_shared" => ErrorCode.ToolConfigShared,
                 "tool_not_found" => ErrorCode.ToolNotFound,
+                "topup_not_in_plan" => ErrorCode.TopupNotInPlan,
                 "unauthorized" => ErrorCode.Unauthorized,
                 "unsupported_media_type" => ErrorCode.UnsupportedMediaType,
                 "upstream_failure" => ErrorCode.UpstreamFailure,
