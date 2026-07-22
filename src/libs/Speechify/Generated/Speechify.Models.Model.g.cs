@@ -43,6 +43,16 @@ namespace Speechify
         public required bool Recommended { get; set; }
 
         /// <summary>
+        /// Whether this is a legacy model. Advisory only: a deprecated model<br/>
+        /// stays selectable and behaves exactly as before, and nothing is<br/>
+        /// scheduled for removal. De-emphasise it in a picker and steer new<br/>
+        /// integrations to a current model.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("deprecated")]
+        [global::System.Text.Json.Serialization.JsonRequired]
+        public required bool Deprecated { get; set; }
+
+        /// <summary>
         /// One-line summary of the model, for a model picker.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("description")]
@@ -86,6 +96,12 @@ namespace Speechify
         /// Exactly one model in the list is recommended, and it may differ<br/>
         /// from the `default`.
         /// </param>
+        /// <param name="deprecated">
+        /// Whether this is a legacy model. Advisory only: a deprecated model<br/>
+        /// stays selectable and behaves exactly as before, and nothing is<br/>
+        /// scheduled for removal. De-emphasise it in a picker and steer new<br/>
+        /// integrations to a current model.
+        /// </param>
         /// <param name="description">
         /// One-line summary of the model, for a model picker.
         /// </param>
@@ -103,6 +119,7 @@ namespace Speechify
             string name,
             bool @default,
             bool recommended,
+            bool deprecated,
             string description,
             global::System.Collections.Generic.IList<string> languages)
         {
@@ -110,6 +127,7 @@ namespace Speechify
             this.Name = name ?? throw new global::System.ArgumentNullException(nameof(name));
             this.Default = @default;
             this.Recommended = recommended;
+            this.Deprecated = deprecated;
             this.Description = description ?? throw new global::System.ArgumentNullException(nameof(description));
             this.Languages = languages ?? throw new global::System.ArgumentNullException(nameof(languages));
         }

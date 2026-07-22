@@ -47,7 +47,7 @@ namespace Speechify
 
         /// <summary>
         /// Create Voice<br/>
-        /// Create a personal (cloned) voice for the user from a 10-30 second audio sample. Cloned voices are usable self-serve on `simba-english` and `simba-multilingual`. Synthesizing a cloned voice on `simba-3.2` currently requires manual Speechify review and approval of the voice key while we evaluate stronger safeguards, given the model's quality; contact Speechify to have a cloned voice approved for `simba-3.2`. Simba 3.0 does not accept cloned voices.
+        /// Create a personal (cloned) voice for the user from a 10-30 second audio sample. Cloned voices are usable self-serve on `simba-3.0`, `simba-english` and `simba-multilingual`. Synthesizing a cloned voice on `simba-3.2` currently requires manual Speechify review and approval of the voice key while we evaluate stronger safeguards, given the model's quality; contact Speechify to have a cloned voice approved for `simba-3.2`.
         /// </summary>
         /// <param name="speechifyVersion"></param>
         /// <param name="idempotencyKey">
@@ -78,7 +78,7 @@ namespace Speechify
         }
         /// <summary>
         /// Create Voice<br/>
-        /// Create a personal (cloned) voice for the user from a 10-30 second audio sample. Cloned voices are usable self-serve on `simba-english` and `simba-multilingual`. Synthesizing a cloned voice on `simba-3.2` currently requires manual Speechify review and approval of the voice key while we evaluate stronger safeguards, given the model's quality; contact Speechify to have a cloned voice approved for `simba-3.2`. Simba 3.0 does not accept cloned voices.
+        /// Create a personal (cloned) voice for the user from a 10-30 second audio sample. Cloned voices are usable self-serve on `simba-3.0`, `simba-english` and `simba-multilingual`. Synthesizing a cloned voice on `simba-3.2` currently requires manual Speechify review and approval of the voice key while we evaluate stronger safeguards, given the model's quality; contact Speechify to have a cloned voice approved for `simba-3.2`.
         /// </summary>
         /// <param name="speechifyVersion"></param>
         /// <param name="idempotencyKey">
@@ -951,7 +951,7 @@ namespace Speechify
         }
         /// <summary>
         /// Create Voice<br/>
-        /// Create a personal (cloned) voice for the user from a 10-30 second audio sample. Cloned voices are usable self-serve on `simba-english` and `simba-multilingual`. Synthesizing a cloned voice on `simba-3.2` currently requires manual Speechify review and approval of the voice key while we evaluate stronger safeguards, given the model's quality; contact Speechify to have a cloned voice approved for `simba-3.2`. Simba 3.0 does not accept cloned voices.
+        /// Create a personal (cloned) voice for the user from a 10-30 second audio sample. Cloned voices are usable self-serve on `simba-3.0`, `simba-english` and `simba-multilingual`. Synthesizing a cloned voice on `simba-3.2` currently requires manual Speechify review and approval of the voice key while we evaluate stronger safeguards, given the model's quality; contact Speechify to have a cloned voice approved for `simba-3.2`.
         /// </summary>
         /// <param name="speechifyVersion"></param>
         /// <param name="idempotencyKey">
@@ -1026,7 +1026,7 @@ namespace Speechify
 
         /// <summary>
         /// Create Voice<br/>
-        /// Create a personal (cloned) voice for the user from a 10-30 second audio sample. Cloned voices are usable self-serve on `simba-english` and `simba-multilingual`. Synthesizing a cloned voice on `simba-3.2` currently requires manual Speechify review and approval of the voice key while we evaluate stronger safeguards, given the model's quality; contact Speechify to have a cloned voice approved for `simba-3.2`. Simba 3.0 does not accept cloned voices.
+        /// Create a personal (cloned) voice for the user from a 10-30 second audio sample. Cloned voices are usable self-serve on `simba-3.0`, `simba-english` and `simba-multilingual`. Synthesizing a cloned voice on `simba-3.2` currently requires manual Speechify review and approval of the voice key while we evaluate stronger safeguards, given the model's quality; contact Speechify to have a cloned voice approved for `simba-3.2`.
         /// </summary>
         /// <param name="speechifyVersion"></param>
         /// <param name="idempotencyKey">
@@ -1937,7 +1937,7 @@ namespace Speechify
         }
         /// <summary>
         /// Create Voice<br/>
-        /// Create a personal (cloned) voice for the user from a 10-30 second audio sample. Cloned voices are usable self-serve on `simba-english` and `simba-multilingual`. Synthesizing a cloned voice on `simba-3.2` currently requires manual Speechify review and approval of the voice key while we evaluate stronger safeguards, given the model's quality; contact Speechify to have a cloned voice approved for `simba-3.2`. Simba 3.0 does not accept cloned voices.
+        /// Create a personal (cloned) voice for the user from a 10-30 second audio sample. Cloned voices are usable self-serve on `simba-3.0`, `simba-english` and `simba-multilingual`. Synthesizing a cloned voice on `simba-3.2` currently requires manual Speechify review and approval of the voice key while we evaluate stronger safeguards, given the model's quality; contact Speechify to have a cloned voice approved for `simba-3.2`.
         /// </summary>
         /// <param name="speechifyVersion"></param>
         /// <param name="idempotencyKey">
