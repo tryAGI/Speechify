@@ -9,7 +9,10 @@ namespace Speechify
         /// Re-run the failed and errored tests of a suite run as a fresh<br/>
         /// suite run, linked back to the original via<br/>
         /// `parent_suite_run_id`. Returns 400 when the suite run has no<br/>
-        /// failed or errored tests to re-run.
+        /// failed or errored tests to re-run.<br/>
+        /// The parent's `config_override` is re-applied, so it is re-checked<br/>
+        /// against the workspace's current plan: a model the workspace no<br/>
+        /// longer has returns `402` rather than replaying it.
         /// </summary>
         /// <param name="suiteRunId"></param>
         /// <param name="speechifyVersion"></param>
@@ -30,7 +33,10 @@ namespace Speechify
         /// Re-run the failed and errored tests of a suite run as a fresh<br/>
         /// suite run, linked back to the original via<br/>
         /// `parent_suite_run_id`. Returns 400 when the suite run has no<br/>
-        /// failed or errored tests to re-run.
+        /// failed or errored tests to re-run.<br/>
+        /// The parent's `config_override` is re-applied, so it is re-checked<br/>
+        /// against the workspace's current plan: a model the workspace no<br/>
+        /// longer has returns `402` rather than replaying it.
         /// </summary>
         /// <param name="suiteRunId"></param>
         /// <param name="speechifyVersion"></param>

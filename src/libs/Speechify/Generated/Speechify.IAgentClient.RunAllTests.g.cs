@@ -16,7 +16,11 @@ namespace Speechify
         /// applied to every test without editing the tests, and/or a<br/>
         /// `flow_version_id` to target a specific flow version instead of<br/>
         /// the agent's active flow. Omit the body to run against the<br/>
-        /// agent's live config and active flow.
+        /// agent's live config and active flow.<br/>
+        /// Runs are admitted against the workspace's remaining credit and its<br/>
+        /// spending limits. `config_override.model` must be a model the<br/>
+        /// workspace's plan includes; an over-tier model returns `402` before<br/>
+        /// any run is queued.
         /// </summary>
         /// <param name="agentId"></param>
         /// <param name="speechifyVersion"></param>
@@ -47,7 +51,11 @@ namespace Speechify
         /// applied to every test without editing the tests, and/or a<br/>
         /// `flow_version_id` to target a specific flow version instead of<br/>
         /// the agent's active flow. Omit the body to run against the<br/>
-        /// agent's live config and active flow.
+        /// agent's live config and active flow.<br/>
+        /// Runs are admitted against the workspace's remaining credit and its<br/>
+        /// spending limits. `config_override.model` must be a model the<br/>
+        /// workspace's plan includes; an over-tier model returns `402` before<br/>
+        /// any run is queued.
         /// </summary>
         /// <param name="agentId"></param>
         /// <param name="speechifyVersion"></param>
@@ -78,7 +86,11 @@ namespace Speechify
         /// applied to every test without editing the tests, and/or a<br/>
         /// `flow_version_id` to target a specific flow version instead of<br/>
         /// the agent's active flow. Omit the body to run against the<br/>
-        /// agent's live config and active flow.
+        /// agent's live config and active flow.<br/>
+        /// Runs are admitted against the workspace's remaining credit and its<br/>
+        /// spending limits. `config_override.model` must be a model the<br/>
+        /// workspace's plan includes; an over-tier model returns `402` before<br/>
+        /// any run is queued.
         /// </summary>
         /// <param name="agentId"></param>
         /// <param name="speechifyVersion"></param>
