@@ -65,7 +65,9 @@ namespace Speechify
         /// Deprecated. Prefer the run-level `config_override`<br/>
         /// on `POST /v1/agents/{agent_id}/tests/runs`. Still honoured; the<br/>
         /// run-level override wins when both are set. Overrides the LLM<br/>
-        /// model used by the agent for this run only.
+        /// model used by the agent for this run only. Must be a model the<br/>
+        /// workspace's plan includes; an over-tier or unknown model fails<br/>
+        /// the run.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("model_override")]
         public string? ModelOverride { get; set; }
@@ -108,7 +110,9 @@ namespace Speechify
         /// Deprecated. Prefer the run-level `config_override`<br/>
         /// on `POST /v1/agents/{agent_id}/tests/runs`. Still honoured; the<br/>
         /// run-level override wins when both are set. Overrides the LLM<br/>
-        /// model used by the agent for this run only.
+        /// model used by the agent for this run only. Must be a model the<br/>
+        /// workspace's plan includes; an over-tier or unknown model fails<br/>
+        /// the run.
         /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]

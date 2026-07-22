@@ -10,7 +10,11 @@ namespace Speechify
         /// `pending` status. Poll `GET /v1/agents/tests/runs/{test_run_id}` until the status<br/>
         /// reaches a terminal state (`completed`, `failed`, or `cancelled`). A<br/>
         /// run that reached `completed` produced a judgment - read the separate<br/>
-        /// `verdict` field (`passed` / `failed`) for the pass/fail result.
+        /// `verdict` field (`passed` / `failed`) for the pass/fail result.<br/>
+        /// A run is admitted against the workspace's remaining credit and its<br/>
+        /// spending limits, and executes on the models the workspace's plan<br/>
+        /// includes. A depleted balance or an exhausted spend limit returns<br/>
+        /// `402`.
         /// </summary>
         /// <param name="testId"></param>
         /// <param name="speechifyVersion"></param>
@@ -35,7 +39,11 @@ namespace Speechify
         /// `pending` status. Poll `GET /v1/agents/tests/runs/{test_run_id}` until the status<br/>
         /// reaches a terminal state (`completed`, `failed`, or `cancelled`). A<br/>
         /// run that reached `completed` produced a judgment - read the separate<br/>
-        /// `verdict` field (`passed` / `failed`) for the pass/fail result.
+        /// `verdict` field (`passed` / `failed`) for the pass/fail result.<br/>
+        /// A run is admitted against the workspace's remaining credit and its<br/>
+        /// spending limits, and executes on the models the workspace's plan<br/>
+        /// includes. A depleted balance or an exhausted spend limit returns<br/>
+        /// `402`.
         /// </summary>
         /// <param name="testId"></param>
         /// <param name="speechifyVersion"></param>
@@ -60,7 +68,11 @@ namespace Speechify
         /// `pending` status. Poll `GET /v1/agents/tests/runs/{test_run_id}` until the status<br/>
         /// reaches a terminal state (`completed`, `failed`, or `cancelled`). A<br/>
         /// run that reached `completed` produced a judgment - read the separate<br/>
-        /// `verdict` field (`passed` / `failed`) for the pass/fail result.
+        /// `verdict` field (`passed` / `failed`) for the pass/fail result.<br/>
+        /// A run is admitted against the workspace's remaining credit and its<br/>
+        /// spending limits, and executes on the models the workspace's plan<br/>
+        /// includes. A depleted balance or an exhausted spend limit returns<br/>
+        /// `402`.
         /// </summary>
         /// <param name="testId"></param>
         /// <param name="speechifyVersion"></param>
