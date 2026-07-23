@@ -45,6 +45,10 @@ namespace Speechify
 
             typeof(global::Speechify.JsonConverters.AudioStreamOutputFormatNullableJsonConverter),
 
+            typeof(global::Speechify.JsonConverters.V1AudioStreamWithTimestampsPostParametersAcceptJsonConverter),
+
+            typeof(global::Speechify.JsonConverters.V1AudioStreamWithTimestampsPostParametersAcceptNullableJsonConverter),
+
             typeof(global::Speechify.JsonConverters.V1VoicesGetParametersTypeJsonConverter),
 
             typeof(global::Speechify.JsonConverters.V1VoicesGetParametersTypeNullableJsonConverter),
@@ -369,6 +373,7 @@ namespace Speechify
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.GetStreamOptionsRequest))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.AudioStreamOutputFormat), TypeInfoPropertyName = "AudioStreamOutputFormat2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.GetStreamRequest))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.V1AudioStreamWithTimestampsPostParametersAccept), TypeInfoPropertyName = "V1AudioStreamWithTimestampsPostParametersAccept2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.V1VoicesGetParametersType), TypeInfoPropertyName = "V1VoicesGetParametersType2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.V1VoicesGetParametersGender), TypeInfoPropertyName = "V1VoicesGetParametersGender2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.GetVoiceGender), TypeInfoPropertyName = "GetVoiceGender2")]
