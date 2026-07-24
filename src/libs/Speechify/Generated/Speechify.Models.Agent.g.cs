@@ -47,11 +47,21 @@ namespace Speechify
         public required string FirstMessage { get; set; }
 
         /// <summary>
-        /// ISO 639-1 code, e.g. 'en'.
+        /// ISO 639-1 code, e.g. 'en'. The agent's default language.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("language")]
         [global::System.Text.Json.Serialization.JsonRequired]
         public required string Language { get; set; }
+
+        /// <summary>
+        /// Extra languages this agent serves in the same session beyond<br/>
+        /// its default `language`. When non-empty the agent can switch<br/>
+        /// language mid-call (triggered when the caller speaks one of<br/>
+        /// these languages or asks for it). Always present on reads;<br/>
+        /// empty array for single-language agents.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("additional_languages")]
+        public global::System.Collections.Generic.IList<global::Speechify.AgentAdditionalLanguage>? AdditionalLanguages { get; set; }
 
         /// <summary>
         /// Language-model configuration. Omit the whole block on create to<br/>
@@ -241,7 +251,7 @@ namespace Speechify
         /// Spoken verbatim at session start when present in the customer's flow graph.
         /// </param>
         /// <param name="language">
-        /// ISO 639-1 code, e.g. 'en'.
+        /// ISO 639-1 code, e.g. 'en'. The agent's default language.
         /// </param>
         /// <param name="llm">
         /// Language-model configuration. Omit the whole block on create to<br/>
@@ -296,6 +306,13 @@ namespace Speechify
         /// </param>
         /// <param name="createdAt"></param>
         /// <param name="updatedAt"></param>
+        /// <param name="additionalLanguages">
+        /// Extra languages this agent serves in the same session beyond<br/>
+        /// its default `language`. When non-empty the agent can switch<br/>
+        /// language mid-call (triggered when the caller speaks one of<br/>
+        /// these languages or asks for it). Always present on reads;<br/>
+        /// empty array for single-language agents.
+        /// </param>
         /// <param name="widgetConfig">
         /// Customer-editable appearance + behaviour payload for the<br/>
         /// embedded `&lt;speechify-agent&gt;` pill: button text, avatar style,<br/>
@@ -361,6 +378,7 @@ namespace Speechify
             bool saveAudioRecording,
             global::System.DateTime createdAt,
             global::System.DateTime updatedAt,
+            global::System.Collections.Generic.IList<global::Speechify.AgentAdditionalLanguage>? additionalLanguages,
             global::Speechify.WidgetConfig? widgetConfig,
             global::System.Collections.Generic.IList<string>? hostnameAllowlist,
             string? webhookUrl,
@@ -373,6 +391,7 @@ namespace Speechify
             this.Prompt = prompt ?? throw new global::System.ArgumentNullException(nameof(prompt));
             this.FirstMessage = firstMessage ?? throw new global::System.ArgumentNullException(nameof(firstMessage));
             this.Language = language ?? throw new global::System.ArgumentNullException(nameof(language));
+            this.AdditionalLanguages = additionalLanguages;
             this.Llm = llm ?? throw new global::System.ArgumentNullException(nameof(llm));
             this.Tts = tts ?? throw new global::System.ArgumentNullException(nameof(tts));
             this.Stt = stt ?? throw new global::System.ArgumentNullException(nameof(stt));

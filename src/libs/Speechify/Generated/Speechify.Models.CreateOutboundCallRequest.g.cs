@@ -33,6 +33,16 @@ namespace Speechify
         public string? CallerIdNumber { get; set; }
 
         /// <summary>
+        /// Starts the call in one of the agent's configured languages (the<br/>
+        /// default `language` or an `additional_languages` entry, matched<br/>
+        /// by primary subtag) - e.g. a batch campaign dialing a per-row<br/>
+        /// locale. Omit for the agent's default language; an unconfigured<br/>
+        /// language is rejected with 400.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("language")]
+        public string? Language { get; set; }
+
+        /// <summary>
         /// DTMF digits dialed automatically after the call is answered,<br/>
         /// before the agent begins speaking. Use this for IVR navigation<br/>
         /// (e.g. `1ww2` presses 1, waits two seconds, presses 2). `w`<br/>
@@ -90,6 +100,13 @@ namespace Speechify
         /// Useful for multi-number campaigns where you want to rotate<br/>
         /// caller IDs.
         /// </param>
+        /// <param name="language">
+        /// Starts the call in one of the agent's configured languages (the<br/>
+        /// default `language` or an `additional_languages` entry, matched<br/>
+        /// by primary subtag) - e.g. a batch campaign dialing a per-row<br/>
+        /// locale. Omit for the agent's default language; an unconfigured<br/>
+        /// language is rejected with 400.
+        /// </param>
         /// <param name="dtmfPrefix">
         /// DTMF digits dialed automatically after the call is answered,<br/>
         /// before the agent begins speaking. Use this for IVR navigation<br/>
@@ -122,6 +139,7 @@ namespace Speechify
             string agentId,
             string to,
             string? callerIdNumber,
+            string? language,
             string? dtmfPrefix,
             object? dynamicVariables,
             int? ringingTimeoutMs,
@@ -130,6 +148,7 @@ namespace Speechify
             this.AgentId = agentId ?? throw new global::System.ArgumentNullException(nameof(agentId));
             this.To = to ?? throw new global::System.ArgumentNullException(nameof(to));
             this.CallerIdNumber = callerIdNumber;
+            this.Language = language;
             this.DtmfPrefix = dtmfPrefix;
             this.DynamicVariables = dynamicVariables;
             this.RingingTimeoutMs = ringingTimeoutMs;

@@ -619,6 +619,13 @@ namespace Speechify
         /// <param name="userIdentity">
         /// Opaque identifier for the end-user (e.g. your app's user ID). Stamped onto the conversation. Optional - defaults to an anonymous per-session ID.
         /// </param>
+        /// <param name="language">
+        /// Starts the session in one of the agent's configured languages<br/>
+        /// (the default `language` or an `additional_languages` entry,<br/>
+        /// matched by primary subtag). The greeting and any per-language<br/>
+        /// voice follow. Omit for the agent's default language; an<br/>
+        /// unconfigured language is rejected with 400.
+        /// </param>
         /// <param name="dynamicVariables">
         /// Per-session variable overrides that merge on top of the agent's<br/>
         /// stored variable defaults for this one session. Keys in the<br/>
@@ -634,6 +641,7 @@ namespace Speechify
             string agentId,
             string? speechifyVersion = default,
             string? userIdentity = default,
+            string? language = default,
             object? dynamicVariables = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
@@ -641,6 +649,7 @@ namespace Speechify
             var __request = new global::Speechify.CreateSessionRequest
             {
                 UserIdentity = userIdentity,
+                Language = language,
                 DynamicVariables = dynamicVariables,
             };
 
