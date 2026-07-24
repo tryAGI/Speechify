@@ -48,7 +48,12 @@ namespace Speechify
         /// Greeting spoken verbatim at session start when included in the agent's flow graph.
         /// </param>
         /// <param name="language">
-        /// ISO 639-1 code. Defaults to 'en' when omitted.
+        /// ISO 639-1 code. Defaults to 'en' when omitted. The agent's default language.
+        /// </param>
+        /// <param name="additionalLanguages">
+        /// Extra languages this agent serves in the same session.<br/>
+        /// Each entry's language must be supported, unique, and<br/>
+        /// different from the default `language`.
         /// </param>
         /// <param name="llm">
         /// Language-model configuration. Omit the whole block on create to<br/>
@@ -122,6 +127,7 @@ namespace Speechify
             string? speechifyVersion = default,
             string? slug = default,
             string? language = default,
+            global::System.Collections.Generic.IList<global::Speechify.AgentAdditionalLanguage>? additionalLanguages = default,
             global::Speechify.AgentLLMConfig? llm = default,
             global::Speechify.AgentSTTConfig? stt = default,
             global::Speechify.AgentTurnHandlingConfig? turnHandling = default,

@@ -53,6 +53,12 @@ namespace Speechify
         public string? Language { get; set; }
 
         /// <summary>
+        /// Multilingual config as of call start. Absent on snapshots that pre-date the field and on single-language agents.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("additional_languages")]
+        public global::System.Collections.Generic.IList<global::Speechify.AgentAdditionalLanguage>? AdditionalLanguages { get; set; }
+
+        /// <summary>
         /// Resolved provider that actually ran (a "Platform default"<br/>
         /// agent freezes the concrete platform pair at call time).
         /// </summary>
@@ -190,6 +196,9 @@ namespace Speechify
         /// <param name="prompt"></param>
         /// <param name="firstMessage"></param>
         /// <param name="language"></param>
+        /// <param name="additionalLanguages">
+        /// Multilingual config as of call start. Absent on snapshots that pre-date the field and on single-language agents.
+        /// </param>
         /// <param name="llmProvider">
         /// Resolved provider that actually ran (a "Platform default"<br/>
         /// agent freezes the concrete platform pair at call time).
@@ -247,6 +256,7 @@ namespace Speechify
             string? prompt,
             string? firstMessage,
             string? language,
+            global::System.Collections.Generic.IList<global::Speechify.AgentAdditionalLanguage>? additionalLanguages,
             string? llmProvider,
             string? llmModel,
             string? llmBaseUrl,
@@ -273,6 +283,7 @@ namespace Speechify
             this.Prompt = prompt;
             this.FirstMessage = firstMessage;
             this.Language = language;
+            this.AdditionalLanguages = additionalLanguages;
             this.LlmProvider = llmProvider;
             this.LlmModel = llmModel;
             this.LlmBaseUrl = llmBaseUrl;

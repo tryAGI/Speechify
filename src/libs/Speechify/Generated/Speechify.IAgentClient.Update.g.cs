@@ -48,6 +48,11 @@ namespace Speechify
         /// <param name="prompt"></param>
         /// <param name="firstMessage"></param>
         /// <param name="language"></param>
+        /// <param name="additionalLanguages">
+        /// Replaces the stored list wholesale when present; an empty<br/>
+        /// array clears it back to a single-language agent. Omit to<br/>
+        /// leave unchanged.
+        /// </param>
         /// <param name="llm">
         /// Language-model configuration. Omit the whole block on create to<br/>
         /// run on the platform default model. On update (merge-patch) send<br/>
@@ -115,6 +120,7 @@ namespace Speechify
             string? prompt = default,
             string? firstMessage = default,
             string? language = default,
+            global::System.Collections.Generic.IList<global::Speechify.AgentAdditionalLanguage>? additionalLanguages = default,
             global::Speechify.AgentLLMConfig? llm = default,
             global::Speechify.AgentTTSConfig? tts = default,
             global::Speechify.AgentSTTConfig? stt = default,

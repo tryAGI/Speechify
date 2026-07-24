@@ -86,6 +86,13 @@ namespace Speechify
         /// Useful for multi-number campaigns where you want to rotate<br/>
         /// caller IDs.
         /// </param>
+        /// <param name="language">
+        /// Starts the call in one of the agent's configured languages (the<br/>
+        /// default `language` or an `additional_languages` entry, matched<br/>
+        /// by primary subtag) - e.g. a batch campaign dialing a per-row<br/>
+        /// locale. Omit for the agent's default language; an unconfigured<br/>
+        /// language is rejected with 400.
+        /// </param>
         /// <param name="dtmfPrefix">
         /// DTMF digits dialed automatically after the call is answered,<br/>
         /// before the agent begins speaking. Use this for IVR navigation<br/>
@@ -120,6 +127,7 @@ namespace Speechify
             string? speechifyVersion = default,
             string? idempotencyKey = default,
             string? callerIdNumber = default,
+            string? language = default,
             string? dtmfPrefix = default,
             object? dynamicVariables = default,
             int? ringingTimeoutMs = default,

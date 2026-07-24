@@ -36,10 +36,18 @@ namespace Speechify
         public required string FirstMessage { get; set; }
 
         /// <summary>
-        /// ISO 639-1 code. Defaults to 'en' when omitted.
+        /// ISO 639-1 code. Defaults to 'en' when omitted. The agent's default language.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("language")]
         public string? Language { get; set; }
+
+        /// <summary>
+        /// Extra languages this agent serves in the same session.<br/>
+        /// Each entry's language must be supported, unique, and<br/>
+        /// different from the default `language`.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("additional_languages")]
+        public global::System.Collections.Generic.IList<global::Speechify.AgentAdditionalLanguage>? AdditionalLanguages { get; set; }
 
         /// <summary>
         /// Language-model configuration. Omit the whole block on create to<br/>
@@ -174,7 +182,12 @@ namespace Speechify
         /// Optional. Server derives slug from name with a random suffix when omitted; if you supply your own, a collision returns 400 'slug already taken'.
         /// </param>
         /// <param name="language">
-        /// ISO 639-1 code. Defaults to 'en' when omitted.
+        /// ISO 639-1 code. Defaults to 'en' when omitted. The agent's default language.
+        /// </param>
+        /// <param name="additionalLanguages">
+        /// Extra languages this agent serves in the same session.<br/>
+        /// Each entry's language must be supported, unique, and<br/>
+        /// different from the default `language`.
         /// </param>
         /// <param name="llm">
         /// Language-model configuration. Omit the whole block on create to<br/>
@@ -244,6 +257,7 @@ namespace Speechify
             global::Speechify.AgentTTSConfig tts,
             string? slug,
             string? language,
+            global::System.Collections.Generic.IList<global::Speechify.AgentAdditionalLanguage>? additionalLanguages,
             global::Speechify.AgentLLMConfig? llm,
             global::Speechify.AgentSTTConfig? stt,
             global::Speechify.AgentTurnHandlingConfig? turnHandling,
@@ -265,6 +279,7 @@ namespace Speechify
             this.Prompt = prompt ?? throw new global::System.ArgumentNullException(nameof(prompt));
             this.FirstMessage = firstMessage ?? throw new global::System.ArgumentNullException(nameof(firstMessage));
             this.Language = language;
+            this.AdditionalLanguages = additionalLanguages;
             this.Llm = llm;
             this.Tts = tts ?? throw new global::System.ArgumentNullException(nameof(tts));
             this.Stt = stt;

@@ -40,6 +40,14 @@ namespace Speechify
         public string? Language { get; set; }
 
         /// <summary>
+        /// Replaces the stored list wholesale when present; an empty<br/>
+        /// array clears it back to a single-language agent. Omit to<br/>
+        /// leave unchanged.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("additional_languages")]
+        public global::System.Collections.Generic.IList<global::Speechify.AgentAdditionalLanguage>? AdditionalLanguages { get; set; }
+
+        /// <summary>
         /// Language-model configuration. Omit the whole block on create to<br/>
         /// run on the platform default model. On update (merge-patch) send<br/>
         /// only the sub-fields you want to change: an explicit null clears a<br/>
@@ -165,6 +173,11 @@ namespace Speechify
         /// <param name="prompt"></param>
         /// <param name="firstMessage"></param>
         /// <param name="language"></param>
+        /// <param name="additionalLanguages">
+        /// Replaces the stored list wholesale when present; an empty<br/>
+        /// array clears it back to a single-language agent. Omit to<br/>
+        /// leave unchanged.
+        /// </param>
         /// <param name="llm">
         /// Language-model configuration. Omit the whole block on create to<br/>
         /// run on the platform default model. On update (merge-patch) send<br/>
@@ -230,6 +243,7 @@ namespace Speechify
             string? prompt,
             string? firstMessage,
             string? language,
+            global::System.Collections.Generic.IList<global::Speechify.AgentAdditionalLanguage>? additionalLanguages,
             global::Speechify.AgentLLMConfig? llm,
             global::Speechify.AgentTTSConfig? tts,
             global::Speechify.AgentSTTConfig? stt,
@@ -251,6 +265,7 @@ namespace Speechify
             this.Prompt = prompt;
             this.FirstMessage = firstMessage;
             this.Language = language;
+            this.AdditionalLanguages = additionalLanguages;
             this.Llm = llm;
             this.Tts = tts;
             this.Stt = stt;

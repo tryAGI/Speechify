@@ -652,6 +652,12 @@ namespace Speechify
         /// <param name="transport">
         /// Transport hint. Omit to use the agent's default.
         /// </param>
+        /// <param name="language">
+        /// Starts the conversation in one of the agent's configured<br/>
+        /// languages (the default `language` or an `additional_languages`<br/>
+        /// entry, matched by primary subtag). Omit for the agent's default<br/>
+        /// language; an unconfigured language is rejected with 400.
+        /// </param>
         /// <param name="dynamicVariables">
         /// Per-session variable overrides that merge on top of the agent's<br/>
         /// stored variable defaults for this one conversation. Keys in the<br/>
@@ -666,6 +672,7 @@ namespace Speechify
             string? speechifyVersion = default,
             string? idempotencyKey = default,
             string? transport = default,
+            string? language = default,
             object? dynamicVariables = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
@@ -673,6 +680,7 @@ namespace Speechify
             var __request = new global::Speechify.CreateConversationRequest
             {
                 Transport = transport,
+                Language = language,
                 DynamicVariables = dynamicVariables,
             };
 
