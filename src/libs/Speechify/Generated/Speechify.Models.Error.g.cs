@@ -9,7 +9,7 @@ namespace Speechify
     /// Anthropic / Stripe style: a machine-readable `error.code` for<br/>
     /// SDK consumers to switch on, a human `error.message` for UI,<br/>
     /// and an optional `error.fields` map for per-field validation<br/>
-    /// errors. `request_id` matches the `X-Request-ID` response<br/>
+    /// errors. `request_id` matches the `Speechify-Request-Id` response<br/>
     /// header and is what customers quote when filing support<br/>
     /// tickets.
     /// </summary>
@@ -24,7 +24,7 @@ namespace Speechify
 
         /// <summary>
         /// Server-side request identifier. Echoes the<br/>
-        /// `X-Request-ID` response header. Stable across the<br/>
+        /// `Speechify-Request-Id` response header. Stable across the<br/>
         /// request's lifetime, written to structured logs, and<br/>
         /// useful when reporting issues.
         /// </summary>
@@ -43,7 +43,7 @@ namespace Speechify
         /// <param name="error1"></param>
         /// <param name="requestId">
         /// Server-side request identifier. Echoes the<br/>
-        /// `X-Request-ID` response header. Stable across the<br/>
+        /// `Speechify-Request-Id` response header. Stable across the<br/>
         /// request's lifetime, written to structured logs, and<br/>
         /// useful when reporting issues.
         /// </param>
