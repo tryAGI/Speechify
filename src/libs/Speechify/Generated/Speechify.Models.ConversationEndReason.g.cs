@@ -17,6 +17,7 @@ namespace Speechify
     /// * `inactivity_timeout` — the call ended after the configured silence window elapsed with no activity.<br/>
     /// * `loop_detected` — a loop guard force-ended the call after several consecutive near-identical user turns (typically an IVR replaying its menu while the agent kept reacting instead of ending the call).<br/>
     /// * `max_duration_reached` - the max-call-duration limit force-ended the call at the platform ceiling (a safety bound on runaway calls).<br/>
+    /// * `flow_budget_exhausted` — the agent's flow ran for longer than the total per-call flow-execution budget and was ended by the runtime. A backstop above every call-duration ceiling; a call that reaches it has been looping rather than conversing.<br/>
     /// * `over_capacity` — inbound call refused because the workspace was over its active-call concurrency cap; the busy message played and the call hung up. Stamped server-side and excluded from billing.<br/>
     /// * `caller_hangup` — the caller's leg went away. Stamped immediately when a SIP disconnect is observed; otherwise applied server-side shortly after the call ends as a catch-all (web tab close, network blip, etc.).<br/>
     /// * `dial_no_answer` — outbound dial: callee did not pick up (SIP 408/480/487, the ringing timeout expired).<br/>
@@ -52,6 +53,10 @@ namespace Speechify
         /// the call was actively refused (SIP 401/403/407 carrier auth/permission, or 603/607/608 callee decline).
         /// </summary>
         DialRejected,
+        /// <summary>
+        /// 
+        /// </summary>
+        FlowBudgetExhausted,
         /// <summary>
         /// 
         /// </summary>
@@ -108,6 +113,7 @@ namespace Speechify
                 ConversationEndReason.DialFailed => "dial_failed",
                 ConversationEndReason.DialNoAnswer => "dial_no_answer",
                 ConversationEndReason.DialRejected => "dial_rejected",
+                ConversationEndReason.FlowBudgetExhausted => "flow_budget_exhausted",
                 ConversationEndReason.InactivityTimeout => "inactivity_timeout",
                 ConversationEndReason.IvrHangup => "ivr_hangup",
                 ConversationEndReason.LoopDetected => "loop_detected",
@@ -133,6 +139,7 @@ namespace Speechify
                 "dial_failed" => ConversationEndReason.DialFailed,
                 "dial_no_answer" => ConversationEndReason.DialNoAnswer,
                 "dial_rejected" => ConversationEndReason.DialRejected,
+                "flow_budget_exhausted" => ConversationEndReason.FlowBudgetExhausted,
                 "inactivity_timeout" => ConversationEndReason.InactivityTimeout,
                 "ivr_hangup" => ConversationEndReason.IvrHangup,
                 "loop_detected" => ConversationEndReason.LoopDetected,
