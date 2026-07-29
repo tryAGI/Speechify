@@ -57,6 +57,19 @@ namespace Speechify
         public global::Speechify.WidgetConfigTranscript? Transcript { get; set; }
 
         /// <summary>
+        /// Controls whether the embedded widget reports anonymous<br/>
+        /// operational events (mounted, connected, first audio, failure<br/>
+        /// codes) back to Speechify. Omit the object to leave telemetry<br/>
+        /// on, which is the default: it is how browser-side failures a<br/>
+        /// server log cannot see - a denied microphone prompt, a blocked<br/>
+        /// autoplay, a visitor who gave up mid-connect - become<br/>
+        /// diagnosable. No page URL, page content, transcript, or<br/>
+        /// cross-site identifier is ever collected.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("telemetry")]
+        public global::Speechify.WidgetConfigTelemetry? Telemetry { get; set; }
+
+        /// <summary>
         /// Additional properties that are not explicitly defined in the schema
         /// </summary>
         [global::System.Text.Json.Serialization.JsonExtensionData]
@@ -72,6 +85,16 @@ namespace Speechify
         /// <param name="text"></param>
         /// <param name="terms"></param>
         /// <param name="transcript"></param>
+        /// <param name="telemetry">
+        /// Controls whether the embedded widget reports anonymous<br/>
+        /// operational events (mounted, connected, first audio, failure<br/>
+        /// codes) back to Speechify. Omit the object to leave telemetry<br/>
+        /// on, which is the default: it is how browser-side failures a<br/>
+        /// server log cannot see - a denied microphone prompt, a blocked<br/>
+        /// autoplay, a visitor who gave up mid-connect - become<br/>
+        /// diagnosable. No page URL, page content, transcript, or<br/>
+        /// cross-site identifier is ever collected.
+        /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
 #endif
@@ -82,7 +105,8 @@ namespace Speechify
             global::Speechify.WidgetConfigAvatar? avatar,
             global::Speechify.WidgetConfigText? text,
             global::Speechify.WidgetConfigTerms? terms,
-            global::Speechify.WidgetConfigTranscript? transcript)
+            global::Speechify.WidgetConfigTranscript? transcript,
+            global::Speechify.WidgetConfigTelemetry? telemetry)
         {
             this.Version = version;
             this.Style = style;
@@ -91,6 +115,7 @@ namespace Speechify
             this.Text = text;
             this.Terms = terms;
             this.Transcript = transcript;
+            this.Telemetry = telemetry;
         }
 
         /// <summary>
