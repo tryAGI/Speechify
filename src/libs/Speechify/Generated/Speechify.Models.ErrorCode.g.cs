@@ -180,6 +180,10 @@ namespace Speechify
         /// <summary>
         /// 
         /// </summary>
+        TooManyVoices,
+        /// <summary>
+        /// 
+        /// </summary>
         ToolConfigShared,
         /// <summary>
         /// 
@@ -280,6 +284,7 @@ namespace Speechify
                 ErrorCode.SpeechMarksUnsupported => "speech_marks_unsupported",
                 ErrorCode.SpendBudgetExceeded => "spend_budget_exceeded",
                 ErrorCode.SpendCapExceeded => "spend_cap_exceeded",
+                ErrorCode.TooManyVoices => "too_many_voices",
                 ErrorCode.ToolConfigShared => "tool_config_shared",
                 ErrorCode.ToolNotFound => "tool_not_found",
                 ErrorCode.TopupNotInPlan => "topup_not_in_plan",
@@ -343,6 +348,7 @@ namespace Speechify
                 "speech_marks_unsupported" => ErrorCode.SpeechMarksUnsupported,
                 "spend_budget_exceeded" => ErrorCode.SpendBudgetExceeded,
                 "spend_cap_exceeded" => ErrorCode.SpendCapExceeded,
+                "too_many_voices" => ErrorCode.TooManyVoices,
                 "tool_config_shared" => ErrorCode.ToolConfigShared,
                 "tool_not_found" => ErrorCode.ToolNotFound,
                 "topup_not_in_plan" => ErrorCode.TopupNotInPlan,
