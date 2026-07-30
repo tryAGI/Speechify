@@ -68,6 +68,10 @@ namespace Speechify
         /// <summary>
         /// 
         /// </summary>
+        CreditPurchaseUnpaid,
+        /// <summary>
+        /// 
+        /// </summary>
         DestinationNotAllowed,
         /// <summary>
         /// 
@@ -256,6 +260,7 @@ namespace Speechify
                 ErrorCode.ConversationNotFound => "conversation_not_found",
                 ErrorCode.CredentialInUse => "credential_in_use",
                 ErrorCode.CredentialNotFound => "credential_not_found",
+                ErrorCode.CreditPurchaseUnpaid => "credit_purchase_unpaid",
                 ErrorCode.DestinationNotAllowed => "destination_not_allowed",
                 ErrorCode.Forbidden => "forbidden",
                 ErrorCode.IdempotencyConflict => "idempotency_conflict",
@@ -320,6 +325,7 @@ namespace Speechify
                 "conversation_not_found" => ErrorCode.ConversationNotFound,
                 "credential_in_use" => ErrorCode.CredentialInUse,
                 "credential_not_found" => ErrorCode.CredentialNotFound,
+                "credit_purchase_unpaid" => ErrorCode.CreditPurchaseUnpaid,
                 "destination_not_allowed" => ErrorCode.DestinationNotAllowed,
                 "forbidden" => ErrorCode.Forbidden,
                 "idempotency_conflict" => ErrorCode.IdempotencyConflict,
