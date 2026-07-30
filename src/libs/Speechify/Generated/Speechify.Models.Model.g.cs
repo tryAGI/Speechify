@@ -70,6 +70,35 @@ namespace Speechify
         public required global::System.Collections.Generic.IList<string> Languages { get; set; }
 
         /// <summary>
+        /// The synthesis routes this model may be passed to. Only the<br/>
+        /// streaming-native models serve `/v1/audio/stream/with-timestamps`;<br/>
+        /// passing a model this list omits is a 400 rather than a degraded<br/>
+        /// response, so branch on it instead of discovering it at call time.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("endpoints")]
+        [global::System.Text.Json.Serialization.JsonRequired]
+        public required global::System.Collections.Generic.IList<string> Endpoints { get; set; }
+
+        /// <summary>
+        /// Whether the model serves only the voices curated for it. When true,<br/>
+        /// pick a voice whose `models` array in GET /v1/voices names this<br/>
+        /// model; any other voice is rejected. When false, every catalogue<br/>
+        /// voice works, including the workspace's own clones.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("curated_voices")]
+        [global::System.Text.Json.Serialization.JsonRequired]
+        public required bool CuratedVoices { get; set; }
+
+        /// <summary>
+        /// Whether the model rejects a non-English voice. Independent of<br/>
+        /// `languages`: a model can publish English only and still accept any<br/>
+        /// voice.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("english_voices_only")]
+        [global::System.Text.Json.Serialization.JsonRequired]
+        public required bool EnglishVoicesOnly { get; set; }
+
+        /// <summary>
         /// Additional properties that are not explicitly defined in the schema
         /// </summary>
         [global::System.Text.Json.Serialization.JsonExtensionData]
@@ -111,6 +140,23 @@ namespace Speechify
         /// English-only models return `["en"]`. This set reflects current<br/>
         /// capability and can grow over time.
         /// </param>
+        /// <param name="endpoints">
+        /// The synthesis routes this model may be passed to. Only the<br/>
+        /// streaming-native models serve `/v1/audio/stream/with-timestamps`;<br/>
+        /// passing a model this list omits is a 400 rather than a degraded<br/>
+        /// response, so branch on it instead of discovering it at call time.
+        /// </param>
+        /// <param name="curatedVoices">
+        /// Whether the model serves only the voices curated for it. When true,<br/>
+        /// pick a voice whose `models` array in GET /v1/voices names this<br/>
+        /// model; any other voice is rejected. When false, every catalogue<br/>
+        /// voice works, including the workspace's own clones.
+        /// </param>
+        /// <param name="englishVoicesOnly">
+        /// Whether the model rejects a non-English voice. Independent of<br/>
+        /// `languages`: a model can publish English only and still accept any<br/>
+        /// voice.
+        /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
 #endif
@@ -121,7 +167,10 @@ namespace Speechify
             bool recommended,
             bool deprecated,
             string description,
-            global::System.Collections.Generic.IList<string> languages)
+            global::System.Collections.Generic.IList<string> languages,
+            global::System.Collections.Generic.IList<string> endpoints,
+            bool curatedVoices,
+            bool englishVoicesOnly)
         {
             this.Id = id ?? throw new global::System.ArgumentNullException(nameof(id));
             this.Name = name ?? throw new global::System.ArgumentNullException(nameof(name));
@@ -130,6 +179,9 @@ namespace Speechify
             this.Deprecated = deprecated;
             this.Description = description ?? throw new global::System.ArgumentNullException(nameof(description));
             this.Languages = languages ?? throw new global::System.ArgumentNullException(nameof(languages));
+            this.Endpoints = endpoints ?? throw new global::System.ArgumentNullException(nameof(endpoints));
+            this.CuratedVoices = curatedVoices;
+            this.EnglishVoicesOnly = englishVoicesOnly;
         }
 
         /// <summary>

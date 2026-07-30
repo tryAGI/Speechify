@@ -9,7 +9,10 @@ namespace Speechify
         /// List the text-to-speech models available for synthesis. Drive a model<br/>
         /// picker from this response, then pass a model `id` as the `model`<br/>
         /// parameter to POST /v1/audio/speech or /v1/audio/stream. The response<br/>
-        /// marks the default model (used when a request omits `model`). Returns<br/>
+        /// marks the default model (used when a request omits `model`), the<br/>
+        /// routes each model may be passed to, and which voices it accepts.<br/>
+        /// Multi-speaker models arrive in a separate `dialogue_models` array<br/>
+        /// because they are valid only on POST /v1/audio/dialogue. Returns<br/>
         /// the full set in a single response: the model catalog is static<br/>
         /// platform reference data, so it is intentionally not paginated.
         /// </summary>
@@ -26,7 +29,10 @@ namespace Speechify
         /// List the text-to-speech models available for synthesis. Drive a model<br/>
         /// picker from this response, then pass a model `id` as the `model`<br/>
         /// parameter to POST /v1/audio/speech or /v1/audio/stream. The response<br/>
-        /// marks the default model (used when a request omits `model`). Returns<br/>
+        /// marks the default model (used when a request omits `model`), the<br/>
+        /// routes each model may be passed to, and which voices it accepts.<br/>
+        /// Multi-speaker models arrive in a separate `dialogue_models` array<br/>
+        /// because they are valid only on POST /v1/audio/dialogue. Returns<br/>
         /// the full set in a single response: the model catalog is static<br/>
         /// platform reference data, so it is intentionally not paginated.
         /// </summary>
