@@ -12,7 +12,12 @@ namespace Speechify
     public sealed partial class MultilingualLanguage
     {
         /// <summary>
-        /// BCP-47 primary subtag, e.g. `es` or `pl`.
+        /// BCP-47 tag to declare, at the granularity that changes what a<br/>
+        /// caller hears: a locale where the accent is a real choice<br/>
+        /// (`es-MX`, `pt-BR`), a plain subtag where it is not (`pl`). The<br/>
+        /// tag reaches the speech model as-is. Only one entry per language<br/>
+        /// may be declared on an agent, so `es-MX` and `es-ES` are<br/>
+        /// alternatives rather than a pair.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("language")]
         [global::System.Text.Json.Serialization.JsonRequired]
@@ -47,7 +52,12 @@ namespace Speechify
         /// Initializes a new instance of the <see cref="MultilingualLanguage" /> class.
         /// </summary>
         /// <param name="language">
-        /// BCP-47 primary subtag, e.g. `es` or `pl`.
+        /// BCP-47 tag to declare, at the granularity that changes what a<br/>
+        /// caller hears: a locale where the accent is a real choice<br/>
+        /// (`es-MX`, `pt-BR`), a plain subtag where it is not (`pl`). The<br/>
+        /// tag reaches the speech model as-is. Only one entry per language<br/>
+        /// may be declared on an agent, so `es-MX` and `es-ES` are<br/>
+        /// alternatives rather than a pair.
         /// </param>
         /// <param name="realtimeSupported">
         /// False for languages the audio-native realtime model cannot<br/>
