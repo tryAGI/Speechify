@@ -14,9 +14,11 @@ namespace Speechify
     public sealed partial class AgentAdditionalLanguage
     {
         /// <summary>
-        /// BCP-47 language tag, e.g. 'es' or 'pt-BR'. Supported primary<br/>
-        /// subtags today: en, de, es, fr, it, pt. Must be unique per<br/>
-        /// agent and different from the default `language`.
+        /// BCP-47 language tag, e.g. 'es' or 'pt-BR'. The supported set<br/>
+        /// is served by `multilingual_languages` on GET<br/>
+        /// /v1/agents/voices - read it rather than hard-coding a list,<br/>
+        /// since coverage widens over time. Must be unique per agent and<br/>
+        /// different from the default `language`.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("language")]
         [global::System.Text.Json.Serialization.JsonRequired]
@@ -48,9 +50,11 @@ namespace Speechify
         /// Initializes a new instance of the <see cref="AgentAdditionalLanguage" /> class.
         /// </summary>
         /// <param name="language">
-        /// BCP-47 language tag, e.g. 'es' or 'pt-BR'. Supported primary<br/>
-        /// subtags today: en, de, es, fr, it, pt. Must be unique per<br/>
-        /// agent and different from the default `language`.
+        /// BCP-47 language tag, e.g. 'es' or 'pt-BR'. The supported set<br/>
+        /// is served by `multilingual_languages` on GET<br/>
+        /// /v1/agents/voices - read it rather than hard-coding a list,<br/>
+        /// since coverage widens over time. Must be unique per agent and<br/>
+        /// different from the default `language`.
         /// </param>
         /// <param name="voiceId">
         /// Optional per-language voice slug from the catalog (see GET<br/>
