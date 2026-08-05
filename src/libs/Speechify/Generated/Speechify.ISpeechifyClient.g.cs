@@ -121,6 +121,11 @@ namespace Speechify
         /// <summary>
         /// 
         /// </summary>
+        public ShareLinksClient ShareLinks { get; }
+
+        /// <summary>
+        /// 
+        /// </summary>
         public SipTrunksClient SipTrunks { get; }
 
         /// <summary>

@@ -186,6 +186,16 @@ namespace Speechify
         /// <summary>
         /// 
         /// </summary>
+        public ShareLinksClient ShareLinks => new ShareLinksClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
+        {
+            ReadResponseAsString = ReadResponseAsString,
+            CreateIdempotencyKey = CreateIdempotencyKey,
+            JsonSerializerContext = JsonSerializerContext,
+        };
+
+        /// <summary>
+        /// 
+        /// </summary>
         public SipTrunksClient SipTrunks => new SipTrunksClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
         {
             ReadResponseAsString = ReadResponseAsString,
