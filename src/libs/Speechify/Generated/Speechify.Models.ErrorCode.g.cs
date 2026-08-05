@@ -168,6 +168,18 @@ namespace Speechify
         /// <summary>
         /// 
         /// </summary>
+        ShareLinkExhausted,
+        /// <summary>
+        /// 
+        /// </summary>
+        ShareLinkNotFound,
+        /// <summary>
+        /// 
+        /// </summary>
+        ShareLinkTokenUnavailable,
+        /// <summary>
+        /// 
+        /// </summary>
         SipTrunkNotFound,
         /// <summary>
         /// 
@@ -285,6 +297,9 @@ namespace Speechify
                 ErrorCode.ServiceAccountLimitReached => "service_account_limit_reached",
                 ErrorCode.ServiceAccountsNotInPlan => "service_accounts_not_in_plan",
                 ErrorCode.ServiceUnavailable => "service_unavailable",
+                ErrorCode.ShareLinkExhausted => "share_link_exhausted",
+                ErrorCode.ShareLinkNotFound => "share_link_not_found",
+                ErrorCode.ShareLinkTokenUnavailable => "share_link_token_unavailable",
                 ErrorCode.SipTrunkNotFound => "sip_trunk_not_found",
                 ErrorCode.SpeechMarksUnsupported => "speech_marks_unsupported",
                 ErrorCode.SpendBudgetExceeded => "spend_budget_exceeded",
@@ -350,6 +365,9 @@ namespace Speechify
                 "service_account_limit_reached" => ErrorCode.ServiceAccountLimitReached,
                 "service_accounts_not_in_plan" => ErrorCode.ServiceAccountsNotInPlan,
                 "service_unavailable" => ErrorCode.ServiceUnavailable,
+                "share_link_exhausted" => ErrorCode.ShareLinkExhausted,
+                "share_link_not_found" => ErrorCode.ShareLinkNotFound,
+                "share_link_token_unavailable" => ErrorCode.ShareLinkTokenUnavailable,
                 "sip_trunk_not_found" => ErrorCode.SipTrunkNotFound,
                 "speech_marks_unsupported" => ErrorCode.SpeechMarksUnsupported,
                 "spend_budget_exceeded" => ErrorCode.SpendBudgetExceeded,

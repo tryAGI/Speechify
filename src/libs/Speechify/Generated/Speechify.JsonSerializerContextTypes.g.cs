@@ -1632,51 +1632,95 @@ namespace Speechify
         /// <summary>
         /// 
         /// </summary>
-        public global::Speechify.BatchMoveDocumentsRequest? Type401 { get; set; }
+        public global::Speechify.ShareLinkPreview? Type401 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::Speechify.BatchMoveDocumentsResponse? Type402 { get; set; }
+        public global::Speechify.CreateShareLinkSessionRequest? Type402 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::System.Collections.Generic.IList<global::Speechify.KnowledgeBaseDocumentDetail>? Type403 { get; set; }
+        public global::Speechify.ShareLinkSession? Type403 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::Speechify.BatchRecipientStatus? Type404 { get; set; }
+        public global::Speechify.ShareLinkStatus? Type404 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::Speechify.BatchRecipient? Type405 { get; set; }
+        public global::Speechify.ShareLink? Type405 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::Speechify.ListBatchRecipientsResponse? Type406 { get; set; }
+        public global::Speechify.ListShareLinksResponse? Type406 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::System.Collections.Generic.IList<global::Speechify.BatchRecipient>? Type407 { get; set; }
+        public global::System.Collections.Generic.IList<global::Speechify.ShareLink>? Type407 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::Speechify.CreateRequest? Type408 { get; set; }
+        public global::Speechify.CreateShareLinkRequest? Type408 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::Speechify.UploadDocumentRequest? Type409 { get; set; }
+        public global::Speechify.CreateShareLinkResponseStatus? Type409 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::Speechify.UpdateDocumentRequest? Type410 { get; set; }
+        public global::Speechify.CreateShareLinkResponse? Type410 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::Speechify.RunTestRequest? Type411 { get; set; }
+        public global::Speechify.RevealShareLinkTokenResponse? Type411 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::Speechify.UploadRequest? Type412 { get; set; }
+        public global::Speechify.BatchMoveDocumentsRequest? Type412 { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public global::Speechify.BatchMoveDocumentsResponse? Type413 { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public global::System.Collections.Generic.IList<global::Speechify.KnowledgeBaseDocumentDetail>? Type414 { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public global::Speechify.BatchRecipientStatus? Type415 { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public global::Speechify.BatchRecipient? Type416 { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public global::Speechify.ListBatchRecipientsResponse? Type417 { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public global::System.Collections.Generic.IList<global::Speechify.BatchRecipient>? Type418 { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public global::Speechify.CreateRequest? Type419 { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public global::Speechify.UploadDocumentRequest? Type420 { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public global::Speechify.UpdateDocumentRequest? Type421 { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public global::Speechify.RunTestRequest? Type422 { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public global::Speechify.UploadRequest? Type423 { get; set; }
 
         /// <summary>
         /// 
@@ -1981,10 +2025,14 @@ namespace Speechify
         /// <summary>
         /// 
         /// </summary>
-        public global::System.Collections.Generic.List<global::Speechify.KnowledgeBaseDocumentDetail>? ListType75 { get; set; }
+        public global::System.Collections.Generic.List<global::Speechify.ShareLink>? ListType75 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::System.Collections.Generic.List<global::Speechify.BatchRecipient>? ListType76 { get; set; }
+        public global::System.Collections.Generic.List<global::Speechify.KnowledgeBaseDocumentDetail>? ListType76 { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public global::System.Collections.Generic.List<global::Speechify.BatchRecipient>? ListType77 { get; set; }
     }
 }
