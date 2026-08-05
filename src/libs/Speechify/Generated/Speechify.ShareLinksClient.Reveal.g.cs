@@ -54,11 +54,7 @@ namespace Speechify
         /// browser's history, and whoever may hand a link out is whoever may<br/>
         /// hand it out again. It is separately rate-limited.<br/>
         /// Revoked and expired links still reveal — the owner can already see<br/>
-        /// that state and may need to tell a recipient which link they hold.<br/>
-        /// Links created before tokens were stored recoverably return `409<br/>
-        /// share_link_token_unavailable`: theirs was hashed and discarded, and<br/>
-        /// no retry will produce it. Check `token_recoverable` on the link first<br/>
-        /// rather than offering an action that can only fail.
+        /// that state and may need to tell a recipient which link they hold.
         /// </summary>
         /// <param name="agentId"></param>
         /// <param name="shareLinkId"></param>
@@ -92,11 +88,7 @@ namespace Speechify
         /// browser's history, and whoever may hand a link out is whoever may<br/>
         /// hand it out again. It is separately rate-limited.<br/>
         /// Revoked and expired links still reveal — the owner can already see<br/>
-        /// that state and may need to tell a recipient which link they hold.<br/>
-        /// Links created before tokens were stored recoverably return `409<br/>
-        /// share_link_token_unavailable`: theirs was hashed and discarded, and<br/>
-        /// no retry will produce it. Check `token_recoverable` on the link first<br/>
-        /// rather than offering an action that can only fail.
+        /// that state and may need to tell a recipient which link they hold.
         /// </summary>
         /// <param name="agentId"></param>
         /// <param name="shareLinkId"></param>
@@ -478,43 +470,6 @@ namespace Speechify
                                     innerException: __exception_404,
                                     responseBody: __content_404,
                                     responseObject: __value_404,
-                                    responseHeaders: global::System.Linq.Enumerable.ToDictionary(
-                                        __response.Headers,
-                                        h => h.Key,
-                                        h => h.Value));
-                            }
-                            // The request conflicts with the current resource state - e.g. duplicate, optimistic-concurrency mismatch, or last-owner guard. 
-                            if ((int)__response.StatusCode == 409)
-                            {
-                                string? __content_409 = null;
-                                global::System.Exception? __exception_409 = null;
-                                global::Speechify.Error? __value_409 = null;
-                                try
-                                {
-                                    if (__effectiveReadResponseAsString)
-                                    {
-                                        __content_409 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
-                                        __value_409 = global::Speechify.Error.FromJson(__content_409, JsonSerializerContext);
-                                    }
-                                    else
-                                    {
-                                        __content_409 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
-
-                                        __value_409 = global::Speechify.Error.FromJson(__content_409, JsonSerializerContext);
-                                    }
-                                }
-                                catch (global::System.Exception __ex)
-                                {
-                                    __exception_409 = __ex;
-                                }
-
-
-                                throw global::Speechify.ApiException<global::Speechify.Error>.Create(
-                                    statusCode: __response.StatusCode,
-                                    message: __content_409 ?? __response.ReasonPhrase ?? string.Empty,
-                                    innerException: __exception_409,
-                                    responseBody: __content_409,
-                                    responseObject: __value_409,
                                     responseHeaders: global::System.Linq.Enumerable.ToDictionary(
                                         __response.Headers,
                                         h => h.Key,

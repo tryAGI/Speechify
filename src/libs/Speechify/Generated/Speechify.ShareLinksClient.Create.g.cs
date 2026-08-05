@@ -50,13 +50,16 @@ namespace Speechify
         /// <summary>
         /// Create Share Link<br/>
         /// Mint a share link for the agent.<br/>
-        /// The response carries the link's bearer `token`. It is also stored<br/>
-        /// encrypted, so a caller who loses it reads it back with<br/>
-        /// `revealShareLinkToken` instead of revoking and re-creating — which<br/>
-        /// would kill the copy the recipient already has.<br/>
+        /// The response carries the link's bearer `token`. It is also stored, so<br/>
+        /// a caller who loses it reads it back with `revealShareLinkToken`<br/>
+        /// instead of revoking and re-creating — which would kill the copy the<br/>
+        /// recipient already has.<br/>
         /// Every cap is optional and falls back to a bounded default. There is<br/>
         /// no way to express "unlimited": an anonymous link that spends the<br/>
-        /// workspace's balance should not be creatable by omitting a field.
+        /// workspace's balance should not be creatable by omitting a field.<br/>
+        /// An agent may hold at most 10 live links at once; an eleventh is<br/>
+        /// refused with `409 share_link_limit_reached`. Revoking a link, or<br/>
+        /// letting one expire, frees its slot immediately.
         /// </summary>
         /// <param name="agentId"></param>
         /// <param name="speechifyVersion"></param>
@@ -91,13 +94,16 @@ namespace Speechify
         /// <summary>
         /// Create Share Link<br/>
         /// Mint a share link for the agent.<br/>
-        /// The response carries the link's bearer `token`. It is also stored<br/>
-        /// encrypted, so a caller who loses it reads it back with<br/>
-        /// `revealShareLinkToken` instead of revoking and re-creating — which<br/>
-        /// would kill the copy the recipient already has.<br/>
+        /// The response carries the link's bearer `token`. It is also stored, so<br/>
+        /// a caller who loses it reads it back with `revealShareLinkToken`<br/>
+        /// instead of revoking and re-creating — which would kill the copy the<br/>
+        /// recipient already has.<br/>
         /// Every cap is optional and falls back to a bounded default. There is<br/>
         /// no way to express "unlimited": an anonymous link that spends the<br/>
-        /// workspace's balance should not be creatable by omitting a field.
+        /// workspace's balance should not be creatable by omitting a field.<br/>
+        /// An agent may hold at most 10 live links at once; an eleventh is<br/>
+        /// refused with `409 share_link_limit_reached`. Revoking a link, or<br/>
+        /// letting one expire, frees its slot immediately.
         /// </summary>
         /// <param name="agentId"></param>
         /// <param name="speechifyVersion"></param>
@@ -676,13 +682,16 @@ namespace Speechify
         /// <summary>
         /// Create Share Link<br/>
         /// Mint a share link for the agent.<br/>
-        /// The response carries the link's bearer `token`. It is also stored<br/>
-        /// encrypted, so a caller who loses it reads it back with<br/>
-        /// `revealShareLinkToken` instead of revoking and re-creating — which<br/>
-        /// would kill the copy the recipient already has.<br/>
+        /// The response carries the link's bearer `token`. It is also stored, so<br/>
+        /// a caller who loses it reads it back with `revealShareLinkToken`<br/>
+        /// instead of revoking and re-creating — which would kill the copy the<br/>
+        /// recipient already has.<br/>
         /// Every cap is optional and falls back to a bounded default. There is<br/>
         /// no way to express "unlimited": an anonymous link that spends the<br/>
-        /// workspace's balance should not be creatable by omitting a field.
+        /// workspace's balance should not be creatable by omitting a field.<br/>
+        /// An agent may hold at most 10 live links at once; an eleventh is<br/>
+        /// refused with `409 share_link_limit_reached`. Revoking a link, or<br/>
+        /// letting one expire, frees its slot immediately.
         /// </summary>
         /// <param name="agentId"></param>
         /// <param name="speechifyVersion"></param>
@@ -710,10 +719,12 @@ namespace Speechify
         /// Simultaneous calls allowed on this link. Defaults to 3, maximum 10.
         /// </param>
         /// <param name="allowedToolIds">
-        /// Tools to opt this link into, by id. Omit for the default<br/>
-        /// posture (call controls and knowledge search only). Opting a<br/>
-        /// webhook or MCP tool in lets a stranger drive it, so it is an<br/>
-        /// explicit act rather than something inherited from the agent.
+        /// Tools to opt this link into, by id — the same `tool_…` ids<br/>
+        /// `listAgentTools` returns. Omit for the default posture (call<br/>
+        /// controls and knowledge search only). Opting a webhook or MCP<br/>
+        /// tool in lets a stranger drive it, so it is an explicit act<br/>
+        /// rather than something inherited from the agent. Every id must<br/>
+        /// name a tool attached to this agent; anything else is a 400.
         /// </param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
