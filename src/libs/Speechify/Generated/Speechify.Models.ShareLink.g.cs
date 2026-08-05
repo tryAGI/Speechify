@@ -9,7 +9,8 @@ namespace Speechify
     /// The bearer token is not part of this shape. A list read is fired on<br/>
     /// every page mount and the token is a credential that spends money, so<br/>
     /// it is fetched one link at a time from `revealShareLinkToken` instead.<br/>
-    /// `token_prefix` is what a list can show.
+    /// `token_prefix` is what a list can show. Every link's URL can be read<br/>
+    /// back, so there is no state in which a copy action is unavailable.
     /// </summary>
     public sealed partial class ShareLink
     {
@@ -41,16 +42,6 @@ namespace Speechify
         [global::System.Text.Json.Serialization.JsonPropertyName("token_prefix")]
         [global::System.Text.Json.Serialization.JsonRequired]
         public required string TokenPrefix { get; set; }
-
-        /// <summary>
-        /// Whether `revealShareLinkToken` can return this link's URL. False<br/>
-        /// for links created before the token was stored recoverably: theirs<br/>
-        /// was hashed and discarded, so the only way to share again is a new<br/>
-        /// link. Read it before offering a copy action.
-        /// </summary>
-        [global::System.Text.Json.Serialization.JsonPropertyName("token_recoverable")]
-        [global::System.Text.Json.Serialization.JsonRequired]
-        public required bool TokenRecoverable { get; set; }
 
         /// <summary>
         /// The link's resolved lifecycle state, computed server-side so<br/>
@@ -123,7 +114,8 @@ namespace Speechify
         public required int MaxConcurrent { get; set; }
 
         /// <summary>
-        /// Tools the owner opted this link into, by id. Empty means the<br/>
+        /// Tools the owner opted this link into, by id — the same<br/>
+        /// `tool_…` ids `listAgentTools` returns. Empty means the<br/>
         /// default posture: the agent's built-in call controls and<br/>
         /// knowledge search only, with no webhook, MCP or transfer tool —<br/>
         /// a link recipient is a stranger, not the owner's customer.
@@ -163,12 +155,6 @@ namespace Speechify
         /// The token's leading characters, kept so a list can show a<br/>
         /// recognisable masked label. Useless as a guess on its own.
         /// </param>
-        /// <param name="tokenRecoverable">
-        /// Whether `revealShareLinkToken` can return this link's URL. False<br/>
-        /// for links created before the token was stored recoverably: theirs<br/>
-        /// was hashed and discarded, so the only way to share again is a new<br/>
-        /// link. Read it before offering a copy action.
-        /// </param>
         /// <param name="status">
         /// The link's resolved lifecycle state, computed server-side so<br/>
         /// every client agrees on what "expired" means.
@@ -199,7 +185,8 @@ namespace Speechify
         /// link cannot consume the capacity the owner's real callers need.
         /// </param>
         /// <param name="allowedToolIds">
-        /// Tools the owner opted this link into, by id. Empty means the<br/>
+        /// Tools the owner opted this link into, by id — the same<br/>
+        /// `tool_…` ids `listAgentTools` returns. Empty means the<br/>
         /// default posture: the agent's built-in call controls and<br/>
         /// knowledge search only, with no webhook, MCP or transfer tool —<br/>
         /// a link recipient is a stranger, not the owner's customer.
@@ -215,7 +202,6 @@ namespace Speechify
             string agentId,
             string label,
             string tokenPrefix,
-            bool tokenRecoverable,
             global::Speechify.ShareLinkStatus status,
             global::System.DateTime expiresAt,
             int budgetSeconds,
@@ -233,7 +219,6 @@ namespace Speechify
             this.AgentId = agentId ?? throw new global::System.ArgumentNullException(nameof(agentId));
             this.Label = label ?? throw new global::System.ArgumentNullException(nameof(label));
             this.TokenPrefix = tokenPrefix ?? throw new global::System.ArgumentNullException(nameof(tokenPrefix));
-            this.TokenRecoverable = tokenRecoverable;
             this.Status = status;
             this.ExpiresAt = expiresAt;
             this.RevokedAt = revokedAt;

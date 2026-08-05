@@ -45,10 +45,12 @@ namespace Speechify
         public int? MaxConcurrent { get; set; }
 
         /// <summary>
-        /// Tools to opt this link into, by id. Omit for the default<br/>
-        /// posture (call controls and knowledge search only). Opting a<br/>
-        /// webhook or MCP tool in lets a stranger drive it, so it is an<br/>
-        /// explicit act rather than something inherited from the agent.
+        /// Tools to opt this link into, by id — the same `tool_…` ids<br/>
+        /// `listAgentTools` returns. Omit for the default posture (call<br/>
+        /// controls and knowledge search only). Opting a webhook or MCP<br/>
+        /// tool in lets a stranger drive it, so it is an explicit act<br/>
+        /// rather than something inherited from the agent. Every id must<br/>
+        /// name a tool attached to this agent; anything else is a 400.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("allowed_tool_ids")]
         public global::System.Collections.Generic.IList<string>? AllowedToolIds { get; set; }
@@ -83,10 +85,12 @@ namespace Speechify
         /// Simultaneous calls allowed on this link. Defaults to 3, maximum 10.
         /// </param>
         /// <param name="allowedToolIds">
-        /// Tools to opt this link into, by id. Omit for the default<br/>
-        /// posture (call controls and knowledge search only). Opting a<br/>
-        /// webhook or MCP tool in lets a stranger drive it, so it is an<br/>
-        /// explicit act rather than something inherited from the agent.
+        /// Tools to opt this link into, by id — the same `tool_…` ids<br/>
+        /// `listAgentTools` returns. Omit for the default posture (call<br/>
+        /// controls and knowledge search only). Opting a webhook or MCP<br/>
+        /// tool in lets a stranger drive it, so it is an explicit act<br/>
+        /// rather than something inherited from the agent. Every id must<br/>
+        /// name a tool attached to this agent; anything else is a 400.
         /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]

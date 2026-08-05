@@ -13,11 +13,7 @@ namespace Speechify
         /// browser's history, and whoever may hand a link out is whoever may<br/>
         /// hand it out again. It is separately rate-limited.<br/>
         /// Revoked and expired links still reveal — the owner can already see<br/>
-        /// that state and may need to tell a recipient which link they hold.<br/>
-        /// Links created before tokens were stored recoverably return `409<br/>
-        /// share_link_token_unavailable`: theirs was hashed and discarded, and<br/>
-        /// no retry will produce it. Check `token_recoverable` on the link first<br/>
-        /// rather than offering an action that can only fail.
+        /// that state and may need to tell a recipient which link they hold.
         /// </summary>
         /// <param name="agentId"></param>
         /// <param name="shareLinkId"></param>
@@ -40,11 +36,7 @@ namespace Speechify
         /// browser's history, and whoever may hand a link out is whoever may<br/>
         /// hand it out again. It is separately rate-limited.<br/>
         /// Revoked and expired links still reveal — the owner can already see<br/>
-        /// that state and may need to tell a recipient which link they hold.<br/>
-        /// Links created before tokens were stored recoverably return `409<br/>
-        /// share_link_token_unavailable`: theirs was hashed and discarded, and<br/>
-        /// no retry will produce it. Check `token_recoverable` on the link first<br/>
-        /// rather than offering an action that can only fail.
+        /// that state and may need to tell a recipient which link they hold.
         /// </summary>
         /// <param name="agentId"></param>
         /// <param name="shareLinkId"></param>
