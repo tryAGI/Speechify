@@ -26,8 +26,8 @@ namespace Speechify
         /// <summary>
         /// Whether this is the model used when a synthesis request omits<br/>
         /// `model`. Exactly one model in the list is the default. Distinct<br/>
-        /// from `recommended`: the default is kept stable for backwards<br/>
-        /// compatibility.
+        /// from `recommended`: the default accepts every voice, while the<br/>
+        /// recommended model may serve a curated or English-only set.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("default")]
         [global::System.Text.Json.Serialization.JsonRequired]
@@ -117,8 +117,8 @@ namespace Speechify
         /// <param name="default">
         /// Whether this is the model used when a synthesis request omits<br/>
         /// `model`. Exactly one model in the list is the default. Distinct<br/>
-        /// from `recommended`: the default is kept stable for backwards<br/>
-        /// compatibility.
+        /// from `recommended`: the default accepts every voice, while the<br/>
+        /// recommended model may serve a curated or English-only set.
         /// </param>
         /// <param name="recommended">
         /// Whether this is the model we recommend for new integrations.<br/>
