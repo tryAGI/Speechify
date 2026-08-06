@@ -7,9 +7,9 @@ namespace Speechify
         /// <summary>
         /// Get Voice<br/>
         /// Fetch a single voice by id - a shared catalogue voice or one of<br/>
-        /// the caller's own personal (cloned) voices. A personal voice that<br/>
-        /// belongs to another workspace returns 404, identical to an<br/>
-        /// unknown id, so voice inventory is never enumerable across tenants.
+        /// the workspace's cloned voices. A cloned voice that belongs to<br/>
+        /// another workspace returns 404, identical to an unknown id, so<br/>
+        /// voice inventory is never enumerable across tenants.
         /// </summary>
         /// <param name="voiceId"></param>
         /// <param name="speechifyVersion"></param>
@@ -24,9 +24,9 @@ namespace Speechify
         /// <summary>
         /// Get Voice<br/>
         /// Fetch a single voice by id - a shared catalogue voice or one of<br/>
-        /// the caller's own personal (cloned) voices. A personal voice that<br/>
-        /// belongs to another workspace returns 404, identical to an<br/>
-        /// unknown id, so voice inventory is never enumerable across tenants.
+        /// the workspace's cloned voices. A cloned voice that belongs to<br/>
+        /// another workspace returns 404, identical to an unknown id, so<br/>
+        /// voice inventory is never enumerable across tenants.
         /// </summary>
         /// <param name="voiceId"></param>
         /// <param name="speechifyVersion"></param>

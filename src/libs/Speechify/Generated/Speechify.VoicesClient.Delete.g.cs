@@ -45,7 +45,9 @@ namespace Speechify
 
         /// <summary>
         /// Delete Voice<br/>
-        /// Delete a personal (cloned) voice
+        /// Delete one of the workspace's cloned voices. Requires the<br/>
+        /// `content.manage` permission (owner, admin, or member); a<br/>
+        /// service-account key is authorized by its scopes instead.
         /// </summary>
         /// <param name="voiceId"></param>
         /// <param name="speechifyVersion"></param>
@@ -69,7 +71,9 @@ namespace Speechify
         }
         /// <summary>
         /// Delete Voice<br/>
-        /// Delete a personal (cloned) voice
+        /// Delete one of the workspace's cloned voices. Requires the<br/>
+        /// `content.manage` permission (owner, admin, or member); a<br/>
+        /// service-account key is authorized by its scopes instead.
         /// </summary>
         /// <param name="voiceId"></param>
         /// <param name="speechifyVersion"></param>
