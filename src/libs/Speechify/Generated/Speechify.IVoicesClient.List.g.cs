@@ -7,7 +7,8 @@ namespace Speechify
         /// <summary>
         /// List Voices<br/>
         /// Lists the voices available to the caller - the shared voice<br/>
-        /// catalog plus the workspace's personal cloned voices. By default<br/>
+        /// catalog plus the workspace's cloned voices, whichever member or<br/>
+        /// service-account key created them. By default<br/>
         /// the full catalogue is returned in one response. Pagination is<br/>
         /// opt-in: pass `limit` (and then `cursor` from the previous<br/>
         /// response) to page through the list while `has_more` is true. Max<br/>
@@ -39,7 +40,8 @@ namespace Speechify
         /// <summary>
         /// List Voices<br/>
         /// Lists the voices available to the caller - the shared voice<br/>
-        /// catalog plus the workspace's personal cloned voices. By default<br/>
+        /// catalog plus the workspace's cloned voices, whichever member or<br/>
+        /// service-account key created them. By default<br/>
         /// the full catalogue is returned in one response. Pagination is<br/>
         /// opt-in: pass `limit` (and then `cursor` from the previous<br/>
         /// response) to page through the list while `has_more` is true. Max<br/>
