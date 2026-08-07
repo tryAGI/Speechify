@@ -114,7 +114,7 @@ namespace Speechify
         public string? TtsPlaybackRate { get; set; }
 
         /// <summary>
-        /// Silence-wait override at call time; null = stack default endpointing.
+        /// Minimum silence the agent waited for before replying, at call time; null = turn detection decided.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("response_delay_seconds")]
         public string? ResponseDelaySeconds { get; set; }
@@ -218,7 +218,7 @@ namespace Speechify
         /// Post-process time-stretch at call time; null = no time-stretch (1x).
         /// </param>
         /// <param name="responseDelaySeconds">
-        /// Silence-wait override at call time; null = stack default endpointing.
+        /// Minimum silence the agent waited for before replying, at call time; null = turn detection decided.
         /// </param>
         /// <param name="sttOverride">
         /// Streaming-STT stack the call dispatched with; null = the worker's platform default.

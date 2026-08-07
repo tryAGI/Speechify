@@ -54,6 +54,27 @@ namespace Speechify
         public required int HitCount { get; set; }
 
         /// <summary>
+        /// Key of the flow node that was active when the agent ran this<br/>
+        /// search. Empty when the call ran without a flow, or for rows<br/>
+        /// recorded before phase attribution existed.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("node_key")]
+        [global::System.Text.Json.Serialization.JsonRequired]
+        public required string NodeKey { get; set; }
+
+        /// <summary>
+        /// The knowledge bases this search actually ran against. Equal<br/>
+        /// to the agent's full attached set unless the active subagent<br/>
+        /// node carried a `knowledge_base_filter`, in which case it is<br/>
+        /// the narrowed subset — so the log shows which sources each<br/>
+        /// phase of the call was allowed to consult, not just which<br/>
+        /// ones returned a hit.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("searched_knowledge_base_ids")]
+        [global::System.Text.Json.Serialization.JsonRequired]
+        public required global::System.Collections.Generic.IList<string> SearchedKnowledgeBaseIds { get; set; }
+
+        /// <summary>
         /// 
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("created_at")]
@@ -78,6 +99,19 @@ namespace Speechify
         /// <param name="results"></param>
         /// <param name="limit"></param>
         /// <param name="hitCount"></param>
+        /// <param name="nodeKey">
+        /// Key of the flow node that was active when the agent ran this<br/>
+        /// search. Empty when the call ran without a flow, or for rows<br/>
+        /// recorded before phase attribution existed.
+        /// </param>
+        /// <param name="searchedKnowledgeBaseIds">
+        /// The knowledge bases this search actually ran against. Equal<br/>
+        /// to the agent's full attached set unless the active subagent<br/>
+        /// node carried a `knowledge_base_filter`, in which case it is<br/>
+        /// the narrowed subset — so the log shows which sources each<br/>
+        /// phase of the call was allowed to consult, not just which<br/>
+        /// ones returned a hit.
+        /// </param>
         /// <param name="createdAt"></param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
@@ -89,6 +123,8 @@ namespace Speechify
             global::System.Collections.Generic.IList<global::Speechify.RetrievalLogResult> results,
             int limit,
             int hitCount,
+            string nodeKey,
+            global::System.Collections.Generic.IList<string> searchedKnowledgeBaseIds,
             global::System.DateTime createdAt)
         {
             this.Id = id ?? throw new global::System.ArgumentNullException(nameof(id));
@@ -97,6 +133,8 @@ namespace Speechify
             this.Results = results ?? throw new global::System.ArgumentNullException(nameof(results));
             this.Limit = limit;
             this.HitCount = hitCount;
+            this.NodeKey = nodeKey ?? throw new global::System.ArgumentNullException(nameof(nodeKey));
+            this.SearchedKnowledgeBaseIds = searchedKnowledgeBaseIds ?? throw new global::System.ArgumentNullException(nameof(searchedKnowledgeBaseIds));
             this.CreatedAt = createdAt;
         }
 
