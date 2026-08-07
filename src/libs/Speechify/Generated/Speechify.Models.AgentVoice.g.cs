@@ -18,13 +18,16 @@ namespace Speechify
         public required string Id { get; set; }
 
         /// <summary>
-        /// Voice provenance. Always `shared` on this endpoint — personal<br/>
-        /// / cloned voices are not exposed here; they stay on<br/>
-        /// `GET /v1/voices`.
+        /// Voice provenance. `shared` is the curated catalogue every workspace<br/>
+        /// sees; `personal` is a voice this workspace cloned itself (workspace-<br/>
+        /// owned clones only). Both can be assigned to an agent. Treat this as an<br/>
+        /// open set - new values may be added, so branch on the ones you know and<br/>
+        /// fall through for the rest.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("type")]
         [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Speechify.JsonConverters.AgentVoiceTypeJsonConverter))]
-        public global::Speechify.AgentVoiceType Type { get; set; }
+        [global::System.Text.Json.Serialization.JsonRequired]
+        public required global::Speechify.AgentVoiceType Type { get; set; }
 
         /// <summary>
         /// 
@@ -89,6 +92,13 @@ namespace Speechify
         /// <param name="id">
         /// Voice slug. Passed verbatim as `voice_id` on agent writes.
         /// </param>
+        /// <param name="type">
+        /// Voice provenance. `shared` is the curated catalogue every workspace<br/>
+        /// sees; `personal` is a voice this workspace cloned itself (workspace-<br/>
+        /// owned clones only). Both can be assigned to an agent. Treat this as an<br/>
+        /// open set - new values may be added, so branch on the ones you know and<br/>
+        /// fall through for the rest.
+        /// </param>
         /// <param name="displayName"></param>
         /// <param name="models"></param>
         /// <param name="gender">
@@ -98,11 +108,6 @@ namespace Speechify
         /// </param>
         /// <param name="locale">
         /// Default locale for the voice (BCP-47-ish, e.g. `en-US`).
-        /// </param>
-        /// <param name="type">
-        /// Voice provenance. Always `shared` on this endpoint — personal<br/>
-        /// / cloned voices are not exposed here; they stay on<br/>
-        /// `GET /v1/voices`.
         /// </param>
         /// <param name="previewAudio">
         /// Preferred preview clip URL, locale-matched when possible.
@@ -120,11 +125,11 @@ namespace Speechify
 #endif
         public AgentVoice(
             string id,
+            global::Speechify.AgentVoiceType type,
             string displayName,
             global::System.Collections.Generic.IList<global::Speechify.AgentVoiceModel> models,
             global::Speechify.AgentVoiceGender gender,
             string locale,
-            global::Speechify.AgentVoiceType type,
             string? previewAudio,
             string? avatarImage,
             global::System.Collections.Generic.IList<string>? tags)
