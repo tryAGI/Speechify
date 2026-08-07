@@ -9,10 +9,15 @@ namespace Speechify
     public sealed partial class AgentTurnHandlingConfig
     {
         /// <summary>
-        /// How long the agent waits after the caller stops talking<br/>
-        /// before replying. Null uses the platform default. Applies only<br/>
-        /// to speech-to-text stacks that use voice-activity endpointing;<br/>
-        /// stacks that use semantic turn detection ignore it.
+        /// Minimum silence, in seconds, the agent waits for after the<br/>
+        /// caller stops talking before it starts replying. Applies to<br/>
+        /// every turn on the call. Raise it when the agent talks over a<br/>
+        /// caller who pauses mid-sentence, or over an IVR menu that<br/>
+        /// breaks between options. It is a floor on listening rather<br/>
+        /// than a pause before speaking, so it adds to the time every<br/>
+        /// reply takes to arrive. Null lets turn detection decide, which<br/>
+        /// waits 0.3s when it is confident the caller finished and up to<br/>
+        /// 1.2s when it is not.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("response_delay_seconds")]
         public string? ResponseDelaySeconds { get; set; }
@@ -34,10 +39,15 @@ namespace Speechify
         /// Initializes a new instance of the <see cref="AgentTurnHandlingConfig" /> class.
         /// </summary>
         /// <param name="responseDelaySeconds">
-        /// How long the agent waits after the caller stops talking<br/>
-        /// before replying. Null uses the platform default. Applies only<br/>
-        /// to speech-to-text stacks that use voice-activity endpointing;<br/>
-        /// stacks that use semantic turn detection ignore it.
+        /// Minimum silence, in seconds, the agent waits for after the<br/>
+        /// caller stops talking before it starts replying. Applies to<br/>
+        /// every turn on the call. Raise it when the agent talks over a<br/>
+        /// caller who pauses mid-sentence, or over an IVR menu that<br/>
+        /// breaks between options. It is a floor on listening rather<br/>
+        /// than a pause before speaking, so it adds to the time every<br/>
+        /// reply takes to arrive. Null lets turn detection decide, which<br/>
+        /// waits 0.3s when it is confident the caller finished and up to<br/>
+        /// 1.2s when it is not.
         /// </param>
         /// <param name="inactivityTimeoutSeconds">
         /// How long the agent tolerates silence before ending the call,<br/>
