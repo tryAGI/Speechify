@@ -4,12 +4,18 @@
 namespace Speechify
 {
     /// <summary>
-    /// Voice provenance. Always `shared` on this endpoint — personal<br/>
-    /// / cloned voices are not exposed here; they stay on<br/>
-    /// `GET /v1/voices`.
+    /// Voice provenance. `shared` is the curated catalogue every workspace<br/>
+    /// sees; `personal` is a voice this workspace cloned itself (workspace-<br/>
+    /// owned clones only). Both can be assigned to an agent. Treat this as an<br/>
+    /// open set - new values may be added, so branch on the ones you know and<br/>
+    /// fall through for the rest.
     /// </summary>
     public enum AgentVoiceType
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        Personal,
         /// <summary>
         /// 
         /// </summary>
@@ -28,6 +34,7 @@ namespace Speechify
         {
             return value switch
             {
+                AgentVoiceType.Personal => "personal",
                 AgentVoiceType.Shared => "shared",
                 _ => throw new global::System.ArgumentOutOfRangeException(nameof(value), value, null),
             };
@@ -39,6 +46,7 @@ namespace Speechify
         {
             return value switch
             {
+                "personal" => AgentVoiceType.Personal,
                 "shared" => AgentVoiceType.Shared,
                 _ => null,
             };

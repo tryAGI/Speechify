@@ -4,13 +4,29 @@
 namespace Speechify
 {
     /// <summary>
-    /// Payload for `GET /v1/agents/voices`. The curated agent voice<br/>
-    /// catalogue is bounded (the `ai-api-agents` VMS scope plus a<br/>
-    /// handful of builtins), so it is returned in full with no<br/>
-    /// pagination metadata.
+    /// Payload for `GET /v1/agents/voices`: the curated shared set (the<br/>
+    /// `ai-api-agents` VMS scope plus a handful of builtins) followed by the<br/>
+    /// calling workspace's cloned voices. Cursor-paginated - walk pages while<br/>
+    /// `has_more` is true.
     /// </summary>
     public sealed partial class ListAgentVoicesResponse
     {
+        /// <summary>
+        /// Opaque keyset cursor for the next page. Pass back as the<br/>
+        /// `cursor` request parameter. `null` when the caller has<br/>
+        /// reached the end of the list (`has_more` is also `false`<br/>
+        /// in that case).
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("next_cursor")]
+        public string? NextCursor { get; set; }
+
+        /// <summary>
+        /// True when more rows exist beyond this page.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("has_more")]
+        [global::System.Text.Json.Serialization.JsonRequired]
+        public required bool HasMore { get; set; }
+
         /// <summary>
         /// 
         /// </summary>
@@ -38,6 +54,9 @@ namespace Speechify
         /// <summary>
         /// Initializes a new instance of the <see cref="ListAgentVoicesResponse" /> class.
         /// </summary>
+        /// <param name="hasMore">
+        /// True when more rows exist beyond this page.
+        /// </param>
         /// <param name="voices"></param>
         /// <param name="multilingualLanguages">
         /// Every language an agent may declare in `additional_languages`.<br/>
@@ -46,13 +65,23 @@ namespace Speechify
         /// validates against, so it can never offer a language a save<br/>
         /// would reject.
         /// </param>
+        /// <param name="nextCursor">
+        /// Opaque keyset cursor for the next page. Pass back as the<br/>
+        /// `cursor` request parameter. `null` when the caller has<br/>
+        /// reached the end of the list (`has_more` is also `false`<br/>
+        /// in that case).
+        /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
 #endif
         public ListAgentVoicesResponse(
+            bool hasMore,
             global::System.Collections.Generic.IList<global::Speechify.AgentVoice> voices,
-            global::System.Collections.Generic.IList<global::Speechify.MultilingualLanguage> multilingualLanguages)
+            global::System.Collections.Generic.IList<global::Speechify.MultilingualLanguage> multilingualLanguages,
+            string? nextCursor)
         {
+            this.NextCursor = nextCursor;
+            this.HasMore = hasMore;
             this.Voices = voices ?? throw new global::System.ArgumentNullException(nameof(voices));
             this.MultilingualLanguages = multilingualLanguages ?? throw new global::System.ArgumentNullException(nameof(multilingualLanguages));
         }
