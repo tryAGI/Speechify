@@ -80,10 +80,13 @@ namespace Speechify
         public required global::System.Collections.Generic.IList<string> Endpoints { get; set; }
 
         /// <summary>
-        /// Whether the model serves only the voices curated for it. When true,<br/>
-        /// pick a voice whose `models` array in GET /v1/voices names this<br/>
-        /// model; any other voice is rejected. When false, every catalogue<br/>
-        /// voice works, including the workspace's own clones.
+        /// Whether the model's stock voices are restricted to the set curated<br/>
+        /// for it. When true, pick a stock voice whose `models` array in<br/>
+        /// GET /v1/voices names this model; any other stock voice is rejected.<br/>
+        /// When false, every stock catalogue voice works. Cloned voices are<br/>
+        /// governed separately - always read each voice's own `models` array in<br/>
+        /// GET /v1/voices, which reflects what your workspace may actually<br/>
+        /// synthesize.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("curated_voices")]
         [global::System.Text.Json.Serialization.JsonRequired]
@@ -147,10 +150,13 @@ namespace Speechify
         /// response, so branch on it instead of discovering it at call time.
         /// </param>
         /// <param name="curatedVoices">
-        /// Whether the model serves only the voices curated for it. When true,<br/>
-        /// pick a voice whose `models` array in GET /v1/voices names this<br/>
-        /// model; any other voice is rejected. When false, every catalogue<br/>
-        /// voice works, including the workspace's own clones.
+        /// Whether the model's stock voices are restricted to the set curated<br/>
+        /// for it. When true, pick a stock voice whose `models` array in<br/>
+        /// GET /v1/voices names this model; any other stock voice is rejected.<br/>
+        /// When false, every stock catalogue voice works. Cloned voices are<br/>
+        /// governed separately - always read each voice's own `models` array in<br/>
+        /// GET /v1/voices, which reflects what your workspace may actually<br/>
+        /// synthesize.
         /// </param>
         /// <param name="englishVoicesOnly">
         /// Whether the model rejects a non-English voice. Independent of<br/>
