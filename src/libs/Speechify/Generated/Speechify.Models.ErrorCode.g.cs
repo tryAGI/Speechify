@@ -236,6 +236,10 @@ namespace Speechify
         /// <summary>
         /// 
         /// </summary>
+        WorkspaceFreeLimit,
+        /// <summary>
+        /// 
+        /// </summary>
         WorkspaceLastOwner,
         /// <summary>
         /// 
@@ -245,6 +249,10 @@ namespace Speechify
         /// 
         /// </summary>
         WorkspaceNotFound,
+        /// <summary>
+        /// 
+        /// </summary>
+        WorkspaceSingleOwner,
     }
 
     /// <summary>
@@ -314,9 +322,11 @@ namespace Speechify
                 ErrorCode.ValidationFailed => "validation_failed",
                 ErrorCode.VoiceCloningNotIncluded => "voice_cloning_not_included",
                 ErrorCode.VoiceNotFound => "voice_not_found",
+                ErrorCode.WorkspaceFreeLimit => "workspace_free_limit",
                 ErrorCode.WorkspaceLastOwner => "workspace_last_owner",
                 ErrorCode.WorkspaceLastWorkspace => "workspace_last_workspace",
                 ErrorCode.WorkspaceNotFound => "workspace_not_found",
+                ErrorCode.WorkspaceSingleOwner => "workspace_single_owner",
                 _ => throw new global::System.ArgumentOutOfRangeException(nameof(value), value, null),
             };
         }
@@ -382,9 +392,11 @@ namespace Speechify
                 "validation_failed" => ErrorCode.ValidationFailed,
                 "voice_cloning_not_included" => ErrorCode.VoiceCloningNotIncluded,
                 "voice_not_found" => ErrorCode.VoiceNotFound,
+                "workspace_free_limit" => ErrorCode.WorkspaceFreeLimit,
                 "workspace_last_owner" => ErrorCode.WorkspaceLastOwner,
                 "workspace_last_workspace" => ErrorCode.WorkspaceLastWorkspace,
                 "workspace_not_found" => ErrorCode.WorkspaceNotFound,
+                "workspace_single_owner" => ErrorCode.WorkspaceSingleOwner,
                 _ => null,
             };
         }
