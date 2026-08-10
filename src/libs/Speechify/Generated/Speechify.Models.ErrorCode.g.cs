@@ -16,6 +16,10 @@ namespace Speechify
         /// <summary>
         /// 
         /// </summary>
+        AccountDeletionBlocked,
+        /// <summary>
+        /// 
+        /// </summary>
         AgentNotFound,
         /// <summary>
         /// 
@@ -267,6 +271,7 @@ namespace Speechify
         {
             return value switch
             {
+                ErrorCode.AccountDeletionBlocked => "account_deletion_blocked",
                 ErrorCode.AgentNotFound => "agent_not_found",
                 ErrorCode.AgentTestNotFound => "agent_test_not_found",
                 ErrorCode.AudioAssetNotFound => "audio_asset_not_found",
@@ -337,6 +342,7 @@ namespace Speechify
         {
             return value switch
             {
+                "account_deletion_blocked" => ErrorCode.AccountDeletionBlocked,
                 "agent_not_found" => ErrorCode.AgentNotFound,
                 "agent_test_not_found" => ErrorCode.AgentTestNotFound,
                 "audio_asset_not_found" => ErrorCode.AudioAssetNotFound,
