@@ -36,6 +36,15 @@ namespace Speechify
         public required global::Speechify.MCPAuth Auth { get; set; }
 
         /// <summary>
+        /// Declares the SERVER slow. Applies to every remote tool the<br/>
+        /// `list_tools` handshake discovers on it — MCP publishes no<br/>
+        /// per-tool latency signal at config time, so this describes the<br/>
+        /// server rather than one of its verbs.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("long_running")]
+        public global::Speechify.LongRunningToolConfig? LongRunning { get; set; }
+
+        /// <summary>
         /// Additional properties that are not explicitly defined in the schema
         /// </summary>
         [global::System.Text.Json.Serialization.JsonExtensionData]
@@ -52,17 +61,25 @@ namespace Speechify
         /// MCP transport. `http_streamable` is the default; `sse` is the<br/>
         /// legacy fallback for servers that haven't migrated yet.
         /// </param>
+        /// <param name="longRunning">
+        /// Declares the SERVER slow. Applies to every remote tool the<br/>
+        /// `list_tools` handshake discovers on it — MCP publishes no<br/>
+        /// per-tool latency signal at config time, so this describes the<br/>
+        /// server rather than one of its verbs.
+        /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
 #endif
         public MCPToolConfig(
             string endpoint,
             global::Speechify.MCPAuth auth,
-            global::Speechify.MCPTransport? transport)
+            global::Speechify.MCPTransport? transport,
+            global::Speechify.LongRunningToolConfig? longRunning)
         {
             this.Endpoint = endpoint ?? throw new global::System.ArgumentNullException(nameof(endpoint));
             this.Transport = transport;
             this.Auth = auth;
+            this.LongRunning = longRunning;
         }
 
         /// <summary>

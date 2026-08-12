@@ -621,6 +621,26 @@ namespace Speechify
         /// <param name="credentials">
         /// Provider-specific credential blob (for future extensibility).
         /// </param>
+        /// <param name="headersToAttributes">
+        /// Map inbound SIP headers onto agent variables, so an upstream that<br/>
+        /// has already identified the caller can pass that through instead of<br/>
+        /// the agent re-verifying it in conversation.<br/>
+        /// Each key is an extension header on the INVITE (`X-…`, a valid SIP<br/>
+        /// token); each value names the variable its content is exposed under.<br/>
+        /// A header mapped to `customer_id` renders in the agent's prompt, and<br/>
+        /// in flow tool arguments, as `{{system__sip_customer_id}}`. Two<br/>
+        /// headers may not share a variable name, which is the one rule the<br/>
+        /// schema cannot state and the server rejects with<br/>
+        /// `validation_failed`.<br/>
+        /// Only applies to inbound calls on this trunk. For `provider=byoc`<br/>
+        /// the mapping takes effect when the trunk's first phone number is<br/>
+        /// imported, which is when its inbound route is provisioned.<br/>
+        /// **A mapped header is an identity assertion from your own phone<br/>
+        /// system, and is only as trustworthy as that system.** PSTN caller ID<br/>
+        /// is spoofable and is a hint, not a credential; do not treat either as<br/>
+        /// proof of identity for a high-value action. Values are passed to the<br/>
+        /// agent as data, never as instructions.
+        /// </param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::System.InvalidOperationException"></exception>
@@ -637,6 +657,7 @@ namespace Speechify
             global::Speechify.SIPTransport? transport = default,
             global::Speechify.SIPMediaEncryption? mediaEncryption = default,
             global::Speechify.CreateSipTrunkRequestCredentials? credentials = default,
+            global::System.Collections.Generic.Dictionary<string, string>? headersToAttributes = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
@@ -653,6 +674,7 @@ namespace Speechify
                 Transport = transport,
                 MediaEncryption = mediaEncryption,
                 Credentials = credentials,
+                HeadersToAttributes = headersToAttributes,
             };
 
             return await CreateAsync(

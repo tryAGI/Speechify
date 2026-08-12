@@ -55,6 +55,18 @@ namespace Speechify
         public bool? FireAndForget { get; set; }
 
         /// <summary>
+        /// Declares the endpoint slow, so the agent speaks a filler<br/>
+        /// phrase instead of leaving the caller in silence and refuses<br/>
+        /// a duplicate call while one is in flight.<br/>
+        /// Cannot be combined with `fire_and_forget`. That path returns<br/>
+        /// to the agent before your endpoint answers, so there is no<br/>
+        /// wait to fill; saving both is refused rather than storing a<br/>
+        /// holding phrase that can never be spoken.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("long_running")]
+        public global::Speechify.LongRunningToolConfig? LongRunning { get; set; }
+
+        /// <summary>
         /// Additional properties that are not explicitly defined in the schema
         /// </summary>
         [global::System.Text.Json.Serialization.JsonExtensionData]
@@ -83,6 +95,15 @@ namespace Speechify
         /// etc.) where blocking the call on the response would hurt<br/>
         /// the conversation. Defaults to false.
         /// </param>
+        /// <param name="longRunning">
+        /// Declares the endpoint slow, so the agent speaks a filler<br/>
+        /// phrase instead of leaving the caller in silence and refuses<br/>
+        /// a duplicate call while one is in flight.<br/>
+        /// Cannot be combined with `fire_and_forget`. That path returns<br/>
+        /// to the agent before your endpoint answers, so there is no<br/>
+        /// wait to fill; saving both is refused rather than storing a<br/>
+        /// holding phrase that can never be spoken.
+        /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
 #endif
@@ -92,7 +113,8 @@ namespace Speechify
             global::System.Collections.Generic.Dictionary<string, string>? headers,
             int? timeoutMs,
             global::System.Collections.Generic.IList<global::Speechify.ToolParam>? @params,
-            bool? fireAndForget)
+            bool? fireAndForget,
+            global::Speechify.LongRunningToolConfig? longRunning)
         {
             this.Url = url ?? throw new global::System.ArgumentNullException(nameof(url));
             this.Method = method;
@@ -100,6 +122,7 @@ namespace Speechify
             this.TimeoutMs = timeoutMs;
             this.Params = @params;
             this.FireAndForget = fireAndForget;
+            this.LongRunning = longRunning;
         }
 
         /// <summary>

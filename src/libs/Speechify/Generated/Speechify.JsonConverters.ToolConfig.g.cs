@@ -23,6 +23,13 @@ namespace Speechify.JsonConverters
                 foreach (var __jsonProp in __jsonDocument.RootElement.EnumerateObject())
                 {
                     __jsonProps.Add(__jsonProp.Name);
+                    if (__jsonProp.Value.ValueKind == global::System.Text.Json.JsonValueKind.Object)
+                    {
+                        foreach (var __nestedJsonProp in __jsonProp.Value.EnumerateObject())
+                        {
+                            __jsonProps.Add(__jsonProp.Name + "." + __nestedJsonProp.Name);
+                        }
+                    }
 
                 }
             }
@@ -30,6 +37,12 @@ namespace Speechify.JsonConverters
             var __score0 = 0;
             if (__jsonProps.Contains("fire_and_forget")) __score0++;
             if (__jsonProps.Contains("headers")) __score0++;
+            if (__jsonProps.Contains("long_running")) __score0++;
+            if (__jsonProps.Contains("long_running.additional_filler_messages")) __score0++;
+            if (__jsonProps.Contains("long_running.filler_delay_ms")) __score0++;
+            if (__jsonProps.Contains("long_running.filler_interval_ms")) __score0++;
+            if (__jsonProps.Contains("long_running.filler_message")) __score0++;
+            if (__jsonProps.Contains("long_running.on_duplicate")) __score0++;
             if (__jsonProps.Contains("method")) __score0++;
             if (__jsonProps.Contains("params")) __score0++;
             if (__jsonProps.Contains("timeout_ms")) __score0++;
@@ -40,6 +53,12 @@ namespace Speechify.JsonConverters
             var __score2 = 0;
             if (__jsonProps.Contains("auth")) __score2++;
             if (__jsonProps.Contains("endpoint")) __score2++;
+            if (__jsonProps.Contains("long_running")) __score2++;
+            if (__jsonProps.Contains("long_running.additional_filler_messages")) __score2++;
+            if (__jsonProps.Contains("long_running.filler_delay_ms")) __score2++;
+            if (__jsonProps.Contains("long_running.filler_interval_ms")) __score2++;
+            if (__jsonProps.Contains("long_running.filler_message")) __score2++;
+            if (__jsonProps.Contains("long_running.on_duplicate")) __score2++;
             if (__jsonProps.Contains("transport")) __score2++;
             var __bestScore = 0;
             var __bestIndex = -1;
