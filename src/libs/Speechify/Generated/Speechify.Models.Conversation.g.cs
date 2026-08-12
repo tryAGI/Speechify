@@ -134,9 +134,12 @@ namespace Speechify
         public required object Metadata { get; set; }
 
         /// <summary>
-        /// Stable caller key (LiveKit participant identity) persisted<br/>
-        /// at session start so the post-call memory extractor can<br/>
-        /// pivot memories by `(agent_id, caller_identity)`. Empty<br/>
+        /// Stable application-level caller key persisted at session start<br/>
+        /// so the post-call memory extractor can pivot memories by<br/>
+        /// `(agent_id, caller_identity)`. For authenticated conversation<br/>
+        /// creation, this is `user_identity` when supplied and otherwise<br/>
+        /// falls back to `user_&lt;authenticated principal&gt;`. It is deliberately<br/>
+        /// independent from the opaque realtime participant identity. Empty<br/>
         /// string for anonymous widget sessions.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("caller_identity")]
@@ -313,9 +316,12 @@ namespace Speechify
         /// * `null` — the termination category was not recorded. Legacy calls only; current calls always carry a reason.
         /// </param>
         /// <param name="callerIdentity">
-        /// Stable caller key (LiveKit participant identity) persisted<br/>
-        /// at session start so the post-call memory extractor can<br/>
-        /// pivot memories by `(agent_id, caller_identity)`. Empty<br/>
+        /// Stable application-level caller key persisted at session start<br/>
+        /// so the post-call memory extractor can pivot memories by<br/>
+        /// `(agent_id, caller_identity)`. For authenticated conversation<br/>
+        /// creation, this is `user_identity` when supplied and otherwise<br/>
+        /// falls back to `user_&lt;authenticated principal&gt;`. It is deliberately<br/>
+        /// independent from the opaque realtime participant identity. Empty<br/>
         /// string for anonymous widget sessions.
         /// </param>
         /// <param name="fromNumber">
