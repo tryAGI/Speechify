@@ -112,6 +112,13 @@ namespace Speechify
         public required global::Speechify.SIPMediaEncryption MediaEncryption { get; set; }
 
         /// <summary>
+        /// Inbound SIP headers mapped onto agent variables, as configured<br/>
+        /// when the trunk was created. Absent when the trunk maps none.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("headers_to_attributes")]
+        public global::System.Collections.Generic.Dictionary<string, string>? HeadersToAttributes { get; set; }
+
+        /// <summary>
         /// 
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("created_at")]
@@ -189,6 +196,10 @@ namespace Speechify
         /// (e.g. `US`, `DE`). Required for international outbound on<br/>
         /// some carriers.
         /// </param>
+        /// <param name="headersToAttributes">
+        /// Inbound SIP headers mapped onto agent variables, as configured<br/>
+        /// when the trunk was created. Absent when the trunk maps none.
+        /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
 #endif
@@ -206,7 +217,8 @@ namespace Speechify
             string? sipAddress,
             string? authUsername,
             bool? authPasswordSet,
-            string? destinationCountry)
+            string? destinationCountry,
+            global::System.Collections.Generic.Dictionary<string, string>? headersToAttributes)
         {
             this.Id = id ?? throw new global::System.ArgumentNullException(nameof(id));
             this.Name = name ?? throw new global::System.ArgumentNullException(nameof(name));
@@ -220,6 +232,7 @@ namespace Speechify
             this.DestinationCountry = destinationCountry;
             this.Transport = transport;
             this.MediaEncryption = mediaEncryption;
+            this.HeadersToAttributes = headersToAttributes;
             this.CreatedAt = createdAt;
             this.UpdatedAt = updatedAt;
         }

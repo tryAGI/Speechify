@@ -197,6 +197,10 @@ namespace Speechify
 
             typeof(global::Speechify.JsonConverters.WebhookToolConfigMethodNullableJsonConverter),
 
+            typeof(global::Speechify.JsonConverters.LongRunningToolConfigOnDuplicateJsonConverter),
+
+            typeof(global::Speechify.JsonConverters.LongRunningToolConfigOnDuplicateNullableJsonConverter),
+
             typeof(global::Speechify.JsonConverters.MCPTransportJsonConverter),
 
             typeof(global::Speechify.JsonConverters.MCPTransportNullableJsonConverter),
@@ -587,6 +591,8 @@ namespace Speechify
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.BuiltinToolConfig))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Speechify.ToolParam>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.WebhookToolConfigMethod), TypeInfoPropertyName = "WebhookToolConfigMethod2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.LongRunningToolConfigOnDuplicate), TypeInfoPropertyName = "LongRunningToolConfigOnDuplicate2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.LongRunningToolConfig))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.WebhookToolConfig))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.ClientToolConfig))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.MCPTransport), TypeInfoPropertyName = "MCPTransport2")]
@@ -833,6 +839,7 @@ namespace Speechify
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.ToolKind?), TypeInfoPropertyName = "NullableToolKind2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.ToolParamType?), TypeInfoPropertyName = "NullableToolParamType2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.WebhookToolConfigMethod?), TypeInfoPropertyName = "NullableWebhookToolConfigMethod2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.LongRunningToolConfigOnDuplicate?), TypeInfoPropertyName = "NullableLongRunningToolConfigOnDuplicate2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.MCPTransport?), TypeInfoPropertyName = "NullableMCPTransport2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.MCPAuth?), TypeInfoPropertyName = "NullableMCPAuth2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.MCPAuthVariant1Type?), TypeInfoPropertyName = "NullableMCPAuthVariant1Type2")]
@@ -852,9 +859,6 @@ namespace Speechify
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.DataAssertionMode?), TypeInfoPropertyName = "NullableDataAssertionMode2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.AgentTestConfig?), TypeInfoPropertyName = "NullableAgentTestConfig2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.MockingStrategy?), TypeInfoPropertyName = "NullableMockingStrategy2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.NoMatchBehavior?), TypeInfoPropertyName = "NullableNoMatchBehavior2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.TestVerdict?), TypeInfoPropertyName = "NullableTestVerdict2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.SimulationResultSentiment?), TypeInfoPropertyName = "NullableSimulationResultSentiment2")]
     internal sealed partial class SourceGenerationContextChunk0 : global::System.Text.Json.Serialization.JsonSerializerContext
     {
     }
@@ -1050,6 +1054,10 @@ namespace Speechify
 
             typeof(global::Speechify.JsonConverters.WebhookToolConfigMethodNullableJsonConverter),
 
+            typeof(global::Speechify.JsonConverters.LongRunningToolConfigOnDuplicateJsonConverter),
+
+            typeof(global::Speechify.JsonConverters.LongRunningToolConfigOnDuplicateNullableJsonConverter),
+
             typeof(global::Speechify.JsonConverters.MCPTransportJsonConverter),
 
             typeof(global::Speechify.JsonConverters.MCPTransportNullableJsonConverter),
@@ -1208,6 +1216,9 @@ namespace Speechify
 
             typeof(global::Speechify.JsonConverters.UnixTimestampJsonConverter),
         })]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.NoMatchBehavior?), TypeInfoPropertyName = "NullableNoMatchBehavior2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.TestVerdict?), TypeInfoPropertyName = "NullableTestVerdict2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.SimulationResultSentiment?), TypeInfoPropertyName = "NullableSimulationResultSentiment2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.SimulationCriterionResultStatus?), TypeInfoPropertyName = "NullableSimulationCriterionResultStatus2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.DataAssertionResultMode?), TypeInfoPropertyName = "NullableDataAssertionResultMode2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.OneOf<global::Speechify.ReplyResult, object>?), TypeInfoPropertyName = "NullableOneOfReplyResultObject2")]
@@ -1443,6 +1454,8 @@ namespace Speechify
             options.Converters.Add(new global::Speechify.JsonConverters.ToolParamTypeNullableJsonConverter());
             options.Converters.Add(new global::Speechify.JsonConverters.WebhookToolConfigMethodJsonConverter());
             options.Converters.Add(new global::Speechify.JsonConverters.WebhookToolConfigMethodNullableJsonConverter());
+            options.Converters.Add(new global::Speechify.JsonConverters.LongRunningToolConfigOnDuplicateJsonConverter());
+            options.Converters.Add(new global::Speechify.JsonConverters.LongRunningToolConfigOnDuplicateNullableJsonConverter());
             options.Converters.Add(new global::Speechify.JsonConverters.MCPTransportJsonConverter());
             options.Converters.Add(new global::Speechify.JsonConverters.MCPTransportNullableJsonConverter());
             options.Converters.Add(new global::Speechify.JsonConverters.MCPAuthVariant1TypeJsonConverter());
