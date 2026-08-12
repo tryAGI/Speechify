@@ -155,6 +155,14 @@ namespace Speechify
         public bool? IvrMemoryEnabled { get; set; }
 
         /// <summary>
+        /// Whether the out-of-band injection guardrail was armed when<br/>
+        /// this call started. A conversation is only interpretable<br/>
+        /// against whether the check was running at the time.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("observer_guardrail_enabled")]
+        public bool? ObserverGuardrailEnabled { get; set; }
+
+        /// <summary>
         /// Silence-tolerance override at call time; null = platform default.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("inactivity_timeout_seconds")]
@@ -234,6 +242,11 @@ namespace Speechify
         /// <param name="saveAudioRecording"></param>
         /// <param name="navigatorMode"></param>
         /// <param name="ivrMemoryEnabled"></param>
+        /// <param name="observerGuardrailEnabled">
+        /// Whether the out-of-band injection guardrail was armed when<br/>
+        /// this call started. A conversation is only interpretable<br/>
+        /// against whether the check was running at the time.
+        /// </param>
         /// <param name="inactivityTimeoutSeconds">
         /// Silence-tolerance override at call time; null = platform default.
         /// </param>
@@ -272,6 +285,7 @@ namespace Speechify
             bool? saveAudioRecording,
             bool? navigatorMode,
             bool? ivrMemoryEnabled,
+            bool? observerGuardrailEnabled,
             int? inactivityTimeoutSeconds,
             int? maxCallDurationSeconds,
             global::Speechify.AgentSnapshotBackgroundNoisePreset? backgroundNoisePreset,
@@ -299,6 +313,7 @@ namespace Speechify
             this.SaveAudioRecording = saveAudioRecording;
             this.NavigatorMode = navigatorMode;
             this.IvrMemoryEnabled = ivrMemoryEnabled;
+            this.ObserverGuardrailEnabled = observerGuardrailEnabled;
             this.InactivityTimeoutSeconds = inactivityTimeoutSeconds;
             this.MaxCallDurationSeconds = maxCallDurationSeconds;
             this.BackgroundNoisePreset = backgroundNoisePreset;

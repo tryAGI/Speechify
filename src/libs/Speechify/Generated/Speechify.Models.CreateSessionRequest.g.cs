@@ -9,7 +9,20 @@ namespace Speechify
     public sealed partial class CreateSessionRequest
     {
         /// <summary>
-        /// Opaque identifier for the end-user (e.g. your app's user ID). Stamped onto the conversation. Optional - defaults to an anonymous per-session ID.
+        /// Opaque identifier for the end-user (e.g. your app's user ID),<br/>
+        /// persisted as the conversation's `caller_identity` and used as the<br/>
+        /// memory key. Optional - an omitted identity means an anonymous<br/>
+        /// session, which is excluded from per-caller memory.<br/>
+        /// How it is stored depends on whether the request was<br/>
+        /// authenticated, because only then has anyone verified the claim:<br/>
+        /// - **With an API key**: stored verbatim, and the same value on<br/>
+        ///   `POST /v1/agents/{agent_id}/conversations` is the same caller.<br/>
+        /// - **Without credentials** (a public agent embedded in a page):<br/>
+        ///   stored in a separate `embed_`-prefixed namespace, so a<br/>
+        ///   self-asserted identity can never resolve to a caller record<br/>
+        ///   written by a verified surface such as a phone call. Mint<br/>
+        ///   sessions from your backend if you need one caller record<br/>
+        ///   across surfaces.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("user_identity")]
         public string? UserIdentity { get; set; }
@@ -45,7 +58,20 @@ namespace Speechify
         /// Initializes a new instance of the <see cref="CreateSessionRequest" /> class.
         /// </summary>
         /// <param name="userIdentity">
-        /// Opaque identifier for the end-user (e.g. your app's user ID). Stamped onto the conversation. Optional - defaults to an anonymous per-session ID.
+        /// Opaque identifier for the end-user (e.g. your app's user ID),<br/>
+        /// persisted as the conversation's `caller_identity` and used as the<br/>
+        /// memory key. Optional - an omitted identity means an anonymous<br/>
+        /// session, which is excluded from per-caller memory.<br/>
+        /// How it is stored depends on whether the request was<br/>
+        /// authenticated, because only then has anyone verified the claim:<br/>
+        /// - **With an API key**: stored verbatim, and the same value on<br/>
+        ///   `POST /v1/agents/{agent_id}/conversations` is the same caller.<br/>
+        /// - **Without credentials** (a public agent embedded in a page):<br/>
+        ///   stored in a separate `embed_`-prefixed namespace, so a<br/>
+        ///   self-asserted identity can never resolve to a caller record<br/>
+        ///   written by a verified surface such as a phone call. Mint<br/>
+        ///   sessions from your backend if you need one caller record<br/>
+        ///   across surfaces.
         /// </param>
         /// <param name="language">
         /// Starts the session in one of the agent's configured languages<br/>

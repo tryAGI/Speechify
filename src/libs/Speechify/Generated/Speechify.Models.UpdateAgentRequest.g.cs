@@ -89,6 +89,14 @@ namespace Speechify
         public global::Speechify.AgentNavigatorConfig? Navigator { get; set; }
 
         /// <summary>
+        /// Runtime safety controls that are opt-in per agent rather than<br/>
+        /// platform defaults, because each one bills work an ordinary call<br/>
+        /// does not do.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("guardrails")]
+        public global::Speechify.AgentGuardrailsConfig? Guardrails { get; set; }
+
+        /// <summary>
         /// Optional ambient background-noise bed mixed into the call.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("background_noise")]
@@ -201,6 +209,11 @@ namespace Speechify
         /// <param name="navigator">
         /// Autonomous IVR-navigation configuration for outbound calls.
         /// </param>
+        /// <param name="guardrails">
+        /// Runtime safety controls that are opt-in per agent rather than<br/>
+        /// platform defaults, because each one bills work an ordinary call<br/>
+        /// does not do.
+        /// </param>
         /// <param name="backgroundNoise">
         /// Optional ambient background-noise bed mixed into the call.
         /// </param>
@@ -250,6 +263,7 @@ namespace Speechify
             global::Speechify.AgentTurnHandlingConfig? turnHandling,
             global::Speechify.AgentMemoryConfig? memory,
             global::Speechify.AgentNavigatorConfig? navigator,
+            global::Speechify.AgentGuardrailsConfig? guardrails,
             global::Speechify.AgentBackgroundNoiseConfig? backgroundNoise,
             global::Speechify.WidgetConfig? widgetConfig,
             bool? isPublic,
@@ -272,6 +286,7 @@ namespace Speechify
             this.TurnHandling = turnHandling;
             this.Memory = memory;
             this.Navigator = navigator;
+            this.Guardrails = guardrails;
             this.BackgroundNoise = backgroundNoise;
             this.WidgetConfig = widgetConfig;
             this.IsPublic = isPublic;

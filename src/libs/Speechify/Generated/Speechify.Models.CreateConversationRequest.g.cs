@@ -15,6 +15,22 @@ namespace Speechify
         public string? Transport { get; set; }
 
         /// <summary>
+        /// Stable opaque identifier for the end-user in your application.<br/>
+        /// Persisted verbatim as `caller_identity` for caller correlation<br/>
+        /// and memory, but never exposed as the realtime participant<br/>
+        /// identity. The same value sent to an authenticated<br/>
+        /// `POST /v1/agents/{agent_id}/sessions` is the same caller record.<br/>
+        /// Omit to preserve `user_&lt;authenticated principal&gt;` as the caller<br/>
+        /// key.<br/>
+        /// May not begin with `embed_`, `anon_` or `user_`: those namespaces<br/>
+        /// are reserved for identities the platform derives rather than<br/>
+        /// takes on trust, and claiming one is rejected with a 400 naming<br/>
+        /// `user_identity`.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("user_identity")]
+        public string? UserIdentity { get; set; }
+
+        /// <summary>
         /// Starts the conversation in one of the agent's configured<br/>
         /// languages (the default `language` or an `additional_languages`<br/>
         /// entry, matched by primary subtag). Omit for the agent's default<br/>
@@ -33,6 +49,14 @@ namespace Speechify
         public object? DynamicVariables { get; set; }
 
         /// <summary>
+        /// Authenticated, per-conversation configuration overrides. Overrides are<br/>
+        /// validated and applied before the agent is dispatched; the effective<br/>
+        /// configuration is captured in the conversation's `agent_snapshot`.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("overrides")]
+        public global::Speechify.CreateConversationOverrides? Overrides { get; set; }
+
+        /// <summary>
         /// Additional properties that are not explicitly defined in the schema
         /// </summary>
         [global::System.Text.Json.Serialization.JsonExtensionData]
@@ -43,6 +67,19 @@ namespace Speechify
         /// </summary>
         /// <param name="transport">
         /// Transport hint. Omit to use the agent's default.
+        /// </param>
+        /// <param name="userIdentity">
+        /// Stable opaque identifier for the end-user in your application.<br/>
+        /// Persisted verbatim as `caller_identity` for caller correlation<br/>
+        /// and memory, but never exposed as the realtime participant<br/>
+        /// identity. The same value sent to an authenticated<br/>
+        /// `POST /v1/agents/{agent_id}/sessions` is the same caller record.<br/>
+        /// Omit to preserve `user_&lt;authenticated principal&gt;` as the caller<br/>
+        /// key.<br/>
+        /// May not begin with `embed_`, `anon_` or `user_`: those namespaces<br/>
+        /// are reserved for identities the platform derives rather than<br/>
+        /// takes on trust, and claiming one is rejected with a 400 naming<br/>
+        /// `user_identity`.
         /// </param>
         /// <param name="language">
         /// Starts the conversation in one of the agent's configured<br/>
@@ -56,17 +93,26 @@ namespace Speechify
         /// reserved `system__` namespace are rejected. Values must match the<br/>
         /// declared type of the corresponding variable definition on the agent.
         /// </param>
+        /// <param name="overrides">
+        /// Authenticated, per-conversation configuration overrides. Overrides are<br/>
+        /// validated and applied before the agent is dispatched; the effective<br/>
+        /// configuration is captured in the conversation's `agent_snapshot`.
+        /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
 #endif
         public CreateConversationRequest(
             string? transport,
+            string? userIdentity,
             string? language,
-            object? dynamicVariables)
+            object? dynamicVariables,
+            global::Speechify.CreateConversationOverrides? overrides)
         {
             this.Transport = transport;
+            this.UserIdentity = userIdentity;
             this.Language = language;
             this.DynamicVariables = dynamicVariables;
+            this.Overrides = overrides;
         }
 
         /// <summary>

@@ -111,6 +111,15 @@ namespace Speechify
         public required global::Speechify.AgentNavigatorConfig Navigator { get; set; }
 
         /// <summary>
+        /// Runtime safety controls that are opt-in per agent rather than<br/>
+        /// platform defaults, because each one bills work an ordinary call<br/>
+        /// does not do.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("guardrails")]
+        [global::System.Text.Json.Serialization.JsonRequired]
+        public required global::Speechify.AgentGuardrailsConfig Guardrails { get; set; }
+
+        /// <summary>
         /// Optional ambient background-noise bed mixed into the call.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("background_noise")]
@@ -276,6 +285,11 @@ namespace Speechify
         /// <param name="navigator">
         /// Autonomous IVR-navigation configuration for outbound calls.
         /// </param>
+        /// <param name="guardrails">
+        /// Runtime safety controls that are opt-in per agent rather than<br/>
+        /// platform defaults, because each one bills work an ordinary call<br/>
+        /// does not do.
+        /// </param>
         /// <param name="backgroundNoise">
         /// Optional ambient background-noise bed mixed into the call.
         /// </param>
@@ -371,6 +385,7 @@ namespace Speechify
             global::Speechify.AgentTurnHandlingConfig turnHandling,
             global::Speechify.AgentMemoryConfig memory,
             global::Speechify.AgentNavigatorConfig navigator,
+            global::Speechify.AgentGuardrailsConfig guardrails,
             global::Speechify.AgentBackgroundNoiseConfig backgroundNoise,
             bool isPublic,
             global::System.Collections.Generic.IList<string> allowedOrigins,
@@ -398,6 +413,7 @@ namespace Speechify
             this.TurnHandling = turnHandling ?? throw new global::System.ArgumentNullException(nameof(turnHandling));
             this.Memory = memory ?? throw new global::System.ArgumentNullException(nameof(memory));
             this.Navigator = navigator ?? throw new global::System.ArgumentNullException(nameof(navigator));
+            this.Guardrails = guardrails ?? throw new global::System.ArgumentNullException(nameof(guardrails));
             this.BackgroundNoise = backgroundNoise ?? throw new global::System.ArgumentNullException(nameof(backgroundNoise));
             this.WidgetConfig = widgetConfig;
             this.IsPublic = isPublic;

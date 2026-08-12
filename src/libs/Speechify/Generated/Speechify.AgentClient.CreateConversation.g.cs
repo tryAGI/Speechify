@@ -55,7 +55,18 @@ namespace Speechify
         /// server-side; no additional client action required.<br/>
         /// Pass `dynamic_variables` to supply per-session values that override<br/>
         /// the agent's stored variable defaults for this one conversation.<br/>
-        /// Keys in the `system__` namespace are rejected at this boundary.
+        /// Keys in the `system__` namespace are rejected at this boundary.<br/>
+        /// Pass `user_identity` as the stable caller key your application uses<br/>
+        /// for memory and caller correlation. It is kept separate from the<br/>
+        /// opaque, per-session realtime participant identity.<br/>
+        /// `overrides.voice_id` replaces the configured voice for the entire<br/>
+        /// conversation, including every configured language the voice can<br/>
+        /// serve. The request is rejected when the voice is unavailable or<br/>
+        /// cannot cover the agent's configured language set; the rejection<br/>
+        /// names `overrides.voice_id` in the error envelope's `fields` map.<br/>
+        /// The override belongs to this conversation only: if the call is<br/>
+        /// transferred to another agent mid-conversation, that agent speaks<br/>
+        /// with its own configured voice.
         /// </summary>
         /// <param name="agentId"></param>
         /// <param name="speechifyVersion"></param>
@@ -95,7 +106,18 @@ namespace Speechify
         /// server-side; no additional client action required.<br/>
         /// Pass `dynamic_variables` to supply per-session values that override<br/>
         /// the agent's stored variable defaults for this one conversation.<br/>
-        /// Keys in the `system__` namespace are rejected at this boundary.
+        /// Keys in the `system__` namespace are rejected at this boundary.<br/>
+        /// Pass `user_identity` as the stable caller key your application uses<br/>
+        /// for memory and caller correlation. It is kept separate from the<br/>
+        /// opaque, per-session realtime participant identity.<br/>
+        /// `overrides.voice_id` replaces the configured voice for the entire<br/>
+        /// conversation, including every configured language the voice can<br/>
+        /// serve. The request is rejected when the voice is unavailable or<br/>
+        /// cannot cover the agent's configured language set; the rejection<br/>
+        /// names `overrides.voice_id` in the error envelope's `fields` map.<br/>
+        /// The override belongs to this conversation only: if the call is<br/>
+        /// transferred to another agent mid-conversation, that agent speaks<br/>
+        /// with its own configured voice.
         /// </summary>
         /// <param name="agentId"></param>
         /// <param name="speechifyVersion"></param>
@@ -642,7 +664,18 @@ namespace Speechify
         /// server-side; no additional client action required.<br/>
         /// Pass `dynamic_variables` to supply per-session values that override<br/>
         /// the agent's stored variable defaults for this one conversation.<br/>
-        /// Keys in the `system__` namespace are rejected at this boundary.
+        /// Keys in the `system__` namespace are rejected at this boundary.<br/>
+        /// Pass `user_identity` as the stable caller key your application uses<br/>
+        /// for memory and caller correlation. It is kept separate from the<br/>
+        /// opaque, per-session realtime participant identity.<br/>
+        /// `overrides.voice_id` replaces the configured voice for the entire<br/>
+        /// conversation, including every configured language the voice can<br/>
+        /// serve. The request is rejected when the voice is unavailable or<br/>
+        /// cannot cover the agent's configured language set; the rejection<br/>
+        /// names `overrides.voice_id` in the error envelope's `fields` map.<br/>
+        /// The override belongs to this conversation only: if the call is<br/>
+        /// transferred to another agent mid-conversation, that agent speaks<br/>
+        /// with its own configured voice.
         /// </summary>
         /// <param name="agentId"></param>
         /// <param name="speechifyVersion"></param>
@@ -651,6 +684,19 @@ namespace Speechify
         /// </param>
         /// <param name="transport">
         /// Transport hint. Omit to use the agent's default.
+        /// </param>
+        /// <param name="userIdentity">
+        /// Stable opaque identifier for the end-user in your application.<br/>
+        /// Persisted verbatim as `caller_identity` for caller correlation<br/>
+        /// and memory, but never exposed as the realtime participant<br/>
+        /// identity. The same value sent to an authenticated<br/>
+        /// `POST /v1/agents/{agent_id}/sessions` is the same caller record.<br/>
+        /// Omit to preserve `user_&lt;authenticated principal&gt;` as the caller<br/>
+        /// key.<br/>
+        /// May not begin with `embed_`, `anon_` or `user_`: those namespaces<br/>
+        /// are reserved for identities the platform derives rather than<br/>
+        /// takes on trust, and claiming one is rejected with a 400 naming<br/>
+        /// `user_identity`.
         /// </param>
         /// <param name="language">
         /// Starts the conversation in one of the agent's configured<br/>
@@ -664,6 +710,11 @@ namespace Speechify
         /// reserved `system__` namespace are rejected. Values must match the<br/>
         /// declared type of the corresponding variable definition on the agent.
         /// </param>
+        /// <param name="overrides">
+        /// Authenticated, per-conversation configuration overrides. Overrides are<br/>
+        /// validated and applied before the agent is dispatched; the effective<br/>
+        /// configuration is captured in the conversation's `agent_snapshot`.
+        /// </param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::System.InvalidOperationException"></exception>
@@ -672,16 +723,20 @@ namespace Speechify
             string? speechifyVersion = default,
             string? idempotencyKey = default,
             string? transport = default,
+            string? userIdentity = default,
             string? language = default,
             object? dynamicVariables = default,
+            global::Speechify.CreateConversationOverrides? overrides = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
             var __request = new global::Speechify.CreateConversationRequest
             {
                 Transport = transport,
+                UserIdentity = userIdentity,
                 Language = language,
                 DynamicVariables = dynamicVariables,
+                Overrides = overrides,
             };
 
             return await CreateConversationAsync(

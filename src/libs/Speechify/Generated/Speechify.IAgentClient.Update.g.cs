@@ -76,6 +76,11 @@ namespace Speechify
         /// <param name="navigator">
         /// Autonomous IVR-navigation configuration for outbound calls.
         /// </param>
+        /// <param name="guardrails">
+        /// Runtime safety controls that are opt-in per agent rather than<br/>
+        /// platform defaults, because each one bills work an ordinary call<br/>
+        /// does not do.
+        /// </param>
         /// <param name="backgroundNoise">
         /// Optional ambient background-noise bed mixed into the call.
         /// </param>
@@ -127,6 +132,7 @@ namespace Speechify
             global::Speechify.AgentTurnHandlingConfig? turnHandling = default,
             global::Speechify.AgentMemoryConfig? memory = default,
             global::Speechify.AgentNavigatorConfig? navigator = default,
+            global::Speechify.AgentGuardrailsConfig? guardrails = default,
             global::Speechify.AgentBackgroundNoiseConfig? backgroundNoise = default,
             global::Speechify.WidgetConfig? widgetConfig = default,
             bool? isPublic = default,

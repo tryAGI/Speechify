@@ -60,6 +60,10 @@ namespace Speechify
         /// <summary>
         /// 
         /// </summary>
+        ContentPolicyViolation,
+        /// <summary>
+        /// 
+        /// </summary>
         ConversationNotFound,
         /// <summary>
         /// 
@@ -282,6 +286,7 @@ namespace Speechify
                 ErrorCode.CallerNotFound => "caller_not_found",
                 ErrorCode.ConcurrencyLimitReached => "concurrency_limit_reached",
                 ErrorCode.Conflict => "conflict",
+                ErrorCode.ContentPolicyViolation => "content_policy_violation",
                 ErrorCode.ConversationNotFound => "conversation_not_found",
                 ErrorCode.CredentialInUse => "credential_in_use",
                 ErrorCode.CredentialNotFound => "credential_not_found",
@@ -353,6 +358,7 @@ namespace Speechify
                 "caller_not_found" => ErrorCode.CallerNotFound,
                 "concurrency_limit_reached" => ErrorCode.ConcurrencyLimitReached,
                 "conflict" => ErrorCode.Conflict,
+                "content_policy_violation" => ErrorCode.ContentPolicyViolation,
                 "conversation_not_found" => ErrorCode.ConversationNotFound,
                 "credential_in_use" => ErrorCode.CredentialInUse,
                 "credential_not_found" => ErrorCode.CredentialNotFound,
