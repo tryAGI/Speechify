@@ -81,6 +81,11 @@ namespace Speechify
         /// <summary>
         /// 
         /// </summary>
+        public ConsentChallengesClient ConsentChallenges { get; }
+
+        /// <summary>
+        /// 
+        /// </summary>
         public ConversationsClient Conversations { get; }
 
         /// <summary>

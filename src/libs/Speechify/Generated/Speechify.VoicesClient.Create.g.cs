@@ -47,7 +47,10 @@ namespace Speechify
 
         /// <summary>
         /// Create Voice<br/>
-        /// Create a cloned voice for the workspace from a 10-30 second audio sample. The clone belongs to the workspace, so every member and service-account key in it can list, use, and manage it. Cloned voices are usable self-serve on `simba-3.0`, `simba-english` and `simba-multilingual`. `simba-3.2` also serves cloned voices, currently as a limited release enabled per workspace; contact Speechify to have it enabled for yours.
+        /// Create a cloned voice for the workspace from a 10-30 second audio sample, with verified consent from the speaker.<br/>
+        /// Cloning requires proof that the speaker agreed to it. Create a consent challenge with `POST /v1/voices/consent-challenges`, show the returned `phrase` to the speaker, record them reading it aloud, and send that recording here as `consent_recording` together with the challenge's `consent_challenge_id`. Speechify transcribes the recording, checks it against the phrase it issued, and keeps it as the consent record for the voice. A challenge is single use and short-lived, so record and submit in one sitting.<br/>
+        /// The clone belongs to the workspace, so every member and service-account key in it can list, use, and manage it. Cloned voices are usable self-serve on `simba-3.0`, `simba-english` and `simba-multilingual`. `simba-3.2` also serves cloned voices, currently as a limited release enabled per workspace; contact Speechify to have it enabled for yours.<br/>
+        /// Callers pinned before `Speechify-Version: 2026-09-13` use the previous flow instead: no challenge, and a `consent` form field carrying the speaker's name and email as a JSON string. That flow is deprecated and will be removed after a sunset window announced in the changelog.
         /// </summary>
         /// <param name="speechifyVersion"></param>
         /// <param name="idempotencyKey">
@@ -78,7 +81,10 @@ namespace Speechify
         }
         /// <summary>
         /// Create Voice<br/>
-        /// Create a cloned voice for the workspace from a 10-30 second audio sample. The clone belongs to the workspace, so every member and service-account key in it can list, use, and manage it. Cloned voices are usable self-serve on `simba-3.0`, `simba-english` and `simba-multilingual`. `simba-3.2` also serves cloned voices, currently as a limited release enabled per workspace; contact Speechify to have it enabled for yours.
+        /// Create a cloned voice for the workspace from a 10-30 second audio sample, with verified consent from the speaker.<br/>
+        /// Cloning requires proof that the speaker agreed to it. Create a consent challenge with `POST /v1/voices/consent-challenges`, show the returned `phrase` to the speaker, record them reading it aloud, and send that recording here as `consent_recording` together with the challenge's `consent_challenge_id`. Speechify transcribes the recording, checks it against the phrase it issued, and keeps it as the consent record for the voice. A challenge is single use and short-lived, so record and submit in one sitting.<br/>
+        /// The clone belongs to the workspace, so every member and service-account key in it can list, use, and manage it. Cloned voices are usable self-serve on `simba-3.0`, `simba-english` and `simba-multilingual`. `simba-3.2` also serves cloned voices, currently as a limited release enabled per workspace; contact Speechify to have it enabled for yours.<br/>
+        /// Callers pinned before `Speechify-Version: 2026-09-13` use the previous flow instead: no challenge, and a `consent` form field carrying the speaker's name and email as a JSON string. That flow is deprecated and will be removed after a sunset window announced in the changelog.
         /// </summary>
         /// <param name="speechifyVersion"></param>
         /// <param name="idempotencyKey">
@@ -286,8 +292,46 @@ namespace Speechify
 
                             }
                             __httpRequestContent.Add(
-                                content: new global::System.Net.Http.StringContent(request.Consent ?? string.Empty),
-                                name: "\"consent\"");
+                                content: new global::System.Net.Http.StringContent(request.ConsentChallengeId ?? string.Empty),
+                                name: "\"consent_challenge_id\"");
+
+                            var __contentConsentRecording = new global::System.Net.Http.ByteArrayContent(request.ConsentRecording ?? global::System.Array.Empty<byte>());
+                            __contentConsentRecording.Headers.ContentType = new global::System.Net.Http.Headers.MediaTypeHeaderValue(
+                                request.ConsentRecordingname is null
+                                    ? "application/octet-stream"
+                                    : (global::System.IO.Path.GetExtension(request.ConsentRecordingname) ?? string.Empty).ToLowerInvariant() switch
+                                    {
+                                        ".aac" => "audio/aac",
+                                        ".flac" => "audio/flac",
+                                        ".gif" => "image/gif",
+                                        ".jpeg" => "image/jpeg",
+                                        ".jpg" => "image/jpeg",
+                                        ".json" => "application/json",
+                                        ".m4a" => "audio/mp4",
+                                        ".mp3" => "audio/mpeg",
+                                        ".mp4" => "video/mp4",
+                                        ".mpeg" => "audio/mpeg",
+                                        ".mpga" => "audio/mpeg",
+                                        ".oga" => "audio/ogg",
+                                        ".ogg" => "audio/ogg",
+                                        ".opus" => "audio/ogg",
+                                        ".pdf" => "application/pdf",
+                                        ".png" => "image/png",
+                                        ".txt" => "text/plain",
+                                        ".wav" => "audio/wav",
+                                        ".weba" => "audio/webm",
+                                        ".webm" => "video/webm",
+                                        ".webp" => "image/webp",
+                                        _ => "application/octet-stream",
+                                    });
+                            __httpRequestContent.Add(
+                                content: __contentConsentRecording,
+                                name: "\"consent_recording\"",
+                                fileName: request.ConsentRecordingname != null ? $"\"{request.ConsentRecordingname}\"" : string.Empty);
+                            if (__contentConsentRecording.Headers.ContentDisposition != null)
+                            {
+                                __contentConsentRecording.Headers.ContentDisposition.FileNameStar = null;
+                            }
 
                             __httpRequest.Content = __httpRequestContent;
 
@@ -663,6 +707,43 @@ namespace Speechify
                                     innerException: __exception_409,
                                     responseBody: __content_409,
                                     responseObject: __value_409,
+                                    responseHeaders: global::System.Linq.Enumerable.ToDictionary(
+                                        __response.Headers,
+                                        h => h.Key,
+                                        h => h.Value));
+                            }
+                            // Request body exceeded a per-endpoint size limit (e.g. KB document upload cap, batch-call CSV cap, audio-asset WAV cap). 
+                            if ((int)__response.StatusCode == 413)
+                            {
+                                string? __content_413 = null;
+                                global::System.Exception? __exception_413 = null;
+                                global::Speechify.Error? __value_413 = null;
+                                try
+                                {
+                                    if (__effectiveReadResponseAsString)
+                                    {
+                                        __content_413 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+                                        __value_413 = global::Speechify.Error.FromJson(__content_413, JsonSerializerContext);
+                                    }
+                                    else
+                                    {
+                                        __content_413 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+
+                                        __value_413 = global::Speechify.Error.FromJson(__content_413, JsonSerializerContext);
+                                    }
+                                }
+                                catch (global::System.Exception __ex)
+                                {
+                                    __exception_413 = __ex;
+                                }
+
+
+                                throw global::Speechify.ApiException<global::Speechify.Error>.Create(
+                                    statusCode: __response.StatusCode,
+                                    message: __content_413 ?? __response.ReasonPhrase ?? string.Empty,
+                                    innerException: __exception_413,
+                                    responseBody: __content_413,
+                                    responseObject: __value_413,
                                     responseHeaders: global::System.Linq.Enumerable.ToDictionary(
                                         __response.Headers,
                                         h => h.Key,
@@ -951,7 +1032,10 @@ namespace Speechify
         }
         /// <summary>
         /// Create Voice<br/>
-        /// Create a cloned voice for the workspace from a 10-30 second audio sample. The clone belongs to the workspace, so every member and service-account key in it can list, use, and manage it. Cloned voices are usable self-serve on `simba-3.0`, `simba-english` and `simba-multilingual`. `simba-3.2` also serves cloned voices, currently as a limited release enabled per workspace; contact Speechify to have it enabled for yours.
+        /// Create a cloned voice for the workspace from a 10-30 second audio sample, with verified consent from the speaker.<br/>
+        /// Cloning requires proof that the speaker agreed to it. Create a consent challenge with `POST /v1/voices/consent-challenges`, show the returned `phrase` to the speaker, record them reading it aloud, and send that recording here as `consent_recording` together with the challenge's `consent_challenge_id`. Speechify transcribes the recording, checks it against the phrase it issued, and keeps it as the consent record for the voice. A challenge is single use and short-lived, so record and submit in one sitting.<br/>
+        /// The clone belongs to the workspace, so every member and service-account key in it can list, use, and manage it. Cloned voices are usable self-serve on `simba-3.0`, `simba-english` and `simba-multilingual`. `simba-3.2` also serves cloned voices, currently as a limited release enabled per workspace; contact Speechify to have it enabled for yours.<br/>
+        /// Callers pinned before `Speechify-Version: 2026-09-13` use the previous flow instead: no challenge, and a `consent` form field carrying the speaker's name and email as a JSON string. That flow is deprecated and will be removed after a sunset window announced in the changelog.
         /// </summary>
         /// <param name="speechifyVersion"></param>
         /// <param name="idempotencyKey">
@@ -971,10 +1055,10 @@ namespace Speechify
         /// not_specified GenderNotSpecified
         /// </param>
         /// <param name="sample">
-        /// Audio sample file
+        /// Audio sample of the voice to clone, 10-30 seconds of clean speech.
         /// </param>
         /// <param name="samplename">
-        /// Audio sample file
+        /// Audio sample of the voice to clone, 10-30 seconds of clean speech.
         /// </param>
         /// <param name="avatar">
         /// Avatar image file
@@ -982,10 +1066,25 @@ namespace Speechify
         /// <param name="avatarname">
         /// Avatar image file
         /// </param>
-        /// <param name="consent">
-        /// A **string** representing the user consent information in JSON format<br/>
-        /// This should include the fullName and email of the consenting individual.<br/>
-        /// For example, `{"fullName": "John Doe", "email": "john@example.com"}`
+        /// <param name="consentChallengeId">
+        /// The `id` of the consent challenge this create consumes, from<br/>
+        /// `POST /v1/voices/consent-challenges`. Single use: once a<br/>
+        /// create has consumed it, whether or not that create<br/>
+        /// succeeded, it cannot be used again.
+        /// </param>
+        /// <param name="consentRecording">
+        /// Recording of the speaker reading the challenge's `phrase`<br/>
+        /// aloud. This is the consent record for the voice, not a<br/>
+        /// second voice sample: it must be the same person as in<br/>
+        /// `sample`, and it is retained as evidence. 5-30 seconds, at<br/>
+        /// most 25 MB, in any common audio container.
+        /// </param>
+        /// <param name="consentRecordingname">
+        /// Recording of the speaker reading the challenge's `phrase`<br/>
+        /// aloud. This is the consent record for the voice, not a<br/>
+        /// second voice sample: it must be the same person as in<br/>
+        /// `sample`, and it is retained as evidence. 5-30 seconds, at<br/>
+        /// most 25 MB, in any common audio container.
         /// </param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -995,7 +1094,9 @@ namespace Speechify
             global::Speechify.V1VoicesPostRequestBodyContentMultipartFormDataSchemaGender gender,
             byte[] sample,
             string samplename,
-            string consent,
+            string consentChallengeId,
+            byte[] consentRecording,
+            string consentRecordingname,
             string? speechifyVersion = default,
             string? idempotencyKey = default,
             string? locale = default,
@@ -1013,7 +1114,9 @@ namespace Speechify
                 Samplename = samplename,
                 Avatar = avatar,
                 Avatarname = avatarname,
-                Consent = consent,
+                ConsentChallengeId = consentChallengeId,
+                ConsentRecording = consentRecording,
+                ConsentRecordingname = consentRecordingname,
             };
 
             return await CreateAsync(
@@ -1026,7 +1129,10 @@ namespace Speechify
 
         /// <summary>
         /// Create Voice<br/>
-        /// Create a cloned voice for the workspace from a 10-30 second audio sample. The clone belongs to the workspace, so every member and service-account key in it can list, use, and manage it. Cloned voices are usable self-serve on `simba-3.0`, `simba-english` and `simba-multilingual`. `simba-3.2` also serves cloned voices, currently as a limited release enabled per workspace; contact Speechify to have it enabled for yours.
+        /// Create a cloned voice for the workspace from a 10-30 second audio sample, with verified consent from the speaker.<br/>
+        /// Cloning requires proof that the speaker agreed to it. Create a consent challenge with `POST /v1/voices/consent-challenges`, show the returned `phrase` to the speaker, record them reading it aloud, and send that recording here as `consent_recording` together with the challenge's `consent_challenge_id`. Speechify transcribes the recording, checks it against the phrase it issued, and keeps it as the consent record for the voice. A challenge is single use and short-lived, so record and submit in one sitting.<br/>
+        /// The clone belongs to the workspace, so every member and service-account key in it can list, use, and manage it. Cloned voices are usable self-serve on `simba-3.0`, `simba-english` and `simba-multilingual`. `simba-3.2` also serves cloned voices, currently as a limited release enabled per workspace; contact Speechify to have it enabled for yours.<br/>
+        /// Callers pinned before `Speechify-Version: 2026-09-13` use the previous flow instead: no challenge, and a `consent` form field carrying the speaker's name and email as a JSON string. That flow is deprecated and will be removed after a sunset window announced in the changelog.
         /// </summary>
         /// <param name="speechifyVersion"></param>
         /// <param name="idempotencyKey">
@@ -1046,10 +1152,10 @@ namespace Speechify
         /// not_specified GenderNotSpecified
         /// </param>
         /// <param name="sample">
-        /// Audio sample file
+        /// Audio sample of the voice to clone, 10-30 seconds of clean speech.
         /// </param>
         /// <param name="samplename">
-        /// Audio sample file
+        /// Audio sample of the voice to clone, 10-30 seconds of clean speech.
         /// </param>
         /// <param name="avatar">
         /// Avatar image file
@@ -1057,10 +1163,25 @@ namespace Speechify
         /// <param name="avatarname">
         /// Avatar image file
         /// </param>
-        /// <param name="consent">
-        /// A **string** representing the user consent information in JSON format<br/>
-        /// This should include the fullName and email of the consenting individual.<br/>
-        /// For example, `{"fullName": "John Doe", "email": "john@example.com"}`
+        /// <param name="consentChallengeId">
+        /// The `id` of the consent challenge this create consumes, from<br/>
+        /// `POST /v1/voices/consent-challenges`. Single use: once a<br/>
+        /// create has consumed it, whether or not that create<br/>
+        /// succeeded, it cannot be used again.
+        /// </param>
+        /// <param name="consentRecording">
+        /// Recording of the speaker reading the challenge's `phrase`<br/>
+        /// aloud. This is the consent record for the voice, not a<br/>
+        /// second voice sample: it must be the same person as in<br/>
+        /// `sample`, and it is retained as evidence. 5-30 seconds, at<br/>
+        /// most 25 MB, in any common audio container.
+        /// </param>
+        /// <param name="consentRecordingname">
+        /// Recording of the speaker reading the challenge's `phrase`<br/>
+        /// aloud. This is the consent record for the voice, not a<br/>
+        /// second voice sample: it must be the same person as in<br/>
+        /// `sample`, and it is retained as evidence. 5-30 seconds, at<br/>
+        /// most 25 MB, in any common audio container.
         /// </param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -1070,7 +1191,9 @@ namespace Speechify
             global::Speechify.V1VoicesPostRequestBodyContentMultipartFormDataSchemaGender gender,
             global::System.IO.Stream sample,
             string samplename,
-            string consent,
+            string consentChallengeId,
+            global::System.IO.Stream consentRecording,
+            string consentRecordingname,
             string? speechifyVersion = default,
             string? idempotencyKey = default,
             string? locale = default,
@@ -1081,6 +1204,7 @@ namespace Speechify
         {
 
             sample = sample ?? throw new global::System.ArgumentNullException(nameof(sample));
+            consentRecording = consentRecording ?? throw new global::System.ArgumentNullException(nameof(consentRecording));
             var request = new global::Speechify.CreateRequest
             {
                 Name = name,
@@ -1090,7 +1214,9 @@ namespace Speechify
                 Samplename = samplename,
                 Avatar = global::System.Array.Empty<byte>(),
                 Avatarname = avatarname,
-                Consent = consent,
+                ConsentChallengeId = consentChallengeId,
+                ConsentRecording = global::System.Array.Empty<byte>(),
+                ConsentRecordingname = consentRecordingname,
             };
             PrepareArguments(
                 client: HttpClient);
@@ -1280,8 +1406,46 @@ namespace Speechify
 
                             }
                             __httpRequestContent.Add(
-                                content: new global::System.Net.Http.StringContent(request.Consent ?? string.Empty),
-                                name: "\"consent\"");
+                                content: new global::System.Net.Http.StringContent(request.ConsentChallengeId ?? string.Empty),
+                                name: "\"consent_challenge_id\"");
+
+                            var __contentConsentRecording = new global::System.Net.Http.StreamContent(consentRecording);
+                            __contentConsentRecording.Headers.ContentType = new global::System.Net.Http.Headers.MediaTypeHeaderValue(
+                                request.ConsentRecordingname is null
+                                    ? "application/octet-stream"
+                                    : (global::System.IO.Path.GetExtension(request.ConsentRecordingname) ?? string.Empty).ToLowerInvariant() switch
+                                    {
+                                        ".aac" => "audio/aac",
+                                        ".flac" => "audio/flac",
+                                        ".gif" => "image/gif",
+                                        ".jpeg" => "image/jpeg",
+                                        ".jpg" => "image/jpeg",
+                                        ".json" => "application/json",
+                                        ".m4a" => "audio/mp4",
+                                        ".mp3" => "audio/mpeg",
+                                        ".mp4" => "video/mp4",
+                                        ".mpeg" => "audio/mpeg",
+                                        ".mpga" => "audio/mpeg",
+                                        ".oga" => "audio/ogg",
+                                        ".ogg" => "audio/ogg",
+                                        ".opus" => "audio/ogg",
+                                        ".pdf" => "application/pdf",
+                                        ".png" => "image/png",
+                                        ".txt" => "text/plain",
+                                        ".wav" => "audio/wav",
+                                        ".weba" => "audio/webm",
+                                        ".webm" => "video/webm",
+                                        ".webp" => "image/webp",
+                                        _ => "application/octet-stream",
+                                    });
+                            __httpRequestContent.Add(
+                                content: __contentConsentRecording,
+                                name: "\"consent_recording\"",
+                                fileName: request.ConsentRecordingname != null ? $"\"{request.ConsentRecordingname}\"" : string.Empty);
+                            if (__contentConsentRecording.Headers.ContentDisposition != null)
+                            {
+                                __contentConsentRecording.Headers.ContentDisposition.FileNameStar = null;
+                            }
 
                             __httpRequest.Content = __httpRequestContent;
 
@@ -1657,6 +1821,43 @@ namespace Speechify
                                     innerException: __exception_409,
                                     responseBody: __content_409,
                                     responseObject: __value_409,
+                                    responseHeaders: global::System.Linq.Enumerable.ToDictionary(
+                                        __response.Headers,
+                                        h => h.Key,
+                                        h => h.Value));
+                            }
+                            // Request body exceeded a per-endpoint size limit (e.g. KB document upload cap, batch-call CSV cap, audio-asset WAV cap). 
+                            if ((int)__response.StatusCode == 413)
+                            {
+                                string? __content_413 = null;
+                                global::System.Exception? __exception_413 = null;
+                                global::Speechify.Error? __value_413 = null;
+                                try
+                                {
+                                    if (__effectiveReadResponseAsString)
+                                    {
+                                        __content_413 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+                                        __value_413 = global::Speechify.Error.FromJson(__content_413, JsonSerializerContext);
+                                    }
+                                    else
+                                    {
+                                        __content_413 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+
+                                        __value_413 = global::Speechify.Error.FromJson(__content_413, JsonSerializerContext);
+                                    }
+                                }
+                                catch (global::System.Exception __ex)
+                                {
+                                    __exception_413 = __ex;
+                                }
+
+
+                                throw global::Speechify.ApiException<global::Speechify.Error>.Create(
+                                    statusCode: __response.StatusCode,
+                                    message: __content_413 ?? __response.ReasonPhrase ?? string.Empty,
+                                    innerException: __exception_413,
+                                    responseBody: __content_413,
+                                    responseObject: __value_413,
                                     responseHeaders: global::System.Linq.Enumerable.ToDictionary(
                                         __response.Headers,
                                         h => h.Key,
@@ -1937,7 +2138,10 @@ namespace Speechify
         }
         /// <summary>
         /// Create Voice<br/>
-        /// Create a cloned voice for the workspace from a 10-30 second audio sample. The clone belongs to the workspace, so every member and service-account key in it can list, use, and manage it. Cloned voices are usable self-serve on `simba-3.0`, `simba-english` and `simba-multilingual`. `simba-3.2` also serves cloned voices, currently as a limited release enabled per workspace; contact Speechify to have it enabled for yours.
+        /// Create a cloned voice for the workspace from a 10-30 second audio sample, with verified consent from the speaker.<br/>
+        /// Cloning requires proof that the speaker agreed to it. Create a consent challenge with `POST /v1/voices/consent-challenges`, show the returned `phrase` to the speaker, record them reading it aloud, and send that recording here as `consent_recording` together with the challenge's `consent_challenge_id`. Speechify transcribes the recording, checks it against the phrase it issued, and keeps it as the consent record for the voice. A challenge is single use and short-lived, so record and submit in one sitting.<br/>
+        /// The clone belongs to the workspace, so every member and service-account key in it can list, use, and manage it. Cloned voices are usable self-serve on `simba-3.0`, `simba-english` and `simba-multilingual`. `simba-3.2` also serves cloned voices, currently as a limited release enabled per workspace; contact Speechify to have it enabled for yours.<br/>
+        /// Callers pinned before `Speechify-Version: 2026-09-13` use the previous flow instead: no challenge, and a `consent` form field carrying the speaker's name and email as a JSON string. That flow is deprecated and will be removed after a sunset window announced in the changelog.
         /// </summary>
         /// <param name="speechifyVersion"></param>
         /// <param name="idempotencyKey">
@@ -1957,10 +2161,10 @@ namespace Speechify
         /// not_specified GenderNotSpecified
         /// </param>
         /// <param name="sample">
-        /// Audio sample file
+        /// Audio sample of the voice to clone, 10-30 seconds of clean speech.
         /// </param>
         /// <param name="samplename">
-        /// Audio sample file
+        /// Audio sample of the voice to clone, 10-30 seconds of clean speech.
         /// </param>
         /// <param name="avatar">
         /// Avatar image file
@@ -1968,10 +2172,25 @@ namespace Speechify
         /// <param name="avatarname">
         /// Avatar image file
         /// </param>
-        /// <param name="consent">
-        /// A **string** representing the user consent information in JSON format<br/>
-        /// This should include the fullName and email of the consenting individual.<br/>
-        /// For example, `{"fullName": "John Doe", "email": "john@example.com"}`
+        /// <param name="consentChallengeId">
+        /// The `id` of the consent challenge this create consumes, from<br/>
+        /// `POST /v1/voices/consent-challenges`. Single use: once a<br/>
+        /// create has consumed it, whether or not that create<br/>
+        /// succeeded, it cannot be used again.
+        /// </param>
+        /// <param name="consentRecording">
+        /// Recording of the speaker reading the challenge's `phrase`<br/>
+        /// aloud. This is the consent record for the voice, not a<br/>
+        /// second voice sample: it must be the same person as in<br/>
+        /// `sample`, and it is retained as evidence. 5-30 seconds, at<br/>
+        /// most 25 MB, in any common audio container.
+        /// </param>
+        /// <param name="consentRecordingname">
+        /// Recording of the speaker reading the challenge's `phrase`<br/>
+        /// aloud. This is the consent record for the voice, not a<br/>
+        /// second voice sample: it must be the same person as in<br/>
+        /// `sample`, and it is retained as evidence. 5-30 seconds, at<br/>
+        /// most 25 MB, in any common audio container.
         /// </param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -1981,7 +2200,9 @@ namespace Speechify
             global::Speechify.V1VoicesPostRequestBodyContentMultipartFormDataSchemaGender gender,
             global::System.IO.Stream sample,
             string samplename,
-            string consent,
+            string consentChallengeId,
+            global::System.IO.Stream consentRecording,
+            string consentRecordingname,
             string? speechifyVersion = default,
             string? idempotencyKey = default,
             string? locale = default,
@@ -1992,6 +2213,7 @@ namespace Speechify
         {
 
             sample = sample ?? throw new global::System.ArgumentNullException(nameof(sample));
+            consentRecording = consentRecording ?? throw new global::System.ArgumentNullException(nameof(consentRecording));
             var request = new global::Speechify.CreateRequest
             {
                 Name = name,
@@ -2001,7 +2223,9 @@ namespace Speechify
                 Samplename = samplename,
                 Avatar = global::System.Array.Empty<byte>(),
                 Avatarname = avatarname,
-                Consent = consent,
+                ConsentChallengeId = consentChallengeId,
+                ConsentRecording = global::System.Array.Empty<byte>(),
+                ConsentRecordingname = consentRecordingname,
             };
             PrepareArguments(
                 client: HttpClient);
@@ -2191,8 +2415,46 @@ namespace Speechify
 
                             }
                             __httpRequestContent.Add(
-                                content: new global::System.Net.Http.StringContent(request.Consent ?? string.Empty),
-                                name: "\"consent\"");
+                                content: new global::System.Net.Http.StringContent(request.ConsentChallengeId ?? string.Empty),
+                                name: "\"consent_challenge_id\"");
+
+                            var __contentConsentRecording = new global::System.Net.Http.StreamContent(consentRecording);
+                            __contentConsentRecording.Headers.ContentType = new global::System.Net.Http.Headers.MediaTypeHeaderValue(
+                                request.ConsentRecordingname is null
+                                    ? "application/octet-stream"
+                                    : (global::System.IO.Path.GetExtension(request.ConsentRecordingname) ?? string.Empty).ToLowerInvariant() switch
+                                    {
+                                        ".aac" => "audio/aac",
+                                        ".flac" => "audio/flac",
+                                        ".gif" => "image/gif",
+                                        ".jpeg" => "image/jpeg",
+                                        ".jpg" => "image/jpeg",
+                                        ".json" => "application/json",
+                                        ".m4a" => "audio/mp4",
+                                        ".mp3" => "audio/mpeg",
+                                        ".mp4" => "video/mp4",
+                                        ".mpeg" => "audio/mpeg",
+                                        ".mpga" => "audio/mpeg",
+                                        ".oga" => "audio/ogg",
+                                        ".ogg" => "audio/ogg",
+                                        ".opus" => "audio/ogg",
+                                        ".pdf" => "application/pdf",
+                                        ".png" => "image/png",
+                                        ".txt" => "text/plain",
+                                        ".wav" => "audio/wav",
+                                        ".weba" => "audio/webm",
+                                        ".webm" => "video/webm",
+                                        ".webp" => "image/webp",
+                                        _ => "application/octet-stream",
+                                    });
+                            __httpRequestContent.Add(
+                                content: __contentConsentRecording,
+                                name: "\"consent_recording\"",
+                                fileName: request.ConsentRecordingname != null ? $"\"{request.ConsentRecordingname}\"" : string.Empty);
+                            if (__contentConsentRecording.Headers.ContentDisposition != null)
+                            {
+                                __contentConsentRecording.Headers.ContentDisposition.FileNameStar = null;
+                            }
 
                             __httpRequest.Content = __httpRequestContent;
 
@@ -2568,6 +2830,43 @@ namespace Speechify
                                     innerException: __exception_409,
                                     responseBody: __content_409,
                                     responseObject: __value_409,
+                                    responseHeaders: global::System.Linq.Enumerable.ToDictionary(
+                                        __response.Headers,
+                                        h => h.Key,
+                                        h => h.Value));
+                            }
+                            // Request body exceeded a per-endpoint size limit (e.g. KB document upload cap, batch-call CSV cap, audio-asset WAV cap). 
+                            if ((int)__response.StatusCode == 413)
+                            {
+                                string? __content_413 = null;
+                                global::System.Exception? __exception_413 = null;
+                                global::Speechify.Error? __value_413 = null;
+                                try
+                                {
+                                    if (__effectiveReadResponseAsString)
+                                    {
+                                        __content_413 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+                                        __value_413 = global::Speechify.Error.FromJson(__content_413, JsonSerializerContext);
+                                    }
+                                    else
+                                    {
+                                        __content_413 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+
+                                        __value_413 = global::Speechify.Error.FromJson(__content_413, JsonSerializerContext);
+                                    }
+                                }
+                                catch (global::System.Exception __ex)
+                                {
+                                    __exception_413 = __ex;
+                                }
+
+
+                                throw global::Speechify.ApiException<global::Speechify.Error>.Create(
+                                    statusCode: __response.StatusCode,
+                                    message: __content_413 ?? __response.ReasonPhrase ?? string.Empty,
+                                    innerException: __exception_413,
+                                    responseBody: __content_413,
+                                    responseObject: __value_413,
                                     responseHeaders: global::System.Linq.Enumerable.ToDictionary(
                                         __response.Headers,
                                         h => h.Key,

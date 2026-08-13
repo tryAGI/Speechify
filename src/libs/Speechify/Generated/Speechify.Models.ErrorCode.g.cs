@@ -60,6 +60,34 @@ namespace Speechify
         /// <summary>
         /// 
         /// </summary>
+        ConsentChallengeAlreadyUsed,
+        /// <summary>
+        /// 
+        /// </summary>
+        ConsentChallengeExpired,
+        /// <summary>
+        /// 
+        /// </summary>
+        ConsentChallengeNotFound,
+        /// <summary>
+        /// 
+        /// </summary>
+        ConsentPhraseMismatch,
+        /// <summary>
+        /// 
+        /// </summary>
+        ConsentRecordingUnusable,
+        /// <summary>
+        /// 
+        /// </summary>
+        ConsentSpeakerMismatch,
+        /// <summary>
+        /// 
+        /// </summary>
+        ConsentVerificationUnavailable,
+        /// <summary>
+        /// 
+        /// </summary>
         ContentPolicyViolation,
         /// <summary>
         /// 
@@ -286,6 +314,13 @@ namespace Speechify
                 ErrorCode.CallerNotFound => "caller_not_found",
                 ErrorCode.ConcurrencyLimitReached => "concurrency_limit_reached",
                 ErrorCode.Conflict => "conflict",
+                ErrorCode.ConsentChallengeAlreadyUsed => "consent_challenge_already_used",
+                ErrorCode.ConsentChallengeExpired => "consent_challenge_expired",
+                ErrorCode.ConsentChallengeNotFound => "consent_challenge_not_found",
+                ErrorCode.ConsentPhraseMismatch => "consent_phrase_mismatch",
+                ErrorCode.ConsentRecordingUnusable => "consent_recording_unusable",
+                ErrorCode.ConsentSpeakerMismatch => "consent_speaker_mismatch",
+                ErrorCode.ConsentVerificationUnavailable => "consent_verification_unavailable",
                 ErrorCode.ContentPolicyViolation => "content_policy_violation",
                 ErrorCode.ConversationNotFound => "conversation_not_found",
                 ErrorCode.CredentialInUse => "credential_in_use",
@@ -358,6 +393,13 @@ namespace Speechify
                 "caller_not_found" => ErrorCode.CallerNotFound,
                 "concurrency_limit_reached" => ErrorCode.ConcurrencyLimitReached,
                 "conflict" => ErrorCode.Conflict,
+                "consent_challenge_already_used" => ErrorCode.ConsentChallengeAlreadyUsed,
+                "consent_challenge_expired" => ErrorCode.ConsentChallengeExpired,
+                "consent_challenge_not_found" => ErrorCode.ConsentChallengeNotFound,
+                "consent_phrase_mismatch" => ErrorCode.ConsentPhraseMismatch,
+                "consent_recording_unusable" => ErrorCode.ConsentRecordingUnusable,
+                "consent_speaker_mismatch" => ErrorCode.ConsentSpeakerMismatch,
+                "consent_verification_unavailable" => ErrorCode.ConsentVerificationUnavailable,
                 "content_policy_violation" => ErrorCode.ContentPolicyViolation,
                 "conversation_not_found" => ErrorCode.ConversationNotFound,
                 "credential_in_use" => ErrorCode.CredentialInUse,
