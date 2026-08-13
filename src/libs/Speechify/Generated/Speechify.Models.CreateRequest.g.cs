@@ -34,14 +34,14 @@ namespace Speechify
         public required global::Speechify.V1VoicesPostRequestBodyContentMultipartFormDataSchemaGender Gender { get; set; }
 
         /// <summary>
-        /// Audio sample file
+        /// Audio sample of the voice to clone, 10-30 seconds of clean speech.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("sample")]
         [global::System.Text.Json.Serialization.JsonRequired]
         public required byte[] Sample { get; set; }
 
         /// <summary>
-        /// Audio sample file
+        /// Audio sample of the voice to clone, 10-30 seconds of clean speech.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("samplename")]
         [global::System.Text.Json.Serialization.JsonRequired]
@@ -60,13 +60,36 @@ namespace Speechify
         public string? Avatarname { get; set; }
 
         /// <summary>
-        /// A **string** representing the user consent information in JSON format<br/>
-        /// This should include the fullName and email of the consenting individual.<br/>
-        /// For example, `{"fullName": "John Doe", "email": "john@example.com"}`
+        /// The `id` of the consent challenge this create consumes, from<br/>
+        /// `POST /v1/voices/consent-challenges`. Single use: once a<br/>
+        /// create has consumed it, whether or not that create<br/>
+        /// succeeded, it cannot be used again.
         /// </summary>
-        [global::System.Text.Json.Serialization.JsonPropertyName("consent")]
+        [global::System.Text.Json.Serialization.JsonPropertyName("consent_challenge_id")]
         [global::System.Text.Json.Serialization.JsonRequired]
-        public required string Consent { get; set; }
+        public required string ConsentChallengeId { get; set; }
+
+        /// <summary>
+        /// Recording of the speaker reading the challenge's `phrase`<br/>
+        /// aloud. This is the consent record for the voice, not a<br/>
+        /// second voice sample: it must be the same person as in<br/>
+        /// `sample`, and it is retained as evidence. 5-30 seconds, at<br/>
+        /// most 25 MB, in any common audio container.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("consent_recording")]
+        [global::System.Text.Json.Serialization.JsonRequired]
+        public required byte[] ConsentRecording { get; set; }
+
+        /// <summary>
+        /// Recording of the speaker reading the challenge's `phrase`<br/>
+        /// aloud. This is the consent record for the voice, not a<br/>
+        /// second voice sample: it must be the same person as in<br/>
+        /// `sample`, and it is retained as evidence. 5-30 seconds, at<br/>
+        /// most 25 MB, in any common audio container.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("consent_recordingname")]
+        [global::System.Text.Json.Serialization.JsonRequired]
+        public required string ConsentRecordingname { get; set; }
 
         /// <summary>
         /// Additional properties that are not explicitly defined in the schema
@@ -87,15 +110,30 @@ namespace Speechify
         /// not_specified GenderNotSpecified
         /// </param>
         /// <param name="sample">
-        /// Audio sample file
+        /// Audio sample of the voice to clone, 10-30 seconds of clean speech.
         /// </param>
         /// <param name="samplename">
-        /// Audio sample file
+        /// Audio sample of the voice to clone, 10-30 seconds of clean speech.
         /// </param>
-        /// <param name="consent">
-        /// A **string** representing the user consent information in JSON format<br/>
-        /// This should include the fullName and email of the consenting individual.<br/>
-        /// For example, `{"fullName": "John Doe", "email": "john@example.com"}`
+        /// <param name="consentChallengeId">
+        /// The `id` of the consent challenge this create consumes, from<br/>
+        /// `POST /v1/voices/consent-challenges`. Single use: once a<br/>
+        /// create has consumed it, whether or not that create<br/>
+        /// succeeded, it cannot be used again.
+        /// </param>
+        /// <param name="consentRecording">
+        /// Recording of the speaker reading the challenge's `phrase`<br/>
+        /// aloud. This is the consent record for the voice, not a<br/>
+        /// second voice sample: it must be the same person as in<br/>
+        /// `sample`, and it is retained as evidence. 5-30 seconds, at<br/>
+        /// most 25 MB, in any common audio container.
+        /// </param>
+        /// <param name="consentRecordingname">
+        /// Recording of the speaker reading the challenge's `phrase`<br/>
+        /// aloud. This is the consent record for the voice, not a<br/>
+        /// second voice sample: it must be the same person as in<br/>
+        /// `sample`, and it is retained as evidence. 5-30 seconds, at<br/>
+        /// most 25 MB, in any common audio container.
         /// </param>
         /// <param name="locale">
         /// Native language (locale) of the personal voice (e.g. en-US, es-ES, etc.)<br/>
@@ -115,7 +153,9 @@ namespace Speechify
             global::Speechify.V1VoicesPostRequestBodyContentMultipartFormDataSchemaGender gender,
             byte[] sample,
             string samplename,
-            string consent,
+            string consentChallengeId,
+            byte[] consentRecording,
+            string consentRecordingname,
             string? locale,
             byte[]? avatar,
             string? avatarname)
@@ -127,7 +167,9 @@ namespace Speechify
             this.Samplename = samplename ?? throw new global::System.ArgumentNullException(nameof(samplename));
             this.Avatar = avatar;
             this.Avatarname = avatarname;
-            this.Consent = consent ?? throw new global::System.ArgumentNullException(nameof(consent));
+            this.ConsentChallengeId = consentChallengeId ?? throw new global::System.ArgumentNullException(nameof(consentChallengeId));
+            this.ConsentRecording = consentRecording ?? throw new global::System.ArgumentNullException(nameof(consentRecording));
+            this.ConsentRecordingname = consentRecordingname ?? throw new global::System.ArgumentNullException(nameof(consentRecordingname));
         }
 
         /// <summary>

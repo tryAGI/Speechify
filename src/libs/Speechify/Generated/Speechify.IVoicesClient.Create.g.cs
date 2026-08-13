@@ -6,7 +6,10 @@ namespace Speechify
     {
         /// <summary>
         /// Create Voice<br/>
-        /// Create a cloned voice for the workspace from a 10-30 second audio sample. The clone belongs to the workspace, so every member and service-account key in it can list, use, and manage it. Cloned voices are usable self-serve on `simba-3.0`, `simba-english` and `simba-multilingual`. `simba-3.2` also serves cloned voices, currently as a limited release enabled per workspace; contact Speechify to have it enabled for yours.
+        /// Create a cloned voice for the workspace from a 10-30 second audio sample, with verified consent from the speaker.<br/>
+        /// Cloning requires proof that the speaker agreed to it. Create a consent challenge with `POST /v1/voices/consent-challenges`, show the returned `phrase` to the speaker, record them reading it aloud, and send that recording here as `consent_recording` together with the challenge's `consent_challenge_id`. Speechify transcribes the recording, checks it against the phrase it issued, and keeps it as the consent record for the voice. A challenge is single use and short-lived, so record and submit in one sitting.<br/>
+        /// The clone belongs to the workspace, so every member and service-account key in it can list, use, and manage it. Cloned voices are usable self-serve on `simba-3.0`, `simba-english` and `simba-multilingual`. `simba-3.2` also serves cloned voices, currently as a limited release enabled per workspace; contact Speechify to have it enabled for yours.<br/>
+        /// Callers pinned before `Speechify-Version: 2026-09-13` use the previous flow instead: no challenge, and a `consent` form field carrying the speaker's name and email as a JSON string. That flow is deprecated and will be removed after a sunset window announced in the changelog.
         /// </summary>
         /// <param name="speechifyVersion"></param>
         /// <param name="idempotencyKey">
@@ -25,7 +28,10 @@ namespace Speechify
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Create Voice<br/>
-        /// Create a cloned voice for the workspace from a 10-30 second audio sample. The clone belongs to the workspace, so every member and service-account key in it can list, use, and manage it. Cloned voices are usable self-serve on `simba-3.0`, `simba-english` and `simba-multilingual`. `simba-3.2` also serves cloned voices, currently as a limited release enabled per workspace; contact Speechify to have it enabled for yours.
+        /// Create a cloned voice for the workspace from a 10-30 second audio sample, with verified consent from the speaker.<br/>
+        /// Cloning requires proof that the speaker agreed to it. Create a consent challenge with `POST /v1/voices/consent-challenges`, show the returned `phrase` to the speaker, record them reading it aloud, and send that recording here as `consent_recording` together with the challenge's `consent_challenge_id`. Speechify transcribes the recording, checks it against the phrase it issued, and keeps it as the consent record for the voice. A challenge is single use and short-lived, so record and submit in one sitting.<br/>
+        /// The clone belongs to the workspace, so every member and service-account key in it can list, use, and manage it. Cloned voices are usable self-serve on `simba-3.0`, `simba-english` and `simba-multilingual`. `simba-3.2` also serves cloned voices, currently as a limited release enabled per workspace; contact Speechify to have it enabled for yours.<br/>
+        /// Callers pinned before `Speechify-Version: 2026-09-13` use the previous flow instead: no challenge, and a `consent` form field carrying the speaker's name and email as a JSON string. That flow is deprecated and will be removed after a sunset window announced in the changelog.
         /// </summary>
         /// <param name="speechifyVersion"></param>
         /// <param name="idempotencyKey">
@@ -44,7 +50,10 @@ namespace Speechify
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Create Voice<br/>
-        /// Create a cloned voice for the workspace from a 10-30 second audio sample. The clone belongs to the workspace, so every member and service-account key in it can list, use, and manage it. Cloned voices are usable self-serve on `simba-3.0`, `simba-english` and `simba-multilingual`. `simba-3.2` also serves cloned voices, currently as a limited release enabled per workspace; contact Speechify to have it enabled for yours.
+        /// Create a cloned voice for the workspace from a 10-30 second audio sample, with verified consent from the speaker.<br/>
+        /// Cloning requires proof that the speaker agreed to it. Create a consent challenge with `POST /v1/voices/consent-challenges`, show the returned `phrase` to the speaker, record them reading it aloud, and send that recording here as `consent_recording` together with the challenge's `consent_challenge_id`. Speechify transcribes the recording, checks it against the phrase it issued, and keeps it as the consent record for the voice. A challenge is single use and short-lived, so record and submit in one sitting.<br/>
+        /// The clone belongs to the workspace, so every member and service-account key in it can list, use, and manage it. Cloned voices are usable self-serve on `simba-3.0`, `simba-english` and `simba-multilingual`. `simba-3.2` also serves cloned voices, currently as a limited release enabled per workspace; contact Speechify to have it enabled for yours.<br/>
+        /// Callers pinned before `Speechify-Version: 2026-09-13` use the previous flow instead: no challenge, and a `consent` form field carrying the speaker's name and email as a JSON string. That flow is deprecated and will be removed after a sunset window announced in the changelog.
         /// </summary>
         /// <param name="speechifyVersion"></param>
         /// <param name="idempotencyKey">
@@ -64,10 +73,10 @@ namespace Speechify
         /// not_specified GenderNotSpecified
         /// </param>
         /// <param name="sample">
-        /// Audio sample file
+        /// Audio sample of the voice to clone, 10-30 seconds of clean speech.
         /// </param>
         /// <param name="samplename">
-        /// Audio sample file
+        /// Audio sample of the voice to clone, 10-30 seconds of clean speech.
         /// </param>
         /// <param name="avatar">
         /// Avatar image file
@@ -75,10 +84,25 @@ namespace Speechify
         /// <param name="avatarname">
         /// Avatar image file
         /// </param>
-        /// <param name="consent">
-        /// A **string** representing the user consent information in JSON format<br/>
-        /// This should include the fullName and email of the consenting individual.<br/>
-        /// For example, `{"fullName": "John Doe", "email": "john@example.com"}`
+        /// <param name="consentChallengeId">
+        /// The `id` of the consent challenge this create consumes, from<br/>
+        /// `POST /v1/voices/consent-challenges`. Single use: once a<br/>
+        /// create has consumed it, whether or not that create<br/>
+        /// succeeded, it cannot be used again.
+        /// </param>
+        /// <param name="consentRecording">
+        /// Recording of the speaker reading the challenge's `phrase`<br/>
+        /// aloud. This is the consent record for the voice, not a<br/>
+        /// second voice sample: it must be the same person as in<br/>
+        /// `sample`, and it is retained as evidence. 5-30 seconds, at<br/>
+        /// most 25 MB, in any common audio container.
+        /// </param>
+        /// <param name="consentRecordingname">
+        /// Recording of the speaker reading the challenge's `phrase`<br/>
+        /// aloud. This is the consent record for the voice, not a<br/>
+        /// second voice sample: it must be the same person as in<br/>
+        /// `sample`, and it is retained as evidence. 5-30 seconds, at<br/>
+        /// most 25 MB, in any common audio container.
         /// </param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -88,7 +112,9 @@ namespace Speechify
             global::Speechify.V1VoicesPostRequestBodyContentMultipartFormDataSchemaGender gender,
             byte[] sample,
             string samplename,
-            string consent,
+            string consentChallengeId,
+            byte[] consentRecording,
+            string consentRecordingname,
             string? speechifyVersion = default,
             string? idempotencyKey = default,
             string? locale = default,
@@ -99,7 +125,10 @@ namespace Speechify
 
         /// <summary>
         /// Create Voice<br/>
-        /// Create a cloned voice for the workspace from a 10-30 second audio sample. The clone belongs to the workspace, so every member and service-account key in it can list, use, and manage it. Cloned voices are usable self-serve on `simba-3.0`, `simba-english` and `simba-multilingual`. `simba-3.2` also serves cloned voices, currently as a limited release enabled per workspace; contact Speechify to have it enabled for yours.
+        /// Create a cloned voice for the workspace from a 10-30 second audio sample, with verified consent from the speaker.<br/>
+        /// Cloning requires proof that the speaker agreed to it. Create a consent challenge with `POST /v1/voices/consent-challenges`, show the returned `phrase` to the speaker, record them reading it aloud, and send that recording here as `consent_recording` together with the challenge's `consent_challenge_id`. Speechify transcribes the recording, checks it against the phrase it issued, and keeps it as the consent record for the voice. A challenge is single use and short-lived, so record and submit in one sitting.<br/>
+        /// The clone belongs to the workspace, so every member and service-account key in it can list, use, and manage it. Cloned voices are usable self-serve on `simba-3.0`, `simba-english` and `simba-multilingual`. `simba-3.2` also serves cloned voices, currently as a limited release enabled per workspace; contact Speechify to have it enabled for yours.<br/>
+        /// Callers pinned before `Speechify-Version: 2026-09-13` use the previous flow instead: no challenge, and a `consent` form field carrying the speaker's name and email as a JSON string. That flow is deprecated and will be removed after a sunset window announced in the changelog.
         /// </summary>
         /// <param name="speechifyVersion"></param>
         /// <param name="idempotencyKey">
@@ -119,10 +148,10 @@ namespace Speechify
         /// not_specified GenderNotSpecified
         /// </param>
         /// <param name="sample">
-        /// Audio sample file
+        /// Audio sample of the voice to clone, 10-30 seconds of clean speech.
         /// </param>
         /// <param name="samplename">
-        /// Audio sample file
+        /// Audio sample of the voice to clone, 10-30 seconds of clean speech.
         /// </param>
         /// <param name="avatar">
         /// Avatar image file
@@ -130,10 +159,25 @@ namespace Speechify
         /// <param name="avatarname">
         /// Avatar image file
         /// </param>
-        /// <param name="consent">
-        /// A **string** representing the user consent information in JSON format<br/>
-        /// This should include the fullName and email of the consenting individual.<br/>
-        /// For example, `{"fullName": "John Doe", "email": "john@example.com"}`
+        /// <param name="consentChallengeId">
+        /// The `id` of the consent challenge this create consumes, from<br/>
+        /// `POST /v1/voices/consent-challenges`. Single use: once a<br/>
+        /// create has consumed it, whether or not that create<br/>
+        /// succeeded, it cannot be used again.
+        /// </param>
+        /// <param name="consentRecording">
+        /// Recording of the speaker reading the challenge's `phrase`<br/>
+        /// aloud. This is the consent record for the voice, not a<br/>
+        /// second voice sample: it must be the same person as in<br/>
+        /// `sample`, and it is retained as evidence. 5-30 seconds, at<br/>
+        /// most 25 MB, in any common audio container.
+        /// </param>
+        /// <param name="consentRecordingname">
+        /// Recording of the speaker reading the challenge's `phrase`<br/>
+        /// aloud. This is the consent record for the voice, not a<br/>
+        /// second voice sample: it must be the same person as in<br/>
+        /// `sample`, and it is retained as evidence. 5-30 seconds, at<br/>
+        /// most 25 MB, in any common audio container.
         /// </param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -143,7 +187,9 @@ namespace Speechify
             global::Speechify.V1VoicesPostRequestBodyContentMultipartFormDataSchemaGender gender,
             global::System.IO.Stream sample,
             string samplename,
-            string consent,
+            string consentChallengeId,
+            global::System.IO.Stream consentRecording,
+            string consentRecordingname,
             string? speechifyVersion = default,
             string? idempotencyKey = default,
             string? locale = default,
@@ -153,7 +199,10 @@ namespace Speechify
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Create Voice<br/>
-        /// Create a cloned voice for the workspace from a 10-30 second audio sample. The clone belongs to the workspace, so every member and service-account key in it can list, use, and manage it. Cloned voices are usable self-serve on `simba-3.0`, `simba-english` and `simba-multilingual`. `simba-3.2` also serves cloned voices, currently as a limited release enabled per workspace; contact Speechify to have it enabled for yours.
+        /// Create a cloned voice for the workspace from a 10-30 second audio sample, with verified consent from the speaker.<br/>
+        /// Cloning requires proof that the speaker agreed to it. Create a consent challenge with `POST /v1/voices/consent-challenges`, show the returned `phrase` to the speaker, record them reading it aloud, and send that recording here as `consent_recording` together with the challenge's `consent_challenge_id`. Speechify transcribes the recording, checks it against the phrase it issued, and keeps it as the consent record for the voice. A challenge is single use and short-lived, so record and submit in one sitting.<br/>
+        /// The clone belongs to the workspace, so every member and service-account key in it can list, use, and manage it. Cloned voices are usable self-serve on `simba-3.0`, `simba-english` and `simba-multilingual`. `simba-3.2` also serves cloned voices, currently as a limited release enabled per workspace; contact Speechify to have it enabled for yours.<br/>
+        /// Callers pinned before `Speechify-Version: 2026-09-13` use the previous flow instead: no challenge, and a `consent` form field carrying the speaker's name and email as a JSON string. That flow is deprecated and will be removed after a sunset window announced in the changelog.
         /// </summary>
         /// <param name="speechifyVersion"></param>
         /// <param name="idempotencyKey">
@@ -173,10 +222,10 @@ namespace Speechify
         /// not_specified GenderNotSpecified
         /// </param>
         /// <param name="sample">
-        /// Audio sample file
+        /// Audio sample of the voice to clone, 10-30 seconds of clean speech.
         /// </param>
         /// <param name="samplename">
-        /// Audio sample file
+        /// Audio sample of the voice to clone, 10-30 seconds of clean speech.
         /// </param>
         /// <param name="avatar">
         /// Avatar image file
@@ -184,10 +233,25 @@ namespace Speechify
         /// <param name="avatarname">
         /// Avatar image file
         /// </param>
-        /// <param name="consent">
-        /// A **string** representing the user consent information in JSON format<br/>
-        /// This should include the fullName and email of the consenting individual.<br/>
-        /// For example, `{"fullName": "John Doe", "email": "john@example.com"}`
+        /// <param name="consentChallengeId">
+        /// The `id` of the consent challenge this create consumes, from<br/>
+        /// `POST /v1/voices/consent-challenges`. Single use: once a<br/>
+        /// create has consumed it, whether or not that create<br/>
+        /// succeeded, it cannot be used again.
+        /// </param>
+        /// <param name="consentRecording">
+        /// Recording of the speaker reading the challenge's `phrase`<br/>
+        /// aloud. This is the consent record for the voice, not a<br/>
+        /// second voice sample: it must be the same person as in<br/>
+        /// `sample`, and it is retained as evidence. 5-30 seconds, at<br/>
+        /// most 25 MB, in any common audio container.
+        /// </param>
+        /// <param name="consentRecordingname">
+        /// Recording of the speaker reading the challenge's `phrase`<br/>
+        /// aloud. This is the consent record for the voice, not a<br/>
+        /// second voice sample: it must be the same person as in<br/>
+        /// `sample`, and it is retained as evidence. 5-30 seconds, at<br/>
+        /// most 25 MB, in any common audio container.
         /// </param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -197,7 +261,9 @@ namespace Speechify
             global::Speechify.V1VoicesPostRequestBodyContentMultipartFormDataSchemaGender gender,
             global::System.IO.Stream sample,
             string samplename,
-            string consent,
+            string consentChallengeId,
+            global::System.IO.Stream consentRecording,
+            string consentRecordingname,
             string? speechifyVersion = default,
             string? idempotencyKey = default,
             string? locale = default,
