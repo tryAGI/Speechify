@@ -13,351 +13,6 @@ namespace Speechify
         DefaultIgnoreCondition = global::System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull,
         Converters = new global::System.Type[]
         {
-            typeof(global::Speechify.JsonConverters.GetSpeechRequestAudioFormatJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.GetSpeechRequestAudioFormatNullableJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.GetSpeechRequestModelJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.GetSpeechRequestModelNullableJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.AudioOutputFormatJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.AudioOutputFormatNullableJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.GetSpeechResponseAudioFormatJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.GetSpeechResponseAudioFormatNullableJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.ErrorCodeJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.ErrorCodeNullableJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.V1AudioStreamPostParametersAcceptJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.V1AudioStreamPostParametersAcceptNullableJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.GetStreamRequestModelJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.GetStreamRequestModelNullableJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.AudioStreamOutputFormatJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.AudioStreamOutputFormatNullableJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.V1AudioStreamWithTimestampsPostParametersAcceptJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.V1AudioStreamWithTimestampsPostParametersAcceptNullableJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.V1VoicesGetParametersTypeJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.V1VoicesGetParametersTypeNullableJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.V1VoicesGetParametersGenderJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.V1VoicesGetParametersGenderNullableJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.GetVoiceGenderJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.GetVoiceGenderNullableJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.GetVoicesModelNameJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.GetVoicesModelNameNullableJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.GetVoiceTypeJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.GetVoiceTypeNullableJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.V1VoicesPostRequestBodyContentMultipartFormDataSchemaGenderJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.V1VoicesPostRequestBodyContentMultipartFormDataSchemaGenderNullableJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.AgentLlmConfigProviderJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.AgentLlmConfigProviderNullableJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.AgentSttConfigOverrideJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.AgentSttConfigOverrideNullableJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.AgentBackgroundNoiseConfigPresetJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.AgentBackgroundNoiseConfigPresetNullableJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.WidgetConfigStyleJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.WidgetConfigStyleNullableJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.WidgetConfigThemeJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.WidgetConfigThemeNullableJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.WidgetConfigAvatarTypeJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.WidgetConfigAvatarTypeNullableJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.AmdConfigOnVoicemailActionJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.AmdConfigOnVoicemailActionNullableJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.AmdConfigOnIvrActionJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.AmdConfigOnIvrActionNullableJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.AmdConfigOnUnavailableActionJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.AmdConfigOnUnavailableActionNullableJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.AgentVoiceTypeJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.AgentVoiceTypeNullableJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.AgentVoiceModelNameJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.AgentVoiceModelNameNullableJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.AgentVoiceGenderJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.AgentVoiceGenderNullableJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.DataCollectionFieldTypeJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.DataCollectionFieldTypeNullableJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.DynamicVariableTypeJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.DynamicVariableTypeNullableJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.ConversationStatusJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.ConversationStatusNullableJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.ConversationTransportJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.ConversationTransportNullableJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.ConversationEndReasonJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.ConversationEndReasonNullableJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.AgentSnapshotBackgroundNoisePresetJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.AgentSnapshotBackgroundNoisePresetNullableJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.ConversationIvrSurrenderReasonJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.ConversationIvrSurrenderReasonNullableJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.MessageRoleJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.MessageRoleNullableJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.EvaluationKindJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.EvaluationKindNullableJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.EvaluationStatusJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.EvaluationStatusNullableJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.WebhookDeliveryStatusJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.WebhookDeliveryStatusNullableJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.KnowledgeBaseDocumentSourceKindJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.KnowledgeBaseDocumentSourceKindNullableJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.KnowledgeBaseDocumentStatusJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.KnowledgeBaseDocumentStatusNullableJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.ImportJobKindJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.ImportJobKindNullableJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.JobStatusJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.JobStatusNullableJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.RefreshHistoryEntryStatusJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.RefreshHistoryEntryStatusNullableJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.ToolKindJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.ToolKindNullableJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.ToolParamTypeJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.ToolParamTypeNullableJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.WebhookToolConfigMethodJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.WebhookToolConfigMethodNullableJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.LongRunningToolConfigOnDuplicateJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.LongRunningToolConfigOnDuplicateNullableJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.MCPTransportJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.MCPTransportNullableJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.MCPAuthVariant1TypeJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.MCPAuthVariant1TypeNullableJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.MCPAuthVariant2TypeJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.MCPAuthVariant2TypeNullableJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.MCPAuthVariant3TypeJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.MCPAuthVariant3TypeNullableJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.MCPAuthDiscriminatorTypeJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.MCPAuthDiscriminatorTypeNullableJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.McpProbeErrorDetailsStageJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.McpProbeErrorDetailsStageNullableJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.TestTypeJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.TestTypeNullableJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.SimulationMessageRoleJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.SimulationMessageRoleNullableJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.ParameterCheckModeJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.ParameterCheckModeNullableJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.DataAssertionModeJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.DataAssertionModeNullableJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.MockingStrategyJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.MockingStrategyNullableJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.NoMatchBehaviorJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.NoMatchBehaviorNullableJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.TestVerdictJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.TestVerdictNullableJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.SimulationResultSentimentJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.SimulationResultSentimentNullableJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.SimulationCriterionResultStatusJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.SimulationCriterionResultStatusNullableJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.DataAssertionResultModeJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.DataAssertionResultModeNullableJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.SuiteRunTriggerJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.SuiteRunTriggerNullableJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.PhoneNumberProviderJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.PhoneNumberProviderNullableJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.PhoneNumberCapabilityJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.PhoneNumberCapabilityNullableJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.PurchasedPhoneNumberProviderJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.PurchasedPhoneNumberProviderNullableJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.SIPTrunkProviderJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.SIPTrunkProviderNullableJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.SIPTrunkDirectionJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.SIPTrunkDirectionNullableJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.SIPTransportJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.SIPTransportNullableJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.SIPMediaEncryptionJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.SIPMediaEncryptionNullableJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.ShareLinkStatusJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.ShareLinkStatusNullableJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.CreateShareLinkResponseStatusJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.CreateShareLinkResponseStatusNullableJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.BatchRecipientStatusJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.BatchRecipientStatusNullableJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.MCPAuthJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.AgentToolConfigJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.CreateAgentToolRequestConfigJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.UpdateAgentToolRequestConfigJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.ToolConfigJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.CreateToolRequestConfigJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.UpdateToolRequestConfigJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.AgentTestConfigJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.UpdateAgentTestRequestConfigJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.CreateAgentTestRequestConfigJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.OneOfJsonConverter<global::Speechify.EvaluationStatus?, object>),
-
-            typeof(global::Speechify.JsonConverters.OneOfJsonConverter<global::Speechify.ReplyResult, object>),
-
-            typeof(global::Speechify.JsonConverters.OneOfJsonConverter<global::Speechify.ToolCallResult, object>),
-
-            typeof(global::Speechify.JsonConverters.OneOfJsonConverter<global::Speechify.SimulationResult, object>),
-
-            typeof(global::Speechify.JsonConverters.OneOfJsonConverter<global::Speechify.TestVerdict?, object>),
-
-            typeof(global::Speechify.JsonConverters.OneOfJsonConverter<global::Speechify.TestRunResult, object>),
-
-            typeof(global::Speechify.JsonConverters.OneOfJsonConverter<global::Speechify.AgentTestRun, object>),
-
-            typeof(global::Speechify.JsonConverters.OneOfJsonConverter<global::Speechify.TestVerdict?, object>),
-
-            typeof(global::Speechify.JsonConverters.OneOfJsonConverter<global::Speechify.TestRunConfigOverride, object>),
-
-            typeof(global::Speechify.JsonConverters.OneOfJsonConverter<global::Speechify.AgentTestSuiteRun, object>),
-
-            typeof(global::Speechify.JsonConverters.OneOfJsonConverter<global::Speechify.TestVerdict?, object>),
-
-            typeof(global::Speechify.JsonConverters.OneOfJsonConverter<global::Speechify.TestRunResult, object>),
-
-            typeof(global::Speechify.JsonConverters.OneOfJsonConverter<global::Speechify.TestVerdict?, object>),
-
-            typeof(global::Speechify.JsonConverters.OneOfJsonConverter<global::Speechify.TestRunConfigOverride, object>),
-
-            typeof(global::Speechify.JsonConverters.UnixTimestampJsonConverter),
         })]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.Dictionary<string, string>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.Dictionary<string, object>))]
@@ -870,351 +525,6 @@ namespace Speechify
         DefaultIgnoreCondition = global::System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull,
         Converters = new global::System.Type[]
         {
-            typeof(global::Speechify.JsonConverters.GetSpeechRequestAudioFormatJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.GetSpeechRequestAudioFormatNullableJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.GetSpeechRequestModelJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.GetSpeechRequestModelNullableJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.AudioOutputFormatJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.AudioOutputFormatNullableJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.GetSpeechResponseAudioFormatJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.GetSpeechResponseAudioFormatNullableJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.ErrorCodeJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.ErrorCodeNullableJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.V1AudioStreamPostParametersAcceptJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.V1AudioStreamPostParametersAcceptNullableJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.GetStreamRequestModelJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.GetStreamRequestModelNullableJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.AudioStreamOutputFormatJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.AudioStreamOutputFormatNullableJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.V1AudioStreamWithTimestampsPostParametersAcceptJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.V1AudioStreamWithTimestampsPostParametersAcceptNullableJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.V1VoicesGetParametersTypeJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.V1VoicesGetParametersTypeNullableJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.V1VoicesGetParametersGenderJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.V1VoicesGetParametersGenderNullableJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.GetVoiceGenderJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.GetVoiceGenderNullableJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.GetVoicesModelNameJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.GetVoicesModelNameNullableJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.GetVoiceTypeJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.GetVoiceTypeNullableJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.V1VoicesPostRequestBodyContentMultipartFormDataSchemaGenderJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.V1VoicesPostRequestBodyContentMultipartFormDataSchemaGenderNullableJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.AgentLlmConfigProviderJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.AgentLlmConfigProviderNullableJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.AgentSttConfigOverrideJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.AgentSttConfigOverrideNullableJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.AgentBackgroundNoiseConfigPresetJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.AgentBackgroundNoiseConfigPresetNullableJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.WidgetConfigStyleJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.WidgetConfigStyleNullableJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.WidgetConfigThemeJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.WidgetConfigThemeNullableJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.WidgetConfigAvatarTypeJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.WidgetConfigAvatarTypeNullableJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.AmdConfigOnVoicemailActionJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.AmdConfigOnVoicemailActionNullableJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.AmdConfigOnIvrActionJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.AmdConfigOnIvrActionNullableJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.AmdConfigOnUnavailableActionJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.AmdConfigOnUnavailableActionNullableJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.AgentVoiceTypeJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.AgentVoiceTypeNullableJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.AgentVoiceModelNameJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.AgentVoiceModelNameNullableJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.AgentVoiceGenderJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.AgentVoiceGenderNullableJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.DataCollectionFieldTypeJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.DataCollectionFieldTypeNullableJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.DynamicVariableTypeJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.DynamicVariableTypeNullableJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.ConversationStatusJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.ConversationStatusNullableJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.ConversationTransportJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.ConversationTransportNullableJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.ConversationEndReasonJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.ConversationEndReasonNullableJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.AgentSnapshotBackgroundNoisePresetJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.AgentSnapshotBackgroundNoisePresetNullableJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.ConversationIvrSurrenderReasonJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.ConversationIvrSurrenderReasonNullableJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.MessageRoleJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.MessageRoleNullableJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.EvaluationKindJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.EvaluationKindNullableJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.EvaluationStatusJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.EvaluationStatusNullableJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.WebhookDeliveryStatusJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.WebhookDeliveryStatusNullableJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.KnowledgeBaseDocumentSourceKindJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.KnowledgeBaseDocumentSourceKindNullableJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.KnowledgeBaseDocumentStatusJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.KnowledgeBaseDocumentStatusNullableJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.ImportJobKindJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.ImportJobKindNullableJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.JobStatusJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.JobStatusNullableJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.RefreshHistoryEntryStatusJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.RefreshHistoryEntryStatusNullableJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.ToolKindJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.ToolKindNullableJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.ToolParamTypeJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.ToolParamTypeNullableJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.WebhookToolConfigMethodJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.WebhookToolConfigMethodNullableJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.LongRunningToolConfigOnDuplicateJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.LongRunningToolConfigOnDuplicateNullableJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.MCPTransportJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.MCPTransportNullableJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.MCPAuthVariant1TypeJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.MCPAuthVariant1TypeNullableJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.MCPAuthVariant2TypeJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.MCPAuthVariant2TypeNullableJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.MCPAuthVariant3TypeJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.MCPAuthVariant3TypeNullableJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.MCPAuthDiscriminatorTypeJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.MCPAuthDiscriminatorTypeNullableJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.McpProbeErrorDetailsStageJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.McpProbeErrorDetailsStageNullableJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.TestTypeJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.TestTypeNullableJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.SimulationMessageRoleJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.SimulationMessageRoleNullableJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.ParameterCheckModeJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.ParameterCheckModeNullableJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.DataAssertionModeJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.DataAssertionModeNullableJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.MockingStrategyJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.MockingStrategyNullableJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.NoMatchBehaviorJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.NoMatchBehaviorNullableJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.TestVerdictJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.TestVerdictNullableJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.SimulationResultSentimentJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.SimulationResultSentimentNullableJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.SimulationCriterionResultStatusJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.SimulationCriterionResultStatusNullableJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.DataAssertionResultModeJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.DataAssertionResultModeNullableJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.SuiteRunTriggerJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.SuiteRunTriggerNullableJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.PhoneNumberProviderJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.PhoneNumberProviderNullableJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.PhoneNumberCapabilityJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.PhoneNumberCapabilityNullableJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.PurchasedPhoneNumberProviderJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.PurchasedPhoneNumberProviderNullableJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.SIPTrunkProviderJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.SIPTrunkProviderNullableJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.SIPTrunkDirectionJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.SIPTrunkDirectionNullableJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.SIPTransportJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.SIPTransportNullableJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.SIPMediaEncryptionJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.SIPMediaEncryptionNullableJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.ShareLinkStatusJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.ShareLinkStatusNullableJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.CreateShareLinkResponseStatusJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.CreateShareLinkResponseStatusNullableJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.BatchRecipientStatusJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.BatchRecipientStatusNullableJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.MCPAuthJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.AgentToolConfigJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.CreateAgentToolRequestConfigJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.UpdateAgentToolRequestConfigJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.ToolConfigJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.CreateToolRequestConfigJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.UpdateToolRequestConfigJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.AgentTestConfigJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.UpdateAgentTestRequestConfigJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.CreateAgentTestRequestConfigJsonConverter),
-
-            typeof(global::Speechify.JsonConverters.OneOfJsonConverter<global::Speechify.EvaluationStatus?, object>),
-
-            typeof(global::Speechify.JsonConverters.OneOfJsonConverter<global::Speechify.ReplyResult, object>),
-
-            typeof(global::Speechify.JsonConverters.OneOfJsonConverter<global::Speechify.ToolCallResult, object>),
-
-            typeof(global::Speechify.JsonConverters.OneOfJsonConverter<global::Speechify.SimulationResult, object>),
-
-            typeof(global::Speechify.JsonConverters.OneOfJsonConverter<global::Speechify.TestVerdict?, object>),
-
-            typeof(global::Speechify.JsonConverters.OneOfJsonConverter<global::Speechify.TestRunResult, object>),
-
-            typeof(global::Speechify.JsonConverters.OneOfJsonConverter<global::Speechify.AgentTestRun, object>),
-
-            typeof(global::Speechify.JsonConverters.OneOfJsonConverter<global::Speechify.TestVerdict?, object>),
-
-            typeof(global::Speechify.JsonConverters.OneOfJsonConverter<global::Speechify.TestRunConfigOverride, object>),
-
-            typeof(global::Speechify.JsonConverters.OneOfJsonConverter<global::Speechify.AgentTestSuiteRun, object>),
-
-            typeof(global::Speechify.JsonConverters.OneOfJsonConverter<global::Speechify.TestVerdict?, object>),
-
-            typeof(global::Speechify.JsonConverters.OneOfJsonConverter<global::Speechify.TestRunResult, object>),
-
-            typeof(global::Speechify.JsonConverters.OneOfJsonConverter<global::Speechify.TestVerdict?, object>),
-
-            typeof(global::Speechify.JsonConverters.OneOfJsonConverter<global::Speechify.TestRunConfigOverride, object>),
-
-            typeof(global::Speechify.JsonConverters.UnixTimestampJsonConverter),
         })]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.ParameterCheckMode?), TypeInfoPropertyName = "NullableParameterCheckMode2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.DataAssertionMode?), TypeInfoPropertyName = "NullableDataAssertionMode2")]
@@ -1332,11 +642,7 @@ namespace Speechify
     /// </summary>
     public sealed partial class SourceGenerationContext : global::System.Text.Json.Serialization.JsonSerializerContext
     {
-        private static readonly global::System.Text.Json.Serialization.Metadata.IJsonTypeInfoResolver Resolver = global::System.Text.Json.Serialization.Metadata.JsonTypeInfoResolver.Combine(
-            SourceGenerationContextChunk0.Default,
-
-            SourceGenerationContextChunk1.Default
-            );
+        private static readonly global::System.Text.Json.Serialization.Metadata.IJsonTypeInfoResolver Resolver = new LazyChunkResolver();
 
         private static readonly global::System.Text.Json.JsonSerializerOptions DefaultOptions = CreateDefaultOptions();
 
@@ -1366,154 +672,6 @@ namespace Speechify
                 DefaultIgnoreCondition = global::System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull,
                 TypeInfoResolver = Resolver,
             };
-            options.Converters.Add(new global::Speechify.JsonConverters.GetSpeechRequestAudioFormatJsonConverter());
-            options.Converters.Add(new global::Speechify.JsonConverters.GetSpeechRequestAudioFormatNullableJsonConverter());
-            options.Converters.Add(new global::Speechify.JsonConverters.GetSpeechRequestModelJsonConverter());
-            options.Converters.Add(new global::Speechify.JsonConverters.GetSpeechRequestModelNullableJsonConverter());
-            options.Converters.Add(new global::Speechify.JsonConverters.AudioOutputFormatJsonConverter());
-            options.Converters.Add(new global::Speechify.JsonConverters.AudioOutputFormatNullableJsonConverter());
-            options.Converters.Add(new global::Speechify.JsonConverters.GetSpeechResponseAudioFormatJsonConverter());
-            options.Converters.Add(new global::Speechify.JsonConverters.GetSpeechResponseAudioFormatNullableJsonConverter());
-            options.Converters.Add(new global::Speechify.JsonConverters.ErrorCodeJsonConverter());
-            options.Converters.Add(new global::Speechify.JsonConverters.ErrorCodeNullableJsonConverter());
-            options.Converters.Add(new global::Speechify.JsonConverters.V1AudioStreamPostParametersAcceptJsonConverter());
-            options.Converters.Add(new global::Speechify.JsonConverters.V1AudioStreamPostParametersAcceptNullableJsonConverter());
-            options.Converters.Add(new global::Speechify.JsonConverters.GetStreamRequestModelJsonConverter());
-            options.Converters.Add(new global::Speechify.JsonConverters.GetStreamRequestModelNullableJsonConverter());
-            options.Converters.Add(new global::Speechify.JsonConverters.AudioStreamOutputFormatJsonConverter());
-            options.Converters.Add(new global::Speechify.JsonConverters.AudioStreamOutputFormatNullableJsonConverter());
-            options.Converters.Add(new global::Speechify.JsonConverters.V1AudioStreamWithTimestampsPostParametersAcceptJsonConverter());
-            options.Converters.Add(new global::Speechify.JsonConverters.V1AudioStreamWithTimestampsPostParametersAcceptNullableJsonConverter());
-            options.Converters.Add(new global::Speechify.JsonConverters.V1VoicesGetParametersTypeJsonConverter());
-            options.Converters.Add(new global::Speechify.JsonConverters.V1VoicesGetParametersTypeNullableJsonConverter());
-            options.Converters.Add(new global::Speechify.JsonConverters.V1VoicesGetParametersGenderJsonConverter());
-            options.Converters.Add(new global::Speechify.JsonConverters.V1VoicesGetParametersGenderNullableJsonConverter());
-            options.Converters.Add(new global::Speechify.JsonConverters.GetVoiceGenderJsonConverter());
-            options.Converters.Add(new global::Speechify.JsonConverters.GetVoiceGenderNullableJsonConverter());
-            options.Converters.Add(new global::Speechify.JsonConverters.GetVoicesModelNameJsonConverter());
-            options.Converters.Add(new global::Speechify.JsonConverters.GetVoicesModelNameNullableJsonConverter());
-            options.Converters.Add(new global::Speechify.JsonConverters.GetVoiceTypeJsonConverter());
-            options.Converters.Add(new global::Speechify.JsonConverters.GetVoiceTypeNullableJsonConverter());
-            options.Converters.Add(new global::Speechify.JsonConverters.V1VoicesPostRequestBodyContentMultipartFormDataSchemaGenderJsonConverter());
-            options.Converters.Add(new global::Speechify.JsonConverters.V1VoicesPostRequestBodyContentMultipartFormDataSchemaGenderNullableJsonConverter());
-            options.Converters.Add(new global::Speechify.JsonConverters.AgentLlmConfigProviderJsonConverter());
-            options.Converters.Add(new global::Speechify.JsonConverters.AgentLlmConfigProviderNullableJsonConverter());
-            options.Converters.Add(new global::Speechify.JsonConverters.AgentSttConfigOverrideJsonConverter());
-            options.Converters.Add(new global::Speechify.JsonConverters.AgentSttConfigOverrideNullableJsonConverter());
-            options.Converters.Add(new global::Speechify.JsonConverters.AgentBackgroundNoiseConfigPresetJsonConverter());
-            options.Converters.Add(new global::Speechify.JsonConverters.AgentBackgroundNoiseConfigPresetNullableJsonConverter());
-            options.Converters.Add(new global::Speechify.JsonConverters.WidgetConfigStyleJsonConverter());
-            options.Converters.Add(new global::Speechify.JsonConverters.WidgetConfigStyleNullableJsonConverter());
-            options.Converters.Add(new global::Speechify.JsonConverters.WidgetConfigThemeJsonConverter());
-            options.Converters.Add(new global::Speechify.JsonConverters.WidgetConfigThemeNullableJsonConverter());
-            options.Converters.Add(new global::Speechify.JsonConverters.WidgetConfigAvatarTypeJsonConverter());
-            options.Converters.Add(new global::Speechify.JsonConverters.WidgetConfigAvatarTypeNullableJsonConverter());
-            options.Converters.Add(new global::Speechify.JsonConverters.AmdConfigOnVoicemailActionJsonConverter());
-            options.Converters.Add(new global::Speechify.JsonConverters.AmdConfigOnVoicemailActionNullableJsonConverter());
-            options.Converters.Add(new global::Speechify.JsonConverters.AmdConfigOnIvrActionJsonConverter());
-            options.Converters.Add(new global::Speechify.JsonConverters.AmdConfigOnIvrActionNullableJsonConverter());
-            options.Converters.Add(new global::Speechify.JsonConverters.AmdConfigOnUnavailableActionJsonConverter());
-            options.Converters.Add(new global::Speechify.JsonConverters.AmdConfigOnUnavailableActionNullableJsonConverter());
-            options.Converters.Add(new global::Speechify.JsonConverters.AgentVoiceTypeJsonConverter());
-            options.Converters.Add(new global::Speechify.JsonConverters.AgentVoiceTypeNullableJsonConverter());
-            options.Converters.Add(new global::Speechify.JsonConverters.AgentVoiceModelNameJsonConverter());
-            options.Converters.Add(new global::Speechify.JsonConverters.AgentVoiceModelNameNullableJsonConverter());
-            options.Converters.Add(new global::Speechify.JsonConverters.AgentVoiceGenderJsonConverter());
-            options.Converters.Add(new global::Speechify.JsonConverters.AgentVoiceGenderNullableJsonConverter());
-            options.Converters.Add(new global::Speechify.JsonConverters.DataCollectionFieldTypeJsonConverter());
-            options.Converters.Add(new global::Speechify.JsonConverters.DataCollectionFieldTypeNullableJsonConverter());
-            options.Converters.Add(new global::Speechify.JsonConverters.DynamicVariableTypeJsonConverter());
-            options.Converters.Add(new global::Speechify.JsonConverters.DynamicVariableTypeNullableJsonConverter());
-            options.Converters.Add(new global::Speechify.JsonConverters.ConversationStatusJsonConverter());
-            options.Converters.Add(new global::Speechify.JsonConverters.ConversationStatusNullableJsonConverter());
-            options.Converters.Add(new global::Speechify.JsonConverters.ConversationTransportJsonConverter());
-            options.Converters.Add(new global::Speechify.JsonConverters.ConversationTransportNullableJsonConverter());
-            options.Converters.Add(new global::Speechify.JsonConverters.ConversationEndReasonJsonConverter());
-            options.Converters.Add(new global::Speechify.JsonConverters.ConversationEndReasonNullableJsonConverter());
-            options.Converters.Add(new global::Speechify.JsonConverters.AgentSnapshotBackgroundNoisePresetJsonConverter());
-            options.Converters.Add(new global::Speechify.JsonConverters.AgentSnapshotBackgroundNoisePresetNullableJsonConverter());
-            options.Converters.Add(new global::Speechify.JsonConverters.ConversationIvrSurrenderReasonJsonConverter());
-            options.Converters.Add(new global::Speechify.JsonConverters.ConversationIvrSurrenderReasonNullableJsonConverter());
-            options.Converters.Add(new global::Speechify.JsonConverters.MessageRoleJsonConverter());
-            options.Converters.Add(new global::Speechify.JsonConverters.MessageRoleNullableJsonConverter());
-            options.Converters.Add(new global::Speechify.JsonConverters.EvaluationKindJsonConverter());
-            options.Converters.Add(new global::Speechify.JsonConverters.EvaluationKindNullableJsonConverter());
-            options.Converters.Add(new global::Speechify.JsonConverters.EvaluationStatusJsonConverter());
-            options.Converters.Add(new global::Speechify.JsonConverters.EvaluationStatusNullableJsonConverter());
-            options.Converters.Add(new global::Speechify.JsonConverters.WebhookDeliveryStatusJsonConverter());
-            options.Converters.Add(new global::Speechify.JsonConverters.WebhookDeliveryStatusNullableJsonConverter());
-            options.Converters.Add(new global::Speechify.JsonConverters.KnowledgeBaseDocumentSourceKindJsonConverter());
-            options.Converters.Add(new global::Speechify.JsonConverters.KnowledgeBaseDocumentSourceKindNullableJsonConverter());
-            options.Converters.Add(new global::Speechify.JsonConverters.KnowledgeBaseDocumentStatusJsonConverter());
-            options.Converters.Add(new global::Speechify.JsonConverters.KnowledgeBaseDocumentStatusNullableJsonConverter());
-            options.Converters.Add(new global::Speechify.JsonConverters.ImportJobKindJsonConverter());
-            options.Converters.Add(new global::Speechify.JsonConverters.ImportJobKindNullableJsonConverter());
-            options.Converters.Add(new global::Speechify.JsonConverters.JobStatusJsonConverter());
-            options.Converters.Add(new global::Speechify.JsonConverters.JobStatusNullableJsonConverter());
-            options.Converters.Add(new global::Speechify.JsonConverters.RefreshHistoryEntryStatusJsonConverter());
-            options.Converters.Add(new global::Speechify.JsonConverters.RefreshHistoryEntryStatusNullableJsonConverter());
-            options.Converters.Add(new global::Speechify.JsonConverters.ToolKindJsonConverter());
-            options.Converters.Add(new global::Speechify.JsonConverters.ToolKindNullableJsonConverter());
-            options.Converters.Add(new global::Speechify.JsonConverters.ToolParamTypeJsonConverter());
-            options.Converters.Add(new global::Speechify.JsonConverters.ToolParamTypeNullableJsonConverter());
-            options.Converters.Add(new global::Speechify.JsonConverters.WebhookToolConfigMethodJsonConverter());
-            options.Converters.Add(new global::Speechify.JsonConverters.WebhookToolConfigMethodNullableJsonConverter());
-            options.Converters.Add(new global::Speechify.JsonConverters.LongRunningToolConfigOnDuplicateJsonConverter());
-            options.Converters.Add(new global::Speechify.JsonConverters.LongRunningToolConfigOnDuplicateNullableJsonConverter());
-            options.Converters.Add(new global::Speechify.JsonConverters.MCPTransportJsonConverter());
-            options.Converters.Add(new global::Speechify.JsonConverters.MCPTransportNullableJsonConverter());
-            options.Converters.Add(new global::Speechify.JsonConverters.MCPAuthVariant1TypeJsonConverter());
-            options.Converters.Add(new global::Speechify.JsonConverters.MCPAuthVariant1TypeNullableJsonConverter());
-            options.Converters.Add(new global::Speechify.JsonConverters.MCPAuthVariant2TypeJsonConverter());
-            options.Converters.Add(new global::Speechify.JsonConverters.MCPAuthVariant2TypeNullableJsonConverter());
-            options.Converters.Add(new global::Speechify.JsonConverters.MCPAuthVariant3TypeJsonConverter());
-            options.Converters.Add(new global::Speechify.JsonConverters.MCPAuthVariant3TypeNullableJsonConverter());
-            options.Converters.Add(new global::Speechify.JsonConverters.MCPAuthDiscriminatorTypeJsonConverter());
-            options.Converters.Add(new global::Speechify.JsonConverters.MCPAuthDiscriminatorTypeNullableJsonConverter());
-            options.Converters.Add(new global::Speechify.JsonConverters.McpProbeErrorDetailsStageJsonConverter());
-            options.Converters.Add(new global::Speechify.JsonConverters.McpProbeErrorDetailsStageNullableJsonConverter());
-            options.Converters.Add(new global::Speechify.JsonConverters.TestTypeJsonConverter());
-            options.Converters.Add(new global::Speechify.JsonConverters.TestTypeNullableJsonConverter());
-            options.Converters.Add(new global::Speechify.JsonConverters.SimulationMessageRoleJsonConverter());
-            options.Converters.Add(new global::Speechify.JsonConverters.SimulationMessageRoleNullableJsonConverter());
-            options.Converters.Add(new global::Speechify.JsonConverters.ParameterCheckModeJsonConverter());
-            options.Converters.Add(new global::Speechify.JsonConverters.ParameterCheckModeNullableJsonConverter());
-            options.Converters.Add(new global::Speechify.JsonConverters.DataAssertionModeJsonConverter());
-            options.Converters.Add(new global::Speechify.JsonConverters.DataAssertionModeNullableJsonConverter());
-            options.Converters.Add(new global::Speechify.JsonConverters.MockingStrategyJsonConverter());
-            options.Converters.Add(new global::Speechify.JsonConverters.MockingStrategyNullableJsonConverter());
-            options.Converters.Add(new global::Speechify.JsonConverters.NoMatchBehaviorJsonConverter());
-            options.Converters.Add(new global::Speechify.JsonConverters.NoMatchBehaviorNullableJsonConverter());
-            options.Converters.Add(new global::Speechify.JsonConverters.TestVerdictJsonConverter());
-            options.Converters.Add(new global::Speechify.JsonConverters.TestVerdictNullableJsonConverter());
-            options.Converters.Add(new global::Speechify.JsonConverters.SimulationResultSentimentJsonConverter());
-            options.Converters.Add(new global::Speechify.JsonConverters.SimulationResultSentimentNullableJsonConverter());
-            options.Converters.Add(new global::Speechify.JsonConverters.SimulationCriterionResultStatusJsonConverter());
-            options.Converters.Add(new global::Speechify.JsonConverters.SimulationCriterionResultStatusNullableJsonConverter());
-            options.Converters.Add(new global::Speechify.JsonConverters.DataAssertionResultModeJsonConverter());
-            options.Converters.Add(new global::Speechify.JsonConverters.DataAssertionResultModeNullableJsonConverter());
-            options.Converters.Add(new global::Speechify.JsonConverters.SuiteRunTriggerJsonConverter());
-            options.Converters.Add(new global::Speechify.JsonConverters.SuiteRunTriggerNullableJsonConverter());
-            options.Converters.Add(new global::Speechify.JsonConverters.PhoneNumberProviderJsonConverter());
-            options.Converters.Add(new global::Speechify.JsonConverters.PhoneNumberProviderNullableJsonConverter());
-            options.Converters.Add(new global::Speechify.JsonConverters.PhoneNumberCapabilityJsonConverter());
-            options.Converters.Add(new global::Speechify.JsonConverters.PhoneNumberCapabilityNullableJsonConverter());
-            options.Converters.Add(new global::Speechify.JsonConverters.PurchasedPhoneNumberProviderJsonConverter());
-            options.Converters.Add(new global::Speechify.JsonConverters.PurchasedPhoneNumberProviderNullableJsonConverter());
-            options.Converters.Add(new global::Speechify.JsonConverters.SIPTrunkProviderJsonConverter());
-            options.Converters.Add(new global::Speechify.JsonConverters.SIPTrunkProviderNullableJsonConverter());
-            options.Converters.Add(new global::Speechify.JsonConverters.SIPTrunkDirectionJsonConverter());
-            options.Converters.Add(new global::Speechify.JsonConverters.SIPTrunkDirectionNullableJsonConverter());
-            options.Converters.Add(new global::Speechify.JsonConverters.SIPTransportJsonConverter());
-            options.Converters.Add(new global::Speechify.JsonConverters.SIPTransportNullableJsonConverter());
-            options.Converters.Add(new global::Speechify.JsonConverters.SIPMediaEncryptionJsonConverter());
-            options.Converters.Add(new global::Speechify.JsonConverters.SIPMediaEncryptionNullableJsonConverter());
-            options.Converters.Add(new global::Speechify.JsonConverters.ShareLinkStatusJsonConverter());
-            options.Converters.Add(new global::Speechify.JsonConverters.ShareLinkStatusNullableJsonConverter());
-            options.Converters.Add(new global::Speechify.JsonConverters.CreateShareLinkResponseStatusJsonConverter());
-            options.Converters.Add(new global::Speechify.JsonConverters.CreateShareLinkResponseStatusNullableJsonConverter());
-            options.Converters.Add(new global::Speechify.JsonConverters.BatchRecipientStatusJsonConverter());
-            options.Converters.Add(new global::Speechify.JsonConverters.BatchRecipientStatusNullableJsonConverter());
             options.Converters.Add(new global::Speechify.JsonConverters.MCPAuthJsonConverter());
             options.Converters.Add(new global::Speechify.JsonConverters.AgentToolConfigJsonConverter());
             options.Converters.Add(new global::Speechify.JsonConverters.CreateAgentToolRequestConfigJsonConverter());
@@ -1540,7 +698,1106 @@ namespace Speechify
             options.Converters.Add(new global::Speechify.JsonConverters.OneOfJsonConverter<global::Speechify.TestRunConfigOverride, object>());
             options.Converters.Add(new global::Speechify.JsonConverters.UnixTimestampJsonConverter());
 
+            options.Converters.Add(new LazyEnumJsonConverterFactory());
+
             return options;
+        }
+
+
+        private sealed class LazyEnumJsonConverterFactory : global::System.Text.Json.Serialization.JsonConverterFactory
+        {
+            public override bool CanConvert(global::System.Type typeToConvert)
+            {
+                return
+                    typeToConvert == typeof(global::Speechify.GetSpeechRequestAudioFormat)
+
+                    || typeToConvert == typeof(global::Speechify.GetSpeechRequestAudioFormat?)
+
+                    || typeToConvert == typeof(global::Speechify.GetSpeechRequestModel)
+
+                    || typeToConvert == typeof(global::Speechify.GetSpeechRequestModel?)
+
+                    || typeToConvert == typeof(global::Speechify.AudioOutputFormat)
+
+                    || typeToConvert == typeof(global::Speechify.AudioOutputFormat?)
+
+                    || typeToConvert == typeof(global::Speechify.GetSpeechResponseAudioFormat)
+
+                    || typeToConvert == typeof(global::Speechify.GetSpeechResponseAudioFormat?)
+
+                    || typeToConvert == typeof(global::Speechify.ErrorCode)
+
+                    || typeToConvert == typeof(global::Speechify.ErrorCode?)
+
+                    || typeToConvert == typeof(global::Speechify.V1AudioStreamPostParametersAccept)
+
+                    || typeToConvert == typeof(global::Speechify.V1AudioStreamPostParametersAccept?)
+
+                    || typeToConvert == typeof(global::Speechify.GetStreamRequestModel)
+
+                    || typeToConvert == typeof(global::Speechify.GetStreamRequestModel?)
+
+                    || typeToConvert == typeof(global::Speechify.AudioStreamOutputFormat)
+
+                    || typeToConvert == typeof(global::Speechify.AudioStreamOutputFormat?)
+
+                    || typeToConvert == typeof(global::Speechify.V1AudioStreamWithTimestampsPostParametersAccept)
+
+                    || typeToConvert == typeof(global::Speechify.V1AudioStreamWithTimestampsPostParametersAccept?)
+
+                    || typeToConvert == typeof(global::Speechify.V1VoicesGetParametersType)
+
+                    || typeToConvert == typeof(global::Speechify.V1VoicesGetParametersType?)
+
+                    || typeToConvert == typeof(global::Speechify.V1VoicesGetParametersGender)
+
+                    || typeToConvert == typeof(global::Speechify.V1VoicesGetParametersGender?)
+
+                    || typeToConvert == typeof(global::Speechify.GetVoiceGender)
+
+                    || typeToConvert == typeof(global::Speechify.GetVoiceGender?)
+
+                    || typeToConvert == typeof(global::Speechify.GetVoicesModelName)
+
+                    || typeToConvert == typeof(global::Speechify.GetVoicesModelName?)
+
+                    || typeToConvert == typeof(global::Speechify.GetVoiceType)
+
+                    || typeToConvert == typeof(global::Speechify.GetVoiceType?)
+
+                    || typeToConvert == typeof(global::Speechify.V1VoicesPostRequestBodyContentMultipartFormDataSchemaGender)
+
+                    || typeToConvert == typeof(global::Speechify.V1VoicesPostRequestBodyContentMultipartFormDataSchemaGender?)
+
+                    || typeToConvert == typeof(global::Speechify.AgentLlmConfigProvider)
+
+                    || typeToConvert == typeof(global::Speechify.AgentLlmConfigProvider?)
+
+                    || typeToConvert == typeof(global::Speechify.AgentSttConfigOverride)
+
+                    || typeToConvert == typeof(global::Speechify.AgentSttConfigOverride?)
+
+                    || typeToConvert == typeof(global::Speechify.AgentBackgroundNoiseConfigPreset)
+
+                    || typeToConvert == typeof(global::Speechify.AgentBackgroundNoiseConfigPreset?)
+
+                    || typeToConvert == typeof(global::Speechify.WidgetConfigStyle)
+
+                    || typeToConvert == typeof(global::Speechify.WidgetConfigStyle?)
+
+                    || typeToConvert == typeof(global::Speechify.WidgetConfigTheme)
+
+                    || typeToConvert == typeof(global::Speechify.WidgetConfigTheme?)
+
+                    || typeToConvert == typeof(global::Speechify.WidgetConfigAvatarType)
+
+                    || typeToConvert == typeof(global::Speechify.WidgetConfigAvatarType?)
+
+                    || typeToConvert == typeof(global::Speechify.AmdConfigOnVoicemailAction)
+
+                    || typeToConvert == typeof(global::Speechify.AmdConfigOnVoicemailAction?)
+
+                    || typeToConvert == typeof(global::Speechify.AmdConfigOnIvrAction)
+
+                    || typeToConvert == typeof(global::Speechify.AmdConfigOnIvrAction?)
+
+                    || typeToConvert == typeof(global::Speechify.AmdConfigOnUnavailableAction)
+
+                    || typeToConvert == typeof(global::Speechify.AmdConfigOnUnavailableAction?)
+
+                    || typeToConvert == typeof(global::Speechify.AgentVoiceType)
+
+                    || typeToConvert == typeof(global::Speechify.AgentVoiceType?)
+
+                    || typeToConvert == typeof(global::Speechify.AgentVoiceModelName)
+
+                    || typeToConvert == typeof(global::Speechify.AgentVoiceModelName?)
+
+                    || typeToConvert == typeof(global::Speechify.AgentVoiceGender)
+
+                    || typeToConvert == typeof(global::Speechify.AgentVoiceGender?)
+
+                    || typeToConvert == typeof(global::Speechify.DataCollectionFieldType)
+
+                    || typeToConvert == typeof(global::Speechify.DataCollectionFieldType?)
+
+                    || typeToConvert == typeof(global::Speechify.DynamicVariableType)
+
+                    || typeToConvert == typeof(global::Speechify.DynamicVariableType?)
+
+                    || typeToConvert == typeof(global::Speechify.ConversationStatus)
+
+                    || typeToConvert == typeof(global::Speechify.ConversationStatus?)
+
+                    || typeToConvert == typeof(global::Speechify.ConversationTransport)
+
+                    || typeToConvert == typeof(global::Speechify.ConversationTransport?)
+
+                    || typeToConvert == typeof(global::Speechify.ConversationEndReason)
+
+                    || typeToConvert == typeof(global::Speechify.ConversationEndReason?)
+
+                    || typeToConvert == typeof(global::Speechify.AgentSnapshotBackgroundNoisePreset)
+
+                    || typeToConvert == typeof(global::Speechify.AgentSnapshotBackgroundNoisePreset?)
+
+                    || typeToConvert == typeof(global::Speechify.ConversationIvrSurrenderReason)
+
+                    || typeToConvert == typeof(global::Speechify.ConversationIvrSurrenderReason?)
+
+                    || typeToConvert == typeof(global::Speechify.MessageRole)
+
+                    || typeToConvert == typeof(global::Speechify.MessageRole?)
+
+                    || typeToConvert == typeof(global::Speechify.EvaluationKind)
+
+                    || typeToConvert == typeof(global::Speechify.EvaluationKind?)
+
+                    || typeToConvert == typeof(global::Speechify.EvaluationStatus)
+
+                    || typeToConvert == typeof(global::Speechify.EvaluationStatus?)
+
+                    || typeToConvert == typeof(global::Speechify.WebhookDeliveryStatus)
+
+                    || typeToConvert == typeof(global::Speechify.WebhookDeliveryStatus?)
+
+                    || typeToConvert == typeof(global::Speechify.KnowledgeBaseDocumentSourceKind)
+
+                    || typeToConvert == typeof(global::Speechify.KnowledgeBaseDocumentSourceKind?)
+
+                    || typeToConvert == typeof(global::Speechify.KnowledgeBaseDocumentStatus)
+
+                    || typeToConvert == typeof(global::Speechify.KnowledgeBaseDocumentStatus?)
+
+                    || typeToConvert == typeof(global::Speechify.ImportJobKind)
+
+                    || typeToConvert == typeof(global::Speechify.ImportJobKind?)
+
+                    || typeToConvert == typeof(global::Speechify.JobStatus)
+
+                    || typeToConvert == typeof(global::Speechify.JobStatus?)
+
+                    || typeToConvert == typeof(global::Speechify.RefreshHistoryEntryStatus)
+
+                    || typeToConvert == typeof(global::Speechify.RefreshHistoryEntryStatus?)
+
+                    || typeToConvert == typeof(global::Speechify.ToolKind)
+
+                    || typeToConvert == typeof(global::Speechify.ToolKind?)
+
+                    || typeToConvert == typeof(global::Speechify.ToolParamType)
+
+                    || typeToConvert == typeof(global::Speechify.ToolParamType?)
+
+                    || typeToConvert == typeof(global::Speechify.WebhookToolConfigMethod)
+
+                    || typeToConvert == typeof(global::Speechify.WebhookToolConfigMethod?)
+
+                    || typeToConvert == typeof(global::Speechify.LongRunningToolConfigOnDuplicate)
+
+                    || typeToConvert == typeof(global::Speechify.LongRunningToolConfigOnDuplicate?)
+
+                    || typeToConvert == typeof(global::Speechify.MCPTransport)
+
+                    || typeToConvert == typeof(global::Speechify.MCPTransport?)
+
+                    || typeToConvert == typeof(global::Speechify.MCPAuthVariant1Type)
+
+                    || typeToConvert == typeof(global::Speechify.MCPAuthVariant1Type?)
+
+                    || typeToConvert == typeof(global::Speechify.MCPAuthVariant2Type)
+
+                    || typeToConvert == typeof(global::Speechify.MCPAuthVariant2Type?)
+
+                    || typeToConvert == typeof(global::Speechify.MCPAuthVariant3Type)
+
+                    || typeToConvert == typeof(global::Speechify.MCPAuthVariant3Type?)
+
+                    || typeToConvert == typeof(global::Speechify.MCPAuthDiscriminatorType)
+
+                    || typeToConvert == typeof(global::Speechify.MCPAuthDiscriminatorType?)
+
+                    || typeToConvert == typeof(global::Speechify.McpProbeErrorDetailsStage)
+
+                    || typeToConvert == typeof(global::Speechify.McpProbeErrorDetailsStage?)
+
+                    || typeToConvert == typeof(global::Speechify.TestType)
+
+                    || typeToConvert == typeof(global::Speechify.TestType?)
+
+                    || typeToConvert == typeof(global::Speechify.SimulationMessageRole)
+
+                    || typeToConvert == typeof(global::Speechify.SimulationMessageRole?)
+
+                    || typeToConvert == typeof(global::Speechify.ParameterCheckMode)
+
+                    || typeToConvert == typeof(global::Speechify.ParameterCheckMode?)
+
+                    || typeToConvert == typeof(global::Speechify.DataAssertionMode)
+
+                    || typeToConvert == typeof(global::Speechify.DataAssertionMode?)
+
+                    || typeToConvert == typeof(global::Speechify.MockingStrategy)
+
+                    || typeToConvert == typeof(global::Speechify.MockingStrategy?)
+
+                    || typeToConvert == typeof(global::Speechify.NoMatchBehavior)
+
+                    || typeToConvert == typeof(global::Speechify.NoMatchBehavior?)
+
+                    || typeToConvert == typeof(global::Speechify.TestVerdict)
+
+                    || typeToConvert == typeof(global::Speechify.TestVerdict?)
+
+                    || typeToConvert == typeof(global::Speechify.SimulationResultSentiment)
+
+                    || typeToConvert == typeof(global::Speechify.SimulationResultSentiment?)
+
+                    || typeToConvert == typeof(global::Speechify.SimulationCriterionResultStatus)
+
+                    || typeToConvert == typeof(global::Speechify.SimulationCriterionResultStatus?)
+
+                    || typeToConvert == typeof(global::Speechify.DataAssertionResultMode)
+
+                    || typeToConvert == typeof(global::Speechify.DataAssertionResultMode?)
+
+                    || typeToConvert == typeof(global::Speechify.SuiteRunTrigger)
+
+                    || typeToConvert == typeof(global::Speechify.SuiteRunTrigger?)
+
+                    || typeToConvert == typeof(global::Speechify.PhoneNumberProvider)
+
+                    || typeToConvert == typeof(global::Speechify.PhoneNumberProvider?)
+
+                    || typeToConvert == typeof(global::Speechify.PhoneNumberCapability)
+
+                    || typeToConvert == typeof(global::Speechify.PhoneNumberCapability?)
+
+                    || typeToConvert == typeof(global::Speechify.PurchasedPhoneNumberProvider)
+
+                    || typeToConvert == typeof(global::Speechify.PurchasedPhoneNumberProvider?)
+
+                    || typeToConvert == typeof(global::Speechify.SIPTrunkProvider)
+
+                    || typeToConvert == typeof(global::Speechify.SIPTrunkProvider?)
+
+                    || typeToConvert == typeof(global::Speechify.SIPTrunkDirection)
+
+                    || typeToConvert == typeof(global::Speechify.SIPTrunkDirection?)
+
+                    || typeToConvert == typeof(global::Speechify.SIPTransport)
+
+                    || typeToConvert == typeof(global::Speechify.SIPTransport?)
+
+                    || typeToConvert == typeof(global::Speechify.SIPMediaEncryption)
+
+                    || typeToConvert == typeof(global::Speechify.SIPMediaEncryption?)
+
+                    || typeToConvert == typeof(global::Speechify.ShareLinkStatus)
+
+                    || typeToConvert == typeof(global::Speechify.ShareLinkStatus?)
+
+                    || typeToConvert == typeof(global::Speechify.CreateShareLinkResponseStatus)
+
+                    || typeToConvert == typeof(global::Speechify.CreateShareLinkResponseStatus?)
+
+                    || typeToConvert == typeof(global::Speechify.BatchRecipientStatus)
+
+                    || typeToConvert == typeof(global::Speechify.BatchRecipientStatus?);
+            }
+
+            public override global::System.Text.Json.Serialization.JsonConverter CreateConverter(
+                global::System.Type typeToConvert,
+                global::System.Text.Json.JsonSerializerOptions options)
+            {
+                if (typeToConvert == typeof(global::Speechify.GetSpeechRequestAudioFormat))
+                {
+                    return new global::Speechify.JsonConverters.GetSpeechRequestAudioFormatJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.GetSpeechRequestAudioFormat?))
+                {
+                    return new global::Speechify.JsonConverters.GetSpeechRequestAudioFormatNullableJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.GetSpeechRequestModel))
+                {
+                    return new global::Speechify.JsonConverters.GetSpeechRequestModelJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.GetSpeechRequestModel?))
+                {
+                    return new global::Speechify.JsonConverters.GetSpeechRequestModelNullableJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.AudioOutputFormat))
+                {
+                    return new global::Speechify.JsonConverters.AudioOutputFormatJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.AudioOutputFormat?))
+                {
+                    return new global::Speechify.JsonConverters.AudioOutputFormatNullableJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.GetSpeechResponseAudioFormat))
+                {
+                    return new global::Speechify.JsonConverters.GetSpeechResponseAudioFormatJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.GetSpeechResponseAudioFormat?))
+                {
+                    return new global::Speechify.JsonConverters.GetSpeechResponseAudioFormatNullableJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.ErrorCode))
+                {
+                    return new global::Speechify.JsonConverters.ErrorCodeJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.ErrorCode?))
+                {
+                    return new global::Speechify.JsonConverters.ErrorCodeNullableJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.V1AudioStreamPostParametersAccept))
+                {
+                    return new global::Speechify.JsonConverters.V1AudioStreamPostParametersAcceptJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.V1AudioStreamPostParametersAccept?))
+                {
+                    return new global::Speechify.JsonConverters.V1AudioStreamPostParametersAcceptNullableJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.GetStreamRequestModel))
+                {
+                    return new global::Speechify.JsonConverters.GetStreamRequestModelJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.GetStreamRequestModel?))
+                {
+                    return new global::Speechify.JsonConverters.GetStreamRequestModelNullableJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.AudioStreamOutputFormat))
+                {
+                    return new global::Speechify.JsonConverters.AudioStreamOutputFormatJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.AudioStreamOutputFormat?))
+                {
+                    return new global::Speechify.JsonConverters.AudioStreamOutputFormatNullableJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.V1AudioStreamWithTimestampsPostParametersAccept))
+                {
+                    return new global::Speechify.JsonConverters.V1AudioStreamWithTimestampsPostParametersAcceptJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.V1AudioStreamWithTimestampsPostParametersAccept?))
+                {
+                    return new global::Speechify.JsonConverters.V1AudioStreamWithTimestampsPostParametersAcceptNullableJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.V1VoicesGetParametersType))
+                {
+                    return new global::Speechify.JsonConverters.V1VoicesGetParametersTypeJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.V1VoicesGetParametersType?))
+                {
+                    return new global::Speechify.JsonConverters.V1VoicesGetParametersTypeNullableJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.V1VoicesGetParametersGender))
+                {
+                    return new global::Speechify.JsonConverters.V1VoicesGetParametersGenderJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.V1VoicesGetParametersGender?))
+                {
+                    return new global::Speechify.JsonConverters.V1VoicesGetParametersGenderNullableJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.GetVoiceGender))
+                {
+                    return new global::Speechify.JsonConverters.GetVoiceGenderJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.GetVoiceGender?))
+                {
+                    return new global::Speechify.JsonConverters.GetVoiceGenderNullableJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.GetVoicesModelName))
+                {
+                    return new global::Speechify.JsonConverters.GetVoicesModelNameJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.GetVoicesModelName?))
+                {
+                    return new global::Speechify.JsonConverters.GetVoicesModelNameNullableJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.GetVoiceType))
+                {
+                    return new global::Speechify.JsonConverters.GetVoiceTypeJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.GetVoiceType?))
+                {
+                    return new global::Speechify.JsonConverters.GetVoiceTypeNullableJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.V1VoicesPostRequestBodyContentMultipartFormDataSchemaGender))
+                {
+                    return new global::Speechify.JsonConverters.V1VoicesPostRequestBodyContentMultipartFormDataSchemaGenderJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.V1VoicesPostRequestBodyContentMultipartFormDataSchemaGender?))
+                {
+                    return new global::Speechify.JsonConverters.V1VoicesPostRequestBodyContentMultipartFormDataSchemaGenderNullableJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.AgentLlmConfigProvider))
+                {
+                    return new global::Speechify.JsonConverters.AgentLlmConfigProviderJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.AgentLlmConfigProvider?))
+                {
+                    return new global::Speechify.JsonConverters.AgentLlmConfigProviderNullableJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.AgentSttConfigOverride))
+                {
+                    return new global::Speechify.JsonConverters.AgentSttConfigOverrideJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.AgentSttConfigOverride?))
+                {
+                    return new global::Speechify.JsonConverters.AgentSttConfigOverrideNullableJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.AgentBackgroundNoiseConfigPreset))
+                {
+                    return new global::Speechify.JsonConverters.AgentBackgroundNoiseConfigPresetJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.AgentBackgroundNoiseConfigPreset?))
+                {
+                    return new global::Speechify.JsonConverters.AgentBackgroundNoiseConfigPresetNullableJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.WidgetConfigStyle))
+                {
+                    return new global::Speechify.JsonConverters.WidgetConfigStyleJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.WidgetConfigStyle?))
+                {
+                    return new global::Speechify.JsonConverters.WidgetConfigStyleNullableJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.WidgetConfigTheme))
+                {
+                    return new global::Speechify.JsonConverters.WidgetConfigThemeJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.WidgetConfigTheme?))
+                {
+                    return new global::Speechify.JsonConverters.WidgetConfigThemeNullableJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.WidgetConfigAvatarType))
+                {
+                    return new global::Speechify.JsonConverters.WidgetConfigAvatarTypeJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.WidgetConfigAvatarType?))
+                {
+                    return new global::Speechify.JsonConverters.WidgetConfigAvatarTypeNullableJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.AmdConfigOnVoicemailAction))
+                {
+                    return new global::Speechify.JsonConverters.AmdConfigOnVoicemailActionJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.AmdConfigOnVoicemailAction?))
+                {
+                    return new global::Speechify.JsonConverters.AmdConfigOnVoicemailActionNullableJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.AmdConfigOnIvrAction))
+                {
+                    return new global::Speechify.JsonConverters.AmdConfigOnIvrActionJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.AmdConfigOnIvrAction?))
+                {
+                    return new global::Speechify.JsonConverters.AmdConfigOnIvrActionNullableJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.AmdConfigOnUnavailableAction))
+                {
+                    return new global::Speechify.JsonConverters.AmdConfigOnUnavailableActionJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.AmdConfigOnUnavailableAction?))
+                {
+                    return new global::Speechify.JsonConverters.AmdConfigOnUnavailableActionNullableJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.AgentVoiceType))
+                {
+                    return new global::Speechify.JsonConverters.AgentVoiceTypeJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.AgentVoiceType?))
+                {
+                    return new global::Speechify.JsonConverters.AgentVoiceTypeNullableJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.AgentVoiceModelName))
+                {
+                    return new global::Speechify.JsonConverters.AgentVoiceModelNameJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.AgentVoiceModelName?))
+                {
+                    return new global::Speechify.JsonConverters.AgentVoiceModelNameNullableJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.AgentVoiceGender))
+                {
+                    return new global::Speechify.JsonConverters.AgentVoiceGenderJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.AgentVoiceGender?))
+                {
+                    return new global::Speechify.JsonConverters.AgentVoiceGenderNullableJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.DataCollectionFieldType))
+                {
+                    return new global::Speechify.JsonConverters.DataCollectionFieldTypeJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.DataCollectionFieldType?))
+                {
+                    return new global::Speechify.JsonConverters.DataCollectionFieldTypeNullableJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.DynamicVariableType))
+                {
+                    return new global::Speechify.JsonConverters.DynamicVariableTypeJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.DynamicVariableType?))
+                {
+                    return new global::Speechify.JsonConverters.DynamicVariableTypeNullableJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.ConversationStatus))
+                {
+                    return new global::Speechify.JsonConverters.ConversationStatusJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.ConversationStatus?))
+                {
+                    return new global::Speechify.JsonConverters.ConversationStatusNullableJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.ConversationTransport))
+                {
+                    return new global::Speechify.JsonConverters.ConversationTransportJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.ConversationTransport?))
+                {
+                    return new global::Speechify.JsonConverters.ConversationTransportNullableJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.ConversationEndReason))
+                {
+                    return new global::Speechify.JsonConverters.ConversationEndReasonJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.ConversationEndReason?))
+                {
+                    return new global::Speechify.JsonConverters.ConversationEndReasonNullableJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.AgentSnapshotBackgroundNoisePreset))
+                {
+                    return new global::Speechify.JsonConverters.AgentSnapshotBackgroundNoisePresetJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.AgentSnapshotBackgroundNoisePreset?))
+                {
+                    return new global::Speechify.JsonConverters.AgentSnapshotBackgroundNoisePresetNullableJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.ConversationIvrSurrenderReason))
+                {
+                    return new global::Speechify.JsonConverters.ConversationIvrSurrenderReasonJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.ConversationIvrSurrenderReason?))
+                {
+                    return new global::Speechify.JsonConverters.ConversationIvrSurrenderReasonNullableJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.MessageRole))
+                {
+                    return new global::Speechify.JsonConverters.MessageRoleJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.MessageRole?))
+                {
+                    return new global::Speechify.JsonConverters.MessageRoleNullableJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.EvaluationKind))
+                {
+                    return new global::Speechify.JsonConverters.EvaluationKindJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.EvaluationKind?))
+                {
+                    return new global::Speechify.JsonConverters.EvaluationKindNullableJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.EvaluationStatus))
+                {
+                    return new global::Speechify.JsonConverters.EvaluationStatusJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.EvaluationStatus?))
+                {
+                    return new global::Speechify.JsonConverters.EvaluationStatusNullableJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.WebhookDeliveryStatus))
+                {
+                    return new global::Speechify.JsonConverters.WebhookDeliveryStatusJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.WebhookDeliveryStatus?))
+                {
+                    return new global::Speechify.JsonConverters.WebhookDeliveryStatusNullableJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.KnowledgeBaseDocumentSourceKind))
+                {
+                    return new global::Speechify.JsonConverters.KnowledgeBaseDocumentSourceKindJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.KnowledgeBaseDocumentSourceKind?))
+                {
+                    return new global::Speechify.JsonConverters.KnowledgeBaseDocumentSourceKindNullableJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.KnowledgeBaseDocumentStatus))
+                {
+                    return new global::Speechify.JsonConverters.KnowledgeBaseDocumentStatusJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.KnowledgeBaseDocumentStatus?))
+                {
+                    return new global::Speechify.JsonConverters.KnowledgeBaseDocumentStatusNullableJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.ImportJobKind))
+                {
+                    return new global::Speechify.JsonConverters.ImportJobKindJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.ImportJobKind?))
+                {
+                    return new global::Speechify.JsonConverters.ImportJobKindNullableJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.JobStatus))
+                {
+                    return new global::Speechify.JsonConverters.JobStatusJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.JobStatus?))
+                {
+                    return new global::Speechify.JsonConverters.JobStatusNullableJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.RefreshHistoryEntryStatus))
+                {
+                    return new global::Speechify.JsonConverters.RefreshHistoryEntryStatusJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.RefreshHistoryEntryStatus?))
+                {
+                    return new global::Speechify.JsonConverters.RefreshHistoryEntryStatusNullableJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.ToolKind))
+                {
+                    return new global::Speechify.JsonConverters.ToolKindJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.ToolKind?))
+                {
+                    return new global::Speechify.JsonConverters.ToolKindNullableJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.ToolParamType))
+                {
+                    return new global::Speechify.JsonConverters.ToolParamTypeJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.ToolParamType?))
+                {
+                    return new global::Speechify.JsonConverters.ToolParamTypeNullableJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.WebhookToolConfigMethod))
+                {
+                    return new global::Speechify.JsonConverters.WebhookToolConfigMethodJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.WebhookToolConfigMethod?))
+                {
+                    return new global::Speechify.JsonConverters.WebhookToolConfigMethodNullableJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.LongRunningToolConfigOnDuplicate))
+                {
+                    return new global::Speechify.JsonConverters.LongRunningToolConfigOnDuplicateJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.LongRunningToolConfigOnDuplicate?))
+                {
+                    return new global::Speechify.JsonConverters.LongRunningToolConfigOnDuplicateNullableJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.MCPTransport))
+                {
+                    return new global::Speechify.JsonConverters.MCPTransportJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.MCPTransport?))
+                {
+                    return new global::Speechify.JsonConverters.MCPTransportNullableJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.MCPAuthVariant1Type))
+                {
+                    return new global::Speechify.JsonConverters.MCPAuthVariant1TypeJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.MCPAuthVariant1Type?))
+                {
+                    return new global::Speechify.JsonConverters.MCPAuthVariant1TypeNullableJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.MCPAuthVariant2Type))
+                {
+                    return new global::Speechify.JsonConverters.MCPAuthVariant2TypeJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.MCPAuthVariant2Type?))
+                {
+                    return new global::Speechify.JsonConverters.MCPAuthVariant2TypeNullableJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.MCPAuthVariant3Type))
+                {
+                    return new global::Speechify.JsonConverters.MCPAuthVariant3TypeJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.MCPAuthVariant3Type?))
+                {
+                    return new global::Speechify.JsonConverters.MCPAuthVariant3TypeNullableJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.MCPAuthDiscriminatorType))
+                {
+                    return new global::Speechify.JsonConverters.MCPAuthDiscriminatorTypeJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.MCPAuthDiscriminatorType?))
+                {
+                    return new global::Speechify.JsonConverters.MCPAuthDiscriminatorTypeNullableJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.McpProbeErrorDetailsStage))
+                {
+                    return new global::Speechify.JsonConverters.McpProbeErrorDetailsStageJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.McpProbeErrorDetailsStage?))
+                {
+                    return new global::Speechify.JsonConverters.McpProbeErrorDetailsStageNullableJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.TestType))
+                {
+                    return new global::Speechify.JsonConverters.TestTypeJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.TestType?))
+                {
+                    return new global::Speechify.JsonConverters.TestTypeNullableJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.SimulationMessageRole))
+                {
+                    return new global::Speechify.JsonConverters.SimulationMessageRoleJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.SimulationMessageRole?))
+                {
+                    return new global::Speechify.JsonConverters.SimulationMessageRoleNullableJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.ParameterCheckMode))
+                {
+                    return new global::Speechify.JsonConverters.ParameterCheckModeJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.ParameterCheckMode?))
+                {
+                    return new global::Speechify.JsonConverters.ParameterCheckModeNullableJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.DataAssertionMode))
+                {
+                    return new global::Speechify.JsonConverters.DataAssertionModeJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.DataAssertionMode?))
+                {
+                    return new global::Speechify.JsonConverters.DataAssertionModeNullableJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.MockingStrategy))
+                {
+                    return new global::Speechify.JsonConverters.MockingStrategyJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.MockingStrategy?))
+                {
+                    return new global::Speechify.JsonConverters.MockingStrategyNullableJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.NoMatchBehavior))
+                {
+                    return new global::Speechify.JsonConverters.NoMatchBehaviorJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.NoMatchBehavior?))
+                {
+                    return new global::Speechify.JsonConverters.NoMatchBehaviorNullableJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.TestVerdict))
+                {
+                    return new global::Speechify.JsonConverters.TestVerdictJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.TestVerdict?))
+                {
+                    return new global::Speechify.JsonConverters.TestVerdictNullableJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.SimulationResultSentiment))
+                {
+                    return new global::Speechify.JsonConverters.SimulationResultSentimentJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.SimulationResultSentiment?))
+                {
+                    return new global::Speechify.JsonConverters.SimulationResultSentimentNullableJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.SimulationCriterionResultStatus))
+                {
+                    return new global::Speechify.JsonConverters.SimulationCriterionResultStatusJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.SimulationCriterionResultStatus?))
+                {
+                    return new global::Speechify.JsonConverters.SimulationCriterionResultStatusNullableJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.DataAssertionResultMode))
+                {
+                    return new global::Speechify.JsonConverters.DataAssertionResultModeJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.DataAssertionResultMode?))
+                {
+                    return new global::Speechify.JsonConverters.DataAssertionResultModeNullableJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.SuiteRunTrigger))
+                {
+                    return new global::Speechify.JsonConverters.SuiteRunTriggerJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.SuiteRunTrigger?))
+                {
+                    return new global::Speechify.JsonConverters.SuiteRunTriggerNullableJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.PhoneNumberProvider))
+                {
+                    return new global::Speechify.JsonConverters.PhoneNumberProviderJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.PhoneNumberProvider?))
+                {
+                    return new global::Speechify.JsonConverters.PhoneNumberProviderNullableJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.PhoneNumberCapability))
+                {
+                    return new global::Speechify.JsonConverters.PhoneNumberCapabilityJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.PhoneNumberCapability?))
+                {
+                    return new global::Speechify.JsonConverters.PhoneNumberCapabilityNullableJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.PurchasedPhoneNumberProvider))
+                {
+                    return new global::Speechify.JsonConverters.PurchasedPhoneNumberProviderJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.PurchasedPhoneNumberProvider?))
+                {
+                    return new global::Speechify.JsonConverters.PurchasedPhoneNumberProviderNullableJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.SIPTrunkProvider))
+                {
+                    return new global::Speechify.JsonConverters.SIPTrunkProviderJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.SIPTrunkProvider?))
+                {
+                    return new global::Speechify.JsonConverters.SIPTrunkProviderNullableJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.SIPTrunkDirection))
+                {
+                    return new global::Speechify.JsonConverters.SIPTrunkDirectionJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.SIPTrunkDirection?))
+                {
+                    return new global::Speechify.JsonConverters.SIPTrunkDirectionNullableJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.SIPTransport))
+                {
+                    return new global::Speechify.JsonConverters.SIPTransportJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.SIPTransport?))
+                {
+                    return new global::Speechify.JsonConverters.SIPTransportNullableJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.SIPMediaEncryption))
+                {
+                    return new global::Speechify.JsonConverters.SIPMediaEncryptionJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.SIPMediaEncryption?))
+                {
+                    return new global::Speechify.JsonConverters.SIPMediaEncryptionNullableJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.ShareLinkStatus))
+                {
+                    return new global::Speechify.JsonConverters.ShareLinkStatusJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.ShareLinkStatus?))
+                {
+                    return new global::Speechify.JsonConverters.ShareLinkStatusNullableJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.CreateShareLinkResponseStatus))
+                {
+                    return new global::Speechify.JsonConverters.CreateShareLinkResponseStatusJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.CreateShareLinkResponseStatus?))
+                {
+                    return new global::Speechify.JsonConverters.CreateShareLinkResponseStatusNullableJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.BatchRecipientStatus))
+                {
+                    return new global::Speechify.JsonConverters.BatchRecipientStatusJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.BatchRecipientStatus?))
+                {
+                    return new global::Speechify.JsonConverters.BatchRecipientStatusNullableJsonConverter();
+                }
+                throw new global::System.NotSupportedException($"No generated enum converter is registered for '{typeToConvert}'.");
+            }
+        }
+
+        private sealed class LazyChunkResolver : global::System.Text.Json.Serialization.Metadata.IJsonTypeInfoResolver
+        {
+            private readonly object _gate = new();
+            private readonly global::System.Text.Json.Serialization.Metadata.IJsonTypeInfoResolver?[] _resolvers = new global::System.Text.Json.Serialization.Metadata.IJsonTypeInfoResolver?[2];
+
+            public global::System.Text.Json.Serialization.Metadata.JsonTypeInfo? GetTypeInfo(
+                global::System.Type type,
+                global::System.Text.Json.JsonSerializerOptions options)
+            {
+                for (var index = 0; index < _resolvers.Length; index++)
+                {
+                    var typeInfo = GetResolver(index).GetTypeInfo(type, options);
+                    if (typeInfo is not null)
+                    {
+                        return typeInfo;
+                    }
+                }
+
+                return null;
+            }
+
+            private global::System.Text.Json.Serialization.Metadata.IJsonTypeInfoResolver GetResolver(int index)
+            {
+                var resolver = global::System.Threading.Volatile.Read(ref _resolvers[index]);
+                if (resolver is not null)
+                {
+                    return resolver;
+                }
+
+                lock (_gate)
+                {
+                    return _resolvers[index] ??= CreateResolver(index);
+                }
+            }
+
+            private static global::System.Text.Json.Serialization.Metadata.IJsonTypeInfoResolver CreateResolver(int index)
+            {
+                return index switch
+                {
+                    0 => new SourceGenerationContextChunk0(new global::System.Text.Json.JsonSerializerOptions()),
+
+                    1 => new SourceGenerationContextChunk1(new global::System.Text.Json.JsonSerializerOptions()),
+                    _ => throw new global::System.ArgumentOutOfRangeException(nameof(index)),
+                };
+            }
         }
     }
 }
