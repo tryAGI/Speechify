@@ -71,7 +71,7 @@ namespace Speechify
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
-        public async global::System.Collections.Generic.IAsyncEnumerable<string> StreamWithTimestampsAsync(
+        public async global::System.Collections.Generic.IAsyncEnumerable<global::Speechify.SpeechStreamEvent> StreamWithTimestampsAsync(
 
             global::Speechify.GetStreamRequest request,
             string? speechifyVersion = default,
@@ -398,7 +398,7 @@ namespace Speechify
                                     yield break;
                                 }
 
-                                var __streamedResponse = (string?)global::System.Text.Json.JsonSerializer.Deserialize(__content, typeof(string), JsonSerializerContext) ??
+                                var __streamedResponse = global::Speechify.SpeechStreamEvent.FromJson(__content, JsonSerializerContext) ??
                                                        throw global::Speechify.ApiException.Create(
                                                            statusCode: __response.StatusCode,
                                                            message: $"Response deserialization failed for \"{__content}\" ",
@@ -471,7 +471,7 @@ namespace Speechify
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::System.InvalidOperationException"></exception>
-        public async global::System.Collections.Generic.IAsyncEnumerable<string> StreamWithTimestampsAsync(
+        public async global::System.Collections.Generic.IAsyncEnumerable<global::Speechify.SpeechStreamEvent> StreamWithTimestampsAsync(
             string input,
             string voiceId,
             string? speechifyVersion = default,

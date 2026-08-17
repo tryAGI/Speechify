@@ -35,7 +35,7 @@ namespace Speechify
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
-        global::System.Collections.Generic.IAsyncEnumerable<string> StreamWithTimestampsAsync(
+        global::System.Collections.Generic.IAsyncEnumerable<global::Speechify.SpeechStreamEvent> StreamWithTimestampsAsync(
 
             global::Speechify.GetStreamRequest request,
             string? speechifyVersion = default,
@@ -94,7 +94,7 @@ namespace Speechify
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::System.InvalidOperationException"></exception>
-        global::System.Collections.Generic.IAsyncEnumerable<string> StreamWithTimestampsAsync(
+        global::System.Collections.Generic.IAsyncEnumerable<global::Speechify.SpeechStreamEvent> StreamWithTimestampsAsync(
             string input,
             string voiceId,
             string? speechifyVersion = default,
