@@ -42,6 +42,16 @@ namespace Speechify
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.AudioStreamOutputFormat), TypeInfoPropertyName = "AudioStreamOutputFormat2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.GetStreamRequest))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.V1AudioStreamWithTimestampsPostParametersAccept), TypeInfoPropertyName = "V1AudioStreamWithTimestampsPostParametersAccept2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.SpeechStreamEvent), TypeInfoPropertyName = "SpeechStreamEvent2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.SpeechStreamEventVariant1))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.SpeechStreamEventVariant1Type), TypeInfoPropertyName = "SpeechStreamEventVariant1Type2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.SpeechStreamEventVariant2))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.SpeechStreamEventVariant2Type), TypeInfoPropertyName = "SpeechStreamEventVariant2Type2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(int))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.SpeechStreamEventVariant3))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.SpeechStreamEventVariant3Type), TypeInfoPropertyName = "SpeechStreamEventVariant3Type2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.SpeechStreamEventDiscriminator))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.SpeechStreamEventDiscriminatorType), TypeInfoPropertyName = "SpeechStreamEventDiscriminatorType2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.V1VoicesGetParametersType), TypeInfoPropertyName = "V1VoicesGetParametersType2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.V1VoicesGetParametersGender), TypeInfoPropertyName = "V1VoicesGetParametersGender2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.GetVoiceGender), TypeInfoPropertyName = "GetVoiceGender2")]
@@ -69,7 +79,6 @@ namespace Speechify
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.AgentSttConfigOverride), TypeInfoPropertyName = "AgentSttConfigOverride2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.AgentSTTConfig))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.AgentTurnHandlingConfig))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(int))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.AgentMemoryConfig))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.AgentNavigatorConfig))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.AgentGuardrailsConfig))]
@@ -458,6 +467,12 @@ namespace Speechify
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.GetStreamRequestModel?), TypeInfoPropertyName = "NullableGetStreamRequestModel2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.AudioStreamOutputFormat?), TypeInfoPropertyName = "NullableAudioStreamOutputFormat2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.V1AudioStreamWithTimestampsPostParametersAccept?), TypeInfoPropertyName = "NullableV1AudioStreamWithTimestampsPostParametersAccept2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.SpeechStreamEvent?), TypeInfoPropertyName = "NullableSpeechStreamEvent2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.SpeechStreamEventVariant1Type?), TypeInfoPropertyName = "NullableSpeechStreamEventVariant1Type2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.SpeechStreamEventVariant2Type?), TypeInfoPropertyName = "NullableSpeechStreamEventVariant2Type2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(int?))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.SpeechStreamEventVariant3Type?), TypeInfoPropertyName = "NullableSpeechStreamEventVariant3Type2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.SpeechStreamEventDiscriminatorType?), TypeInfoPropertyName = "NullableSpeechStreamEventDiscriminatorType2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.V1VoicesGetParametersType?), TypeInfoPropertyName = "NullableV1VoicesGetParametersType2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.V1VoicesGetParametersGender?), TypeInfoPropertyName = "NullableV1VoicesGetParametersGender2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.GetVoiceGender?), TypeInfoPropertyName = "NullableGetVoiceGender2")]
@@ -467,7 +482,6 @@ namespace Speechify
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.DateTime?))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.AgentLlmConfigProvider?), TypeInfoPropertyName = "NullableAgentLlmConfigProvider2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.AgentSttConfigOverride?), TypeInfoPropertyName = "NullableAgentSttConfigOverride2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(int?))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.AgentBackgroundNoiseConfigPreset?), TypeInfoPropertyName = "NullableAgentBackgroundNoiseConfigPreset2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.WidgetConfigStyle?), TypeInfoPropertyName = "NullableWidgetConfigStyle2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.WidgetConfigTheme?), TypeInfoPropertyName = "NullableWidgetConfigTheme2")]
@@ -500,6 +514,18 @@ namespace Speechify
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.WebhookToolConfigMethod?), TypeInfoPropertyName = "NullableWebhookToolConfigMethod2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.LongRunningToolConfigOnDuplicate?), TypeInfoPropertyName = "NullableLongRunningToolConfigOnDuplicate2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.MCPTransport?), TypeInfoPropertyName = "NullableMCPTransport2")]
+    internal sealed partial class SourceGenerationContextChunk0 : global::System.Text.Json.Serialization.JsonSerializerContext
+    {
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    [global::System.Text.Json.Serialization.JsonSourceGenerationOptions(
+        DefaultIgnoreCondition = global::System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull,
+        Converters = new global::System.Type[]
+        {
+        })]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.MCPAuth?), TypeInfoPropertyName = "NullableMCPAuth2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.MCPAuthVariant1Type?), TypeInfoPropertyName = "NullableMCPAuthVariant1Type2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.MCPAuthVariant2Type?), TypeInfoPropertyName = "NullableMCPAuthVariant2Type2")]
@@ -514,18 +540,6 @@ namespace Speechify
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.McpProbeErrorDetailsStage?), TypeInfoPropertyName = "NullableMcpProbeErrorDetailsStage2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.TestType?), TypeInfoPropertyName = "NullableTestType2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.SimulationMessageRole?), TypeInfoPropertyName = "NullableSimulationMessageRole2")]
-    internal sealed partial class SourceGenerationContextChunk0 : global::System.Text.Json.Serialization.JsonSerializerContext
-    {
-    }
-
-    /// <summary>
-    /// 
-    /// </summary>
-    [global::System.Text.Json.Serialization.JsonSourceGenerationOptions(
-        DefaultIgnoreCondition = global::System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull,
-        Converters = new global::System.Type[]
-        {
-        })]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.ParameterCheckMode?), TypeInfoPropertyName = "NullableParameterCheckMode2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.DataAssertionMode?), TypeInfoPropertyName = "NullableDataAssertionMode2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.AgentTestConfig?), TypeInfoPropertyName = "NullableAgentTestConfig2")]
@@ -672,6 +686,7 @@ namespace Speechify
                 DefaultIgnoreCondition = global::System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull,
                 TypeInfoResolver = Resolver,
             };
+            options.Converters.Add(new global::Speechify.JsonConverters.SpeechStreamEventJsonConverter());
             options.Converters.Add(new global::Speechify.JsonConverters.MCPAuthJsonConverter());
             options.Converters.Add(new global::Speechify.JsonConverters.AgentToolConfigJsonConverter());
             options.Converters.Add(new global::Speechify.JsonConverters.CreateAgentToolRequestConfigJsonConverter());
@@ -744,6 +759,22 @@ namespace Speechify
                     || typeToConvert == typeof(global::Speechify.V1AudioStreamWithTimestampsPostParametersAccept)
 
                     || typeToConvert == typeof(global::Speechify.V1AudioStreamWithTimestampsPostParametersAccept?)
+
+                    || typeToConvert == typeof(global::Speechify.SpeechStreamEventVariant1Type)
+
+                    || typeToConvert == typeof(global::Speechify.SpeechStreamEventVariant1Type?)
+
+                    || typeToConvert == typeof(global::Speechify.SpeechStreamEventVariant2Type)
+
+                    || typeToConvert == typeof(global::Speechify.SpeechStreamEventVariant2Type?)
+
+                    || typeToConvert == typeof(global::Speechify.SpeechStreamEventVariant3Type)
+
+                    || typeToConvert == typeof(global::Speechify.SpeechStreamEventVariant3Type?)
+
+                    || typeToConvert == typeof(global::Speechify.SpeechStreamEventDiscriminatorType)
+
+                    || typeToConvert == typeof(global::Speechify.SpeechStreamEventDiscriminatorType?)
 
                     || typeToConvert == typeof(global::Speechify.V1VoicesGetParametersType)
 
@@ -1098,6 +1129,46 @@ namespace Speechify
                 if (typeToConvert == typeof(global::Speechify.V1AudioStreamWithTimestampsPostParametersAccept?))
                 {
                     return new global::Speechify.JsonConverters.V1AudioStreamWithTimestampsPostParametersAcceptNullableJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.SpeechStreamEventVariant1Type))
+                {
+                    return new global::Speechify.JsonConverters.SpeechStreamEventVariant1TypeJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.SpeechStreamEventVariant1Type?))
+                {
+                    return new global::Speechify.JsonConverters.SpeechStreamEventVariant1TypeNullableJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.SpeechStreamEventVariant2Type))
+                {
+                    return new global::Speechify.JsonConverters.SpeechStreamEventVariant2TypeJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.SpeechStreamEventVariant2Type?))
+                {
+                    return new global::Speechify.JsonConverters.SpeechStreamEventVariant2TypeNullableJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.SpeechStreamEventVariant3Type))
+                {
+                    return new global::Speechify.JsonConverters.SpeechStreamEventVariant3TypeJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.SpeechStreamEventVariant3Type?))
+                {
+                    return new global::Speechify.JsonConverters.SpeechStreamEventVariant3TypeNullableJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.SpeechStreamEventDiscriminatorType))
+                {
+                    return new global::Speechify.JsonConverters.SpeechStreamEventDiscriminatorTypeJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.SpeechStreamEventDiscriminatorType?))
+                {
+                    return new global::Speechify.JsonConverters.SpeechStreamEventDiscriminatorTypeNullableJsonConverter();
                 }
 
                 if (typeToConvert == typeof(global::Speechify.V1VoicesGetParametersType))
