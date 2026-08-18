@@ -120,6 +120,13 @@ namespace Speechify
         public string? ResponseDelaySeconds { get; set; }
 
         /// <summary>
+        /// Interruption-sensitivity level the call ran under; null = the platform default.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("interruption_sensitivity")]
+        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Speechify.JsonConverters.AgentSnapshotInterruptionSensitivityJsonConverter))]
+        public global::Speechify.AgentSnapshotInterruptionSensitivity? InterruptionSensitivity { get; set; }
+
+        /// <summary>
         /// Streaming-STT stack the call dispatched with; null = the worker's platform default.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("stt_override")]
@@ -228,6 +235,9 @@ namespace Speechify
         /// <param name="responseDelaySeconds">
         /// Minimum silence the agent waited for before replying, at call time; null = turn detection decided.
         /// </param>
+        /// <param name="interruptionSensitivity">
+        /// Interruption-sensitivity level the call ran under; null = the platform default.
+        /// </param>
         /// <param name="sttOverride">
         /// Streaming-STT stack the call dispatched with; null = the worker's platform default.
         /// </param>
@@ -280,6 +290,7 @@ namespace Speechify
             int? memoryRetentionDays,
             string? ttsPlaybackRate,
             string? responseDelaySeconds,
+            global::Speechify.AgentSnapshotInterruptionSensitivity? interruptionSensitivity,
             string? sttOverride,
             global::Speechify.AMDConfig? amd,
             bool? saveAudioRecording,
@@ -308,6 +319,7 @@ namespace Speechify
             this.MemoryRetentionDays = memoryRetentionDays;
             this.TtsPlaybackRate = ttsPlaybackRate;
             this.ResponseDelaySeconds = responseDelaySeconds;
+            this.InterruptionSensitivity = interruptionSensitivity;
             this.SttOverride = sttOverride;
             this.Amd = amd;
             this.SaveAudioRecording = saveAudioRecording;
