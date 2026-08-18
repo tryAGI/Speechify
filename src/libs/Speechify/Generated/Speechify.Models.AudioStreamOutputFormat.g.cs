@@ -4,7 +4,8 @@
 namespace Speechify
 {
     /// <summary>
-    /// Audio output format for the streaming endpoint (`POST /v1/audio/stream`), as a `codec_sampleRate_bitrate` string. Same as `AudioOutputFormat` minus the `wav_*` formats: wav is only available on `POST /v1/audio/speech`. `pcm_*` and `ulaw_8000` are headerless raw audio; `pcm_16000` and `ulaw_8000` are the telephony formats Twilio/LiveKit SIP expect.
+    /// Audio output format for the streaming endpoint (`POST /v1/audio/stream`), as a `codec_sampleRate_bitrate` string. Same as `AudioOutputFormat` minus the `wav_*` formats: wav is only available on `POST /v1/audio/speech`. `pcm_*` and `ulaw_8000` are headerless raw audio; `pcm_16000` and `ulaw_8000` are the telephony formats Twilio/LiveKit SIP expect.<br/>
+    /// 160 kbps is the highest bitrate an mp3 can carry at 22.05 and 24 kHz, so `mp3_22050_160` and `mp3_24000_160` are the maximum-fidelity mp3 formats; a request for `mp3_*_192` is encoded at 160 kbps. The two `mp3_*_160` formats are served by the Simba 3 models only.
     /// </summary>
     public enum AudioStreamOutputFormat
     {
@@ -16,6 +17,10 @@ namespace Speechify
         /// 
         /// </summary>
         Mp322050128,
+        /// <summary>
+        /// 
+        /// </summary>
+        Mp322050160,
         /// <summary>
         /// 
         /// </summary>
@@ -36,6 +41,10 @@ namespace Speechify
         /// 
         /// </summary>
         Mp324000128,
+        /// <summary>
+        /// 
+        /// </summary>
+        Mp324000160,
         /// <summary>
         /// 
         /// </summary>
@@ -100,11 +109,13 @@ namespace Speechify
             {
                 AudioStreamOutputFormat.Aac24000 => "aac_24000",
                 AudioStreamOutputFormat.Mp322050128 => "mp3_22050_128",
+                AudioStreamOutputFormat.Mp322050160 => "mp3_22050_160",
                 AudioStreamOutputFormat.Mp322050192 => "mp3_22050_192",
                 AudioStreamOutputFormat.Mp32205032 => "mp3_22050_32",
                 AudioStreamOutputFormat.Mp32205064 => "mp3_22050_64",
                 AudioStreamOutputFormat.Mp32205096 => "mp3_22050_96",
                 AudioStreamOutputFormat.Mp324000128 => "mp3_24000_128",
+                AudioStreamOutputFormat.Mp324000160 => "mp3_24000_160",
                 AudioStreamOutputFormat.Mp324000192 => "mp3_24000_192",
                 AudioStreamOutputFormat.Mp32400032 => "mp3_24000_32",
                 AudioStreamOutputFormat.Mp32400064 => "mp3_24000_64",
@@ -129,11 +140,13 @@ namespace Speechify
             {
                 "aac_24000" => AudioStreamOutputFormat.Aac24000,
                 "mp3_22050_128" => AudioStreamOutputFormat.Mp322050128,
+                "mp3_22050_160" => AudioStreamOutputFormat.Mp322050160,
                 "mp3_22050_192" => AudioStreamOutputFormat.Mp322050192,
                 "mp3_22050_32" => AudioStreamOutputFormat.Mp32205032,
                 "mp3_22050_64" => AudioStreamOutputFormat.Mp32205064,
                 "mp3_22050_96" => AudioStreamOutputFormat.Mp32205096,
                 "mp3_24000_128" => AudioStreamOutputFormat.Mp324000128,
+                "mp3_24000_160" => AudioStreamOutputFormat.Mp324000160,
                 "mp3_24000_192" => AudioStreamOutputFormat.Mp324000192,
                 "mp3_24000_32" => AudioStreamOutputFormat.Mp32400032,
                 "mp3_24000_64" => AudioStreamOutputFormat.Mp32400064,

@@ -31,7 +31,7 @@ namespace Speechify
         public required long BillableCharactersCount { get; set; }
 
         /// <summary>
-        /// The full `codec_sampleRate_bitrate` format, echoed back when the request set `output_format`.
+        /// The full `codec_sampleRate_bitrate` format the audio was encoded in, returned when the request set `output_format`. It is the requested value unless the request named a bitrate above the mp3 ceiling, in which case it reports the bitrate actually delivered.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("output_format")]
         [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Speechify.JsonConverters.AudioOutputFormatJsonConverter))]
@@ -66,7 +66,7 @@ namespace Speechify
         /// It is used to annotate the audio data with metadata about the synthesis process, like word timing or phoneme details.
         /// </param>
         /// <param name="outputFormat">
-        /// The full `codec_sampleRate_bitrate` format, echoed back when the request set `output_format`.
+        /// The full `codec_sampleRate_bitrate` format the audio was encoded in, returned when the request set `output_format`. It is the requested value unless the request named a bitrate above the mp3 ceiling, in which case it reports the bitrate actually delivered.
         /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
