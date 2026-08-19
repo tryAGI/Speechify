@@ -88,6 +88,22 @@ namespace Speechify
         /// <summary>
         /// 
         /// </summary>
+        ContactIdentifierConflict,
+        /// <summary>
+        /// 
+        /// </summary>
+        ContactIdentifierNotFound,
+        /// <summary>
+        /// 
+        /// </summary>
+        ContactNotFound,
+        /// <summary>
+        /// 
+        /// </summary>
+        ContactResolverNotFound,
+        /// <summary>
+        /// 
+        /// </summary>
         ContentPolicyViolation,
         /// <summary>
         /// 
@@ -321,6 +337,10 @@ namespace Speechify
                 ErrorCode.ConsentRecordingUnusable => "consent_recording_unusable",
                 ErrorCode.ConsentSpeakerMismatch => "consent_speaker_mismatch",
                 ErrorCode.ConsentVerificationUnavailable => "consent_verification_unavailable",
+                ErrorCode.ContactIdentifierConflict => "contact_identifier_conflict",
+                ErrorCode.ContactIdentifierNotFound => "contact_identifier_not_found",
+                ErrorCode.ContactNotFound => "contact_not_found",
+                ErrorCode.ContactResolverNotFound => "contact_resolver_not_found",
                 ErrorCode.ContentPolicyViolation => "content_policy_violation",
                 ErrorCode.ConversationNotFound => "conversation_not_found",
                 ErrorCode.CredentialInUse => "credential_in_use",
@@ -400,6 +420,10 @@ namespace Speechify
                 "consent_recording_unusable" => ErrorCode.ConsentRecordingUnusable,
                 "consent_speaker_mismatch" => ErrorCode.ConsentSpeakerMismatch,
                 "consent_verification_unavailable" => ErrorCode.ConsentVerificationUnavailable,
+                "contact_identifier_conflict" => ErrorCode.ContactIdentifierConflict,
+                "contact_identifier_not_found" => ErrorCode.ContactIdentifierNotFound,
+                "contact_not_found" => ErrorCode.ContactNotFound,
+                "contact_resolver_not_found" => ErrorCode.ContactResolverNotFound,
                 "content_policy_violation" => ErrorCode.ContentPolicyViolation,
                 "conversation_not_found" => ErrorCode.ConversationNotFound,
                 "credential_in_use" => ErrorCode.CredentialInUse,
