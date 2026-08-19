@@ -29,12 +29,14 @@ namespace Speechify
             global::System.Net.Http.HttpClient httpClient,
             ref string? cursor,
             ref int? limit,
+            ref string? projectId,
             ref string? speechifyVersion);
         partial void PrepareListRequest(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpRequestMessage httpRequestMessage,
             string? cursor,
             int? limit,
+            string? projectId,
             string? speechifyVersion);
         partial void ProcessListResponse(
             global::System.Net.Http.HttpClient httpClient,
@@ -56,6 +58,7 @@ namespace Speechify
         /// <param name="limit">
         /// Default Value: 50
         /// </param>
+        /// <param name="projectId"></param>
         /// <param name="speechifyVersion"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -63,6 +66,7 @@ namespace Speechify
         public async global::System.Threading.Tasks.Task<global::Speechify.ListKnowledgeBasesResponse> ListAsync(
             string? cursor = default,
             int? limit = default,
+            string? projectId = default,
             string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
@@ -70,6 +74,7 @@ namespace Speechify
             var __response = await ListAsResponseAsync(
                 cursor: cursor,
                 limit: limit,
+                projectId: projectId,
                 speechifyVersion: speechifyVersion,
                 requestOptions: requestOptions,
                 cancellationToken: cancellationToken
@@ -88,6 +93,7 @@ namespace Speechify
         /// <param name="limit">
         /// Default Value: 50
         /// </param>
+        /// <param name="projectId"></param>
         /// <param name="speechifyVersion"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -95,6 +101,7 @@ namespace Speechify
         public async global::System.Threading.Tasks.Task<global::Speechify.AutoSDKHttpResponse<global::Speechify.ListKnowledgeBasesResponse>> ListAsResponseAsync(
             string? cursor = default,
             int? limit = default,
+            string? projectId = default,
             string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
@@ -105,6 +112,7 @@ namespace Speechify
                 httpClient: HttpClient,
                 cursor: ref cursor,
                 limit: ref limit,
+                projectId: ref projectId,
                 speechifyVersion: ref speechifyVersion);
 
 
@@ -136,6 +144,7 @@ namespace Speechify
                             __pathBuilder
                                 .AddOptionalParameter("cursor", cursor)
                                 .AddOptionalParameter("limit", limit?.ToString())
+                                .AddOptionalParameter("project_id", projectId)
                                 ;
                             var __path = __pathBuilder.ToString();
                 __path = global::Speechify.AutoSDKRequestOptionsSupport.AppendQueryParameters(
@@ -185,6 +194,7 @@ namespace Speechify
                     httpRequestMessage: __httpRequest,
                     cursor: cursor,
                     limit: limit,
+                    projectId: projectId,
                     speechifyVersion: speechifyVersion);
 
                 return __httpRequest;

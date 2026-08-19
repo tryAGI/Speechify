@@ -53,6 +53,11 @@ namespace Speechify
         /// </summary>
         /// <param name="phoneNumberId"></param>
         /// <param name="speechifyVersion"></param>
+        /// <param name="projectId">
+        /// Move the resource between workspace projects: a `proj_...` id<br/>
+        /// moves it there, an explicit null moves it back to the implicit<br/>
+        /// Default project, omitted leaves it unchanged.
+        /// </param>
         /// <param name="label">
         /// New label. Pass an empty string to clear.
         /// </param>
@@ -62,6 +67,7 @@ namespace Speechify
         global::System.Threading.Tasks.Task<global::Speechify.PhoneNumber> UpdateAsync(
             string phoneNumberId,
             string? speechifyVersion = default,
+            string? projectId = default,
             string? label = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);

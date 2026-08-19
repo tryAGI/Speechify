@@ -39,6 +39,13 @@ namespace Speechify
         public required int DocumentCount { get; set; }
 
         /// <summary>
+        /// Workspace project this resource lives in (prefixed external<br/>
+        /// id). Null means the implicit Default project.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("project_id")]
+        public string? ProjectId { get; set; }
+
+        /// <summary>
         /// 
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("created_at")]
@@ -75,6 +82,10 @@ namespace Speechify
         /// </param>
         /// <param name="createdAt"></param>
         /// <param name="updatedAt"></param>
+        /// <param name="projectId">
+        /// Workspace project this resource lives in (prefixed external<br/>
+        /// id). Null means the implicit Default project.
+        /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
 #endif
@@ -84,12 +95,14 @@ namespace Speechify
             string description,
             int documentCount,
             global::System.DateTime createdAt,
-            global::System.DateTime updatedAt)
+            global::System.DateTime updatedAt,
+            string? projectId)
         {
             this.Id = id ?? throw new global::System.ArgumentNullException(nameof(id));
             this.Name = name ?? throw new global::System.ArgumentNullException(nameof(name));
             this.Description = description ?? throw new global::System.ArgumentNullException(nameof(description));
             this.DocumentCount = documentCount;
+            this.ProjectId = projectId;
             this.CreatedAt = createdAt;
             this.UpdatedAt = updatedAt;
         }

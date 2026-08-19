@@ -10,6 +10,14 @@ namespace Speechify
     public sealed partial class PurchasePhoneNumberRequest
     {
         /// <summary>
+        /// Optional workspace project to place this resource in (prefixed<br/>
+        /// `proj_...` id). Omit for the implicit Default project. An<br/>
+        /// unknown id returns 404 project_not_found.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("project_id")]
+        public string? ProjectId { get; set; }
+
+        /// <summary>
         /// The E.164 number to buy. Must currently be in carrier inventory.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("e164")]
@@ -49,6 +57,11 @@ namespace Speechify
         /// <param name="e164">
         /// The E.164 number to buy. Must currently be in carrier inventory.
         /// </param>
+        /// <param name="projectId">
+        /// Optional workspace project to place this resource in (prefixed<br/>
+        /// `proj_...` id). Omit for the implicit Default project. An<br/>
+        /// unknown id returns 404 project_not_found.
+        /// </param>
         /// <param name="label">
         /// Optional human-readable label.
         /// </param>
@@ -65,10 +78,12 @@ namespace Speechify
 #endif
         public PurchasePhoneNumberRequest(
             string e164,
+            string? projectId,
             string? label,
             global::Speechify.PurchasedPhoneNumberProvider? provider,
             string? agentId)
         {
+            this.ProjectId = projectId;
             this.E164 = e164 ?? throw new global::System.ArgumentNullException(nameof(e164));
             this.Label = label;
             this.Provider = provider;

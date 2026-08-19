@@ -179,6 +179,14 @@ namespace Speechify
                                     name: "\"Speechify-Version\"");
 
                             }
+                            if (request.ProjectId != default)
+                            {
+
+                                __httpRequestContent.Add(
+                                    content: new global::System.Net.Http.StringContent(request.ProjectId ?? string.Empty),
+                                    name: "\"project_id\"");
+
+                            }
                             var __contentFile = new global::System.Net.Http.ByteArrayContent(request.File ?? global::System.Array.Empty<byte>());
                             __contentFile.Headers.ContentType = new global::System.Net.Http.Headers.MediaTypeHeaderValue(
                                 request.Filename is null
@@ -592,6 +600,11 @@ namespace Speechify
         /// -sample_fmt s16 out.wav`.
         /// </summary>
         /// <param name="speechifyVersion"></param>
+        /// <param name="projectId">
+        /// Optional workspace project to place this resource in (prefixed<br/>
+        /// `proj_...` id). Omit for the implicit Default project. An<br/>
+        /// unknown id returns 404 project_not_found.
+        /// </param>
         /// <param name="file">
         /// The WAV file bytes. Must be PCM 16-bit signed, mono,<br/>
         /// 48000 Hz, ≤30s duration, ≤4 MiB total.
@@ -607,11 +620,13 @@ namespace Speechify
             byte[] file,
             string filename,
             string? speechifyVersion = default,
+            string? projectId = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
             var __request = new global::Speechify.UploadRequest
             {
+                ProjectId = projectId,
                 File = file,
                 Filename = filename,
             };
@@ -635,6 +650,11 @@ namespace Speechify
         /// -sample_fmt s16 out.wav`.
         /// </summary>
         /// <param name="speechifyVersion"></param>
+        /// <param name="projectId">
+        /// Optional workspace project to place this resource in (prefixed<br/>
+        /// `proj_...` id). Omit for the implicit Default project. An<br/>
+        /// unknown id returns 404 project_not_found.
+        /// </param>
         /// <param name="file">
         /// The WAV file bytes. Must be PCM 16-bit signed, mono,<br/>
         /// 48000 Hz, ≤30s duration, ≤4 MiB total.
@@ -650,6 +670,7 @@ namespace Speechify
             global::System.IO.Stream file,
             string filename,
             string? speechifyVersion = default,
+            string? projectId = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
@@ -657,6 +678,7 @@ namespace Speechify
             file = file ?? throw new global::System.ArgumentNullException(nameof(file));
             var request = new global::Speechify.UploadRequest
             {
+                ProjectId = projectId,
                 File = global::System.Array.Empty<byte>(),
                 Filename = filename,
             };
@@ -736,6 +758,14 @@ namespace Speechify
                                 __httpRequestContent.Add(
                                     content: new global::System.Net.Http.StringContent(speechifyVersion ?? string.Empty),
                                     name: "\"Speechify-Version\"");
+
+                            }
+                            if (request.ProjectId != default)
+                            {
+
+                                __httpRequestContent.Add(
+                                    content: new global::System.Net.Http.StringContent(request.ProjectId ?? string.Empty),
+                                    name: "\"project_id\"");
 
                             }
                             var __contentFile = new global::System.Net.Http.StreamContent(file);
@@ -1143,6 +1173,11 @@ namespace Speechify
         /// -sample_fmt s16 out.wav`.
         /// </summary>
         /// <param name="speechifyVersion"></param>
+        /// <param name="projectId">
+        /// Optional workspace project to place this resource in (prefixed<br/>
+        /// `proj_...` id). Omit for the implicit Default project. An<br/>
+        /// unknown id returns 404 project_not_found.
+        /// </param>
         /// <param name="file">
         /// The WAV file bytes. Must be PCM 16-bit signed, mono,<br/>
         /// 48000 Hz, ≤30s duration, ≤4 MiB total.
@@ -1158,6 +1193,7 @@ namespace Speechify
             global::System.IO.Stream file,
             string filename,
             string? speechifyVersion = default,
+            string? projectId = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
@@ -1165,6 +1201,7 @@ namespace Speechify
             file = file ?? throw new global::System.ArgumentNullException(nameof(file));
             var request = new global::Speechify.UploadRequest
             {
+                ProjectId = projectId,
                 File = global::System.Array.Empty<byte>(),
                 Filename = filename,
             };
@@ -1244,6 +1281,14 @@ namespace Speechify
                                 __httpRequestContent.Add(
                                     content: new global::System.Net.Http.StringContent(speechifyVersion ?? string.Empty),
                                     name: "\"Speechify-Version\"");
+
+                            }
+                            if (request.ProjectId != default)
+                            {
+
+                                __httpRequestContent.Add(
+                                    content: new global::System.Net.Http.StringContent(request.ProjectId ?? string.Empty),
+                                    name: "\"project_id\"");
 
                             }
                             var __contentFile = new global::System.Net.Http.StreamContent(file);

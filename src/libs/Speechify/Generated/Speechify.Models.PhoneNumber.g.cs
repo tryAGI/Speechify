@@ -77,6 +77,13 @@ namespace Speechify
         public required global::System.Collections.Generic.IList<global::Speechify.PhoneNumberCapability> Capabilities { get; set; }
 
         /// <summary>
+        /// Workspace project this resource lives in (prefixed external<br/>
+        /// id). Null means the implicit Default project.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("project_id")]
+        public string? ProjectId { get; set; }
+
+        /// <summary>
         /// When the number was imported.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("created_at")]
@@ -145,6 +152,10 @@ namespace Speechify
         /// <param name="agentId">
         /// ID of the agent that answers calls to this number. Null when unbound.
         /// </param>
+        /// <param name="projectId">
+        /// Workspace project this resource lives in (prefixed external<br/>
+        /// id). Null means the implicit Default project.
+        /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
 #endif
@@ -157,7 +168,8 @@ namespace Speechify
             global::System.DateTime updatedAt,
             string? label,
             string? trunkId,
-            string? agentId)
+            string? agentId,
+            string? projectId)
         {
             this.Id = id ?? throw new global::System.ArgumentNullException(nameof(id));
             this.E164 = e164 ?? throw new global::System.ArgumentNullException(nameof(e164));
@@ -166,6 +178,7 @@ namespace Speechify
             this.TrunkId = trunkId;
             this.AgentId = agentId;
             this.Capabilities = capabilities ?? throw new global::System.ArgumentNullException(nameof(capabilities));
+            this.ProjectId = projectId;
             this.CreatedAt = createdAt;
             this.UpdatedAt = updatedAt;
         }

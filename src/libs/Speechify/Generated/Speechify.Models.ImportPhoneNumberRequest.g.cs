@@ -10,6 +10,14 @@ namespace Speechify
     public sealed partial class ImportPhoneNumberRequest
     {
         /// <summary>
+        /// Optional workspace project to place this resource in (prefixed<br/>
+        /// `proj_...` id). Omit for the implicit Default project. An<br/>
+        /// unknown id returns 404 project_not_found.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("project_id")]
+        public string? ProjectId { get; set; }
+
+        /// <summary>
         /// The phone number in E.164 format. For `provider=livekit` this<br/>
         /// is the number you want LiveKit to purchase. For `provider=twilio`,<br/>
         /// `provider=telnyx`, and `provider=byoc` it is the number you<br/>
@@ -120,6 +128,11 @@ namespace Speechify
         ///   prior `twilio` full-DID import from the same account; without<br/>
         ///   it the import returns 400.
         /// </param>
+        /// <param name="projectId">
+        /// Optional workspace project to place this resource in (prefixed<br/>
+        /// `proj_...` id). Omit for the implicit Default project. An<br/>
+        /// unknown id returns 404 project_not_found.
+        /// </param>
         /// <param name="label">
         /// Optional human-readable label.
         /// </param>
@@ -154,12 +167,14 @@ namespace Speechify
         public ImportPhoneNumberRequest(
             string e164,
             global::Speechify.PhoneNumberProvider provider,
+            string? projectId,
             string? label,
             string? trunkId,
             string? agentId,
             global::Speechify.TwilioImportSpec? twilio,
             global::Speechify.TelnyxImportSpec? telnyx)
         {
+            this.ProjectId = projectId;
             this.E164 = e164 ?? throw new global::System.ArgumentNullException(nameof(e164));
             this.Provider = provider;
             this.Label = label;

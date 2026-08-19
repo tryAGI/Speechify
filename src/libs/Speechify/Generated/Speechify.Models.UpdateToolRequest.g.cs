@@ -9,6 +9,14 @@ namespace Speechify
     public sealed partial class UpdateToolRequest
     {
         /// <summary>
+        /// Move the resource between workspace projects: a `proj_...` id<br/>
+        /// moves it there, an explicit null moves it back to the implicit<br/>
+        /// Default project, omitted leaves it unchanged.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("project_id")]
+        public string? ProjectId { get; set; }
+
+        /// <summary>
         /// 
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("name")]
@@ -36,6 +44,11 @@ namespace Speechify
         /// <summary>
         /// Initializes a new instance of the <see cref="UpdateToolRequest" /> class.
         /// </summary>
+        /// <param name="projectId">
+        /// Move the resource between workspace projects: a `proj_...` id<br/>
+        /// moves it there, an explicit null moves it back to the implicit<br/>
+        /// Default project, omitted leaves it unchanged.
+        /// </param>
         /// <param name="name"></param>
         /// <param name="description"></param>
         /// <param name="config"></param>
@@ -43,10 +56,12 @@ namespace Speechify
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
 #endif
         public UpdateToolRequest(
+            string? projectId,
             string? name,
             string? description,
             global::Speechify.UpdateToolRequestConfig? config)
         {
+            this.ProjectId = projectId;
             this.Name = name;
             this.Description = description;
             this.Config = config;

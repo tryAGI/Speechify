@@ -9,6 +9,14 @@ namespace Speechify
     public sealed partial class CreateAgentRequest
     {
         /// <summary>
+        /// Optional workspace project to place this resource in (prefixed<br/>
+        /// `proj_...` id). Omit for the implicit Default project. An<br/>
+        /// unknown id returns 404 project_not_found.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("project_id")]
+        public string? ProjectId { get; set; }
+
+        /// <summary>
         /// 
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("name")]
@@ -186,6 +194,11 @@ namespace Speechify
         /// <param name="tts">
         /// Text-to-speech voice and delivery configuration.
         /// </param>
+        /// <param name="projectId">
+        /// Optional workspace project to place this resource in (prefixed<br/>
+        /// `proj_...` id). Omit for the implicit Default project. An<br/>
+        /// unknown id returns 404 project_not_found.
+        /// </param>
         /// <param name="slug">
         /// Optional. Server derives slug from name with a random suffix when omitted; if you supply your own, a collision returns 400 'slug already taken'.
         /// </param>
@@ -268,6 +281,7 @@ namespace Speechify
             string prompt,
             string firstMessage,
             global::Speechify.AgentTTSConfig tts,
+            string? projectId,
             string? slug,
             string? language,
             global::System.Collections.Generic.IList<global::Speechify.AgentAdditionalLanguage>? additionalLanguages,
@@ -288,6 +302,7 @@ namespace Speechify
             int? maxCallDurationSeconds,
             bool? saveAudioRecording)
         {
+            this.ProjectId = projectId;
             this.Name = name ?? throw new global::System.ArgumentNullException(nameof(name));
             this.Slug = slug;
             this.Prompt = prompt ?? throw new global::System.ArgumentNullException(nameof(prompt));

@@ -9,6 +9,14 @@ namespace Speechify
     public sealed partial class CreateToolRequest
     {
         /// <summary>
+        /// Optional workspace project to place this resource in (prefixed<br/>
+        /// `proj_...` id). Omit for the implicit Default project. An<br/>
+        /// unknown id returns 404 project_not_found.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("project_id")]
+        public string? ProjectId { get; set; }
+
+        /// <summary>
         /// 
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("name")]
@@ -61,6 +69,11 @@ namespace Speechify
         /// - `mcp`:     worker connects to a customer-hosted MCP server and proxies tool calls
         /// </param>
         /// <param name="config"></param>
+        /// <param name="projectId">
+        /// Optional workspace project to place this resource in (prefixed<br/>
+        /// `proj_...` id). Omit for the implicit Default project. An<br/>
+        /// unknown id returns 404 project_not_found.
+        /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
 #endif
@@ -68,8 +81,10 @@ namespace Speechify
             string name,
             string description,
             global::Speechify.ToolKind kind,
-            global::Speechify.CreateToolRequestConfig config)
+            global::Speechify.CreateToolRequestConfig config,
+            string? projectId)
         {
+            this.ProjectId = projectId;
             this.Name = name ?? throw new global::System.ArgumentNullException(nameof(name));
             this.Description = description ?? throw new global::System.ArgumentNullException(nameof(description));
             this.Kind = kind;

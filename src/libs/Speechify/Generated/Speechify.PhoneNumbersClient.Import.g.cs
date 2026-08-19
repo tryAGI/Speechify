@@ -591,6 +591,11 @@ namespace Speechify
         /// Returns 402 when the workspace has reached the 100-number cap.
         /// </summary>
         /// <param name="speechifyVersion"></param>
+        /// <param name="projectId">
+        /// Optional workspace project to place this resource in (prefixed<br/>
+        /// `proj_...` id). Omit for the implicit Default project. An<br/>
+        /// unknown id returns 404 project_not_found.
+        /// </param>
         /// <param name="e164">
         /// The phone number in E.164 format. For `provider=livekit` this<br/>
         /// is the number you want LiveKit to purchase. For `provider=twilio`,<br/>
@@ -651,6 +656,7 @@ namespace Speechify
             string e164,
             global::Speechify.PhoneNumberProvider provider,
             string? speechifyVersion = default,
+            string? projectId = default,
             string? label = default,
             string? trunkId = default,
             string? agentId = default,
@@ -661,6 +667,7 @@ namespace Speechify
         {
             var __request = new global::Speechify.ImportPhoneNumberRequest
             {
+                ProjectId = projectId,
                 E164 = e164,
                 Provider = provider,
                 Label = label,

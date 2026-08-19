@@ -124,6 +124,10 @@ namespace Speechify
         /// <summary>
         /// 
         /// </summary>
+        CrossProjectReference,
+        /// <summary>
+        /// 
+        /// </summary>
         DestinationNotAllowed,
         /// <summary>
         /// 
@@ -197,6 +201,10 @@ namespace Speechify
         /// 
         /// </summary>
         PhoneNumberQuotaReached,
+        /// <summary>
+        /// 
+        /// </summary>
+        ProjectNotFound,
         /// <summary>
         /// 
         /// </summary>
@@ -346,6 +354,7 @@ namespace Speechify
                 ErrorCode.CredentialInUse => "credential_in_use",
                 ErrorCode.CredentialNotFound => "credential_not_found",
                 ErrorCode.CreditPurchaseUnpaid => "credit_purchase_unpaid",
+                ErrorCode.CrossProjectReference => "cross_project_reference",
                 ErrorCode.DestinationNotAllowed => "destination_not_allowed",
                 ErrorCode.Forbidden => "forbidden",
                 ErrorCode.IdempotencyConflict => "idempotency_conflict",
@@ -365,6 +374,7 @@ namespace Speechify
                 ErrorCode.PaymentRequired => "payment_required",
                 ErrorCode.PhoneNumberNotFound => "phone_number_not_found",
                 ErrorCode.PhoneNumberQuotaReached => "phone_number_quota_reached",
+                ErrorCode.ProjectNotFound => "project_not_found",
                 ErrorCode.PurchasedNumbersNotIncluded => "purchased_numbers_not_included",
                 ErrorCode.RateLimited => "rate_limited",
                 ErrorCode.ServiceAccountLimitReached => "service_account_limit_reached",
@@ -429,6 +439,7 @@ namespace Speechify
                 "credential_in_use" => ErrorCode.CredentialInUse,
                 "credential_not_found" => ErrorCode.CredentialNotFound,
                 "credit_purchase_unpaid" => ErrorCode.CreditPurchaseUnpaid,
+                "cross_project_reference" => ErrorCode.CrossProjectReference,
                 "destination_not_allowed" => ErrorCode.DestinationNotAllowed,
                 "forbidden" => ErrorCode.Forbidden,
                 "idempotency_conflict" => ErrorCode.IdempotencyConflict,
@@ -448,6 +459,7 @@ namespace Speechify
                 "payment_required" => ErrorCode.PaymentRequired,
                 "phone_number_not_found" => ErrorCode.PhoneNumberNotFound,
                 "phone_number_quota_reached" => ErrorCode.PhoneNumberQuotaReached,
+                "project_not_found" => ErrorCode.ProjectNotFound,
                 "purchased_numbers_not_included" => ErrorCode.PurchasedNumbersNotIncluded,
                 "rate_limited" => ErrorCode.RateLimited,
                 "service_account_limit_reached" => ErrorCode.ServiceAccountLimitReached,

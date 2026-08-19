@@ -611,6 +611,11 @@ namespace Speechify
         /// </summary>
         /// <param name="toolDefinitionId"></param>
         /// <param name="speechifyVersion"></param>
+        /// <param name="projectId">
+        /// Move the resource between workspace projects: a `proj_...` id<br/>
+        /// moves it there, an explicit null moves it back to the implicit<br/>
+        /// Default project, omitted leaves it unchanged.
+        /// </param>
         /// <param name="name"></param>
         /// <param name="description"></param>
         /// <param name="config"></param>
@@ -620,6 +625,7 @@ namespace Speechify
         public async global::System.Threading.Tasks.Task<global::Speechify.Tool> UpdateAsync(
             string toolDefinitionId,
             string? speechifyVersion = default,
+            string? projectId = default,
             string? name = default,
             string? description = default,
             global::Speechify.UpdateToolRequestConfig? config = default,
@@ -628,6 +634,7 @@ namespace Speechify
         {
             var __request = new global::Speechify.UpdateToolRequest
             {
+                ProjectId = projectId,
                 Name = name,
                 Description = description,
                 Config = config,

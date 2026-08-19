@@ -527,6 +527,11 @@ namespace Speechify
         /// Create a new knowledge base.
         /// </summary>
         /// <param name="speechifyVersion"></param>
+        /// <param name="projectId">
+        /// Optional workspace project to place this resource in (prefixed<br/>
+        /// `proj_...` id). Omit for the implicit Default project. An<br/>
+        /// unknown id returns 404 project_not_found.
+        /// </param>
         /// <param name="name">
         /// Human-readable label.
         /// </param>
@@ -539,12 +544,14 @@ namespace Speechify
         public async global::System.Threading.Tasks.Task<global::Speechify.KnowledgeBase> CreateAsync(
             string name,
             string? speechifyVersion = default,
+            string? projectId = default,
             string? description = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
             var __request = new global::Speechify.CreateKnowledgeBaseRequest
             {
+                ProjectId = projectId,
                 Name = name,
                 Description = description,
             };

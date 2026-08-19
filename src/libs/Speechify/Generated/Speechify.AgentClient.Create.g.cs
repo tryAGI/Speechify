@@ -527,6 +527,11 @@ namespace Speechify
         /// Create a voice agent.
         /// </summary>
         /// <param name="speechifyVersion"></param>
+        /// <param name="projectId">
+        /// Optional workspace project to place this resource in (prefixed<br/>
+        /// `proj_...` id). Omit for the implicit Default project. An<br/>
+        /// unknown id returns 404 project_not_found.
+        /// </param>
         /// <param name="name"></param>
         /// <param name="slug">
         /// Optional. Server derives slug from name with a random suffix when omitted; if you supply your own, a collision returns 400 'slug already taken'.
@@ -618,6 +623,7 @@ namespace Speechify
             string firstMessage,
             global::Speechify.AgentTTSConfig tts,
             string? speechifyVersion = default,
+            string? projectId = default,
             string? slug = default,
             string? language = default,
             global::System.Collections.Generic.IList<global::Speechify.AgentAdditionalLanguage>? additionalLanguages = default,
@@ -642,6 +648,7 @@ namespace Speechify
         {
             var __request = new global::Speechify.CreateAgentRequest
             {
+                ProjectId = projectId,
                 Name = name,
                 Slug = slug,
                 Prompt = prompt,

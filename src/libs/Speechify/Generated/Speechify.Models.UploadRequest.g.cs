@@ -9,6 +9,14 @@ namespace Speechify
     public sealed partial class UploadRequest
     {
         /// <summary>
+        /// Optional workspace project to place this resource in (prefixed<br/>
+        /// `proj_...` id). Omit for the implicit Default project. An<br/>
+        /// unknown id returns 404 project_not_found.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("project_id")]
+        public string? ProjectId { get; set; }
+
+        /// <summary>
         /// The WAV file bytes. Must be PCM 16-bit signed, mono,<br/>
         /// 48000 Hz, ≤30s duration, ≤4 MiB total.
         /// </summary>
@@ -41,13 +49,20 @@ namespace Speechify
         /// The WAV file bytes. Must be PCM 16-bit signed, mono,<br/>
         /// 48000 Hz, ≤30s duration, ≤4 MiB total.
         /// </param>
+        /// <param name="projectId">
+        /// Optional workspace project to place this resource in (prefixed<br/>
+        /// `proj_...` id). Omit for the implicit Default project. An<br/>
+        /// unknown id returns 404 project_not_found.
+        /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
 #endif
         public UploadRequest(
             byte[] file,
-            string filename)
+            string filename,
+            string? projectId)
         {
+            this.ProjectId = projectId;
             this.File = file ?? throw new global::System.ArgumentNullException(nameof(file));
             this.Filename = filename ?? throw new global::System.ArgumentNullException(nameof(filename));
         }
