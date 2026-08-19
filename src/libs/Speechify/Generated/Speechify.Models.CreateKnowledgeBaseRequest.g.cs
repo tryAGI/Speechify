@@ -9,6 +9,14 @@ namespace Speechify
     public sealed partial class CreateKnowledgeBaseRequest
     {
         /// <summary>
+        /// Optional workspace project to place this resource in (prefixed<br/>
+        /// `proj_...` id). Omit for the implicit Default project. An<br/>
+        /// unknown id returns 404 project_not_found.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("project_id")]
+        public string? ProjectId { get; set; }
+
+        /// <summary>
         /// Human-readable label.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("name")]
@@ -33,6 +41,11 @@ namespace Speechify
         /// <param name="name">
         /// Human-readable label.
         /// </param>
+        /// <param name="projectId">
+        /// Optional workspace project to place this resource in (prefixed<br/>
+        /// `proj_...` id). Omit for the implicit Default project. An<br/>
+        /// unknown id returns 404 project_not_found.
+        /// </param>
         /// <param name="description">
         /// Optional description.
         /// </param>
@@ -41,8 +54,10 @@ namespace Speechify
 #endif
         public CreateKnowledgeBaseRequest(
             string name,
+            string? projectId,
             string? description)
         {
+            this.ProjectId = projectId;
             this.Name = name ?? throw new global::System.ArgumentNullException(nameof(name));
             this.Description = description;
         }

@@ -60,6 +60,11 @@ namespace Speechify
         /// -sample_fmt s16 out.wav`.
         /// </summary>
         /// <param name="speechifyVersion"></param>
+        /// <param name="projectId">
+        /// Optional workspace project to place this resource in (prefixed<br/>
+        /// `proj_...` id). Omit for the implicit Default project. An<br/>
+        /// unknown id returns 404 project_not_found.
+        /// </param>
         /// <param name="file">
         /// The WAV file bytes. Must be PCM 16-bit signed, mono,<br/>
         /// 48000 Hz, ≤30s duration, ≤4 MiB total.
@@ -75,6 +80,7 @@ namespace Speechify
             byte[] file,
             string filename,
             string? speechifyVersion = default,
+            string? projectId = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
 
@@ -90,6 +96,11 @@ namespace Speechify
         /// -sample_fmt s16 out.wav`.
         /// </summary>
         /// <param name="speechifyVersion"></param>
+        /// <param name="projectId">
+        /// Optional workspace project to place this resource in (prefixed<br/>
+        /// `proj_...` id). Omit for the implicit Default project. An<br/>
+        /// unknown id returns 404 project_not_found.
+        /// </param>
         /// <param name="file">
         /// The WAV file bytes. Must be PCM 16-bit signed, mono,<br/>
         /// 48000 Hz, ≤30s duration, ≤4 MiB total.
@@ -105,6 +116,7 @@ namespace Speechify
             global::System.IO.Stream file,
             string filename,
             string? speechifyVersion = default,
+            string? projectId = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
@@ -119,6 +131,11 @@ namespace Speechify
         /// -sample_fmt s16 out.wav`.
         /// </summary>
         /// <param name="speechifyVersion"></param>
+        /// <param name="projectId">
+        /// Optional workspace project to place this resource in (prefixed<br/>
+        /// `proj_...` id). Omit for the implicit Default project. An<br/>
+        /// unknown id returns 404 project_not_found.
+        /// </param>
         /// <param name="file">
         /// The WAV file bytes. Must be PCM 16-bit signed, mono,<br/>
         /// 48000 Hz, ≤30s duration, ≤4 MiB total.
@@ -134,6 +151,7 @@ namespace Speechify
             global::System.IO.Stream file,
             string filename,
             string? speechifyVersion = default,
+            string? projectId = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
     }

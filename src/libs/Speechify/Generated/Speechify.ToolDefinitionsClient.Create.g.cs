@@ -570,6 +570,11 @@ namespace Speechify
         /// reads return a masked placeholder.
         /// </summary>
         /// <param name="speechifyVersion"></param>
+        /// <param name="projectId">
+        /// Optional workspace project to place this resource in (prefixed<br/>
+        /// `proj_...` id). Omit for the implicit Default project. An<br/>
+        /// unknown id returns 404 project_not_found.
+        /// </param>
         /// <param name="name"></param>
         /// <param name="description"></param>
         /// <param name="kind">
@@ -589,11 +594,13 @@ namespace Speechify
             global::Speechify.ToolKind kind,
             global::Speechify.CreateToolRequestConfig config,
             string? speechifyVersion = default,
+            string? projectId = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
             var __request = new global::Speechify.CreateToolRequest
             {
+                ProjectId = projectId,
                 Name = name,
                 Description = description,
                 Kind = kind,

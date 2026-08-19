@@ -44,6 +44,11 @@ namespace Speechify
         /// </summary>
         /// <param name="agentId"></param>
         /// <param name="speechifyVersion"></param>
+        /// <param name="projectId">
+        /// Move the resource between workspace projects: a `proj_...` id<br/>
+        /// moves it there, an explicit null moves it back to the implicit<br/>
+        /// Default project, omitted leaves it unchanged.
+        /// </param>
         /// <param name="name"></param>
         /// <param name="prompt"></param>
         /// <param name="firstMessage"></param>
@@ -121,6 +126,7 @@ namespace Speechify
         global::System.Threading.Tasks.Task<global::Speechify.Agent> UpdateAsync(
             string agentId,
             string? speechifyVersion = default,
+            string? projectId = default,
             string? name = default,
             string? prompt = default,
             string? firstMessage = default,

@@ -60,6 +60,13 @@ namespace Speechify
         public string? WebhookSecret { get; set; }
 
         /// <summary>
+        /// Workspace project this resource lives in (prefixed external<br/>
+        /// id). Null means the implicit Default project.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("project_id")]
+        public string? ProjectId { get; set; }
+
+        /// <summary>
         /// 
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("created_at")]
@@ -104,6 +111,10 @@ namespace Speechify
         /// response; all subsequent reads return a masked placeholder. Store it on first<br/>
         /// create — there is no way to retrieve it later.
         /// </param>
+        /// <param name="projectId">
+        /// Workspace project this resource lives in (prefixed external<br/>
+        /// id). Null means the implicit Default project.
+        /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
 #endif
@@ -115,7 +126,8 @@ namespace Speechify
             global::Speechify.ToolConfig config,
             global::System.DateTime createdAt,
             global::System.DateTime updatedAt,
-            string? webhookSecret)
+            string? webhookSecret,
+            string? projectId)
         {
             this.Id = id ?? throw new global::System.ArgumentNullException(nameof(id));
             this.Name = name ?? throw new global::System.ArgumentNullException(nameof(name));
@@ -123,6 +135,7 @@ namespace Speechify
             this.Kind = kind;
             this.Config = config;
             this.WebhookSecret = webhookSecret;
+            this.ProjectId = projectId;
             this.CreatedAt = createdAt;
             this.UpdatedAt = updatedAt;
         }

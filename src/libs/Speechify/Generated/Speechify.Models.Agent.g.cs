@@ -225,6 +225,13 @@ namespace Speechify
         public required bool SaveAudioRecording { get; set; }
 
         /// <summary>
+        /// Workspace project this resource lives in (prefixed external<br/>
+        /// id). Null means the implicit Default project.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("project_id")]
+        public string? ProjectId { get; set; }
+
+        /// <summary>
         /// 
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("created_at")]
@@ -369,6 +376,10 @@ namespace Speechify
         /// ceiling, which is also the hard upper bound for this field -<br/>
         /// a value above it is rejected.
         /// </param>
+        /// <param name="projectId">
+        /// Workspace project this resource lives in (prefixed external<br/>
+        /// id). Null means the implicit Default project.
+        /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
 #endif
@@ -398,7 +409,8 @@ namespace Speechify
             global::System.Collections.Generic.IList<string>? hostnameAllowlist,
             string? webhookUrl,
             bool? webhookSecretSet,
-            int? maxCallDurationSeconds)
+            int? maxCallDurationSeconds,
+            string? projectId)
         {
             this.Id = id ?? throw new global::System.ArgumentNullException(nameof(id));
             this.Name = name ?? throw new global::System.ArgumentNullException(nameof(name));
@@ -424,6 +436,7 @@ namespace Speechify
             this.Amd = amd ?? throw new global::System.ArgumentNullException(nameof(amd));
             this.MaxCallDurationSeconds = maxCallDurationSeconds;
             this.SaveAudioRecording = saveAudioRecording;
+            this.ProjectId = projectId;
             this.CreatedAt = createdAt;
             this.UpdatedAt = updatedAt;
         }

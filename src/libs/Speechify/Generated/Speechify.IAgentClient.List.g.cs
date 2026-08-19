@@ -14,6 +14,7 @@ namespace Speechify
         /// <param name="limit">
         /// Default Value: 50
         /// </param>
+        /// <param name="projectId"></param>
         /// <param name="speechifyVersion"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -21,6 +22,7 @@ namespace Speechify
         global::System.Threading.Tasks.Task<global::Speechify.ListAgentsResponse> ListAsync(
             string? cursor = default,
             int? limit = default,
+            string? projectId = default,
             string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
@@ -34,6 +36,7 @@ namespace Speechify
         /// <param name="limit">
         /// Default Value: 50
         /// </param>
+        /// <param name="projectId"></param>
         /// <param name="speechifyVersion"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -41,6 +44,7 @@ namespace Speechify
         global::System.Threading.Tasks.Task<global::Speechify.AutoSDKHttpResponse<global::Speechify.ListAgentsResponse>> ListAsResponseAsync(
             string? cursor = default,
             int? limit = default,
+            string? projectId = default,
             string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);

@@ -16,6 +16,14 @@ namespace Speechify
     public sealed partial class UpdateAgentRequest
     {
         /// <summary>
+        /// Move the resource between workspace projects: a `proj_...` id<br/>
+        /// moves it there, an explicit null moves it back to the implicit<br/>
+        /// Default project, omitted leaves it unchanged.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("project_id")]
+        public string? ProjectId { get; set; }
+
+        /// <summary>
         /// 
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("name")]
@@ -177,6 +185,11 @@ namespace Speechify
         /// <summary>
         /// Initializes a new instance of the <see cref="UpdateAgentRequest" /> class.
         /// </summary>
+        /// <param name="projectId">
+        /// Move the resource between workspace projects: a `proj_...` id<br/>
+        /// moves it there, an explicit null moves it back to the implicit<br/>
+        /// Default project, omitted leaves it unchanged.
+        /// </param>
         /// <param name="name"></param>
         /// <param name="prompt"></param>
         /// <param name="firstMessage"></param>
@@ -252,6 +265,7 @@ namespace Speechify
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
 #endif
         public UpdateAgentRequest(
+            string? projectId,
             string? name,
             string? prompt,
             string? firstMessage,
@@ -275,6 +289,7 @@ namespace Speechify
             int? maxCallDurationSeconds,
             bool? saveAudioRecording)
         {
+            this.ProjectId = projectId;
             this.Name = name;
             this.Prompt = prompt;
             this.FirstMessage = firstMessage;

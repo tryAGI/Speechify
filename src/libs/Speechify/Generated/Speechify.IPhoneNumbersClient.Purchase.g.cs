@@ -83,6 +83,11 @@ namespace Speechify
         /// <param name="idempotencyKey">
         /// Optional idempotency key. When omitted, the SDK generates one for this request.
         /// </param>
+        /// <param name="projectId">
+        /// Optional workspace project to place this resource in (prefixed<br/>
+        /// `proj_...` id). Omit for the implicit Default project. An<br/>
+        /// unknown id returns 404 project_not_found.
+        /// </param>
         /// <param name="e164">
         /// The E.164 number to buy. Must currently be in carrier inventory.
         /// </param>
@@ -104,6 +109,7 @@ namespace Speechify
             string e164,
             string? speechifyVersion = default,
             string? idempotencyKey = default,
+            string? projectId = default,
             string? label = default,
             global::Speechify.PurchasedPhoneNumberProvider? provider = default,
             string? agentId = default,
