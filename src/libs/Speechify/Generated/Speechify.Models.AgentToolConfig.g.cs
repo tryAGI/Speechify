@@ -14,8 +14,9 @@ namespace Speechify
         /// worker-resident capability; the catalogue served by<br/>
         /// `GET /v1/agents/tool-capabilities` is the runtime source of truth<br/>
         /// for valid names plus their human-readable labels. `builtin_config`<br/>
-        /// carries per-instance extras (e.g. allowed_numbers for<br/>
-        /// transfer_to_number, audio_asset_id for play_audio).
+        /// carries per-instance extras (e.g. mode + hold_message +<br/>
+        /// allowed_numbers for transfer_to_number, audio_asset_id for<br/>
+        /// play_audio).
         /// </summary>
 #if NET6_0_OR_GREATER
         public global::Speechify.BuiltinToolConfig? BuiltinToolConfig { get; init; }

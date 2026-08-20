@@ -8,8 +8,9 @@ namespace Speechify
     /// worker-resident capability; the catalogue served by<br/>
     /// `GET /v1/agents/tool-capabilities` is the runtime source of truth<br/>
     /// for valid names plus their human-readable labels. `builtin_config`<br/>
-    /// carries per-instance extras (e.g. allowed_numbers for<br/>
-    /// transfer_to_number, audio_asset_id for play_audio).
+    /// carries per-instance extras (e.g. mode + hold_message +<br/>
+    /// allowed_numbers for transfer_to_number, audio_asset_id for<br/>
+    /// play_audio).
     /// </summary>
     public sealed partial class BuiltinToolConfig
     {
@@ -30,7 +31,16 @@ namespace Speechify
         public global::System.Collections.Generic.IList<global::Speechify.ToolParam>? Params { get; set; }
 
         /// <summary>
-        /// Per-builtin extras (e.g. allowed_numbers for transfer_to_number).
+        /// Per-builtin extras, keyed by the `builtin` above.<br/>
+        /// `transfer_to_number` takes `mode` (`cold`, the default, hands the<br/>
+        /// caller's own line to the carrier via SIP REFER; `warm` calls the<br/>
+        /// destination first, reads them a summary of the conversation while<br/>
+        /// the caller holds, and bridges the two once they accept),<br/>
+        /// `hold_message` (warm only; the line spoken before the caller goes<br/>
+        /// on hold, `{{variable}}` tokens resolved, platform default when<br/>
+        /// empty), and `allowed_numbers` (destinations the LLM may pass, in<br/>
+        /// either mode; omit to allow any).<br/>
+        /// `play_audio` takes `audio_asset_id`.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("builtin_config")]
         public object? BuiltinConfig { get; set; }
@@ -52,7 +62,16 @@ namespace Speechify
         /// </param>
         /// <param name="params"></param>
         /// <param name="builtinConfig">
-        /// Per-builtin extras (e.g. allowed_numbers for transfer_to_number).
+        /// Per-builtin extras, keyed by the `builtin` above.<br/>
+        /// `transfer_to_number` takes `mode` (`cold`, the default, hands the<br/>
+        /// caller's own line to the carrier via SIP REFER; `warm` calls the<br/>
+        /// destination first, reads them a summary of the conversation while<br/>
+        /// the caller holds, and bridges the two once they accept),<br/>
+        /// `hold_message` (warm only; the line spoken before the caller goes<br/>
+        /// on hold, `{{variable}}` tokens resolved, platform default when<br/>
+        /// empty), and `allowed_numbers` (destinations the LLM may pass, in<br/>
+        /// either mode; omit to allow any).<br/>
+        /// `play_audio` takes `audio_asset_id`.
         /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
