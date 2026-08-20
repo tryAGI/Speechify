@@ -204,6 +204,14 @@ namespace Speechify
         /// <summary>
         /// 
         /// </summary>
+        ProjectHasScopedCredentials,
+        /// <summary>
+        /// 
+        /// </summary>
+        ProjectLimitReached,
+        /// <summary>
+        /// 
+        /// </summary>
         ProjectNotFound,
         /// <summary>
         /// 
@@ -374,6 +382,8 @@ namespace Speechify
                 ErrorCode.PaymentRequired => "payment_required",
                 ErrorCode.PhoneNumberNotFound => "phone_number_not_found",
                 ErrorCode.PhoneNumberQuotaReached => "phone_number_quota_reached",
+                ErrorCode.ProjectHasScopedCredentials => "project_has_scoped_credentials",
+                ErrorCode.ProjectLimitReached => "project_limit_reached",
                 ErrorCode.ProjectNotFound => "project_not_found",
                 ErrorCode.PurchasedNumbersNotIncluded => "purchased_numbers_not_included",
                 ErrorCode.RateLimited => "rate_limited",
@@ -459,6 +469,8 @@ namespace Speechify
                 "payment_required" => ErrorCode.PaymentRequired,
                 "phone_number_not_found" => ErrorCode.PhoneNumberNotFound,
                 "phone_number_quota_reached" => ErrorCode.PhoneNumberQuotaReached,
+                "project_has_scoped_credentials" => ErrorCode.ProjectHasScopedCredentials,
+                "project_limit_reached" => ErrorCode.ProjectLimitReached,
                 "project_not_found" => ErrorCode.ProjectNotFound,
                 "purchased_numbers_not_included" => ErrorCode.PurchasedNumbersNotIncluded,
                 "rate_limited" => ErrorCode.RateLimited,
