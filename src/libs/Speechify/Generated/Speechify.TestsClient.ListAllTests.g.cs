@@ -34,6 +34,7 @@ namespace Speechify
             ref string? folderId,
             ref string? updatedAfter,
             ref string? q,
+            ref string? projectId,
             ref int? limit,
             ref string? cursor,
             ref string? speechifyVersion);
@@ -47,6 +48,7 @@ namespace Speechify
             string? folderId,
             string? updatedAfter,
             string? q,
+            string? projectId,
             int? limit,
             string? cursor,
             string? speechifyVersion);
@@ -65,7 +67,10 @@ namespace Speechify
         /// Supports filters (agent, type, last-run status, folder), full-text<br/>
         /// search on name/description, and cursor pagination. Each row carries<br/>
         /// its newest run and attached agent IDs so the list renders without<br/>
-        /// N+1 round-trips. Walk pages while `has_more` is true.
+        /// N+1 round-trips. Walk pages while `has_more` is true.<br/>
+        /// `project_id` matches the project the test was AUTHORED under, frozen<br/>
+        /// at create. Folders are deliberately not project-scoped, so a folder<br/>
+        /// can hold tests this filter splits across projects.
         /// </summary>
         /// <param name="agentId"></param>
         /// <param name="type"></param>
@@ -74,6 +79,7 @@ namespace Speechify
         /// <param name="folderId"></param>
         /// <param name="updatedAfter"></param>
         /// <param name="q"></param>
+        /// <param name="projectId"></param>
         /// <param name="limit">
         /// Default Value: 50
         /// </param>
@@ -90,6 +96,7 @@ namespace Speechify
             string? folderId = default,
             string? updatedAfter = default,
             string? q = default,
+            string? projectId = default,
             int? limit = default,
             string? cursor = default,
             string? speechifyVersion = default,
@@ -104,6 +111,7 @@ namespace Speechify
                 folderId: folderId,
                 updatedAfter: updatedAfter,
                 q: q,
+                projectId: projectId,
                 limit: limit,
                 cursor: cursor,
                 speechifyVersion: speechifyVersion,
@@ -119,7 +127,10 @@ namespace Speechify
         /// Supports filters (agent, type, last-run status, folder), full-text<br/>
         /// search on name/description, and cursor pagination. Each row carries<br/>
         /// its newest run and attached agent IDs so the list renders without<br/>
-        /// N+1 round-trips. Walk pages while `has_more` is true.
+        /// N+1 round-trips. Walk pages while `has_more` is true.<br/>
+        /// `project_id` matches the project the test was AUTHORED under, frozen<br/>
+        /// at create. Folders are deliberately not project-scoped, so a folder<br/>
+        /// can hold tests this filter splits across projects.
         /// </summary>
         /// <param name="agentId"></param>
         /// <param name="type"></param>
@@ -128,6 +139,7 @@ namespace Speechify
         /// <param name="folderId"></param>
         /// <param name="updatedAfter"></param>
         /// <param name="q"></param>
+        /// <param name="projectId"></param>
         /// <param name="limit">
         /// Default Value: 50
         /// </param>
@@ -144,6 +156,7 @@ namespace Speechify
             string? folderId = default,
             string? updatedAfter = default,
             string? q = default,
+            string? projectId = default,
             int? limit = default,
             string? cursor = default,
             string? speechifyVersion = default,
@@ -161,6 +174,7 @@ namespace Speechify
                 folderId: ref folderId,
                 updatedAfter: ref updatedAfter,
                 q: ref q,
+                projectId: ref projectId,
                 limit: ref limit,
                 cursor: ref cursor,
                 speechifyVersion: ref speechifyVersion);
@@ -199,6 +213,7 @@ namespace Speechify
                                 .AddOptionalParameter("folder_id", folderId)
                                 .AddOptionalParameter("updated_after", updatedAfter)
                                 .AddOptionalParameter("q", q)
+                                .AddOptionalParameter("project_id", projectId)
                                 .AddOptionalParameter("limit", limit?.ToString())
                                 .AddOptionalParameter("cursor", cursor)
                                 ;
@@ -255,6 +270,7 @@ namespace Speechify
                     folderId: folderId,
                     updatedAfter: updatedAfter,
                     q: q,
+                    projectId: projectId,
                     limit: limit,
                     cursor: cursor,
                     speechifyVersion: speechifyVersion);
@@ -468,6 +484,43 @@ namespace Speechify
                                     innerException: __exception_401,
                                     responseBody: __content_401,
                                     responseObject: __value_401,
+                                    responseHeaders: global::System.Linq.Enumerable.ToDictionary(
+                                        __response.Headers,
+                                        h => h.Key,
+                                        h => h.Value));
+                            }
+                            // The referenced resource does not exist or is not visible to the caller's workspace. 
+                            if ((int)__response.StatusCode == 404)
+                            {
+                                string? __content_404 = null;
+                                global::System.Exception? __exception_404 = null;
+                                global::Speechify.Error? __value_404 = null;
+                                try
+                                {
+                                    if (__effectiveReadResponseAsString)
+                                    {
+                                        __content_404 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+                                        __value_404 = global::Speechify.Error.FromJson(__content_404, JsonSerializerContext);
+                                    }
+                                    else
+                                    {
+                                        __content_404 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+
+                                        __value_404 = global::Speechify.Error.FromJson(__content_404, JsonSerializerContext);
+                                    }
+                                }
+                                catch (global::System.Exception __ex)
+                                {
+                                    __exception_404 = __ex;
+                                }
+
+
+                                throw global::Speechify.ApiException<global::Speechify.Error>.Create(
+                                    statusCode: __response.StatusCode,
+                                    message: __content_404 ?? __response.ReasonPhrase ?? string.Empty,
+                                    innerException: __exception_404,
+                                    responseBody: __content_404,
+                                    responseObject: __value_404,
                                     responseHeaders: global::System.Linq.Enumerable.ToDictionary(
                                         __response.Headers,
                                         h => h.Key,

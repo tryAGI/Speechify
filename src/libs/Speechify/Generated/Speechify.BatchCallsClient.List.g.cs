@@ -27,12 +27,14 @@ namespace Speechify
             };
         partial void PrepareListArguments(
             global::System.Net.Http.HttpClient httpClient,
+            ref string? projectId,
             ref string? cursor,
             ref int? limit,
             ref string? speechifyVersion);
         partial void PrepareListRequest(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpRequestMessage httpRequestMessage,
+            string? projectId,
             string? cursor,
             int? limit,
             string? speechifyVersion);
@@ -48,8 +50,12 @@ namespace Speechify
         /// <summary>
         /// List Batch Calls<br/>
         /// Returns one page of batch calls for the workspace, newest first.<br/>
-        /// Paginate by passing `cursor` from the previous response.
+        /// Paginate by passing `cursor` from the previous response.<br/>
+        /// `project_id` matches the project the batch was STARTED under, frozen<br/>
+        /// at create. Moving its agent to another project therefore leaves past<br/>
+        /// batches attributed where they ran.
         /// </summary>
+        /// <param name="projectId"></param>
         /// <param name="cursor"></param>
         /// <param name="limit">
         /// Default Value: 50
@@ -59,6 +65,7 @@ namespace Speechify
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
         public async global::System.Threading.Tasks.Task<global::Speechify.ListBatchCallsResponse> ListAsync(
+            string? projectId = default,
             string? cursor = default,
             int? limit = default,
             string? speechifyVersion = default,
@@ -66,6 +73,7 @@ namespace Speechify
             global::System.Threading.CancellationToken cancellationToken = default)
         {
             var __response = await ListAsResponseAsync(
+                projectId: projectId,
                 cursor: cursor,
                 limit: limit,
                 speechifyVersion: speechifyVersion,
@@ -78,8 +86,12 @@ namespace Speechify
         /// <summary>
         /// List Batch Calls<br/>
         /// Returns one page of batch calls for the workspace, newest first.<br/>
-        /// Paginate by passing `cursor` from the previous response.
+        /// Paginate by passing `cursor` from the previous response.<br/>
+        /// `project_id` matches the project the batch was STARTED under, frozen<br/>
+        /// at create. Moving its agent to another project therefore leaves past<br/>
+        /// batches attributed where they ran.
         /// </summary>
+        /// <param name="projectId"></param>
         /// <param name="cursor"></param>
         /// <param name="limit">
         /// Default Value: 50
@@ -89,6 +101,7 @@ namespace Speechify
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
         public async global::System.Threading.Tasks.Task<global::Speechify.AutoSDKHttpResponse<global::Speechify.ListBatchCallsResponse>> ListAsResponseAsync(
+            string? projectId = default,
             string? cursor = default,
             int? limit = default,
             string? speechifyVersion = default,
@@ -99,6 +112,7 @@ namespace Speechify
                 client: HttpClient);
             PrepareListArguments(
                 httpClient: HttpClient,
+                projectId: ref projectId,
                 cursor: ref cursor,
                 limit: ref limit,
                 speechifyVersion: ref speechifyVersion);
@@ -130,6 +144,7 @@ namespace Speechify
                                 path: "/v1/agents/batch-calls",
                                 baseUri: HttpClient.BaseAddress);
                             __pathBuilder
+                                .AddOptionalParameter("project_id", projectId)
                                 .AddOptionalParameter("cursor", cursor)
                                 .AddOptionalParameter("limit", limit?.ToString())
                                 ;
@@ -179,6 +194,7 @@ namespace Speechify
                 PrepareListRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
+                    projectId: projectId,
                     cursor: cursor,
                     limit: limit,
                     speechifyVersion: speechifyVersion);
@@ -429,6 +445,43 @@ namespace Speechify
                                     innerException: __exception_401,
                                     responseBody: __content_401,
                                     responseObject: __value_401,
+                                    responseHeaders: global::System.Linq.Enumerable.ToDictionary(
+                                        __response.Headers,
+                                        h => h.Key,
+                                        h => h.Value));
+                            }
+                            // The referenced resource does not exist or is not visible to the caller's workspace. 
+                            if ((int)__response.StatusCode == 404)
+                            {
+                                string? __content_404 = null;
+                                global::System.Exception? __exception_404 = null;
+                                global::Speechify.Error? __value_404 = null;
+                                try
+                                {
+                                    if (__effectiveReadResponseAsString)
+                                    {
+                                        __content_404 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+                                        __value_404 = global::Speechify.Error.FromJson(__content_404, JsonSerializerContext);
+                                    }
+                                    else
+                                    {
+                                        __content_404 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+
+                                        __value_404 = global::Speechify.Error.FromJson(__content_404, JsonSerializerContext);
+                                    }
+                                }
+                                catch (global::System.Exception __ex)
+                                {
+                                    __exception_404 = __ex;
+                                }
+
+
+                                throw global::Speechify.ApiException<global::Speechify.Error>.Create(
+                                    statusCode: __response.StatusCode,
+                                    message: __content_404 ?? __response.ReasonPhrase ?? string.Empty,
+                                    innerException: __exception_404,
+                                    responseBody: __content_404,
+                                    responseObject: __value_404,
                                     responseHeaders: global::System.Linq.Enumerable.ToDictionary(
                                         __response.Headers,
                                         h => h.Key,

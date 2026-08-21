@@ -28,11 +28,13 @@ namespace Speechify
         partial void PrepareGetTestStatsArguments(
             global::System.Net.Http.HttpClient httpClient,
             ref int? windowDays,
+            ref string? projectId,
             ref string? speechifyVersion);
         partial void PrepareGetTestStatsRequest(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpRequestMessage httpRequestMessage,
             int? windowDays,
+            string? projectId,
             string? speechifyVersion);
         partial void ProcessGetTestStatsResponse(
             global::System.Net.Http.HttpClient httpClient,
@@ -48,21 +50,26 @@ namespace Speechify
         /// Aggregate pass-rate metrics over the last N days. Returns dense<br/>
         /// daily buckets (one entry per day, zero-filled) plus totals and a<br/>
         /// per-type breakdown. Powers the header chart on the global tests<br/>
-        /// page. Default window is 30 days, max 90.
+        /// page. Default window is 30 days, max 90.<br/>
+        /// Scoped by the same `project_id` filter as the list endpoint, so the<br/>
+        /// chart above a narrowed table always counts the same tests.
         /// </summary>
         /// <param name="windowDays"></param>
+        /// <param name="projectId"></param>
         /// <param name="speechifyVersion"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
         public async global::System.Threading.Tasks.Task<global::Speechify.TestStats> GetTestStatsAsync(
             int? windowDays = default,
+            string? projectId = default,
             string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
             var __response = await GetTestStatsAsResponseAsync(
                 windowDays: windowDays,
+                projectId: projectId,
                 speechifyVersion: speechifyVersion,
                 requestOptions: requestOptions,
                 cancellationToken: cancellationToken
@@ -75,15 +82,19 @@ namespace Speechify
         /// Aggregate pass-rate metrics over the last N days. Returns dense<br/>
         /// daily buckets (one entry per day, zero-filled) plus totals and a<br/>
         /// per-type breakdown. Powers the header chart on the global tests<br/>
-        /// page. Default window is 30 days, max 90.
+        /// page. Default window is 30 days, max 90.<br/>
+        /// Scoped by the same `project_id` filter as the list endpoint, so the<br/>
+        /// chart above a narrowed table always counts the same tests.
         /// </summary>
         /// <param name="windowDays"></param>
+        /// <param name="projectId"></param>
         /// <param name="speechifyVersion"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
         public async global::System.Threading.Tasks.Task<global::Speechify.AutoSDKHttpResponse<global::Speechify.TestStats>> GetTestStatsAsResponseAsync(
             int? windowDays = default,
+            string? projectId = default,
             string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
@@ -93,6 +104,7 @@ namespace Speechify
             PrepareGetTestStatsArguments(
                 httpClient: HttpClient,
                 windowDays: ref windowDays,
+                projectId: ref projectId,
                 speechifyVersion: ref speechifyVersion);
 
 
@@ -123,6 +135,7 @@ namespace Speechify
                                 baseUri: HttpClient.BaseAddress);
                             __pathBuilder
                                 .AddOptionalParameter("window_days", windowDays?.ToString())
+                                .AddOptionalParameter("project_id", projectId)
                                 ;
                             var __path = __pathBuilder.ToString();
                 __path = global::Speechify.AutoSDKRequestOptionsSupport.AppendQueryParameters(
@@ -171,6 +184,7 @@ namespace Speechify
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
                     windowDays: windowDays,
+                    projectId: projectId,
                     speechifyVersion: speechifyVersion);
 
                 return __httpRequest;
@@ -382,6 +396,43 @@ namespace Speechify
                                     innerException: __exception_401,
                                     responseBody: __content_401,
                                     responseObject: __value_401,
+                                    responseHeaders: global::System.Linq.Enumerable.ToDictionary(
+                                        __response.Headers,
+                                        h => h.Key,
+                                        h => h.Value));
+                            }
+                            // The referenced resource does not exist or is not visible to the caller's workspace. 
+                            if ((int)__response.StatusCode == 404)
+                            {
+                                string? __content_404 = null;
+                                global::System.Exception? __exception_404 = null;
+                                global::Speechify.Error? __value_404 = null;
+                                try
+                                {
+                                    if (__effectiveReadResponseAsString)
+                                    {
+                                        __content_404 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+                                        __value_404 = global::Speechify.Error.FromJson(__content_404, JsonSerializerContext);
+                                    }
+                                    else
+                                    {
+                                        __content_404 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+
+                                        __value_404 = global::Speechify.Error.FromJson(__content_404, JsonSerializerContext);
+                                    }
+                                }
+                                catch (global::System.Exception __ex)
+                                {
+                                    __exception_404 = __ex;
+                                }
+
+
+                                throw global::Speechify.ApiException<global::Speechify.Error>.Create(
+                                    statusCode: __response.StatusCode,
+                                    message: __content_404 ?? __response.ReasonPhrase ?? string.Empty,
+                                    innerException: __exception_404,
+                                    responseBody: __content_404,
+                                    responseObject: __value_404,
                                     responseHeaders: global::System.Linq.Enumerable.ToDictionary(
                                         __response.Headers,
                                         h => h.Key,
