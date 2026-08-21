@@ -1,4 +1,6 @@
 
+#pragma warning disable CS0618 // Type or member is obsolete
+
 #nullable enable
 
 namespace Speechify
@@ -50,6 +52,7 @@ namespace Speechify
         /// agent's system prompt for this run only.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("system_prompt_override")]
+        [global::System.Obsolete("This property marked as deprecated.")]
         public string? SystemPromptOverride { get; set; }
 
         /// <summary>
@@ -61,6 +64,7 @@ namespace Speechify
         /// the run.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("model_override")]
+        [global::System.Obsolete("This property marked as deprecated.")]
         public string? ModelOverride { get; set; }
 
         /// <summary>
@@ -88,20 +92,6 @@ namespace Speechify
         /// data_collection config and validates the extracted value.<br/>
         /// The test fails if any assertion fails.
         /// </param>
-        /// <param name="systemPromptOverride">
-        /// Deprecated. Prefer the run-level `config_override`<br/>
-        /// on `POST /v1/agents/{agent_id}/tests/runs`. Still honoured; the<br/>
-        /// run-level override wins when both are set. Replaces the<br/>
-        /// agent's system prompt for this run only.
-        /// </param>
-        /// <param name="modelOverride">
-        /// Deprecated. Prefer the run-level `config_override`<br/>
-        /// on `POST /v1/agents/{agent_id}/tests/runs`. Still honoured; the<br/>
-        /// run-level override wins when both are set. Overrides the LLM<br/>
-        /// model used by the agent for this run only. Must be a model the<br/>
-        /// workspace's plan includes; an over-tier or unknown model fails<br/>
-        /// the run.
-        /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
 #endif
@@ -109,16 +99,12 @@ namespace Speechify
             string scenario,
             int? maxTurns,
             global::System.Collections.Generic.IList<global::Speechify.SimulationMessage>? initialChatHistory,
-            global::System.Collections.Generic.IList<global::Speechify.DataAssertion>? dataAssertions,
-            string? systemPromptOverride,
-            string? modelOverride)
+            global::System.Collections.Generic.IList<global::Speechify.DataAssertion>? dataAssertions)
         {
             this.Scenario = scenario ?? throw new global::System.ArgumentNullException(nameof(scenario));
             this.MaxTurns = maxTurns;
             this.InitialChatHistory = initialChatHistory;
             this.DataAssertions = dataAssertions;
-            this.SystemPromptOverride = systemPromptOverride;
-            this.ModelOverride = modelOverride;
         }
 
         /// <summary>
