@@ -9,7 +9,11 @@ namespace Speechify
         /// List conversations owned by the caller, ordered by most recent.<br/>
         /// Cursor-paginated: omit `cursor` to fetch the first page; pass the<br/>
         /// previous response's `next_cursor` back to fetch the next page.<br/>
-        /// Walk pages while `has_more` is true.
+        /// Walk pages while `has_more` is true.<br/>
+        /// `project_id` matches the project the call was DISPATCHED under, which<br/>
+        /// is frozen when the conversation starts. Moving an agent to another<br/>
+        /// project therefore leaves its past calls attributed where they ran, the<br/>
+        /// same way per-project usage reports them.
         /// </summary>
         /// <param name="cursor"></param>
         /// <param name="limit">
@@ -28,6 +32,7 @@ namespace Speechify
         /// <param name="startedBefore"></param>
         /// <param name="durationMinMs"></param>
         /// <param name="durationMaxMs"></param>
+        /// <param name="projectId"></param>
         /// <param name="speechifyVersion"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -44,6 +49,7 @@ namespace Speechify
             global::System.DateTime? startedBefore = default,
             int? durationMinMs = default,
             int? durationMaxMs = default,
+            string? projectId = default,
             string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
@@ -52,7 +58,11 @@ namespace Speechify
         /// List conversations owned by the caller, ordered by most recent.<br/>
         /// Cursor-paginated: omit `cursor` to fetch the first page; pass the<br/>
         /// previous response's `next_cursor` back to fetch the next page.<br/>
-        /// Walk pages while `has_more` is true.
+        /// Walk pages while `has_more` is true.<br/>
+        /// `project_id` matches the project the call was DISPATCHED under, which<br/>
+        /// is frozen when the conversation starts. Moving an agent to another<br/>
+        /// project therefore leaves its past calls attributed where they ran, the<br/>
+        /// same way per-project usage reports them.
         /// </summary>
         /// <param name="cursor"></param>
         /// <param name="limit">
@@ -71,6 +81,7 @@ namespace Speechify
         /// <param name="startedBefore"></param>
         /// <param name="durationMinMs"></param>
         /// <param name="durationMaxMs"></param>
+        /// <param name="projectId"></param>
         /// <param name="speechifyVersion"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -87,6 +98,7 @@ namespace Speechify
             global::System.DateTime? startedBefore = default,
             int? durationMinMs = default,
             int? durationMaxMs = default,
+            string? projectId = default,
             string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);

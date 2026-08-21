@@ -36,6 +36,7 @@ namespace Speechify
             ref global::System.DateTime? startedBefore,
             ref int? durationMinMs,
             ref int? durationMaxMs,
+            ref string? projectId,
             ref string? speechifyVersion);
         partial void PrepareStatsRequest(
             global::System.Net.Http.HttpClient httpClient,
@@ -49,6 +50,7 @@ namespace Speechify
             global::System.DateTime? startedBefore,
             int? durationMinMs,
             int? durationMaxMs,
+            string? projectId,
             string? speechifyVersion);
         partial void ProcessStatsResponse(
             global::System.Net.Http.HttpClient httpClient,
@@ -61,7 +63,8 @@ namespace Speechify
 
         /// <summary>
         /// Conversation stats<br/>
-        /// Aggregated counts and averages over the caller's conversations, scoped by the same filters as the list endpoint.
+        /// Aggregated counts and averages over the caller's conversations, scoped<br/>
+        /// by the same filters as the list endpoint, `project_id` included.
         /// </summary>
         /// <param name="agentId"></param>
         /// <param name="status"></param>
@@ -76,6 +79,7 @@ namespace Speechify
         /// <param name="startedBefore"></param>
         /// <param name="durationMinMs"></param>
         /// <param name="durationMaxMs"></param>
+        /// <param name="projectId"></param>
         /// <param name="speechifyVersion"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -90,6 +94,7 @@ namespace Speechify
             global::System.DateTime? startedBefore = default,
             int? durationMinMs = default,
             int? durationMaxMs = default,
+            string? projectId = default,
             string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
@@ -104,6 +109,7 @@ namespace Speechify
                 startedBefore: startedBefore,
                 durationMinMs: durationMinMs,
                 durationMaxMs: durationMaxMs,
+                projectId: projectId,
                 speechifyVersion: speechifyVersion,
                 requestOptions: requestOptions,
                 cancellationToken: cancellationToken
@@ -113,7 +119,8 @@ namespace Speechify
         }
         /// <summary>
         /// Conversation stats<br/>
-        /// Aggregated counts and averages over the caller's conversations, scoped by the same filters as the list endpoint.
+        /// Aggregated counts and averages over the caller's conversations, scoped<br/>
+        /// by the same filters as the list endpoint, `project_id` included.
         /// </summary>
         /// <param name="agentId"></param>
         /// <param name="status"></param>
@@ -128,6 +135,7 @@ namespace Speechify
         /// <param name="startedBefore"></param>
         /// <param name="durationMinMs"></param>
         /// <param name="durationMaxMs"></param>
+        /// <param name="projectId"></param>
         /// <param name="speechifyVersion"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -142,6 +150,7 @@ namespace Speechify
             global::System.DateTime? startedBefore = default,
             int? durationMinMs = default,
             int? durationMaxMs = default,
+            string? projectId = default,
             string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
@@ -159,6 +168,7 @@ namespace Speechify
                 startedBefore: ref startedBefore,
                 durationMinMs: ref durationMinMs,
                 durationMaxMs: ref durationMaxMs,
+                projectId: ref projectId,
                 speechifyVersion: ref speechifyVersion);
 
 
@@ -197,6 +207,7 @@ namespace Speechify
                                 .AddOptionalParameter("started_before", startedBefore?.ToString("yyyy-MM-ddTHH:mm:ssZ"))
                                 .AddOptionalParameter("duration_min_ms", durationMinMs?.ToString())
                                 .AddOptionalParameter("duration_max_ms", durationMaxMs?.ToString())
+                                .AddOptionalParameter("project_id", projectId)
                                 ;
                             var __path = __pathBuilder.ToString();
                 __path = global::Speechify.AutoSDKRequestOptionsSupport.AppendQueryParameters(
@@ -253,6 +264,7 @@ namespace Speechify
                     startedBefore: startedBefore,
                     durationMinMs: durationMinMs,
                     durationMaxMs: durationMaxMs,
+                    projectId: projectId,
                     speechifyVersion: speechifyVersion);
 
                 return __httpRequest;
@@ -464,6 +476,43 @@ namespace Speechify
                                     innerException: __exception_401,
                                     responseBody: __content_401,
                                     responseObject: __value_401,
+                                    responseHeaders: global::System.Linq.Enumerable.ToDictionary(
+                                        __response.Headers,
+                                        h => h.Key,
+                                        h => h.Value));
+                            }
+                            // The referenced resource does not exist or is not visible to the caller's workspace. 
+                            if ((int)__response.StatusCode == 404)
+                            {
+                                string? __content_404 = null;
+                                global::System.Exception? __exception_404 = null;
+                                global::Speechify.Error? __value_404 = null;
+                                try
+                                {
+                                    if (__effectiveReadResponseAsString)
+                                    {
+                                        __content_404 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+                                        __value_404 = global::Speechify.Error.FromJson(__content_404, JsonSerializerContext);
+                                    }
+                                    else
+                                    {
+                                        __content_404 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+
+                                        __value_404 = global::Speechify.Error.FromJson(__content_404, JsonSerializerContext);
+                                    }
+                                }
+                                catch (global::System.Exception __ex)
+                                {
+                                    __exception_404 = __ex;
+                                }
+
+
+                                throw global::Speechify.ApiException<global::Speechify.Error>.Create(
+                                    statusCode: __response.StatusCode,
+                                    message: __content_404 ?? __response.ReasonPhrase ?? string.Empty,
+                                    innerException: __exception_404,
+                                    responseBody: __content_404,
+                                    responseObject: __value_404,
                                     responseHeaders: global::System.Linq.Enumerable.ToDictionary(
                                         __response.Headers,
                                         h => h.Key,
