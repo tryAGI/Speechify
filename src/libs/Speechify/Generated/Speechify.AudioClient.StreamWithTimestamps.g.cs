@@ -59,9 +59,12 @@ namespace Speechify
         /// `output_format`: changing the codec or sample rate does not change the<br/>
         /// duration.<br/>
         /// Speech marks are produced by the streaming-native models. The default<br/>
-        /// `simba-3.0` and `simba-3.2` both serve this route; the legacy<br/>
-        /// `simba-english` and `simba-multilingual` models return 400<br/>
-        /// `speech_marks_unsupported` here.<br/>
+        /// `simba-3.0` and `simba-3.2` both serve this route. The legacy<br/>
+        /// `simba-english` and `simba-multilingual` models never could: on a<br/>
+        /// workspace pinned before API version `2026-09-21` they return 400<br/>
+        /// `speech_marks_unsupported` here, and from that version on they return<br/>
+        /// 400 `model_retired` on every synthesis route. Both are switched off<br/>
+        /// entirely on 2026-11-21.<br/>
         /// For Base64-encoded audio and speech marks in one non-streamed JSON<br/>
         /// response, on any model, use POST /v1/audio/speech.
         /// </summary>
@@ -438,9 +441,12 @@ namespace Speechify
         /// `output_format`: changing the codec or sample rate does not change the<br/>
         /// duration.<br/>
         /// Speech marks are produced by the streaming-native models. The default<br/>
-        /// `simba-3.0` and `simba-3.2` both serve this route; the legacy<br/>
-        /// `simba-english` and `simba-multilingual` models return 400<br/>
-        /// `speech_marks_unsupported` here.<br/>
+        /// `simba-3.0` and `simba-3.2` both serve this route. The legacy<br/>
+        /// `simba-english` and `simba-multilingual` models never could: on a<br/>
+        /// workspace pinned before API version `2026-09-21` they return 400<br/>
+        /// `speech_marks_unsupported` here, and from that version on they return<br/>
+        /// 400 `model_retired` on every synthesis route. Both are switched off<br/>
+        /// entirely on 2026-11-21.<br/>
         /// For Base64-encoded audio and speech marks in one non-streamed JSON<br/>
         /// response, on any model, use POST /v1/audio/speech.
         /// </summary>
@@ -456,7 +462,8 @@ namespace Speechify
         /// Please refer to the list of the supported languages and recommendations regarding this parameter: https://docs.speechify.ai/docs/language-support.
         /// </param>
         /// <param name="model">
-        /// Model used for audio synthesis. Defaults to `simba-3.0`, which is streaming-native and multilingual: it officially supports English plus `de-DE`, `es-ES`, `es-MX`, `fr-FR`, `it-IT` and `pt-BR`, and routes each request to its English or its multilingual training based on `language` (falling back to the voice's locale when `language` is omitted). `simba-3.2` is the streaming-native model with the lowest TTFB and richest expressivity, and the recommended Simba 3 model; it is English only, so a non-English voice returns 400. `simba-english` and `simba-multilingual` are the legacy Simba 1.6 models, kept for compatibility.<br/>
+        /// Model used for audio synthesis. Defaults to `simba-3.0`, which is streaming-native and multilingual: it officially supports English plus `de-DE`, `es-ES`, `es-MX`, `fr-FR`, `it-IT` and `pt-BR`, and routes each request to its English or its multilingual training based on `language` (falling back to the voice's locale when `language` is omitted). `simba-3.2` is the streaming-native model with the lowest TTFB and richest expressivity, and the recommended Simba 3 model; it is English only, so a non-English voice returns 400.<br/>
+        /// The legacy Simba 1.6 models `simba-english` and `simba-multilingual` are retired from API version `2026-09-21`: naming one returns 400 `model_retired`. Pinning your API version to a date before `2026-09-21` keeps them working until **2026-11-21**, when both are switched off for every API version. Migrate to `simba-3.2` (English) or `simba-3.0` before then; call GET /v1/audio/models to see the set your workspace can select today.<br/>
         /// Default Value: simba-3.0
         /// </param>
         /// <param name="options">

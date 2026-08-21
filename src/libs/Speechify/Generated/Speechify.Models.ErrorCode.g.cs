@@ -184,6 +184,10 @@ namespace Speechify
         /// <summary>
         /// 
         /// </summary>
+        ModelRetired,
+        /// <summary>
+        /// 
+        /// </summary>
         NotFound,
         /// <summary>
         /// 
@@ -213,6 +217,10 @@ namespace Speechify
         /// 
         /// </summary>
         ProjectNotFound,
+        /// <summary>
+        /// 
+        /// </summary>
+        ProjectSpendLimitExceeded,
         /// <summary>
         /// 
         /// </summary>
@@ -377,6 +385,7 @@ namespace Speechify
                 ErrorCode.KbFolderNotFound => "kb_folder_not_found",
                 ErrorCode.KbNotFound => "kb_not_found",
                 ErrorCode.MethodNotAllowed => "method_not_allowed",
+                ErrorCode.ModelRetired => "model_retired",
                 ErrorCode.NotFound => "not_found",
                 ErrorCode.PayloadTooLarge => "payload_too_large",
                 ErrorCode.PaymentRequired => "payment_required",
@@ -385,6 +394,7 @@ namespace Speechify
                 ErrorCode.ProjectHasScopedCredentials => "project_has_scoped_credentials",
                 ErrorCode.ProjectLimitReached => "project_limit_reached",
                 ErrorCode.ProjectNotFound => "project_not_found",
+                ErrorCode.ProjectSpendLimitExceeded => "project_spend_limit_exceeded",
                 ErrorCode.PurchasedNumbersNotIncluded => "purchased_numbers_not_included",
                 ErrorCode.RateLimited => "rate_limited",
                 ErrorCode.ServiceAccountLimitReached => "service_account_limit_reached",
@@ -464,6 +474,7 @@ namespace Speechify
                 "kb_folder_not_found" => ErrorCode.KbFolderNotFound,
                 "kb_not_found" => ErrorCode.KbNotFound,
                 "method_not_allowed" => ErrorCode.MethodNotAllowed,
+                "model_retired" => ErrorCode.ModelRetired,
                 "not_found" => ErrorCode.NotFound,
                 "payload_too_large" => ErrorCode.PayloadTooLarge,
                 "payment_required" => ErrorCode.PaymentRequired,
@@ -472,6 +483,7 @@ namespace Speechify
                 "project_has_scoped_credentials" => ErrorCode.ProjectHasScopedCredentials,
                 "project_limit_reached" => ErrorCode.ProjectLimitReached,
                 "project_not_found" => ErrorCode.ProjectNotFound,
+                "project_spend_limit_exceeded" => ErrorCode.ProjectSpendLimitExceeded,
                 "purchased_numbers_not_included" => ErrorCode.PurchasedNumbersNotIncluded,
                 "rate_limited" => ErrorCode.RateLimited,
                 "service_account_limit_reached" => ErrorCode.ServiceAccountLimitReached,

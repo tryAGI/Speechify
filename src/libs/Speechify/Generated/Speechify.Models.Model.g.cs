@@ -43,14 +43,37 @@ namespace Speechify
         public required bool Recommended { get; set; }
 
         /// <summary>
-        /// Whether this is a legacy model. Advisory only: a deprecated model<br/>
-        /// stays selectable and behaves exactly as before, and nothing is<br/>
-        /// scheduled for removal. De-emphasise it in a picker and steer new<br/>
-        /// integrations to a current model.
+        /// Whether this is a legacy model. De-emphasise it in a picker and<br/>
+        /// steer new integrations to a current model. Read `retired_at` for<br/>
+        /// whether it also has a withdrawal date.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("deprecated")]
         [global::System.Text.Json.Serialization.JsonRequired]
         public required bool Deprecated { get; set; }
+
+        /// <summary>
+        /// The API version at which this model stops being selectable, as<br/>
+        /// `YYYY-MM-DD`. Absent when the model has no withdrawal date.<br/>
+        /// It appears only while your workspace is pinned BELOW that version -<br/>
+        /// at or after it the model is absent from this catalog entirely, and<br/>
+        /// naming it returns 400 `model_retired`. So a present value means "you<br/>
+        /// can still use this, and this is the date you lose it". Pinning your<br/>
+        /// API version before this date keeps the model working, up to<br/>
+        /// `sunset_at`.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("retired_at")]
+        public global::System.DateTime? RetiredAt { get; set; }
+
+        /// <summary>
+        /// The date this model is switched off, as `YYYY-MM-DD`. Absent when no<br/>
+        /// shutdown is scheduled.<br/>
+        /// This is the deadline `retired_at`'s version pin runs out against:<br/>
+        /// from `sunset_at` the model is unreachable on EVERY API version,<br/>
+        /// including a workspace pinned below its retirement. Read the two<br/>
+        /// together - a pin buys time to migrate, not a permanent exemption.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("sunset_at")]
+        public global::System.DateTime? SunsetAt { get; set; }
 
         /// <summary>
         /// One-line summary of the model, for a model picker.
@@ -129,10 +152,9 @@ namespace Speechify
         /// from the `default`.
         /// </param>
         /// <param name="deprecated">
-        /// Whether this is a legacy model. Advisory only: a deprecated model<br/>
-        /// stays selectable and behaves exactly as before, and nothing is<br/>
-        /// scheduled for removal. De-emphasise it in a picker and steer new<br/>
-        /// integrations to a current model.
+        /// Whether this is a legacy model. De-emphasise it in a picker and<br/>
+        /// steer new integrations to a current model. Read `retired_at` for<br/>
+        /// whether it also has a withdrawal date.
         /// </param>
         /// <param name="description">
         /// One-line summary of the model, for a model picker.
@@ -163,6 +185,24 @@ namespace Speechify
         /// `languages`: a model can publish English only and still accept any<br/>
         /// voice.
         /// </param>
+        /// <param name="retiredAt">
+        /// The API version at which this model stops being selectable, as<br/>
+        /// `YYYY-MM-DD`. Absent when the model has no withdrawal date.<br/>
+        /// It appears only while your workspace is pinned BELOW that version -<br/>
+        /// at or after it the model is absent from this catalog entirely, and<br/>
+        /// naming it returns 400 `model_retired`. So a present value means "you<br/>
+        /// can still use this, and this is the date you lose it". Pinning your<br/>
+        /// API version before this date keeps the model working, up to<br/>
+        /// `sunset_at`.
+        /// </param>
+        /// <param name="sunsetAt">
+        /// The date this model is switched off, as `YYYY-MM-DD`. Absent when no<br/>
+        /// shutdown is scheduled.<br/>
+        /// This is the deadline `retired_at`'s version pin runs out against:<br/>
+        /// from `sunset_at` the model is unreachable on EVERY API version,<br/>
+        /// including a workspace pinned below its retirement. Read the two<br/>
+        /// together - a pin buys time to migrate, not a permanent exemption.
+        /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
 #endif
@@ -176,13 +216,17 @@ namespace Speechify
             global::System.Collections.Generic.IList<string> languages,
             global::System.Collections.Generic.IList<string> endpoints,
             bool curatedVoices,
-            bool englishVoicesOnly)
+            bool englishVoicesOnly,
+            global::System.DateTime? retiredAt,
+            global::System.DateTime? sunsetAt)
         {
             this.Id = id ?? throw new global::System.ArgumentNullException(nameof(id));
             this.Name = name ?? throw new global::System.ArgumentNullException(nameof(name));
             this.Default = @default;
             this.Recommended = recommended;
             this.Deprecated = deprecated;
+            this.RetiredAt = retiredAt;
+            this.SunsetAt = sunsetAt;
             this.Description = description ?? throw new global::System.ArgumentNullException(nameof(description));
             this.Languages = languages ?? throw new global::System.ArgumentNullException(nameof(languages));
             this.Endpoints = endpoints ?? throw new global::System.ArgumentNullException(nameof(endpoints));
