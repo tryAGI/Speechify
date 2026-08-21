@@ -4,7 +4,11 @@
 namespace Speechify
 {
     /// <summary>
-    /// 
+    /// A model this voice can be synthesized with. The set is filtered to<br/>
+    /// what YOUR workspace's API version can select, so a voice never<br/>
+    /// advertises a model your own synthesis request would reject. The<br/>
+    /// legacy `simba-english` / `simba-multilingual` values appear only for<br/>
+    /// a workspace pinned before API version `2026-09-21`.
     /// </summary>
     public enum GetVoicesModelName
     {

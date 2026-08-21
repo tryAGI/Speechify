@@ -4,7 +4,14 @@
 namespace Speechify
 {
     /// <summary>
-    /// The catalog of text-to-speech models available for synthesis.
+    /// The catalog of text-to-speech models available for synthesis. The list<br/>
+    /// is scoped to your workspace's API version: a model retired at or before<br/>
+    /// it is absent here and returns 400 `model_retired` from the synthesis<br/>
+    /// endpoints, so what this returns is exactly what you can call. The<br/>
+    /// example below is the catalog at the current version - a workspace pinned<br/>
+    /// before `2026-09-21` also sees `simba-english` and `simba-multilingual`,<br/>
+    /// each carrying `retired_at` and the `sunset_at` date its pin expires<br/>
+    /// against.
     /// </summary>
     public sealed partial class ModelsResponse
     {
