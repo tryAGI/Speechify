@@ -8,11 +8,15 @@ namespace Speechify
         /// List Callers<br/>
         /// List the workspace's callers, ordered by most-recently-seen first.<br/>
         /// A caller is the per-(tenant, agent, identity) entity that owns<br/>
-        /// long-term memories and conversation history.
+        /// long-term memories and conversation history.<br/>
+        /// `project_id` matches the project the caller was FIRST SEEN under,<br/>
+        /// frozen at that moment. Moving an agent to another project therefore<br/>
+        /// leaves the callers it already knows attributed where they were met.
         /// </summary>
         /// <param name="agentId"></param>
         /// <param name="q"></param>
         /// <param name="lastSeenAfter"></param>
+        /// <param name="projectId"></param>
         /// <param name="cursor"></param>
         /// <param name="limit">
         /// Default Value: 50
@@ -25,6 +29,7 @@ namespace Speechify
             string? agentId = default,
             string? q = default,
             global::System.DateTime? lastSeenAfter = default,
+            string? projectId = default,
             string? cursor = default,
             int? limit = default,
             string? speechifyVersion = default,
@@ -34,11 +39,15 @@ namespace Speechify
         /// List Callers<br/>
         /// List the workspace's callers, ordered by most-recently-seen first.<br/>
         /// A caller is the per-(tenant, agent, identity) entity that owns<br/>
-        /// long-term memories and conversation history.
+        /// long-term memories and conversation history.<br/>
+        /// `project_id` matches the project the caller was FIRST SEEN under,<br/>
+        /// frozen at that moment. Moving an agent to another project therefore<br/>
+        /// leaves the callers it already knows attributed where they were met.
         /// </summary>
         /// <param name="agentId"></param>
         /// <param name="q"></param>
         /// <param name="lastSeenAfter"></param>
+        /// <param name="projectId"></param>
         /// <param name="cursor"></param>
         /// <param name="limit">
         /// Default Value: 50
@@ -51,6 +60,7 @@ namespace Speechify
             string? agentId = default,
             string? q = default,
             global::System.DateTime? lastSeenAfter = default,
+            string? projectId = default,
             string? cursor = default,
             int? limit = default,
             string? speechifyVersion = default,

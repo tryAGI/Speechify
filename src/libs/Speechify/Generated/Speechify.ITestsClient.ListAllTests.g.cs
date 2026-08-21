@@ -10,7 +10,10 @@ namespace Speechify
         /// Supports filters (agent, type, last-run status, folder), full-text<br/>
         /// search on name/description, and cursor pagination. Each row carries<br/>
         /// its newest run and attached agent IDs so the list renders without<br/>
-        /// N+1 round-trips. Walk pages while `has_more` is true.
+        /// N+1 round-trips. Walk pages while `has_more` is true.<br/>
+        /// `project_id` matches the project the test was AUTHORED under, frozen<br/>
+        /// at create. Folders are deliberately not project-scoped, so a folder<br/>
+        /// can hold tests this filter splits across projects.
         /// </summary>
         /// <param name="agentId"></param>
         /// <param name="type"></param>
@@ -19,6 +22,7 @@ namespace Speechify
         /// <param name="folderId"></param>
         /// <param name="updatedAfter"></param>
         /// <param name="q"></param>
+        /// <param name="projectId"></param>
         /// <param name="limit">
         /// Default Value: 50
         /// </param>
@@ -35,6 +39,7 @@ namespace Speechify
             string? folderId = default,
             string? updatedAfter = default,
             string? q = default,
+            string? projectId = default,
             int? limit = default,
             string? cursor = default,
             string? speechifyVersion = default,
@@ -46,7 +51,10 @@ namespace Speechify
         /// Supports filters (agent, type, last-run status, folder), full-text<br/>
         /// search on name/description, and cursor pagination. Each row carries<br/>
         /// its newest run and attached agent IDs so the list renders without<br/>
-        /// N+1 round-trips. Walk pages while `has_more` is true.
+        /// N+1 round-trips. Walk pages while `has_more` is true.<br/>
+        /// `project_id` matches the project the test was AUTHORED under, frozen<br/>
+        /// at create. Folders are deliberately not project-scoped, so a folder<br/>
+        /// can hold tests this filter splits across projects.
         /// </summary>
         /// <param name="agentId"></param>
         /// <param name="type"></param>
@@ -55,6 +63,7 @@ namespace Speechify
         /// <param name="folderId"></param>
         /// <param name="updatedAfter"></param>
         /// <param name="q"></param>
+        /// <param name="projectId"></param>
         /// <param name="limit">
         /// Default Value: 50
         /// </param>
@@ -71,6 +80,7 @@ namespace Speechify
             string? folderId = default,
             string? updatedAfter = default,
             string? q = default,
+            string? projectId = default,
             int? limit = default,
             string? cursor = default,
             string? speechifyVersion = default,
