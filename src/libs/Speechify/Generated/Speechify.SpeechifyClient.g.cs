@@ -203,6 +203,16 @@ namespace Speechify
         /// <summary>
         /// 
         /// </summary>
+        public ProjectsClient Projects => new ProjectsClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
+        {
+            ReadResponseAsString = ReadResponseAsString,
+            CreateIdempotencyKey = CreateIdempotencyKey,
+            JsonSerializerContextProvider = JsonSerializerContextProvider,
+        };
+
+        /// <summary>
+        /// 
+        /// </summary>
         public ShareLinksClient ShareLinks => new ShareLinksClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
         {
             ReadResponseAsString = ReadResponseAsString,

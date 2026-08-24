@@ -3,11 +3,11 @@
 
 namespace Speechify
 {
-    public partial class TestsClient
+    public partial class ProjectsClient
     {
 
 
-        private static readonly global::Speechify.EndPointSecurityRequirement s_ListSuiteRunsSecurityRequirement0 =
+        private static readonly global::Speechify.EndPointSecurityRequirement s_ListMembersSecurityRequirement0 =
             new global::Speechify.EndPointSecurityRequirement
             {
                 Authorizations = new global::Speechify.EndPointAuthorizationRequirement[]
@@ -21,42 +21,40 @@ namespace Speechify
                     },
                 },
             };
-        private static readonly global::Speechify.EndPointSecurityRequirement[] s_ListSuiteRunsSecurityRequirements =
+        private static readonly global::Speechify.EndPointSecurityRequirement[] s_ListMembersSecurityRequirements =
             new global::Speechify.EndPointSecurityRequirement[]
-            {                s_ListSuiteRunsSecurityRequirement0,
+            {                s_ListMembersSecurityRequirement0,
             };
-        partial void PrepareListSuiteRunsArguments(
+        partial void PrepareListMembersArguments(
             global::System.Net.Http.HttpClient httpClient,
-            ref string? agentId,
-            ref string? projectId,
+            ref string projectId,
             ref string? cursor,
             ref int? limit,
             ref string? speechifyVersion);
-        partial void PrepareListSuiteRunsRequest(
+        partial void PrepareListMembersRequest(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpRequestMessage httpRequestMessage,
-            string? agentId,
-            string? projectId,
+            string projectId,
             string? cursor,
             int? limit,
             string? speechifyVersion);
-        partial void ProcessListSuiteRunsResponse(
+        partial void ProcessListMembersResponse(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpResponseMessage httpResponseMessage);
 
-        partial void ProcessListSuiteRunsResponseContent(
+        partial void ProcessListMembersResponseContent(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpResponseMessage httpResponseMessage,
             ref string content);
 
         /// <summary>
-        /// List Suite Runs<br/>
-        /// List one page of suite runs (test invocations), newest first.<br/>
-        /// A suite run groups every test run dispatched by one Run All,<br/>
-        /// batch, or resubmit call. Paginate by passing `cursor` from the<br/>
-        /// previous response.
+        /// List Project Members<br/>
+        /// List the workspace members granted access to this project, oldest<br/>
+        /// grant first. Paginate by passing `cursor` from the previous response.<br/>
+        /// A member with no grants anywhere is workspace-wide and does not appear<br/>
+        /// here: this lists people who have been narrowed to specific projects,<br/>
+        /// not everyone who can reach this one.
         /// </summary>
-        /// <param name="agentId"></param>
         /// <param name="projectId"></param>
         /// <param name="cursor"></param>
         /// <param name="limit">
@@ -66,17 +64,15 @@ namespace Speechify
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
-        public async global::System.Threading.Tasks.Task<global::Speechify.ListSuiteRunsResponse> ListSuiteRunsAsync(
-            string? agentId = default,
-            string? projectId = default,
+        public async global::System.Threading.Tasks.Task<global::Speechify.ProjectMembersResponse> ListMembersAsync(
+            string projectId,
             string? cursor = default,
             int? limit = default,
             string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
-            var __response = await ListSuiteRunsAsResponseAsync(
-                agentId: agentId,
+            var __response = await ListMembersAsResponseAsync(
                 projectId: projectId,
                 cursor: cursor,
                 limit: limit,
@@ -88,13 +84,13 @@ namespace Speechify
             return __response.Body;
         }
         /// <summary>
-        /// List Suite Runs<br/>
-        /// List one page of suite runs (test invocations), newest first.<br/>
-        /// A suite run groups every test run dispatched by one Run All,<br/>
-        /// batch, or resubmit call. Paginate by passing `cursor` from the<br/>
-        /// previous response.
+        /// List Project Members<br/>
+        /// List the workspace members granted access to this project, oldest<br/>
+        /// grant first. Paginate by passing `cursor` from the previous response.<br/>
+        /// A member with no grants anywhere is workspace-wide and does not appear<br/>
+        /// here: this lists people who have been narrowed to specific projects,<br/>
+        /// not everyone who can reach this one.
         /// </summary>
-        /// <param name="agentId"></param>
         /// <param name="projectId"></param>
         /// <param name="cursor"></param>
         /// <param name="limit">
@@ -104,9 +100,8 @@ namespace Speechify
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
-        public async global::System.Threading.Tasks.Task<global::Speechify.AutoSDKHttpResponse<global::Speechify.ListSuiteRunsResponse>> ListSuiteRunsAsResponseAsync(
-            string? agentId = default,
-            string? projectId = default,
+        public async global::System.Threading.Tasks.Task<global::Speechify.AutoSDKHttpResponse<global::Speechify.ProjectMembersResponse>> ListMembersAsResponseAsync(
+            string projectId,
             string? cursor = default,
             int? limit = default,
             string? speechifyVersion = default,
@@ -115,9 +110,8 @@ namespace Speechify
         {
             PrepareArguments(
                 client: HttpClient);
-            PrepareListSuiteRunsArguments(
+            PrepareListMembersArguments(
                 httpClient: HttpClient,
-                agentId: ref agentId,
                 projectId: ref projectId,
                 cursor: ref cursor,
                 limit: ref limit,
@@ -126,8 +120,8 @@ namespace Speechify
 
             var __authorizations = global::Speechify.EndPointSecurityResolver.ResolveAuthorizations(
                 availableAuthorizations: Authorizations,
-                securityRequirements: s_ListSuiteRunsSecurityRequirements,
-                operationName: "ListSuiteRunsAsync");
+                securityRequirements: s_ListMembersSecurityRequirements,
+                operationName: "ListMembersAsync");
 
             using var __timeoutCancellationTokenSource = global::Speechify.AutoSDKRequestOptionsSupport.CreateTimeoutCancellationTokenSource(
                 clientOptions: Options,
@@ -147,11 +141,9 @@ namespace Speechify
             {
 
                             var __pathBuilder = new global::Speechify.PathBuilder(
-                                path: "/v1/agents/tests/suite-runs",
+                                path: $"/v1/projects/{projectId}/members",
                                 baseUri: HttpClient.BaseAddress);
                             __pathBuilder
-                                .AddOptionalParameter("agent_id", agentId)
-                                .AddOptionalParameter("project_id", projectId)
                                 .AddOptionalParameter("cursor", cursor)
                                 .AddOptionalParameter("limit", limit?.ToString())
                                 ;
@@ -198,11 +190,10 @@ namespace Speechify
                 PrepareRequest(
                     client: HttpClient,
                     request: __httpRequest);
-                PrepareListSuiteRunsRequest(
+                PrepareListMembersRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
-                    agentId: agentId,
-                    projectId: projectId,
+                    projectId: projectId!,
                     cursor: cursor,
                     limit: limit,
                     speechifyVersion: speechifyVersion);
@@ -222,9 +213,9 @@ namespace Speechify
                     await global::Speechify.AutoSDKRequestOptionsSupport.OnBeforeRequestAsync(
                             clientOptions: Options,
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "ListSuiteRuns",
-                                methodName: "ListSuiteRunsAsync",
-                                pathTemplate: "\"/v1/agents/tests/suite-runs\"",
+                                operationId: "ListMembers",
+                                methodName: "ListMembersAsync",
+                                pathTemplate: "$\"/v1/projects/{projectId}/members\"",
                                 httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -256,9 +247,9 @@ namespace Speechify
                         await global::Speechify.AutoSDKRequestOptionsSupport.OnAfterErrorAsync(
                             clientOptions: Options,
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "ListSuiteRuns",
-                                methodName: "ListSuiteRunsAsync",
-                                pathTemplate: "\"/v1/agents/tests/suite-runs\"",
+                                operationId: "ListMembers",
+                                methodName: "ListMembersAsync",
+                                pathTemplate: "$\"/v1/projects/{projectId}/members\"",
                                 httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -297,9 +288,9 @@ namespace Speechify
                         await global::Speechify.AutoSDKRequestOptionsSupport.OnAfterErrorAsync(
                             clientOptions: Options,
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "ListSuiteRuns",
-                                methodName: "ListSuiteRunsAsync",
-                                pathTemplate: "\"/v1/agents/tests/suite-runs\"",
+                                operationId: "ListMembers",
+                                methodName: "ListMembersAsync",
+                                pathTemplate: "$\"/v1/projects/{projectId}/members\"",
                                 httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -337,7 +328,7 @@ namespace Speechify
                 ProcessResponse(
                     client: HttpClient,
                     response: __response);
-                ProcessListSuiteRunsResponse(
+                ProcessListMembersResponse(
                     httpClient: HttpClient,
                     httpResponseMessage: __response);
                 if (__response.IsSuccessStatusCode)
@@ -345,9 +336,9 @@ namespace Speechify
                     await global::Speechify.AutoSDKRequestOptionsSupport.OnAfterSuccessAsync(
                             clientOptions: Options,
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "ListSuiteRuns",
-                                methodName: "ListSuiteRunsAsync",
-                                pathTemplate: "\"/v1/agents/tests/suite-runs\"",
+                                operationId: "ListMembers",
+                                methodName: "ListMembersAsync",
+                                pathTemplate: "$\"/v1/projects/{projectId}/members\"",
                                 httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -367,9 +358,9 @@ namespace Speechify
                     await global::Speechify.AutoSDKRequestOptionsSupport.OnAfterErrorAsync(
                             clientOptions: Options,
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "ListSuiteRuns",
-                                methodName: "ListSuiteRunsAsync",
-                                pathTemplate: "\"/v1/agents/tests/suite-runs\"",
+                                operationId: "ListMembers",
+                                methodName: "ListMembersAsync",
+                                pathTemplate: "$\"/v1/projects/{projectId}/members\"",
                                 httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -508,7 +499,7 @@ namespace Speechify
                                     client: HttpClient,
                                     response: __response,
                                     content: ref __content);
-                                ProcessListSuiteRunsResponseContent(
+                                ProcessListMembersResponseContent(
                                     httpClient: HttpClient,
                                     httpResponseMessage: __response,
                                     content: ref __content);
@@ -517,9 +508,9 @@ namespace Speechify
                                 {
                                     __response.EnsureSuccessStatusCode();
 
-                                    var __value = global::Speechify.ListSuiteRunsResponse.FromJson(__content, JsonSerializerContext) ??
+                                    var __value = global::Speechify.ProjectMembersResponse.FromJson(__content, JsonSerializerContext) ??
                                         throw new global::System.InvalidOperationException($"Response deserialization failed for \"{__content}\" ");
-                                    return new global::Speechify.AutoSDKHttpResponse<global::Speechify.ListSuiteRunsResponse>(
+                                    return new global::Speechify.AutoSDKHttpResponse<global::Speechify.ProjectMembersResponse>(
                                         statusCode: __response.StatusCode,
                                         headers: global::Speechify.AutoSDKHttpResponse.CreateHeaders(__response),
                                         requestUri: __response.RequestMessage?.RequestUri,
@@ -549,9 +540,9 @@ namespace Speechify
                 #endif
                                     ).ConfigureAwait(false);
 
-                                    var __value = await global::Speechify.ListSuiteRunsResponse.FromJsonStreamAsync(__content, JsonSerializerContext).ConfigureAwait(false) ??
+                                    var __value = await global::Speechify.ProjectMembersResponse.FromJsonStreamAsync(__content, JsonSerializerContext).ConfigureAwait(false) ??
                                         throw new global::System.InvalidOperationException("Response deserialization failed.");
-                                    return new global::Speechify.AutoSDKHttpResponse<global::Speechify.ListSuiteRunsResponse>(
+                                    return new global::Speechify.AutoSDKHttpResponse<global::Speechify.ProjectMembersResponse>(
                                         statusCode: __response.StatusCode,
                                         headers: global::Speechify.AutoSDKHttpResponse.CreateHeaders(__response),
                                         requestUri: __response.RequestMessage?.RequestUri,
