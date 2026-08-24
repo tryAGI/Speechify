@@ -3,11 +3,11 @@
 
 namespace Speechify
 {
-    public partial class TestsClient
+    public partial class ProjectsClient
     {
 
 
-        private static readonly global::Speechify.EndPointSecurityRequirement s_ListSuiteRunsSecurityRequirement0 =
+        private static readonly global::Speechify.EndPointSecurityRequirement s_RevokeMemberSecurityRequirement0 =
             new global::Speechify.EndPointSecurityRequirement
             {
                 Authorizations = new global::Speechify.EndPointAuthorizationRequirement[]
@@ -21,65 +21,54 @@ namespace Speechify
                     },
                 },
             };
-        private static readonly global::Speechify.EndPointSecurityRequirement[] s_ListSuiteRunsSecurityRequirements =
+        private static readonly global::Speechify.EndPointSecurityRequirement[] s_RevokeMemberSecurityRequirements =
             new global::Speechify.EndPointSecurityRequirement[]
-            {                s_ListSuiteRunsSecurityRequirement0,
+            {                s_RevokeMemberSecurityRequirement0,
             };
-        partial void PrepareListSuiteRunsArguments(
+        partial void PrepareRevokeMemberArguments(
             global::System.Net.Http.HttpClient httpClient,
-            ref string? agentId,
-            ref string? projectId,
-            ref string? cursor,
-            ref int? limit,
+            ref string projectId,
+            ref string userId,
             ref string? speechifyVersion);
-        partial void PrepareListSuiteRunsRequest(
+        partial void PrepareRevokeMemberRequest(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpRequestMessage httpRequestMessage,
-            string? agentId,
-            string? projectId,
-            string? cursor,
-            int? limit,
+            string projectId,
+            string userId,
             string? speechifyVersion);
-        partial void ProcessListSuiteRunsResponse(
+        partial void ProcessRevokeMemberResponse(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpResponseMessage httpResponseMessage);
 
-        partial void ProcessListSuiteRunsResponseContent(
+        partial void ProcessRevokeMemberResponseContent(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpResponseMessage httpResponseMessage,
             ref string content);
 
         /// <summary>
-        /// List Suite Runs<br/>
-        /// List one page of suite runs (test invocations), newest first.<br/>
-        /// A suite run groups every test run dispatched by one Run All,<br/>
-        /// batch, or resubmit call. Paginate by passing `cursor` from the<br/>
-        /// previous response.
+        /// Revoke Project Access<br/>
+        /// Remove a member's access to this project.<br/>
+        /// A member who loses their last grant is not locked out - they return<br/>
+        /// to workspace-wide access, because holding no grants is the unrestricted<br/>
+        /// state. To restrict someone, grant them the projects they should keep<br/>
+        /// rather than revoking everything. Requires `members.manage_project_scope`.
         /// </summary>
-        /// <param name="agentId"></param>
         /// <param name="projectId"></param>
-        /// <param name="cursor"></param>
-        /// <param name="limit">
-        /// Default Value: 50
-        /// </param>
+        /// <param name="userId"></param>
         /// <param name="speechifyVersion"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
-        public async global::System.Threading.Tasks.Task<global::Speechify.ListSuiteRunsResponse> ListSuiteRunsAsync(
-            string? agentId = default,
-            string? projectId = default,
-            string? cursor = default,
-            int? limit = default,
+        public async global::System.Threading.Tasks.Task<string> RevokeMemberAsync(
+            string projectId,
+            string userId,
             string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
-            var __response = await ListSuiteRunsAsResponseAsync(
-                agentId: agentId,
+            var __response = await RevokeMemberAsResponseAsync(
                 projectId: projectId,
-                cursor: cursor,
-                limit: limit,
+                userId: userId,
                 speechifyVersion: speechifyVersion,
                 requestOptions: requestOptions,
                 cancellationToken: cancellationToken
@@ -88,46 +77,39 @@ namespace Speechify
             return __response.Body;
         }
         /// <summary>
-        /// List Suite Runs<br/>
-        /// List one page of suite runs (test invocations), newest first.<br/>
-        /// A suite run groups every test run dispatched by one Run All,<br/>
-        /// batch, or resubmit call. Paginate by passing `cursor` from the<br/>
-        /// previous response.
+        /// Revoke Project Access<br/>
+        /// Remove a member's access to this project.<br/>
+        /// A member who loses their last grant is not locked out - they return<br/>
+        /// to workspace-wide access, because holding no grants is the unrestricted<br/>
+        /// state. To restrict someone, grant them the projects they should keep<br/>
+        /// rather than revoking everything. Requires `members.manage_project_scope`.
         /// </summary>
-        /// <param name="agentId"></param>
         /// <param name="projectId"></param>
-        /// <param name="cursor"></param>
-        /// <param name="limit">
-        /// Default Value: 50
-        /// </param>
+        /// <param name="userId"></param>
         /// <param name="speechifyVersion"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
-        public async global::System.Threading.Tasks.Task<global::Speechify.AutoSDKHttpResponse<global::Speechify.ListSuiteRunsResponse>> ListSuiteRunsAsResponseAsync(
-            string? agentId = default,
-            string? projectId = default,
-            string? cursor = default,
-            int? limit = default,
+        public async global::System.Threading.Tasks.Task<global::Speechify.AutoSDKHttpResponse<string>> RevokeMemberAsResponseAsync(
+            string projectId,
+            string userId,
             string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
             PrepareArguments(
                 client: HttpClient);
-            PrepareListSuiteRunsArguments(
+            PrepareRevokeMemberArguments(
                 httpClient: HttpClient,
-                agentId: ref agentId,
                 projectId: ref projectId,
-                cursor: ref cursor,
-                limit: ref limit,
+                userId: ref userId,
                 speechifyVersion: ref speechifyVersion);
 
 
             var __authorizations = global::Speechify.EndPointSecurityResolver.ResolveAuthorizations(
                 availableAuthorizations: Authorizations,
-                securityRequirements: s_ListSuiteRunsSecurityRequirements,
-                operationName: "ListSuiteRunsAsync");
+                securityRequirements: s_RevokeMemberSecurityRequirements,
+                operationName: "RevokeMemberAsync");
 
             using var __timeoutCancellationTokenSource = global::Speechify.AutoSDKRequestOptionsSupport.CreateTimeoutCancellationTokenSource(
                 clientOptions: Options,
@@ -147,21 +129,15 @@ namespace Speechify
             {
 
                             var __pathBuilder = new global::Speechify.PathBuilder(
-                                path: "/v1/agents/tests/suite-runs",
+                                path: $"/v1/projects/{projectId}/members/{userId}",
                                 baseUri: HttpClient.BaseAddress);
-                            __pathBuilder
-                                .AddOptionalParameter("agent_id", agentId)
-                                .AddOptionalParameter("project_id", projectId)
-                                .AddOptionalParameter("cursor", cursor)
-                                .AddOptionalParameter("limit", limit?.ToString())
-                                ;
                             var __path = __pathBuilder.ToString();
                 __path = global::Speechify.AutoSDKRequestOptionsSupport.AppendQueryParameters(
                     path: __path,
                     clientParameters: Options.QueryParameters,
                     requestParameters: requestOptions?.QueryParameters);
                 var __httpRequest = new global::System.Net.Http.HttpRequestMessage(
-                    method: global::System.Net.Http.HttpMethod.Get,
+                    method: global::System.Net.Http.HttpMethod.Delete,
                     requestUri: new global::System.Uri(__path, global::System.UriKind.RelativeOrAbsolute));
 #if NET6_0_OR_GREATER
                 __httpRequest.Version = global::System.Net.HttpVersion.Version11;
@@ -198,13 +174,11 @@ namespace Speechify
                 PrepareRequest(
                     client: HttpClient,
                     request: __httpRequest);
-                PrepareListSuiteRunsRequest(
+                PrepareRevokeMemberRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
-                    agentId: agentId,
-                    projectId: projectId,
-                    cursor: cursor,
-                    limit: limit,
+                    projectId: projectId!,
+                    userId: userId!,
                     speechifyVersion: speechifyVersion);
 
                 return __httpRequest;
@@ -222,10 +196,10 @@ namespace Speechify
                     await global::Speechify.AutoSDKRequestOptionsSupport.OnBeforeRequestAsync(
                             clientOptions: Options,
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "ListSuiteRuns",
-                                methodName: "ListSuiteRunsAsync",
-                                pathTemplate: "\"/v1/agents/tests/suite-runs\"",
-                                httpMethod: "GET",
+                                operationId: "RevokeMember",
+                                methodName: "RevokeMemberAsync",
+                                pathTemplate: "$\"/v1/projects/{projectId}/members/{userId}\"",
+                                httpMethod: "DELETE",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
                                 response: null,
@@ -256,10 +230,10 @@ namespace Speechify
                         await global::Speechify.AutoSDKRequestOptionsSupport.OnAfterErrorAsync(
                             clientOptions: Options,
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "ListSuiteRuns",
-                                methodName: "ListSuiteRunsAsync",
-                                pathTemplate: "\"/v1/agents/tests/suite-runs\"",
-                                httpMethod: "GET",
+                                operationId: "RevokeMember",
+                                methodName: "RevokeMemberAsync",
+                                pathTemplate: "$\"/v1/projects/{projectId}/members/{userId}\"",
+                                httpMethod: "DELETE",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
                                 response: null,
@@ -297,10 +271,10 @@ namespace Speechify
                         await global::Speechify.AutoSDKRequestOptionsSupport.OnAfterErrorAsync(
                             clientOptions: Options,
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "ListSuiteRuns",
-                                methodName: "ListSuiteRunsAsync",
-                                pathTemplate: "\"/v1/agents/tests/suite-runs\"",
-                                httpMethod: "GET",
+                                operationId: "RevokeMember",
+                                methodName: "RevokeMemberAsync",
+                                pathTemplate: "$\"/v1/projects/{projectId}/members/{userId}\"",
+                                httpMethod: "DELETE",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
                                 response: __response,
@@ -337,7 +311,7 @@ namespace Speechify
                 ProcessResponse(
                     client: HttpClient,
                     response: __response);
-                ProcessListSuiteRunsResponse(
+                ProcessRevokeMemberResponse(
                     httpClient: HttpClient,
                     httpResponseMessage: __response);
                 if (__response.IsSuccessStatusCode)
@@ -345,10 +319,10 @@ namespace Speechify
                     await global::Speechify.AutoSDKRequestOptionsSupport.OnAfterSuccessAsync(
                             clientOptions: Options,
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "ListSuiteRuns",
-                                methodName: "ListSuiteRunsAsync",
-                                pathTemplate: "\"/v1/agents/tests/suite-runs\"",
-                                httpMethod: "GET",
+                                operationId: "RevokeMember",
+                                methodName: "RevokeMemberAsync",
+                                pathTemplate: "$\"/v1/projects/{projectId}/members/{userId}\"",
+                                httpMethod: "DELETE",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
                                 response: __response,
@@ -367,10 +341,10 @@ namespace Speechify
                     await global::Speechify.AutoSDKRequestOptionsSupport.OnAfterErrorAsync(
                             clientOptions: Options,
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "ListSuiteRuns",
-                                methodName: "ListSuiteRunsAsync",
-                                pathTemplate: "\"/v1/agents/tests/suite-runs\"",
-                                httpMethod: "GET",
+                                operationId: "RevokeMember",
+                                methodName: "RevokeMemberAsync",
+                                pathTemplate: "$\"/v1/projects/{projectId}/members/{userId}\"",
+                                httpMethod: "DELETE",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
                                 response: __response,
@@ -384,43 +358,6 @@ namespace Speechify
                                 retryReason: global::System.String.Empty,
                                 cancellationToken: __effectiveCancellationToken)).ConfigureAwait(false);
                 }
-                            // The request was malformed or failed validation. The response body is the standard `Error` envelope; for validation failures `error.fields` enumerates the offending fields as a `path -> message` map (code = `validation_failed`). 
-                            if ((int)__response.StatusCode == 400)
-                            {
-                                string? __content_400 = null;
-                                global::System.Exception? __exception_400 = null;
-                                global::Speechify.Error? __value_400 = null;
-                                try
-                                {
-                                    if (__effectiveReadResponseAsString)
-                                    {
-                                        __content_400 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
-                                        __value_400 = global::Speechify.Error.FromJson(__content_400, JsonSerializerContext);
-                                    }
-                                    else
-                                    {
-                                        __content_400 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
-
-                                        __value_400 = global::Speechify.Error.FromJson(__content_400, JsonSerializerContext);
-                                    }
-                                }
-                                catch (global::System.Exception __ex)
-                                {
-                                    __exception_400 = __ex;
-                                }
-
-
-                                throw global::Speechify.ApiException<global::Speechify.Error>.Create(
-                                    statusCode: __response.StatusCode,
-                                    message: __content_400 ?? __response.ReasonPhrase ?? string.Empty,
-                                    innerException: __exception_400,
-                                    responseBody: __content_400,
-                                    responseObject: __value_400,
-                                    responseHeaders: global::System.Linq.Enumerable.ToDictionary(
-                                        __response.Headers,
-                                        h => h.Key,
-                                        h => h.Value));
-                            }
                             // Authentication is missing or invalid. The request did not carry a recognised credential (console session token, API key, or worker JWT). 
                             if ((int)__response.StatusCode == 401)
                             {
@@ -453,6 +390,43 @@ namespace Speechify
                                     innerException: __exception_401,
                                     responseBody: __content_401,
                                     responseObject: __value_401,
+                                    responseHeaders: global::System.Linq.Enumerable.ToDictionary(
+                                        __response.Headers,
+                                        h => h.Key,
+                                        h => h.Value));
+                            }
+                            // The credential authenticated, but is not authorised for this resource - typically a workspace-role gate (owner / admin required) or a cross-tenant access attempt. 
+                            if ((int)__response.StatusCode == 403)
+                            {
+                                string? __content_403 = null;
+                                global::System.Exception? __exception_403 = null;
+                                global::Speechify.Error? __value_403 = null;
+                                try
+                                {
+                                    if (__effectiveReadResponseAsString)
+                                    {
+                                        __content_403 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+                                        __value_403 = global::Speechify.Error.FromJson(__content_403, JsonSerializerContext);
+                                    }
+                                    else
+                                    {
+                                        __content_403 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+
+                                        __value_403 = global::Speechify.Error.FromJson(__content_403, JsonSerializerContext);
+                                    }
+                                }
+                                catch (global::System.Exception __ex)
+                                {
+                                    __exception_403 = __ex;
+                                }
+
+
+                                throw global::Speechify.ApiException<global::Speechify.Error>.Create(
+                                    statusCode: __response.StatusCode,
+                                    message: __content_403 ?? __response.ReasonPhrase ?? string.Empty,
+                                    innerException: __exception_403,
+                                    responseBody: __content_403,
+                                    responseObject: __value_403,
                                     responseHeaders: global::System.Linq.Enumerable.ToDictionary(
                                         __response.Headers,
                                         h => h.Key,
@@ -508,7 +482,7 @@ namespace Speechify
                                     client: HttpClient,
                                     response: __response,
                                     content: ref __content);
-                                ProcessListSuiteRunsResponseContent(
+                                ProcessRevokeMemberResponseContent(
                                     httpClient: HttpClient,
                                     httpResponseMessage: __response,
                                     content: ref __content);
@@ -517,13 +491,11 @@ namespace Speechify
                                 {
                                     __response.EnsureSuccessStatusCode();
 
-                                    var __value = global::Speechify.ListSuiteRunsResponse.FromJson(__content, JsonSerializerContext) ??
-                                        throw new global::System.InvalidOperationException($"Response deserialization failed for \"{__content}\" ");
-                                    return new global::Speechify.AutoSDKHttpResponse<global::Speechify.ListSuiteRunsResponse>(
+                                    return new global::Speechify.AutoSDKHttpResponse<string>(
                                         statusCode: __response.StatusCode,
                                         headers: global::Speechify.AutoSDKHttpResponse.CreateHeaders(__response),
                                         requestUri: __response.RequestMessage?.RequestUri,
-                                        body: __value);
+                                        body: __content);
                                 }
                                 catch (global::System.Exception __ex)
                                 {
@@ -543,19 +515,17 @@ namespace Speechify
                                 try
                                 {
                                     __response.EnsureSuccessStatusCode();
-                                    using var __content = await __response.Content.ReadAsStreamAsync(
+                                    var __content = await __response.Content.ReadAsStringAsync(
                 #if NET5_0_OR_GREATER
                                         __effectiveCancellationToken
                 #endif
                                     ).ConfigureAwait(false);
 
-                                    var __value = await global::Speechify.ListSuiteRunsResponse.FromJsonStreamAsync(__content, JsonSerializerContext).ConfigureAwait(false) ??
-                                        throw new global::System.InvalidOperationException("Response deserialization failed.");
-                                    return new global::Speechify.AutoSDKHttpResponse<global::Speechify.ListSuiteRunsResponse>(
+                                    return new global::Speechify.AutoSDKHttpResponse<string>(
                                         statusCode: __response.StatusCode,
                                         headers: global::Speechify.AutoSDKHttpResponse.CreateHeaders(__response),
                                         requestUri: __response.RequestMessage?.RequestUri,
-                                        body: __value);
+                                        body: __content);
                                 }
                                 catch (global::System.Exception __ex)
                                 {

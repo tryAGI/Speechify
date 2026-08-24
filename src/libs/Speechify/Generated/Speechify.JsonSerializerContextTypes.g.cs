@@ -1772,23 +1772,39 @@ namespace Speechify
         /// <summary>
         /// 
         /// </summary>
-        public global::Speechify.CreateRequest? Type436 { get; set; }
+        public global::Speechify.ProjectMember? Type436 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::Speechify.UploadDocumentRequest? Type437 { get; set; }
+        public global::Speechify.ProjectMembersResponse? Type437 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::Speechify.UpdateDocumentRequest? Type438 { get; set; }
+        public global::System.Collections.Generic.IList<global::Speechify.ProjectMember>? Type438 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::Speechify.RunTestRequest? Type439 { get; set; }
+        public global::Speechify.GrantProjectMemberRequest? Type439 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::Speechify.UploadRequest? Type440 { get; set; }
+        public global::Speechify.CreateRequest? Type440 { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public global::Speechify.UploadDocumentRequest? Type441 { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public global::Speechify.UpdateDocumentRequest? Type442 { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public global::Speechify.RunTestRequest? Type443 { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public global::Speechify.UploadRequest? Type444 { get; set; }
 
         /// <summary>
         /// 
@@ -2102,5 +2118,9 @@ namespace Speechify
         /// 
         /// </summary>
         public global::System.Collections.Generic.List<global::Speechify.BatchRecipient>? ListType77 { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public global::System.Collections.Generic.List<global::Speechify.ProjectMember>? ListType78 { get; set; }
     }
 }
