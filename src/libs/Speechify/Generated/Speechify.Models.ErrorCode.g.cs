@@ -220,11 +220,23 @@ namespace Speechify
         /// <summary>
         /// 
         /// </summary>
+        ProjectNameTaken,
+        /// <summary>
+        /// 
+        /// </summary>
         ProjectNotArchived,
         /// <summary>
         /// 
         /// </summary>
         ProjectNotFound,
+        /// <summary>
+        /// 
+        /// </summary>
+        ProjectNotPurged,
+        /// <summary>
+        /// 
+        /// </summary>
+        ProjectRestoreWindowExpired,
         /// <summary>
         /// 
         /// </summary>
@@ -406,8 +418,11 @@ namespace Speechify
                 ErrorCode.ProjectArchived => "project_archived",
                 ErrorCode.ProjectHasScopedCredentials => "project_has_scoped_credentials",
                 ErrorCode.ProjectLimitReached => "project_limit_reached",
+                ErrorCode.ProjectNameTaken => "project_name_taken",
                 ErrorCode.ProjectNotArchived => "project_not_archived",
                 ErrorCode.ProjectNotFound => "project_not_found",
+                ErrorCode.ProjectNotPurged => "project_not_purged",
+                ErrorCode.ProjectRestoreWindowExpired => "project_restore_window_expired",
                 ErrorCode.ProjectSpendLimitExceeded => "project_spend_limit_exceeded",
                 ErrorCode.ProjectTooLargeToPromote => "project_too_large_to_promote",
                 ErrorCode.PurchasedNumbersNotIncluded => "purchased_numbers_not_included",
@@ -498,8 +513,11 @@ namespace Speechify
                 "project_archived" => ErrorCode.ProjectArchived,
                 "project_has_scoped_credentials" => ErrorCode.ProjectHasScopedCredentials,
                 "project_limit_reached" => ErrorCode.ProjectLimitReached,
+                "project_name_taken" => ErrorCode.ProjectNameTaken,
                 "project_not_archived" => ErrorCode.ProjectNotArchived,
                 "project_not_found" => ErrorCode.ProjectNotFound,
+                "project_not_purged" => ErrorCode.ProjectNotPurged,
+                "project_restore_window_expired" => ErrorCode.ProjectRestoreWindowExpired,
                 "project_spend_limit_exceeded" => ErrorCode.ProjectSpendLimitExceeded,
                 "project_too_large_to_promote" => ErrorCode.ProjectTooLargeToPromote,
                 "purchased_numbers_not_included" => ErrorCode.PurchasedNumbersNotIncluded,

@@ -7,13 +7,19 @@ namespace Speechify
         /// <summary>
         /// List Voices<br/>
         /// Lists the voices available to the caller - the shared voice<br/>
-        /// catalog plus the workspace's cloned voices, whichever member or<br/>
-        /// service-account key created them. By default<br/>
+        /// catalog plus the cloned voices they can reach, whichever member or<br/>
+        /// service-account key created them. A clone filed under a project is<br/>
+        /// listed only for a caller who can reach that project; a clone no<br/>
+        /// project filed is shared with the whole workspace and is listed for<br/>
+        /// everyone in it. By default<br/>
         /// the full catalogue is returned in one response. Pagination is<br/>
         /// opt-in: pass `limit` (and then `cursor` from the previous<br/>
         /// response) to page through the list while `has_more` is true. Max<br/>
         /// page size is 200. Narrow the list with the `type` and `locale`<br/>
-        /// filters (applied before pagination, so pages stay full).
+        /// filters.<br/>
+        /// A page can come back with fewer than `limit` voices, and a short<br/>
+        /// page - an empty one included - is not the end of the list. Keep<br/>
+        /// following `next_cursor` while `has_more` is true.
         /// </summary>
         /// <param name="cursor"></param>
         /// <param name="limit">
@@ -42,13 +48,19 @@ namespace Speechify
         /// <summary>
         /// List Voices<br/>
         /// Lists the voices available to the caller - the shared voice<br/>
-        /// catalog plus the workspace's cloned voices, whichever member or<br/>
-        /// service-account key created them. By default<br/>
+        /// catalog plus the cloned voices they can reach, whichever member or<br/>
+        /// service-account key created them. A clone filed under a project is<br/>
+        /// listed only for a caller who can reach that project; a clone no<br/>
+        /// project filed is shared with the whole workspace and is listed for<br/>
+        /// everyone in it. By default<br/>
         /// the full catalogue is returned in one response. Pagination is<br/>
         /// opt-in: pass `limit` (and then `cursor` from the previous<br/>
         /// response) to page through the list while `has_more` is true. Max<br/>
         /// page size is 200. Narrow the list with the `type` and `locale`<br/>
-        /// filters (applied before pagination, so pages stay full).
+        /// filters.<br/>
+        /// A page can come back with fewer than `limit` voices, and a short<br/>
+        /// page - an empty one included - is not the end of the list. Keep<br/>
+        /// following `next_cursor` while `has_more` is true.
         /// </summary>
         /// <param name="cursor"></param>
         /// <param name="limit">
