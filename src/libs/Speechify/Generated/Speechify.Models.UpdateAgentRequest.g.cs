@@ -6,7 +6,7 @@ namespace Speechify
     /// <summary>
     /// Body for PATCH /v1/agents/{agent_id}. JSON merge-patch semantics: every<br/>
     /// field is optional and omitting it leaves the stored value<br/>
-    /// unchanged. Inside a nested config block (llm, tts, stt,<br/>
+    /// unchanged. Inside a nested config block (llm, tts,<br/>
     /// turn_handling, memory, navigator, background_noise, amd) send only<br/>
     /// the sub-fields you want to change - an explicit null clears a<br/>
     /// nullable sub-field to its default, a value sets it, and omitted<br/>
@@ -71,12 +71,6 @@ namespace Speechify
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("tts")]
         public global::Speechify.AgentTTSConfig? Tts { get; set; }
-
-        /// <summary>
-        /// Speech-to-text configuration.
-        /// </summary>
-        [global::System.Text.Json.Serialization.JsonPropertyName("stt")]
-        public global::Speechify.AgentSTTConfig? Stt { get; set; }
 
         /// <summary>
         /// Turn-handling and silence-timeout configuration.
@@ -210,9 +204,6 @@ namespace Speechify
         /// <param name="tts">
         /// Text-to-speech voice and delivery configuration.
         /// </param>
-        /// <param name="stt">
-        /// Speech-to-text configuration.
-        /// </param>
         /// <param name="turnHandling">
         /// Turn-handling and silence-timeout configuration.
         /// </param>
@@ -273,7 +264,6 @@ namespace Speechify
             global::System.Collections.Generic.IList<global::Speechify.AgentAdditionalLanguage>? additionalLanguages,
             global::Speechify.AgentLLMConfig? llm,
             global::Speechify.AgentTTSConfig? tts,
-            global::Speechify.AgentSTTConfig? stt,
             global::Speechify.AgentTurnHandlingConfig? turnHandling,
             global::Speechify.AgentMemoryConfig? memory,
             global::Speechify.AgentNavigatorConfig? navigator,
@@ -297,7 +287,6 @@ namespace Speechify
             this.AdditionalLanguages = additionalLanguages;
             this.Llm = llm;
             this.Tts = tts;
-            this.Stt = stt;
             this.TurnHandling = turnHandling;
             this.Memory = memory;
             this.Navigator = navigator;

@@ -83,13 +83,6 @@ namespace Speechify
         public required global::Speechify.AgentTTSConfig Tts { get; set; }
 
         /// <summary>
-        /// Speech-to-text configuration.
-        /// </summary>
-        [global::System.Text.Json.Serialization.JsonPropertyName("stt")]
-        [global::System.Text.Json.Serialization.JsonRequired]
-        public required global::Speechify.AgentSTTConfig Stt { get; set; }
-
-        /// <summary>
         /// Turn-handling and silence-timeout configuration.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("turn_handling")]
@@ -280,9 +273,6 @@ namespace Speechify
         /// <param name="tts">
         /// Text-to-speech voice and delivery configuration.
         /// </param>
-        /// <param name="stt">
-        /// Speech-to-text configuration.
-        /// </param>
         /// <param name="turnHandling">
         /// Turn-handling and silence-timeout configuration.
         /// </param>
@@ -392,7 +382,6 @@ namespace Speechify
             string language,
             global::Speechify.AgentLLMConfig llm,
             global::Speechify.AgentTTSConfig tts,
-            global::Speechify.AgentSTTConfig stt,
             global::Speechify.AgentTurnHandlingConfig turnHandling,
             global::Speechify.AgentMemoryConfig memory,
             global::Speechify.AgentNavigatorConfig navigator,
@@ -421,7 +410,6 @@ namespace Speechify
             this.AdditionalLanguages = additionalLanguages;
             this.Llm = llm ?? throw new global::System.ArgumentNullException(nameof(llm));
             this.Tts = tts ?? throw new global::System.ArgumentNullException(nameof(tts));
-            this.Stt = stt ?? throw new global::System.ArgumentNullException(nameof(stt));
             this.TurnHandling = turnHandling ?? throw new global::System.ArgumentNullException(nameof(turnHandling));
             this.Memory = memory ?? throw new global::System.ArgumentNullException(nameof(memory));
             this.Navigator = navigator ?? throw new global::System.ArgumentNullException(nameof(navigator));

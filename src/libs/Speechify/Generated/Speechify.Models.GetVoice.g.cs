@@ -57,6 +57,18 @@ namespace Speechify
         public string? PreviewAudio { get; set; }
 
         /// <summary>
+        /// The workspace project this cloned voice is filed under, set when<br/>
+        /// a project-pinned key created it. Returned on a single-voice read,<br/>
+        /// on the create response, and on a list narrowed with the<br/>
+        /// `project_id` parameter.<br/>
+        /// Omitted for a shared-catalog voice, for a cloned voice the<br/>
+        /// workspace holds at large, and on an unnarrowed list, where the<br/>
+        /// catalog read does not carry each voice's project.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("project_id")]
+        public string? ProjectId { get; set; }
+
+        /// <summary>
         /// 
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("tags")]
@@ -87,6 +99,15 @@ namespace Speechify
         /// <param name="type"></param>
         /// <param name="avatarImage"></param>
         /// <param name="previewAudio"></param>
+        /// <param name="projectId">
+        /// The workspace project this cloned voice is filed under, set when<br/>
+        /// a project-pinned key created it. Returned on a single-voice read,<br/>
+        /// on the create response, and on a list narrowed with the<br/>
+        /// `project_id` parameter.<br/>
+        /// Omitted for a shared-catalog voice, for a cloned voice the<br/>
+        /// workspace holds at large, and on an unnarrowed list, where the<br/>
+        /// catalog read does not carry each voice's project.
+        /// </param>
         /// <param name="tags"></param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
@@ -100,6 +121,7 @@ namespace Speechify
             global::Speechify.GetVoiceType type,
             string? avatarImage,
             string? previewAudio,
+            string? projectId,
             global::System.Collections.Generic.IList<string>? tags)
         {
             this.AvatarImage = avatarImage;
@@ -109,6 +131,7 @@ namespace Speechify
             this.Id = id ?? throw new global::System.ArgumentNullException(nameof(id));
             this.Models = models ?? throw new global::System.ArgumentNullException(nameof(models));
             this.PreviewAudio = previewAudio;
+            this.ProjectId = projectId;
             this.Tags = tags;
             this.Type = type;
         }

@@ -127,12 +127,6 @@ namespace Speechify
         public global::Speechify.AgentSnapshotInterruptionSensitivity? InterruptionSensitivity { get; set; }
 
         /// <summary>
-        /// Streaming-STT stack the call dispatched with; null = the worker's platform default.
-        /// </summary>
-        [global::System.Text.Json.Serialization.JsonPropertyName("stt_override")]
-        public string? SttOverride { get; set; }
-
-        /// <summary>
         /// Answering Machine Detection routing config for outbound voice<br/>
         /// agents. AMD classifies the called party's first ~3-15 seconds of<br/>
         /// audio into one of LiveKit's categories (human, uncertain,<br/>
@@ -238,9 +232,6 @@ namespace Speechify
         /// <param name="interruptionSensitivity">
         /// Interruption-sensitivity level the call ran under; null = the platform default.
         /// </param>
-        /// <param name="sttOverride">
-        /// Streaming-STT stack the call dispatched with; null = the worker's platform default.
-        /// </param>
         /// <param name="amd">
         /// Answering Machine Detection routing config for outbound voice<br/>
         /// agents. AMD classifies the called party's first ~3-15 seconds of<br/>
@@ -291,7 +282,6 @@ namespace Speechify
             string? ttsPlaybackRate,
             string? responseDelaySeconds,
             global::Speechify.AgentSnapshotInterruptionSensitivity? interruptionSensitivity,
-            string? sttOverride,
             global::Speechify.AMDConfig? amd,
             bool? saveAudioRecording,
             bool? navigatorMode,
@@ -320,7 +310,6 @@ namespace Speechify
             this.TtsPlaybackRate = ttsPlaybackRate;
             this.ResponseDelaySeconds = responseDelaySeconds;
             this.InterruptionSensitivity = interruptionSensitivity;
-            this.SttOverride = sttOverride;
             this.Amd = amd;
             this.SaveAudioRecording = saveAudioRecording;
             this.NavigatorMode = navigatorMode;

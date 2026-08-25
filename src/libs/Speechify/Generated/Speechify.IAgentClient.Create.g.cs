@@ -71,9 +71,6 @@ namespace Speechify
         /// <param name="tts">
         /// Text-to-speech voice and delivery configuration.
         /// </param>
-        /// <param name="stt">
-        /// Speech-to-text configuration.
-        /// </param>
         /// <param name="turnHandling">
         /// Turn-handling and silence-timeout configuration.
         /// </param>
@@ -140,7 +137,6 @@ namespace Speechify
             string? language = default,
             global::System.Collections.Generic.IList<global::Speechify.AgentAdditionalLanguage>? additionalLanguages = default,
             global::Speechify.AgentLLMConfig? llm = default,
-            global::Speechify.AgentSTTConfig? stt = default,
             global::Speechify.AgentTurnHandlingConfig? turnHandling = default,
             global::Speechify.AgentMemoryConfig? memory = default,
             global::Speechify.AgentNavigatorConfig? navigator = default,
