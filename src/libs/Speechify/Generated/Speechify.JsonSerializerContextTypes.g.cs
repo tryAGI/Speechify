@@ -1788,23 +1788,55 @@ namespace Speechify
         /// <summary>
         /// 
         /// </summary>
-        public global::Speechify.CreateRequest? Type440 { get; set; }
+        public global::Speechify.PromoteProjectRequest? Type440 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::Speechify.UploadDocumentRequest? Type441 { get; set; }
+        public global::Speechify.PromoteCreated? Type441 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::Speechify.UpdateDocumentRequest? Type442 { get; set; }
+        public global::Speechify.PromoteReused? Type442 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::Speechify.RunTestRequest? Type443 { get; set; }
+        public global::Speechify.PromoteAttentionKind? Type443 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::Speechify.UploadRequest? Type444 { get; set; }
+        public global::Speechify.PromoteAttentionReason? Type444 { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public global::Speechify.PromoteAttention? Type445 { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public global::Speechify.PromoteProjectResponse? Type446 { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public global::System.Collections.Generic.IList<global::Speechify.PromoteAttention>? Type447 { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public global::Speechify.CreateRequest? Type448 { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public global::Speechify.UploadDocumentRequest? Type449 { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public global::Speechify.UpdateDocumentRequest? Type450 { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public global::Speechify.RunTestRequest? Type451 { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public global::Speechify.UploadRequest? Type452 { get; set; }
 
         /// <summary>
         /// 
@@ -2122,5 +2154,9 @@ namespace Speechify
         /// 
         /// </summary>
         public global::System.Collections.Generic.List<global::Speechify.ProjectMember>? ListType78 { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public global::System.Collections.Generic.List<global::Speechify.PromoteAttention>? ListType79 { get; set; }
     }
 }
