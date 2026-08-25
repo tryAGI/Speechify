@@ -171,14 +171,6 @@ namespace Speechify
 
 
                             var __httpRequestContent = new global::System.Net.Http.MultipartFormDataContent();
-                            if (speechifyVersion != default)
-                            {
-
-                                __httpRequestContent.Add(
-                                    content: new global::System.Net.Http.StringContent(speechifyVersion ?? string.Empty),
-                                    name: "\"Speechify-Version\"");
-
-                            }
                             if (request.ProjectId != default)
                             {
 
@@ -752,14 +744,6 @@ namespace Speechify
 
 
                             var __httpRequestContent = new global::System.Net.Http.MultipartFormDataContent();
-                            if (speechifyVersion != default)
-                            {
-
-                                __httpRequestContent.Add(
-                                    content: new global::System.Net.Http.StringContent(speechifyVersion ?? string.Empty),
-                                    name: "\"Speechify-Version\"");
-
-                            }
                             if (request.ProjectId != default)
                             {
 
@@ -1275,14 +1259,6 @@ namespace Speechify
 
 
                             var __httpRequestContent = new global::System.Net.Http.MultipartFormDataContent();
-                            if (speechifyVersion != default)
-                            {
-
-                                __httpRequestContent.Add(
-                                    content: new global::System.Net.Http.StringContent(speechifyVersion ?? string.Empty),
-                                    name: "\"Speechify-Version\"");
-
-                            }
                             if (request.ProjectId != default)
                             {
 

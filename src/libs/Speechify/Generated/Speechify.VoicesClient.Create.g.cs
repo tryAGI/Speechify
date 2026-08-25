@@ -179,22 +179,6 @@ namespace Speechify
 
 
                             var __httpRequestContent = new global::System.Net.Http.MultipartFormDataContent();
-                            if (speechifyVersion != default)
-                            {
-
-                                __httpRequestContent.Add(
-                                    content: new global::System.Net.Http.StringContent(speechifyVersion ?? string.Empty),
-                                    name: "\"Speechify-Version\"");
-
-                            }
-                            if (idempotencyKey != default)
-                            {
-
-                                __httpRequestContent.Add(
-                                    content: new global::System.Net.Http.StringContent(idempotencyKey ?? string.Empty),
-                                    name: "\"Idempotency-Key\"");
-
-                            }
                             __httpRequestContent.Add(
                                 content: new global::System.Net.Http.StringContent(request.Name ?? string.Empty),
                                 name: "\"name\"");
@@ -1293,22 +1277,6 @@ namespace Speechify
 
 
                             var __httpRequestContent = new global::System.Net.Http.MultipartFormDataContent();
-                            if (speechifyVersion != default)
-                            {
-
-                                __httpRequestContent.Add(
-                                    content: new global::System.Net.Http.StringContent(speechifyVersion ?? string.Empty),
-                                    name: "\"Speechify-Version\"");
-
-                            }
-                            if (idempotencyKey != default)
-                            {
-
-                                __httpRequestContent.Add(
-                                    content: new global::System.Net.Http.StringContent(idempotencyKey ?? string.Empty),
-                                    name: "\"Idempotency-Key\"");
-
-                            }
                             __httpRequestContent.Add(
                                 content: new global::System.Net.Http.StringContent(request.Name ?? string.Empty),
                                 name: "\"name\"");
@@ -2302,22 +2270,6 @@ namespace Speechify
 
 
                             var __httpRequestContent = new global::System.Net.Http.MultipartFormDataContent();
-                            if (speechifyVersion != default)
-                            {
-
-                                __httpRequestContent.Add(
-                                    content: new global::System.Net.Http.StringContent(speechifyVersion ?? string.Empty),
-                                    name: "\"Speechify-Version\"");
-
-                            }
-                            if (idempotencyKey != default)
-                            {
-
-                                __httpRequestContent.Add(
-                                    content: new global::System.Net.Http.StringContent(idempotencyKey ?? string.Empty),
-                                    name: "\"Idempotency-Key\"");
-
-                            }
                             __httpRequestContent.Add(
                                 content: new global::System.Net.Http.StringContent(request.Name ?? string.Empty),
                                 name: "\"name\"");
