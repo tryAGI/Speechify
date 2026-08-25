@@ -3,11 +3,11 @@
 
 namespace Speechify
 {
-    public partial class AudioClient
+    public partial class ProjectsClient
     {
 
 
-        private static readonly global::Speechify.EndPointSecurityRequirement s_SpeechSecurityRequirement0 =
+        private static readonly global::Speechify.EndPointSecurityRequirement s_PromoteSecurityRequirement0 =
             new global::Speechify.EndPointSecurityRequirement
             {
                 Authorizations = new global::Speechify.EndPointAuthorizationRequirement[]
@@ -21,52 +21,89 @@ namespace Speechify
                     },
                 },
             };
-        private static readonly global::Speechify.EndPointSecurityRequirement[] s_SpeechSecurityRequirements =
+        private static readonly global::Speechify.EndPointSecurityRequirement[] s_PromoteSecurityRequirements =
             new global::Speechify.EndPointSecurityRequirement[]
-            {                s_SpeechSecurityRequirement0,
+            {                s_PromoteSecurityRequirement0,
             };
-        partial void PrepareSpeechArguments(
+        partial void PreparePromoteArguments(
             global::System.Net.Http.HttpClient httpClient,
+            ref string projectId,
             ref string? speechifyVersion,
-            global::Speechify.GetSpeechRequest request);
-        partial void PrepareSpeechRequest(
+            ref string? idempotencyKey,
+            global::Speechify.PromoteProjectRequest request);
+        partial void PreparePromoteRequest(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpRequestMessage httpRequestMessage,
+            string projectId,
             string? speechifyVersion,
-            global::Speechify.GetSpeechRequest request);
-        partial void ProcessSpeechResponse(
+            string? idempotencyKey,
+            global::Speechify.PromoteProjectRequest request);
+        partial void ProcessPromoteResponse(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpResponseMessage httpResponseMessage);
 
-        partial void ProcessSpeechResponseContent(
+        partial void ProcessPromoteResponseContent(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpResponseMessage httpResponseMessage,
             ref string content);
 
         /// <summary>
-        /// Create Speech<br/>
-        /// Synthesize speech audio from text or SSML. Returns the complete audio<br/>
-        /// file plus billing and speech-mark metadata in a single JSON response.<br/>
-        /// For low-latency playback or long-form text, use POST /v1/audio/stream.<br/>
-        /// Set `output_format` for explicit sample-rate/bitrate control (e.g.<br/>
-        /// `pcm_16000` or `ulaw_8000` for telephony).
+        /// Promote Project<br/>
+        /// Copy this project's configuration into another project in the same<br/>
+        /// workspace, creating equivalent resources there. Use it to move a<br/>
+        /// staging environment into production, or to seed one client's project<br/>
+        /// from another's.<br/>
+        /// Copied: agents with every setting (prompt, voice, model, memory and<br/>
+        /// consent settings, builtin tools, tool and knowledge-base bindings, the<br/>
+        /// draft and published flow versions, test definitions), tool<br/>
+        /// definitions, knowledge bases with their folders (URL sources are<br/>
+        /// re-imported in the target through the normal import path, so the<br/>
+        /// response lists the import jobs to poll), audio assets (the object is<br/>
+        /// copied), and the webhook endpoints scoped to the source.<br/>
+        /// Never copied: vault credentials, API keys and service accounts, phone<br/>
+        /// numbers and SIP trunks, conversations, callers, memories, call and<br/>
+        /// test history, batch calls, member grants, spend limits, uploaded or<br/>
+        /// pasted knowledge-base documents, and every secret. A copied tool or<br/>
+        /// agent that referenced a credential has the reference cleared, every<br/>
+        /// server-minted signing secret is minted fresh, and each such item is<br/>
+        /// listed under `needs_attention` so nothing is silently half-configured.<br/>
+        /// A copy keeps its name. Where the target already holds a resource of<br/>
+        /// the same kind and name, the copy is suffixed (`name (2)`, or `name_2`<br/>
+        /// for tools) and listed under `needs_attention` with reason `renamed`;<br/>
+        /// a target tool whose definition is identical to the source's is bound<br/>
+        /// instead of duplicated and appears under `reused`.<br/>
+        /// The copy runs in one transaction. A project holding more than 200<br/>
+        /// resources (agents, tools, knowledge bases, URL sources, audio assets,<br/>
+        /// webhook endpoints and tests together) answers `409<br/>
+        /// project_too_large_to_promote`. Send an `Idempotency-Key` header to<br/>
+        /// make a retry safe: the first manifest is replayed rather than the<br/>
+        /// project copied twice. Both projects must be reachable to the caller;<br/>
+        /// a project-pinned credential cannot promote.
         /// </summary>
+        /// <param name="projectId"></param>
         /// <param name="speechifyVersion"></param>
+        /// <param name="idempotencyKey">
+        /// Optional idempotency key. When omitted, the SDK generates one for this request.
+        /// </param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
-        public async global::System.Threading.Tasks.Task<global::Speechify.GetSpeechResponse> SpeechAsync(
+        public async global::System.Threading.Tasks.Task<global::Speechify.PromoteProjectResponse> PromoteAsync(
+            string projectId,
 
-            global::Speechify.GetSpeechRequest request,
+            global::Speechify.PromoteProjectRequest request,
             string? speechifyVersion = default,
+            string? idempotencyKey = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
-            var __response = await SpeechAsResponseAsync(
+            var __response = await PromoteAsResponseAsync(
+                projectId: projectId,
 
                 request: request,
                 speechifyVersion: speechifyVersion,
+                idempotencyKey: idempotencyKey,
                 requestOptions: requestOptions,
                 cancellationToken: cancellationToken
             ).ConfigureAwait(false);
@@ -74,22 +111,53 @@ namespace Speechify
             return __response.Body;
         }
         /// <summary>
-        /// Create Speech<br/>
-        /// Synthesize speech audio from text or SSML. Returns the complete audio<br/>
-        /// file plus billing and speech-mark metadata in a single JSON response.<br/>
-        /// For low-latency playback or long-form text, use POST /v1/audio/stream.<br/>
-        /// Set `output_format` for explicit sample-rate/bitrate control (e.g.<br/>
-        /// `pcm_16000` or `ulaw_8000` for telephony).
+        /// Promote Project<br/>
+        /// Copy this project's configuration into another project in the same<br/>
+        /// workspace, creating equivalent resources there. Use it to move a<br/>
+        /// staging environment into production, or to seed one client's project<br/>
+        /// from another's.<br/>
+        /// Copied: agents with every setting (prompt, voice, model, memory and<br/>
+        /// consent settings, builtin tools, tool and knowledge-base bindings, the<br/>
+        /// draft and published flow versions, test definitions), tool<br/>
+        /// definitions, knowledge bases with their folders (URL sources are<br/>
+        /// re-imported in the target through the normal import path, so the<br/>
+        /// response lists the import jobs to poll), audio assets (the object is<br/>
+        /// copied), and the webhook endpoints scoped to the source.<br/>
+        /// Never copied: vault credentials, API keys and service accounts, phone<br/>
+        /// numbers and SIP trunks, conversations, callers, memories, call and<br/>
+        /// test history, batch calls, member grants, spend limits, uploaded or<br/>
+        /// pasted knowledge-base documents, and every secret. A copied tool or<br/>
+        /// agent that referenced a credential has the reference cleared, every<br/>
+        /// server-minted signing secret is minted fresh, and each such item is<br/>
+        /// listed under `needs_attention` so nothing is silently half-configured.<br/>
+        /// A copy keeps its name. Where the target already holds a resource of<br/>
+        /// the same kind and name, the copy is suffixed (`name (2)`, or `name_2`<br/>
+        /// for tools) and listed under `needs_attention` with reason `renamed`;<br/>
+        /// a target tool whose definition is identical to the source's is bound<br/>
+        /// instead of duplicated and appears under `reused`.<br/>
+        /// The copy runs in one transaction. A project holding more than 200<br/>
+        /// resources (agents, tools, knowledge bases, URL sources, audio assets,<br/>
+        /// webhook endpoints and tests together) answers `409<br/>
+        /// project_too_large_to_promote`. Send an `Idempotency-Key` header to<br/>
+        /// make a retry safe: the first manifest is replayed rather than the<br/>
+        /// project copied twice. Both projects must be reachable to the caller;<br/>
+        /// a project-pinned credential cannot promote.
         /// </summary>
+        /// <param name="projectId"></param>
         /// <param name="speechifyVersion"></param>
+        /// <param name="idempotencyKey">
+        /// Optional idempotency key. When omitted, the SDK generates one for this request.
+        /// </param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
-        public async global::System.Threading.Tasks.Task<global::Speechify.AutoSDKHttpResponse<global::Speechify.GetSpeechResponse>> SpeechAsResponseAsync(
+        public async global::System.Threading.Tasks.Task<global::Speechify.AutoSDKHttpResponse<global::Speechify.PromoteProjectResponse>> PromoteAsResponseAsync(
+            string projectId,
 
-            global::Speechify.GetSpeechRequest request,
+            global::Speechify.PromoteProjectRequest request,
             string? speechifyVersion = default,
+            string? idempotencyKey = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
@@ -97,16 +165,18 @@ namespace Speechify
 
             PrepareArguments(
                 client: HttpClient);
-            PrepareSpeechArguments(
+            PreparePromoteArguments(
                 httpClient: HttpClient,
+                projectId: ref projectId,
                 speechifyVersion: ref speechifyVersion,
+                idempotencyKey: ref idempotencyKey,
                 request: request);
 
 
             var __authorizations = global::Speechify.EndPointSecurityResolver.ResolveAuthorizations(
                 availableAuthorizations: Authorizations,
-                securityRequirements: s_SpeechSecurityRequirements,
-                operationName: "SpeechAsync");
+                securityRequirements: s_PromoteSecurityRequirements,
+                operationName: "PromoteAsync");
 
             using var __timeoutCancellationTokenSource = global::Speechify.AutoSDKRequestOptionsSupport.CreateTimeoutCancellationTokenSource(
                 clientOptions: Options,
@@ -126,7 +196,7 @@ namespace Speechify
             {
 
                             var __pathBuilder = new global::Speechify.PathBuilder(
-                                path: "/v1/audio/speech",
+                                path: $"/v1/projects/{projectId}/promote",
                                 baseUri: HttpClient.BaseAddress);
                             var __path = __pathBuilder.ToString();
                 __path = global::Speechify.AutoSDKRequestOptionsSupport.AppendQueryParameters(
@@ -162,6 +232,10 @@ namespace Speechify
             {
                 __httpRequest.Headers.TryAddWithoutValidation("Speechify-Version", speechifyVersion.ToString());
             }
+            var __idempotencyKey = global::System.String.IsNullOrWhiteSpace(idempotencyKey)
+                ? CreateIdempotencyKey()
+                : idempotencyKey;
+            __httpRequest.Headers.TryAddWithoutValidation("Idempotency-Key", __idempotencyKey);
 
                             var __httpRequestContentBody = request.ToJson(JsonSerializerContext);
                             var __httpRequestContent = new global::System.Net.Http.StringContent(
@@ -177,10 +251,12 @@ namespace Speechify
                 PrepareRequest(
                     client: HttpClient,
                     request: __httpRequest);
-                PrepareSpeechRequest(
+                PreparePromoteRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
+                    projectId: projectId!,
                     speechifyVersion: speechifyVersion,
+                    idempotencyKey: idempotencyKey,
                     request: request);
 
                 return __httpRequest;
@@ -198,9 +274,9 @@ namespace Speechify
                     await global::Speechify.AutoSDKRequestOptionsSupport.OnBeforeRequestAsync(
                             clientOptions: Options,
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "Speech",
-                                methodName: "SpeechAsync",
-                                pathTemplate: "\"/v1/audio/speech\"",
+                                operationId: "Promote",
+                                methodName: "PromoteAsync",
+                                pathTemplate: "$\"/v1/projects/{projectId}/promote\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -232,9 +308,9 @@ namespace Speechify
                         await global::Speechify.AutoSDKRequestOptionsSupport.OnAfterErrorAsync(
                             clientOptions: Options,
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "Speech",
-                                methodName: "SpeechAsync",
-                                pathTemplate: "\"/v1/audio/speech\"",
+                                operationId: "Promote",
+                                methodName: "PromoteAsync",
+                                pathTemplate: "$\"/v1/projects/{projectId}/promote\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -273,9 +349,9 @@ namespace Speechify
                         await global::Speechify.AutoSDKRequestOptionsSupport.OnAfterErrorAsync(
                             clientOptions: Options,
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "Speech",
-                                methodName: "SpeechAsync",
-                                pathTemplate: "\"/v1/audio/speech\"",
+                                operationId: "Promote",
+                                methodName: "PromoteAsync",
+                                pathTemplate: "$\"/v1/projects/{projectId}/promote\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -313,7 +389,7 @@ namespace Speechify
                 ProcessResponse(
                     client: HttpClient,
                     response: __response);
-                ProcessSpeechResponse(
+                ProcessPromoteResponse(
                     httpClient: HttpClient,
                     httpResponseMessage: __response);
                 if (__response.IsSuccessStatusCode)
@@ -321,9 +397,9 @@ namespace Speechify
                     await global::Speechify.AutoSDKRequestOptionsSupport.OnAfterSuccessAsync(
                             clientOptions: Options,
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "Speech",
-                                methodName: "SpeechAsync",
-                                pathTemplate: "\"/v1/audio/speech\"",
+                                operationId: "Promote",
+                                methodName: "PromoteAsync",
+                                pathTemplate: "$\"/v1/projects/{projectId}/promote\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -343,9 +419,9 @@ namespace Speechify
                     await global::Speechify.AutoSDKRequestOptionsSupport.OnAfterErrorAsync(
                             clientOptions: Options,
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "Speech",
-                                methodName: "SpeechAsync",
-                                pathTemplate: "\"/v1/audio/speech\"",
+                                operationId: "Promote",
+                                methodName: "PromoteAsync",
+                                pathTemplate: "$\"/v1/projects/{projectId}/promote\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -429,43 +505,6 @@ namespace Speechify
                                     innerException: __exception_401,
                                     responseBody: __content_401,
                                     responseObject: __value_401,
-                                    responseHeaders: global::System.Linq.Enumerable.ToDictionary(
-                                        __response.Headers,
-                                        h => h.Key,
-                                        h => h.Value));
-                            }
-                            // The workspace has insufficient credits, or the request needs a plan tier the workspace is not on (e.g. voice cloning). Distinct from `Forbidden` so SDK consumers can drive upgrade UX. 
-                            if ((int)__response.StatusCode == 402)
-                            {
-                                string? __content_402 = null;
-                                global::System.Exception? __exception_402 = null;
-                                global::Speechify.Error? __value_402 = null;
-                                try
-                                {
-                                    if (__effectiveReadResponseAsString)
-                                    {
-                                        __content_402 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
-                                        __value_402 = global::Speechify.Error.FromJson(__content_402, JsonSerializerContext);
-                                    }
-                                    else
-                                    {
-                                        __content_402 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
-
-                                        __value_402 = global::Speechify.Error.FromJson(__content_402, JsonSerializerContext);
-                                    }
-                                }
-                                catch (global::System.Exception __ex)
-                                {
-                                    __exception_402 = __ex;
-                                }
-
-
-                                throw global::Speechify.ApiException<global::Speechify.Error>.Create(
-                                    statusCode: __response.StatusCode,
-                                    message: __content_402 ?? __response.ReasonPhrase ?? string.Empty,
-                                    innerException: __exception_402,
-                                    responseBody: __content_402,
-                                    responseObject: __value_402,
                                     responseHeaders: global::System.Linq.Enumerable.ToDictionary(
                                         __response.Headers,
                                         h => h.Key,
@@ -582,154 +621,6 @@ namespace Speechify
                                         h => h.Key,
                                         h => h.Value));
                             }
-                            // Rate limit or concurrency limit exceeded. `error.code` distinguishes request-rate limiting (`rate_limited`) from concurrency exhaustion (`concurrency_limit_reached`). Carries `Retry-After` and the request-rate budget headers; a concurrency-exhaustion 429 also carries `RateLimit-Remaining-Calls: 0`. 
-                            if ((int)__response.StatusCode == 429)
-                            {
-                                string? __content_429 = null;
-                                global::System.Exception? __exception_429 = null;
-                                global::Speechify.Error? __value_429 = null;
-                                try
-                                {
-                                    if (__effectiveReadResponseAsString)
-                                    {
-                                        __content_429 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
-                                        __value_429 = global::Speechify.Error.FromJson(__content_429, JsonSerializerContext);
-                                    }
-                                    else
-                                    {
-                                        __content_429 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
-
-                                        __value_429 = global::Speechify.Error.FromJson(__content_429, JsonSerializerContext);
-                                    }
-                                }
-                                catch (global::System.Exception __ex)
-                                {
-                                    __exception_429 = __ex;
-                                }
-
-
-                                throw global::Speechify.ApiException<global::Speechify.Error>.Create(
-                                    statusCode: __response.StatusCode,
-                                    message: __content_429 ?? __response.ReasonPhrase ?? string.Empty,
-                                    innerException: __exception_429,
-                                    responseBody: __content_429,
-                                    responseObject: __value_429,
-                                    responseHeaders: global::System.Linq.Enumerable.ToDictionary(
-                                        __response.Headers,
-                                        h => h.Key,
-                                        h => h.Value));
-                            }
-                            // An unexpected server-side error occurred. Safe to retry with exponential backoff for idempotent requests. 
-                            if ((int)__response.StatusCode == 500)
-                            {
-                                string? __content_500 = null;
-                                global::System.Exception? __exception_500 = null;
-                                global::Speechify.Error? __value_500 = null;
-                                try
-                                {
-                                    if (__effectiveReadResponseAsString)
-                                    {
-                                        __content_500 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
-                                        __value_500 = global::Speechify.Error.FromJson(__content_500, JsonSerializerContext);
-                                    }
-                                    else
-                                    {
-                                        __content_500 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
-
-                                        __value_500 = global::Speechify.Error.FromJson(__content_500, JsonSerializerContext);
-                                    }
-                                }
-                                catch (global::System.Exception __ex)
-                                {
-                                    __exception_500 = __ex;
-                                }
-
-
-                                throw global::Speechify.ApiException<global::Speechify.Error>.Create(
-                                    statusCode: __response.StatusCode,
-                                    message: __content_500 ?? __response.ReasonPhrase ?? string.Empty,
-                                    innerException: __exception_500,
-                                    responseBody: __content_500,
-                                    responseObject: __value_500,
-                                    responseHeaders: global::System.Linq.Enumerable.ToDictionary(
-                                        __response.Headers,
-                                        h => h.Key,
-                                        h => h.Value));
-                            }
-                            // An upstream dependency (the TTS composer or voice-metadata service) returned a 5xx. The raw upstream detail is not forwarded - the cause is in the server log; the response is a fixed `upstream_failure` envelope. Safe to retry. 
-                            if ((int)__response.StatusCode == 502)
-                            {
-                                string? __content_502 = null;
-                                global::System.Exception? __exception_502 = null;
-                                global::Speechify.Error? __value_502 = null;
-                                try
-                                {
-                                    if (__effectiveReadResponseAsString)
-                                    {
-                                        __content_502 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
-                                        __value_502 = global::Speechify.Error.FromJson(__content_502, JsonSerializerContext);
-                                    }
-                                    else
-                                    {
-                                        __content_502 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
-
-                                        __value_502 = global::Speechify.Error.FromJson(__content_502, JsonSerializerContext);
-                                    }
-                                }
-                                catch (global::System.Exception __ex)
-                                {
-                                    __exception_502 = __ex;
-                                }
-
-
-                                throw global::Speechify.ApiException<global::Speechify.Error>.Create(
-                                    statusCode: __response.StatusCode,
-                                    message: __content_502 ?? __response.ReasonPhrase ?? string.Empty,
-                                    innerException: __exception_502,
-                                    responseBody: __content_502,
-                                    responseObject: __value_502,
-                                    responseHeaders: global::System.Linq.Enumerable.ToDictionary(
-                                        __response.Headers,
-                                        h => h.Key,
-                                        h => h.Value));
-                            }
-                            // A downstream dependency is degraded or the endpoint is intentionally disabled (e.g. phone-number purchase before ops setup). 
-                            if ((int)__response.StatusCode == 503)
-                            {
-                                string? __content_503 = null;
-                                global::System.Exception? __exception_503 = null;
-                                global::Speechify.Error? __value_503 = null;
-                                try
-                                {
-                                    if (__effectiveReadResponseAsString)
-                                    {
-                                        __content_503 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
-                                        __value_503 = global::Speechify.Error.FromJson(__content_503, JsonSerializerContext);
-                                    }
-                                    else
-                                    {
-                                        __content_503 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
-
-                                        __value_503 = global::Speechify.Error.FromJson(__content_503, JsonSerializerContext);
-                                    }
-                                }
-                                catch (global::System.Exception __ex)
-                                {
-                                    __exception_503 = __ex;
-                                }
-
-
-                                throw global::Speechify.ApiException<global::Speechify.Error>.Create(
-                                    statusCode: __response.StatusCode,
-                                    message: __content_503 ?? __response.ReasonPhrase ?? string.Empty,
-                                    innerException: __exception_503,
-                                    responseBody: __content_503,
-                                    responseObject: __value_503,
-                                    responseHeaders: global::System.Linq.Enumerable.ToDictionary(
-                                        __response.Headers,
-                                        h => h.Key,
-                                        h => h.Value));
-                            }
 
                             if (__effectiveReadResponseAsString)
                             {
@@ -743,7 +634,7 @@ namespace Speechify
                                     client: HttpClient,
                                     response: __response,
                                     content: ref __content);
-                                ProcessSpeechResponseContent(
+                                ProcessPromoteResponseContent(
                                     httpClient: HttpClient,
                                     httpResponseMessage: __response,
                                     content: ref __content);
@@ -752,9 +643,9 @@ namespace Speechify
                                 {
                                     __response.EnsureSuccessStatusCode();
 
-                                    var __value = global::Speechify.GetSpeechResponse.FromJson(__content, JsonSerializerContext) ??
+                                    var __value = global::Speechify.PromoteProjectResponse.FromJson(__content, JsonSerializerContext) ??
                                         throw new global::System.InvalidOperationException($"Response deserialization failed for \"{__content}\" ");
-                                    return new global::Speechify.AutoSDKHttpResponse<global::Speechify.GetSpeechResponse>(
+                                    return new global::Speechify.AutoSDKHttpResponse<global::Speechify.PromoteProjectResponse>(
                                         statusCode: __response.StatusCode,
                                         headers: global::Speechify.AutoSDKHttpResponse.CreateHeaders(__response),
                                         requestUri: __response.RequestMessage?.RequestUri,
@@ -784,9 +675,9 @@ namespace Speechify
                 #endif
                                     ).ConfigureAwait(false);
 
-                                    var __value = await global::Speechify.GetSpeechResponse.FromJsonStreamAsync(__content, JsonSerializerContext).ConfigureAwait(false) ??
+                                    var __value = await global::Speechify.PromoteProjectResponse.FromJsonStreamAsync(__content, JsonSerializerContext).ConfigureAwait(false) ??
                                         throw new global::System.InvalidOperationException("Response deserialization failed.");
-                                    return new global::Speechify.AutoSDKHttpResponse<global::Speechify.GetSpeechResponse>(
+                                    return new global::Speechify.AutoSDKHttpResponse<global::Speechify.PromoteProjectResponse>(
                                         statusCode: __response.StatusCode,
                                         headers: global::Speechify.AutoSDKHttpResponse.CreateHeaders(__response),
                                         requestUri: __response.RequestMessage?.RequestUri,
@@ -827,69 +718,66 @@ namespace Speechify
             }
         }
         /// <summary>
-        /// Create Speech<br/>
-        /// Synthesize speech audio from text or SSML. Returns the complete audio<br/>
-        /// file plus billing and speech-mark metadata in a single JSON response.<br/>
-        /// For low-latency playback or long-form text, use POST /v1/audio/stream.<br/>
-        /// Set `output_format` for explicit sample-rate/bitrate control (e.g.<br/>
-        /// `pcm_16000` or `ulaw_8000` for telephony).
+        /// Promote Project<br/>
+        /// Copy this project's configuration into another project in the same<br/>
+        /// workspace, creating equivalent resources there. Use it to move a<br/>
+        /// staging environment into production, or to seed one client's project<br/>
+        /// from another's.<br/>
+        /// Copied: agents with every setting (prompt, voice, model, memory and<br/>
+        /// consent settings, builtin tools, tool and knowledge-base bindings, the<br/>
+        /// draft and published flow versions, test definitions), tool<br/>
+        /// definitions, knowledge bases with their folders (URL sources are<br/>
+        /// re-imported in the target through the normal import path, so the<br/>
+        /// response lists the import jobs to poll), audio assets (the object is<br/>
+        /// copied), and the webhook endpoints scoped to the source.<br/>
+        /// Never copied: vault credentials, API keys and service accounts, phone<br/>
+        /// numbers and SIP trunks, conversations, callers, memories, call and<br/>
+        /// test history, batch calls, member grants, spend limits, uploaded or<br/>
+        /// pasted knowledge-base documents, and every secret. A copied tool or<br/>
+        /// agent that referenced a credential has the reference cleared, every<br/>
+        /// server-minted signing secret is minted fresh, and each such item is<br/>
+        /// listed under `needs_attention` so nothing is silently half-configured.<br/>
+        /// A copy keeps its name. Where the target already holds a resource of<br/>
+        /// the same kind and name, the copy is suffixed (`name (2)`, or `name_2`<br/>
+        /// for tools) and listed under `needs_attention` with reason `renamed`;<br/>
+        /// a target tool whose definition is identical to the source's is bound<br/>
+        /// instead of duplicated and appears under `reused`.<br/>
+        /// The copy runs in one transaction. A project holding more than 200<br/>
+        /// resources (agents, tools, knowledge bases, URL sources, audio assets,<br/>
+        /// webhook endpoints and tests together) answers `409<br/>
+        /// project_too_large_to_promote`. Send an `Idempotency-Key` header to<br/>
+        /// make a retry safe: the first manifest is replayed rather than the<br/>
+        /// project copied twice. Both projects must be reachable to the caller;<br/>
+        /// a project-pinned credential cannot promote.
         /// </summary>
+        /// <param name="projectId"></param>
         /// <param name="speechifyVersion"></param>
-        /// <param name="audioFormat">
-        /// The format for the output audio. Note, that the current default is "wav", but there's no guarantee it will not change in the future. We recommend always passing the specific param you expect.<br/>
-        /// Default Value: wav
+        /// <param name="idempotencyKey">
+        /// Optional idempotency key. When omitted, the SDK generates one for this request.
         /// </param>
-        /// <param name="input">
-        /// Plain text or SSML to be synthesized to speech.<br/>
-        /// Refer to https://docs.speechify.ai/docs/api-limits for the input size limits.<br/>
-        /// Emotion, Pitch and Speed Rate are configured in the ssml input, please refer to the ssml documentation for more information: https://docs.speechify.ai/docs/ssml#prosody
-        /// </param>
-        /// <param name="language">
-        /// Language of the input. Follow the format of an ISO 639-1 language code and an ISO 3166-1 region code, separated by a hyphen, e.g. en-US.<br/>
-        /// Please refer to the list of the supported languages and recommendations regarding this parameter: https://docs.speechify.ai/docs/language-support.
-        /// </param>
-        /// <param name="model">
-        /// Model used for audio synthesis. Defaults to `simba-3.0`, which is streaming-native and multilingual: it officially supports English plus `de-DE`, `es-ES`, `es-MX`, `fr-FR`, `it-IT` and `pt-BR`, and routes each request to its English or its multilingual training based on `language` (falling back to the voice's locale when `language` is omitted). `simba-3.2` is the streaming-native model with the lowest TTFB and richest expressivity, and the recommended Simba 3 model; it is English only, so a non-English voice returns 400.<br/>
-        /// The legacy Simba 1.6 models `simba-english` and `simba-multilingual` are retired from API version `2026-09-21`: naming one returns 400 `model_retired`. Pinning your API version to a date before `2026-09-21` keeps them working until **2026-11-21**, when both are switched off for every API version. Migrate to `simba-3.2` (English) or `simba-3.0` before then; call GET /v1/audio/models to see the set your workspace can select today.<br/>
-        /// Default Value: simba-3.0
-        /// </param>
-        /// <param name="options">
-        /// GetSpeechOptionsRequest is the wrapper for request parameters to the client
-        /// </param>
-        /// <param name="outputFormat">
-        /// The output audio format as a `codec_sampleRate_bitrate` string. Takes precedence over `audio_format` when set.
-        /// </param>
-        /// <param name="voiceId">
-        /// Id of the voice to be used for synthesizing speech. Refer to /v1/voices endpoint for available voices
+        /// <param name="targetProjectId">
+        /// The project to copy into. Must differ from the source and belong to the same workspace.
         /// </param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::System.InvalidOperationException"></exception>
-        public async global::System.Threading.Tasks.Task<global::Speechify.GetSpeechResponse> SpeechAsync(
-            string input,
-            string voiceId,
+        public async global::System.Threading.Tasks.Task<global::Speechify.PromoteProjectResponse> PromoteAsync(
+            string projectId,
+            string targetProjectId,
             string? speechifyVersion = default,
-            global::Speechify.GetSpeechRequestAudioFormat? audioFormat = default,
-            string? language = default,
-            global::Speechify.GetSpeechRequestModel? model = default,
-            global::Speechify.GetSpeechOptionsRequest? options = default,
-            global::Speechify.AudioOutputFormat? outputFormat = default,
+            string? idempotencyKey = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
-            var __request = new global::Speechify.GetSpeechRequest
+            var __request = new global::Speechify.PromoteProjectRequest
             {
-                AudioFormat = audioFormat,
-                Input = input,
-                Language = language,
-                Model = model,
-                Options = options,
-                OutputFormat = outputFormat,
-                VoiceId = voiceId,
+                TargetProjectId = targetProjectId,
             };
 
-            return await SpeechAsync(
+            return await PromoteAsync(
+                projectId: projectId,
                 speechifyVersion: speechifyVersion,
+                idempotencyKey: idempotencyKey,
                 request: __request,
                 requestOptions: requestOptions,
                 cancellationToken: cancellationToken).ConfigureAwait(false);

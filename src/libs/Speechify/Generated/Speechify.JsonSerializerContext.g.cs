@@ -456,6 +456,14 @@ namespace Speechify
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.ProjectMembersResponse))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Speechify.ProjectMember>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.GrantProjectMemberRequest))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.PromoteProjectRequest))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.PromoteCreated))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.PromoteReused))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.PromoteAttentionKind), TypeInfoPropertyName = "PromoteAttentionKind2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.PromoteAttentionReason), TypeInfoPropertyName = "PromoteAttentionReason2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.PromoteAttention))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.PromoteProjectResponse))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Speechify.PromoteAttention>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.CreateRequest))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.UploadDocumentRequest))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.UpdateDocumentRequest))]
@@ -506,14 +514,6 @@ namespace Speechify
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.ConversationEndReason?), TypeInfoPropertyName = "NullableConversationEndReason2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.AgentSnapshotInterruptionSensitivity?), TypeInfoPropertyName = "NullableAgentSnapshotInterruptionSensitivity2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.AgentSnapshotBackgroundNoisePreset?), TypeInfoPropertyName = "NullableAgentSnapshotBackgroundNoisePreset2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.ConversationIvrSurrenderReason?), TypeInfoPropertyName = "NullableConversationIvrSurrenderReason2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.MessageRole?), TypeInfoPropertyName = "NullableMessageRole2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.EvaluationKind?), TypeInfoPropertyName = "NullableEvaluationKind2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.EvaluationStatus?), TypeInfoPropertyName = "NullableEvaluationStatus2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.OneOf<global::Speechify.EvaluationStatus?, object>?), TypeInfoPropertyName = "NullableOneOfEvaluationStatusObject2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.WebhookDeliveryStatus?), TypeInfoPropertyName = "NullableWebhookDeliveryStatus2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.KnowledgeBaseDocumentSourceKind?), TypeInfoPropertyName = "NullableKnowledgeBaseDocumentSourceKind2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.KnowledgeBaseDocumentStatus?), TypeInfoPropertyName = "NullableKnowledgeBaseDocumentStatus2")]
     internal sealed partial class SourceGenerationContextChunk0 : global::System.Text.Json.Serialization.JsonSerializerContext
     {
     }
@@ -526,6 +526,14 @@ namespace Speechify
         Converters = new global::System.Type[]
         {
         })]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.ConversationIvrSurrenderReason?), TypeInfoPropertyName = "NullableConversationIvrSurrenderReason2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.MessageRole?), TypeInfoPropertyName = "NullableMessageRole2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.EvaluationKind?), TypeInfoPropertyName = "NullableEvaluationKind2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.EvaluationStatus?), TypeInfoPropertyName = "NullableEvaluationStatus2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.OneOf<global::Speechify.EvaluationStatus?, object>?), TypeInfoPropertyName = "NullableOneOfEvaluationStatusObject2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.WebhookDeliveryStatus?), TypeInfoPropertyName = "NullableWebhookDeliveryStatus2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.KnowledgeBaseDocumentSourceKind?), TypeInfoPropertyName = "NullableKnowledgeBaseDocumentSourceKind2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.KnowledgeBaseDocumentStatus?), TypeInfoPropertyName = "NullableKnowledgeBaseDocumentStatus2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.ImportJobKind?), TypeInfoPropertyName = "NullableImportJobKind2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.JobStatus?), TypeInfoPropertyName = "NullableJobStatus2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.RefreshHistoryEntryStatus?), TypeInfoPropertyName = "NullableRefreshHistoryEntryStatus2")]
@@ -578,6 +586,8 @@ namespace Speechify
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.ShareLinkStatus?), TypeInfoPropertyName = "NullableShareLinkStatus2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.CreateShareLinkResponseStatus?), TypeInfoPropertyName = "NullableCreateShareLinkResponseStatus2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.BatchRecipientStatus?), TypeInfoPropertyName = "NullableBatchRecipientStatus2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.PromoteAttentionKind?), TypeInfoPropertyName = "NullablePromoteAttentionKind2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.PromoteAttentionReason?), TypeInfoPropertyName = "NullablePromoteAttentionReason2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.NestedChunk>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.GetVoiceLanguage>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.GetVoicesModel>))]
@@ -657,6 +667,7 @@ namespace Speechify
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.KnowledgeBaseDocumentDetail>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.BatchRecipient>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.ProjectMember>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.PromoteAttention>))]
     internal sealed partial class SourceGenerationContextChunk1 : global::System.Text.Json.Serialization.JsonSerializerContext
     {
     }
@@ -1051,7 +1062,15 @@ namespace Speechify
 
                     || typeToConvert == typeof(global::Speechify.BatchRecipientStatus)
 
-                    || typeToConvert == typeof(global::Speechify.BatchRecipientStatus?);
+                    || typeToConvert == typeof(global::Speechify.BatchRecipientStatus?)
+
+                    || typeToConvert == typeof(global::Speechify.PromoteAttentionKind)
+
+                    || typeToConvert == typeof(global::Speechify.PromoteAttentionKind?)
+
+                    || typeToConvert == typeof(global::Speechify.PromoteAttentionReason)
+
+                    || typeToConvert == typeof(global::Speechify.PromoteAttentionReason?);
             }
 
             public override global::System.Text.Json.Serialization.JsonConverter CreateConverter(
@@ -1856,6 +1875,26 @@ namespace Speechify
                 if (typeToConvert == typeof(global::Speechify.BatchRecipientStatus?))
                 {
                     return new global::Speechify.JsonConverters.BatchRecipientStatusNullableJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.PromoteAttentionKind))
+                {
+                    return new global::Speechify.JsonConverters.PromoteAttentionKindJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.PromoteAttentionKind?))
+                {
+                    return new global::Speechify.JsonConverters.PromoteAttentionKindNullableJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.PromoteAttentionReason))
+                {
+                    return new global::Speechify.JsonConverters.PromoteAttentionReasonJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.PromoteAttentionReason?))
+                {
+                    return new global::Speechify.JsonConverters.PromoteAttentionReasonNullableJsonConverter();
                 }
                 throw new global::System.NotSupportedException($"No generated enum converter is registered for '{typeToConvert}'.");
             }

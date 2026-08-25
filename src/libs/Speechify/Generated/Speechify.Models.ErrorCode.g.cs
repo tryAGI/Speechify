@@ -208,6 +208,10 @@ namespace Speechify
         /// <summary>
         /// 
         /// </summary>
+        ProjectArchived,
+        /// <summary>
+        /// 
+        /// </summary>
         ProjectHasScopedCredentials,
         /// <summary>
         /// 
@@ -216,11 +220,19 @@ namespace Speechify
         /// <summary>
         /// 
         /// </summary>
+        ProjectNotArchived,
+        /// <summary>
+        /// 
+        /// </summary>
         ProjectNotFound,
         /// <summary>
         /// 
         /// </summary>
         ProjectSpendLimitExceeded,
+        /// <summary>
+        /// 
+        /// </summary>
+        ProjectTooLargeToPromote,
         /// <summary>
         /// 
         /// </summary>
@@ -391,10 +403,13 @@ namespace Speechify
                 ErrorCode.PaymentRequired => "payment_required",
                 ErrorCode.PhoneNumberNotFound => "phone_number_not_found",
                 ErrorCode.PhoneNumberQuotaReached => "phone_number_quota_reached",
+                ErrorCode.ProjectArchived => "project_archived",
                 ErrorCode.ProjectHasScopedCredentials => "project_has_scoped_credentials",
                 ErrorCode.ProjectLimitReached => "project_limit_reached",
+                ErrorCode.ProjectNotArchived => "project_not_archived",
                 ErrorCode.ProjectNotFound => "project_not_found",
                 ErrorCode.ProjectSpendLimitExceeded => "project_spend_limit_exceeded",
+                ErrorCode.ProjectTooLargeToPromote => "project_too_large_to_promote",
                 ErrorCode.PurchasedNumbersNotIncluded => "purchased_numbers_not_included",
                 ErrorCode.RateLimited => "rate_limited",
                 ErrorCode.ServiceAccountLimitReached => "service_account_limit_reached",
@@ -480,10 +495,13 @@ namespace Speechify
                 "payment_required" => ErrorCode.PaymentRequired,
                 "phone_number_not_found" => ErrorCode.PhoneNumberNotFound,
                 "phone_number_quota_reached" => ErrorCode.PhoneNumberQuotaReached,
+                "project_archived" => ErrorCode.ProjectArchived,
                 "project_has_scoped_credentials" => ErrorCode.ProjectHasScopedCredentials,
                 "project_limit_reached" => ErrorCode.ProjectLimitReached,
+                "project_not_archived" => ErrorCode.ProjectNotArchived,
                 "project_not_found" => ErrorCode.ProjectNotFound,
                 "project_spend_limit_exceeded" => ErrorCode.ProjectSpendLimitExceeded,
+                "project_too_large_to_promote" => ErrorCode.ProjectTooLargeToPromote,
                 "purchased_numbers_not_included" => ErrorCode.PurchasedNumbersNotIncluded,
                 "rate_limited" => ErrorCode.RateLimited,
                 "service_account_limit_reached" => ErrorCode.ServiceAccountLimitReached,

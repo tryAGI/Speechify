@@ -27,12 +27,14 @@ namespace Speechify
             };
         partial void PrepareListTestFoldersArguments(
             global::System.Net.Http.HttpClient httpClient,
+            ref string? projectId,
             ref string? cursor,
             ref int? limit,
             ref string? speechifyVersion);
         partial void PrepareListTestFoldersRequest(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpRequestMessage httpRequestMessage,
+            string? projectId,
             string? cursor,
             int? limit,
             string? speechifyVersion);
@@ -49,8 +51,14 @@ namespace Speechify
         /// List Test Folders<br/>
         /// List every test folder the caller owns. Flat list; build the tree<br/>
         /// client-side. Cursor-paginated: omit `cursor` for the first page;<br/>
-        /// walk pages while `has_more` is true (default page size 50, max 200).
+        /// walk pages while `has_more` is true (default page size 50, max 200).<br/>
+        /// Folders are workspace-wide, so `project_id` never hides a folder:<br/>
+        /// it narrows each folder's `test_count` to the tests that project<br/>
+        /// scope admits, the same rows `GET /v1/agents/tests?folder_id=&lt;id&gt;`<br/>
+        /// lists under that scope, while `total_test_count` counts what the<br/>
+        /// caller could see with no filter (pin and grants still apply).
         /// </summary>
+        /// <param name="projectId"></param>
         /// <param name="cursor"></param>
         /// <param name="limit">
         /// Default Value: 50
@@ -60,6 +68,7 @@ namespace Speechify
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
         public async global::System.Threading.Tasks.Task<global::Speechify.ListAgentTestFoldersResponse> ListTestFoldersAsync(
+            string? projectId = default,
             string? cursor = default,
             int? limit = default,
             string? speechifyVersion = default,
@@ -67,6 +76,7 @@ namespace Speechify
             global::System.Threading.CancellationToken cancellationToken = default)
         {
             var __response = await ListTestFoldersAsResponseAsync(
+                projectId: projectId,
                 cursor: cursor,
                 limit: limit,
                 speechifyVersion: speechifyVersion,
@@ -80,8 +90,14 @@ namespace Speechify
         /// List Test Folders<br/>
         /// List every test folder the caller owns. Flat list; build the tree<br/>
         /// client-side. Cursor-paginated: omit `cursor` for the first page;<br/>
-        /// walk pages while `has_more` is true (default page size 50, max 200).
+        /// walk pages while `has_more` is true (default page size 50, max 200).<br/>
+        /// Folders are workspace-wide, so `project_id` never hides a folder:<br/>
+        /// it narrows each folder's `test_count` to the tests that project<br/>
+        /// scope admits, the same rows `GET /v1/agents/tests?folder_id=&lt;id&gt;`<br/>
+        /// lists under that scope, while `total_test_count` counts what the<br/>
+        /// caller could see with no filter (pin and grants still apply).
         /// </summary>
+        /// <param name="projectId"></param>
         /// <param name="cursor"></param>
         /// <param name="limit">
         /// Default Value: 50
@@ -91,6 +107,7 @@ namespace Speechify
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
         public async global::System.Threading.Tasks.Task<global::Speechify.AutoSDKHttpResponse<global::Speechify.ListAgentTestFoldersResponse>> ListTestFoldersAsResponseAsync(
+            string? projectId = default,
             string? cursor = default,
             int? limit = default,
             string? speechifyVersion = default,
@@ -101,6 +118,7 @@ namespace Speechify
                 client: HttpClient);
             PrepareListTestFoldersArguments(
                 httpClient: HttpClient,
+                projectId: ref projectId,
                 cursor: ref cursor,
                 limit: ref limit,
                 speechifyVersion: ref speechifyVersion);
@@ -132,6 +150,7 @@ namespace Speechify
                                 path: "/v1/agents/tests/folders",
                                 baseUri: HttpClient.BaseAddress);
                             __pathBuilder
+                                .AddOptionalParameter("project_id", projectId)
                                 .AddOptionalParameter("cursor", cursor)
                                 .AddOptionalParameter("limit", limit?.ToString())
                                 ;
@@ -181,6 +200,7 @@ namespace Speechify
                 PrepareListTestFoldersRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
+                    projectId: projectId,
                     cursor: cursor,
                     limit: limit,
                     speechifyVersion: speechifyVersion);
@@ -431,6 +451,43 @@ namespace Speechify
                                     innerException: __exception_401,
                                     responseBody: __content_401,
                                     responseObject: __value_401,
+                                    responseHeaders: global::System.Linq.Enumerable.ToDictionary(
+                                        __response.Headers,
+                                        h => h.Key,
+                                        h => h.Value));
+                            }
+                            // The referenced resource does not exist or is not visible to the caller's workspace. 
+                            if ((int)__response.StatusCode == 404)
+                            {
+                                string? __content_404 = null;
+                                global::System.Exception? __exception_404 = null;
+                                global::Speechify.Error? __value_404 = null;
+                                try
+                                {
+                                    if (__effectiveReadResponseAsString)
+                                    {
+                                        __content_404 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+                                        __value_404 = global::Speechify.Error.FromJson(__content_404, JsonSerializerContext);
+                                    }
+                                    else
+                                    {
+                                        __content_404 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+
+                                        __value_404 = global::Speechify.Error.FromJson(__content_404, JsonSerializerContext);
+                                    }
+                                }
+                                catch (global::System.Exception __ex)
+                                {
+                                    __exception_404 = __ex;
+                                }
+
+
+                                throw global::Speechify.ApiException<global::Speechify.Error>.Create(
+                                    statusCode: __response.StatusCode,
+                                    message: __content_404 ?? __response.ReasonPhrase ?? string.Empty,
+                                    innerException: __exception_404,
+                                    responseBody: __content_404,
+                                    responseObject: __value_404,
                                     responseHeaders: global::System.Linq.Enumerable.ToDictionary(
                                         __response.Headers,
                                         h => h.Key,
