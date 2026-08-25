@@ -76,8 +76,6 @@ namespace Speechify
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.AgentLlmConfigProvider), TypeInfoPropertyName = "AgentLlmConfigProvider2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.AgentLLMConfig))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.AgentTTSConfig))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.AgentSttConfigOverride), TypeInfoPropertyName = "AgentSttConfigOverride2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.AgentSTTConfig))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.AgentTurnHandlingConfigInterruptionSensitivity), TypeInfoPropertyName = "AgentTurnHandlingConfigInterruptionSensitivity2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.AgentTurnHandlingConfig))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.AgentMemoryConfig))]
@@ -434,6 +432,35 @@ namespace Speechify
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.AudioAsset))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.ListAudioAssetsResponse))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Speechify.AudioAsset>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.Project))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.ListProjectsResponse))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Speechify.Project>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.CreateProjectRequest))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.UpdateProjectRequest))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.DeleteProjectRequestMode), TypeInfoPropertyName = "DeleteProjectRequestMode2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.DeleteProjectRequest))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.ProjectTeardownBlockerKind), TypeInfoPropertyName = "ProjectTeardownBlockerKind2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.ProjectTeardownBlockerBlocksItems), TypeInfoPropertyName = "ProjectTeardownBlockerBlocksItems2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.ProjectTeardownBlocker))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Speechify.ProjectTeardownBlockerBlocksItems>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.ProjectTeardownGroup))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.ProjectTeardown))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Speechify.ProjectTeardownBlocker>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Speechify.ProjectTeardownGroup>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.ProjectResourceCounts))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.ProjectStats))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.PromoteProjectRequest))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.PromoteCreated))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.PromoteReused))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.PromoteAttentionKind), TypeInfoPropertyName = "PromoteAttentionKind2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.PromoteAttentionReason), TypeInfoPropertyName = "PromoteAttentionReason2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.PromoteAttention))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.PromoteProjectResponse))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Speechify.PromoteAttention>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.ProjectMember))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.ProjectMembersResponse))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Speechify.ProjectMember>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.GrantProjectMemberRequest))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.ShareLinkPreview))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.CreateShareLinkSessionRequest))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.ShareLinkSession))]
@@ -452,18 +479,6 @@ namespace Speechify
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.BatchRecipient))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.ListBatchRecipientsResponse))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Speechify.BatchRecipient>))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.ProjectMember))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.ProjectMembersResponse))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Speechify.ProjectMember>))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.GrantProjectMemberRequest))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.PromoteProjectRequest))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.PromoteCreated))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.PromoteReused))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.PromoteAttentionKind), TypeInfoPropertyName = "PromoteAttentionKind2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.PromoteAttentionReason), TypeInfoPropertyName = "PromoteAttentionReason2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.PromoteAttention))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.PromoteProjectResponse))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Speechify.PromoteAttention>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.CreateRequest))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.UploadDocumentRequest))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.UpdateDocumentRequest))]
@@ -495,11 +510,22 @@ namespace Speechify
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.V1VoicesPostRequestBodyContentMultipartFormDataSchemaGender?), TypeInfoPropertyName = "NullableV1VoicesPostRequestBodyContentMultipartFormDataSchemaGender2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.DateTime?))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.AgentLlmConfigProvider?), TypeInfoPropertyName = "NullableAgentLlmConfigProvider2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.AgentSttConfigOverride?), TypeInfoPropertyName = "NullableAgentSttConfigOverride2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.AgentTurnHandlingConfigInterruptionSensitivity?), TypeInfoPropertyName = "NullableAgentTurnHandlingConfigInterruptionSensitivity2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.AgentBackgroundNoiseConfigPreset?), TypeInfoPropertyName = "NullableAgentBackgroundNoiseConfigPreset2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.WidgetConfigStyle?), TypeInfoPropertyName = "NullableWidgetConfigStyle2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.WidgetConfigTheme?), TypeInfoPropertyName = "NullableWidgetConfigTheme2")]
+    internal sealed partial class SourceGenerationContextChunk0 : global::System.Text.Json.Serialization.JsonSerializerContext
+    {
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    [global::System.Text.Json.Serialization.JsonSourceGenerationOptions(
+        DefaultIgnoreCondition = global::System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull,
+        Converters = new global::System.Type[]
+        {
+        })]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.WidgetConfigAvatarType?), TypeInfoPropertyName = "NullableWidgetConfigAvatarType2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.AmdConfigOnVoicemailAction?), TypeInfoPropertyName = "NullableAmdConfigOnVoicemailAction2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.AmdConfigOnIvrAction?), TypeInfoPropertyName = "NullableAmdConfigOnIvrAction2")]
@@ -514,18 +540,6 @@ namespace Speechify
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.ConversationEndReason?), TypeInfoPropertyName = "NullableConversationEndReason2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.AgentSnapshotInterruptionSensitivity?), TypeInfoPropertyName = "NullableAgentSnapshotInterruptionSensitivity2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.AgentSnapshotBackgroundNoisePreset?), TypeInfoPropertyName = "NullableAgentSnapshotBackgroundNoisePreset2")]
-    internal sealed partial class SourceGenerationContextChunk0 : global::System.Text.Json.Serialization.JsonSerializerContext
-    {
-    }
-
-    /// <summary>
-    /// 
-    /// </summary>
-    [global::System.Text.Json.Serialization.JsonSourceGenerationOptions(
-        DefaultIgnoreCondition = global::System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull,
-        Converters = new global::System.Type[]
-        {
-        })]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.ConversationIvrSurrenderReason?), TypeInfoPropertyName = "NullableConversationIvrSurrenderReason2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.MessageRole?), TypeInfoPropertyName = "NullableMessageRole2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.EvaluationKind?), TypeInfoPropertyName = "NullableEvaluationKind2")]
@@ -583,11 +597,14 @@ namespace Speechify
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.SIPTrunkDirection?), TypeInfoPropertyName = "NullableSIPTrunkDirection2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.SIPTransport?), TypeInfoPropertyName = "NullableSIPTransport2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.SIPMediaEncryption?), TypeInfoPropertyName = "NullableSIPMediaEncryption2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.DeleteProjectRequestMode?), TypeInfoPropertyName = "NullableDeleteProjectRequestMode2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.ProjectTeardownBlockerKind?), TypeInfoPropertyName = "NullableProjectTeardownBlockerKind2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.ProjectTeardownBlockerBlocksItems?), TypeInfoPropertyName = "NullableProjectTeardownBlockerBlocksItems2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.PromoteAttentionKind?), TypeInfoPropertyName = "NullablePromoteAttentionKind2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.PromoteAttentionReason?), TypeInfoPropertyName = "NullablePromoteAttentionReason2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.ShareLinkStatus?), TypeInfoPropertyName = "NullableShareLinkStatus2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.CreateShareLinkResponseStatus?), TypeInfoPropertyName = "NullableCreateShareLinkResponseStatus2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.BatchRecipientStatus?), TypeInfoPropertyName = "NullableBatchRecipientStatus2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.PromoteAttentionKind?), TypeInfoPropertyName = "NullablePromoteAttentionKind2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.PromoteAttentionReason?), TypeInfoPropertyName = "NullablePromoteAttentionReason2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.NestedChunk>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.GetVoiceLanguage>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.GetVoicesModel>))]
@@ -663,11 +680,15 @@ namespace Speechify
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.SIPTrunk>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.Caller>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.AudioAsset>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.Project>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.ProjectTeardownBlockerBlocksItems>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.ProjectTeardownBlocker>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.ProjectTeardownGroup>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.PromoteAttention>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.ProjectMember>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.ShareLink>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.KnowledgeBaseDocumentDetail>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.BatchRecipient>))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.ProjectMember>))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.PromoteAttention>))]
     internal sealed partial class SourceGenerationContextChunk1 : global::System.Text.Json.Serialization.JsonSerializerContext
     {
     }
@@ -823,10 +844,6 @@ namespace Speechify
                     || typeToConvert == typeof(global::Speechify.AgentLlmConfigProvider)
 
                     || typeToConvert == typeof(global::Speechify.AgentLlmConfigProvider?)
-
-                    || typeToConvert == typeof(global::Speechify.AgentSttConfigOverride)
-
-                    || typeToConvert == typeof(global::Speechify.AgentSttConfigOverride?)
 
                     || typeToConvert == typeof(global::Speechify.AgentTurnHandlingConfigInterruptionSensitivity)
 
@@ -1052,6 +1069,26 @@ namespace Speechify
 
                     || typeToConvert == typeof(global::Speechify.SIPMediaEncryption?)
 
+                    || typeToConvert == typeof(global::Speechify.DeleteProjectRequestMode)
+
+                    || typeToConvert == typeof(global::Speechify.DeleteProjectRequestMode?)
+
+                    || typeToConvert == typeof(global::Speechify.ProjectTeardownBlockerKind)
+
+                    || typeToConvert == typeof(global::Speechify.ProjectTeardownBlockerKind?)
+
+                    || typeToConvert == typeof(global::Speechify.ProjectTeardownBlockerBlocksItems)
+
+                    || typeToConvert == typeof(global::Speechify.ProjectTeardownBlockerBlocksItems?)
+
+                    || typeToConvert == typeof(global::Speechify.PromoteAttentionKind)
+
+                    || typeToConvert == typeof(global::Speechify.PromoteAttentionKind?)
+
+                    || typeToConvert == typeof(global::Speechify.PromoteAttentionReason)
+
+                    || typeToConvert == typeof(global::Speechify.PromoteAttentionReason?)
+
                     || typeToConvert == typeof(global::Speechify.ShareLinkStatus)
 
                     || typeToConvert == typeof(global::Speechify.ShareLinkStatus?)
@@ -1062,15 +1099,7 @@ namespace Speechify
 
                     || typeToConvert == typeof(global::Speechify.BatchRecipientStatus)
 
-                    || typeToConvert == typeof(global::Speechify.BatchRecipientStatus?)
-
-                    || typeToConvert == typeof(global::Speechify.PromoteAttentionKind)
-
-                    || typeToConvert == typeof(global::Speechify.PromoteAttentionKind?)
-
-                    || typeToConvert == typeof(global::Speechify.PromoteAttentionReason)
-
-                    || typeToConvert == typeof(global::Speechify.PromoteAttentionReason?);
+                    || typeToConvert == typeof(global::Speechify.BatchRecipientStatus?);
             }
 
             public override global::System.Text.Json.Serialization.JsonConverter CreateConverter(
@@ -1275,16 +1304,6 @@ namespace Speechify
                 if (typeToConvert == typeof(global::Speechify.AgentLlmConfigProvider?))
                 {
                     return new global::Speechify.JsonConverters.AgentLlmConfigProviderNullableJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Speechify.AgentSttConfigOverride))
-                {
-                    return new global::Speechify.JsonConverters.AgentSttConfigOverrideJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Speechify.AgentSttConfigOverride?))
-                {
-                    return new global::Speechify.JsonConverters.AgentSttConfigOverrideNullableJsonConverter();
                 }
 
                 if (typeToConvert == typeof(global::Speechify.AgentTurnHandlingConfigInterruptionSensitivity))
@@ -1847,6 +1866,56 @@ namespace Speechify
                     return new global::Speechify.JsonConverters.SIPMediaEncryptionNullableJsonConverter();
                 }
 
+                if (typeToConvert == typeof(global::Speechify.DeleteProjectRequestMode))
+                {
+                    return new global::Speechify.JsonConverters.DeleteProjectRequestModeJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.DeleteProjectRequestMode?))
+                {
+                    return new global::Speechify.JsonConverters.DeleteProjectRequestModeNullableJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.ProjectTeardownBlockerKind))
+                {
+                    return new global::Speechify.JsonConverters.ProjectTeardownBlockerKindJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.ProjectTeardownBlockerKind?))
+                {
+                    return new global::Speechify.JsonConverters.ProjectTeardownBlockerKindNullableJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.ProjectTeardownBlockerBlocksItems))
+                {
+                    return new global::Speechify.JsonConverters.ProjectTeardownBlockerBlocksItemsJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.ProjectTeardownBlockerBlocksItems?))
+                {
+                    return new global::Speechify.JsonConverters.ProjectTeardownBlockerBlocksItemsNullableJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.PromoteAttentionKind))
+                {
+                    return new global::Speechify.JsonConverters.PromoteAttentionKindJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.PromoteAttentionKind?))
+                {
+                    return new global::Speechify.JsonConverters.PromoteAttentionKindNullableJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.PromoteAttentionReason))
+                {
+                    return new global::Speechify.JsonConverters.PromoteAttentionReasonJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.PromoteAttentionReason?))
+                {
+                    return new global::Speechify.JsonConverters.PromoteAttentionReasonNullableJsonConverter();
+                }
+
                 if (typeToConvert == typeof(global::Speechify.ShareLinkStatus))
                 {
                     return new global::Speechify.JsonConverters.ShareLinkStatusJsonConverter();
@@ -1875,26 +1944,6 @@ namespace Speechify
                 if (typeToConvert == typeof(global::Speechify.BatchRecipientStatus?))
                 {
                     return new global::Speechify.JsonConverters.BatchRecipientStatusNullableJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Speechify.PromoteAttentionKind))
-                {
-                    return new global::Speechify.JsonConverters.PromoteAttentionKindJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Speechify.PromoteAttentionKind?))
-                {
-                    return new global::Speechify.JsonConverters.PromoteAttentionKindNullableJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Speechify.PromoteAttentionReason))
-                {
-                    return new global::Speechify.JsonConverters.PromoteAttentionReasonJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Speechify.PromoteAttentionReason?))
-                {
-                    return new global::Speechify.JsonConverters.PromoteAttentionReasonNullableJsonConverter();
                 }
                 throw new global::System.NotSupportedException($"No generated enum converter is registered for '{typeToConvert}'.");
             }

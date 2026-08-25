@@ -3,11 +3,11 @@
 
 namespace Speechify
 {
-    public partial class AgentClient
+    public partial class ProjectsClient
     {
 
 
-        private static readonly global::Speechify.EndPointSecurityRequirement s_CreateSecurityRequirement0 =
+        private static readonly global::Speechify.EndPointSecurityRequirement s_DeleteSecurityRequirement0 =
             new global::Speechify.EndPointSecurityRequirement
             {
                 Authorizations = new global::Speechify.EndPointAuthorizationRequirement[]
@@ -21,45 +21,81 @@ namespace Speechify
                     },
                 },
             };
-        private static readonly global::Speechify.EndPointSecurityRequirement[] s_CreateSecurityRequirements =
+        private static readonly global::Speechify.EndPointSecurityRequirement[] s_DeleteSecurityRequirements =
             new global::Speechify.EndPointSecurityRequirement[]
-            {                s_CreateSecurityRequirement0,
+            {                s_DeleteSecurityRequirement0,
             };
-        partial void PrepareCreateArguments(
+        partial void PrepareDeleteArguments(
             global::System.Net.Http.HttpClient httpClient,
+            ref string projectId,
             ref string? speechifyVersion,
-            global::Speechify.CreateAgentRequest request);
-        partial void PrepareCreateRequest(
+            global::Speechify.DeleteProjectRequest request);
+        partial void PrepareDeleteRequest(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpRequestMessage httpRequestMessage,
+            string projectId,
             string? speechifyVersion,
-            global::Speechify.CreateAgentRequest request);
-        partial void ProcessCreateResponse(
+            global::Speechify.DeleteProjectRequest request);
+        partial void ProcessDeleteResponse(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpResponseMessage httpResponseMessage);
 
-        partial void ProcessCreateResponseContent(
+        partial void ProcessDeleteResponseContent(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpResponseMessage httpResponseMessage,
             ref string content);
 
         /// <summary>
-        /// Create Agent<br/>
-        /// Create a voice agent.
+        /// Delete Project<br/>
+        /// Delete a project in one of two modes.<br/>
+        /// **Detach** (the default, no body or `mode: detach`): only the<br/>
+        /// grouping row is removed; every resource in the project moves to the<br/>
+        /// implicit Default project. Refused with 409<br/>
+        /// `project_has_scoped_credentials` while an API key, service account,<br/>
+        /// vault credential, webhook endpoint, member grant or pending invite is<br/>
+        /// scoped to the project, because detaching any of those would silently<br/>
+        /// widen it.<br/>
+        /// **Purge** (`mode: purge` with `confirm` equal to the project's name):<br/>
+        /// available only on an ARCHIVED project, because an irreversible<br/>
+        /// teardown needs a state you can sit in and reverse first; a live<br/>
+        /// project is refused with the coded `409 project_not_archived`. Archive<br/>
+        /// the project, confirm it is the one you mean, then purge. The project<br/>
+        /// is removed WITH its contents in one transaction. Agents<br/>
+        /// (with their tests), knowledge bases (with their documents), tools,<br/>
+        /// audio assets, scoped webhook endpoints and scoped vault credentials<br/>
+        /// are deleted; API keys and service accounts pinned to the project are<br/>
+        /// revoked; member grants and pending-invite scopes on the project are<br/>
+        /// cleared. Conversations, callers, batch calls, suite runs and memories<br/>
+        /// are operational records and survive exactly as on a detach: a<br/>
+        /// conversation keeps its frozen attribution, the others move to the<br/>
+        /// Default project. Refused with 409 while a phone number is attached<br/>
+        /// (release or move it first), while a member's only project grant is<br/>
+        /// this one, or while a live invite carries only this project (clearing<br/>
+        /// either would widen that person to the whole workspace, the invite one<br/>
+        /// acceptance earlier). Preview either mode with<br/>
+        /// `GET /v1/projects/{project_id}/teardown`.<br/>
+        /// The 409 carries the blockers under `error.details.blockers` (`kind`,<br/>
+        /// typed `id`, `name`, and the `blocks` modes each refuses), their total<br/>
+        /// under `error.details.blocker_count`, and, for existing clients, the<br/>
+        /// same rows under `error.details.credentials`. The lists are capped at<br/>
+        /// 50 rows; the counts are not, and the refusal is decided on the count.
         /// </summary>
+        /// <param name="projectId"></param>
         /// <param name="speechifyVersion"></param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
-        public async global::System.Threading.Tasks.Task<global::Speechify.Agent> CreateAsync(
+        public async global::System.Threading.Tasks.Task<string> DeleteAsync(
+            string projectId,
 
-            global::Speechify.CreateAgentRequest request,
+            global::Speechify.DeleteProjectRequest request,
             string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
-            var __response = await CreateAsResponseAsync(
+            var __response = await DeleteAsResponseAsync(
+                projectId: projectId,
 
                 request: request,
                 speechifyVersion: speechifyVersion,
@@ -70,17 +106,50 @@ namespace Speechify
             return __response.Body;
         }
         /// <summary>
-        /// Create Agent<br/>
-        /// Create a voice agent.
+        /// Delete Project<br/>
+        /// Delete a project in one of two modes.<br/>
+        /// **Detach** (the default, no body or `mode: detach`): only the<br/>
+        /// grouping row is removed; every resource in the project moves to the<br/>
+        /// implicit Default project. Refused with 409<br/>
+        /// `project_has_scoped_credentials` while an API key, service account,<br/>
+        /// vault credential, webhook endpoint, member grant or pending invite is<br/>
+        /// scoped to the project, because detaching any of those would silently<br/>
+        /// widen it.<br/>
+        /// **Purge** (`mode: purge` with `confirm` equal to the project's name):<br/>
+        /// available only on an ARCHIVED project, because an irreversible<br/>
+        /// teardown needs a state you can sit in and reverse first; a live<br/>
+        /// project is refused with the coded `409 project_not_archived`. Archive<br/>
+        /// the project, confirm it is the one you mean, then purge. The project<br/>
+        /// is removed WITH its contents in one transaction. Agents<br/>
+        /// (with their tests), knowledge bases (with their documents), tools,<br/>
+        /// audio assets, scoped webhook endpoints and scoped vault credentials<br/>
+        /// are deleted; API keys and service accounts pinned to the project are<br/>
+        /// revoked; member grants and pending-invite scopes on the project are<br/>
+        /// cleared. Conversations, callers, batch calls, suite runs and memories<br/>
+        /// are operational records and survive exactly as on a detach: a<br/>
+        /// conversation keeps its frozen attribution, the others move to the<br/>
+        /// Default project. Refused with 409 while a phone number is attached<br/>
+        /// (release or move it first), while a member's only project grant is<br/>
+        /// this one, or while a live invite carries only this project (clearing<br/>
+        /// either would widen that person to the whole workspace, the invite one<br/>
+        /// acceptance earlier). Preview either mode with<br/>
+        /// `GET /v1/projects/{project_id}/teardown`.<br/>
+        /// The 409 carries the blockers under `error.details.blockers` (`kind`,<br/>
+        /// typed `id`, `name`, and the `blocks` modes each refuses), their total<br/>
+        /// under `error.details.blocker_count`, and, for existing clients, the<br/>
+        /// same rows under `error.details.credentials`. The lists are capped at<br/>
+        /// 50 rows; the counts are not, and the refusal is decided on the count.
         /// </summary>
+        /// <param name="projectId"></param>
         /// <param name="speechifyVersion"></param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
-        public async global::System.Threading.Tasks.Task<global::Speechify.AutoSDKHttpResponse<global::Speechify.Agent>> CreateAsResponseAsync(
+        public async global::System.Threading.Tasks.Task<global::Speechify.AutoSDKHttpResponse<string>> DeleteAsResponseAsync(
+            string projectId,
 
-            global::Speechify.CreateAgentRequest request,
+            global::Speechify.DeleteProjectRequest request,
             string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
@@ -89,16 +158,17 @@ namespace Speechify
 
             PrepareArguments(
                 client: HttpClient);
-            PrepareCreateArguments(
+            PrepareDeleteArguments(
                 httpClient: HttpClient,
+                projectId: ref projectId,
                 speechifyVersion: ref speechifyVersion,
                 request: request);
 
 
             var __authorizations = global::Speechify.EndPointSecurityResolver.ResolveAuthorizations(
                 availableAuthorizations: Authorizations,
-                securityRequirements: s_CreateSecurityRequirements,
-                operationName: "CreateAsync");
+                securityRequirements: s_DeleteSecurityRequirements,
+                operationName: "DeleteAsync");
 
             using var __timeoutCancellationTokenSource = global::Speechify.AutoSDKRequestOptionsSupport.CreateTimeoutCancellationTokenSource(
                 clientOptions: Options,
@@ -118,7 +188,7 @@ namespace Speechify
             {
 
                             var __pathBuilder = new global::Speechify.PathBuilder(
-                                path: "/v1/agents",
+                                path: $"/v1/projects/{projectId}",
                                 baseUri: HttpClient.BaseAddress);
                             var __path = __pathBuilder.ToString();
                 __path = global::Speechify.AutoSDKRequestOptionsSupport.AppendQueryParameters(
@@ -126,7 +196,7 @@ namespace Speechify
                     clientParameters: Options.QueryParameters,
                     requestParameters: requestOptions?.QueryParameters);
                 var __httpRequest = new global::System.Net.Http.HttpRequestMessage(
-                    method: global::System.Net.Http.HttpMethod.Post,
+                    method: global::System.Net.Http.HttpMethod.Delete,
                     requestUri: new global::System.Uri(__path, global::System.UriKind.RelativeOrAbsolute));
 #if NET6_0_OR_GREATER
                 __httpRequest.Version = global::System.Net.HttpVersion.Version11;
@@ -169,9 +239,10 @@ namespace Speechify
                 PrepareRequest(
                     client: HttpClient,
                     request: __httpRequest);
-                PrepareCreateRequest(
+                PrepareDeleteRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
+                    projectId: projectId!,
                     speechifyVersion: speechifyVersion,
                     request: request);
 
@@ -190,10 +261,10 @@ namespace Speechify
                     await global::Speechify.AutoSDKRequestOptionsSupport.OnBeforeRequestAsync(
                             clientOptions: Options,
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "Create",
-                                methodName: "CreateAsync",
-                                pathTemplate: "\"/v1/agents\"",
-                                httpMethod: "POST",
+                                operationId: "Delete",
+                                methodName: "DeleteAsync",
+                                pathTemplate: "$\"/v1/projects/{projectId}\"",
+                                httpMethod: "DELETE",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
                                 response: null,
@@ -224,10 +295,10 @@ namespace Speechify
                         await global::Speechify.AutoSDKRequestOptionsSupport.OnAfterErrorAsync(
                             clientOptions: Options,
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "Create",
-                                methodName: "CreateAsync",
-                                pathTemplate: "\"/v1/agents\"",
-                                httpMethod: "POST",
+                                operationId: "Delete",
+                                methodName: "DeleteAsync",
+                                pathTemplate: "$\"/v1/projects/{projectId}\"",
+                                httpMethod: "DELETE",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
                                 response: null,
@@ -265,10 +336,10 @@ namespace Speechify
                         await global::Speechify.AutoSDKRequestOptionsSupport.OnAfterErrorAsync(
                             clientOptions: Options,
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "Create",
-                                methodName: "CreateAsync",
-                                pathTemplate: "\"/v1/agents\"",
-                                httpMethod: "POST",
+                                operationId: "Delete",
+                                methodName: "DeleteAsync",
+                                pathTemplate: "$\"/v1/projects/{projectId}\"",
+                                httpMethod: "DELETE",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
                                 response: __response,
@@ -305,7 +376,7 @@ namespace Speechify
                 ProcessResponse(
                     client: HttpClient,
                     response: __response);
-                ProcessCreateResponse(
+                ProcessDeleteResponse(
                     httpClient: HttpClient,
                     httpResponseMessage: __response);
                 if (__response.IsSuccessStatusCode)
@@ -313,10 +384,10 @@ namespace Speechify
                     await global::Speechify.AutoSDKRequestOptionsSupport.OnAfterSuccessAsync(
                             clientOptions: Options,
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "Create",
-                                methodName: "CreateAsync",
-                                pathTemplate: "\"/v1/agents\"",
-                                httpMethod: "POST",
+                                operationId: "Delete",
+                                methodName: "DeleteAsync",
+                                pathTemplate: "$\"/v1/projects/{projectId}\"",
+                                httpMethod: "DELETE",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
                                 response: __response,
@@ -335,10 +406,10 @@ namespace Speechify
                     await global::Speechify.AutoSDKRequestOptionsSupport.OnAfterErrorAsync(
                             clientOptions: Options,
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "Create",
-                                methodName: "CreateAsync",
-                                pathTemplate: "\"/v1/agents\"",
-                                httpMethod: "POST",
+                                operationId: "Delete",
+                                methodName: "DeleteAsync",
+                                pathTemplate: "$\"/v1/projects/{projectId}\"",
+                                httpMethod: "DELETE",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
                                 response: __response,
@@ -426,6 +497,80 @@ namespace Speechify
                                         h => h.Key,
                                         h => h.Value));
                             }
+                            // The referenced resource does not exist or is not visible to the caller's workspace. 
+                            if ((int)__response.StatusCode == 404)
+                            {
+                                string? __content_404 = null;
+                                global::System.Exception? __exception_404 = null;
+                                global::Speechify.Error? __value_404 = null;
+                                try
+                                {
+                                    if (__effectiveReadResponseAsString)
+                                    {
+                                        __content_404 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+                                        __value_404 = global::Speechify.Error.FromJson(__content_404, JsonSerializerContext);
+                                    }
+                                    else
+                                    {
+                                        __content_404 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+
+                                        __value_404 = global::Speechify.Error.FromJson(__content_404, JsonSerializerContext);
+                                    }
+                                }
+                                catch (global::System.Exception __ex)
+                                {
+                                    __exception_404 = __ex;
+                                }
+
+
+                                throw global::Speechify.ApiException<global::Speechify.Error>.Create(
+                                    statusCode: __response.StatusCode,
+                                    message: __content_404 ?? __response.ReasonPhrase ?? string.Empty,
+                                    innerException: __exception_404,
+                                    responseBody: __content_404,
+                                    responseObject: __value_404,
+                                    responseHeaders: global::System.Linq.Enumerable.ToDictionary(
+                                        __response.Headers,
+                                        h => h.Key,
+                                        h => h.Value));
+                            }
+                            // The request conflicts with the current resource state - e.g. duplicate, optimistic-concurrency mismatch, or last-owner guard. 
+                            if ((int)__response.StatusCode == 409)
+                            {
+                                string? __content_409 = null;
+                                global::System.Exception? __exception_409 = null;
+                                global::Speechify.Error? __value_409 = null;
+                                try
+                                {
+                                    if (__effectiveReadResponseAsString)
+                                    {
+                                        __content_409 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+                                        __value_409 = global::Speechify.Error.FromJson(__content_409, JsonSerializerContext);
+                                    }
+                                    else
+                                    {
+                                        __content_409 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+
+                                        __value_409 = global::Speechify.Error.FromJson(__content_409, JsonSerializerContext);
+                                    }
+                                }
+                                catch (global::System.Exception __ex)
+                                {
+                                    __exception_409 = __ex;
+                                }
+
+
+                                throw global::Speechify.ApiException<global::Speechify.Error>.Create(
+                                    statusCode: __response.StatusCode,
+                                    message: __content_409 ?? __response.ReasonPhrase ?? string.Empty,
+                                    innerException: __exception_409,
+                                    responseBody: __content_409,
+                                    responseObject: __value_409,
+                                    responseHeaders: global::System.Linq.Enumerable.ToDictionary(
+                                        __response.Headers,
+                                        h => h.Key,
+                                        h => h.Value));
+                            }
 
                             if (__effectiveReadResponseAsString)
                             {
@@ -439,7 +584,7 @@ namespace Speechify
                                     client: HttpClient,
                                     response: __response,
                                     content: ref __content);
-                                ProcessCreateResponseContent(
+                                ProcessDeleteResponseContent(
                                     httpClient: HttpClient,
                                     httpResponseMessage: __response,
                                     content: ref __content);
@@ -448,13 +593,11 @@ namespace Speechify
                                 {
                                     __response.EnsureSuccessStatusCode();
 
-                                    var __value = global::Speechify.Agent.FromJson(__content, JsonSerializerContext) ??
-                                        throw new global::System.InvalidOperationException($"Response deserialization failed for \"{__content}\" ");
-                                    return new global::Speechify.AutoSDKHttpResponse<global::Speechify.Agent>(
+                                    return new global::Speechify.AutoSDKHttpResponse<string>(
                                         statusCode: __response.StatusCode,
                                         headers: global::Speechify.AutoSDKHttpResponse.CreateHeaders(__response),
                                         requestUri: __response.RequestMessage?.RequestUri,
-                                        body: __value);
+                                        body: __content);
                                 }
                                 catch (global::System.Exception __ex)
                                 {
@@ -474,19 +617,17 @@ namespace Speechify
                                 try
                                 {
                                     __response.EnsureSuccessStatusCode();
-                                    using var __content = await __response.Content.ReadAsStreamAsync(
+                                    var __content = await __response.Content.ReadAsStringAsync(
                 #if NET5_0_OR_GREATER
                                         __effectiveCancellationToken
                 #endif
                                     ).ConfigureAwait(false);
 
-                                    var __value = await global::Speechify.Agent.FromJsonStreamAsync(__content, JsonSerializerContext).ConfigureAwait(false) ??
-                                        throw new global::System.InvalidOperationException("Response deserialization failed.");
-                                    return new global::Speechify.AutoSDKHttpResponse<global::Speechify.Agent>(
+                                    return new global::Speechify.AutoSDKHttpResponse<string>(
                                         statusCode: __response.StatusCode,
                                         headers: global::Speechify.AutoSDKHttpResponse.CreateHeaders(__response),
                                         requestUri: __response.RequestMessage?.RequestUri,
-                                        body: __value);
+                                        body: __content);
                                 }
                                 catch (global::System.Exception __ex)
                                 {
@@ -523,153 +664,70 @@ namespace Speechify
             }
         }
         /// <summary>
-        /// Create Agent<br/>
-        /// Create a voice agent.
+        /// Delete Project<br/>
+        /// Delete a project in one of two modes.<br/>
+        /// **Detach** (the default, no body or `mode: detach`): only the<br/>
+        /// grouping row is removed; every resource in the project moves to the<br/>
+        /// implicit Default project. Refused with 409<br/>
+        /// `project_has_scoped_credentials` while an API key, service account,<br/>
+        /// vault credential, webhook endpoint, member grant or pending invite is<br/>
+        /// scoped to the project, because detaching any of those would silently<br/>
+        /// widen it.<br/>
+        /// **Purge** (`mode: purge` with `confirm` equal to the project's name):<br/>
+        /// available only on an ARCHIVED project, because an irreversible<br/>
+        /// teardown needs a state you can sit in and reverse first; a live<br/>
+        /// project is refused with the coded `409 project_not_archived`. Archive<br/>
+        /// the project, confirm it is the one you mean, then purge. The project<br/>
+        /// is removed WITH its contents in one transaction. Agents<br/>
+        /// (with their tests), knowledge bases (with their documents), tools,<br/>
+        /// audio assets, scoped webhook endpoints and scoped vault credentials<br/>
+        /// are deleted; API keys and service accounts pinned to the project are<br/>
+        /// revoked; member grants and pending-invite scopes on the project are<br/>
+        /// cleared. Conversations, callers, batch calls, suite runs and memories<br/>
+        /// are operational records and survive exactly as on a detach: a<br/>
+        /// conversation keeps its frozen attribution, the others move to the<br/>
+        /// Default project. Refused with 409 while a phone number is attached<br/>
+        /// (release or move it first), while a member's only project grant is<br/>
+        /// this one, or while a live invite carries only this project (clearing<br/>
+        /// either would widen that person to the whole workspace, the invite one<br/>
+        /// acceptance earlier). Preview either mode with<br/>
+        /// `GET /v1/projects/{project_id}/teardown`.<br/>
+        /// The 409 carries the blockers under `error.details.blockers` (`kind`,<br/>
+        /// typed `id`, `name`, and the `blocks` modes each refuses), their total<br/>
+        /// under `error.details.blocker_count`, and, for existing clients, the<br/>
+        /// same rows under `error.details.credentials`. The lists are capped at<br/>
+        /// 50 rows; the counts are not, and the refusal is decided on the count.
         /// </summary>
+        /// <param name="projectId"></param>
         /// <param name="speechifyVersion"></param>
-        /// <param name="projectId">
-        /// Optional workspace project to place this resource in (prefixed<br/>
-        /// `proj_...` id). Omit for the implicit Default project. An<br/>
-        /// unknown id returns 404 project_not_found.
+        /// <param name="mode">
+        /// `detach` removes the grouping row only; `purge` removes the<br/>
+        /// project with its contents.<br/>
+        /// Default Value: detach
         /// </param>
-        /// <param name="name"></param>
-        /// <param name="slug">
-        /// Optional. Server derives slug from name with a random suffix when omitted; if you supply your own, a collision returns 400 'slug already taken'.
-        /// </param>
-        /// <param name="prompt"></param>
-        /// <param name="firstMessage">
-        /// Greeting spoken verbatim at session start when included in the agent's flow graph.
-        /// </param>
-        /// <param name="language">
-        /// ISO 639-1 code. Defaults to 'en' when omitted. The agent's default language.
-        /// </param>
-        /// <param name="additionalLanguages">
-        /// Extra languages this agent serves in the same session.<br/>
-        /// Each entry's language must be supported, unique, and<br/>
-        /// different from the default `language`.
-        /// </param>
-        /// <param name="llm">
-        /// Language-model configuration. Omit the whole block on create to<br/>
-        /// run on the platform default model. On update (merge-patch) send<br/>
-        /// only the sub-fields you want to change: an explicit null clears a<br/>
-        /// nullable field to its default, a value sets it, and anything<br/>
-        /// omitted is left unchanged. `provider`/`model` are validated as a<br/>
-        /// pair, inheriting the omitted half from the stored value.
-        /// </param>
-        /// <param name="tts">
-        /// Text-to-speech voice and delivery configuration.
-        /// </param>
-        /// <param name="turnHandling">
-        /// Turn-handling and silence-timeout configuration.
-        /// </param>
-        /// <param name="memory">
-        /// Per-caller long-term memory configuration.
-        /// </param>
-        /// <param name="navigator">
-        /// Autonomous IVR-navigation configuration for outbound calls.
-        /// </param>
-        /// <param name="guardrails">
-        /// Runtime safety controls that are opt-in per agent rather than<br/>
-        /// platform defaults, because each one bills work an ordinary call<br/>
-        /// does not do.
-        /// </param>
-        /// <param name="backgroundNoise">
-        /// Optional ambient background-noise bed mixed into the call.
-        /// </param>
-        /// <param name="widgetConfig">
-        /// Customer-editable appearance + behaviour payload for the<br/>
-        /// embedded `&lt;speechify-agent&gt;` pill: button text, avatar style,<br/>
-        /// orb colours, terms-and-conditions markdown, transcript display.<br/>
-        /// Every field is optional - empty fields fall back to the<br/>
-        /// widget's compile-time defaults.
-        /// </param>
-        /// <param name="isPublic">
-        /// Defaults to false when omitted.
-        /// </param>
-        /// <param name="allowedOrigins"></param>
-        /// <param name="hostnameAllowlist">
-        /// Optional per-agent hostname allowlist (see Agent schema).
-        /// </param>
-        /// <param name="webhookUrl">
-        /// Customer-facing post-call webhook URL.
-        /// </param>
-        /// <param name="webhookSecret">
-        /// HMAC-SHA256 secret seed. Write-only — never echoed back on<br/>
-        /// reads; clients see `webhook_secret_set: true` instead.
-        /// </param>
-        /// <param name="amd">
-        /// AMD routing config. Optional on create; omitted means AMD off. See AMDConfig schema.
-        /// </param>
-        /// <param name="maxCallDurationSeconds">
-        /// Hard cap on the wall-clock length of a single call on this<br/>
-        /// agent, in seconds. When a call reaches it the agent ends the<br/>
-        /// call automatically. Voice agents only. Null means no<br/>
-        /// per-agent cap: the call is bounded only by your plan's call<br/>
-        /// ceiling, which is also the hard upper bound for this field -<br/>
-        /// a value above it is rejected.
-        /// </param>
-        /// <param name="saveAudioRecording">
-        /// When set, opts the agent into per-conversation audio recording. Defaults to false when omitted.
+        /// <param name="confirm">
+        /// Required for `purge`: the project's name, exactly as returned by<br/>
+        /// GET. A mismatch answers 400 `validation_failed` naming this field.
         /// </param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::System.InvalidOperationException"></exception>
-        public async global::System.Threading.Tasks.Task<global::Speechify.Agent> CreateAsync(
-            string name,
-            string prompt,
-            string firstMessage,
-            global::Speechify.AgentTTSConfig tts,
+        public async global::System.Threading.Tasks.Task<string> DeleteAsync(
+            string projectId,
             string? speechifyVersion = default,
-            string? projectId = default,
-            string? slug = default,
-            string? language = default,
-            global::System.Collections.Generic.IList<global::Speechify.AgentAdditionalLanguage>? additionalLanguages = default,
-            global::Speechify.AgentLLMConfig? llm = default,
-            global::Speechify.AgentTurnHandlingConfig? turnHandling = default,
-            global::Speechify.AgentMemoryConfig? memory = default,
-            global::Speechify.AgentNavigatorConfig? navigator = default,
-            global::Speechify.AgentGuardrailsConfig? guardrails = default,
-            global::Speechify.AgentBackgroundNoiseConfig? backgroundNoise = default,
-            global::Speechify.WidgetConfig? widgetConfig = default,
-            bool? isPublic = default,
-            global::System.Collections.Generic.IList<string>? allowedOrigins = default,
-            global::System.Collections.Generic.IList<string>? hostnameAllowlist = default,
-            string? webhookUrl = default,
-            string? webhookSecret = default,
-            global::Speechify.AMDConfig? amd = default,
-            int? maxCallDurationSeconds = default,
-            bool? saveAudioRecording = default,
+            global::Speechify.DeleteProjectRequestMode? mode = default,
+            string? confirm = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
-            var __request = new global::Speechify.CreateAgentRequest
+            var __request = new global::Speechify.DeleteProjectRequest
             {
-                ProjectId = projectId,
-                Name = name,
-                Slug = slug,
-                Prompt = prompt,
-                FirstMessage = firstMessage,
-                Language = language,
-                AdditionalLanguages = additionalLanguages,
-                Llm = llm,
-                Tts = tts,
-                TurnHandling = turnHandling,
-                Memory = memory,
-                Navigator = navigator,
-                Guardrails = guardrails,
-                BackgroundNoise = backgroundNoise,
-                WidgetConfig = widgetConfig,
-                IsPublic = isPublic,
-                AllowedOrigins = allowedOrigins,
-                HostnameAllowlist = hostnameAllowlist,
-                WebhookUrl = webhookUrl,
-                WebhookSecret = webhookSecret,
-                Amd = amd,
-                MaxCallDurationSeconds = maxCallDurationSeconds,
-                SaveAudioRecording = saveAudioRecording,
+                Mode = mode,
+                Confirm = confirm,
             };
 
-            return await CreateAsync(
+            return await DeleteAsync(
+                projectId: projectId,
                 speechifyVersion: speechifyVersion,
                 request: __request,
                 requestOptions: requestOptions,

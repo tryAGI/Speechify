@@ -4,48 +4,46 @@
 namespace Speechify
 {
     /// <summary>
-    /// Pins the streaming speech-to-text stack this agent<br/>
-    /// dispatches with. Null uses the platform default (Whisper<br/>
-    /// Large V3).
+    /// 
     /// </summary>
-    public enum AgentSttConfigOverride
+    public enum ProjectTeardownBlockerBlocksItems
     {
         /// <summary>
         /// 
         /// </summary>
-        GptRealtimeWhisper,
+        Detach,
         /// <summary>
         /// 
         /// </summary>
-        WhisperV3,
+        Purge,
     }
 
     /// <summary>
     /// Enum extensions to do fast conversions without the reflection.
     /// </summary>
-    public static class AgentSttConfigOverrideExtensions
+    public static class ProjectTeardownBlockerBlocksItemsExtensions
     {
         /// <summary>
         /// Converts an enum to a string.
         /// </summary>
-        public static string ToValueString(this AgentSttConfigOverride value)
+        public static string ToValueString(this ProjectTeardownBlockerBlocksItems value)
         {
             return value switch
             {
-                AgentSttConfigOverride.GptRealtimeWhisper => "gpt-realtime-whisper",
-                AgentSttConfigOverride.WhisperV3 => "whisper-v3",
+                ProjectTeardownBlockerBlocksItems.Detach => "detach",
+                ProjectTeardownBlockerBlocksItems.Purge => "purge",
                 _ => throw new global::System.ArgumentOutOfRangeException(nameof(value), value, null),
             };
         }
         /// <summary>
         /// Converts an string to a enum.
         /// </summary>
-        public static AgentSttConfigOverride? ToEnum(string value)
+        public static ProjectTeardownBlockerBlocksItems? ToEnum(string value)
         {
             return value switch
             {
-                "gpt-realtime-whisper" => AgentSttConfigOverride.GptRealtimeWhisper,
-                "whisper-v3" => AgentSttConfigOverride.WhisperV3,
+                "detach" => ProjectTeardownBlockerBlocksItems.Detach,
+                "purge" => ProjectTeardownBlockerBlocksItems.Purge,
                 _ => null,
             };
         }

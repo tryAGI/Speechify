@@ -76,12 +76,6 @@ namespace Speechify
         public required global::Speechify.AgentTTSConfig Tts { get; set; }
 
         /// <summary>
-        /// Speech-to-text configuration.
-        /// </summary>
-        [global::System.Text.Json.Serialization.JsonPropertyName("stt")]
-        public global::Speechify.AgentSTTConfig? Stt { get; set; }
-
-        /// <summary>
         /// Turn-handling and silence-timeout configuration.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("turn_handling")]
@@ -218,9 +212,6 @@ namespace Speechify
         /// omitted is left unchanged. `provider`/`model` are validated as a<br/>
         /// pair, inheriting the omitted half from the stored value.
         /// </param>
-        /// <param name="stt">
-        /// Speech-to-text configuration.
-        /// </param>
         /// <param name="turnHandling">
         /// Turn-handling and silence-timeout configuration.
         /// </param>
@@ -286,7 +277,6 @@ namespace Speechify
             string? language,
             global::System.Collections.Generic.IList<global::Speechify.AgentAdditionalLanguage>? additionalLanguages,
             global::Speechify.AgentLLMConfig? llm,
-            global::Speechify.AgentSTTConfig? stt,
             global::Speechify.AgentTurnHandlingConfig? turnHandling,
             global::Speechify.AgentMemoryConfig? memory,
             global::Speechify.AgentNavigatorConfig? navigator,
@@ -311,7 +301,6 @@ namespace Speechify
             this.AdditionalLanguages = additionalLanguages;
             this.Llm = llm;
             this.Tts = tts ?? throw new global::System.ArgumentNullException(nameof(tts));
-            this.Stt = stt;
             this.TurnHandling = turnHandling;
             this.Memory = memory;
             this.Navigator = navigator;

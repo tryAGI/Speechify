@@ -33,6 +33,7 @@ namespace Speechify
             ref string? locale,
             ref global::Speechify.V1VoicesGetParametersGender? gender,
             ref string? model,
+            ref string? projectId,
             ref string? speechifyVersion);
         partial void PrepareListRequest(
             global::System.Net.Http.HttpClient httpClient,
@@ -43,6 +44,7 @@ namespace Speechify
             string? locale,
             global::Speechify.V1VoicesGetParametersGender? gender,
             string? model,
+            string? projectId,
             string? speechifyVersion);
         partial void ProcessListResponse(
             global::System.Net.Http.HttpClient httpClient,
@@ -72,6 +74,7 @@ namespace Speechify
         /// <param name="locale"></param>
         /// <param name="gender"></param>
         /// <param name="model"></param>
+        /// <param name="projectId"></param>
         /// <param name="speechifyVersion"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -83,6 +86,7 @@ namespace Speechify
             string? locale = default,
             global::Speechify.V1VoicesGetParametersGender? gender = default,
             string? model = default,
+            string? projectId = default,
             string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
@@ -94,6 +98,7 @@ namespace Speechify
                 locale: locale,
                 gender: gender,
                 model: model,
+                projectId: projectId,
                 speechifyVersion: speechifyVersion,
                 requestOptions: requestOptions,
                 cancellationToken: cancellationToken
@@ -120,6 +125,7 @@ namespace Speechify
         /// <param name="locale"></param>
         /// <param name="gender"></param>
         /// <param name="model"></param>
+        /// <param name="projectId"></param>
         /// <param name="speechifyVersion"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -131,6 +137,7 @@ namespace Speechify
             string? locale = default,
             global::Speechify.V1VoicesGetParametersGender? gender = default,
             string? model = default,
+            string? projectId = default,
             string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
@@ -145,6 +152,7 @@ namespace Speechify
                 locale: ref locale,
                 gender: ref gender,
                 model: ref model,
+                projectId: ref projectId,
                 speechifyVersion: ref speechifyVersion);
 
 
@@ -180,6 +188,7 @@ namespace Speechify
                                 .AddOptionalParameter("locale", locale)
                                 .AddOptionalParameter("gender", gender?.ToValueString())
                                 .AddOptionalParameter("model", model)
+                                .AddOptionalParameter("project_id", projectId)
                                 ;
                             var __path = __pathBuilder.ToString();
                 __path = global::Speechify.AutoSDKRequestOptionsSupport.AppendQueryParameters(
@@ -233,6 +242,7 @@ namespace Speechify
                     locale: locale,
                     gender: gender,
                     model: model,
+                    projectId: projectId,
                     speechifyVersion: speechifyVersion);
 
                 return __httpRequest;
