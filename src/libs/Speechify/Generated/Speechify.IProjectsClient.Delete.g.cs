@@ -15,11 +15,11 @@ namespace Speechify
         /// scoped to the project, because detaching any of those would silently<br/>
         /// widen it.<br/>
         /// **Purge** (`mode: purge` with `confirm` equal to the project's name):<br/>
-        /// available only on an ARCHIVED project, because an irreversible<br/>
-        /// teardown needs a state you can sit in and reverse first; a live<br/>
-        /// project is refused with the coded `409 project_not_archived`. Archive<br/>
-        /// the project, confirm it is the one you mean, then purge. The project<br/>
-        /// is removed WITH its contents in one transaction. Agents<br/>
+        /// available only on an ARCHIVED project, because a teardown needs a<br/>
+        /// state you can sit in and reverse first; a live project is refused with<br/>
+        /// the coded `409 project_not_archived`. Archive the project, confirm it<br/>
+        /// is the one you mean, then purge. The project is removed WITH its<br/>
+        /// contents in one transaction. Agents<br/>
         /// (with their tests), knowledge bases (with their documents), tools,<br/>
         /// audio assets, scoped webhook endpoints and scoped vault credentials<br/>
         /// are deleted; API keys and service accounts pinned to the project are<br/>
@@ -33,6 +33,12 @@ namespace Speechify
         /// either would widen that person to the whole workspace, the invite one<br/>
         /// acceptance earlier). Preview either mode with<br/>
         /// `GET /v1/projects/{project_id}/teardown`.<br/>
+        /// **A purge is recoverable for 30 days.** The project disappears from<br/>
+        /// every list and read immediately, and its name is freed for reuse, but<br/>
+        /// the project and its resources are kept and permanently deleted only<br/>
+        /// once the window closes. `POST /v1/projects/{project_id}/restore`<br/>
+        /// brings the project and its resources back inside that window; the<br/>
+        /// credentials the purge revoked and the grants it cleared stay that way.<br/>
         /// The 409 carries the blockers under `error.details.blockers` (`kind`,<br/>
         /// typed `id`, `name`, and the `blocks` modes each refuses), their total<br/>
         /// under `error.details.blocker_count`, and, for existing clients, the<br/>
@@ -63,11 +69,11 @@ namespace Speechify
         /// scoped to the project, because detaching any of those would silently<br/>
         /// widen it.<br/>
         /// **Purge** (`mode: purge` with `confirm` equal to the project's name):<br/>
-        /// available only on an ARCHIVED project, because an irreversible<br/>
-        /// teardown needs a state you can sit in and reverse first; a live<br/>
-        /// project is refused with the coded `409 project_not_archived`. Archive<br/>
-        /// the project, confirm it is the one you mean, then purge. The project<br/>
-        /// is removed WITH its contents in one transaction. Agents<br/>
+        /// available only on an ARCHIVED project, because a teardown needs a<br/>
+        /// state you can sit in and reverse first; a live project is refused with<br/>
+        /// the coded `409 project_not_archived`. Archive the project, confirm it<br/>
+        /// is the one you mean, then purge. The project is removed WITH its<br/>
+        /// contents in one transaction. Agents<br/>
         /// (with their tests), knowledge bases (with their documents), tools,<br/>
         /// audio assets, scoped webhook endpoints and scoped vault credentials<br/>
         /// are deleted; API keys and service accounts pinned to the project are<br/>
@@ -81,6 +87,12 @@ namespace Speechify
         /// either would widen that person to the whole workspace, the invite one<br/>
         /// acceptance earlier). Preview either mode with<br/>
         /// `GET /v1/projects/{project_id}/teardown`.<br/>
+        /// **A purge is recoverable for 30 days.** The project disappears from<br/>
+        /// every list and read immediately, and its name is freed for reuse, but<br/>
+        /// the project and its resources are kept and permanently deleted only<br/>
+        /// once the window closes. `POST /v1/projects/{project_id}/restore`<br/>
+        /// brings the project and its resources back inside that window; the<br/>
+        /// credentials the purge revoked and the grants it cleared stay that way.<br/>
         /// The 409 carries the blockers under `error.details.blockers` (`kind`,<br/>
         /// typed `id`, `name`, and the `blocks` modes each refuses), their total<br/>
         /// under `error.details.blocker_count`, and, for existing clients, the<br/>
@@ -111,11 +123,11 @@ namespace Speechify
         /// scoped to the project, because detaching any of those would silently<br/>
         /// widen it.<br/>
         /// **Purge** (`mode: purge` with `confirm` equal to the project's name):<br/>
-        /// available only on an ARCHIVED project, because an irreversible<br/>
-        /// teardown needs a state you can sit in and reverse first; a live<br/>
-        /// project is refused with the coded `409 project_not_archived`. Archive<br/>
-        /// the project, confirm it is the one you mean, then purge. The project<br/>
-        /// is removed WITH its contents in one transaction. Agents<br/>
+        /// available only on an ARCHIVED project, because a teardown needs a<br/>
+        /// state you can sit in and reverse first; a live project is refused with<br/>
+        /// the coded `409 project_not_archived`. Archive the project, confirm it<br/>
+        /// is the one you mean, then purge. The project is removed WITH its<br/>
+        /// contents in one transaction. Agents<br/>
         /// (with their tests), knowledge bases (with their documents), tools,<br/>
         /// audio assets, scoped webhook endpoints and scoped vault credentials<br/>
         /// are deleted; API keys and service accounts pinned to the project are<br/>
@@ -129,6 +141,12 @@ namespace Speechify
         /// either would widen that person to the whole workspace, the invite one<br/>
         /// acceptance earlier). Preview either mode with<br/>
         /// `GET /v1/projects/{project_id}/teardown`.<br/>
+        /// **A purge is recoverable for 30 days.** The project disappears from<br/>
+        /// every list and read immediately, and its name is freed for reuse, but<br/>
+        /// the project and its resources are kept and permanently deleted only<br/>
+        /// once the window closes. `POST /v1/projects/{project_id}/restore`<br/>
+        /// brings the project and its resources back inside that window; the<br/>
+        /// credentials the purge revoked and the grants it cleared stay that way.<br/>
         /// The 409 carries the blockers under `error.details.blockers` (`kind`,<br/>
         /// typed `id`, `name`, and the `blocks` modes each refuses), their total<br/>
         /// under `error.details.blocker_count`, and, for existing clients, the<br/>

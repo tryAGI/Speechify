@@ -32,6 +32,17 @@ namespace Speechify
         public global::System.DateTime? ArchivedAt { get; set; }
 
         /// <summary>
+        /// When this project was purged, present only on the rows returned<br/>
+        /// by `include_purged=true`. A purged project is kept for 30 days<br/>
+        /// from this stamp and permanently deleted after that, so the<br/>
+        /// restore deadline is this value plus the window; it is absent on<br/>
+        /// every project that still exists. Restore it with<br/>
+        /// `POST /v1/projects/{project_id}/restore`.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("purged_at")]
+        public global::System.DateTime? PurgedAt { get; set; }
+
+        /// <summary>
         /// The most voice-agent calls this project may have active at<br/>
         /// once, present only when set. Checked after the workspace's own<br/>
         /// active-call cap on every call start (web session, outbound<br/>
@@ -138,6 +149,14 @@ namespace Speechify
         /// that predates archiving, which is why it is not required:<br/>
         /// read absent and null alike.
         /// </param>
+        /// <param name="purgedAt">
+        /// When this project was purged, present only on the rows returned<br/>
+        /// by `include_purged=true`. A purged project is kept for 30 days<br/>
+        /// from this stamp and permanently deleted after that, so the<br/>
+        /// restore deadline is this value plus the window; it is absent on<br/>
+        /// every project that still exists. Restore it with<br/>
+        /// `POST /v1/projects/{project_id}/restore`.
+        /// </param>
         /// <param name="maxConcurrentCalls">
         /// The most voice-agent calls this project may have active at<br/>
         /// once, present only when set. Checked after the workspace's own<br/>
@@ -189,12 +208,14 @@ namespace Speechify
             global::System.DateTime createdAt,
             global::System.DateTime updatedAt,
             global::System.DateTime? archivedAt,
+            global::System.DateTime? purgedAt,
             int? maxConcurrentCalls,
             int? maxRequestsPerMinute,
             double? monthlyBudget,
             double? monthlySpend)
         {
             this.ArchivedAt = archivedAt;
+            this.PurgedAt = purgedAt;
             this.MaxConcurrentCalls = maxConcurrentCalls;
             this.MaxRequestsPerMinute = maxRequestsPerMinute;
             this.MonthlyBudget = monthlyBudget;

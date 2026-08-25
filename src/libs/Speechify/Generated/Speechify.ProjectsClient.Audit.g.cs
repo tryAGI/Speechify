@@ -3,11 +3,11 @@
 
 namespace Speechify
 {
-    public partial class VoicesClient
+    public partial class ProjectsClient
     {
 
 
-        private static readonly global::Speechify.EndPointSecurityRequirement s_ListSecurityRequirement0 =
+        private static readonly global::Speechify.EndPointSecurityRequirement s_AuditSecurityRequirement0 =
             new global::Speechify.EndPointSecurityRequirement
             {
                 Authorizations = new global::Speechify.EndPointAuthorizationRequirement[]
@@ -21,90 +21,67 @@ namespace Speechify
                     },
                 },
             };
-        private static readonly global::Speechify.EndPointSecurityRequirement[] s_ListSecurityRequirements =
+        private static readonly global::Speechify.EndPointSecurityRequirement[] s_AuditSecurityRequirements =
             new global::Speechify.EndPointSecurityRequirement[]
-            {                s_ListSecurityRequirement0,
+            {                s_AuditSecurityRequirement0,
             };
-        partial void PrepareListArguments(
+        partial void PrepareAuditArguments(
             global::System.Net.Http.HttpClient httpClient,
+            ref string projectId,
             ref string? cursor,
             ref int? limit,
-            ref global::Speechify.V1VoicesGetParametersType? type,
-            ref string? locale,
-            ref global::Speechify.V1VoicesGetParametersGender? gender,
-            ref string? model,
-            ref string? projectId,
             ref string? speechifyVersion);
-        partial void PrepareListRequest(
+        partial void PrepareAuditRequest(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpRequestMessage httpRequestMessage,
+            string projectId,
             string? cursor,
             int? limit,
-            global::Speechify.V1VoicesGetParametersType? type,
-            string? locale,
-            global::Speechify.V1VoicesGetParametersGender? gender,
-            string? model,
-            string? projectId,
             string? speechifyVersion);
-        partial void ProcessListResponse(
+        partial void ProcessAuditResponse(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpResponseMessage httpResponseMessage);
 
-        partial void ProcessListResponseContent(
+        partial void ProcessAuditResponseContent(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpResponseMessage httpResponseMessage,
             ref string content);
 
         /// <summary>
-        /// List Voices<br/>
-        /// Lists the voices available to the caller - the shared voice<br/>
-        /// catalog plus the cloned voices they can reach, whichever member or<br/>
-        /// service-account key created them. A clone filed under a project is<br/>
-        /// listed only for a caller who can reach that project; a clone no<br/>
-        /// project filed is shared with the whole workspace and is listed for<br/>
-        /// everyone in it. By default<br/>
-        /// the full catalogue is returned in one response. Pagination is<br/>
-        /// opt-in: pass `limit` (and then `cursor` from the previous<br/>
-        /// response) to page through the list while `has_more` is true. Max<br/>
-        /// page size is 200. Narrow the list with the `type` and `locale`<br/>
-        /// filters.<br/>
-        /// A page can come back with fewer than `limit` voices, and a short<br/>
-        /// page - an empty one included - is not the end of the list. Keep<br/>
-        /// following `next_cursor` while `has_more` is true.
+        /// Project Audit Trail<br/>
+        /// Who changed this project's access or its lifecycle state, and when.<br/>
+        /// Newest first. Covers the last 90 days; paginate by passing `cursor`<br/>
+        /// from the previous response.<br/>
+        /// Each entry names the SUBJECT (whose access changed) and the ACTOR (who<br/>
+        /// changed it), with the role the actor held at the time. When a change<br/>
+        /// was made by Speechify support acting on the workspace's behalf, the<br/>
+        /// entry also carries that admin's email, so a support-initiated change<br/>
+        /// never reads as one a colleague made.<br/>
+        /// Requires `members.manage_project_scope` (owner or admin): who widened<br/>
+        /// a member's access is a stronger fact than who currently holds it.<br/>
+        /// Returns 404 for missing or foreign-workspace projects.
         /// </summary>
+        /// <param name="projectId"></param>
         /// <param name="cursor"></param>
         /// <param name="limit">
         /// Default Value: 50
         /// </param>
-        /// <param name="type"></param>
-        /// <param name="locale"></param>
-        /// <param name="gender"></param>
-        /// <param name="model"></param>
-        /// <param name="projectId"></param>
         /// <param name="speechifyVersion"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
-        public async global::System.Threading.Tasks.Task<global::Speechify.ListVoicesResponse> ListAsync(
+        public async global::System.Threading.Tasks.Task<global::Speechify.ProjectAuditResponse> AuditAsync(
+            string projectId,
             string? cursor = default,
             int? limit = default,
-            global::Speechify.V1VoicesGetParametersType? type = default,
-            string? locale = default,
-            global::Speechify.V1VoicesGetParametersGender? gender = default,
-            string? model = default,
-            string? projectId = default,
             string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
-            var __response = await ListAsResponseAsync(
+            var __response = await AuditAsResponseAsync(
+                projectId: projectId,
                 cursor: cursor,
                 limit: limit,
-                type: type,
-                locale: locale,
-                gender: gender,
-                model: model,
-                projectId: projectId,
                 speechifyVersion: speechifyVersion,
                 requestOptions: requestOptions,
                 cancellationToken: cancellationToken
@@ -113,65 +90,50 @@ namespace Speechify
             return __response.Body;
         }
         /// <summary>
-        /// List Voices<br/>
-        /// Lists the voices available to the caller - the shared voice<br/>
-        /// catalog plus the cloned voices they can reach, whichever member or<br/>
-        /// service-account key created them. A clone filed under a project is<br/>
-        /// listed only for a caller who can reach that project; a clone no<br/>
-        /// project filed is shared with the whole workspace and is listed for<br/>
-        /// everyone in it. By default<br/>
-        /// the full catalogue is returned in one response. Pagination is<br/>
-        /// opt-in: pass `limit` (and then `cursor` from the previous<br/>
-        /// response) to page through the list while `has_more` is true. Max<br/>
-        /// page size is 200. Narrow the list with the `type` and `locale`<br/>
-        /// filters.<br/>
-        /// A page can come back with fewer than `limit` voices, and a short<br/>
-        /// page - an empty one included - is not the end of the list. Keep<br/>
-        /// following `next_cursor` while `has_more` is true.
+        /// Project Audit Trail<br/>
+        /// Who changed this project's access or its lifecycle state, and when.<br/>
+        /// Newest first. Covers the last 90 days; paginate by passing `cursor`<br/>
+        /// from the previous response.<br/>
+        /// Each entry names the SUBJECT (whose access changed) and the ACTOR (who<br/>
+        /// changed it), with the role the actor held at the time. When a change<br/>
+        /// was made by Speechify support acting on the workspace's behalf, the<br/>
+        /// entry also carries that admin's email, so a support-initiated change<br/>
+        /// never reads as one a colleague made.<br/>
+        /// Requires `members.manage_project_scope` (owner or admin): who widened<br/>
+        /// a member's access is a stronger fact than who currently holds it.<br/>
+        /// Returns 404 for missing or foreign-workspace projects.
         /// </summary>
+        /// <param name="projectId"></param>
         /// <param name="cursor"></param>
         /// <param name="limit">
         /// Default Value: 50
         /// </param>
-        /// <param name="type"></param>
-        /// <param name="locale"></param>
-        /// <param name="gender"></param>
-        /// <param name="model"></param>
-        /// <param name="projectId"></param>
         /// <param name="speechifyVersion"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
-        public async global::System.Threading.Tasks.Task<global::Speechify.AutoSDKHttpResponse<global::Speechify.ListVoicesResponse>> ListAsResponseAsync(
+        public async global::System.Threading.Tasks.Task<global::Speechify.AutoSDKHttpResponse<global::Speechify.ProjectAuditResponse>> AuditAsResponseAsync(
+            string projectId,
             string? cursor = default,
             int? limit = default,
-            global::Speechify.V1VoicesGetParametersType? type = default,
-            string? locale = default,
-            global::Speechify.V1VoicesGetParametersGender? gender = default,
-            string? model = default,
-            string? projectId = default,
             string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
             PrepareArguments(
                 client: HttpClient);
-            PrepareListArguments(
+            PrepareAuditArguments(
                 httpClient: HttpClient,
+                projectId: ref projectId,
                 cursor: ref cursor,
                 limit: ref limit,
-                type: ref type,
-                locale: ref locale,
-                gender: ref gender,
-                model: ref model,
-                projectId: ref projectId,
                 speechifyVersion: ref speechifyVersion);
 
 
             var __authorizations = global::Speechify.EndPointSecurityResolver.ResolveAuthorizations(
                 availableAuthorizations: Authorizations,
-                securityRequirements: s_ListSecurityRequirements,
-                operationName: "ListAsync");
+                securityRequirements: s_AuditSecurityRequirements,
+                operationName: "AuditAsync");
 
             using var __timeoutCancellationTokenSource = global::Speechify.AutoSDKRequestOptionsSupport.CreateTimeoutCancellationTokenSource(
                 clientOptions: Options,
@@ -191,16 +153,11 @@ namespace Speechify
             {
 
                             var __pathBuilder = new global::Speechify.PathBuilder(
-                                path: "/v1/voices",
+                                path: $"/v1/projects/{projectId}/audit",
                                 baseUri: HttpClient.BaseAddress);
                             __pathBuilder
                                 .AddOptionalParameter("cursor", cursor)
                                 .AddOptionalParameter("limit", limit?.ToString())
-                                .AddOptionalParameter("type", type?.ToValueString())
-                                .AddOptionalParameter("locale", locale)
-                                .AddOptionalParameter("gender", gender?.ToValueString())
-                                .AddOptionalParameter("model", model)
-                                .AddOptionalParameter("project_id", projectId)
                                 ;
                             var __path = __pathBuilder.ToString();
                 __path = global::Speechify.AutoSDKRequestOptionsSupport.AppendQueryParameters(
@@ -245,16 +202,12 @@ namespace Speechify
                 PrepareRequest(
                     client: HttpClient,
                     request: __httpRequest);
-                PrepareListRequest(
+                PrepareAuditRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
+                    projectId: projectId!,
                     cursor: cursor,
                     limit: limit,
-                    type: type,
-                    locale: locale,
-                    gender: gender,
-                    model: model,
-                    projectId: projectId,
                     speechifyVersion: speechifyVersion);
 
                 return __httpRequest;
@@ -272,9 +225,9 @@ namespace Speechify
                     await global::Speechify.AutoSDKRequestOptionsSupport.OnBeforeRequestAsync(
                             clientOptions: Options,
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "List",
-                                methodName: "ListAsync",
-                                pathTemplate: "\"/v1/voices\"",
+                                operationId: "Audit",
+                                methodName: "AuditAsync",
+                                pathTemplate: "$\"/v1/projects/{projectId}/audit\"",
                                 httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -306,9 +259,9 @@ namespace Speechify
                         await global::Speechify.AutoSDKRequestOptionsSupport.OnAfterErrorAsync(
                             clientOptions: Options,
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "List",
-                                methodName: "ListAsync",
-                                pathTemplate: "\"/v1/voices\"",
+                                operationId: "Audit",
+                                methodName: "AuditAsync",
+                                pathTemplate: "$\"/v1/projects/{projectId}/audit\"",
                                 httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -347,9 +300,9 @@ namespace Speechify
                         await global::Speechify.AutoSDKRequestOptionsSupport.OnAfterErrorAsync(
                             clientOptions: Options,
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "List",
-                                methodName: "ListAsync",
-                                pathTemplate: "\"/v1/voices\"",
+                                operationId: "Audit",
+                                methodName: "AuditAsync",
+                                pathTemplate: "$\"/v1/projects/{projectId}/audit\"",
                                 httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -387,7 +340,7 @@ namespace Speechify
                 ProcessResponse(
                     client: HttpClient,
                     response: __response);
-                ProcessListResponse(
+                ProcessAuditResponse(
                     httpClient: HttpClient,
                     httpResponseMessage: __response);
                 if (__response.IsSuccessStatusCode)
@@ -395,9 +348,9 @@ namespace Speechify
                     await global::Speechify.AutoSDKRequestOptionsSupport.OnAfterSuccessAsync(
                             clientOptions: Options,
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "List",
-                                methodName: "ListAsync",
-                                pathTemplate: "\"/v1/voices\"",
+                                operationId: "Audit",
+                                methodName: "AuditAsync",
+                                pathTemplate: "$\"/v1/projects/{projectId}/audit\"",
                                 httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -417,9 +370,9 @@ namespace Speechify
                     await global::Speechify.AutoSDKRequestOptionsSupport.OnAfterErrorAsync(
                             clientOptions: Options,
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "List",
-                                methodName: "ListAsync",
-                                pathTemplate: "\"/v1/voices\"",
+                                operationId: "Audit",
+                                methodName: "AuditAsync",
+                                pathTemplate: "$\"/v1/projects/{projectId}/audit\"",
                                 httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -545,75 +498,75 @@ namespace Speechify
                                         h => h.Key,
                                         h => h.Value));
                             }
-                            // Rate limit or concurrency limit exceeded. `error.code` distinguishes request-rate limiting (`rate_limited`) from concurrency exhaustion (`concurrency_limit_reached`). Carries `Retry-After` and the request-rate budget headers; a concurrency-exhaustion 429 also carries `RateLimit-Remaining-Calls: 0`. 
-                            if ((int)__response.StatusCode == 429)
+                            // The referenced resource does not exist or is not visible to the caller's workspace. 
+                            if ((int)__response.StatusCode == 404)
                             {
-                                string? __content_429 = null;
-                                global::System.Exception? __exception_429 = null;
-                                global::Speechify.Error? __value_429 = null;
+                                string? __content_404 = null;
+                                global::System.Exception? __exception_404 = null;
+                                global::Speechify.Error? __value_404 = null;
                                 try
                                 {
                                     if (__effectiveReadResponseAsString)
                                     {
-                                        __content_429 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
-                                        __value_429 = global::Speechify.Error.FromJson(__content_429, JsonSerializerContext);
+                                        __content_404 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+                                        __value_404 = global::Speechify.Error.FromJson(__content_404, JsonSerializerContext);
                                     }
                                     else
                                     {
-                                        __content_429 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+                                        __content_404 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
 
-                                        __value_429 = global::Speechify.Error.FromJson(__content_429, JsonSerializerContext);
+                                        __value_404 = global::Speechify.Error.FromJson(__content_404, JsonSerializerContext);
                                     }
                                 }
                                 catch (global::System.Exception __ex)
                                 {
-                                    __exception_429 = __ex;
+                                    __exception_404 = __ex;
                                 }
 
 
                                 throw global::Speechify.ApiException<global::Speechify.Error>.Create(
                                     statusCode: __response.StatusCode,
-                                    message: __content_429 ?? __response.ReasonPhrase ?? string.Empty,
-                                    innerException: __exception_429,
-                                    responseBody: __content_429,
-                                    responseObject: __value_429,
+                                    message: __content_404 ?? __response.ReasonPhrase ?? string.Empty,
+                                    innerException: __exception_404,
+                                    responseBody: __content_404,
+                                    responseObject: __value_404,
                                     responseHeaders: global::System.Linq.Enumerable.ToDictionary(
                                         __response.Headers,
                                         h => h.Key,
                                         h => h.Value));
                             }
-                            // An unexpected server-side error occurred. Safe to retry with exponential backoff for idempotent requests. 
-                            if ((int)__response.StatusCode == 500)
+                            // A downstream dependency is degraded or the endpoint is intentionally disabled (e.g. phone-number purchase before ops setup). 
+                            if ((int)__response.StatusCode == 503)
                             {
-                                string? __content_500 = null;
-                                global::System.Exception? __exception_500 = null;
-                                global::Speechify.Error? __value_500 = null;
+                                string? __content_503 = null;
+                                global::System.Exception? __exception_503 = null;
+                                global::Speechify.Error? __value_503 = null;
                                 try
                                 {
                                     if (__effectiveReadResponseAsString)
                                     {
-                                        __content_500 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
-                                        __value_500 = global::Speechify.Error.FromJson(__content_500, JsonSerializerContext);
+                                        __content_503 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+                                        __value_503 = global::Speechify.Error.FromJson(__content_503, JsonSerializerContext);
                                     }
                                     else
                                     {
-                                        __content_500 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+                                        __content_503 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
 
-                                        __value_500 = global::Speechify.Error.FromJson(__content_500, JsonSerializerContext);
+                                        __value_503 = global::Speechify.Error.FromJson(__content_503, JsonSerializerContext);
                                     }
                                 }
                                 catch (global::System.Exception __ex)
                                 {
-                                    __exception_500 = __ex;
+                                    __exception_503 = __ex;
                                 }
 
 
                                 throw global::Speechify.ApiException<global::Speechify.Error>.Create(
                                     statusCode: __response.StatusCode,
-                                    message: __content_500 ?? __response.ReasonPhrase ?? string.Empty,
-                                    innerException: __exception_500,
-                                    responseBody: __content_500,
-                                    responseObject: __value_500,
+                                    message: __content_503 ?? __response.ReasonPhrase ?? string.Empty,
+                                    innerException: __exception_503,
+                                    responseBody: __content_503,
+                                    responseObject: __value_503,
                                     responseHeaders: global::System.Linq.Enumerable.ToDictionary(
                                         __response.Headers,
                                         h => h.Key,
@@ -632,7 +585,7 @@ namespace Speechify
                                     client: HttpClient,
                                     response: __response,
                                     content: ref __content);
-                                ProcessListResponseContent(
+                                ProcessAuditResponseContent(
                                     httpClient: HttpClient,
                                     httpResponseMessage: __response,
                                     content: ref __content);
@@ -641,9 +594,9 @@ namespace Speechify
                                 {
                                     __response.EnsureSuccessStatusCode();
 
-                                    var __value = global::Speechify.ListVoicesResponse.FromJson(__content, JsonSerializerContext) ??
+                                    var __value = global::Speechify.ProjectAuditResponse.FromJson(__content, JsonSerializerContext) ??
                                         throw new global::System.InvalidOperationException($"Response deserialization failed for \"{__content}\" ");
-                                    return new global::Speechify.AutoSDKHttpResponse<global::Speechify.ListVoicesResponse>(
+                                    return new global::Speechify.AutoSDKHttpResponse<global::Speechify.ProjectAuditResponse>(
                                         statusCode: __response.StatusCode,
                                         headers: global::Speechify.AutoSDKHttpResponse.CreateHeaders(__response),
                                         requestUri: __response.RequestMessage?.RequestUri,
@@ -673,9 +626,9 @@ namespace Speechify
                 #endif
                                     ).ConfigureAwait(false);
 
-                                    var __value = await global::Speechify.ListVoicesResponse.FromJsonStreamAsync(__content, JsonSerializerContext).ConfigureAwait(false) ??
+                                    var __value = await global::Speechify.ProjectAuditResponse.FromJsonStreamAsync(__content, JsonSerializerContext).ConfigureAwait(false) ??
                                         throw new global::System.InvalidOperationException("Response deserialization failed.");
-                                    return new global::Speechify.AutoSDKHttpResponse<global::Speechify.ListVoicesResponse>(
+                                    return new global::Speechify.AutoSDKHttpResponse<global::Speechify.ProjectAuditResponse>(
                                         statusCode: __response.StatusCode,
                                         headers: global::Speechify.AutoSDKHttpResponse.CreateHeaders(__response),
                                         requestUri: __response.RequestMessage?.RequestUri,

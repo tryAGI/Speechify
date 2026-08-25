@@ -58,12 +58,11 @@ namespace Speechify
 
         /// <summary>
         /// The workspace project this cloned voice is filed under, set when<br/>
-        /// a project-pinned key created it. Returned on a single-voice read,<br/>
-        /// on the create response, and on a list narrowed with the<br/>
-        /// `project_id` parameter.<br/>
-        /// Omitted for a shared-catalog voice, for a cloned voice the<br/>
-        /// workspace holds at large, and on an unnarrowed list, where the<br/>
-        /// catalog read does not carry each voice's project.
+        /// a project-pinned key created it. Returned wherever a cloned voice<br/>
+        /// is: the list, a single-voice read, and the create response.<br/>
+        /// Omitted for a shared-catalog voice and for a cloned voice no<br/>
+        /// project filed, which is shared with the whole workspace and<br/>
+        /// listed for every member of it.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("project_id")]
         public string? ProjectId { get; set; }
@@ -101,12 +100,11 @@ namespace Speechify
         /// <param name="previewAudio"></param>
         /// <param name="projectId">
         /// The workspace project this cloned voice is filed under, set when<br/>
-        /// a project-pinned key created it. Returned on a single-voice read,<br/>
-        /// on the create response, and on a list narrowed with the<br/>
-        /// `project_id` parameter.<br/>
-        /// Omitted for a shared-catalog voice, for a cloned voice the<br/>
-        /// workspace holds at large, and on an unnarrowed list, where the<br/>
-        /// catalog read does not carry each voice's project.
+        /// a project-pinned key created it. Returned wherever a cloned voice<br/>
+        /// is: the list, a single-voice read, and the create response.<br/>
+        /// Omitted for a shared-catalog voice and for a cloned voice no<br/>
+        /// project filed, which is shared with the whole workspace and<br/>
+        /// listed for every member of it.
         /// </param>
         /// <param name="tags"></param>
 #if NET7_0_OR_GREATER
