@@ -90,6 +90,16 @@ namespace Speechify
         public string? VoiceId { get; set; }
 
         /// <summary>
+        /// The TTS model pinned at call start; null means the call ran on<br/>
+        /// the automatic choice. Records the configured pin, not the model<br/>
+        /// dispatch settled on - a pin that had gone stale degrades at<br/>
+        /// dispatch, and rewriting the snapshot to the degraded value<br/>
+        /// would hide the drift this field is read to find.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("tts_model")]
+        public string? TtsModel { get; set; }
+
+        /// <summary>
         /// 
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("temperature")]
@@ -220,6 +230,13 @@ namespace Speechify
         /// Extra chat.completions body forwarded verbatim for custom-provider agents; null otherwise.
         /// </param>
         /// <param name="voiceId"></param>
+        /// <param name="ttsModel">
+        /// The TTS model pinned at call start; null means the call ran on<br/>
+        /// the automatic choice. Records the configured pin, not the model<br/>
+        /// dispatch settled on - a pin that had gone stale degrades at<br/>
+        /// dispatch, and rewriting the snapshot to the degraded value<br/>
+        /// would hide the drift this field is read to find.
+        /// </param>
         /// <param name="temperature"></param>
         /// <param name="memoryEnabled"></param>
         /// <param name="memoryRetentionDays"></param>
@@ -276,6 +293,7 @@ namespace Speechify
             string? llmBaseUrl,
             object? llmExtraBody,
             string? voiceId,
+            string? ttsModel,
             string? temperature,
             bool? memoryEnabled,
             int? memoryRetentionDays,
@@ -304,6 +322,7 @@ namespace Speechify
             this.LlmBaseUrl = llmBaseUrl;
             this.LlmExtraBody = llmExtraBody;
             this.VoiceId = voiceId;
+            this.TtsModel = ttsModel;
             this.Temperature = temperature;
             this.MemoryEnabled = memoryEnabled;
             this.MemoryRetentionDays = memoryRetentionDays;

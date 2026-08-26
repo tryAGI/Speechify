@@ -44,6 +44,19 @@ namespace Speechify
         public required global::System.Collections.Generic.IList<global::Speechify.AgentVoiceModel> Models { get; set; }
 
         /// <summary>
+        /// The model an agent on this voice synthesizes on when<br/>
+        /// `tts.model` is null - what "automatic" resolves to here, stated<br/>
+        /// outright rather than inferred from the order of `models`.<br/>
+        /// This is the English answer. An agent that resolves through the<br/>
+        /// multilingual serving (it declares `additional_languages`, or<br/>
+        /// its own `language` is not English) always runs on `simba-3.0`,<br/>
+        /// because no other model has a multilingual deployment.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("default_model")]
+        [global::System.Text.Json.Serialization.JsonRequired]
+        public required string DefaultModel { get; set; }
+
+        /// <summary>
         /// Speaker gender classification for the voice. `not_specified` is<br/>
         /// used when the source dataset didn't carry the metadata; treat it<br/>
         /// as a neutral display label rather than a filter gap.
@@ -101,6 +114,15 @@ namespace Speechify
         /// </param>
         /// <param name="displayName"></param>
         /// <param name="models"></param>
+        /// <param name="defaultModel">
+        /// The model an agent on this voice synthesizes on when<br/>
+        /// `tts.model` is null - what "automatic" resolves to here, stated<br/>
+        /// outright rather than inferred from the order of `models`.<br/>
+        /// This is the English answer. An agent that resolves through the<br/>
+        /// multilingual serving (it declares `additional_languages`, or<br/>
+        /// its own `language` is not English) always runs on `simba-3.0`,<br/>
+        /// because no other model has a multilingual deployment.
+        /// </param>
         /// <param name="gender">
         /// Speaker gender classification for the voice. `not_specified` is<br/>
         /// used when the source dataset didn't carry the metadata; treat it<br/>
@@ -128,6 +150,7 @@ namespace Speechify
             global::Speechify.AgentVoiceType type,
             string displayName,
             global::System.Collections.Generic.IList<global::Speechify.AgentVoiceModel> models,
+            string defaultModel,
             global::Speechify.AgentVoiceGender gender,
             string locale,
             string? previewAudio,
@@ -138,6 +161,7 @@ namespace Speechify
             this.Type = type;
             this.DisplayName = displayName ?? throw new global::System.ArgumentNullException(nameof(displayName));
             this.Models = models ?? throw new global::System.ArgumentNullException(nameof(models));
+            this.DefaultModel = defaultModel ?? throw new global::System.ArgumentNullException(nameof(defaultModel));
             this.Gender = gender;
             this.Locale = locale ?? throw new global::System.ArgumentNullException(nameof(locale));
             this.PreviewAudio = previewAudio;

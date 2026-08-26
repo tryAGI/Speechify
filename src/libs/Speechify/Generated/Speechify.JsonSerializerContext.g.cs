@@ -117,6 +117,9 @@ namespace Speechify
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.ListAgentVoicesResponse))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Speechify.AgentVoice>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Speechify.MultilingualLanguage>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.AgentTTSModelInfo))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.AgentTTSModelsResponse))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Speechify.AgentTTSModelInfo>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.UpdateAgentRequest))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.AgentFlowGetSchemaResponse200))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.FlowVersion))]
@@ -511,9 +514,6 @@ namespace Speechify
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.SpeechStreamEventDiscriminatorType?), TypeInfoPropertyName = "NullableSpeechStreamEventDiscriminatorType2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.V1VoicesGetParametersType?), TypeInfoPropertyName = "NullableV1VoicesGetParametersType2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.V1VoicesGetParametersGender?), TypeInfoPropertyName = "NullableV1VoicesGetParametersGender2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.GetVoiceGender?), TypeInfoPropertyName = "NullableGetVoiceGender2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.GetVoicesModelName?), TypeInfoPropertyName = "NullableGetVoicesModelName2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.GetVoiceType?), TypeInfoPropertyName = "NullableGetVoiceType2")]
     internal sealed partial class SourceGenerationContextChunk0 : global::System.Text.Json.Serialization.JsonSerializerContext
     {
     }
@@ -526,6 +526,9 @@ namespace Speechify
         Converters = new global::System.Type[]
         {
         })]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.GetVoiceGender?), TypeInfoPropertyName = "NullableGetVoiceGender2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.GetVoicesModelName?), TypeInfoPropertyName = "NullableGetVoicesModelName2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.GetVoiceType?), TypeInfoPropertyName = "NullableGetVoiceType2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.V1VoicesPostRequestBodyContentMultipartFormDataSchemaGender?), TypeInfoPropertyName = "NullableV1VoicesPostRequestBodyContentMultipartFormDataSchemaGender2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.DateTime?))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.AgentLlmConfigProvider?), TypeInfoPropertyName = "NullableAgentLlmConfigProvider2")]
@@ -625,6 +628,7 @@ namespace Speechify
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.AgentVoiceModel>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.AgentVoice>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.MultilingualLanguage>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.AgentTTSModelInfo>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.FlowGraphNodesItems>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.FlowGraphEdgesItems>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.FlowGraphVariablesItems>))]
