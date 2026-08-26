@@ -16,6 +16,10 @@ namespace Speechify
         /// 
         /// </summary>
         Simba32,
+        /// <summary>
+        /// 
+        /// </summary>
+        Simba35Turbo,
     }
 
     /// <summary>
@@ -32,6 +36,7 @@ namespace Speechify
             {
                 AgentVoiceModelName.Simba30 => "simba-3.0",
                 AgentVoiceModelName.Simba32 => "simba-3.2",
+                AgentVoiceModelName.Simba35Turbo => "simba-3.5-turbo",
                 _ => throw new global::System.ArgumentOutOfRangeException(nameof(value), value, null),
             };
         }
@@ -44,6 +49,7 @@ namespace Speechify
             {
                 "simba-3.0" => AgentVoiceModelName.Simba30,
                 "simba-3.2" => AgentVoiceModelName.Simba32,
+                "simba-3.5-turbo" => AgentVoiceModelName.Simba35Turbo,
                 _ => null,
             };
         }

@@ -5,11 +5,15 @@ namespace Speechify
 {
     /// <summary>
     /// One Simba model version the voice can be synthesised through.<br/>
-    /// Every agent voice supports `simba-3.0`; voices curated for<br/>
-    /// Simba 3.2 additionally expose `simba-3.2` (streaming-native,<br/>
-    /// English only). The English-vs-multilingual split is an internal<br/>
-    /// routing detail the worker resolves per call, not a selectable<br/>
-    /// model.
+    /// Every agent voice supports `simba-3.0`. A voice curated for an<br/>
+    /// English-only upgrade tier additionally exposes that tier -<br/>
+    /// `simba-3.5-turbo` or `simba-3.2` - and a call on the voice<br/>
+    /// synthesises through it, so a voice never lists more than one.<br/>
+    /// The English-vs-multilingual split is an internal routing detail<br/>
+    /// the worker resolves per call, not a selectable model.<br/>
+    /// Treat this as an open set - new model versions are added here as<br/>
+    /// they ship, so branch on the ones you know and fall through for<br/>
+    /// the rest.
     /// </summary>
     public sealed partial class AgentVoiceModel
     {
