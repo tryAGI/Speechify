@@ -12,19 +12,19 @@ namespace Speechify
     public enum KnowledgeBaseDocumentStatus
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Embedding,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Failed,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Fetching,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Ready,
     }

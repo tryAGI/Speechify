@@ -26,7 +26,7 @@ namespace Speechify
         public required bool HasMore { get; set; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("share_links")]
         [global::System.Text.Json.Serialization.JsonRequired]

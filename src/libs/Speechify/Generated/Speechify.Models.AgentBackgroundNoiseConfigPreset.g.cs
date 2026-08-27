@@ -9,27 +9,27 @@ namespace Speechify
     public enum AgentBackgroundNoiseConfigPreset
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         City,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         CrowdedRoom,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Forest,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         HoldMusic,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         KeyboardTyping,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Office,
     }

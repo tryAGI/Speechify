@@ -41,7 +41,7 @@ namespace Speechify
         internal global::System.Lazy<global::System.Text.Json.Serialization.JsonSerializerContext> JsonSerializerContextProvider { get; set; } = new(() => global::Speechify.SourceGenerationContext.Default);
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public global::System.Text.Json.Serialization.JsonSerializerContext JsonSerializerContext
         {
@@ -51,7 +51,7 @@ namespace Speechify
 
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public AdminClient Admin => new AdminClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
         {
@@ -61,7 +61,7 @@ namespace Speechify
         };
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public AgentClient Agent => new AgentClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
         {
@@ -71,7 +71,7 @@ namespace Speechify
         };
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public AudioClient Audio => new AudioClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
         {
@@ -81,7 +81,7 @@ namespace Speechify
         };
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public AudioAssetsClient AudioAssets => new AudioAssetsClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
         {
@@ -91,7 +91,7 @@ namespace Speechify
         };
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public BatchCallsClient BatchCalls => new BatchCallsClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
         {
@@ -101,7 +101,7 @@ namespace Speechify
         };
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public CallersClient Callers => new CallersClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
         {
@@ -111,7 +111,7 @@ namespace Speechify
         };
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public ConsentChallengesClient ConsentChallenges => new ConsentChallengesClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
         {
@@ -121,7 +121,7 @@ namespace Speechify
         };
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public ConversationsClient Conversations => new ConversationsClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
         {
@@ -131,7 +131,7 @@ namespace Speechify
         };
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public FlowClient Flow => new FlowClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
         {
@@ -141,7 +141,7 @@ namespace Speechify
         };
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public IvrMemoryClient IvrMemory => new IvrMemoryClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
         {
@@ -151,7 +151,7 @@ namespace Speechify
         };
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public KnowledgeBasesClient KnowledgeBases => new KnowledgeBasesClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
         {
@@ -161,7 +161,7 @@ namespace Speechify
         };
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public MemoriesClient Memories => new MemoriesClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
         {
@@ -171,7 +171,7 @@ namespace Speechify
         };
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public ModelsClient Models => new ModelsClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
         {
@@ -181,7 +181,7 @@ namespace Speechify
         };
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public OutboundCallsClient OutboundCalls => new OutboundCallsClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
         {
@@ -191,7 +191,7 @@ namespace Speechify
         };
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public PhoneNumbersClient PhoneNumbers => new PhoneNumbersClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
         {
@@ -201,7 +201,7 @@ namespace Speechify
         };
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public ProjectsClient Projects => new ProjectsClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
         {
@@ -211,7 +211,7 @@ namespace Speechify
         };
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public ShareLinksClient ShareLinks => new ShareLinksClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
         {
@@ -221,7 +221,7 @@ namespace Speechify
         };
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public SipTrunksClient SipTrunks => new SipTrunksClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
         {
@@ -231,7 +231,7 @@ namespace Speechify
         };
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public TestsClient Tests => new TestsClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
         {
@@ -241,7 +241,7 @@ namespace Speechify
         };
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public ToolDefinitionsClient ToolDefinitions => new ToolDefinitionsClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
         {
@@ -251,7 +251,7 @@ namespace Speechify
         };
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public VoicesClient Voices => new VoicesClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
         {

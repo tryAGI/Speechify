@@ -11,11 +11,11 @@ namespace Speechify
     public enum PhoneNumberCapability
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Inbound,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Outbound,
     }

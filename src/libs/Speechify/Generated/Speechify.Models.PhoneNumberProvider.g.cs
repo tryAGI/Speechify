@@ -25,31 +25,31 @@ namespace Speechify
     public enum PhoneNumberProvider
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Byoc,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Livekit,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Telnyx,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         TelnyxPurchased,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Twilio,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         TwilioPurchased,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         VerifiedCallerId,
     }

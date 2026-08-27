@@ -155,7 +155,7 @@ namespace Speechify
                          __authorization.Location == "Header")
                 {
                     __httpRequest.Headers.Add(__authorization.Name, __authorization.Value);
-                } 
+                }
             }
 
             if (speechifyVersion != default)
@@ -361,7 +361,7 @@ namespace Speechify
                                 retryReason: global::System.String.Empty,
                                 cancellationToken: __effectiveCancellationToken)).ConfigureAwait(false);
                 }
-                            // The request was malformed or failed validation. The response body is the standard `Error` envelope; for validation failures `error.fields` enumerates the offending fields as a `path -> message` map (code = `validation_failed`). 
+                            // The request was malformed or failed validation. The response body is the standard `Error` envelope; for validation failures `error.fields` enumerates the offending fields as a `path -> message` map (code = `validation_failed`).
                             if ((int)__response.StatusCode == 400)
                             {
                                 string? __content_400 = null;
@@ -398,7 +398,7 @@ namespace Speechify
                                         h => h.Key,
                                         h => h.Value));
                             }
-                            // Authentication is missing or invalid. The request did not carry a recognised credential (console session token, API key, or worker JWT). 
+                            // Authentication is missing or invalid. The request did not carry a recognised credential (console session token, API key, or worker JWT).
                             if ((int)__response.StatusCode == 401)
                             {
                                 string? __content_401 = null;
@@ -435,7 +435,7 @@ namespace Speechify
                                         h => h.Key,
                                         h => h.Value));
                             }
-                            // The referenced resource does not exist or is not visible to the caller's workspace. 
+                            // The referenced resource does not exist or is not visible to the caller's workspace.
                             if ((int)__response.StatusCode == 404)
                             {
                                 string? __content_404 = null;
@@ -472,7 +472,7 @@ namespace Speechify
                                         h => h.Key,
                                         h => h.Value));
                             }
-                            // The request conflicts with the current resource state - e.g. duplicate, optimistic-concurrency mismatch, or last-owner guard. 
+                            // The request conflicts with the current resource state - e.g. duplicate, optimistic-concurrency mismatch, or last-owner guard.
                             if ((int)__response.StatusCode == 409)
                             {
                                 string? __content_409 = null;
@@ -684,6 +684,9 @@ namespace Speechify
         /// previously set cap.
         /// </param>
         /// <param name="saveAudioRecording"></param>
+        /// <param name="aiDisclosure">
+        /// Opt-in AI-disclosure opening line (PATCH-replace, wholesale). Omit to leave the stored config unchanged.
+        /// </param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::System.InvalidOperationException"></exception>
@@ -712,6 +715,7 @@ namespace Speechify
             global::Speechify.AMDConfig? amd = default,
             int? maxCallDurationSeconds = default,
             bool? saveAudioRecording = default,
+            global::Speechify.AIDisclosure? aiDisclosure = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
@@ -739,6 +743,7 @@ namespace Speechify
                 Amd = amd,
                 MaxCallDurationSeconds = maxCallDurationSeconds,
                 SaveAudioRecording = saveAudioRecording,
+                AiDisclosure = aiDisclosure,
             };
 
             return await UpdateAsync(

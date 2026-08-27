@@ -14,7 +14,7 @@ namespace Speechify
     public sealed partial class SpeechStreamEventVariant1
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("type")]
         [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Speechify.JsonConverters.SpeechStreamEventVariant1TypeJsonConverter))]

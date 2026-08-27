@@ -12,15 +12,15 @@ namespace Speechify
     public enum SuiteRunTrigger
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Batch,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Resubmit,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         RunAll,
     }

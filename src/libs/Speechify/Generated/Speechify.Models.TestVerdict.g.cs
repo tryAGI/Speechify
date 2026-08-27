@@ -13,11 +13,11 @@ namespace Speechify
     public enum TestVerdict
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Failed,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Passed,
     }

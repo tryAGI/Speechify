@@ -4,9 +4,10 @@
 namespace Speechify
 {
     /// <summary>
-    /// A phone number in the workspace inventory. Bound to an agent via<br/>
-    /// `agent_id`; unbound numbers are valid but non-functional until<br/>
-    /// assigned.
+    /// A phone number in the workspace inventory. Its brain is a union:<br/>
+    /// bound to a hosted agent via `agent_id`, or to your own webhook via<br/>
+    /// `relay` - never both at once. Unbound numbers are valid but<br/>
+    /// non-functional until assigned.
     /// </summary>
     public sealed partial class PhoneNumber
     {
@@ -64,10 +65,29 @@ namespace Speechify
         public string? TrunkId { get; set; }
 
         /// <summary>
-        /// ID of the agent that answers calls to this number. Null when unbound.
+        /// ID of the agent this number's calls run as. Null only while the<br/>
+        /// number is unbound. Binding a `relay` provisions an agent too -<br/>
+        /// it is what gives a webhook-brained call a conversation,<br/>
+        /// transcript and lifecycle - so this is also the `agent_id` to<br/>
+        /// pass to `POST /v1/agents/outbound-calls` to dial out from a<br/>
+        /// relay-bound number.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("agent_id")]
         public string? AgentId { get; set; }
+
+        /// <summary>
+        /// The relay binding: your webhook answers this number's traffic.<br/>
+        /// Null when unbound or when an agent is bound instead.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("relay")]
+        public global::Speechify.PhoneNumberRelay? Relay { get; set; }
+
+        /// <summary>
+        /// ISO-3166 alpha-2 country of the number. Present on purchased<br/>
+        /// numbers; may be absent on imported numbers.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("iso_country")]
+        public string? IsoCountry { get; set; }
 
         /// <summary>
         /// What this number can do.
@@ -82,6 +102,14 @@ namespace Speechify
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("project_id")]
         public string? ProjectId { get; set; }
+
+        /// <summary>
+        /// Carrier spam-reputation status for the number, refreshed on a<br/>
+        /// schedule. Present once the number has been checked at least<br/>
+        /// once; omitted otherwise.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("reputation")]
+        public global::Speechify.PhoneNumberReputation? Reputation { get; set; }
 
         /// <summary>
         /// When the number was imported.
@@ -150,11 +178,29 @@ namespace Speechify
         /// ID of the SIP trunk backing this number, if applicable.
         /// </param>
         /// <param name="agentId">
-        /// ID of the agent that answers calls to this number. Null when unbound.
+        /// ID of the agent this number's calls run as. Null only while the<br/>
+        /// number is unbound. Binding a `relay` provisions an agent too -<br/>
+        /// it is what gives a webhook-brained call a conversation,<br/>
+        /// transcript and lifecycle - so this is also the `agent_id` to<br/>
+        /// pass to `POST /v1/agents/outbound-calls` to dial out from a<br/>
+        /// relay-bound number.
+        /// </param>
+        /// <param name="relay">
+        /// The relay binding: your webhook answers this number's traffic.<br/>
+        /// Null when unbound or when an agent is bound instead.
+        /// </param>
+        /// <param name="isoCountry">
+        /// ISO-3166 alpha-2 country of the number. Present on purchased<br/>
+        /// numbers; may be absent on imported numbers.
         /// </param>
         /// <param name="projectId">
         /// Workspace project this resource lives in (prefixed external<br/>
         /// id). Null means the implicit Default project.
+        /// </param>
+        /// <param name="reputation">
+        /// Carrier spam-reputation status for the number, refreshed on a<br/>
+        /// schedule. Present once the number has been checked at least<br/>
+        /// once; omitted otherwise.
         /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
@@ -169,7 +215,10 @@ namespace Speechify
             string? label,
             string? trunkId,
             string? agentId,
-            string? projectId)
+            global::Speechify.PhoneNumberRelay? relay,
+            string? isoCountry,
+            string? projectId,
+            global::Speechify.PhoneNumberReputation? reputation)
         {
             this.Id = id ?? throw new global::System.ArgumentNullException(nameof(id));
             this.E164 = e164 ?? throw new global::System.ArgumentNullException(nameof(e164));
@@ -177,8 +226,11 @@ namespace Speechify
             this.Label = label;
             this.TrunkId = trunkId;
             this.AgentId = agentId;
+            this.Relay = relay;
+            this.IsoCountry = isoCountry;
             this.Capabilities = capabilities ?? throw new global::System.ArgumentNullException(nameof(capabilities));
             this.ProjectId = projectId;
+            this.Reputation = reputation;
             this.CreatedAt = createdAt;
             this.UpdatedAt = updatedAt;
         }

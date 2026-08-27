@@ -12,7 +12,7 @@ namespace Speechify
     public readonly partial struct SpeechStreamEvent : global::System.IEquatable<SpeechStreamEvent>
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public global::Speechify.SpeechStreamEventDiscriminatorType? Type { get; }
 
@@ -31,7 +31,7 @@ namespace Speechify
 #endif
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
 #if NET6_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.MemberNotNullWhen(true, nameof(SpeechChunk))]
@@ -39,7 +39,7 @@ namespace Speechify
         public bool IsSpeechChunk => SpeechChunk != null;
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public bool TryPickSpeechChunk(
 #if NET6_0_OR_GREATER
@@ -52,7 +52,7 @@ namespace Speechify
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public global::Speechify.SpeechStreamEventVariant1 PickSpeechChunk() => IsSpeechChunk
             ? SpeechChunk!
@@ -69,7 +69,7 @@ namespace Speechify
 #endif
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
 #if NET6_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.MemberNotNullWhen(true, nameof(SpeechDone))]
@@ -77,7 +77,7 @@ namespace Speechify
         public bool IsSpeechDone => SpeechDone != null;
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public bool TryPickSpeechDone(
 #if NET6_0_OR_GREATER
@@ -90,7 +90,7 @@ namespace Speechify
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public global::Speechify.SpeechStreamEventVariant2 PickSpeechDone() => IsSpeechDone
             ? SpeechDone!
@@ -108,7 +108,7 @@ namespace Speechify
 #endif
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
 #if NET6_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.MemberNotNullWhen(true, nameof(SpeechError))]
@@ -116,7 +116,7 @@ namespace Speechify
         public bool IsSpeechError => SpeechError != null;
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public bool TryPickSpeechError(
 #if NET6_0_OR_GREATER
@@ -129,23 +129,23 @@ namespace Speechify
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public global::Speechify.SpeechStreamEventVariant3 PickSpeechError() => IsSpeechError
             ? SpeechError!
             : throw new global::System.InvalidOperationException($"Expected union variant 'SpeechError' but the value was {ToString()}.");
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public static implicit operator SpeechStreamEvent(global::Speechify.SpeechStreamEventVariant1 value) => new SpeechStreamEvent((global::Speechify.SpeechStreamEventVariant1?)value);
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public static implicit operator global::Speechify.SpeechStreamEventVariant1?(SpeechStreamEvent @this) => @this.SpeechChunk;
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public SpeechStreamEvent(global::Speechify.SpeechStreamEventVariant1? value)
         {
@@ -153,22 +153,22 @@ namespace Speechify
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public static SpeechStreamEvent FromSpeechChunk(global::Speechify.SpeechStreamEventVariant1? value) => new SpeechStreamEvent(value);
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public static implicit operator SpeechStreamEvent(global::Speechify.SpeechStreamEventVariant2 value) => new SpeechStreamEvent((global::Speechify.SpeechStreamEventVariant2?)value);
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public static implicit operator global::Speechify.SpeechStreamEventVariant2?(SpeechStreamEvent @this) => @this.SpeechDone;
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public SpeechStreamEvent(global::Speechify.SpeechStreamEventVariant2? value)
         {
@@ -176,22 +176,22 @@ namespace Speechify
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public static SpeechStreamEvent FromSpeechDone(global::Speechify.SpeechStreamEventVariant2? value) => new SpeechStreamEvent(value);
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public static implicit operator SpeechStreamEvent(global::Speechify.SpeechStreamEventVariant3 value) => new SpeechStreamEvent((global::Speechify.SpeechStreamEventVariant3?)value);
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public static implicit operator global::Speechify.SpeechStreamEventVariant3?(SpeechStreamEvent @this) => @this.SpeechError;
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public SpeechStreamEvent(global::Speechify.SpeechStreamEventVariant3? value)
         {
@@ -199,12 +199,12 @@ namespace Speechify
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public static SpeechStreamEvent FromSpeechError(global::Speechify.SpeechStreamEventVariant3? value) => new SpeechStreamEvent(value);
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public SpeechStreamEvent(
             global::Speechify.SpeechStreamEventDiscriminatorType? type,
@@ -221,25 +221,25 @@ namespace Speechify
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public object? Object =>
             SpeechError as object ??
             SpeechDone as object ??
-            SpeechChunk as object 
+            SpeechChunk as object
             ;
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public override string? ToString() =>
             SpeechChunk?.ToString() ??
             SpeechDone?.ToString() ??
-            SpeechError?.ToString() 
+            SpeechError?.ToString()
             ;
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public bool Validate()
         {
@@ -247,7 +247,7 @@ namespace Speechify
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public TResult? Match<TResult>(
             global::System.Func<global::Speechify.SpeechStreamEventVariant1, TResult>? speechChunk = null,
@@ -277,7 +277,7 @@ namespace Speechify
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public void Match(
             global::System.Action<global::Speechify.SpeechStreamEventVariant1>? speechChunk = null,
@@ -307,7 +307,7 @@ namespace Speechify
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public void Switch(
             global::System.Action<global::Speechify.SpeechStreamEventVariant1>? speechChunk = null,
@@ -335,7 +335,7 @@ namespace Speechify
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public override int GetHashCode()
         {
@@ -358,19 +358,19 @@ namespace Speechify
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public bool Equals(SpeechStreamEvent other)
         {
             return
                 global::System.Collections.Generic.EqualityComparer<global::Speechify.SpeechStreamEventVariant1?>.Default.Equals(SpeechChunk, other.SpeechChunk) &&
                 global::System.Collections.Generic.EqualityComparer<global::Speechify.SpeechStreamEventVariant2?>.Default.Equals(SpeechDone, other.SpeechDone) &&
-                global::System.Collections.Generic.EqualityComparer<global::Speechify.SpeechStreamEventVariant3?>.Default.Equals(SpeechError, other.SpeechError) 
+                global::System.Collections.Generic.EqualityComparer<global::Speechify.SpeechStreamEventVariant3?>.Default.Equals(SpeechError, other.SpeechError)
                 ;
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public static bool operator ==(SpeechStreamEvent obj1, SpeechStreamEvent obj2)
         {
@@ -378,7 +378,7 @@ namespace Speechify
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public static bool operator !=(SpeechStreamEvent obj1, SpeechStreamEvent obj2)
         {
@@ -386,7 +386,7 @@ namespace Speechify
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public override bool Equals(object? obj)
         {

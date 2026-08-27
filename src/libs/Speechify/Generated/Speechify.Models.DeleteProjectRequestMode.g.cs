@@ -11,11 +11,11 @@ namespace Speechify
     public enum DeleteProjectRequestMode
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Detach,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Purge,
     }

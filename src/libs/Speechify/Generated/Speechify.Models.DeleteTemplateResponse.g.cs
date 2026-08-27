@@ -4,7 +4,7 @@
 namespace Speechify
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     public sealed partial class DeleteTemplateResponse
     {

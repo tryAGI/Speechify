@@ -12,19 +12,19 @@ namespace Speechify
     public enum SIPTransport
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Auto,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Tcp,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Tls,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Udp,
     }

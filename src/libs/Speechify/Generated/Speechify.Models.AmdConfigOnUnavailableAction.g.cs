@@ -4,12 +4,12 @@
 namespace Speechify
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     public enum AmdConfigOnUnavailableAction
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Hangup,
     }

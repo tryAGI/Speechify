@@ -4,16 +4,16 @@
 namespace Speechify
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     public enum WidgetConfigStyle
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Fab,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Pill,
     }

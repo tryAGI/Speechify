@@ -20,21 +20,21 @@ namespace Speechify
         public required string Id { get; set; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("fingerprint_id")]
         [global::System.Text.Json.Serialization.JsonRequired]
         public required string FingerprintId { get; set; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("transcript_sample")]
         [global::System.Text.Json.Serialization.JsonRequired]
         public required string TranscriptSample { get; set; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("schema_version")]
         [global::System.Text.Json.Serialization.JsonRequired]
@@ -48,49 +48,49 @@ namespace Speechify
         public required global::Speechify.IvrMenuListEntryMenuTree MenuTree { get; set; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("confidence_score")]
         [global::System.Text.Json.Serialization.JsonRequired]
         public required string ConfidenceScore { get; set; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("succeeded_traversals")]
         [global::System.Text.Json.Serialization.JsonRequired]
         public required int SucceededTraversals { get; set; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("total_traversals")]
         [global::System.Text.Json.Serialization.JsonRequired]
         public required int TotalTraversals { get; set; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("last_validated_at")]
         [global::System.Text.Json.Serialization.JsonRequired]
         public required global::System.DateTime LastValidatedAt { get; set; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("last_observed_at")]
         [global::System.Text.Json.Serialization.JsonRequired]
         public required global::System.DateTime LastObservedAt { get; set; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("occurrence_count")]
         [global::System.Text.Json.Serialization.JsonRequired]
         public required int OccurrenceCount { get; set; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("created_at")]
         [global::System.Text.Json.Serialization.JsonRequired]

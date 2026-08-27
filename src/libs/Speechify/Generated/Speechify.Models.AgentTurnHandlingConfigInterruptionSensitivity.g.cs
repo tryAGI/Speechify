@@ -36,7 +36,7 @@ namespace Speechify
         /// </summary>
         Low,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Medium,
     }

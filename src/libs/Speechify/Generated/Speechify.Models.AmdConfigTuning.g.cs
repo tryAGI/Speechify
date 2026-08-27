@@ -12,25 +12,25 @@ namespace Speechify
     public sealed partial class AmdConfigTuning
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("human_speech_threshold_seconds")]
         public double? HumanSpeechThresholdSeconds { get; set; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("no_speech_threshold_seconds")]
         public double? NoSpeechThresholdSeconds { get; set; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("timeout_seconds")]
         public double? TimeoutSeconds { get; set; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("classification_prompt")]
         public string? ClassificationPrompt { get; set; }

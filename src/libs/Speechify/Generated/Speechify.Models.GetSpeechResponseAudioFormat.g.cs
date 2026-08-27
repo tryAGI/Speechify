@@ -9,27 +9,27 @@ namespace Speechify
     public enum GetSpeechResponseAudioFormat
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Aac,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Mp3,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Ogg,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Pcm,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Ulaw,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Wav,
     }

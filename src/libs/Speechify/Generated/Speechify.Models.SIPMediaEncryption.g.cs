@@ -12,15 +12,15 @@ namespace Speechify
     public enum SIPMediaEncryption
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Allow,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Disable,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Require,
     }

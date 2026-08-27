@@ -12,11 +12,11 @@ namespace Speechify
     public enum PurchasedPhoneNumberProvider
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         TelnyxPurchased,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         TwilioPurchased,
     }

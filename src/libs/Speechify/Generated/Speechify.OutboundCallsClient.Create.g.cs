@@ -54,6 +54,14 @@ namespace Speechify
         /// The response is returned as soon as LiveKit accepts the INVITE.<br/>
         /// Poll `GET /v1/agents/conversations/{conversation_id}` for status<br/>
         /// transitions: `pending` → `active` (answered) → `completed`.<br/>
+        /// This is also how a Phone number whose brain is your own webhook<br/>
+        /// dials out: when the caller ID resolves to a number carrying a<br/>
+        /// relay binding, every turn on the call is answered by your endpoint<br/>
+        /// instead of an LLM, and `call.started`'s reply is the opening line<br/>
+        /// spoken to the callee. Everything else is unchanged - same gates,<br/>
+        /// same conversation, same transcript, same recording. Pass the agent<br/>
+        /// the webhook bind provisioned (it is returned on the number) and,<br/>
+        /// for a workspace with several numbers, `caller_id_number`.<br/>
         /// Requires a Twilio or BYOC trunk. LiveKit-native numbers are<br/>
         /// inbound-only.
         /// </summary>
@@ -93,6 +101,14 @@ namespace Speechify
         /// The response is returned as soon as LiveKit accepts the INVITE.<br/>
         /// Poll `GET /v1/agents/conversations/{conversation_id}` for status<br/>
         /// transitions: `pending` → `active` (answered) → `completed`.<br/>
+        /// This is also how a Phone number whose brain is your own webhook<br/>
+        /// dials out: when the caller ID resolves to a number carrying a<br/>
+        /// relay binding, every turn on the call is answered by your endpoint<br/>
+        /// instead of an LLM, and `call.started`'s reply is the opening line<br/>
+        /// spoken to the callee. Everything else is unchanged - same gates,<br/>
+        /// same conversation, same transcript, same recording. Pass the agent<br/>
+        /// the webhook bind provisioned (it is returned on the number) and,<br/>
+        /// for a workspace with several numbers, `caller_id_number`.<br/>
         /// Requires a Twilio or BYOC trunk. LiveKit-native numbers are<br/>
         /// inbound-only.
         /// </summary>
@@ -175,7 +191,7 @@ namespace Speechify
                          __authorization.Location == "Header")
                 {
                     __httpRequest.Headers.Add(__authorization.Name, __authorization.Value);
-                } 
+                }
             }
 
             if (speechifyVersion != default)
@@ -385,7 +401,7 @@ namespace Speechify
                                 retryReason: global::System.String.Empty,
                                 cancellationToken: __effectiveCancellationToken)).ConfigureAwait(false);
                 }
-                            // The request was malformed or failed validation. The response body is the standard `Error` envelope; for validation failures `error.fields` enumerates the offending fields as a `path -> message` map (code = `validation_failed`). 
+                            // The request was malformed or failed validation. The response body is the standard `Error` envelope; for validation failures `error.fields` enumerates the offending fields as a `path -> message` map (code = `validation_failed`).
                             if ((int)__response.StatusCode == 400)
                             {
                                 string? __content_400 = null;
@@ -422,7 +438,7 @@ namespace Speechify
                                         h => h.Key,
                                         h => h.Value));
                             }
-                            // Authentication is missing or invalid. The request did not carry a recognised credential (console session token, API key, or worker JWT). 
+                            // Authentication is missing or invalid. The request did not carry a recognised credential (console session token, API key, or worker JWT).
                             if ((int)__response.StatusCode == 401)
                             {
                                 string? __content_401 = null;
@@ -459,7 +475,7 @@ namespace Speechify
                                         h => h.Key,
                                         h => h.Value));
                             }
-                            // The workspace has insufficient credits, or the request needs a plan tier the workspace is not on (e.g. voice cloning). Distinct from `Forbidden` so SDK consumers can drive upgrade UX. 
+                            // The workspace has insufficient credits, or the request needs a plan tier the workspace is not on (e.g. voice cloning). Distinct from `Forbidden` so SDK consumers can drive upgrade UX.
                             if ((int)__response.StatusCode == 402)
                             {
                                 string? __content_402 = null;
@@ -496,7 +512,7 @@ namespace Speechify
                                         h => h.Key,
                                         h => h.Value));
                             }
-                            // The credential authenticated, but is not authorised for this resource - typically a workspace-role gate (owner / admin required) or a cross-tenant access attempt. 
+                            // The credential authenticated, but is not authorised for this resource - typically a workspace-role gate (owner / admin required) or a cross-tenant access attempt.
                             if ((int)__response.StatusCode == 403)
                             {
                                 string? __content_403 = null;
@@ -533,7 +549,7 @@ namespace Speechify
                                         h => h.Key,
                                         h => h.Value));
                             }
-                            // The referenced resource does not exist or is not visible to the caller's workspace. 
+                            // The referenced resource does not exist or is not visible to the caller's workspace.
                             if ((int)__response.StatusCode == 404)
                             {
                                 string? __content_404 = null;
@@ -570,7 +586,7 @@ namespace Speechify
                                         h => h.Key,
                                         h => h.Value));
                             }
-                            // The request conflicts with the current resource state - e.g. duplicate, optimistic-concurrency mismatch, or last-owner guard. 
+                            // The request conflicts with the current resource state - e.g. duplicate, optimistic-concurrency mismatch, or last-owner guard.
                             if ((int)__response.StatusCode == 409)
                             {
                                 string? __content_409 = null;
@@ -607,7 +623,7 @@ namespace Speechify
                                         h => h.Key,
                                         h => h.Value));
                             }
-                            // An upstream dependency (the TTS composer or voice-metadata service) returned a 5xx. The raw upstream detail is not forwarded - the cause is in the server log; the response is a fixed `upstream_failure` envelope. Safe to retry. 
+                            // An upstream dependency (the TTS composer or voice-metadata service) returned a 5xx. The raw upstream detail is not forwarded - the cause is in the server log; the response is a fixed `upstream_failure` envelope. Safe to retry.
                             if ((int)__response.StatusCode == 502)
                             {
                                 string? __content_502 = null;
@@ -749,6 +765,14 @@ namespace Speechify
         /// The response is returned as soon as LiveKit accepts the INVITE.<br/>
         /// Poll `GET /v1/agents/conversations/{conversation_id}` for status<br/>
         /// transitions: `pending` → `active` (answered) → `completed`.<br/>
+        /// This is also how a Phone number whose brain is your own webhook<br/>
+        /// dials out: when the caller ID resolves to a number carrying a<br/>
+        /// relay binding, every turn on the call is answered by your endpoint<br/>
+        /// instead of an LLM, and `call.started`'s reply is the opening line<br/>
+        /// spoken to the callee. Everything else is unchanged - same gates,<br/>
+        /// same conversation, same transcript, same recording. Pass the agent<br/>
+        /// the webhook bind provisioned (it is returned on the number) and,<br/>
+        /// for a workspace with several numbers, `caller_id_number`.<br/>
         /// Requires a Twilio or BYOC trunk. LiveKit-native numbers are<br/>
         /// inbound-only.
         /// </summary>

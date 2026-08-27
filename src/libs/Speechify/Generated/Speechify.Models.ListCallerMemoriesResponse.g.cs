@@ -25,7 +25,7 @@ namespace Speechify
         public required bool HasMore { get; set; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("memories")]
         [global::System.Text.Json.Serialization.JsonRequired]

@@ -43,113 +43,113 @@ namespace Speechify
         public global::System.Func<string> CreateIdempotencyKey { get; set; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         global::System.Text.Json.Serialization.JsonSerializerContext JsonSerializerContext { get; set; }
 
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public AdminClient Admin { get; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public AgentClient Agent { get; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public AudioClient Audio { get; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public AudioAssetsClient AudioAssets { get; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public BatchCallsClient BatchCalls { get; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public CallersClient Callers { get; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public ConsentChallengesClient ConsentChallenges { get; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public ConversationsClient Conversations { get; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public FlowClient Flow { get; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public IvrMemoryClient IvrMemory { get; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public KnowledgeBasesClient KnowledgeBases { get; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public MemoriesClient Memories { get; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public ModelsClient Models { get; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public OutboundCallsClient OutboundCalls { get; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public PhoneNumbersClient PhoneNumbers { get; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public ProjectsClient Projects { get; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public ShareLinksClient ShareLinks { get; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public SipTrunksClient SipTrunks { get; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public TestsClient Tests { get; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public ToolDefinitionsClient ToolDefinitions { get; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public VoicesClient Voices { get; }
 

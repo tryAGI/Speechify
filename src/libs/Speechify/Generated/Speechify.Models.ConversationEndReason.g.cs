@@ -30,11 +30,11 @@ namespace Speechify
     public enum ConversationEndReason
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         AgentEnded,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         CallerHangup,
         /// <summary>
@@ -54,43 +54,43 @@ namespace Speechify
         /// </summary>
         DialRejected,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         FlowBudgetExhausted,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         InactivityTimeout,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         IvrHangup,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         LoopDetected,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         MaxDurationReached,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         OverCapacity,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Transferred,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         UnavailableHangup,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         VoicemailHangup,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         VoicemailMessageLeft,
     }

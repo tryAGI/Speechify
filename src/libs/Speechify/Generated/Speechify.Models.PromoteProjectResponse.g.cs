@@ -25,7 +25,7 @@ namespace Speechify
         public required global::Speechify.PromoteReused Reused { get; set; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("needs_attention")]
         [global::System.Text.Json.Serialization.JsonRequired]

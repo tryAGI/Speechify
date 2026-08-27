@@ -4,12 +4,12 @@
 namespace Speechify
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     public enum SpeechStreamEventVariant3Type
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         SpeechError,
     }

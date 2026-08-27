@@ -155,7 +155,7 @@ namespace Speechify
                          __authorization.Location == "Header")
                 {
                     __httpRequest.Headers.Add(__authorization.Name, __authorization.Value);
-                } 
+                }
             }
 
             if (speechifyVersion != default)
@@ -361,7 +361,7 @@ namespace Speechify
                                 retryReason: global::System.String.Empty,
                                 cancellationToken: __effectiveCancellationToken)).ConfigureAwait(false);
                 }
-                            // Flow validation failed (or the request body was undecodable). The standard `Error` envelope plus an `issues` array locating each problem for the editor. See the `FlowValidationError` schema. 
+                            // Flow validation failed (or the request body was undecodable). The standard `Error` envelope plus an `issues` array locating each problem for the editor. See the `FlowValidationError` schema.
                             if ((int)__response.StatusCode == 400)
                             {
                                 string? __content_400 = null;
@@ -398,7 +398,7 @@ namespace Speechify
                                         h => h.Key,
                                         h => h.Value));
                             }
-                            // Authentication is missing or invalid. The request did not carry a recognised credential (console session token, API key, or worker JWT). 
+                            // Authentication is missing or invalid. The request did not carry a recognised credential (console session token, API key, or worker JWT).
                             if ((int)__response.StatusCode == 401)
                             {
                                 string? __content_401 = null;
@@ -435,7 +435,7 @@ namespace Speechify
                                         h => h.Key,
                                         h => h.Value));
                             }
-                            // The referenced resource does not exist or is not visible to the caller's workspace. 
+                            // The referenced resource does not exist or is not visible to the caller's workspace.
                             if ((int)__response.StatusCode == 404)
                             {
                                 string? __content_404 = null;
@@ -472,7 +472,7 @@ namespace Speechify
                                         h => h.Key,
                                         h => h.Value));
                             }
-                            // The request conflicts with the current resource state - e.g. duplicate, optimistic-concurrency mismatch, or last-owner guard. 
+                            // The request conflicts with the current resource state - e.g. duplicate, optimistic-concurrency mismatch, or last-owner guard.
                             if ((int)__response.StatusCode == 409)
                             {
                                 string? __content_409 = null;
@@ -509,7 +509,7 @@ namespace Speechify
                                         h => h.Key,
                                         h => h.Value));
                             }
-                            // An unexpected server-side error occurred. Safe to retry with exponential backoff for idempotent requests. 
+                            // An unexpected server-side error occurred. Safe to retry with exponential backoff for idempotent requests.
                             if ((int)__response.StatusCode == 500)
                             {
                                 string? __content_500 = null;

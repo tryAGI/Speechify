@@ -9,7 +9,7 @@ namespace Speechify
     public sealed partial class AmdConfigOnVoicemail
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("action")]
         [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Speechify.JsonConverters.AmdConfigOnVoicemailActionJsonConverter))]

@@ -12,15 +12,15 @@ namespace Speechify
     public enum TestType
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Reply,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Simulation,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Tool,
     }

@@ -20,7 +20,9 @@ namespace Speechify
         /// - `requires_voice_curation` - a voice must be registered for the<br/>
         ///   model before it can be selected with that voice. The voice's<br/>
         ///   `models` array on GET /v1/agents/voices is the per-voice answer,<br/>
-        ///   and it changes as voices are curated, with no release here.<br/>
+        ///   and it changes as voices are curated, with no release here. It is<br/>
+        ///   false for a model offered across the catalog, which every Speechify<br/>
+        ///   voice can then select.<br/>
         /// Drive a model picker from this and the voice catalog together and it<br/>
         /// can only offer combinations POST/PATCH /v1/agents will accept.<br/>
         /// Returns the full set in one response: bounded by the platform's<br/>
@@ -50,7 +52,9 @@ namespace Speechify
         /// - `requires_voice_curation` - a voice must be registered for the<br/>
         ///   model before it can be selected with that voice. The voice's<br/>
         ///   `models` array on GET /v1/agents/voices is the per-voice answer,<br/>
-        ///   and it changes as voices are curated, with no release here.<br/>
+        ///   and it changes as voices are curated, with no release here. It is<br/>
+        ///   false for a model offered across the catalog, which every Speechify<br/>
+        ///   voice can then select.<br/>
         /// Drive a model picker from this and the voice catalog together and it<br/>
         /// can only offer combinations POST/PATCH /v1/agents will accept.<br/>
         /// Returns the full set in one response: bounded by the platform's<br/>

@@ -144,7 +144,7 @@ namespace Speechify
                          __authorization.Location == "Header")
                 {
                     __httpRequest.Headers.Add(__authorization.Name, __authorization.Value);
-                } 
+                }
             }
 
             if (speechifyVersion != default)
@@ -343,7 +343,7 @@ namespace Speechify
                                 retryReason: global::System.String.Empty,
                                 cancellationToken: __effectiveCancellationToken)).ConfigureAwait(false);
                 }
-                            // The credential authenticated, but is not authorised for this resource - typically a workspace-role gate (owner / admin required) or a cross-tenant access attempt. 
+                            // The credential authenticated, but is not authorised for this resource - typically a workspace-role gate (owner / admin required) or a cross-tenant access attempt.
                             if ((int)__response.StatusCode == 403)
                             {
                                 string? __content_403 = null;
@@ -380,7 +380,7 @@ namespace Speechify
                                         h => h.Key,
                                         h => h.Value));
                             }
-                            // The referenced resource does not exist or is not visible to the caller's workspace. 
+                            // The referenced resource does not exist or is not visible to the caller's workspace.
                             if ((int)__response.StatusCode == 404)
                             {
                                 string? __content_404 = null;
@@ -417,7 +417,7 @@ namespace Speechify
                                         h => h.Key,
                                         h => h.Value));
                             }
-                            // An unexpected server-side error occurred. Safe to retry with exponential backoff for idempotent requests. 
+                            // An unexpected server-side error occurred. Safe to retry with exponential backoff for idempotent requests.
                             if ((int)__response.StatusCode == 500)
                             {
                                 string? __content_500 = null;

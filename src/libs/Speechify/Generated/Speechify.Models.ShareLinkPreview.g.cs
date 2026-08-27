@@ -47,7 +47,7 @@ namespace Speechify
         public string? TermsContent { get; set; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("max_call_duration_seconds")]
         [global::System.Text.Json.Serialization.JsonRequired]

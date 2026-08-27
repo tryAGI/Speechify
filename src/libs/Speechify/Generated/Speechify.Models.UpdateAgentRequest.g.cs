@@ -24,25 +24,25 @@ namespace Speechify
         public string? ProjectId { get; set; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("name")]
         public string? Name { get; set; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("prompt")]
         public string? Prompt { get; set; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("first_message")]
         public string? FirstMessage { get; set; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("language")]
         public string? Language { get; set; }
@@ -115,13 +115,13 @@ namespace Speechify
         public global::Speechify.WidgetConfig? WidgetConfig { get; set; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("is_public")]
         public bool? IsPublic { get; set; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("allowed_origins")]
         public global::System.Collections.Generic.IList<string>? AllowedOrigins { get; set; }
@@ -135,7 +135,7 @@ namespace Speechify
         public global::System.Collections.Generic.IList<string>? HostnameAllowlist { get; set; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("webhook_url")]
         public string? WebhookUrl { get; set; }
@@ -165,10 +165,16 @@ namespace Speechify
         public int? MaxCallDurationSeconds { get; set; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("save_audio_recording")]
         public bool? SaveAudioRecording { get; set; }
+
+        /// <summary>
+        /// Opt-in AI-disclosure opening line (PATCH-replace, wholesale). Omit to leave the stored config unchanged.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("ai_disclosure")]
+        public global::Speechify.AIDisclosure? AiDisclosure { get; set; }
 
         /// <summary>
         /// Additional properties that are not explicitly defined in the schema
@@ -252,6 +258,9 @@ namespace Speechify
         /// previously set cap.
         /// </param>
         /// <param name="saveAudioRecording"></param>
+        /// <param name="aiDisclosure">
+        /// Opt-in AI-disclosure opening line (PATCH-replace, wholesale). Omit to leave the stored config unchanged.
+        /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
 #endif
@@ -277,7 +286,8 @@ namespace Speechify
             string? webhookSecret,
             global::Speechify.AMDConfig? amd,
             int? maxCallDurationSeconds,
-            bool? saveAudioRecording)
+            bool? saveAudioRecording,
+            global::Speechify.AIDisclosure? aiDisclosure)
         {
             this.ProjectId = projectId;
             this.Name = name;
@@ -301,6 +311,7 @@ namespace Speechify
             this.Amd = amd;
             this.MaxCallDurationSeconds = maxCallDurationSeconds;
             this.SaveAudioRecording = saveAudioRecording;
+            this.AiDisclosure = aiDisclosure;
         }
 
         /// <summary>

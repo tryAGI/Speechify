@@ -9,15 +9,15 @@ namespace Speechify
     public enum AgentSnapshotInterruptionSensitivity
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         High,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Low,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Medium,
     }

@@ -7,7 +7,7 @@
 namespace Speechify
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     [global::System.Text.Json.Serialization.JsonSourceGenerationOptions(
         DefaultIgnoreCondition = global::System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull,
@@ -100,6 +100,7 @@ namespace Speechify
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.AmdConfigOnUnavailable))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.AmdConfigTuning))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.AMDConfig))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.AIDisclosure))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.Agent))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Speechify.AgentAdditionalLanguage>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.ListAgentsResponse))]
@@ -120,6 +121,13 @@ namespace Speechify
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.AgentTTSModelInfo))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.AgentTTSModelsResponse))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Speechify.AgentTTSModelInfo>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.AgentPhoneNumberReferenceResourceType), TypeInfoPropertyName = "AgentPhoneNumberReferenceResourceType2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.AgentPhoneNumberReference))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.AgentPhoneNumberUsedBy))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Speechify.AgentPhoneNumberReference>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.AgentInUseErrorDetailDetails))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.AgentInUseErrorDetail))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.AgentInUseError))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.UpdateAgentRequest))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.AgentFlowGetSchemaResponse200))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.FlowVersion))]
@@ -400,7 +408,11 @@ namespace Speechify
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.CreateShareLinkSessionRequest))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.ShareLinkSession))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.PhoneNumberProvider), TypeInfoPropertyName = "PhoneNumberProvider2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.PhoneNumberRelayHealth), TypeInfoPropertyName = "PhoneNumberRelayHealth2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.PhoneNumberRelay))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.PhoneNumberCapability), TypeInfoPropertyName = "PhoneNumberCapability2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.PhoneNumberReputationRisk), TypeInfoPropertyName = "PhoneNumberReputationRisk2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.PhoneNumberReputation))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.PhoneNumber))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Speechify.PhoneNumberCapability>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.ListPhoneNumbersResponse))]
@@ -412,7 +424,10 @@ namespace Speechify
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.AvailablePhoneNumber))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.SearchAvailablePhoneNumbersResponse))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Speechify.AvailablePhoneNumber>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.IntendedUseMarketingOrInformational), TypeInfoPropertyName = "IntendedUseMarketingOrInformational2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.IntendedUse))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.PurchasePhoneNumberRequest))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.RelayBinding))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.UpdatePhoneNumberRequest))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.CreateOutboundCallRequest))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.CreateOutboundCallResponse))]
@@ -499,6 +514,18 @@ namespace Speechify
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(bool?))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.AudioOutputFormat?), TypeInfoPropertyName = "NullableAudioOutputFormat2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.GetSpeechResponseAudioFormat?), TypeInfoPropertyName = "NullableGetSpeechResponseAudioFormat2")]
+    internal sealed partial class SourceGenerationContextChunk0 : global::System.Text.Json.Serialization.JsonSerializerContext
+    {
+    }
+
+    /// <summary>
+    ///
+    /// </summary>
+    [global::System.Text.Json.Serialization.JsonSourceGenerationOptions(
+        DefaultIgnoreCondition = global::System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull,
+        Converters = new global::System.Type[]
+        {
+        })]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(long?))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(double?))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.ErrorCode?), TypeInfoPropertyName = "NullableErrorCode2")]
@@ -514,18 +541,6 @@ namespace Speechify
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.SpeechStreamEventDiscriminatorType?), TypeInfoPropertyName = "NullableSpeechStreamEventDiscriminatorType2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.V1VoicesGetParametersType?), TypeInfoPropertyName = "NullableV1VoicesGetParametersType2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.V1VoicesGetParametersGender?), TypeInfoPropertyName = "NullableV1VoicesGetParametersGender2")]
-    internal sealed partial class SourceGenerationContextChunk0 : global::System.Text.Json.Serialization.JsonSerializerContext
-    {
-    }
-
-    /// <summary>
-    /// 
-    /// </summary>
-    [global::System.Text.Json.Serialization.JsonSourceGenerationOptions(
-        DefaultIgnoreCondition = global::System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull,
-        Converters = new global::System.Type[]
-        {
-        })]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.GetVoiceGender?), TypeInfoPropertyName = "NullableGetVoiceGender2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.GetVoicesModelName?), TypeInfoPropertyName = "NullableGetVoicesModelName2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.GetVoiceType?), TypeInfoPropertyName = "NullableGetVoiceType2")]
@@ -543,6 +558,7 @@ namespace Speechify
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.AgentVoiceType?), TypeInfoPropertyName = "NullableAgentVoiceType2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.AgentVoiceModelName?), TypeInfoPropertyName = "NullableAgentVoiceModelName2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.AgentVoiceGender?), TypeInfoPropertyName = "NullableAgentVoiceGender2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.AgentPhoneNumberReferenceResourceType?), TypeInfoPropertyName = "NullableAgentPhoneNumberReferenceResourceType2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.DataCollectionFieldType?), TypeInfoPropertyName = "NullableDataCollectionFieldType2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.DynamicVariableType?), TypeInfoPropertyName = "NullableDynamicVariableType2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.ConversationStatus?), TypeInfoPropertyName = "NullableConversationStatus2")]
@@ -603,8 +619,11 @@ namespace Speechify
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.ShareLinkStatus?), TypeInfoPropertyName = "NullableShareLinkStatus2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.CreateShareLinkResponseStatus?), TypeInfoPropertyName = "NullableCreateShareLinkResponseStatus2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.PhoneNumberProvider?), TypeInfoPropertyName = "NullablePhoneNumberProvider2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.PhoneNumberRelayHealth?), TypeInfoPropertyName = "NullablePhoneNumberRelayHealth2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.PhoneNumberCapability?), TypeInfoPropertyName = "NullablePhoneNumberCapability2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.PhoneNumberReputationRisk?), TypeInfoPropertyName = "NullablePhoneNumberReputationRisk2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.PurchasedPhoneNumberProvider?), TypeInfoPropertyName = "NullablePurchasedPhoneNumberProvider2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.IntendedUseMarketingOrInformational?), TypeInfoPropertyName = "NullableIntendedUseMarketingOrInformational2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.BatchRecipientStatus?), TypeInfoPropertyName = "NullableBatchRecipientStatus2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.SIPTrunkProvider?), TypeInfoPropertyName = "NullableSIPTrunkProvider2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.SIPTrunkDirection?), TypeInfoPropertyName = "NullableSIPTrunkDirection2")]
@@ -629,6 +648,7 @@ namespace Speechify
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.AgentVoice>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.MultilingualLanguage>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.AgentTTSModelInfo>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.AgentPhoneNumberReference>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.FlowGraphNodesItems>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.FlowGraphEdgesItems>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.FlowGraphVariablesItems>))]
@@ -706,7 +726,7 @@ namespace Speechify
     {
     }
     /// <summary>
-    /// 
+    ///
     /// </summary>
     public sealed partial class SourceGenerationContext : global::System.Text.Json.Serialization.JsonSerializerContext
     {
@@ -715,7 +735,7 @@ namespace Speechify
         private static readonly global::System.Text.Json.JsonSerializerOptions DefaultOptions = CreateDefaultOptions();
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public static SourceGenerationContext Default { get; } = new(DefaultOptions);
 
@@ -902,6 +922,10 @@ namespace Speechify
 
                     || typeToConvert == typeof(global::Speechify.AgentVoiceGender?)
 
+                    || typeToConvert == typeof(global::Speechify.AgentPhoneNumberReferenceResourceType)
+
+                    || typeToConvert == typeof(global::Speechify.AgentPhoneNumberReferenceResourceType?)
+
                     || typeToConvert == typeof(global::Speechify.DataCollectionFieldType)
 
                     || typeToConvert == typeof(global::Speechify.DataCollectionFieldType?)
@@ -1066,13 +1090,25 @@ namespace Speechify
 
                     || typeToConvert == typeof(global::Speechify.PhoneNumberProvider?)
 
+                    || typeToConvert == typeof(global::Speechify.PhoneNumberRelayHealth)
+
+                    || typeToConvert == typeof(global::Speechify.PhoneNumberRelayHealth?)
+
                     || typeToConvert == typeof(global::Speechify.PhoneNumberCapability)
 
                     || typeToConvert == typeof(global::Speechify.PhoneNumberCapability?)
 
+                    || typeToConvert == typeof(global::Speechify.PhoneNumberReputationRisk)
+
+                    || typeToConvert == typeof(global::Speechify.PhoneNumberReputationRisk?)
+
                     || typeToConvert == typeof(global::Speechify.PurchasedPhoneNumberProvider)
 
                     || typeToConvert == typeof(global::Speechify.PurchasedPhoneNumberProvider?)
+
+                    || typeToConvert == typeof(global::Speechify.IntendedUseMarketingOrInformational)
+
+                    || typeToConvert == typeof(global::Speechify.IntendedUseMarketingOrInformational?)
 
                     || typeToConvert == typeof(global::Speechify.BatchRecipientStatus)
 
@@ -1431,6 +1467,16 @@ namespace Speechify
                 if (typeToConvert == typeof(global::Speechify.AgentVoiceGender?))
                 {
                     return new global::Speechify.JsonConverters.AgentVoiceGenderNullableJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.AgentPhoneNumberReferenceResourceType))
+                {
+                    return new global::Speechify.JsonConverters.AgentPhoneNumberReferenceResourceTypeJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.AgentPhoneNumberReferenceResourceType?))
+                {
+                    return new global::Speechify.JsonConverters.AgentPhoneNumberReferenceResourceTypeNullableJsonConverter();
                 }
 
                 if (typeToConvert == typeof(global::Speechify.DataCollectionFieldType))
@@ -1843,6 +1889,16 @@ namespace Speechify
                     return new global::Speechify.JsonConverters.PhoneNumberProviderNullableJsonConverter();
                 }
 
+                if (typeToConvert == typeof(global::Speechify.PhoneNumberRelayHealth))
+                {
+                    return new global::Speechify.JsonConverters.PhoneNumberRelayHealthJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.PhoneNumberRelayHealth?))
+                {
+                    return new global::Speechify.JsonConverters.PhoneNumberRelayHealthNullableJsonConverter();
+                }
+
                 if (typeToConvert == typeof(global::Speechify.PhoneNumberCapability))
                 {
                     return new global::Speechify.JsonConverters.PhoneNumberCapabilityJsonConverter();
@@ -1853,6 +1909,16 @@ namespace Speechify
                     return new global::Speechify.JsonConverters.PhoneNumberCapabilityNullableJsonConverter();
                 }
 
+                if (typeToConvert == typeof(global::Speechify.PhoneNumberReputationRisk))
+                {
+                    return new global::Speechify.JsonConverters.PhoneNumberReputationRiskJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.PhoneNumberReputationRisk?))
+                {
+                    return new global::Speechify.JsonConverters.PhoneNumberReputationRiskNullableJsonConverter();
+                }
+
                 if (typeToConvert == typeof(global::Speechify.PurchasedPhoneNumberProvider))
                 {
                     return new global::Speechify.JsonConverters.PurchasedPhoneNumberProviderJsonConverter();
@@ -1861,6 +1927,16 @@ namespace Speechify
                 if (typeToConvert == typeof(global::Speechify.PurchasedPhoneNumberProvider?))
                 {
                     return new global::Speechify.JsonConverters.PurchasedPhoneNumberProviderNullableJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.IntendedUseMarketingOrInformational))
+                {
+                    return new global::Speechify.JsonConverters.IntendedUseMarketingOrInformationalJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.IntendedUseMarketingOrInformational?))
+                {
+                    return new global::Speechify.JsonConverters.IntendedUseMarketingOrInformationalNullableJsonConverter();
                 }
 
                 if (typeToConvert == typeof(global::Speechify.BatchRecipientStatus))

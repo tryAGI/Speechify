@@ -46,6 +46,22 @@ namespace Speechify
         public string? AgentId { get; set; }
 
         /// <summary>
+        /// Optional workspace-level intended-use declaration recorded with<br/>
+        /// the purchase (replaces any earlier declaration). May be required<br/>
+        /// by the workspace trust policy.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("intended_use")]
+        public global::Speechify.IntendedUse? IntendedUse { get; set; }
+
+        /// <summary>
+        /// Set true to record the ToS/consent attestation for this<br/>
+        /// workspace. Recorded once - a repeat purchase never moves the<br/>
+        /// original attestation's actor or timestamp.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("tos_accepted")]
+        public bool? TosAccepted { get; set; }
+
+        /// <summary>
         /// Additional properties that are not explicitly defined in the schema
         /// </summary>
         [global::System.Text.Json.Serialization.JsonExtensionData]
@@ -73,6 +89,16 @@ namespace Speechify
         /// Optional agent to bind the number to at purchase time.<br/>
         /// Prefixed wire identifier (`agent_&lt;26 char Crockford base32&gt;`).
         /// </param>
+        /// <param name="intendedUse">
+        /// Optional workspace-level intended-use declaration recorded with<br/>
+        /// the purchase (replaces any earlier declaration). May be required<br/>
+        /// by the workspace trust policy.
+        /// </param>
+        /// <param name="tosAccepted">
+        /// Set true to record the ToS/consent attestation for this<br/>
+        /// workspace. Recorded once - a repeat purchase never moves the<br/>
+        /// original attestation's actor or timestamp.
+        /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
 #endif
@@ -81,13 +107,17 @@ namespace Speechify
             string? projectId,
             string? label,
             global::Speechify.PurchasedPhoneNumberProvider? provider,
-            string? agentId)
+            string? agentId,
+            global::Speechify.IntendedUse? intendedUse,
+            bool? tosAccepted)
         {
             this.ProjectId = projectId;
             this.E164 = e164 ?? throw new global::System.ArgumentNullException(nameof(e164));
             this.Label = label;
             this.Provider = provider;
             this.AgentId = agentId;
+            this.IntendedUse = intendedUse;
+            this.TosAccepted = tosAccepted;
         }
 
         /// <summary>

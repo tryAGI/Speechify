@@ -17,11 +17,11 @@ namespace Speechify
     public enum LongRunningToolConfigOnDuplicate
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Allow,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Reject,
     }

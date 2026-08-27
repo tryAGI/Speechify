@@ -13,6 +13,14 @@ namespace Speechify
         /// The response is returned as soon as LiveKit accepts the INVITE.<br/>
         /// Poll `GET /v1/agents/conversations/{conversation_id}` for status<br/>
         /// transitions: `pending` → `active` (answered) → `completed`.<br/>
+        /// This is also how a Phone number whose brain is your own webhook<br/>
+        /// dials out: when the caller ID resolves to a number carrying a<br/>
+        /// relay binding, every turn on the call is answered by your endpoint<br/>
+        /// instead of an LLM, and `call.started`'s reply is the opening line<br/>
+        /// spoken to the callee. Everything else is unchanged - same gates,<br/>
+        /// same conversation, same transcript, same recording. Pass the agent<br/>
+        /// the webhook bind provisioned (it is returned on the number) and,<br/>
+        /// for a workspace with several numbers, `caller_id_number`.<br/>
         /// Requires a Twilio or BYOC trunk. LiveKit-native numbers are<br/>
         /// inbound-only.
         /// </summary>
@@ -40,6 +48,14 @@ namespace Speechify
         /// The response is returned as soon as LiveKit accepts the INVITE.<br/>
         /// Poll `GET /v1/agents/conversations/{conversation_id}` for status<br/>
         /// transitions: `pending` → `active` (answered) → `completed`.<br/>
+        /// This is also how a Phone number whose brain is your own webhook<br/>
+        /// dials out: when the caller ID resolves to a number carrying a<br/>
+        /// relay binding, every turn on the call is answered by your endpoint<br/>
+        /// instead of an LLM, and `call.started`'s reply is the opening line<br/>
+        /// spoken to the callee. Everything else is unchanged - same gates,<br/>
+        /// same conversation, same transcript, same recording. Pass the agent<br/>
+        /// the webhook bind provisioned (it is returned on the number) and,<br/>
+        /// for a workspace with several numbers, `caller_id_number`.<br/>
         /// Requires a Twilio or BYOC trunk. LiveKit-native numbers are<br/>
         /// inbound-only.
         /// </summary>
@@ -67,6 +83,14 @@ namespace Speechify
         /// The response is returned as soon as LiveKit accepts the INVITE.<br/>
         /// Poll `GET /v1/agents/conversations/{conversation_id}` for status<br/>
         /// transitions: `pending` → `active` (answered) → `completed`.<br/>
+        /// This is also how a Phone number whose brain is your own webhook<br/>
+        /// dials out: when the caller ID resolves to a number carrying a<br/>
+        /// relay binding, every turn on the call is answered by your endpoint<br/>
+        /// instead of an LLM, and `call.started`'s reply is the opening line<br/>
+        /// spoken to the callee. Everything else is unchanged - same gates,<br/>
+        /// same conversation, same transcript, same recording. Pass the agent<br/>
+        /// the webhook bind provisioned (it is returned on the number) and,<br/>
+        /// for a workspace with several numbers, `caller_id_number`.<br/>
         /// Requires a Twilio or BYOC trunk. LiveKit-native numbers are<br/>
         /// inbound-only.
         /// </summary>

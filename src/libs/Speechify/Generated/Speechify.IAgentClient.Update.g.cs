@@ -117,6 +117,9 @@ namespace Speechify
         /// previously set cap.
         /// </param>
         /// <param name="saveAudioRecording"></param>
+        /// <param name="aiDisclosure">
+        /// Opt-in AI-disclosure opening line (PATCH-replace, wholesale). Omit to leave the stored config unchanged.
+        /// </param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::System.InvalidOperationException"></exception>
@@ -145,6 +148,7 @@ namespace Speechify
             global::Speechify.AMDConfig? amd = default,
             int? maxCallDurationSeconds = default,
             bool? saveAudioRecording = default,
+            global::Speechify.AIDisclosure? aiDisclosure = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
     }

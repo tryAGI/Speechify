@@ -136,7 +136,7 @@ namespace Speechify
                          __authorization.Location == "Header")
                 {
                     __httpRequest.Headers.Add(__authorization.Name, __authorization.Value);
-                } 
+                }
             }
 
             if (speechifyVersion != default)
@@ -334,7 +334,7 @@ namespace Speechify
                                 retryReason: global::System.String.Empty,
                                 cancellationToken: __effectiveCancellationToken)).ConfigureAwait(false);
                 }
-                            // An unexpected server-side error occurred. Safe to retry with exponential backoff for idempotent requests. 
+                            // An unexpected server-side error occurred. Safe to retry with exponential backoff for idempotent requests.
                             if ((int)__response.StatusCode == 500)
                             {
                                 string? __content_500 = null;

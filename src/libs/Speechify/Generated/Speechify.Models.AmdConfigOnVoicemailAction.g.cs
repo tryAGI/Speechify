@@ -4,16 +4,16 @@
 namespace Speechify
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     public enum AmdConfigOnVoicemailAction
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Hangup,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         LeaveMessage,
     }

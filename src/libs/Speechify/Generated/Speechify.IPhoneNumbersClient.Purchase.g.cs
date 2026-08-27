@@ -102,6 +102,16 @@ namespace Speechify
         /// Optional agent to bind the number to at purchase time.<br/>
         /// Prefixed wire identifier (`agent_&lt;26 char Crockford base32&gt;`).
         /// </param>
+        /// <param name="intendedUse">
+        /// Optional workspace-level intended-use declaration recorded with<br/>
+        /// the purchase (replaces any earlier declaration). May be required<br/>
+        /// by the workspace trust policy.
+        /// </param>
+        /// <param name="tosAccepted">
+        /// Set true to record the ToS/consent attestation for this<br/>
+        /// workspace. Recorded once - a repeat purchase never moves the<br/>
+        /// original attestation's actor or timestamp.
+        /// </param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::System.InvalidOperationException"></exception>
@@ -113,6 +123,8 @@ namespace Speechify
             string? label = default,
             global::Speechify.PurchasedPhoneNumberProvider? provider = default,
             string? agentId = default,
+            global::Speechify.IntendedUse? intendedUse = default,
+            bool? tosAccepted = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
     }

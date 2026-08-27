@@ -11,15 +11,15 @@ namespace Speechify
     public enum AgentVoiceGender
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Female,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Male,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         NotSpecified,
     }

@@ -5,7 +5,7 @@
 namespace Speechify
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     public readonly partial struct CreateAgentToolRequestConfig : global::System.IEquatable<CreateAgentToolRequestConfig>
     {
@@ -25,7 +25,7 @@ namespace Speechify
 #endif
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
 #if NET6_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.MemberNotNullWhen(true, nameof(BuiltinToolConfig))]
@@ -33,7 +33,7 @@ namespace Speechify
         public bool IsBuiltinToolConfig => BuiltinToolConfig != null;
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public bool TryPickBuiltinToolConfig(
 #if NET6_0_OR_GREATER
@@ -46,7 +46,7 @@ namespace Speechify
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public global::Speechify.BuiltinToolConfig PickBuiltinToolConfig() => IsBuiltinToolConfig
             ? BuiltinToolConfig!
@@ -62,7 +62,7 @@ namespace Speechify
 #endif
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
 #if NET6_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.MemberNotNullWhen(true, nameof(WebhookToolConfig))]
@@ -70,7 +70,7 @@ namespace Speechify
         public bool IsWebhookToolConfig => WebhookToolConfig != null;
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public bool TryPickWebhookToolConfig(
 #if NET6_0_OR_GREATER
@@ -83,7 +83,7 @@ namespace Speechify
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public global::Speechify.WebhookToolConfig PickWebhookToolConfig() => IsWebhookToolConfig
             ? WebhookToolConfig!
@@ -99,7 +99,7 @@ namespace Speechify
 #endif
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
 #if NET6_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.MemberNotNullWhen(true, nameof(ClientToolConfig))]
@@ -107,7 +107,7 @@ namespace Speechify
         public bool IsClientToolConfig => ClientToolConfig != null;
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public bool TryPickClientToolConfig(
 #if NET6_0_OR_GREATER
@@ -120,7 +120,7 @@ namespace Speechify
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public global::Speechify.ClientToolConfig PickClientToolConfig() => IsClientToolConfig
             ? ClientToolConfig!
@@ -140,7 +140,7 @@ namespace Speechify
 #endif
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
 #if NET6_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.MemberNotNullWhen(true, nameof(MCPToolConfig))]
@@ -148,7 +148,7 @@ namespace Speechify
         public bool IsMCPToolConfig => MCPToolConfig != null;
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public bool TryPickMCPToolConfig(
 #if NET6_0_OR_GREATER
@@ -161,23 +161,23 @@ namespace Speechify
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public global::Speechify.MCPToolConfig PickMCPToolConfig() => IsMCPToolConfig
             ? MCPToolConfig!
             : throw new global::System.InvalidOperationException($"Expected union variant 'MCPToolConfig' but the value was {ToString()}.");
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public static implicit operator CreateAgentToolRequestConfig(global::Speechify.BuiltinToolConfig value) => new CreateAgentToolRequestConfig((global::Speechify.BuiltinToolConfig?)value);
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public static implicit operator global::Speechify.BuiltinToolConfig?(CreateAgentToolRequestConfig @this) => @this.BuiltinToolConfig;
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public CreateAgentToolRequestConfig(global::Speechify.BuiltinToolConfig? value)
         {
@@ -185,22 +185,22 @@ namespace Speechify
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public static CreateAgentToolRequestConfig FromBuiltinToolConfig(global::Speechify.BuiltinToolConfig? value) => new CreateAgentToolRequestConfig(value);
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public static implicit operator CreateAgentToolRequestConfig(global::Speechify.WebhookToolConfig value) => new CreateAgentToolRequestConfig((global::Speechify.WebhookToolConfig?)value);
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public static implicit operator global::Speechify.WebhookToolConfig?(CreateAgentToolRequestConfig @this) => @this.WebhookToolConfig;
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public CreateAgentToolRequestConfig(global::Speechify.WebhookToolConfig? value)
         {
@@ -208,22 +208,22 @@ namespace Speechify
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public static CreateAgentToolRequestConfig FromWebhookToolConfig(global::Speechify.WebhookToolConfig? value) => new CreateAgentToolRequestConfig(value);
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public static implicit operator CreateAgentToolRequestConfig(global::Speechify.ClientToolConfig value) => new CreateAgentToolRequestConfig((global::Speechify.ClientToolConfig?)value);
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public static implicit operator global::Speechify.ClientToolConfig?(CreateAgentToolRequestConfig @this) => @this.ClientToolConfig;
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public CreateAgentToolRequestConfig(global::Speechify.ClientToolConfig? value)
         {
@@ -231,22 +231,22 @@ namespace Speechify
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public static CreateAgentToolRequestConfig FromClientToolConfig(global::Speechify.ClientToolConfig? value) => new CreateAgentToolRequestConfig(value);
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public static implicit operator CreateAgentToolRequestConfig(global::Speechify.MCPToolConfig value) => new CreateAgentToolRequestConfig((global::Speechify.MCPToolConfig?)value);
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public static implicit operator global::Speechify.MCPToolConfig?(CreateAgentToolRequestConfig @this) => @this.MCPToolConfig;
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public CreateAgentToolRequestConfig(global::Speechify.MCPToolConfig? value)
         {
@@ -254,12 +254,12 @@ namespace Speechify
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public static CreateAgentToolRequestConfig FromMCPToolConfig(global::Speechify.MCPToolConfig? value) => new CreateAgentToolRequestConfig(value);
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public CreateAgentToolRequestConfig(
             global::Speechify.BuiltinToolConfig? builtinToolConfig,
@@ -275,27 +275,27 @@ namespace Speechify
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public object? Object =>
             MCPToolConfig as object ??
             ClientToolConfig as object ??
             WebhookToolConfig as object ??
-            BuiltinToolConfig as object 
+            BuiltinToolConfig as object
             ;
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public override string? ToString() =>
             BuiltinToolConfig?.ToString() ??
             WebhookToolConfig?.ToString() ??
             ClientToolConfig?.ToString() ??
-            MCPToolConfig?.ToString() 
+            MCPToolConfig?.ToString()
             ;
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public bool Validate()
         {
@@ -303,7 +303,7 @@ namespace Speechify
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public TResult? Match<TResult>(
             global::System.Func<global::Speechify.BuiltinToolConfig, TResult>? builtinToolConfig = null,
@@ -338,7 +338,7 @@ namespace Speechify
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public void Match(
             global::System.Action<global::Speechify.BuiltinToolConfig>? builtinToolConfig = null,
@@ -374,7 +374,7 @@ namespace Speechify
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public void Switch(
             global::System.Action<global::Speechify.BuiltinToolConfig>? builtinToolConfig = null,
@@ -407,7 +407,7 @@ namespace Speechify
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public override int GetHashCode()
         {
@@ -432,7 +432,7 @@ namespace Speechify
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public bool Equals(CreateAgentToolRequestConfig other)
         {
@@ -440,12 +440,12 @@ namespace Speechify
                 global::System.Collections.Generic.EqualityComparer<global::Speechify.BuiltinToolConfig?>.Default.Equals(BuiltinToolConfig, other.BuiltinToolConfig) &&
                 global::System.Collections.Generic.EqualityComparer<global::Speechify.WebhookToolConfig?>.Default.Equals(WebhookToolConfig, other.WebhookToolConfig) &&
                 global::System.Collections.Generic.EqualityComparer<global::Speechify.ClientToolConfig?>.Default.Equals(ClientToolConfig, other.ClientToolConfig) &&
-                global::System.Collections.Generic.EqualityComparer<global::Speechify.MCPToolConfig?>.Default.Equals(MCPToolConfig, other.MCPToolConfig) 
+                global::System.Collections.Generic.EqualityComparer<global::Speechify.MCPToolConfig?>.Default.Equals(MCPToolConfig, other.MCPToolConfig)
                 ;
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public static bool operator ==(CreateAgentToolRequestConfig obj1, CreateAgentToolRequestConfig obj2)
         {
@@ -453,7 +453,7 @@ namespace Speechify
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public static bool operator !=(CreateAgentToolRequestConfig obj1, CreateAgentToolRequestConfig obj2)
         {
@@ -461,7 +461,7 @@ namespace Speechify
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public override bool Equals(object? obj)
         {

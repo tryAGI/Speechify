@@ -12,7 +12,7 @@ namespace Speechify
     public sealed partial class BatchMoveDocumentsResponse
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("documents")]
         [global::System.Text.Json.Serialization.JsonRequired]

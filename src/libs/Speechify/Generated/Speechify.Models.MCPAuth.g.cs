@@ -10,7 +10,7 @@ namespace Speechify
     public readonly partial struct MCPAuth : global::System.IEquatable<MCPAuth>
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public global::Speechify.MCPAuthDiscriminatorType? Type { get; }
 
@@ -24,7 +24,7 @@ namespace Speechify
 #endif
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
 #if NET6_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.MemberNotNullWhen(true, nameof(None))]
@@ -32,7 +32,7 @@ namespace Speechify
         public bool IsNone => None != null;
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public bool TryPickNone(
 #if NET6_0_OR_GREATER
@@ -45,7 +45,7 @@ namespace Speechify
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public global::Speechify.MCPAuthVariant1 PickNone() => IsNone
             ? None!
@@ -63,7 +63,7 @@ namespace Speechify
 #endif
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
 #if NET6_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.MemberNotNullWhen(true, nameof(Bearer))]
@@ -71,7 +71,7 @@ namespace Speechify
         public bool IsBearer => Bearer != null;
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public bool TryPickBearer(
 #if NET6_0_OR_GREATER
@@ -84,7 +84,7 @@ namespace Speechify
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public global::Speechify.MCPAuthVariant2 PickBearer() => IsBearer
             ? Bearer!
@@ -103,7 +103,7 @@ namespace Speechify
 #endif
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
 #if NET6_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.MemberNotNullWhen(true, nameof(Oauth2ClientCredentials))]
@@ -111,7 +111,7 @@ namespace Speechify
         public bool IsOauth2ClientCredentials => Oauth2ClientCredentials != null;
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public bool TryPickOauth2ClientCredentials(
 #if NET6_0_OR_GREATER
@@ -124,23 +124,23 @@ namespace Speechify
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public global::Speechify.MCPAuthVariant3 PickOauth2ClientCredentials() => IsOauth2ClientCredentials
             ? Oauth2ClientCredentials!
             : throw new global::System.InvalidOperationException($"Expected union variant 'Oauth2ClientCredentials' but the value was {ToString()}.");
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public static implicit operator MCPAuth(global::Speechify.MCPAuthVariant1 value) => new MCPAuth((global::Speechify.MCPAuthVariant1?)value);
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public static implicit operator global::Speechify.MCPAuthVariant1?(MCPAuth @this) => @this.None;
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public MCPAuth(global::Speechify.MCPAuthVariant1? value)
         {
@@ -148,22 +148,22 @@ namespace Speechify
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public static MCPAuth FromNone(global::Speechify.MCPAuthVariant1? value) => new MCPAuth(value);
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public static implicit operator MCPAuth(global::Speechify.MCPAuthVariant2 value) => new MCPAuth((global::Speechify.MCPAuthVariant2?)value);
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public static implicit operator global::Speechify.MCPAuthVariant2?(MCPAuth @this) => @this.Bearer;
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public MCPAuth(global::Speechify.MCPAuthVariant2? value)
         {
@@ -171,22 +171,22 @@ namespace Speechify
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public static MCPAuth FromBearer(global::Speechify.MCPAuthVariant2? value) => new MCPAuth(value);
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public static implicit operator MCPAuth(global::Speechify.MCPAuthVariant3 value) => new MCPAuth((global::Speechify.MCPAuthVariant3?)value);
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public static implicit operator global::Speechify.MCPAuthVariant3?(MCPAuth @this) => @this.Oauth2ClientCredentials;
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public MCPAuth(global::Speechify.MCPAuthVariant3? value)
         {
@@ -194,12 +194,12 @@ namespace Speechify
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public static MCPAuth FromOauth2ClientCredentials(global::Speechify.MCPAuthVariant3? value) => new MCPAuth(value);
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public MCPAuth(
             global::Speechify.MCPAuthDiscriminatorType? type,
@@ -216,25 +216,25 @@ namespace Speechify
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public object? Object =>
             Oauth2ClientCredentials as object ??
             Bearer as object ??
-            None as object 
+            None as object
             ;
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public override string? ToString() =>
             None?.ToString() ??
             Bearer?.ToString() ??
-            Oauth2ClientCredentials?.ToString() 
+            Oauth2ClientCredentials?.ToString()
             ;
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public bool Validate()
         {
@@ -242,7 +242,7 @@ namespace Speechify
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public TResult? Match<TResult>(
             global::System.Func<global::Speechify.MCPAuthVariant1, TResult>? none = null,
@@ -272,7 +272,7 @@ namespace Speechify
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public void Match(
             global::System.Action<global::Speechify.MCPAuthVariant1>? none = null,
@@ -302,7 +302,7 @@ namespace Speechify
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public void Switch(
             global::System.Action<global::Speechify.MCPAuthVariant1>? none = null,
@@ -330,7 +330,7 @@ namespace Speechify
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public override int GetHashCode()
         {
@@ -353,19 +353,19 @@ namespace Speechify
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public bool Equals(MCPAuth other)
         {
             return
                 global::System.Collections.Generic.EqualityComparer<global::Speechify.MCPAuthVariant1?>.Default.Equals(None, other.None) &&
                 global::System.Collections.Generic.EqualityComparer<global::Speechify.MCPAuthVariant2?>.Default.Equals(Bearer, other.Bearer) &&
-                global::System.Collections.Generic.EqualityComparer<global::Speechify.MCPAuthVariant3?>.Default.Equals(Oauth2ClientCredentials, other.Oauth2ClientCredentials) 
+                global::System.Collections.Generic.EqualityComparer<global::Speechify.MCPAuthVariant3?>.Default.Equals(Oauth2ClientCredentials, other.Oauth2ClientCredentials)
                 ;
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public static bool operator ==(MCPAuth obj1, MCPAuth obj2)
         {
@@ -373,7 +373,7 @@ namespace Speechify
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public static bool operator !=(MCPAuth obj1, MCPAuth obj2)
         {
@@ -381,7 +381,7 @@ namespace Speechify
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public override bool Equals(object? obj)
         {

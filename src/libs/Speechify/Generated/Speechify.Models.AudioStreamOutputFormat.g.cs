@@ -10,59 +10,59 @@ namespace Speechify
     public enum AudioStreamOutputFormat
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Aac24000,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Mp322050128,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Mp322050160,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Mp322050192,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Mp32205032,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Mp32205064,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Mp32205096,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Mp324000128,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Mp324000160,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Mp324000192,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Mp32400032,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Mp32400064,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Mp32400096,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Ogg24000,
         /// <summary>
@@ -70,23 +70,23 @@ namespace Speechify
         /// </summary>
         Pcm16000,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Pcm22050,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Pcm24000,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Pcm44100,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Pcm48000,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Pcm8000,
         /// <summary>
