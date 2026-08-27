@@ -14,19 +14,19 @@ namespace Speechify
     public enum SIPTrunkProvider
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Byoc,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Livekit,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Telnyx,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Twilio,
     }

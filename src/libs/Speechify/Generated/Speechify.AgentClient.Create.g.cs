@@ -147,7 +147,7 @@ namespace Speechify
                          __authorization.Location == "Header")
                 {
                     __httpRequest.Headers.Add(__authorization.Name, __authorization.Value);
-                } 
+                }
             }
 
             if (speechifyVersion != default)
@@ -352,7 +352,7 @@ namespace Speechify
                                 retryReason: global::System.String.Empty,
                                 cancellationToken: __effectiveCancellationToken)).ConfigureAwait(false);
                 }
-                            // The request was malformed or failed validation. The response body is the standard `Error` envelope; for validation failures `error.fields` enumerates the offending fields as a `path -> message` map (code = `validation_failed`). 
+                            // The request was malformed or failed validation. The response body is the standard `Error` envelope; for validation failures `error.fields` enumerates the offending fields as a `path -> message` map (code = `validation_failed`).
                             if ((int)__response.StatusCode == 400)
                             {
                                 string? __content_400 = null;
@@ -389,7 +389,7 @@ namespace Speechify
                                         h => h.Key,
                                         h => h.Value));
                             }
-                            // Authentication is missing or invalid. The request did not carry a recognised credential (console session token, API key, or worker JWT). 
+                            // Authentication is missing or invalid. The request did not carry a recognised credential (console session token, API key, or worker JWT).
                             if ((int)__response.StatusCode == 401)
                             {
                                 string? __content_401 = null;
@@ -611,6 +611,9 @@ namespace Speechify
         /// <param name="saveAudioRecording">
         /// When set, opts the agent into per-conversation audio recording. Defaults to false when omitted.
         /// </param>
+        /// <param name="aiDisclosure">
+        /// Opt-in AI-disclosure opening line. Optional on create; omitted means off. See AIDisclosure schema.
+        /// </param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::System.InvalidOperationException"></exception>
@@ -639,6 +642,7 @@ namespace Speechify
             global::Speechify.AMDConfig? amd = default,
             int? maxCallDurationSeconds = default,
             bool? saveAudioRecording = default,
+            global::Speechify.AIDisclosure? aiDisclosure = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
@@ -667,6 +671,7 @@ namespace Speechify
                 Amd = amd,
                 MaxCallDurationSeconds = maxCallDurationSeconds,
                 SaveAudioRecording = saveAudioRecording,
+                AiDisclosure = aiDisclosure,
             };
 
             return await CreateAsync(

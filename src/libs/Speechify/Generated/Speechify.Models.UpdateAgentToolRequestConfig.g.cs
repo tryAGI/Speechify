@@ -25,7 +25,7 @@ namespace Speechify
 #endif
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
 #if NET6_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.MemberNotNullWhen(true, nameof(BuiltinToolConfig))]
@@ -33,7 +33,7 @@ namespace Speechify
         public bool IsBuiltinToolConfig => BuiltinToolConfig != null;
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public bool TryPickBuiltinToolConfig(
 #if NET6_0_OR_GREATER
@@ -46,23 +46,23 @@ namespace Speechify
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public global::Speechify.BuiltinToolConfig PickBuiltinToolConfig() => IsBuiltinToolConfig
             ? BuiltinToolConfig!
             : throw new global::System.InvalidOperationException($"Expected union variant 'BuiltinToolConfig' but the value was {ToString()}.");
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public static implicit operator UpdateAgentToolRequestConfig(global::Speechify.BuiltinToolConfig value) => new UpdateAgentToolRequestConfig((global::Speechify.BuiltinToolConfig?)value);
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public static implicit operator global::Speechify.BuiltinToolConfig?(UpdateAgentToolRequestConfig @this) => @this.BuiltinToolConfig;
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public UpdateAgentToolRequestConfig(global::Speechify.BuiltinToolConfig? value)
         {
@@ -70,26 +70,26 @@ namespace Speechify
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public static UpdateAgentToolRequestConfig FromBuiltinToolConfig(global::Speechify.BuiltinToolConfig? value) => new UpdateAgentToolRequestConfig(value);
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public object? Object =>
-            BuiltinToolConfig as object 
+            BuiltinToolConfig as object
             ;
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public override string? ToString() =>
-            BuiltinToolConfig?.ToString() 
+            BuiltinToolConfig?.ToString()
             ;
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public bool Validate()
         {
@@ -97,7 +97,7 @@ namespace Speechify
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public TResult? Match<TResult>(
             global::System.Func<global::Speechify.BuiltinToolConfig, TResult>? builtinToolConfig = null,
@@ -117,7 +117,7 @@ namespace Speechify
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public void Match(
             global::System.Action<global::Speechify.BuiltinToolConfig>? builtinToolConfig = null,
@@ -135,7 +135,7 @@ namespace Speechify
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public void Switch(
             global::System.Action<global::Speechify.BuiltinToolConfig>? builtinToolConfig = null,
@@ -153,7 +153,7 @@ namespace Speechify
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public override int GetHashCode()
         {
@@ -172,17 +172,17 @@ namespace Speechify
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public bool Equals(UpdateAgentToolRequestConfig other)
         {
             return
-                global::System.Collections.Generic.EqualityComparer<global::Speechify.BuiltinToolConfig?>.Default.Equals(BuiltinToolConfig, other.BuiltinToolConfig) 
+                global::System.Collections.Generic.EqualityComparer<global::Speechify.BuiltinToolConfig?>.Default.Equals(BuiltinToolConfig, other.BuiltinToolConfig)
                 ;
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public static bool operator ==(UpdateAgentToolRequestConfig obj1, UpdateAgentToolRequestConfig obj2)
         {
@@ -190,7 +190,7 @@ namespace Speechify
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public static bool operator !=(UpdateAgentToolRequestConfig obj1, UpdateAgentToolRequestConfig obj2)
         {
@@ -198,7 +198,7 @@ namespace Speechify
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public override bool Equals(object? obj)
         {

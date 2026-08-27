@@ -4,20 +4,20 @@
 namespace Speechify
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     public enum SpeechStreamEventDiscriminatorType
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         SpeechChunk,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         SpeechDone,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         SpeechError,
     }

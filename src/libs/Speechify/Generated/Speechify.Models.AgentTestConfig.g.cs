@@ -25,7 +25,7 @@ namespace Speechify
 #endif
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
 #if NET6_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.MemberNotNullWhen(true, nameof(ReplyConfig))]
@@ -33,7 +33,7 @@ namespace Speechify
         public bool IsReplyConfig => ReplyConfig != null;
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public bool TryPickReplyConfig(
 #if NET6_0_OR_GREATER
@@ -46,7 +46,7 @@ namespace Speechify
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public global::Speechify.ReplyConfig PickReplyConfig() => IsReplyConfig
             ? ReplyConfig!
@@ -66,7 +66,7 @@ namespace Speechify
 #endif
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
 #if NET6_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.MemberNotNullWhen(true, nameof(ToolCallConfig))]
@@ -74,7 +74,7 @@ namespace Speechify
         public bool IsToolCallConfig => ToolCallConfig != null;
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public bool TryPickToolCallConfig(
 #if NET6_0_OR_GREATER
@@ -87,7 +87,7 @@ namespace Speechify
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public global::Speechify.ToolCallConfig PickToolCallConfig() => IsToolCallConfig
             ? ToolCallConfig!
@@ -109,7 +109,7 @@ namespace Speechify
 #endif
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
 #if NET6_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.MemberNotNullWhen(true, nameof(SimulationConfig))]
@@ -117,7 +117,7 @@ namespace Speechify
         public bool IsSimulationConfig => SimulationConfig != null;
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public bool TryPickSimulationConfig(
 #if NET6_0_OR_GREATER
@@ -130,23 +130,23 @@ namespace Speechify
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public global::Speechify.SimulationConfig PickSimulationConfig() => IsSimulationConfig
             ? SimulationConfig!
             : throw new global::System.InvalidOperationException($"Expected union variant 'SimulationConfig' but the value was {ToString()}.");
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public static implicit operator AgentTestConfig(global::Speechify.ReplyConfig value) => new AgentTestConfig((global::Speechify.ReplyConfig?)value);
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public static implicit operator global::Speechify.ReplyConfig?(AgentTestConfig @this) => @this.ReplyConfig;
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public AgentTestConfig(global::Speechify.ReplyConfig? value)
         {
@@ -154,22 +154,22 @@ namespace Speechify
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public static AgentTestConfig FromReplyConfig(global::Speechify.ReplyConfig? value) => new AgentTestConfig(value);
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public static implicit operator AgentTestConfig(global::Speechify.ToolCallConfig value) => new AgentTestConfig((global::Speechify.ToolCallConfig?)value);
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public static implicit operator global::Speechify.ToolCallConfig?(AgentTestConfig @this) => @this.ToolCallConfig;
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public AgentTestConfig(global::Speechify.ToolCallConfig? value)
         {
@@ -177,22 +177,22 @@ namespace Speechify
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public static AgentTestConfig FromToolCallConfig(global::Speechify.ToolCallConfig? value) => new AgentTestConfig(value);
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public static implicit operator AgentTestConfig(global::Speechify.SimulationConfig value) => new AgentTestConfig((global::Speechify.SimulationConfig?)value);
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public static implicit operator global::Speechify.SimulationConfig?(AgentTestConfig @this) => @this.SimulationConfig;
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public AgentTestConfig(global::Speechify.SimulationConfig? value)
         {
@@ -200,12 +200,12 @@ namespace Speechify
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public static AgentTestConfig FromSimulationConfig(global::Speechify.SimulationConfig? value) => new AgentTestConfig(value);
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public AgentTestConfig(
             global::Speechify.ReplyConfig? replyConfig,
@@ -219,25 +219,25 @@ namespace Speechify
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public object? Object =>
             SimulationConfig as object ??
             ToolCallConfig as object ??
-            ReplyConfig as object 
+            ReplyConfig as object
             ;
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public override string? ToString() =>
             ReplyConfig?.ToString() ??
             ToolCallConfig?.ToString() ??
-            SimulationConfig?.ToString() 
+            SimulationConfig?.ToString()
             ;
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public bool Validate()
         {
@@ -245,7 +245,7 @@ namespace Speechify
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public TResult? Match<TResult>(
             global::System.Func<global::Speechify.ReplyConfig, TResult>? replyConfig = null,
@@ -275,7 +275,7 @@ namespace Speechify
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public void Match(
             global::System.Action<global::Speechify.ReplyConfig>? replyConfig = null,
@@ -305,7 +305,7 @@ namespace Speechify
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public void Switch(
             global::System.Action<global::Speechify.ReplyConfig>? replyConfig = null,
@@ -333,7 +333,7 @@ namespace Speechify
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public override int GetHashCode()
         {
@@ -356,19 +356,19 @@ namespace Speechify
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public bool Equals(AgentTestConfig other)
         {
             return
                 global::System.Collections.Generic.EqualityComparer<global::Speechify.ReplyConfig?>.Default.Equals(ReplyConfig, other.ReplyConfig) &&
                 global::System.Collections.Generic.EqualityComparer<global::Speechify.ToolCallConfig?>.Default.Equals(ToolCallConfig, other.ToolCallConfig) &&
-                global::System.Collections.Generic.EqualityComparer<global::Speechify.SimulationConfig?>.Default.Equals(SimulationConfig, other.SimulationConfig) 
+                global::System.Collections.Generic.EqualityComparer<global::Speechify.SimulationConfig?>.Default.Equals(SimulationConfig, other.SimulationConfig)
                 ;
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public static bool operator ==(AgentTestConfig obj1, AgentTestConfig obj2)
         {
@@ -376,7 +376,7 @@ namespace Speechify
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public static bool operator !=(AgentTestConfig obj1, AgentTestConfig obj2)
         {
@@ -384,7 +384,7 @@ namespace Speechify
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public override bool Equals(object? obj)
         {

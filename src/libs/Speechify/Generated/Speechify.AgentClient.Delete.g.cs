@@ -45,7 +45,13 @@ namespace Speechify
 
         /// <summary>
         /// Delete Agent<br/>
-        /// Delete a voice agent. Conversations and attached tools remain. The agent's tests are deleted with it; their run history is retained.
+        /// Delete a voice agent. Conversations and attached tools remain. The<br/>
+        /// agent's tests are deleted with it; their run history is retained.<br/>
+        /// Refused with `409 agent_in_use` while a live phone number still<br/>
+        /// routes to the agent, including the agent a webhook binding<br/>
+        /// provisioned for its number; `used_by` names the numbers. Unbind them<br/>
+        /// (`DELETE /v1/agents/{agent_id}/phone-numbers/{phone_number_id}`,<br/>
+        /// which also clears a webhook binding) and the delete proceeds.
         /// </summary>
         /// <param name="agentId"></param>
         /// <param name="speechifyVersion"></param>
@@ -69,7 +75,13 @@ namespace Speechify
         }
         /// <summary>
         /// Delete Agent<br/>
-        /// Delete a voice agent. Conversations and attached tools remain. The agent's tests are deleted with it; their run history is retained.
+        /// Delete a voice agent. Conversations and attached tools remain. The<br/>
+        /// agent's tests are deleted with it; their run history is retained.<br/>
+        /// Refused with `409 agent_in_use` while a live phone number still<br/>
+        /// routes to the agent, including the agent a webhook binding<br/>
+        /// provisioned for its number; `used_by` names the numbers. Unbind them<br/>
+        /// (`DELETE /v1/agents/{agent_id}/phone-numbers/{phone_number_id}`,<br/>
+        /// which also clears a webhook binding) and the delete proceeds.
         /// </summary>
         /// <param name="agentId"></param>
         /// <param name="speechifyVersion"></param>
@@ -142,7 +154,7 @@ namespace Speechify
                          __authorization.Location == "Header")
                 {
                     __httpRequest.Headers.Add(__authorization.Name, __authorization.Value);
-                } 
+                }
             }
 
             if (speechifyVersion != default)
@@ -341,7 +353,7 @@ namespace Speechify
                                 retryReason: global::System.String.Empty,
                                 cancellationToken: __effectiveCancellationToken)).ConfigureAwait(false);
                 }
-                            // Authentication is missing or invalid. The request did not carry a recognised credential (console session token, API key, or worker JWT). 
+                            // Authentication is missing or invalid. The request did not carry a recognised credential (console session token, API key, or worker JWT).
                             if ((int)__response.StatusCode == 401)
                             {
                                 string? __content_401 = null;
@@ -378,7 +390,7 @@ namespace Speechify
                                         h => h.Key,
                                         h => h.Value));
                             }
-                            // The referenced resource does not exist or is not visible to the caller's workspace. 
+                            // The referenced resource does not exist or is not visible to the caller's workspace.
                             if ((int)__response.StatusCode == 404)
                             {
                                 string? __content_404 = null;
@@ -410,6 +422,43 @@ namespace Speechify
                                     innerException: __exception_404,
                                     responseBody: __content_404,
                                     responseObject: __value_404,
+                                    responseHeaders: global::System.Linq.Enumerable.ToDictionary(
+                                        __response.Headers,
+                                        h => h.Key,
+                                        h => h.Value));
+                            }
+                            // A live phone number still routes to the agent. `used_by` names them so the caller can unbind first.
+                            if ((int)__response.StatusCode == 409)
+                            {
+                                string? __content_409 = null;
+                                global::System.Exception? __exception_409 = null;
+                                global::Speechify.AgentInUseError? __value_409 = null;
+                                try
+                                {
+                                    if (__effectiveReadResponseAsString)
+                                    {
+                                        __content_409 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+                                        __value_409 = global::Speechify.AgentInUseError.FromJson(__content_409, JsonSerializerContext);
+                                    }
+                                    else
+                                    {
+                                        __content_409 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+
+                                        __value_409 = global::Speechify.AgentInUseError.FromJson(__content_409, JsonSerializerContext);
+                                    }
+                                }
+                                catch (global::System.Exception __ex)
+                                {
+                                    __exception_409 = __ex;
+                                }
+
+
+                                throw global::Speechify.ApiException<global::Speechify.AgentInUseError>.Create(
+                                    statusCode: __response.StatusCode,
+                                    message: __content_409 ?? __response.ReasonPhrase ?? string.Empty,
+                                    innerException: __exception_409,
+                                    responseBody: __content_409,
+                                    responseObject: __value_409,
                                     responseHeaders: global::System.Linq.Enumerable.ToDictionary(
                                         __response.Headers,
                                         h => h.Key,

@@ -13,11 +13,11 @@ namespace Speechify
     public enum AgentVoiceType
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Personal,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Shared,
     }

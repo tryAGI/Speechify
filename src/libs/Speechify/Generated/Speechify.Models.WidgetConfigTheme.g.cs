@@ -4,20 +4,20 @@
 namespace Speechify
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     public enum WidgetConfigTheme
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Auto,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Dark,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Light,
     }

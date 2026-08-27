@@ -11,15 +11,15 @@ namespace Speechify
     public enum KnowledgeBaseDocumentSourceKind
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         File,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Text,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Url,
     }

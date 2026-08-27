@@ -4,12 +4,12 @@
 namespace Speechify
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     public sealed partial class SpeechStreamEventDiscriminator
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("type")]
         [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Speechify.JsonConverters.SpeechStreamEventDiscriminatorTypeJsonConverter))]

@@ -10,11 +10,11 @@ namespace Speechify
     public enum MCPTransport
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         HttpStreamable,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Sse,
     }

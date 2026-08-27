@@ -17,14 +17,14 @@ namespace Speechify
         public required string Id { get; set; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("display_name")]
         [global::System.Text.Json.Serialization.JsonRequired]
         public required string DisplayName { get; set; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("description")]
         [global::System.Text.Json.Serialization.JsonRequired]
@@ -57,8 +57,13 @@ namespace Speechify
 
         /// <summary>
         /// A voice must be registered for this model before it can be<br/>
-        /// selected with that voice. Read the voice's `models` array on<br/>
-        /// GET /v1/agents/voices for the per-voice answer.
+        /// selected with that voice, because the model has a voice roster<br/>
+        /// built for it. False for a model offered across the catalog.<br/>
+        /// Either way, the voice's `models` array on GET /v1/agents/voices is<br/>
+        /// the per-voice answer and the one to drive a picker from - a voice<br/>
+        /// built for a curated model is absent from the open models too. This<br/>
+        /// flag explains WHY a voice is absent; it does not decide whether to<br/>
+        /// check.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("requires_voice_curation")]
         [global::System.Text.Json.Serialization.JsonRequired]
@@ -93,8 +98,13 @@ namespace Speechify
         /// </param>
         /// <param name="requiresVoiceCuration">
         /// A voice must be registered for this model before it can be<br/>
-        /// selected with that voice. Read the voice's `models` array on<br/>
-        /// GET /v1/agents/voices for the per-voice answer.
+        /// selected with that voice, because the model has a voice roster<br/>
+        /// built for it. False for a model offered across the catalog.<br/>
+        /// Either way, the voice's `models` array on GET /v1/agents/voices is<br/>
+        /// the per-voice answer and the one to drive a picker from - a voice<br/>
+        /// built for a curated model is absent from the open models too. This<br/>
+        /// flag explains WHY a voice is absent; it does not decide whether to<br/>
+        /// check.
         /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]

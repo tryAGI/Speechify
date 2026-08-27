@@ -181,7 +181,7 @@ namespace Speechify
                          __authorization.Location == "Header")
                 {
                     __httpRequest.Headers.Add(__authorization.Name, __authorization.Value);
-                } 
+                }
             }
 
             if (speechifyVersion != default)
@@ -391,7 +391,7 @@ namespace Speechify
                                 retryReason: global::System.String.Empty,
                                 cancellationToken: __effectiveCancellationToken)).ConfigureAwait(false);
                 }
-                            // The request was malformed or failed validation. The response body is the standard `Error` envelope; for validation failures `error.fields` enumerates the offending fields as a `path -> message` map (code = `validation_failed`). 
+                            // The request was malformed or failed validation. The response body is the standard `Error` envelope; for validation failures `error.fields` enumerates the offending fields as a `path -> message` map (code = `validation_failed`).
                             if ((int)__response.StatusCode == 400)
                             {
                                 string? __content_400 = null;
@@ -428,7 +428,7 @@ namespace Speechify
                                         h => h.Key,
                                         h => h.Value));
                             }
-                            // Authentication is missing or invalid. The request did not carry a recognised credential (console session token, API key, or worker JWT). 
+                            // Authentication is missing or invalid. The request did not carry a recognised credential (console session token, API key, or worker JWT).
                             if ((int)__response.StatusCode == 401)
                             {
                                 string? __content_401 = null;
@@ -465,7 +465,7 @@ namespace Speechify
                                         h => h.Key,
                                         h => h.Value));
                             }
-                            // The workspace has insufficient credits, or the request needs a plan tier the workspace is not on (e.g. voice cloning). Distinct from `Forbidden` so SDK consumers can drive upgrade UX. 
+                            // The workspace has insufficient credits, or the request needs a plan tier the workspace is not on (e.g. voice cloning). Distinct from `Forbidden` so SDK consumers can drive upgrade UX.
                             if ((int)__response.StatusCode == 402)
                             {
                                 string? __content_402 = null;
@@ -502,7 +502,44 @@ namespace Speechify
                                         h => h.Key,
                                         h => h.Value));
                             }
-                            // The request conflicts with the current resource state - e.g. duplicate, optimistic-concurrency mismatch, or last-owner guard. 
+                            // The credential authenticated, but is not authorised for this resource - typically a workspace-role gate (owner / admin required) or a cross-tenant access attempt.
+                            if ((int)__response.StatusCode == 403)
+                            {
+                                string? __content_403 = null;
+                                global::System.Exception? __exception_403 = null;
+                                global::Speechify.Error? __value_403 = null;
+                                try
+                                {
+                                    if (__effectiveReadResponseAsString)
+                                    {
+                                        __content_403 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+                                        __value_403 = global::Speechify.Error.FromJson(__content_403, JsonSerializerContext);
+                                    }
+                                    else
+                                    {
+                                        __content_403 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+
+                                        __value_403 = global::Speechify.Error.FromJson(__content_403, JsonSerializerContext);
+                                    }
+                                }
+                                catch (global::System.Exception __ex)
+                                {
+                                    __exception_403 = __ex;
+                                }
+
+
+                                throw global::Speechify.ApiException<global::Speechify.Error>.Create(
+                                    statusCode: __response.StatusCode,
+                                    message: __content_403 ?? __response.ReasonPhrase ?? string.Empty,
+                                    innerException: __exception_403,
+                                    responseBody: __content_403,
+                                    responseObject: __value_403,
+                                    responseHeaders: global::System.Linq.Enumerable.ToDictionary(
+                                        __response.Headers,
+                                        h => h.Key,
+                                        h => h.Value));
+                            }
+                            // The request conflicts with the current resource state - e.g. duplicate, optimistic-concurrency mismatch, or last-owner guard.
                             if ((int)__response.StatusCode == 409)
                             {
                                 string? __content_409 = null;
@@ -539,7 +576,7 @@ namespace Speechify
                                         h => h.Key,
                                         h => h.Value));
                             }
-                            // The request was well-formed but semantically rejected - typically a referential integrity violation (e.g. flow node references an audio asset in another workspace) or a state machine refusal. 
+                            // The request was well-formed but semantically rejected - typically a referential integrity violation (e.g. flow node references an audio asset in another workspace) or a state machine refusal.
                             if ((int)__response.StatusCode == 422)
                             {
                                 string? __content_422 = null;
@@ -576,7 +613,7 @@ namespace Speechify
                                         h => h.Key,
                                         h => h.Value));
                             }
-                            // A downstream dependency is degraded or the endpoint is intentionally disabled (e.g. phone-number purchase before ops setup). 
+                            // A downstream dependency is degraded or the endpoint is intentionally disabled (e.g. phone-number purchase before ops setup).
                             if ((int)__response.StatusCode == 503)
                             {
                                 string? __content_503 = null;
@@ -747,6 +784,16 @@ namespace Speechify
         /// Optional agent to bind the number to at purchase time.<br/>
         /// Prefixed wire identifier (`agent_&lt;26 char Crockford base32&gt;`).
         /// </param>
+        /// <param name="intendedUse">
+        /// Optional workspace-level intended-use declaration recorded with<br/>
+        /// the purchase (replaces any earlier declaration). May be required<br/>
+        /// by the workspace trust policy.
+        /// </param>
+        /// <param name="tosAccepted">
+        /// Set true to record the ToS/consent attestation for this<br/>
+        /// workspace. Recorded once - a repeat purchase never moves the<br/>
+        /// original attestation's actor or timestamp.
+        /// </param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::System.InvalidOperationException"></exception>
@@ -758,6 +805,8 @@ namespace Speechify
             string? label = default,
             global::Speechify.PurchasedPhoneNumberProvider? provider = default,
             string? agentId = default,
+            global::Speechify.IntendedUse? intendedUse = default,
+            bool? tosAccepted = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
@@ -768,6 +817,8 @@ namespace Speechify
                 Label = label,
                 Provider = provider,
                 AgentId = agentId,
+                IntendedUse = intendedUse,
+                TosAccepted = tosAccepted,
             };
 
             return await PurchaseAsync(

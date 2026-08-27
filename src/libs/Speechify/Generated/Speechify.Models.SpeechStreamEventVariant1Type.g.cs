@@ -4,12 +4,12 @@
 namespace Speechify
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     public enum SpeechStreamEventVariant1Type
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         SpeechChunk,
     }

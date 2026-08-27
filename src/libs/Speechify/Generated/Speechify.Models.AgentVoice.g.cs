@@ -5,8 +5,10 @@ namespace Speechify
 {
     /// <summary>
     /// One row in the curated voice catalogue returned by<br/>
-    /// `GET /v1/agents/voices`. Matches the slug set accepted by<br/>
-    /// agent create/update.
+    /// `GET /v1/agents/voices`, which is the recommended set to pick from.<br/>
+    /// Agent writes may additionally accept a Speechify voice this listing<br/>
+    /// does not merchandise, so a slug missing here is not necessarily<br/>
+    /// rejected.
     /// </summary>
     public sealed partial class AgentVoice
     {
@@ -30,14 +32,14 @@ namespace Speechify
         public required global::Speechify.AgentVoiceType Type { get; set; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("display_name")]
         [global::System.Text.Json.Serialization.JsonRequired]
         public required string DisplayName { get; set; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("models")]
         [global::System.Text.Json.Serialization.JsonRequired]

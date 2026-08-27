@@ -4,12 +4,12 @@
 namespace Speechify
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     public sealed partial class SearchKnowledgeBasesResponse
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("hits")]
         [global::System.Text.Json.Serialization.JsonRequired]

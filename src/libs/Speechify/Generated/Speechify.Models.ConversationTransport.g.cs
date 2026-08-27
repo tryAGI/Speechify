@@ -11,23 +11,23 @@ namespace Speechify
     public enum ConversationTransport
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Phone,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         SipInbound,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         SipOutbound,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Web,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Whatsapp,
     }

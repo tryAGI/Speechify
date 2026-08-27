@@ -47,10 +47,17 @@ namespace Speechify
 
         /// <summary>
         /// Update Phone Number<br/>
-        /// Update a phone number's own attributes (today: `label`).<br/>
-        /// `source` and `e164` are immutable after import. To bind or<br/>
-        /// unbind an agent, use the relationship endpoints<br/>
-        /// `POST`/`DELETE /v1/agents/{agent_id}/phone-numbers/{phone_number_id}`.
+        /// Update a phone number's own attributes (today: `label`), or bind it<br/>
+        /// to your own webhook brain with `relay`. `source` and `e164` are<br/>
+        /// immutable after import. To bind or unbind an agent, use the<br/>
+        /// relationship endpoints<br/>
+        /// `POST`/`DELETE /v1/agents/{agent_id}/phone-numbers/{phone_number_id}`;<br/>
+        /// a number carries an agent binding or a relay binding, never both, and<br/>
+        /// setting one clears the other. The FIRST `relay` bind returns its<br/>
+        /// signing secret exactly once; a later `relay` PATCH edits the settings<br/>
+        /// and leaves the secret alone, so the copy you stored keeps verifying<br/>
+        /// (use rotate-secret to replace it). Binding a relay requires the Phone<br/>
+        /// product to be enabled for the workspace.
         /// </summary>
         /// <param name="phoneNumberId"></param>
         /// <param name="speechifyVersion"></param>
@@ -79,10 +86,17 @@ namespace Speechify
         }
         /// <summary>
         /// Update Phone Number<br/>
-        /// Update a phone number's own attributes (today: `label`).<br/>
-        /// `source` and `e164` are immutable after import. To bind or<br/>
-        /// unbind an agent, use the relationship endpoints<br/>
-        /// `POST`/`DELETE /v1/agents/{agent_id}/phone-numbers/{phone_number_id}`.
+        /// Update a phone number's own attributes (today: `label`), or bind it<br/>
+        /// to your own webhook brain with `relay`. `source` and `e164` are<br/>
+        /// immutable after import. To bind or unbind an agent, use the<br/>
+        /// relationship endpoints<br/>
+        /// `POST`/`DELETE /v1/agents/{agent_id}/phone-numbers/{phone_number_id}`;<br/>
+        /// a number carries an agent binding or a relay binding, never both, and<br/>
+        /// setting one clears the other. The FIRST `relay` bind returns its<br/>
+        /// signing secret exactly once; a later `relay` PATCH edits the settings<br/>
+        /// and leaves the secret alone, so the copy you stored keeps verifying<br/>
+        /// (use rotate-secret to replace it). Binding a relay requires the Phone<br/>
+        /// product to be enabled for the workspace.
         /// </summary>
         /// <param name="phoneNumberId"></param>
         /// <param name="speechifyVersion"></param>
@@ -161,7 +175,7 @@ namespace Speechify
                          __authorization.Location == "Header")
                 {
                     __httpRequest.Headers.Add(__authorization.Name, __authorization.Value);
-                } 
+                }
             }
 
             if (speechifyVersion != default)
@@ -367,7 +381,7 @@ namespace Speechify
                                 retryReason: global::System.String.Empty,
                                 cancellationToken: __effectiveCancellationToken)).ConfigureAwait(false);
                 }
-                            // The request was malformed or failed validation. The response body is the standard `Error` envelope; for validation failures `error.fields` enumerates the offending fields as a `path -> message` map (code = `validation_failed`). 
+                            // The request was malformed or failed validation. The response body is the standard `Error` envelope; for validation failures `error.fields` enumerates the offending fields as a `path -> message` map (code = `validation_failed`).
                             if ((int)__response.StatusCode == 400)
                             {
                                 string? __content_400 = null;
@@ -404,7 +418,7 @@ namespace Speechify
                                         h => h.Key,
                                         h => h.Value));
                             }
-                            // Authentication is missing or invalid. The request did not carry a recognised credential (console session token, API key, or worker JWT). 
+                            // Authentication is missing or invalid. The request did not carry a recognised credential (console session token, API key, or worker JWT).
                             if ((int)__response.StatusCode == 401)
                             {
                                 string? __content_401 = null;
@@ -441,7 +455,44 @@ namespace Speechify
                                         h => h.Key,
                                         h => h.Value));
                             }
-                            // The referenced resource does not exist or is not visible to the caller's workspace. 
+                            // The credential authenticated, but is not authorised for this resource - typically a workspace-role gate (owner / admin required) or a cross-tenant access attempt.
+                            if ((int)__response.StatusCode == 403)
+                            {
+                                string? __content_403 = null;
+                                global::System.Exception? __exception_403 = null;
+                                global::Speechify.Error? __value_403 = null;
+                                try
+                                {
+                                    if (__effectiveReadResponseAsString)
+                                    {
+                                        __content_403 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+                                        __value_403 = global::Speechify.Error.FromJson(__content_403, JsonSerializerContext);
+                                    }
+                                    else
+                                    {
+                                        __content_403 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+
+                                        __value_403 = global::Speechify.Error.FromJson(__content_403, JsonSerializerContext);
+                                    }
+                                }
+                                catch (global::System.Exception __ex)
+                                {
+                                    __exception_403 = __ex;
+                                }
+
+
+                                throw global::Speechify.ApiException<global::Speechify.Error>.Create(
+                                    statusCode: __response.StatusCode,
+                                    message: __content_403 ?? __response.ReasonPhrase ?? string.Empty,
+                                    innerException: __exception_403,
+                                    responseBody: __content_403,
+                                    responseObject: __value_403,
+                                    responseHeaders: global::System.Linq.Enumerable.ToDictionary(
+                                        __response.Headers,
+                                        h => h.Key,
+                                        h => h.Value));
+                            }
+                            // The referenced resource does not exist or is not visible to the caller's workspace.
                             if ((int)__response.StatusCode == 404)
                             {
                                 string? __content_404 = null;
@@ -478,7 +529,7 @@ namespace Speechify
                                         h => h.Key,
                                         h => h.Value));
                             }
-                            // The request conflicts with the current resource state - e.g. duplicate, optimistic-concurrency mismatch, or last-owner guard. 
+                            // The request conflicts with the current resource state - e.g. duplicate, optimistic-concurrency mismatch, or last-owner guard.
                             if ((int)__response.StatusCode == 409)
                             {
                                 string? __content_409 = null;
@@ -613,10 +664,17 @@ namespace Speechify
         }
         /// <summary>
         /// Update Phone Number<br/>
-        /// Update a phone number's own attributes (today: `label`).<br/>
-        /// `source` and `e164` are immutable after import. To bind or<br/>
-        /// unbind an agent, use the relationship endpoints<br/>
-        /// `POST`/`DELETE /v1/agents/{agent_id}/phone-numbers/{phone_number_id}`.
+        /// Update a phone number's own attributes (today: `label`), or bind it<br/>
+        /// to your own webhook brain with `relay`. `source` and `e164` are<br/>
+        /// immutable after import. To bind or unbind an agent, use the<br/>
+        /// relationship endpoints<br/>
+        /// `POST`/`DELETE /v1/agents/{agent_id}/phone-numbers/{phone_number_id}`;<br/>
+        /// a number carries an agent binding or a relay binding, never both, and<br/>
+        /// setting one clears the other. The FIRST `relay` bind returns its<br/>
+        /// signing secret exactly once; a later `relay` PATCH edits the settings<br/>
+        /// and leaves the secret alone, so the copy you stored keeps verifying<br/>
+        /// (use rotate-secret to replace it). Binding a relay requires the Phone<br/>
+        /// product to be enabled for the workspace.
         /// </summary>
         /// <param name="phoneNumberId"></param>
         /// <param name="speechifyVersion"></param>
@@ -628,6 +686,12 @@ namespace Speechify
         /// <param name="label">
         /// New label. Pass an empty string to clear.
         /// </param>
+        /// <param name="relay">
+        /// Binds a number's traffic to your own HTTPS endpoint. The endpoint<br/>
+        /// must be `https://` and publicly resolvable - private-network and<br/>
+        /// literal-IP targets in reserved ranges are rejected. Binding a relay<br/>
+        /// atomically clears any agent binding on the number.
+        /// </param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::System.InvalidOperationException"></exception>
@@ -636,6 +700,7 @@ namespace Speechify
             string? speechifyVersion = default,
             string? projectId = default,
             string? label = default,
+            global::Speechify.RelayBinding? relay = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
@@ -643,6 +708,7 @@ namespace Speechify
             {
                 ProjectId = projectId,
                 Label = label,
+                Relay = relay,
             };
 
             return await UpdateAsync(

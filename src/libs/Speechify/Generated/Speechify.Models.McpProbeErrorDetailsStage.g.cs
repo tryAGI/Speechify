@@ -4,32 +4,32 @@
 namespace Speechify
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     public enum McpProbeErrorDetailsStage
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         McpConnect,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         McpInitialize,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         McpListTools,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         McpNotify,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Oauth2Token,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Validation,
     }

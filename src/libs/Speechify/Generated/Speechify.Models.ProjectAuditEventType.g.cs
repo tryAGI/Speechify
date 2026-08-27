@@ -12,23 +12,23 @@ namespace Speechify
     public enum ProjectAuditEventType
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         AccessGranted,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         AccessRevoked,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         AccessWidenedToWorkspace,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Archived,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Unarchived,
     }

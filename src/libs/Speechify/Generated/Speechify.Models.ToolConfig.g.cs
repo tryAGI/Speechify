@@ -19,7 +19,7 @@ namespace Speechify
 #endif
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
 #if NET6_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.MemberNotNullWhen(true, nameof(WebhookToolConfig))]
@@ -27,7 +27,7 @@ namespace Speechify
         public bool IsWebhookToolConfig => WebhookToolConfig != null;
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public bool TryPickWebhookToolConfig(
 #if NET6_0_OR_GREATER
@@ -40,7 +40,7 @@ namespace Speechify
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public global::Speechify.WebhookToolConfig PickWebhookToolConfig() => IsWebhookToolConfig
             ? WebhookToolConfig!
@@ -56,7 +56,7 @@ namespace Speechify
 #endif
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
 #if NET6_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.MemberNotNullWhen(true, nameof(ClientToolConfig))]
@@ -64,7 +64,7 @@ namespace Speechify
         public bool IsClientToolConfig => ClientToolConfig != null;
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public bool TryPickClientToolConfig(
 #if NET6_0_OR_GREATER
@@ -77,7 +77,7 @@ namespace Speechify
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public global::Speechify.ClientToolConfig PickClientToolConfig() => IsClientToolConfig
             ? ClientToolConfig!
@@ -97,7 +97,7 @@ namespace Speechify
 #endif
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
 #if NET6_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.MemberNotNullWhen(true, nameof(MCPToolConfig))]
@@ -105,7 +105,7 @@ namespace Speechify
         public bool IsMCPToolConfig => MCPToolConfig != null;
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public bool TryPickMCPToolConfig(
 #if NET6_0_OR_GREATER
@@ -118,23 +118,23 @@ namespace Speechify
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public global::Speechify.MCPToolConfig PickMCPToolConfig() => IsMCPToolConfig
             ? MCPToolConfig!
             : throw new global::System.InvalidOperationException($"Expected union variant 'MCPToolConfig' but the value was {ToString()}.");
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public static implicit operator ToolConfig(global::Speechify.WebhookToolConfig value) => new ToolConfig((global::Speechify.WebhookToolConfig?)value);
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public static implicit operator global::Speechify.WebhookToolConfig?(ToolConfig @this) => @this.WebhookToolConfig;
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public ToolConfig(global::Speechify.WebhookToolConfig? value)
         {
@@ -142,22 +142,22 @@ namespace Speechify
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public static ToolConfig FromWebhookToolConfig(global::Speechify.WebhookToolConfig? value) => new ToolConfig(value);
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public static implicit operator ToolConfig(global::Speechify.ClientToolConfig value) => new ToolConfig((global::Speechify.ClientToolConfig?)value);
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public static implicit operator global::Speechify.ClientToolConfig?(ToolConfig @this) => @this.ClientToolConfig;
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public ToolConfig(global::Speechify.ClientToolConfig? value)
         {
@@ -165,22 +165,22 @@ namespace Speechify
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public static ToolConfig FromClientToolConfig(global::Speechify.ClientToolConfig? value) => new ToolConfig(value);
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public static implicit operator ToolConfig(global::Speechify.MCPToolConfig value) => new ToolConfig((global::Speechify.MCPToolConfig?)value);
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public static implicit operator global::Speechify.MCPToolConfig?(ToolConfig @this) => @this.MCPToolConfig;
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public ToolConfig(global::Speechify.MCPToolConfig? value)
         {
@@ -188,12 +188,12 @@ namespace Speechify
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public static ToolConfig FromMCPToolConfig(global::Speechify.MCPToolConfig? value) => new ToolConfig(value);
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public ToolConfig(
             global::Speechify.WebhookToolConfig? webhookToolConfig,
@@ -207,25 +207,25 @@ namespace Speechify
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public object? Object =>
             MCPToolConfig as object ??
             ClientToolConfig as object ??
-            WebhookToolConfig as object 
+            WebhookToolConfig as object
             ;
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public override string? ToString() =>
             WebhookToolConfig?.ToString() ??
             ClientToolConfig?.ToString() ??
-            MCPToolConfig?.ToString() 
+            MCPToolConfig?.ToString()
             ;
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public bool Validate()
         {
@@ -233,7 +233,7 @@ namespace Speechify
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public TResult? Match<TResult>(
             global::System.Func<global::Speechify.WebhookToolConfig, TResult>? webhookToolConfig = null,
@@ -263,7 +263,7 @@ namespace Speechify
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public void Match(
             global::System.Action<global::Speechify.WebhookToolConfig>? webhookToolConfig = null,
@@ -293,7 +293,7 @@ namespace Speechify
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public void Switch(
             global::System.Action<global::Speechify.WebhookToolConfig>? webhookToolConfig = null,
@@ -321,7 +321,7 @@ namespace Speechify
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public override int GetHashCode()
         {
@@ -344,19 +344,19 @@ namespace Speechify
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public bool Equals(ToolConfig other)
         {
             return
                 global::System.Collections.Generic.EqualityComparer<global::Speechify.WebhookToolConfig?>.Default.Equals(WebhookToolConfig, other.WebhookToolConfig) &&
                 global::System.Collections.Generic.EqualityComparer<global::Speechify.ClientToolConfig?>.Default.Equals(ClientToolConfig, other.ClientToolConfig) &&
-                global::System.Collections.Generic.EqualityComparer<global::Speechify.MCPToolConfig?>.Default.Equals(MCPToolConfig, other.MCPToolConfig) 
+                global::System.Collections.Generic.EqualityComparer<global::Speechify.MCPToolConfig?>.Default.Equals(MCPToolConfig, other.MCPToolConfig)
                 ;
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public static bool operator ==(ToolConfig obj1, ToolConfig obj2)
         {
@@ -364,7 +364,7 @@ namespace Speechify
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public static bool operator !=(ToolConfig obj1, ToolConfig obj2)
         {
@@ -372,7 +372,7 @@ namespace Speechify
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public override bool Equals(object? obj)
         {

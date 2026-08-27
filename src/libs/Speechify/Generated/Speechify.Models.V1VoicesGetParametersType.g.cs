@@ -4,16 +4,16 @@
 namespace Speechify
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     public enum V1VoicesGetParametersType
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Personal,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Shared,
     }

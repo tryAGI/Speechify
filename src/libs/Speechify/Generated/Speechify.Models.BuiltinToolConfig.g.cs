@@ -25,7 +25,7 @@ namespace Speechify
         public required string Builtin { get; set; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("params")]
         public global::System.Collections.Generic.IList<global::Speechify.ToolParam>? Params { get; set; }

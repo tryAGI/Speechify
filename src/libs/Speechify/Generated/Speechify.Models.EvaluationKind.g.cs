@@ -4,20 +4,20 @@
 namespace Speechify
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     public enum EvaluationKind
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Criterion,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Data,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Summary,
     }

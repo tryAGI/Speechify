@@ -9,15 +9,15 @@ namespace Speechify
     public enum DataAssertionMode
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Exact,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Llm,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Regex,
     }

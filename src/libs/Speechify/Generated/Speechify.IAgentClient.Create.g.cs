@@ -123,6 +123,9 @@ namespace Speechify
         /// <param name="saveAudioRecording">
         /// When set, opts the agent into per-conversation audio recording. Defaults to false when omitted.
         /// </param>
+        /// <param name="aiDisclosure">
+        /// Opt-in AI-disclosure opening line. Optional on create; omitted means off. See AIDisclosure schema.
+        /// </param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::System.InvalidOperationException"></exception>
@@ -151,6 +154,7 @@ namespace Speechify
             global::Speechify.AMDConfig? amd = default,
             int? maxCallDurationSeconds = default,
             bool? saveAudioRecording = default,
+            global::Speechify.AIDisclosure? aiDisclosure = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
     }

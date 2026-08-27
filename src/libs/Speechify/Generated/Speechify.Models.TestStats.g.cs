@@ -12,56 +12,56 @@ namespace Speechify
     public sealed partial class TestStats
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("window_days")]
         [global::System.Text.Json.Serialization.JsonRequired]
         public required int WindowDays { get; set; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("buckets")]
         [global::System.Text.Json.Serialization.JsonRequired]
         public required global::System.Collections.Generic.IList<global::Speechify.TestStatsBucket> Buckets { get; set; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("total_runs")]
         [global::System.Text.Json.Serialization.JsonRequired]
         public required int TotalRuns { get; set; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("passed_runs")]
         [global::System.Text.Json.Serialization.JsonRequired]
         public required int PassedRuns { get; set; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("failed_runs")]
         [global::System.Text.Json.Serialization.JsonRequired]
         public required int FailedRuns { get; set; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("errored_runs")]
         [global::System.Text.Json.Serialization.JsonRequired]
         public required int ErroredRuns { get; set; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("avg_duration_ms")]
         [global::System.Text.Json.Serialization.JsonRequired]
         public required int AvgDurationMs { get; set; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("by_type")]
         public global::System.Collections.Generic.Dictionary<string, int>? ByType { get; set; }

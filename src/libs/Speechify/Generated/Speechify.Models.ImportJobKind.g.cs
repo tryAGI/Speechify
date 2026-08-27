@@ -4,24 +4,24 @@
 namespace Speechify
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     public enum ImportJobKind
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Crawl,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Refresh,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Sitemap,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Urls,
     }

@@ -18,7 +18,7 @@ namespace Speechify
     public sealed partial class WebhookProbeResult
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("ok")]
         [global::System.Text.Json.Serialization.JsonRequired]

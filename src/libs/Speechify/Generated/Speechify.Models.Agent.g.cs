@@ -4,7 +4,7 @@
 namespace Speechify
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     public sealed partial class Agent
     {
@@ -19,21 +19,21 @@ namespace Speechify
         public required string Id { get; set; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("name")]
         [global::System.Text.Json.Serialization.JsonRequired]
         public required string Name { get; set; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("slug")]
         [global::System.Text.Json.Serialization.JsonRequired]
         public required string Slug { get; set; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("prompt")]
         [global::System.Text.Json.Serialization.JsonRequired]
@@ -225,14 +225,25 @@ namespace Speechify
         public string? ProjectId { get; set; }
 
         /// <summary>
-        /// 
+        /// Opt-in AI-disclosure opening line. When `enabled` is true, `line` is<br/>
+        /// spoken at the very start of the call, before the greeting - ahead of<br/>
+        /// jurisdictions that require callers to be told they are speaking with an<br/>
+        /// automated system. Off by default; existing agents and numbers are<br/>
+        /// unaffected until they turn it on.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("ai_disclosure")]
+        [global::System.Text.Json.Serialization.JsonRequired]
+        public required global::Speechify.AIDisclosure AiDisclosure { get; set; }
+
+        /// <summary>
+        ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("created_at")]
         [global::System.Text.Json.Serialization.JsonRequired]
         public required global::System.DateTime CreatedAt { get; set; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("updated_at")]
         [global::System.Text.Json.Serialization.JsonRequired]
@@ -315,6 +326,13 @@ namespace Speechify
         /// OGG egress uploaded to the recordings bucket. Defaults<br/>
         /// FALSE for new agents (privacy by default).
         /// </param>
+        /// <param name="aiDisclosure">
+        /// Opt-in AI-disclosure opening line. When `enabled` is true, `line` is<br/>
+        /// spoken at the very start of the call, before the greeting - ahead of<br/>
+        /// jurisdictions that require callers to be told they are speaking with an<br/>
+        /// automated system. Off by default; existing agents and numbers are<br/>
+        /// unaffected until they turn it on.
+        /// </param>
         /// <param name="createdAt"></param>
         /// <param name="updatedAt"></param>
         /// <param name="additionalLanguages">
@@ -391,6 +409,7 @@ namespace Speechify
             global::System.Collections.Generic.IList<string> allowedOrigins,
             global::Speechify.AMDConfig amd,
             bool saveAudioRecording,
+            global::Speechify.AIDisclosure aiDisclosure,
             global::System.DateTime createdAt,
             global::System.DateTime updatedAt,
             global::System.Collections.Generic.IList<global::Speechify.AgentAdditionalLanguage>? additionalLanguages,
@@ -425,6 +444,7 @@ namespace Speechify
             this.MaxCallDurationSeconds = maxCallDurationSeconds;
             this.SaveAudioRecording = saveAudioRecording;
             this.ProjectId = projectId;
+            this.AiDisclosure = aiDisclosure ?? throw new global::System.ArgumentNullException(nameof(aiDisclosure));
             this.CreatedAt = createdAt;
             this.UpdatedAt = updatedAt;
         }

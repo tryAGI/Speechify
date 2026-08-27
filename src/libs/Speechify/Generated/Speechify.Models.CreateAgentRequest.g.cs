@@ -4,7 +4,7 @@
 namespace Speechify
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     public sealed partial class CreateAgentRequest
     {
@@ -17,7 +17,7 @@ namespace Speechify
         public string? ProjectId { get; set; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("name")]
         [global::System.Text.Json.Serialization.JsonRequired]
@@ -30,7 +30,7 @@ namespace Speechify
         public string? Slug { get; set; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("prompt")]
         [global::System.Text.Json.Serialization.JsonRequired]
@@ -124,7 +124,7 @@ namespace Speechify
         public bool? IsPublic { get; set; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("allowed_origins")]
         public global::System.Collections.Generic.IList<string>? AllowedOrigins { get; set; }
@@ -170,6 +170,12 @@ namespace Speechify
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("save_audio_recording")]
         public bool? SaveAudioRecording { get; set; }
+
+        /// <summary>
+        /// Opt-in AI-disclosure opening line. Optional on create; omitted means off. See AIDisclosure schema.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("ai_disclosure")]
+        public global::Speechify.AIDisclosure? AiDisclosure { get; set; }
 
         /// <summary>
         /// Additional properties that are not explicitly defined in the schema
@@ -264,6 +270,9 @@ namespace Speechify
         /// <param name="saveAudioRecording">
         /// When set, opts the agent into per-conversation audio recording. Defaults to false when omitted.
         /// </param>
+        /// <param name="aiDisclosure">
+        /// Opt-in AI-disclosure opening line. Optional on create; omitted means off. See AIDisclosure schema.
+        /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
 #endif
@@ -290,7 +299,8 @@ namespace Speechify
             string? webhookSecret,
             global::Speechify.AMDConfig? amd,
             int? maxCallDurationSeconds,
-            bool? saveAudioRecording)
+            bool? saveAudioRecording,
+            global::Speechify.AIDisclosure? aiDisclosure)
         {
             this.ProjectId = projectId;
             this.Name = name ?? throw new global::System.ArgumentNullException(nameof(name));
@@ -315,6 +325,7 @@ namespace Speechify
             this.Amd = amd;
             this.MaxCallDurationSeconds = maxCallDurationSeconds;
             this.SaveAudioRecording = saveAudioRecording;
+            this.AiDisclosure = aiDisclosure;
         }
 
         /// <summary>

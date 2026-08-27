@@ -14,15 +14,15 @@ namespace Speechify
     public enum AgentLlmConfigProvider
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Custom,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Openai,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Speechify,
     }

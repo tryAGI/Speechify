@@ -4,24 +4,24 @@
 namespace Speechify
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     public enum V1AudioStreamPostParametersAccept
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         AudioAac,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         AudioMpeg,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         AudioOgg,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         AudioPcm,
     }

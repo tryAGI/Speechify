@@ -12,7 +12,7 @@ namespace Speechify
     public sealed partial class UpdateFolderRequest
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("name")]
         public string? Name { get; set; }

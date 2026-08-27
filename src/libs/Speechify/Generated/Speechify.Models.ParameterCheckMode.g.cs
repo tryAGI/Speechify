@@ -13,15 +13,15 @@ namespace Speechify
     public enum ParameterCheckMode
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Exact,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Llm,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Regex,
     }

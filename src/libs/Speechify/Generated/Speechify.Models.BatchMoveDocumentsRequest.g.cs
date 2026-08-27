@@ -11,7 +11,7 @@ namespace Speechify
     public sealed partial class BatchMoveDocumentsRequest
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("ids")]
         [global::System.Text.Json.Serialization.JsonRequired]

@@ -11,34 +11,34 @@ namespace Speechify
     public sealed partial class RefreshConfig
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("enabled")]
         [global::System.Text.Json.Serialization.JsonRequired]
         public required bool Enabled { get; set; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("interval_days")]
         [global::System.Text.Json.Serialization.JsonRequired]
         public required int IntervalDays { get; set; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("auto_remove_enabled")]
         [global::System.Text.Json.Serialization.JsonRequired]
         public required bool AutoRemoveEnabled { get; set; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("last_refreshed_at")]
         public global::System.DateTime? LastRefreshedAt { get; set; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("consecutive_fetch_failures")]
         [global::System.Text.Json.Serialization.JsonRequired]

@@ -12,15 +12,15 @@ namespace Speechify
     public enum V1VoicesPostRequestBodyContentMultipartFormDataSchemaGender
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Female,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Male,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         NotSpecified,
     }

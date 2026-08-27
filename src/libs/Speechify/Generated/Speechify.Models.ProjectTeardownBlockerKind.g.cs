@@ -4,36 +4,36 @@
 namespace Speechify
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     public enum ProjectTeardownBlockerKind
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         ApiKey,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Credential,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Invite,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         PhoneNumber,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         ProjectMember,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         ServiceAccount,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         WebhookEndpoint,
     }

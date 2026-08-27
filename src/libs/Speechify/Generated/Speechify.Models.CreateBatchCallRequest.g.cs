@@ -47,7 +47,7 @@ namespace Speechify
         public int? RingingTimeoutMs { get; set; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("recipients")]
         [global::System.Text.Json.Serialization.JsonRequired]

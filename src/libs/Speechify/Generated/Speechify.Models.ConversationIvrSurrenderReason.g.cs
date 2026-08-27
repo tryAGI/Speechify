@@ -21,43 +21,43 @@ namespace Speechify
     public enum ConversationIvrSurrenderReason
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         BelowThreshold,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         ChildCacheMiss,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Disabled,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         DtmfSendFailure,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         FingerprintMismatch,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         GoalAmbiguous,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         MatchedOptionMissingDtmf,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         NoCachedMenu,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         NoGoal,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         RepeatedPromptMaxRetries,
     }

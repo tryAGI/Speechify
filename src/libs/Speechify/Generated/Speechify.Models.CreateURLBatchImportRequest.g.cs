@@ -15,7 +15,7 @@ namespace Speechify
     public sealed partial class CreateURLBatchImportRequest
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("urls")]
         [global::System.Text.Json.Serialization.JsonRequired]

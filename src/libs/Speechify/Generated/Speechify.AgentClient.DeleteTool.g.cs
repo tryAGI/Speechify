@@ -154,7 +154,7 @@ namespace Speechify
                          __authorization.Location == "Header")
                 {
                     __httpRequest.Headers.Add(__authorization.Name, __authorization.Value);
-                } 
+                }
             }
 
             if (speechifyVersion != default)
@@ -354,7 +354,7 @@ namespace Speechify
                                 retryReason: global::System.String.Empty,
                                 cancellationToken: __effectiveCancellationToken)).ConfigureAwait(false);
                 }
-                            // Authentication is missing or invalid. The request did not carry a recognised credential (console session token, API key, or worker JWT). 
+                            // Authentication is missing or invalid. The request did not carry a recognised credential (console session token, API key, or worker JWT).
                             if ((int)__response.StatusCode == 401)
                             {
                                 string? __content_401 = null;
@@ -391,7 +391,7 @@ namespace Speechify
                                         h => h.Key,
                                         h => h.Value));
                             }
-                            // The referenced resource does not exist or is not visible to the caller's workspace. 
+                            // The referenced resource does not exist or is not visible to the caller's workspace.
                             if ((int)__response.StatusCode == 404)
                             {
                                 string? __content_404 = null;

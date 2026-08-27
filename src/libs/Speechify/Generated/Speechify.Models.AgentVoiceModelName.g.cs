@@ -4,20 +4,20 @@
 namespace Speechify
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     public enum AgentVoiceModelName
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Simba30,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Simba32,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Simba35Turbo,
     }

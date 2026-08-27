@@ -9,23 +9,23 @@ namespace Speechify
     public enum PromoteAttentionKind
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Agent,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         AudioAsset,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         KnowledgeBase,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Tool,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         WebhookEndpoint,
     }

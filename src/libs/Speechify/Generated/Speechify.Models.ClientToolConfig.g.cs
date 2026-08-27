@@ -9,7 +9,7 @@ namespace Speechify
     public sealed partial class ClientToolConfig
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("params")]
         public global::System.Collections.Generic.IList<global::Speechify.ToolParam>? Params { get; set; }

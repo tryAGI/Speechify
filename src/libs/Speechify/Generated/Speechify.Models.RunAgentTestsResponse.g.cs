@@ -12,7 +12,7 @@ namespace Speechify
     public sealed partial class RunAgentTestsResponse
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("runs")]
         [global::System.Text.Json.Serialization.JsonRequired]

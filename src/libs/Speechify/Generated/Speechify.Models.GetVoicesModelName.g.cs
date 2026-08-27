@@ -13,19 +13,19 @@ namespace Speechify
     public enum GetVoicesModelName
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Simba30,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Simba32,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         SimbaEnglish,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         SimbaMultilingual,
     }

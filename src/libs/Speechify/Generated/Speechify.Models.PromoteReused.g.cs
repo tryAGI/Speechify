@@ -9,7 +9,7 @@ namespace Speechify
     public sealed partial class PromoteReused
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("tools")]
         [global::System.Text.Json.Serialization.JsonRequired]

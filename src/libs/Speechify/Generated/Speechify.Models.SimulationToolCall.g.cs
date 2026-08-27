@@ -19,7 +19,7 @@ namespace Speechify
         public required int TurnIndex { get; set; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("tool_name")]
         [global::System.Text.Json.Serialization.JsonRequired]
@@ -39,7 +39,7 @@ namespace Speechify
         public object? Response { get; set; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("mocked")]
         [global::System.Text.Json.Serialization.JsonRequired]

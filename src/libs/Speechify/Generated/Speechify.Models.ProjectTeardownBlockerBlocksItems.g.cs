@@ -4,16 +4,16 @@
 namespace Speechify
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     public enum ProjectTeardownBlockerBlocksItems
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Detach,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Purge,
     }

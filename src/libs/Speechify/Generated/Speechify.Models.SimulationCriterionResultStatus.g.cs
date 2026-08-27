@@ -11,15 +11,15 @@ namespace Speechify
     public enum SimulationCriterionResultStatus
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Failure,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Success,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Unknown,
     }

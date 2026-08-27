@@ -9,7 +9,7 @@ namespace Speechify
     public sealed partial class AgentTTSConfig
     {
         /// <summary>
-        /// Voice slug from the catalog (see GET /v1/agents/voices). The server rejects an unknown or empty slug.
+        /// Voice slug (see GET /v1/agents/voices for the recommended set). The server rejects an empty slug, and any voice it cannot synthesize.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("voice_id")]
         [global::System.Text.Json.Serialization.JsonRequired]
@@ -56,7 +56,7 @@ namespace Speechify
         /// Initializes a new instance of the <see cref="AgentTTSConfig" /> class.
         /// </summary>
         /// <param name="voiceId">
-        /// Voice slug from the catalog (see GET /v1/agents/voices). The server rejects an unknown or empty slug.
+        /// Voice slug (see GET /v1/agents/voices for the recommended set). The server rejects an empty slug, and any voice it cannot synthesize.
         /// </param>
         /// <param name="speed">
         /// Post-process, pitch-preserving time-stretch applied to the<br/>

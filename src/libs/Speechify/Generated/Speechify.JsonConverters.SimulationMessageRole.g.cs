@@ -20,7 +20,7 @@ namespace Speechify.JsonConverters
                     {
                         return global::Speechify.SimulationMessageRoleExtensions.ToEnum(stringValue) ?? default;
                     }
-                    
+
                     break;
                 }
                 case global::System.Text.Json.JsonTokenType.Number:

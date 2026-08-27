@@ -9,7 +9,7 @@ namespace Speechify
     public sealed partial class SimulationMessage
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("role")]
         [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Speechify.JsonConverters.SimulationMessageRoleJsonConverter))]
@@ -17,7 +17,7 @@ namespace Speechify
         public required global::Speechify.SimulationMessageRole Role { get; set; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("content")]
         [global::System.Text.Json.Serialization.JsonRequired]

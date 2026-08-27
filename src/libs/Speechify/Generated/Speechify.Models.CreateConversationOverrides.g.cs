@@ -11,8 +11,9 @@ namespace Speechify
     public sealed partial class CreateConversationOverrides
     {
         /// <summary>
-        /// Voice from `GET /v1/agents/voices` to use for this entire<br/>
-        /// conversation. For a multilingual agent, this replaces every<br/>
+        /// Voice to use for this entire conversation; see<br/>
+        /// `GET /v1/agents/voices` for the recommended set.<br/>
+        /// For a multilingual agent, this replaces every<br/>
         /// configured per-language voice. The selected voice must support<br/>
         /// the agent's complete configured language set; otherwise the<br/>
         /// request is rejected. An unavailable voice is never silently<br/>
@@ -31,8 +32,9 @@ namespace Speechify
         /// Initializes a new instance of the <see cref="CreateConversationOverrides" /> class.
         /// </summary>
         /// <param name="voiceId">
-        /// Voice from `GET /v1/agents/voices` to use for this entire<br/>
-        /// conversation. For a multilingual agent, this replaces every<br/>
+        /// Voice to use for this entire conversation; see<br/>
+        /// `GET /v1/agents/voices` for the recommended set.<br/>
+        /// For a multilingual agent, this replaces every<br/>
         /// configured per-language voice. The selected voice must support<br/>
         /// the agent's complete configured language set; otherwise the<br/>
         /// request is rejected. An unavailable voice is never silently<br/>

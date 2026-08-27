@@ -17,37 +17,37 @@ namespace Speechify
     public sealed partial class AgentSnapshot
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("schema_version")]
         public int? SchemaVersion { get; set; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("captured_at")]
         public global::System.DateTime? CapturedAt { get; set; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("name")]
         public string? Name { get; set; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("prompt")]
         public string? Prompt { get; set; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("first_message")]
         public string? FirstMessage { get; set; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("language")]
         public string? Language { get; set; }
@@ -66,7 +66,7 @@ namespace Speechify
         public string? LlmProvider { get; set; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("llm_model")]
         public string? LlmModel { get; set; }
@@ -84,7 +84,7 @@ namespace Speechify
         public object? LlmExtraBody { get; set; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("voice_id")]
         public string? VoiceId { get; set; }
@@ -100,19 +100,19 @@ namespace Speechify
         public string? TtsModel { get; set; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("temperature")]
         public string? Temperature { get; set; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("memory_enabled")]
         public bool? MemoryEnabled { get; set; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("memory_retention_days")]
         public int? MemoryRetentionDays { get; set; }
@@ -148,19 +148,19 @@ namespace Speechify
         public global::Speechify.AMDConfig? Amd { get; set; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("save_audio_recording")]
         public bool? SaveAudioRecording { get; set; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("navigator_mode")]
         public bool? NavigatorMode { get; set; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("ivr_memory_enabled")]
         public bool? IvrMemoryEnabled { get; set; }
@@ -195,7 +195,7 @@ namespace Speechify
         public global::Speechify.AgentSnapshotBackgroundNoisePreset? BackgroundNoisePreset { get; set; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("background_noise_volume")]
         public string? BackgroundNoiseVolume { get; set; }
