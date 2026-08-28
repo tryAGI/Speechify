@@ -153,5 +153,10 @@ namespace Speechify
         /// </summary>
         public VoicesClient Voices { get; }
 
+        /// <summary>
+        ///
+        /// </summary>
+        public WatermarkClient Watermark { get; }
+
     }
 }

@@ -372,6 +372,14 @@ namespace Speechify
         /// <summary>
         ///
         /// </summary>
+        WatermarkAudioUnusable,
+        /// <summary>
+        ///
+        /// </summary>
+        WatermarkDetectionUnavailable,
+        /// <summary>
+        ///
+        /// </summary>
         WorkspaceFreeLimit,
         /// <summary>
         ///
@@ -492,6 +500,8 @@ namespace Speechify
                 ErrorCode.VerificationRequired => "verification_required",
                 ErrorCode.VoiceCloningNotIncluded => "voice_cloning_not_included",
                 ErrorCode.VoiceNotFound => "voice_not_found",
+                ErrorCode.WatermarkAudioUnusable => "watermark_audio_unusable",
+                ErrorCode.WatermarkDetectionUnavailable => "watermark_detection_unavailable",
                 ErrorCode.WorkspaceFreeLimit => "workspace_free_limit",
                 ErrorCode.WorkspaceLastOwner => "workspace_last_owner",
                 ErrorCode.WorkspaceLastWorkspace => "workspace_last_workspace",
@@ -596,6 +606,8 @@ namespace Speechify
                 "verification_required" => ErrorCode.VerificationRequired,
                 "voice_cloning_not_included" => ErrorCode.VoiceCloningNotIncluded,
                 "voice_not_found" => ErrorCode.VoiceNotFound,
+                "watermark_audio_unusable" => ErrorCode.WatermarkAudioUnusable,
+                "watermark_detection_unavailable" => ErrorCode.WatermarkDetectionUnavailable,
                 "workspace_free_limit" => ErrorCode.WorkspaceFreeLimit,
                 "workspace_last_owner" => ErrorCode.WorkspaceLastOwner,
                 "workspace_last_workspace" => ErrorCode.WorkspaceLastWorkspace,

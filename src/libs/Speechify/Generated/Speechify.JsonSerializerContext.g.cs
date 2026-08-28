@@ -72,6 +72,7 @@ namespace Speechify
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.Model))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.ModelsResponse))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Speechify.Model>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.WatermarkDetectionResponse))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.AgentAdditionalLanguage))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.AgentLlmConfigProvider), TypeInfoPropertyName = "AgentLlmConfigProvider2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.AgentLLMConfig))]
@@ -273,6 +274,8 @@ namespace Speechify
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.BuiltinToolConfig))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Speechify.ToolParam>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.WebhookToolConfigMethod), TypeInfoPropertyName = "WebhookToolConfigMethod2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.LongRunningToolConfigWaitAudioPreset), TypeInfoPropertyName = "LongRunningToolConfigWaitAudioPreset2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.LongRunningToolConfigWaitAudio))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.LongRunningToolConfigOnDuplicate), TypeInfoPropertyName = "LongRunningToolConfigOnDuplicate2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.LongRunningToolConfig))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.WebhookToolConfig))]
@@ -505,15 +508,12 @@ namespace Speechify
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Speechify.ProjectMember>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.GrantProjectMemberRequest))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.CreateRequest))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.DetectRequest))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.UploadDocumentRequest))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.UpdateDocumentRequest))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.RunTestRequest))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.UploadRequest))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.GetSpeechRequestAudioFormat?), TypeInfoPropertyName = "NullableGetSpeechRequestAudioFormat2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.GetSpeechRequestModel?), TypeInfoPropertyName = "NullableGetSpeechRequestModel2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(bool?))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.AudioOutputFormat?), TypeInfoPropertyName = "NullableAudioOutputFormat2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.GetSpeechResponseAudioFormat?), TypeInfoPropertyName = "NullableGetSpeechResponseAudioFormat2")]
     internal sealed partial class SourceGenerationContextChunk0 : global::System.Text.Json.Serialization.JsonSerializerContext
     {
     }
@@ -526,6 +526,10 @@ namespace Speechify
         Converters = new global::System.Type[]
         {
         })]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.GetSpeechRequestModel?), TypeInfoPropertyName = "NullableGetSpeechRequestModel2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(bool?))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.AudioOutputFormat?), TypeInfoPropertyName = "NullableAudioOutputFormat2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.GetSpeechResponseAudioFormat?), TypeInfoPropertyName = "NullableGetSpeechResponseAudioFormat2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(long?))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(double?))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.ErrorCode?), TypeInfoPropertyName = "NullableErrorCode2")]
@@ -580,6 +584,7 @@ namespace Speechify
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.ToolKind?), TypeInfoPropertyName = "NullableToolKind2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.ToolParamType?), TypeInfoPropertyName = "NullableToolParamType2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.WebhookToolConfigMethod?), TypeInfoPropertyName = "NullableWebhookToolConfigMethod2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.LongRunningToolConfigWaitAudioPreset?), TypeInfoPropertyName = "NullableLongRunningToolConfigWaitAudioPreset2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.LongRunningToolConfigOnDuplicate?), TypeInfoPropertyName = "NullableLongRunningToolConfigOnDuplicate2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.MCPTransport?), TypeInfoPropertyName = "NullableMCPTransport2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.MCPAuth?), TypeInfoPropertyName = "NullableMCPAuth2")]
@@ -1005,6 +1010,10 @@ namespace Speechify
                     || typeToConvert == typeof(global::Speechify.WebhookToolConfigMethod)
 
                     || typeToConvert == typeof(global::Speechify.WebhookToolConfigMethod?)
+
+                    || typeToConvert == typeof(global::Speechify.LongRunningToolConfigWaitAudioPreset)
+
+                    || typeToConvert == typeof(global::Speechify.LongRunningToolConfigWaitAudioPreset?)
 
                     || typeToConvert == typeof(global::Speechify.LongRunningToolConfigOnDuplicate)
 
@@ -1677,6 +1686,16 @@ namespace Speechify
                 if (typeToConvert == typeof(global::Speechify.WebhookToolConfigMethod?))
                 {
                     return new global::Speechify.JsonConverters.WebhookToolConfigMethodNullableJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.LongRunningToolConfigWaitAudioPreset))
+                {
+                    return new global::Speechify.JsonConverters.LongRunningToolConfigWaitAudioPresetJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.LongRunningToolConfigWaitAudioPreset?))
+                {
+                    return new global::Speechify.JsonConverters.LongRunningToolConfigWaitAudioPresetNullableJsonConverter();
                 }
 
                 if (typeToConvert == typeof(global::Speechify.LongRunningToolConfigOnDuplicate))
