@@ -58,6 +58,18 @@ namespace Speechify
         public int? FillerIntervalMs { get; set; }
 
         /// <summary>
+        /// A sound looped under the wait, instead of - or beneath - the<br/>
+        /// spoken phrase, for the caller who expects hold music rather<br/>
+        /// than an agent repeating itself. It starts on the same dwell as<br/>
+        /// `filler_message` (`filler_delay_ms` with nobody speaking) and<br/>
+        /// stops the moment the tool settles, so the real answer never<br/>
+        /// queues behind it. Omit to leave the wait silent; the phrase and<br/>
+        /// the sound are independent, so set either, both, or neither.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("wait_audio")]
+        public global::Speechify.LongRunningToolConfigWaitAudio? WaitAudio { get; set; }
+
+        /// <summary>
         /// What happens when the model calls this tool while a previous<br/>
         /// call of the SAME tool is still running. `reject` (the default<br/>
         /// whenever `long_running` is set) refuses the second call and<br/>
@@ -113,6 +125,15 @@ namespace Speechify
         /// runs to tens of seconds. Capped at 10 utterances per call<br/>
         /// regardless. Requires `filler_message`.
         /// </param>
+        /// <param name="waitAudio">
+        /// A sound looped under the wait, instead of - or beneath - the<br/>
+        /// spoken phrase, for the caller who expects hold music rather<br/>
+        /// than an agent repeating itself. It starts on the same dwell as<br/>
+        /// `filler_message` (`filler_delay_ms` with nobody speaking) and<br/>
+        /// stops the moment the tool settles, so the real answer never<br/>
+        /// queues behind it. Omit to leave the wait silent; the phrase and<br/>
+        /// the sound are independent, so set either, both, or neither.
+        /// </param>
         /// <param name="onDuplicate">
         /// What happens when the model calls this tool while a previous<br/>
         /// call of the SAME tool is still running. `reject` (the default<br/>
@@ -132,12 +153,14 @@ namespace Speechify
             int? fillerDelayMs,
             global::System.Collections.Generic.IList<string>? additionalFillerMessages,
             int? fillerIntervalMs,
+            global::Speechify.LongRunningToolConfigWaitAudio? waitAudio,
             global::Speechify.LongRunningToolConfigOnDuplicate? onDuplicate)
         {
             this.FillerMessage = fillerMessage;
             this.FillerDelayMs = fillerDelayMs;
             this.AdditionalFillerMessages = additionalFillerMessages;
             this.FillerIntervalMs = fillerIntervalMs;
+            this.WaitAudio = waitAudio;
             this.OnDuplicate = onDuplicate;
         }
 

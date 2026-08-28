@@ -47,6 +47,7 @@ namespace Speechify.JsonConverters
             if (__jsonProps.Contains("long_running.filler_interval_ms")) __score1++;
             if (__jsonProps.Contains("long_running.filler_message")) __score1++;
             if (__jsonProps.Contains("long_running.on_duplicate")) __score1++;
+            if (__jsonProps.Contains("long_running.wait_audio")) __score1++;
             if (__jsonProps.Contains("method")) __score1++;
             if (__jsonProps.Contains("params")) __score1++;
             if (__jsonProps.Contains("timeout_ms")) __score1++;
@@ -63,6 +64,7 @@ namespace Speechify.JsonConverters
             if (__jsonProps.Contains("long_running.filler_interval_ms")) __score3++;
             if (__jsonProps.Contains("long_running.filler_message")) __score3++;
             if (__jsonProps.Contains("long_running.on_duplicate")) __score3++;
+            if (__jsonProps.Contains("long_running.wait_audio")) __score3++;
             if (__jsonProps.Contains("transport")) __score3++;
             var __bestScore = 0;
             var __bestIndex = -1;
