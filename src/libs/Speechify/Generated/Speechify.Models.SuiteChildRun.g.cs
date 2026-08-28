@@ -63,8 +63,7 @@ namespace Speechify
         /// verdict (`status` is `completed`).
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("verdict")]
-        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Speechify.JsonConverters.OneOfJsonConverter<global::Speechify.TestVerdict?, object>))]
-        public global::Speechify.OneOf<global::Speechify.TestVerdict?, object>? Verdict { get; set; }
+        public global::Speechify.TestVerdict? Verdict { get; set; }
 
         /// <summary>
         ///
@@ -82,8 +81,7 @@ namespace Speechify
         /// Populated once the run reached a verdict.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("result")]
-        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Speechify.JsonConverters.OneOfJsonConverter<global::Speechify.TestRunResult, object>))]
-        public global::Speechify.OneOf<global::Speechify.TestRunResult, object>? Result { get; set; }
+        public global::Speechify.TestRunResult? Result { get; set; }
 
         /// <summary>
         /// Human-readable error message when `status` is `failed`.
@@ -181,10 +179,10 @@ namespace Speechify
             global::System.DateTime createdAt,
             string testName,
             string agentName,
-            global::Speechify.OneOf<global::Speechify.TestVerdict?, object>? verdict,
+            global::Speechify.TestVerdict? verdict,
             global::System.DateTime? startedAt,
             global::System.DateTime? endedAt,
-            global::Speechify.OneOf<global::Speechify.TestRunResult, object>? result,
+            global::Speechify.TestRunResult? result,
             string? error)
         {
             this.Id = id ?? throw new global::System.ArgumentNullException(nameof(id));

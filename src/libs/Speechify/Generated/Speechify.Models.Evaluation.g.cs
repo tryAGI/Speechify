@@ -54,8 +54,7 @@ namespace Speechify
         /// Three-state criterion result. `unknown` means the criterion did not apply to this call.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("status")]
-        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Speechify.JsonConverters.OneOfJsonConverter<global::Speechify.EvaluationStatus?, object>))]
-        public global::Speechify.OneOf<global::Speechify.EvaluationStatus?, object>? Status { get; set; }
+        public global::Speechify.EvaluationStatus? Status { get; set; }
 
         /// <summary>
         ///
@@ -127,7 +126,7 @@ namespace Speechify
             string rationale,
             global::System.DateTime createdAt,
             string? criterionId,
-            global::Speechify.OneOf<global::Speechify.EvaluationStatus?, object>? status,
+            global::Speechify.EvaluationStatus? status,
             bool? passed,
             string? score,
             object? data)

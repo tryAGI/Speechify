@@ -101,8 +101,7 @@ namespace Speechify
         /// The most recent run, or null if the test has never been run.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("last_run")]
-        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Speechify.JsonConverters.OneOfJsonConverter<global::Speechify.AgentTestRun, object>))]
-        public global::Speechify.OneOf<global::Speechify.AgentTestRun, object>? LastRun { get; set; }
+        public global::Speechify.AgentTestRun? LastRun { get; set; }
 
         /// <summary>
         /// Additional properties that are not explicitly defined in the schema
@@ -167,7 +166,7 @@ namespace Speechify
             global::Speechify.ToolMockConfig? toolMockConfig,
             object? variables,
             string? folderId,
-            global::Speechify.OneOf<global::Speechify.AgentTestRun, object>? lastRun)
+            global::Speechify.AgentTestRun? lastRun)
         {
             this.Id = id ?? throw new global::System.ArgumentNullException(nameof(id));
             this.AgentId = agentId ?? throw new global::System.ArgumentNullException(nameof(agentId));
