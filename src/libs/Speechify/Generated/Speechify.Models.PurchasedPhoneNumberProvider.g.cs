@@ -5,9 +5,16 @@ namespace Speechify
 {
     /// <summary>
     /// The carrier a Speechify-managed number is bought on, used by<br/>
-    /// `POST /v1/agents/phone-numbers/purchase`. Restricted to the<br/>
-    /// purchasable providers - the resulting `phone_numbers` row carries<br/>
-    /// the matching `PhoneNumberProvider` value.
+    /// `POST /v1/agents/phone-numbers/purchase`. The resulting<br/>
+    /// `phone_numbers` row carries the matching `PhoneNumberProvider`<br/>
+    /// value.<br/>
+    /// Only `telnyx_purchased` can be bought. `twilio_purchased` is<br/>
+    /// **retired for new purchases** and returns `400 validation_failed`;<br/>
+    /// it remains in this enum because numbers already bought on it are<br/>
+    /// still listed, released and dialled normally, and because removing a<br/>
+    /// request enum value would be a breaking change. Omit `provider` and<br/>
+    /// the buy lands on the current carrier automatically - the<br/>
+    /// recommended call for every client.
     /// </summary>
     public enum PurchasedPhoneNumberProvider
     {

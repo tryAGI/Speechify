@@ -777,8 +777,10 @@ namespace Speechify
         /// Optional human-readable label.
         /// </param>
         /// <param name="provider">
-        /// Which carrier's Speechify-managed account to buy on. Optional;<br/>
-        /// defaults to `twilio_purchased`.
+        /// Which carrier's Speechify-managed account to buy on. Optional<br/>
+        /// and best omitted: the platform picks the current carrier<br/>
+        /// (`telnyx_purchased`). Passing the retired `twilio_purchased`<br/>
+        /// returns `400 validation_failed`.
         /// </param>
         /// <param name="agentId">
         /// Optional agent to bind the number to at purchase time.<br/>
