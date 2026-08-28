@@ -46,22 +46,19 @@ namespace Speechify
         ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("reply")]
-        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Speechify.JsonConverters.OneOfJsonConverter<global::Speechify.ReplyResult, object>))]
-        public global::Speechify.OneOf<global::Speechify.ReplyResult, object>? Reply { get; set; }
+        public global::Speechify.ReplyResult? Reply { get; set; }
 
         /// <summary>
         ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("tool_call")]
-        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Speechify.JsonConverters.OneOfJsonConverter<global::Speechify.ToolCallResult, object>))]
-        public global::Speechify.OneOf<global::Speechify.ToolCallResult, object>? ToolCall { get; set; }
+        public global::Speechify.ToolCallResult? ToolCall { get; set; }
 
         /// <summary>
         ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("simulation")]
-        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Speechify.JsonConverters.OneOfJsonConverter<global::Speechify.SimulationResult, object>))]
-        public global::Speechify.OneOf<global::Speechify.SimulationResult, object>? Simulation { get; set; }
+        public global::Speechify.SimulationResult? Simulation { get; set; }
 
         /// <summary>
         /// Additional properties that are not explicitly defined in the schema
@@ -94,9 +91,9 @@ namespace Speechify
             bool passed,
             string rationale,
             long durationMs,
-            global::Speechify.OneOf<global::Speechify.ReplyResult, object>? reply,
-            global::Speechify.OneOf<global::Speechify.ToolCallResult, object>? toolCall,
-            global::Speechify.OneOf<global::Speechify.SimulationResult, object>? simulation)
+            global::Speechify.ReplyResult? reply,
+            global::Speechify.ToolCallResult? toolCall,
+            global::Speechify.SimulationResult? simulation)
         {
             this.TestType = testType;
             this.Passed = passed;

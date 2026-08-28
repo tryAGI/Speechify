@@ -22,8 +22,7 @@ namespace Speechify
         /// The suite run grouping the queued runs.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("suite_run")]
-        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Speechify.JsonConverters.OneOfJsonConverter<global::Speechify.AgentTestSuiteRun, object>))]
-        public global::Speechify.OneOf<global::Speechify.AgentTestSuiteRun, object>? SuiteRun { get; set; }
+        public global::Speechify.AgentTestSuiteRun? SuiteRun { get; set; }
 
         /// <summary>
         /// Additional properties that are not explicitly defined in the schema
@@ -43,7 +42,7 @@ namespace Speechify
 #endif
         public RunAgentTestsResponse(
             global::System.Collections.Generic.IList<global::Speechify.AgentTestRun> runs,
-            global::Speechify.OneOf<global::Speechify.AgentTestSuiteRun, object>? suiteRun)
+            global::Speechify.AgentTestSuiteRun? suiteRun)
         {
             this.Runs = runs ?? throw new global::System.ArgumentNullException(nameof(runs));
             this.SuiteRun = suiteRun;

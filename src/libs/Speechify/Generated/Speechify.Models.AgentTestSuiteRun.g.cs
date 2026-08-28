@@ -84,8 +84,7 @@ namespace Speechify
         /// `completed`.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("verdict")]
-        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Speechify.JsonConverters.OneOfJsonConverter<global::Speechify.TestVerdict?, object>))]
-        public global::Speechify.OneOf<global::Speechify.TestVerdict?, object>? Verdict { get; set; }
+        public global::Speechify.TestVerdict? Verdict { get; set; }
 
         /// <summary>
         /// Number of child runs in the suite.
@@ -154,8 +153,7 @@ namespace Speechify
         /// with, or null for an ordinary Run All / batch.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("config_override")]
-        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Speechify.JsonConverters.OneOfJsonConverter<global::Speechify.TestRunConfigOverride, object>))]
-        public global::Speechify.OneOf<global::Speechify.TestRunConfigOverride, object>? ConfigOverride { get; set; }
+        public global::Speechify.TestRunConfigOverride? ConfigOverride { get; set; }
 
         /// <summary>
         /// The flow version (`agent_versions` row) this suite targeted<br/>
@@ -279,9 +277,9 @@ namespace Speechify
             string? agentId,
             string? agentName,
             string? parentSuiteRunId,
-            global::Speechify.OneOf<global::Speechify.TestVerdict?, object>? verdict,
+            global::Speechify.TestVerdict? verdict,
             global::System.DateTime? endedAt,
-            global::Speechify.OneOf<global::Speechify.TestRunConfigOverride, object>? configOverride,
+            global::Speechify.TestRunConfigOverride? configOverride,
             string? flowVersionId,
             int? flowVersionNumber)
         {
