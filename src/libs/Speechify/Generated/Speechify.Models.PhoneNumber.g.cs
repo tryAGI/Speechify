@@ -1,13 +1,17 @@
 
+#pragma warning disable CS0618 // Type or member is obsolete
+
 #nullable enable
 
 namespace Speechify
 {
     /// <summary>
-    /// A phone number in the workspace inventory. Its brain is a union:<br/>
-    /// bound to a hosted agent via `agent_id`, or to your own webhook via<br/>
-    /// `relay` - never both at once. Unbound numbers are valid but<br/>
-    /// non-functional until assigned.
+    /// A phone number in the workspace inventory. Its brain is a union: a<br/>
+    /// hosted agent, or one of your own external brains via `brain_id` - never<br/>
+    /// both at once. Unbound numbers are valid but non-functional until<br/>
+    /// assigned. A number bound to an external brain also carries an<br/>
+    /// `agent_id` (the bind provisions one, which is what gives the call a<br/>
+    /// conversation and a transcript), so `brain_id` is the discriminator.
     /// </summary>
     public sealed partial class PhoneNumber
     {
@@ -66,20 +70,29 @@ namespace Speechify
 
         /// <summary>
         /// ID of the agent this number's calls run as. Null only while the<br/>
-        /// number is unbound. Binding a `relay` provisions an agent too -<br/>
-        /// it is what gives a webhook-brained call a conversation,<br/>
-        /// transcript and lifecycle - so this is also the `agent_id` to<br/>
-        /// pass to `POST /v1/agents/outbound-calls` to dial out from a<br/>
-        /// relay-bound number.
+        /// number is unbound. Pointing a number at a brain provisions an agent<br/>
+        /// too - it is what gives an externally-brained call a conversation,<br/>
+        /// transcript and lifecycle - so this is also the `agent_id` to pass to<br/>
+        /// `POST /v1/agents/outbound-calls` to dial out from such a number.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("agent_id")]
         public string? AgentId { get; set; }
 
         /// <summary>
-        /// The relay binding: your webhook answers this number's traffic.<br/>
-        /// Null when unbound or when an agent is bound instead.
+        /// The external brain answering this number's traffic. Absent when<br/>
+        /// the number is unbound or answered by a hosted agent. Read the<br/>
+        /// endpoint, health and settings at `/v1/agents/brains/{brain_id}`.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("brain_id")]
+        public string? BrainId { get; set; }
+
+        /// <summary>
+        /// **Deprecated. Use `brain_id`.** Returned only by the deprecated<br/>
+        /// rotate-secret operation on this resource, to carry the brain's<br/>
+        /// one-time `signing_secret`; omitted everywhere else.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("relay")]
+        [global::System.Obsolete("This property marked as deprecated.")]
         public global::Speechify.PhoneNumberRelay? Relay { get; set; }
 
         /// <summary>
@@ -179,15 +192,15 @@ namespace Speechify
         /// </param>
         /// <param name="agentId">
         /// ID of the agent this number's calls run as. Null only while the<br/>
-        /// number is unbound. Binding a `relay` provisions an agent too -<br/>
-        /// it is what gives a webhook-brained call a conversation,<br/>
-        /// transcript and lifecycle - so this is also the `agent_id` to<br/>
-        /// pass to `POST /v1/agents/outbound-calls` to dial out from a<br/>
-        /// relay-bound number.
+        /// number is unbound. Pointing a number at a brain provisions an agent<br/>
+        /// too - it is what gives an externally-brained call a conversation,<br/>
+        /// transcript and lifecycle - so this is also the `agent_id` to pass to<br/>
+        /// `POST /v1/agents/outbound-calls` to dial out from such a number.
         /// </param>
-        /// <param name="relay">
-        /// The relay binding: your webhook answers this number's traffic.<br/>
-        /// Null when unbound or when an agent is bound instead.
+        /// <param name="brainId">
+        /// The external brain answering this number's traffic. Absent when<br/>
+        /// the number is unbound or answered by a hosted agent. Read the<br/>
+        /// endpoint, health and settings at `/v1/agents/brains/{brain_id}`.
         /// </param>
         /// <param name="isoCountry">
         /// ISO-3166 alpha-2 country of the number. Present on purchased<br/>
@@ -215,7 +228,7 @@ namespace Speechify
             string? label,
             string? trunkId,
             string? agentId,
-            global::Speechify.PhoneNumberRelay? relay,
+            string? brainId,
             string? isoCountry,
             string? projectId,
             global::Speechify.PhoneNumberReputation? reputation)
@@ -226,7 +239,7 @@ namespace Speechify
             this.Label = label;
             this.TrunkId = trunkId;
             this.AgentId = agentId;
-            this.Relay = relay;
+            this.BrainId = brainId;
             this.IsoCountry = isoCountry;
             this.Capabilities = capabilities ?? throw new global::System.ArgumentNullException(nameof(capabilities));
             this.ProjectId = projectId;
