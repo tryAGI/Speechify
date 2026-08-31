@@ -4,12 +4,15 @@
 namespace Speechify
 {
     /// <summary>
-    /// A number's relay binding: the HTTPS endpoint that answers the<br/>
-    /// number's traffic, plus how replies are spoken and how failures are<br/>
-    /// handled. The signing secret appears exactly once - on the response<br/>
-    /// that bound the relay and on rotate-secret - and is otherwise never<br/>
-    /// returned.
+    /// **Deprecated. Read the number's `brain_id` and fetch the brain at<br/>
+    /// `/v1/agents/brains/{brain_id}` instead.**<br/>
+    /// A read-only projection of the brain a number is bound to, kept for one<br/>
+    /// deprecation cycle. It is returned ONLY by the deprecated<br/>
+    /// `POST /v1/agents/phone-numbers/{phone_number_id}/rotate-secret`, which<br/>
+    /// is the one place its `signing_secret` can appear; every other<br/>
+    /// phone-number response omits it.
     /// </summary>
+    [global::System.Obsolete("This model marked as deprecated.")]
     public sealed partial class PhoneNumberRelay
     {
         /// <summary>
@@ -17,6 +20,7 @@ namespace Speechify
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("url")]
         [global::System.Text.Json.Serialization.JsonRequired]
+        [global::System.Obsolete("This property marked as deprecated.")]
         public required string Url { get; set; }
 
         /// <summary>
@@ -24,6 +28,7 @@ namespace Speechify
         /// default voice is used.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("voice_id")]
+        [global::System.Obsolete("This property marked as deprecated.")]
         public string? VoiceId { get; set; }
 
         /// <summary>
@@ -32,6 +37,7 @@ namespace Speechify
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("reply_timeout_ms")]
         [global::System.Text.Json.Serialization.JsonRequired]
+        [global::System.Obsolete("This property marked as deprecated.")]
         public required int ReplyTimeoutMs { get; set; }
 
         /// <summary>
@@ -39,6 +45,7 @@ namespace Speechify
         /// delivery is retried (e.g. "One moment please").
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("fallback_line")]
+        [global::System.Obsolete("This property marked as deprecated.")]
         public string? FallbackLine { get; set; }
 
         /// <summary>
@@ -46,6 +53,7 @@ namespace Speechify
         /// unreachable after the retry.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("goodbye_line")]
+        [global::System.Obsolete("This property marked as deprecated.")]
         public string? GoodbyeLine { get; set; }
 
         /// <summary>
@@ -54,6 +62,7 @@ namespace Speechify
         /// current version.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("api_version")]
+        [global::System.Obsolete("This property marked as deprecated.")]
         public string? ApiVersion { get; set; }
 
         /// <summary>
@@ -62,6 +71,7 @@ namespace Speechify
         /// when unset.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("greeting")]
+        [global::System.Obsolete("This property marked as deprecated.")]
         public string? Greeting { get; set; }
 
         /// <summary>
@@ -69,6 +79,7 @@ namespace Speechify
         /// to transfer without an explicit target. Omitted when unset.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("transfer_number")]
+        [global::System.Obsolete("This property marked as deprecated.")]
         public string? TransferNumber { get; set; }
 
         /// <summary>
@@ -76,6 +87,7 @@ namespace Speechify
         /// silence hangup).
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("hangup_after_silence_seconds")]
+        [global::System.Obsolete("This property marked as deprecated.")]
         public int? HangupAfterSilenceSeconds { get; set; }
 
         /// <summary>
@@ -83,6 +95,7 @@ namespace Speechify
         /// before the webhook greeting. Omitted when off (the default).
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("ai_disclosure")]
+        [global::System.Obsolete("This property marked as deprecated.")]
         public global::Speechify.AIDisclosure? AiDisclosure { get; set; }
 
         /// <summary>
@@ -95,6 +108,7 @@ namespace Speechify
         /// to replace it.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("signing_secret")]
+        [global::System.Obsolete("This property marked as deprecated.")]
         public string? SigningSecret { get; set; }
 
         /// <summary>
@@ -106,6 +120,7 @@ namespace Speechify
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("health")]
         [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Speechify.JsonConverters.PhoneNumberRelayHealthJsonConverter))]
+        [global::System.Obsolete("This property marked as deprecated.")]
         public global::Speechify.PhoneNumberRelayHealth? Health { get; set; }
 
         /// <summary>
