@@ -48,6 +48,14 @@ namespace Speechify
         /// <summary>
         ///
         /// </summary>
+        BrainInUse,
+        /// <summary>
+        ///
+        /// </summary>
+        BrainNotFound,
+        /// <summary>
+        ///
+        /// </summary>
         BuiltinNotFound,
         /// <summary>
         ///
@@ -419,6 +427,8 @@ namespace Speechify
                 ErrorCode.BadRequest => "bad_request",
                 ErrorCode.BatchCallsNotIncluded => "batch_calls_not_included",
                 ErrorCode.BatchNotFound => "batch_not_found",
+                ErrorCode.BrainInUse => "brain_in_use",
+                ErrorCode.BrainNotFound => "brain_not_found",
                 ErrorCode.BuiltinNotFound => "builtin_not_found",
                 ErrorCode.CallNotActive => "call_not_active",
                 ErrorCode.CallNotFound => "call_not_found",
@@ -525,6 +535,8 @@ namespace Speechify
                 "bad_request" => ErrorCode.BadRequest,
                 "batch_calls_not_included" => ErrorCode.BatchCallsNotIncluded,
                 "batch_not_found" => ErrorCode.BatchNotFound,
+                "brain_in_use" => ErrorCode.BrainInUse,
+                "brain_not_found" => ErrorCode.BrainNotFound,
                 "builtin_not_found" => ErrorCode.BuiltinNotFound,
                 "call_not_active" => ErrorCode.CallNotActive,
                 "call_not_found" => ErrorCode.CallNotFound,
