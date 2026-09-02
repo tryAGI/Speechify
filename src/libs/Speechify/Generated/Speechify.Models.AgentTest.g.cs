@@ -22,11 +22,18 @@ namespace Speechify
 
         /// <summary>
         /// Prefixed wire identifier (`agent_&lt;26 char Crockford base32&gt;`)<br/>
-        /// of the owning agent.
+        /// of the agent this test was authored against, or `null` for a<br/>
+        /// bare workspace test with no authoring agent. This is<br/>
+        /// authored-from provenance - it records which agent's tool schemas<br/>
+        /// and variables the test was built from, plus an audit of where<br/>
+        /// the test came from - not an ownership or access handle: every<br/>
+        /// read, list, and run is scoped by workspace, and the run target<br/>
+        /// is bound at run time independently of this field. It also stays<br/>
+        /// put (a dangling provenance pointer) if the authoring agent is<br/>
+        /// later deleted.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("agent_id")]
-        [global::System.Text.Json.Serialization.JsonRequired]
-        public required string AgentId { get; set; }
+        public string? AgentId { get; set; }
 
         /// <summary>
         ///
@@ -112,10 +119,6 @@ namespace Speechify
         /// prefixed form; legacy UUID path parameters are rejected with<br/>
         /// 404.
         /// </param>
-        /// <param name="agentId">
-        /// Prefixed wire identifier (`agent_&lt;26 char Crockford base32&gt;`)<br/>
-        /// of the owning agent.
-        /// </param>
         /// <param name="name"></param>
         /// <param name="description"></param>
         /// <param name="type">
@@ -129,6 +132,18 @@ namespace Speechify
         /// </param>
         /// <param name="createdAt"></param>
         /// <param name="updatedAt"></param>
+        /// <param name="agentId">
+        /// Prefixed wire identifier (`agent_&lt;26 char Crockford base32&gt;`)<br/>
+        /// of the agent this test was authored against, or `null` for a<br/>
+        /// bare workspace test with no authoring agent. This is<br/>
+        /// authored-from provenance - it records which agent's tool schemas<br/>
+        /// and variables the test was built from, plus an audit of where<br/>
+        /// the test came from - not an ownership or access handle: every<br/>
+        /// read, list, and run is scoped by workspace, and the run target<br/>
+        /// is bound at run time independently of this field. It also stays<br/>
+        /// put (a dangling provenance pointer) if the authoring agent is<br/>
+        /// later deleted.
+        /// </param>
         /// <param name="toolMockConfig">
         /// Optional tool-mocking config applied during runs of this test.
         /// </param>
@@ -147,19 +162,19 @@ namespace Speechify
 #endif
         public AgentTest(
             string id,
-            string agentId,
             string name,
             string description,
             global::Speechify.TestType type,
             global::Speechify.AgentTestConfig config,
             global::System.DateTime createdAt,
             global::System.DateTime updatedAt,
+            string? agentId,
             global::Speechify.ToolMockConfig? toolMockConfig,
             object? variables,
             string? folderId)
         {
             this.Id = id ?? throw new global::System.ArgumentNullException(nameof(id));
-            this.AgentId = agentId ?? throw new global::System.ArgumentNullException(nameof(agentId));
+            this.AgentId = agentId;
             this.Name = name ?? throw new global::System.ArgumentNullException(nameof(name));
             this.Description = description ?? throw new global::System.ArgumentNullException(nameof(description));
             this.Type = type;

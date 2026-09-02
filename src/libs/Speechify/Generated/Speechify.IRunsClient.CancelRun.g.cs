@@ -1,0 +1,52 @@
+#nullable enable
+
+namespace Speechify
+{
+    public partial interface IRunsClient
+    {
+        /// <summary>
+        /// Cancel Agent Run<br/>
+        /// Request cancellation. Idempotent: a queued run cancels immediately; a<br/>
+        /// running run flips to `canceling` and settles at its next checkpoint; a<br/>
+        /// terminal run is unchanged.
+        /// </summary>
+        /// <param name="agentId"></param>
+        /// <param name="runId"></param>
+        /// <param name="speechifyVersion"></param>
+        /// <param name="idempotencyKey">
+        /// Optional idempotency key. When omitted, the SDK generates one for this request.
+        /// </param>
+        /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
+        /// <param name="cancellationToken">The token to cancel the operation with</param>
+        /// <exception cref="global::Speechify.ApiException"></exception>
+        global::System.Threading.Tasks.Task<global::Speechify.AgentRun> CancelRunAsync(
+            string agentId,
+            string runId,
+            string? speechifyVersion = default,
+            string? idempotencyKey = default,
+            global::Speechify.AutoSDKRequestOptions? requestOptions = default,
+            global::System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Cancel Agent Run<br/>
+        /// Request cancellation. Idempotent: a queued run cancels immediately; a<br/>
+        /// running run flips to `canceling` and settles at its next checkpoint; a<br/>
+        /// terminal run is unchanged.
+        /// </summary>
+        /// <param name="agentId"></param>
+        /// <param name="runId"></param>
+        /// <param name="speechifyVersion"></param>
+        /// <param name="idempotencyKey">
+        /// Optional idempotency key. When omitted, the SDK generates one for this request.
+        /// </param>
+        /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
+        /// <param name="cancellationToken">The token to cancel the operation with</param>
+        /// <exception cref="global::Speechify.ApiException"></exception>
+        global::System.Threading.Tasks.Task<global::Speechify.AutoSDKHttpResponse<global::Speechify.AgentRun>> CancelRunAsResponseAsync(
+            string agentId,
+            string runId,
+            string? speechifyVersion = default,
+            string? idempotencyKey = default,
+            global::Speechify.AutoSDKRequestOptions? requestOptions = default,
+            global::System.Threading.CancellationToken cancellationToken = default);
+    }
+}

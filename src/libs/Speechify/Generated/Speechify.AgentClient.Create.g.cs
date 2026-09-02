@@ -536,9 +536,15 @@ namespace Speechify
         /// <param name="slug">
         /// Optional. Server derives slug from name with a random suffix when omitted; if you supply your own, a collision returns 400 'slug already taken'.
         /// </param>
+        /// <param name="channels">
+        /// The delivery channels the agent serves. Defaults to `[voice]` when<br/>
+        /// omitted. Pass an explicit `[]` for an agent with no front door,<br/>
+        /// reached by its triggers only. Serving `voice` requires a<br/>
+        /// `tts.voice_id`.
+        /// </param>
         /// <param name="prompt"></param>
         /// <param name="firstMessage">
-        /// Greeting spoken verbatim at session start when included in the agent's flow graph.
+        /// Greeting spoken verbatim at session start when included in the agent's flow graph. Omit for an agent with no channels, which opens no live turn.
         /// </param>
         /// <param name="language">
         /// ISO 639-1 code. Defaults to 'en' when omitted. The agent's default language.
@@ -620,14 +626,15 @@ namespace Speechify
         public async global::System.Threading.Tasks.Task<global::Speechify.Agent> CreateAsync(
             string name,
             string prompt,
-            string firstMessage,
-            global::Speechify.AgentTTSConfig tts,
             string? speechifyVersion = default,
             string? projectId = default,
             string? slug = default,
+            global::System.Collections.Generic.IList<global::Speechify.AgentChannel>? channels = default,
+            string? firstMessage = default,
             string? language = default,
             global::System.Collections.Generic.IList<global::Speechify.AgentAdditionalLanguage>? additionalLanguages = default,
             global::Speechify.AgentLLMConfig? llm = default,
+            global::Speechify.AgentTTSConfig? tts = default,
             global::Speechify.AgentTurnHandlingConfig? turnHandling = default,
             global::Speechify.AgentMemoryConfig? memory = default,
             global::Speechify.AgentNavigatorConfig? navigator = default,
@@ -651,6 +658,7 @@ namespace Speechify
                 ProjectId = projectId,
                 Name = name,
                 Slug = slug,
+                Channels = channels,
                 Prompt = prompt,
                 FirstMessage = firstMessage,
                 Language = language,

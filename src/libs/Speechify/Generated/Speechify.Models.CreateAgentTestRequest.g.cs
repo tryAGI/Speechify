@@ -4,10 +4,21 @@
 namespace Speechify
 {
     /// <summary>
-    /// Payload for `POST /v1/agents/{agent_id}/tests`.
+    /// Payload for `POST /v1/agents/tests`.
     /// </summary>
     public sealed partial class CreateAgentTestRequest
     {
+        /// <summary>
+        /// Optional authoring agent (`agent_&lt;26 char Crockford base32&gt;`).<br/>
+        /// When supplied it must be an agent in the caller's workspace; it<br/>
+        /// seeds the test's tool schemas and variables and is recorded as<br/>
+        /// authored-from provenance. Omit it to create a bare workspace<br/>
+        /// test with no authoring agent. It is never a scope, and the run<br/>
+        /// target is bound at run time independently of it.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("agent_id")]
+        public string? AgentId { get; set; }
+
         /// <summary>
         /// Short human-readable label for the test.
         /// </summary>
@@ -82,6 +93,14 @@ namespace Speechify
         /// <param name="config">
         /// Type-specific configuration. Must match the shape for the given `type`.
         /// </param>
+        /// <param name="agentId">
+        /// Optional authoring agent (`agent_&lt;26 char Crockford base32&gt;`).<br/>
+        /// When supplied it must be an agent in the caller's workspace; it<br/>
+        /// seeds the test's tool schemas and variables and is recorded as<br/>
+        /// authored-from provenance. Omit it to create a bare workspace<br/>
+        /// test with no authoring agent. It is never a scope, and the run<br/>
+        /// target is bound at run time independently of it.
+        /// </param>
         /// <param name="description">
         /// Optional longer description of what this test verifies.
         /// </param>
@@ -104,11 +123,13 @@ namespace Speechify
             string name,
             global::Speechify.TestType type,
             global::Speechify.CreateAgentTestRequestConfig config,
+            string? agentId,
             string? description,
             global::Speechify.ToolMockConfig? toolMockConfig,
             object? variables,
             string? folderId)
         {
+            this.AgentId = agentId;
             this.Name = name ?? throw new global::System.ArgumentNullException(nameof(name));
             this.Description = description;
             this.Type = type;

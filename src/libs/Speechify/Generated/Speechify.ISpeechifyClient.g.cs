@@ -131,6 +131,16 @@ namespace Speechify
         /// <summary>
         ///
         /// </summary>
+        public PublishGateClient PublishGate { get; }
+
+        /// <summary>
+        ///
+        /// </summary>
+        public RunsClient Runs { get; }
+
+        /// <summary>
+        ///
+        /// </summary>
         public ShareLinksClient ShareLinks { get; }
 
         /// <summary>

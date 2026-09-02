@@ -107,7 +107,7 @@ namespace Speechify
         /// Optional idempotency key. When omitted, the SDK generates one for this request.
         /// </param>
         /// <param name="transport">
-        /// Transport hint. Omit to use the agent's default.
+        /// Voice transport for the session: one of `web`, `sip_inbound`, or `sip_outbound`. Omit (or null) to use the default, `web`. This endpoint dispatches a LiveKit voice session, so any other value is rejected with a 400.
         /// </param>
         /// <param name="userIdentity">
         /// Stable opaque identifier for the end-user in your application.<br/>

@@ -85,7 +85,8 @@ namespace Speechify
         /// <param name="transport">
         /// How the caller reached the agent. `web` is the browser /<br/>
         /// SDK realtime path; the `sip_*` and `phone` variants come<br/>
-        /// from the telephony stack.
+        /// from the telephony stack; `text` is the text/chat channel<br/>
+        /// (turn-based, roomless, no call duration).
         /// </param>
         /// <param name="callerIdentity"></param>
         /// <param name="q"></param>
@@ -155,7 +156,8 @@ namespace Speechify
         /// <param name="transport">
         /// How the caller reached the agent. `web` is the browser /<br/>
         /// SDK realtime path; the `sip_*` and `phone` variants come<br/>
-        /// from the telephony stack.
+        /// from the telephony stack; `text` is the text/chat channel<br/>
+        /// (turn-based, roomless, no call duration).
         /// </param>
         /// <param name="callerIdentity"></param>
         /// <param name="q"></param>

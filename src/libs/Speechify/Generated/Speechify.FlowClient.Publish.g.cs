@@ -509,6 +509,43 @@ namespace Speechify
                                         h => h.Key,
                                         h => h.Value));
                             }
+                            // The behavioral-eval publish gate refused the publish (`agent_publish_gate_failed`): the agent's configured suite did not pass. `error.details` carries the verdict (per-case, per-criterion).
+                            if ((int)__response.StatusCode == 422)
+                            {
+                                string? __content_422 = null;
+                                global::System.Exception? __exception_422 = null;
+                                global::Speechify.Error? __value_422 = null;
+                                try
+                                {
+                                    if (__effectiveReadResponseAsString)
+                                    {
+                                        __content_422 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+                                        __value_422 = global::Speechify.Error.FromJson(__content_422, JsonSerializerContext);
+                                    }
+                                    else
+                                    {
+                                        __content_422 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+
+                                        __value_422 = global::Speechify.Error.FromJson(__content_422, JsonSerializerContext);
+                                    }
+                                }
+                                catch (global::System.Exception __ex)
+                                {
+                                    __exception_422 = __ex;
+                                }
+
+
+                                throw global::Speechify.ApiException<global::Speechify.Error>.Create(
+                                    statusCode: __response.StatusCode,
+                                    message: __content_422 ?? __response.ReasonPhrase ?? string.Empty,
+                                    innerException: __exception_422,
+                                    responseBody: __content_422,
+                                    responseObject: __value_422,
+                                    responseHeaders: global::System.Linq.Enumerable.ToDictionary(
+                                        __response.Headers,
+                                        h => h.Key,
+                                        h => h.Value));
+                            }
                             // An unexpected server-side error occurred. Safe to retry with exponential backoff for idempotent requests.
                             if ((int)__response.StatusCode == 500)
                             {
@@ -651,6 +688,12 @@ namespace Speechify
         /// <param name="notes">
         /// Optional changelog note recorded on the published version.
         /// </param>
+        /// <param name="gateOverrideReason">
+        /// On a workspace with the behavioral-eval publish gate enabled, a<br/>
+        /// non-empty justification publishes past a failing behavioral suite.<br/>
+        /// The suite still runs and its verdict is recorded with this reason -<br/>
+        /// an override bypasses blocking, not measurement.
+        /// </param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::System.InvalidOperationException"></exception>
@@ -658,12 +701,14 @@ namespace Speechify
             string agentId,
             string? speechifyVersion = default,
             string? notes = default,
+            string? gateOverrideReason = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
             var __request = new global::Speechify.PublishFlowRequest
             {
                 Notes = notes,
+                GateOverrideReason = gateOverrideReason,
             };
 
             return await PublishAsync(

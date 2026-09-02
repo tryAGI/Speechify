@@ -6,7 +6,10 @@ namespace Speechify
     /// <summary>
     /// `cancelled` marks a recipient the batch cancel spared before it<br/>
     /// was dialed - distinct from `failed` (a dial that was attempted<br/>
-    /// and failed).
+    /// and failed). `interrupted` marks a recipient a crashed dispatcher<br/>
+    /// left mid-attempt on resume: the dial was attempted but its outcome<br/>
+    /// was never recorded, so it is not re-dialed - check the linked<br/>
+    /// conversation, if any, for the real result.
     /// </summary>
     public enum BatchRecipientStatus
     {
@@ -29,6 +32,10 @@ namespace Speechify
         /// <summary>
         ///
         /// </summary>
+        Interrupted,
+        /// <summary>
+        ///
+        /// </summary>
         Pending,
     }
 
@@ -48,6 +55,7 @@ namespace Speechify
                 BatchRecipientStatus.Completed => "completed",
                 BatchRecipientStatus.Dialing => "dialing",
                 BatchRecipientStatus.Failed => "failed",
+                BatchRecipientStatus.Interrupted => "interrupted",
                 BatchRecipientStatus.Pending => "pending",
                 _ => throw new global::System.ArgumentOutOfRangeException(nameof(value), value, null),
             };
@@ -63,6 +71,7 @@ namespace Speechify
                 "completed" => BatchRecipientStatus.Completed,
                 "dialing" => BatchRecipientStatus.Dialing,
                 "failed" => BatchRecipientStatus.Failed,
+                "interrupted" => BatchRecipientStatus.Interrupted,
                 "pending" => BatchRecipientStatus.Pending,
                 _ => null,
             };

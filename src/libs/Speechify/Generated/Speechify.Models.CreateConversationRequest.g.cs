@@ -9,7 +9,7 @@ namespace Speechify
     public sealed partial class CreateConversationRequest
     {
         /// <summary>
-        /// Transport hint. Omit to use the agent's default.
+        /// Voice transport for the session: one of `web`, `sip_inbound`, or `sip_outbound`. Omit (or null) to use the default, `web`. This endpoint dispatches a LiveKit voice session, so any other value is rejected with a 400.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("transport")]
         public string? Transport { get; set; }
@@ -66,7 +66,7 @@ namespace Speechify
         /// Initializes a new instance of the <see cref="CreateConversationRequest" /> class.
         /// </summary>
         /// <param name="transport">
-        /// Transport hint. Omit to use the agent's default.
+        /// Voice transport for the session: one of `web`, `sip_inbound`, or `sip_outbound`. Omit (or null) to use the default, `web`. This endpoint dispatches a LiveKit voice session, so any other value is rejected with a 400.
         /// </param>
         /// <param name="userIdentity">
         /// Stable opaque identifier for the end-user in your application.<br/>

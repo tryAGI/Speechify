@@ -53,6 +53,11 @@ namespace Speechify
         /// <param name="prompt"></param>
         /// <param name="firstMessage"></param>
         /// <param name="language"></param>
+        /// <param name="channels">
+        /// Replaces the agent's enabled delivery channels. Adding `voice`<br/>
+        /// requires the agent to have a `tts.voice_id` (already set or set in<br/>
+        /// the same request). Omit to leave channels unchanged.
+        /// </param>
         /// <param name="additionalLanguages">
         /// Replaces the stored list wholesale when present; an empty<br/>
         /// array clears it back to a single-language agent. Omit to<br/>
@@ -131,6 +136,7 @@ namespace Speechify
             string? prompt = default,
             string? firstMessage = default,
             string? language = default,
+            global::System.Collections.Generic.IList<global::Speechify.AgentChannel>? channels = default,
             global::System.Collections.Generic.IList<global::Speechify.AgentAdditionalLanguage>? additionalLanguages = default,
             global::Speechify.AgentLLMConfig? llm = default,
             global::Speechify.AgentTTSConfig? tts = default,

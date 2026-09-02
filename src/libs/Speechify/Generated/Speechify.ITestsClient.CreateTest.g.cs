@@ -2,48 +2,69 @@
 
 namespace Speechify
 {
-    public partial interface IAgentClient
+    public partial interface ITestsClient
     {
         /// <summary>
-        /// Create Agent Test<br/>
-        /// Create a new test for the agent.
+        /// Create Test<br/>
+        /// Create a workspace-level test. The optional `agent_id` is the<br/>
+        /// authoring agent: when supplied it seeds the test's tool schemas and<br/>
+        /// variables and is recorded as authored-from provenance. Omit it to<br/>
+        /// create a bare workspace test with no authoring agent (`agent_id`<br/>
+        /// comes back `null`). `agent_id` is never a scope - every read, list,<br/>
+        /// and run is scoped by workspace, and the run target is bound at run<br/>
+        /// time (`POST /v1/agents/tests/runs`) independently of it.
         /// </summary>
-        /// <param name="agentId"></param>
         /// <param name="speechifyVersion"></param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
         global::System.Threading.Tasks.Task<global::Speechify.AgentTest> CreateTestAsync(
-            string agentId,
 
             global::Speechify.CreateAgentTestRequest request,
             string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
-        /// Create Agent Test<br/>
-        /// Create a new test for the agent.
+        /// Create Test<br/>
+        /// Create a workspace-level test. The optional `agent_id` is the<br/>
+        /// authoring agent: when supplied it seeds the test's tool schemas and<br/>
+        /// variables and is recorded as authored-from provenance. Omit it to<br/>
+        /// create a bare workspace test with no authoring agent (`agent_id`<br/>
+        /// comes back `null`). `agent_id` is never a scope - every read, list,<br/>
+        /// and run is scoped by workspace, and the run target is bound at run<br/>
+        /// time (`POST /v1/agents/tests/runs`) independently of it.
         /// </summary>
-        /// <param name="agentId"></param>
         /// <param name="speechifyVersion"></param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
         global::System.Threading.Tasks.Task<global::Speechify.AutoSDKHttpResponse<global::Speechify.AgentTest>> CreateTestAsResponseAsync(
-            string agentId,
 
             global::Speechify.CreateAgentTestRequest request,
             string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
-        /// Create Agent Test<br/>
-        /// Create a new test for the agent.
+        /// Create Test<br/>
+        /// Create a workspace-level test. The optional `agent_id` is the<br/>
+        /// authoring agent: when supplied it seeds the test's tool schemas and<br/>
+        /// variables and is recorded as authored-from provenance. Omit it to<br/>
+        /// create a bare workspace test with no authoring agent (`agent_id`<br/>
+        /// comes back `null`). `agent_id` is never a scope - every read, list,<br/>
+        /// and run is scoped by workspace, and the run target is bound at run<br/>
+        /// time (`POST /v1/agents/tests/runs`) independently of it.
         /// </summary>
-        /// <param name="agentId"></param>
         /// <param name="speechifyVersion"></param>
+        /// <param name="agentId">
+        /// Optional authoring agent (`agent_&lt;26 char Crockford base32&gt;`).<br/>
+        /// When supplied it must be an agent in the caller's workspace; it<br/>
+        /// seeds the test's tool schemas and variables and is recorded as<br/>
+        /// authored-from provenance. Omit it to create a bare workspace<br/>
+        /// test with no authoring agent. It is never a scope, and the run<br/>
+        /// target is bound at run time independently of it.
+        /// </param>
         /// <param name="name">
         /// Short human-readable label for the test.
         /// </param>
@@ -75,11 +96,11 @@ namespace Speechify
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::System.InvalidOperationException"></exception>
         global::System.Threading.Tasks.Task<global::Speechify.AgentTest> CreateTestAsync(
-            string agentId,
             string name,
             global::Speechify.TestType type,
             global::Speechify.CreateAgentTestRequestConfig config,
             string? speechifyVersion = default,
+            string? agentId = default,
             string? description = default,
             global::Speechify.ToolMockConfig? toolMockConfig = default,
             object? variables = default,

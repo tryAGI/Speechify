@@ -3,11 +3,11 @@
 
 namespace Speechify
 {
-    public partial class AgentClient
+    public partial class RunsClient
     {
 
 
-        private static readonly global::Speechify.EndPointSecurityRequirement s_CreateTestSecurityRequirement0 =
+        private static readonly global::Speechify.EndPointSecurityRequirement s_CreateRunSecurityRequirement0 =
             new global::Speechify.EndPointSecurityRequirement
             {
                 Authorizations = new global::Speechify.EndPointAuthorizationRequirement[]
@@ -21,53 +21,67 @@ namespace Speechify
                     },
                 },
             };
-        private static readonly global::Speechify.EndPointSecurityRequirement[] s_CreateTestSecurityRequirements =
+        private static readonly global::Speechify.EndPointSecurityRequirement[] s_CreateRunSecurityRequirements =
             new global::Speechify.EndPointSecurityRequirement[]
-            {                s_CreateTestSecurityRequirement0,
+            {                s_CreateRunSecurityRequirement0,
             };
-        partial void PrepareCreateTestArguments(
+        partial void PrepareCreateRunArguments(
             global::System.Net.Http.HttpClient httpClient,
             ref string agentId,
             ref string? speechifyVersion,
-            global::Speechify.CreateAgentTestRequest request);
-        partial void PrepareCreateTestRequest(
+            ref string? idempotencyKey,
+            global::Speechify.CreateAgentRunRequest request);
+        partial void PrepareCreateRunRequest(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpRequestMessage httpRequestMessage,
             string agentId,
             string? speechifyVersion,
-            global::Speechify.CreateAgentTestRequest request);
-        partial void ProcessCreateTestResponse(
+            string? idempotencyKey,
+            global::Speechify.CreateAgentRunRequest request);
+        partial void ProcessCreateRunResponse(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpResponseMessage httpResponseMessage);
 
-        partial void ProcessCreateTestResponseContent(
+        partial void ProcessCreateRunResponseContent(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpResponseMessage httpResponseMessage,
             ref string content);
 
         /// <summary>
-        /// Create Agent Test<br/>
-        /// Create a new test for the agent.
+        /// Create Agent Run<br/>
+        /// Enqueue a **durable async run**: hand the agent an instruction and get a<br/>
+        /// run handle back immediately (`202`, status `queued`). The run executes on<br/>
+        /// its own - poll it with `getRun` or receive a completion webhook - and it<br/>
+        /// survives a deploy (it is backed by a durable job, not a request socket or<br/>
+        /// a short-lived store). This is the managed-agent-platform primitive: start<br/>
+        /// work, walk away, come back for the result.<br/>
+        /// Idempotent via `Idempotency-Key`: a retry replays the first run instead of<br/>
+        /// starting a duplicate (the `run_id` is the idempotency handle).
         /// </summary>
         /// <param name="agentId"></param>
         /// <param name="speechifyVersion"></param>
+        /// <param name="idempotencyKey">
+        /// Optional idempotency key. When omitted, the SDK generates one for this request.
+        /// </param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
-        public async global::System.Threading.Tasks.Task<global::Speechify.AgentTest> CreateTestAsync(
+        public async global::System.Threading.Tasks.Task<global::Speechify.AgentRun> CreateRunAsync(
             string agentId,
 
-            global::Speechify.CreateAgentTestRequest request,
+            global::Speechify.CreateAgentRunRequest request,
             string? speechifyVersion = default,
+            string? idempotencyKey = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
-            var __response = await CreateTestAsResponseAsync(
+            var __response = await CreateRunAsResponseAsync(
                 agentId: agentId,
 
                 request: request,
                 speechifyVersion: speechifyVersion,
+                idempotencyKey: idempotencyKey,
                 requestOptions: requestOptions,
                 cancellationToken: cancellationToken
             ).ConfigureAwait(false);
@@ -75,20 +89,31 @@ namespace Speechify
             return __response.Body;
         }
         /// <summary>
-        /// Create Agent Test<br/>
-        /// Create a new test for the agent.
+        /// Create Agent Run<br/>
+        /// Enqueue a **durable async run**: hand the agent an instruction and get a<br/>
+        /// run handle back immediately (`202`, status `queued`). The run executes on<br/>
+        /// its own - poll it with `getRun` or receive a completion webhook - and it<br/>
+        /// survives a deploy (it is backed by a durable job, not a request socket or<br/>
+        /// a short-lived store). This is the managed-agent-platform primitive: start<br/>
+        /// work, walk away, come back for the result.<br/>
+        /// Idempotent via `Idempotency-Key`: a retry replays the first run instead of<br/>
+        /// starting a duplicate (the `run_id` is the idempotency handle).
         /// </summary>
         /// <param name="agentId"></param>
         /// <param name="speechifyVersion"></param>
+        /// <param name="idempotencyKey">
+        /// Optional idempotency key. When omitted, the SDK generates one for this request.
+        /// </param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
-        public async global::System.Threading.Tasks.Task<global::Speechify.AutoSDKHttpResponse<global::Speechify.AgentTest>> CreateTestAsResponseAsync(
+        public async global::System.Threading.Tasks.Task<global::Speechify.AutoSDKHttpResponse<global::Speechify.AgentRun>> CreateRunAsResponseAsync(
             string agentId,
 
-            global::Speechify.CreateAgentTestRequest request,
+            global::Speechify.CreateAgentRunRequest request,
             string? speechifyVersion = default,
+            string? idempotencyKey = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
@@ -96,17 +121,18 @@ namespace Speechify
 
             PrepareArguments(
                 client: HttpClient);
-            PrepareCreateTestArguments(
+            PrepareCreateRunArguments(
                 httpClient: HttpClient,
                 agentId: ref agentId,
                 speechifyVersion: ref speechifyVersion,
+                idempotencyKey: ref idempotencyKey,
                 request: request);
 
 
             var __authorizations = global::Speechify.EndPointSecurityResolver.ResolveAuthorizations(
                 availableAuthorizations: Authorizations,
-                securityRequirements: s_CreateTestSecurityRequirements,
-                operationName: "CreateTestAsync");
+                securityRequirements: s_CreateRunSecurityRequirements,
+                operationName: "CreateRunAsync");
 
             using var __timeoutCancellationTokenSource = global::Speechify.AutoSDKRequestOptionsSupport.CreateTimeoutCancellationTokenSource(
                 clientOptions: Options,
@@ -126,7 +152,7 @@ namespace Speechify
             {
 
                             var __pathBuilder = new global::Speechify.PathBuilder(
-                                path: $"/v1/agents/{agentId}/tests",
+                                path: $"/v1/agents/{agentId}/runs",
                                 baseUri: HttpClient.BaseAddress);
                             var __path = __pathBuilder.ToString();
                 __path = global::Speechify.AutoSDKRequestOptionsSupport.AppendQueryParameters(
@@ -162,6 +188,10 @@ namespace Speechify
             {
                 __httpRequest.Headers.TryAddWithoutValidation("Speechify-Version", speechifyVersion.ToString());
             }
+            var __idempotencyKey = global::System.String.IsNullOrWhiteSpace(idempotencyKey)
+                ? CreateIdempotencyKey()
+                : idempotencyKey;
+            __httpRequest.Headers.TryAddWithoutValidation("Idempotency-Key", __idempotencyKey);
 
                             var __httpRequestContentBody = request.ToJson(JsonSerializerContext);
                             var __httpRequestContent = new global::System.Net.Http.StringContent(
@@ -177,11 +207,12 @@ namespace Speechify
                 PrepareRequest(
                     client: HttpClient,
                     request: __httpRequest);
-                PrepareCreateTestRequest(
+                PrepareCreateRunRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
                     agentId: agentId!,
                     speechifyVersion: speechifyVersion,
+                    idempotencyKey: idempotencyKey,
                     request: request);
 
                 return __httpRequest;
@@ -199,9 +230,9 @@ namespace Speechify
                     await global::Speechify.AutoSDKRequestOptionsSupport.OnBeforeRequestAsync(
                             clientOptions: Options,
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "CreateTest",
-                                methodName: "CreateTestAsync",
-                                pathTemplate: "$\"/v1/agents/{agentId}/tests\"",
+                                operationId: "CreateRun",
+                                methodName: "CreateRunAsync",
+                                pathTemplate: "$\"/v1/agents/{agentId}/runs\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -233,9 +264,9 @@ namespace Speechify
                         await global::Speechify.AutoSDKRequestOptionsSupport.OnAfterErrorAsync(
                             clientOptions: Options,
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "CreateTest",
-                                methodName: "CreateTestAsync",
-                                pathTemplate: "$\"/v1/agents/{agentId}/tests\"",
+                                operationId: "CreateRun",
+                                methodName: "CreateRunAsync",
+                                pathTemplate: "$\"/v1/agents/{agentId}/runs\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -274,9 +305,9 @@ namespace Speechify
                         await global::Speechify.AutoSDKRequestOptionsSupport.OnAfterErrorAsync(
                             clientOptions: Options,
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "CreateTest",
-                                methodName: "CreateTestAsync",
-                                pathTemplate: "$\"/v1/agents/{agentId}/tests\"",
+                                operationId: "CreateRun",
+                                methodName: "CreateRunAsync",
+                                pathTemplate: "$\"/v1/agents/{agentId}/runs\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -314,7 +345,7 @@ namespace Speechify
                 ProcessResponse(
                     client: HttpClient,
                     response: __response);
-                ProcessCreateTestResponse(
+                ProcessCreateRunResponse(
                     httpClient: HttpClient,
                     httpResponseMessage: __response);
                 if (__response.IsSuccessStatusCode)
@@ -322,9 +353,9 @@ namespace Speechify
                     await global::Speechify.AutoSDKRequestOptionsSupport.OnAfterSuccessAsync(
                             clientOptions: Options,
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "CreateTest",
-                                methodName: "CreateTestAsync",
-                                pathTemplate: "$\"/v1/agents/{agentId}/tests\"",
+                                operationId: "CreateRun",
+                                methodName: "CreateRunAsync",
+                                pathTemplate: "$\"/v1/agents/{agentId}/runs\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -344,9 +375,9 @@ namespace Speechify
                     await global::Speechify.AutoSDKRequestOptionsSupport.OnAfterErrorAsync(
                             clientOptions: Options,
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "CreateTest",
-                                methodName: "CreateTestAsync",
-                                pathTemplate: "$\"/v1/agents/{agentId}/tests\"",
+                                operationId: "CreateRun",
+                                methodName: "CreateRunAsync",
+                                pathTemplate: "$\"/v1/agents/{agentId}/runs\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -435,6 +466,43 @@ namespace Speechify
                                         h => h.Key,
                                         h => h.Value));
                             }
+                            // The workspace has insufficient credits, or the request needs a plan tier the workspace is not on (e.g. voice cloning). Distinct from `Forbidden` so SDK consumers can drive upgrade UX.
+                            if ((int)__response.StatusCode == 402)
+                            {
+                                string? __content_402 = null;
+                                global::System.Exception? __exception_402 = null;
+                                global::Speechify.Error? __value_402 = null;
+                                try
+                                {
+                                    if (__effectiveReadResponseAsString)
+                                    {
+                                        __content_402 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+                                        __value_402 = global::Speechify.Error.FromJson(__content_402, JsonSerializerContext);
+                                    }
+                                    else
+                                    {
+                                        __content_402 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+
+                                        __value_402 = global::Speechify.Error.FromJson(__content_402, JsonSerializerContext);
+                                    }
+                                }
+                                catch (global::System.Exception __ex)
+                                {
+                                    __exception_402 = __ex;
+                                }
+
+
+                                throw global::Speechify.ApiException<global::Speechify.Error>.Create(
+                                    statusCode: __response.StatusCode,
+                                    message: __content_402 ?? __response.ReasonPhrase ?? string.Empty,
+                                    innerException: __exception_402,
+                                    responseBody: __content_402,
+                                    responseObject: __value_402,
+                                    responseHeaders: global::System.Linq.Enumerable.ToDictionary(
+                                        __response.Headers,
+                                        h => h.Key,
+                                        h => h.Value));
+                            }
                             // The referenced resource does not exist or is not visible to the caller's workspace.
                             if ((int)__response.StatusCode == 404)
                             {
@@ -472,6 +540,80 @@ namespace Speechify
                                         h => h.Key,
                                         h => h.Value));
                             }
+                            // The request was well-formed but semantically rejected - typically a referential integrity violation (e.g. flow node references an audio asset in another workspace) or a state machine refusal.
+                            if ((int)__response.StatusCode == 422)
+                            {
+                                string? __content_422 = null;
+                                global::System.Exception? __exception_422 = null;
+                                global::Speechify.Error? __value_422 = null;
+                                try
+                                {
+                                    if (__effectiveReadResponseAsString)
+                                    {
+                                        __content_422 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+                                        __value_422 = global::Speechify.Error.FromJson(__content_422, JsonSerializerContext);
+                                    }
+                                    else
+                                    {
+                                        __content_422 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+
+                                        __value_422 = global::Speechify.Error.FromJson(__content_422, JsonSerializerContext);
+                                    }
+                                }
+                                catch (global::System.Exception __ex)
+                                {
+                                    __exception_422 = __ex;
+                                }
+
+
+                                throw global::Speechify.ApiException<global::Speechify.Error>.Create(
+                                    statusCode: __response.StatusCode,
+                                    message: __content_422 ?? __response.ReasonPhrase ?? string.Empty,
+                                    innerException: __exception_422,
+                                    responseBody: __content_422,
+                                    responseObject: __value_422,
+                                    responseHeaders: global::System.Linq.Enumerable.ToDictionary(
+                                        __response.Headers,
+                                        h => h.Key,
+                                        h => h.Value));
+                            }
+                            // Rate limit or concurrency limit exceeded. `error.code` distinguishes request-rate limiting (`rate_limited`) from concurrency exhaustion (`concurrency_limit_reached`). Carries `Retry-After` and the request-rate budget headers; a concurrency-exhaustion 429 also carries `RateLimit-Remaining-Calls: 0`.
+                            if ((int)__response.StatusCode == 429)
+                            {
+                                string? __content_429 = null;
+                                global::System.Exception? __exception_429 = null;
+                                global::Speechify.Error? __value_429 = null;
+                                try
+                                {
+                                    if (__effectiveReadResponseAsString)
+                                    {
+                                        __content_429 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+                                        __value_429 = global::Speechify.Error.FromJson(__content_429, JsonSerializerContext);
+                                    }
+                                    else
+                                    {
+                                        __content_429 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+
+                                        __value_429 = global::Speechify.Error.FromJson(__content_429, JsonSerializerContext);
+                                    }
+                                }
+                                catch (global::System.Exception __ex)
+                                {
+                                    __exception_429 = __ex;
+                                }
+
+
+                                throw global::Speechify.ApiException<global::Speechify.Error>.Create(
+                                    statusCode: __response.StatusCode,
+                                    message: __content_429 ?? __response.ReasonPhrase ?? string.Empty,
+                                    innerException: __exception_429,
+                                    responseBody: __content_429,
+                                    responseObject: __value_429,
+                                    responseHeaders: global::System.Linq.Enumerable.ToDictionary(
+                                        __response.Headers,
+                                        h => h.Key,
+                                        h => h.Value));
+                            }
 
                             if (__effectiveReadResponseAsString)
                             {
@@ -485,7 +627,7 @@ namespace Speechify
                                     client: HttpClient,
                                     response: __response,
                                     content: ref __content);
-                                ProcessCreateTestResponseContent(
+                                ProcessCreateRunResponseContent(
                                     httpClient: HttpClient,
                                     httpResponseMessage: __response,
                                     content: ref __content);
@@ -494,9 +636,9 @@ namespace Speechify
                                 {
                                     __response.EnsureSuccessStatusCode();
 
-                                    var __value = global::Speechify.AgentTest.FromJson(__content, JsonSerializerContext) ??
+                                    var __value = global::Speechify.AgentRun.FromJson(__content, JsonSerializerContext) ??
                                         throw new global::System.InvalidOperationException($"Response deserialization failed for \"{__content}\" ");
-                                    return new global::Speechify.AutoSDKHttpResponse<global::Speechify.AgentTest>(
+                                    return new global::Speechify.AutoSDKHttpResponse<global::Speechify.AgentRun>(
                                         statusCode: __response.StatusCode,
                                         headers: global::Speechify.AutoSDKHttpResponse.CreateHeaders(__response),
                                         requestUri: __response.RequestMessage?.RequestUri,
@@ -526,9 +668,9 @@ namespace Speechify
                 #endif
                                     ).ConfigureAwait(false);
 
-                                    var __value = await global::Speechify.AgentTest.FromJsonStreamAsync(__content, JsonSerializerContext).ConfigureAwait(false) ??
+                                    var __value = await global::Speechify.AgentRun.FromJsonStreamAsync(__content, JsonSerializerContext).ConfigureAwait(false) ??
                                         throw new global::System.InvalidOperationException("Response deserialization failed.");
-                                    return new global::Speechify.AutoSDKHttpResponse<global::Speechify.AgentTest>(
+                                    return new global::Speechify.AutoSDKHttpResponse<global::Speechify.AgentRun>(
                                         statusCode: __response.StatusCode,
                                         headers: global::Speechify.AutoSDKHttpResponse.CreateHeaders(__response),
                                         requestUri: __response.RequestMessage?.RequestUri,
@@ -569,68 +711,59 @@ namespace Speechify
             }
         }
         /// <summary>
-        /// Create Agent Test<br/>
-        /// Create a new test for the agent.
+        /// Create Agent Run<br/>
+        /// Enqueue a **durable async run**: hand the agent an instruction and get a<br/>
+        /// run handle back immediately (`202`, status `queued`). The run executes on<br/>
+        /// its own - poll it with `getRun` or receive a completion webhook - and it<br/>
+        /// survives a deploy (it is backed by a durable job, not a request socket or<br/>
+        /// a short-lived store). This is the managed-agent-platform primitive: start<br/>
+        /// work, walk away, come back for the result.<br/>
+        /// Idempotent via `Idempotency-Key`: a retry replays the first run instead of<br/>
+        /// starting a duplicate (the `run_id` is the idempotency handle).
         /// </summary>
         /// <param name="agentId"></param>
         /// <param name="speechifyVersion"></param>
-        /// <param name="name">
-        /// Short human-readable label for the test.
+        /// <param name="idempotencyKey">
+        /// Optional idempotency key. When omitted, the SDK generates one for this request.
         /// </param>
-        /// <param name="description">
-        /// Optional longer description of what this test verifies.
-        /// </param>
-        /// <param name="type">
-        /// Discriminates the shape of `AgentTest.config`.<br/>
-        /// - `reply` - send one message to the agent and judge the response with an LLM.<br/>
-        /// - `tool` - assert that the agent calls a specific tool given a context.<br/>
-        /// - `simulation` - run a multi-turn conversation between the agent and an AI caller.
-        /// </param>
-        /// <param name="config">
-        /// Type-specific configuration. Must match the shape for the given `type`.
-        /// </param>
-        /// <param name="toolMockConfig">
-        /// Optional tool-mocking config applied during every run of this test.
+        /// <param name="instruction">
+        /// The task or goal to give the agent. The agent runs its brain against this over a short internal conversation and returns its result.
         /// </param>
         /// <param name="variables">
-        /// Per-test variable values substituted into string fields of the<br/>
-        /// config at run-start. Keys use the same rules as agent-level<br/>
-        /// `DynamicVariable` keys.
+        /// Per-run values that seed the agent's flow variables (override its stored defaults).
         /// </param>
-        /// <param name="folderId">
-        /// Prefixed wire identifier (`folder_&lt;26 char Crockford base32&gt;`)<br/>
-        /// of the folder to place the test in. Omit / null for root.
+        /// <param name="maxTurns">
+        /// Upper bound on the run's internal turn budget (server default when omitted; hard-capped).
+        /// </param>
+        /// <param name="metadata">
+        /// Up to 16 arbitrary key/value pairs echoed back on the run.
         /// </param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::System.InvalidOperationException"></exception>
-        public async global::System.Threading.Tasks.Task<global::Speechify.AgentTest> CreateTestAsync(
+        public async global::System.Threading.Tasks.Task<global::Speechify.AgentRun> CreateRunAsync(
             string agentId,
-            string name,
-            global::Speechify.TestType type,
-            global::Speechify.CreateAgentTestRequestConfig config,
+            string instruction,
             string? speechifyVersion = default,
-            string? description = default,
-            global::Speechify.ToolMockConfig? toolMockConfig = default,
+            string? idempotencyKey = default,
             object? variables = default,
-            string? folderId = default,
+            int? maxTurns = default,
+            global::System.Collections.Generic.Dictionary<string, string>? metadata = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
-            var __request = new global::Speechify.CreateAgentTestRequest
+            var __request = new global::Speechify.CreateAgentRunRequest
             {
-                Name = name,
-                Description = description,
-                Type = type,
-                Config = config,
-                ToolMockConfig = toolMockConfig,
+                Instruction = instruction,
                 Variables = variables,
-                FolderId = folderId,
+                MaxTurns = maxTurns,
+                Metadata = metadata,
             };
 
-            return await CreateTestAsync(
+            return await CreateRunAsync(
                 agentId: agentId,
                 speechifyVersion: speechifyVersion,
+                idempotencyKey: idempotencyKey,
                 request: __request,
                 requestOptions: requestOptions,
                 cancellationToken: cancellationToken).ConfigureAwait(false);

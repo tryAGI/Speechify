@@ -8,9 +8,13 @@ namespace Speechify
         /// Purchase Phone Number<br/>
         /// Purchase a phone number on Speechify's master Twilio account.<br/>
         /// The number is billed to Speechify until released. A plan that<br/>
-        /// includes no purchased numbers (e.g. Free) returns 402; a plan<br/>
-        /// that has used its full included quota returns 422. This is<br/>
-        /// independent of the overall 100-number cap.<br/>
+        /// includes no purchased numbers (e.g. Free) returns<br/>
+        /// `402 purchased_numbers_not_included`; a plan that has used its full<br/>
+        /// included quota returns 422. This is independent of the overall<br/>
+        /// 100-number cap. Because the number is a recurring Speechify-borne<br/>
+        /// carrier cost, the workspace must also have a funded balance (a paid<br/>
+        /// plan or a payment method on file, not just trial / granted credits),<br/>
+        /// else the buy is refused with `402 funded_balance_required`.<br/>
         /// `e164` must come from a recent `SearchAvailablePhoneNumbers`<br/>
         /// response — carriers reject buys against numbers that are no<br/>
         /// longer in inventory. The returned phone number is wired for<br/>
@@ -38,9 +42,13 @@ namespace Speechify
         /// Purchase Phone Number<br/>
         /// Purchase a phone number on Speechify's master Twilio account.<br/>
         /// The number is billed to Speechify until released. A plan that<br/>
-        /// includes no purchased numbers (e.g. Free) returns 402; a plan<br/>
-        /// that has used its full included quota returns 422. This is<br/>
-        /// independent of the overall 100-number cap.<br/>
+        /// includes no purchased numbers (e.g. Free) returns<br/>
+        /// `402 purchased_numbers_not_included`; a plan that has used its full<br/>
+        /// included quota returns 422. This is independent of the overall<br/>
+        /// 100-number cap. Because the number is a recurring Speechify-borne<br/>
+        /// carrier cost, the workspace must also have a funded balance (a paid<br/>
+        /// plan or a payment method on file, not just trial / granted credits),<br/>
+        /// else the buy is refused with `402 funded_balance_required`.<br/>
         /// `e164` must come from a recent `SearchAvailablePhoneNumbers`<br/>
         /// response — carriers reject buys against numbers that are no<br/>
         /// longer in inventory. The returned phone number is wired for<br/>
@@ -68,9 +76,13 @@ namespace Speechify
         /// Purchase Phone Number<br/>
         /// Purchase a phone number on Speechify's master Twilio account.<br/>
         /// The number is billed to Speechify until released. A plan that<br/>
-        /// includes no purchased numbers (e.g. Free) returns 402; a plan<br/>
-        /// that has used its full included quota returns 422. This is<br/>
-        /// independent of the overall 100-number cap.<br/>
+        /// includes no purchased numbers (e.g. Free) returns<br/>
+        /// `402 purchased_numbers_not_included`; a plan that has used its full<br/>
+        /// included quota returns 422. This is independent of the overall<br/>
+        /// 100-number cap. Because the number is a recurring Speechify-borne<br/>
+        /// carrier cost, the workspace must also have a funded balance (a paid<br/>
+        /// plan or a payment method on file, not just trial / granted credits),<br/>
+        /// else the buy is refused with `402 funded_balance_required`.<br/>
         /// `e164` must come from a recent `SearchAvailablePhoneNumbers`<br/>
         /// response — carriers reject buys against numbers that are no<br/>
         /// longer in inventory. The returned phone number is wired for<br/>
