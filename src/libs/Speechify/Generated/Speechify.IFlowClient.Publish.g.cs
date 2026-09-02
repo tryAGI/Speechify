@@ -47,6 +47,12 @@ namespace Speechify
         /// <param name="notes">
         /// Optional changelog note recorded on the published version.
         /// </param>
+        /// <param name="gateOverrideReason">
+        /// On a workspace with the behavioral-eval publish gate enabled, a<br/>
+        /// non-empty justification publishes past a failing behavioral suite.<br/>
+        /// The suite still runs and its verdict is recorded with this reason -<br/>
+        /// an override bypasses blocking, not measurement.
+        /// </param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::System.InvalidOperationException"></exception>
@@ -54,6 +60,7 @@ namespace Speechify
             string agentId,
             string? speechifyVersion = default,
             string? notes = default,
+            string? gateOverrideReason = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
     }

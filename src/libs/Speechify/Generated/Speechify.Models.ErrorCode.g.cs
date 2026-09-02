@@ -28,6 +28,26 @@ namespace Speechify
         /// <summary>
         ///
         /// </summary>
+        AgentPublishGateFailed,
+        /// <summary>
+        ///
+        /// </summary>
+        AgentPublishGateRequired,
+        /// <summary>
+        ///
+        /// </summary>
+        AgentRunActionStale,
+        /// <summary>
+        ///
+        /// </summary>
+        AgentRunNotFound,
+        /// <summary>
+        ///
+        /// </summary>
+        AgentRunNotPending,
+        /// <summary>
+        ///
+        /// </summary>
         AgentTestNotFound,
         /// <summary>
         ///
@@ -69,6 +89,10 @@ namespace Speechify
         ///
         /// </summary>
         CallerNotFound,
+        /// <summary>
+        ///
+        /// </summary>
+        ChannelInstanceNotFound,
         /// <summary>
         ///
         /// </summary>
@@ -152,7 +176,15 @@ namespace Speechify
         /// <summary>
         ///
         /// </summary>
+        DurableRunsNotInPlan,
+        /// <summary>
+        ///
+        /// </summary>
         Forbidden,
+        /// <summary>
+        ///
+        /// </summary>
+        FundedBalanceRequired,
         /// <summary>
         ///
         /// </summary>
@@ -332,6 +364,22 @@ namespace Speechify
         /// <summary>
         ///
         /// </summary>
+        TeamNotFound,
+        /// <summary>
+        ///
+        /// </summary>
+        TextChannelNotInPlan,
+        /// <summary>
+        ///
+        /// </summary>
+        TextMessageQuotaExceeded,
+        /// <summary>
+        ///
+        /// </summary>
+        TextTurnFailed,
+        /// <summary>
+        ///
+        /// </summary>
         ThreadNotFound,
         /// <summary>
         ///
@@ -349,6 +397,10 @@ namespace Speechify
         ///
         /// </summary>
         TopupNotInPlan,
+        /// <summary>
+        ///
+        /// </summary>
+        TriggerNotFound,
         /// <summary>
         ///
         /// </summary>
@@ -422,6 +474,11 @@ namespace Speechify
                 ErrorCode.AccountDeletionBlocked => "account_deletion_blocked",
                 ErrorCode.AgentInUse => "agent_in_use",
                 ErrorCode.AgentNotFound => "agent_not_found",
+                ErrorCode.AgentPublishGateFailed => "agent_publish_gate_failed",
+                ErrorCode.AgentPublishGateRequired => "agent_publish_gate_required",
+                ErrorCode.AgentRunActionStale => "agent_run_action_stale",
+                ErrorCode.AgentRunNotFound => "agent_run_not_found",
+                ErrorCode.AgentRunNotPending => "agent_run_not_pending",
                 ErrorCode.AgentTestNotFound => "agent_test_not_found",
                 ErrorCode.AudioAssetNotFound => "audio_asset_not_found",
                 ErrorCode.BadRequest => "bad_request",
@@ -433,6 +490,7 @@ namespace Speechify
                 ErrorCode.CallNotActive => "call_not_active",
                 ErrorCode.CallNotFound => "call_not_found",
                 ErrorCode.CallerNotFound => "caller_not_found",
+                ErrorCode.ChannelInstanceNotFound => "channel_instance_not_found",
                 ErrorCode.ConcurrencyLimitReached => "concurrency_limit_reached",
                 ErrorCode.Conflict => "conflict",
                 ErrorCode.ConsentChallengeAlreadyUsed => "consent_challenge_already_used",
@@ -453,7 +511,9 @@ namespace Speechify
                 ErrorCode.CreditPurchaseUnpaid => "credit_purchase_unpaid",
                 ErrorCode.CrossProjectReference => "cross_project_reference",
                 ErrorCode.DestinationNotAllowed => "destination_not_allowed",
+                ErrorCode.DurableRunsNotInPlan => "durable_runs_not_in_plan",
                 ErrorCode.Forbidden => "forbidden",
+                ErrorCode.FundedBalanceRequired => "funded_balance_required",
                 ErrorCode.IdempotencyConflict => "idempotency_conflict",
                 ErrorCode.InsufficientScope => "insufficient_scope",
                 ErrorCode.IntendedUseRequired => "intended_use_required",
@@ -498,11 +558,16 @@ namespace Speechify
                 ErrorCode.SpeechMarksUnsupported => "speech_marks_unsupported",
                 ErrorCode.SpendBudgetExceeded => "spend_budget_exceeded",
                 ErrorCode.SpendCapExceeded => "spend_cap_exceeded",
+                ErrorCode.TeamNotFound => "team_not_found",
+                ErrorCode.TextChannelNotInPlan => "text_channel_not_in_plan",
+                ErrorCode.TextMessageQuotaExceeded => "text_message_quota_exceeded",
+                ErrorCode.TextTurnFailed => "text_turn_failed",
                 ErrorCode.ThreadNotFound => "thread_not_found",
                 ErrorCode.TooManyVoices => "too_many_voices",
                 ErrorCode.ToolConfigShared => "tool_config_shared",
                 ErrorCode.ToolNotFound => "tool_not_found",
                 ErrorCode.TopupNotInPlan => "topup_not_in_plan",
+                ErrorCode.TriggerNotFound => "trigger_not_found",
                 ErrorCode.Unauthorized => "unauthorized",
                 ErrorCode.UnsupportedMediaType => "unsupported_media_type",
                 ErrorCode.UpstreamFailure => "upstream_failure",
@@ -530,6 +595,11 @@ namespace Speechify
                 "account_deletion_blocked" => ErrorCode.AccountDeletionBlocked,
                 "agent_in_use" => ErrorCode.AgentInUse,
                 "agent_not_found" => ErrorCode.AgentNotFound,
+                "agent_publish_gate_failed" => ErrorCode.AgentPublishGateFailed,
+                "agent_publish_gate_required" => ErrorCode.AgentPublishGateRequired,
+                "agent_run_action_stale" => ErrorCode.AgentRunActionStale,
+                "agent_run_not_found" => ErrorCode.AgentRunNotFound,
+                "agent_run_not_pending" => ErrorCode.AgentRunNotPending,
                 "agent_test_not_found" => ErrorCode.AgentTestNotFound,
                 "audio_asset_not_found" => ErrorCode.AudioAssetNotFound,
                 "bad_request" => ErrorCode.BadRequest,
@@ -541,6 +611,7 @@ namespace Speechify
                 "call_not_active" => ErrorCode.CallNotActive,
                 "call_not_found" => ErrorCode.CallNotFound,
                 "caller_not_found" => ErrorCode.CallerNotFound,
+                "channel_instance_not_found" => ErrorCode.ChannelInstanceNotFound,
                 "concurrency_limit_reached" => ErrorCode.ConcurrencyLimitReached,
                 "conflict" => ErrorCode.Conflict,
                 "consent_challenge_already_used" => ErrorCode.ConsentChallengeAlreadyUsed,
@@ -561,7 +632,9 @@ namespace Speechify
                 "credit_purchase_unpaid" => ErrorCode.CreditPurchaseUnpaid,
                 "cross_project_reference" => ErrorCode.CrossProjectReference,
                 "destination_not_allowed" => ErrorCode.DestinationNotAllowed,
+                "durable_runs_not_in_plan" => ErrorCode.DurableRunsNotInPlan,
                 "forbidden" => ErrorCode.Forbidden,
+                "funded_balance_required" => ErrorCode.FundedBalanceRequired,
                 "idempotency_conflict" => ErrorCode.IdempotencyConflict,
                 "insufficient_scope" => ErrorCode.InsufficientScope,
                 "intended_use_required" => ErrorCode.IntendedUseRequired,
@@ -606,11 +679,16 @@ namespace Speechify
                 "speech_marks_unsupported" => ErrorCode.SpeechMarksUnsupported,
                 "spend_budget_exceeded" => ErrorCode.SpendBudgetExceeded,
                 "spend_cap_exceeded" => ErrorCode.SpendCapExceeded,
+                "team_not_found" => ErrorCode.TeamNotFound,
+                "text_channel_not_in_plan" => ErrorCode.TextChannelNotInPlan,
+                "text_message_quota_exceeded" => ErrorCode.TextMessageQuotaExceeded,
+                "text_turn_failed" => ErrorCode.TextTurnFailed,
                 "thread_not_found" => ErrorCode.ThreadNotFound,
                 "too_many_voices" => ErrorCode.TooManyVoices,
                 "tool_config_shared" => ErrorCode.ToolConfigShared,
                 "tool_not_found" => ErrorCode.ToolNotFound,
                 "topup_not_in_plan" => ErrorCode.TopupNotInPlan,
+                "trigger_not_found" => ErrorCode.TriggerNotFound,
                 "unauthorized" => ErrorCode.Unauthorized,
                 "unsupported_media_type" => ErrorCode.UnsupportedMediaType,
                 "upstream_failure" => ErrorCode.UpstreamFailure,

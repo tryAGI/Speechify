@@ -7,7 +7,9 @@ namespace Speechify
     /// Which entry point created a suite run.<br/>
     /// - `run_all`  - POST /v1/agents/{agent_id}/tests/runs.<br/>
     /// - `batch`    - POST /v1/agents/tests/runs/batch.<br/>
-    /// - `resubmit` - POST /v1/agents/tests/suite-runs/{suite_run_id}/resubmit.
+    /// - `resubmit` - POST /v1/agents/tests/suite-runs/{suite_run_id}/resubmit.<br/>
+    /// - `target`   - POST /v1/agents/tests/runs (a chosen set of tests<br/>
+    ///   bound to a target agent at run time).
     /// </summary>
     public enum SuiteRunTrigger
     {
@@ -23,6 +25,10 @@ namespace Speechify
         ///
         /// </summary>
         RunAll,
+        /// <summary>
+        ///
+        /// </summary>
+        Target,
     }
 
     /// <summary>
@@ -40,6 +46,7 @@ namespace Speechify
                 SuiteRunTrigger.Batch => "batch",
                 SuiteRunTrigger.Resubmit => "resubmit",
                 SuiteRunTrigger.RunAll => "run_all",
+                SuiteRunTrigger.Target => "target",
                 _ => throw new global::System.ArgumentOutOfRangeException(nameof(value), value, null),
             };
         }
@@ -53,6 +60,7 @@ namespace Speechify
                 "batch" => SuiteRunTrigger.Batch,
                 "resubmit" => SuiteRunTrigger.Resubmit,
                 "run_all" => SuiteRunTrigger.RunAll,
+                "target" => SuiteRunTrigger.Target,
                 _ => null,
             };
         }

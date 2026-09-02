@@ -4,13 +4,7 @@
 namespace Speechify
 {
     /// <summary>
-    /// A batch of outbound calls dispatched to a list of recipients. This<br/>
-    /// summary object (counts + status, no recipients) is the payload of the<br/>
-    /// `batch_call.completed` / `batch_call.failed` webhook events. Per-recipient<br/>
-    /// results - including each recipient's `custom_id` and `conversation_id` -<br/>
-    /// are reconciled by polling<br/>
-    /// `GET /v1/agents/batch-calls/{batch_call_id}/recipients`, not through the<br/>
-    /// webhook.
+    /// A batch of outbound calls dispatched to a list of recipients.
     /// </summary>
     public sealed partial class BatchCall
     {

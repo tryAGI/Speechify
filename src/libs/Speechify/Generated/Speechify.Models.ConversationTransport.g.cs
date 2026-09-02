@@ -6,7 +6,8 @@ namespace Speechify
     /// <summary>
     /// How the caller reached the agent. `web` is the browser /<br/>
     /// SDK realtime path; the `sip_*` and `phone` variants come<br/>
-    /// from the telephony stack.
+    /// from the telephony stack; `text` is the text/chat channel<br/>
+    /// (turn-based, roomless, no call duration).
     /// </summary>
     public enum ConversationTransport
     {
@@ -22,6 +23,10 @@ namespace Speechify
         ///
         /// </summary>
         SipOutbound,
+        /// <summary>
+        ///
+        /// </summary>
+        Text,
         /// <summary>
         ///
         /// </summary>
@@ -47,6 +52,7 @@ namespace Speechify
                 ConversationTransport.Phone => "phone",
                 ConversationTransport.SipInbound => "sip_inbound",
                 ConversationTransport.SipOutbound => "sip_outbound",
+                ConversationTransport.Text => "text",
                 ConversationTransport.Web => "web",
                 ConversationTransport.Whatsapp => "whatsapp",
                 _ => throw new global::System.ArgumentOutOfRangeException(nameof(value), value, null),
@@ -62,6 +68,7 @@ namespace Speechify
                 "phone" => ConversationTransport.Phone,
                 "sip_inbound" => ConversationTransport.SipInbound,
                 "sip_outbound" => ConversationTransport.SipOutbound,
+                "text" => ConversationTransport.Text,
                 "web" => ConversationTransport.Web,
                 "whatsapp" => ConversationTransport.Whatsapp,
                 _ => null,

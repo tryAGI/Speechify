@@ -48,6 +48,14 @@ namespace Speechify
         public string? Language { get; set; }
 
         /// <summary>
+        /// Replaces the agent's enabled delivery channels. Adding `voice`<br/>
+        /// requires the agent to have a `tts.voice_id` (already set or set in<br/>
+        /// the same request). Omit to leave channels unchanged.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("channels")]
+        public global::System.Collections.Generic.IList<global::Speechify.AgentChannel>? Channels { get; set; }
+
+        /// <summary>
         /// Replaces the stored list wholesale when present; an empty<br/>
         /// array clears it back to a single-language agent. Omit to<br/>
         /// leave unchanged.
@@ -194,6 +202,11 @@ namespace Speechify
         /// <param name="prompt"></param>
         /// <param name="firstMessage"></param>
         /// <param name="language"></param>
+        /// <param name="channels">
+        /// Replaces the agent's enabled delivery channels. Adding `voice`<br/>
+        /// requires the agent to have a `tts.voice_id` (already set or set in<br/>
+        /// the same request). Omit to leave channels unchanged.
+        /// </param>
         /// <param name="additionalLanguages">
         /// Replaces the stored list wholesale when present; an empty<br/>
         /// array clears it back to a single-language agent. Omit to<br/>
@@ -270,6 +283,7 @@ namespace Speechify
             string? prompt,
             string? firstMessage,
             string? language,
+            global::System.Collections.Generic.IList<global::Speechify.AgentChannel>? channels,
             global::System.Collections.Generic.IList<global::Speechify.AgentAdditionalLanguage>? additionalLanguages,
             global::Speechify.AgentLLMConfig? llm,
             global::Speechify.AgentTTSConfig? tts,
@@ -294,6 +308,7 @@ namespace Speechify
             this.Prompt = prompt;
             this.FirstMessage = firstMessage;
             this.Language = language;
+            this.Channels = channels;
             this.AdditionalLanguages = additionalLanguages;
             this.Llm = llm;
             this.Tts = tts;

@@ -22,7 +22,11 @@ namespace Speechify
         /// the webhook bind provisioned (it is returned on the number) and,<br/>
         /// for a workspace with several numbers, `caller_id_number`.<br/>
         /// Requires a Twilio or BYOC trunk. LiveKit-native numbers are<br/>
-        /// inbound-only.
+        /// inbound-only.<br/>
+        /// International (non-NANP) destinations require a funded balance - a<br/>
+        /// paid plan or a payment method on file, not just trial / granted<br/>
+        /// credits - and are otherwise refused with<br/>
+        /// `402 funded_balance_required`. Domestic (`+1`) calls are unaffected.
         /// </summary>
         /// <param name="speechifyVersion"></param>
         /// <param name="idempotencyKey">
@@ -57,7 +61,11 @@ namespace Speechify
         /// the webhook bind provisioned (it is returned on the number) and,<br/>
         /// for a workspace with several numbers, `caller_id_number`.<br/>
         /// Requires a Twilio or BYOC trunk. LiveKit-native numbers are<br/>
-        /// inbound-only.
+        /// inbound-only.<br/>
+        /// International (non-NANP) destinations require a funded balance - a<br/>
+        /// paid plan or a payment method on file, not just trial / granted<br/>
+        /// credits - and are otherwise refused with<br/>
+        /// `402 funded_balance_required`. Domestic (`+1`) calls are unaffected.
         /// </summary>
         /// <param name="speechifyVersion"></param>
         /// <param name="idempotencyKey">
@@ -92,7 +100,11 @@ namespace Speechify
         /// the webhook bind provisioned (it is returned on the number) and,<br/>
         /// for a workspace with several numbers, `caller_id_number`.<br/>
         /// Requires a Twilio or BYOC trunk. LiveKit-native numbers are<br/>
-        /// inbound-only.
+        /// inbound-only.<br/>
+        /// International (non-NANP) destinations require a funded balance - a<br/>
+        /// paid plan or a payment method on file, not just trial / granted<br/>
+        /// credits - and are otherwise refused with<br/>
+        /// `402 funded_balance_required`. Domestic (`+1`) calls are unaffected.
         /// </summary>
         /// <param name="speechifyVersion"></param>
         /// <param name="idempotencyKey">

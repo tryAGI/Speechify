@@ -43,7 +43,9 @@ namespace Speechify
         /// Which entry point created a suite run.<br/>
         /// - `run_all`  - POST /v1/agents/{agent_id}/tests/runs.<br/>
         /// - `batch`    - POST /v1/agents/tests/runs/batch.<br/>
-        /// - `resubmit` - POST /v1/agents/tests/suite-runs/{suite_run_id}/resubmit.
+        /// - `resubmit` - POST /v1/agents/tests/suite-runs/{suite_run_id}/resubmit.<br/>
+        /// - `target`   - POST /v1/agents/tests/runs (a chosen set of tests<br/>
+        ///   bound to a target agent at run time).
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("trigger")]
         [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Speechify.JsonConverters.SuiteRunTriggerJsonConverter))]
@@ -185,7 +187,9 @@ namespace Speechify
         /// Which entry point created a suite run.<br/>
         /// - `run_all`  - POST /v1/agents/{agent_id}/tests/runs.<br/>
         /// - `batch`    - POST /v1/agents/tests/runs/batch.<br/>
-        /// - `resubmit` - POST /v1/agents/tests/suite-runs/{suite_run_id}/resubmit.
+        /// - `resubmit` - POST /v1/agents/tests/suite-runs/{suite_run_id}/resubmit.<br/>
+        /// - `target`   - POST /v1/agents/tests/runs (a chosen set of tests<br/>
+        ///   bound to a target agent at run time).
         /// </param>
         /// <param name="status">
         /// The one lifecycle vocabulary shared by every async job (batch<br/>

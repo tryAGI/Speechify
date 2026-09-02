@@ -15,6 +15,15 @@ namespace Speechify
         public string? Notes { get; set; }
 
         /// <summary>
+        /// On a workspace with the behavioral-eval publish gate enabled, a<br/>
+        /// non-empty justification publishes past a failing behavioral suite.<br/>
+        /// The suite still runs and its verdict is recorded with this reason -<br/>
+        /// an override bypasses blocking, not measurement.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("gate_override_reason")]
+        public string? GateOverrideReason { get; set; }
+
+        /// <summary>
         /// Additional properties that are not explicitly defined in the schema
         /// </summary>
         [global::System.Text.Json.Serialization.JsonExtensionData]
@@ -26,13 +35,21 @@ namespace Speechify
         /// <param name="notes">
         /// Optional changelog note recorded on the published version.
         /// </param>
+        /// <param name="gateOverrideReason">
+        /// On a workspace with the behavioral-eval publish gate enabled, a<br/>
+        /// non-empty justification publishes past a failing behavioral suite.<br/>
+        /// The suite still runs and its verdict is recorded with this reason -<br/>
+        /// an override bypasses blocking, not measurement.
+        /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
 #endif
         public PublishFlowRequest(
-            string? notes)
+            string? notes,
+            string? gateOverrideReason)
         {
             this.Notes = notes;
+            this.GateOverrideReason = gateOverrideReason;
         }
 
         /// <summary>

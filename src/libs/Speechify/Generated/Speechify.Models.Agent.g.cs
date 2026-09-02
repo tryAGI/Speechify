@@ -33,6 +33,13 @@ namespace Speechify
         public required string Slug { get; set; }
 
         /// <summary>
+        /// The delivery channels this agent serves. Empty means no front door: the agent is reached by its triggers only. Mutable via PATCH.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("channels")]
+        [global::System.Text.Json.Serialization.JsonRequired]
+        public required global::System.Collections.Generic.IList<global::Speechify.AgentChannel> Channels { get; set; }
+
+        /// <summary>
         ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("prompt")]
@@ -266,6 +273,9 @@ namespace Speechify
         /// </param>
         /// <param name="name"></param>
         /// <param name="slug"></param>
+        /// <param name="channels">
+        /// The delivery channels this agent serves. Empty means no front door: the agent is reached by its triggers only. Mutable via PATCH.
+        /// </param>
         /// <param name="prompt"></param>
         /// <param name="firstMessage">
         /// Spoken verbatim at session start when present in the customer's flow graph.
@@ -395,6 +405,7 @@ namespace Speechify
             string id,
             string name,
             string slug,
+            global::System.Collections.Generic.IList<global::Speechify.AgentChannel> channels,
             string prompt,
             string firstMessage,
             string language,
@@ -423,6 +434,7 @@ namespace Speechify
             this.Id = id ?? throw new global::System.ArgumentNullException(nameof(id));
             this.Name = name ?? throw new global::System.ArgumentNullException(nameof(name));
             this.Slug = slug ?? throw new global::System.ArgumentNullException(nameof(slug));
+            this.Channels = channels ?? throw new global::System.ArgumentNullException(nameof(channels));
             this.Prompt = prompt ?? throw new global::System.ArgumentNullException(nameof(prompt));
             this.FirstMessage = firstMessage ?? throw new global::System.ArgumentNullException(nameof(firstMessage));
             this.Language = language ?? throw new global::System.ArgumentNullException(nameof(language));

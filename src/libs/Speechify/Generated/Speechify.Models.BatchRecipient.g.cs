@@ -39,7 +39,10 @@ namespace Speechify
         /// <summary>
         /// `cancelled` marks a recipient the batch cancel spared before it<br/>
         /// was dialed - distinct from `failed` (a dial that was attempted<br/>
-        /// and failed).
+        /// and failed). `interrupted` marks a recipient a crashed dispatcher<br/>
+        /// left mid-attempt on resume: the dial was attempted but its outcome<br/>
+        /// was never recorded, so it is not re-dialed - check the linked<br/>
+        /// conversation, if any, for the real result.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("status")]
         [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Speechify.JsonConverters.BatchRecipientStatusJsonConverter))]
@@ -99,7 +102,10 @@ namespace Speechify
         /// <param name="status">
         /// `cancelled` marks a recipient the batch cancel spared before it<br/>
         /// was dialed - distinct from `failed` (a dial that was attempted<br/>
-        /// and failed).
+        /// and failed). `interrupted` marks a recipient a crashed dispatcher<br/>
+        /// left mid-attempt on resume: the dial was attempted but its outcome<br/>
+        /// was never recorded, so it is not re-dialed - check the linked<br/>
+        /// conversation, if any, for the real result.
         /// </param>
         /// <param name="dynamicVariables">
         /// Per-recipient variable overrides injected into the agent prompt.

@@ -49,10 +49,14 @@ namespace Speechify
 
         /// <summary>
         /// Run Agent Test<br/>
-        /// Enqueue a single run of the test. The returned run starts in<br/>
-        /// `pending` status. Poll `GET /v1/agents/tests/runs/{test_run_id}` until the status<br/>
-        /// reaches a terminal state (`completed`, `failed`, or `cancelled`). A<br/>
-        /// run that reached `completed` produced a judgment - read the separate<br/>
+        /// Enqueue a single run of the test. The run binds its target agent at<br/>
+        /// run time: pass `agent_id` to run against any agent in the workspace,<br/>
+        /// or omit it to run against the agent the test was authored against. A<br/>
+        /// test with no authoring agent requires an explicit `agent_id`. The<br/>
+        /// returned run starts in `pending` status. Poll<br/>
+        /// `GET /v1/agents/tests/runs/{test_run_id}` until the status reaches a<br/>
+        /// terminal state (`completed`, `failed`, or `cancelled`). A run that<br/>
+        /// reached `completed` produced a judgment - read the separate<br/>
         /// `verdict` field (`passed` / `failed`) for the pass/fail result.<br/>
         /// A run is admitted against the workspace's remaining credit and its<br/>
         /// spending limits, and executes on the models the workspace's plan<br/>
@@ -91,10 +95,14 @@ namespace Speechify
         }
         /// <summary>
         /// Run Agent Test<br/>
-        /// Enqueue a single run of the test. The returned run starts in<br/>
-        /// `pending` status. Poll `GET /v1/agents/tests/runs/{test_run_id}` until the status<br/>
-        /// reaches a terminal state (`completed`, `failed`, or `cancelled`). A<br/>
-        /// run that reached `completed` produced a judgment - read the separate<br/>
+        /// Enqueue a single run of the test. The run binds its target agent at<br/>
+        /// run time: pass `agent_id` to run against any agent in the workspace,<br/>
+        /// or omit it to run against the agent the test was authored against. A<br/>
+        /// test with no authoring agent requires an explicit `agent_id`. The<br/>
+        /// returned run starts in `pending` status. Poll<br/>
+        /// `GET /v1/agents/tests/runs/{test_run_id}` until the status reaches a<br/>
+        /// terminal state (`completed`, `failed`, or `cancelled`). A run that<br/>
+        /// reached `completed` produced a judgment - read the separate<br/>
         /// `verdict` field (`passed` / `failed`) for the pass/fail result.<br/>
         /// A run is admitted against the workspace's remaining credit and its<br/>
         /// spending limits, and executes on the models the workspace's plan<br/>
@@ -394,6 +402,43 @@ namespace Speechify
                                 retryReason: global::System.String.Empty,
                                 cancellationToken: __effectiveCancellationToken)).ConfigureAwait(false);
                 }
+                            // The request was malformed or failed validation. The response body is the standard `Error` envelope; for validation failures `error.fields` enumerates the offending fields as a `path -> message` map (code = `validation_failed`).
+                            if ((int)__response.StatusCode == 400)
+                            {
+                                string? __content_400 = null;
+                                global::System.Exception? __exception_400 = null;
+                                global::Speechify.Error? __value_400 = null;
+                                try
+                                {
+                                    if (__effectiveReadResponseAsString)
+                                    {
+                                        __content_400 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+                                        __value_400 = global::Speechify.Error.FromJson(__content_400, JsonSerializerContext);
+                                    }
+                                    else
+                                    {
+                                        __content_400 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+
+                                        __value_400 = global::Speechify.Error.FromJson(__content_400, JsonSerializerContext);
+                                    }
+                                }
+                                catch (global::System.Exception __ex)
+                                {
+                                    __exception_400 = __ex;
+                                }
+
+
+                                throw global::Speechify.ApiException<global::Speechify.Error>.Create(
+                                    statusCode: __response.StatusCode,
+                                    message: __content_400 ?? __response.ReasonPhrase ?? string.Empty,
+                                    innerException: __exception_400,
+                                    responseBody: __content_400,
+                                    responseObject: __value_400,
+                                    responseHeaders: global::System.Linq.Enumerable.ToDictionary(
+                                        __response.Headers,
+                                        h => h.Key,
+                                        h => h.Value));
+                            }
                             // Authentication is missing or invalid. The request did not carry a recognised credential (console session token, API key, or worker JWT).
                             if ((int)__response.StatusCode == 401)
                             {
@@ -640,10 +685,14 @@ namespace Speechify
         }
         /// <summary>
         /// Run Agent Test<br/>
-        /// Enqueue a single run of the test. The returned run starts in<br/>
-        /// `pending` status. Poll `GET /v1/agents/tests/runs/{test_run_id}` until the status<br/>
-        /// reaches a terminal state (`completed`, `failed`, or `cancelled`). A<br/>
-        /// run that reached `completed` produced a judgment - read the separate<br/>
+        /// Enqueue a single run of the test. The run binds its target agent at<br/>
+        /// run time: pass `agent_id` to run against any agent in the workspace,<br/>
+        /// or omit it to run against the agent the test was authored against. A<br/>
+        /// test with no authoring agent requires an explicit `agent_id`. The<br/>
+        /// returned run starts in `pending` status. Poll<br/>
+        /// `GET /v1/agents/tests/runs/{test_run_id}` until the status reaches a<br/>
+        /// terminal state (`completed`, `failed`, or `cancelled`). A run that<br/>
+        /// reached `completed` produced a judgment - read the separate<br/>
         /// `verdict` field (`passed` / `failed`) for the pass/fail result.<br/>
         /// A run is admitted against the workspace's remaining credit and its<br/>
         /// spending limits, and executes on the models the workspace's plan<br/>
@@ -656,7 +705,9 @@ namespace Speechify
         /// Optional idempotency key. When omitted, the SDK generates one for this request.
         /// </param>
         /// <param name="agentId">
-        /// Run the test against this agent instead of the test's default agent.
+        /// Bind the run to this agent (any agent in the workspace).<br/>
+        /// Omit to run against the agent the test was authored<br/>
+        /// against; required when the test has no authoring agent.
         /// </param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>

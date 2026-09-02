@@ -30,6 +30,15 @@ namespace Speechify
         public string? Slug { get; set; }
 
         /// <summary>
+        /// The delivery channels the agent serves. Defaults to `[voice]` when<br/>
+        /// omitted. Pass an explicit `[]` for an agent with no front door,<br/>
+        /// reached by its triggers only. Serving `voice` requires a<br/>
+        /// `tts.voice_id`.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("channels")]
+        public global::System.Collections.Generic.IList<global::Speechify.AgentChannel>? Channels { get; set; }
+
+        /// <summary>
         ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("prompt")]
@@ -37,11 +46,10 @@ namespace Speechify
         public required string Prompt { get; set; }
 
         /// <summary>
-        /// Greeting spoken verbatim at session start when included in the agent's flow graph.
+        /// Greeting spoken verbatim at session start when included in the agent's flow graph. Omit for an agent with no channels, which opens no live turn.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("first_message")]
-        [global::System.Text.Json.Serialization.JsonRequired]
-        public required string FirstMessage { get; set; }
+        public string? FirstMessage { get; set; }
 
         /// <summary>
         /// ISO 639-1 code. Defaults to 'en' when omitted. The agent's default language.
@@ -72,8 +80,7 @@ namespace Speechify
         /// Text-to-speech voice and delivery configuration.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("tts")]
-        [global::System.Text.Json.Serialization.JsonRequired]
-        public required global::Speechify.AgentTTSConfig Tts { get; set; }
+        public global::Speechify.AgentTTSConfig? Tts { get; set; }
 
         /// <summary>
         /// Turn-handling and silence-timeout configuration.
@@ -188,12 +195,6 @@ namespace Speechify
         /// </summary>
         /// <param name="name"></param>
         /// <param name="prompt"></param>
-        /// <param name="firstMessage">
-        /// Greeting spoken verbatim at session start when included in the agent's flow graph.
-        /// </param>
-        /// <param name="tts">
-        /// Text-to-speech voice and delivery configuration.
-        /// </param>
         /// <param name="projectId">
         /// Optional workspace project to place this resource in (prefixed<br/>
         /// `proj_...` id). Omit for the implicit Default project. An<br/>
@@ -201,6 +202,15 @@ namespace Speechify
         /// </param>
         /// <param name="slug">
         /// Optional. Server derives slug from name with a random suffix when omitted; if you supply your own, a collision returns 400 'slug already taken'.
+        /// </param>
+        /// <param name="channels">
+        /// The delivery channels the agent serves. Defaults to `[voice]` when<br/>
+        /// omitted. Pass an explicit `[]` for an agent with no front door,<br/>
+        /// reached by its triggers only. Serving `voice` requires a<br/>
+        /// `tts.voice_id`.
+        /// </param>
+        /// <param name="firstMessage">
+        /// Greeting spoken verbatim at session start when included in the agent's flow graph. Omit for an agent with no channels, which opens no live turn.
         /// </param>
         /// <param name="language">
         /// ISO 639-1 code. Defaults to 'en' when omitted. The agent's default language.
@@ -217,6 +227,9 @@ namespace Speechify
         /// nullable field to its default, a value sets it, and anything<br/>
         /// omitted is left unchanged. `provider`/`model` are validated as a<br/>
         /// pair, inheriting the omitted half from the stored value.
+        /// </param>
+        /// <param name="tts">
+        /// Text-to-speech voice and delivery configuration.
         /// </param>
         /// <param name="turnHandling">
         /// Turn-handling and silence-timeout configuration.
@@ -279,13 +292,14 @@ namespace Speechify
         public CreateAgentRequest(
             string name,
             string prompt,
-            string firstMessage,
-            global::Speechify.AgentTTSConfig tts,
             string? projectId,
             string? slug,
+            global::System.Collections.Generic.IList<global::Speechify.AgentChannel>? channels,
+            string? firstMessage,
             string? language,
             global::System.Collections.Generic.IList<global::Speechify.AgentAdditionalLanguage>? additionalLanguages,
             global::Speechify.AgentLLMConfig? llm,
+            global::Speechify.AgentTTSConfig? tts,
             global::Speechify.AgentTurnHandlingConfig? turnHandling,
             global::Speechify.AgentMemoryConfig? memory,
             global::Speechify.AgentNavigatorConfig? navigator,
@@ -305,12 +319,13 @@ namespace Speechify
             this.ProjectId = projectId;
             this.Name = name ?? throw new global::System.ArgumentNullException(nameof(name));
             this.Slug = slug;
+            this.Channels = channels;
             this.Prompt = prompt ?? throw new global::System.ArgumentNullException(nameof(prompt));
-            this.FirstMessage = firstMessage ?? throw new global::System.ArgumentNullException(nameof(firstMessage));
+            this.FirstMessage = firstMessage;
             this.Language = language;
             this.AdditionalLanguages = additionalLanguages;
             this.Llm = llm;
-            this.Tts = tts ?? throw new global::System.ArgumentNullException(nameof(tts));
+            this.Tts = tts;
             this.TurnHandling = turnHandling;
             this.Memory = memory;
             this.Navigator = navigator;

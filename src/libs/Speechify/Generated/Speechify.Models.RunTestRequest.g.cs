@@ -9,7 +9,9 @@ namespace Speechify
     public sealed partial class RunTestRequest
     {
         /// <summary>
-        /// Run the test against this agent instead of the test's default agent.
+        /// Bind the run to this agent (any agent in the workspace).<br/>
+        /// Omit to run against the agent the test was authored<br/>
+        /// against; required when the test has no authoring agent.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("agent_id")]
         public string? AgentId { get; set; }
@@ -24,7 +26,9 @@ namespace Speechify
         /// Initializes a new instance of the <see cref="RunTestRequest" /> class.
         /// </summary>
         /// <param name="agentId">
-        /// Run the test against this agent instead of the test's default agent.
+        /// Bind the run to this agent (any agent in the workspace).<br/>
+        /// Omit to run against the agent the test was authored<br/>
+        /// against; required when the test has no authoring agent.
         /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]

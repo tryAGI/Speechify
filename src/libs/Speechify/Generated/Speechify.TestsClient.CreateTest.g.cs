@@ -3,11 +3,11 @@
 
 namespace Speechify
 {
-    public partial class AgentClient
+    public partial class TestsClient
     {
 
 
-        private static readonly global::Speechify.EndPointSecurityRequirement s_ListTestsSecurityRequirement0 =
+        private static readonly global::Speechify.EndPointSecurityRequirement s_CreateTestSecurityRequirement0 =
             new global::Speechify.EndPointSecurityRequirement
             {
                 Authorizations = new global::Speechify.EndPointAuthorizationRequirement[]
@@ -21,61 +21,53 @@ namespace Speechify
                     },
                 },
             };
-        private static readonly global::Speechify.EndPointSecurityRequirement[] s_ListTestsSecurityRequirements =
+        private static readonly global::Speechify.EndPointSecurityRequirement[] s_CreateTestSecurityRequirements =
             new global::Speechify.EndPointSecurityRequirement[]
-            {                s_ListTestsSecurityRequirement0,
+            {                s_CreateTestSecurityRequirement0,
             };
-        partial void PrepareListTestsArguments(
+        partial void PrepareCreateTestArguments(
             global::System.Net.Http.HttpClient httpClient,
-            ref string agentId,
-            ref string? cursor,
-            ref int? limit,
-            ref string? speechifyVersion);
-        partial void PrepareListTestsRequest(
+            ref string? speechifyVersion,
+            global::Speechify.CreateAgentTestRequest request);
+        partial void PrepareCreateTestRequest(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpRequestMessage httpRequestMessage,
-            string agentId,
-            string? cursor,
-            int? limit,
-            string? speechifyVersion);
-        partial void ProcessListTestsResponse(
+            string? speechifyVersion,
+            global::Speechify.CreateAgentTestRequest request);
+        partial void ProcessCreateTestResponse(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpResponseMessage httpResponseMessage);
 
-        partial void ProcessListTestsResponseContent(
+        partial void ProcessCreateTestResponseContent(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpResponseMessage httpResponseMessage,
             ref string content);
 
         /// <summary>
-        /// List Agent Tests<br/>
-        /// List all tests configured for the agent. Each entry includes the<br/>
-        /// most recent run so a client can render pass/fail badges without<br/>
-        /// an extra round-trip. Cursor-paginated: omit `cursor` for the first<br/>
-        /// page; walk pages while `has_more` is true (default page size 50,<br/>
-        /// max 200).
+        /// Create Test<br/>
+        /// Create a workspace-level test. The optional `agent_id` is the<br/>
+        /// authoring agent: when supplied it seeds the test's tool schemas and<br/>
+        /// variables and is recorded as authored-from provenance. Omit it to<br/>
+        /// create a bare workspace test with no authoring agent (`agent_id`<br/>
+        /// comes back `null`). `agent_id` is never a scope - every read, list,<br/>
+        /// and run is scoped by workspace, and the run target is bound at run<br/>
+        /// time (`POST /v1/agents/tests/runs`) independently of it.
         /// </summary>
-        /// <param name="agentId"></param>
-        /// <param name="cursor"></param>
-        /// <param name="limit">
-        /// Default Value: 50
-        /// </param>
         /// <param name="speechifyVersion"></param>
+        /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
-        public async global::System.Threading.Tasks.Task<global::Speechify.ListTestsResponse> ListTestsAsync(
-            string agentId,
-            string? cursor = default,
-            int? limit = default,
+        public async global::System.Threading.Tasks.Task<global::Speechify.AgentTest> CreateTestAsync(
+
+            global::Speechify.CreateAgentTestRequest request,
             string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
-            var __response = await ListTestsAsResponseAsync(
-                agentId: agentId,
-                cursor: cursor,
-                limit: limit,
+            var __response = await CreateTestAsResponseAsync(
+
+                request: request,
                 speechifyVersion: speechifyVersion,
                 requestOptions: requestOptions,
                 cancellationToken: cancellationToken
@@ -84,44 +76,41 @@ namespace Speechify
             return __response.Body;
         }
         /// <summary>
-        /// List Agent Tests<br/>
-        /// List all tests configured for the agent. Each entry includes the<br/>
-        /// most recent run so a client can render pass/fail badges without<br/>
-        /// an extra round-trip. Cursor-paginated: omit `cursor` for the first<br/>
-        /// page; walk pages while `has_more` is true (default page size 50,<br/>
-        /// max 200).
+        /// Create Test<br/>
+        /// Create a workspace-level test. The optional `agent_id` is the<br/>
+        /// authoring agent: when supplied it seeds the test's tool schemas and<br/>
+        /// variables and is recorded as authored-from provenance. Omit it to<br/>
+        /// create a bare workspace test with no authoring agent (`agent_id`<br/>
+        /// comes back `null`). `agent_id` is never a scope - every read, list,<br/>
+        /// and run is scoped by workspace, and the run target is bound at run<br/>
+        /// time (`POST /v1/agents/tests/runs`) independently of it.
         /// </summary>
-        /// <param name="agentId"></param>
-        /// <param name="cursor"></param>
-        /// <param name="limit">
-        /// Default Value: 50
-        /// </param>
         /// <param name="speechifyVersion"></param>
+        /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
-        public async global::System.Threading.Tasks.Task<global::Speechify.AutoSDKHttpResponse<global::Speechify.ListTestsResponse>> ListTestsAsResponseAsync(
-            string agentId,
-            string? cursor = default,
-            int? limit = default,
+        public async global::System.Threading.Tasks.Task<global::Speechify.AutoSDKHttpResponse<global::Speechify.AgentTest>> CreateTestAsResponseAsync(
+
+            global::Speechify.CreateAgentTestRequest request,
             string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
+            request = request ?? throw new global::System.ArgumentNullException(nameof(request));
+
             PrepareArguments(
                 client: HttpClient);
-            PrepareListTestsArguments(
+            PrepareCreateTestArguments(
                 httpClient: HttpClient,
-                agentId: ref agentId,
-                cursor: ref cursor,
-                limit: ref limit,
-                speechifyVersion: ref speechifyVersion);
+                speechifyVersion: ref speechifyVersion,
+                request: request);
 
 
             var __authorizations = global::Speechify.EndPointSecurityResolver.ResolveAuthorizations(
                 availableAuthorizations: Authorizations,
-                securityRequirements: s_ListTestsSecurityRequirements,
-                operationName: "ListTestsAsync");
+                securityRequirements: s_CreateTestSecurityRequirements,
+                operationName: "CreateTestAsync");
 
             using var __timeoutCancellationTokenSource = global::Speechify.AutoSDKRequestOptionsSupport.CreateTimeoutCancellationTokenSource(
                 clientOptions: Options,
@@ -141,19 +130,15 @@ namespace Speechify
             {
 
                             var __pathBuilder = new global::Speechify.PathBuilder(
-                                path: $"/v1/agents/{agentId}/tests",
+                                path: "/v1/agents/tests",
                                 baseUri: HttpClient.BaseAddress);
-                            __pathBuilder
-                                .AddOptionalParameter("cursor", cursor)
-                                .AddOptionalParameter("limit", limit?.ToString())
-                                ;
                             var __path = __pathBuilder.ToString();
                 __path = global::Speechify.AutoSDKRequestOptionsSupport.AppendQueryParameters(
                     path: __path,
                     clientParameters: Options.QueryParameters,
                     requestParameters: requestOptions?.QueryParameters);
                 var __httpRequest = new global::System.Net.Http.HttpRequestMessage(
-                    method: global::System.Net.Http.HttpMethod.Get,
+                    method: global::System.Net.Http.HttpMethod.Post,
                     requestUri: new global::System.Uri(__path, global::System.UriKind.RelativeOrAbsolute));
 #if NET6_0_OR_GREATER
                 __httpRequest.Version = global::System.Net.HttpVersion.Version11;
@@ -182,6 +167,12 @@ namespace Speechify
                 __httpRequest.Headers.TryAddWithoutValidation("Speechify-Version", speechifyVersion.ToString());
             }
 
+                            var __httpRequestContentBody = request.ToJson(JsonSerializerContext);
+                            var __httpRequestContent = new global::System.Net.Http.StringContent(
+                                content: __httpRequestContentBody,
+                                encoding: global::System.Text.Encoding.UTF8,
+                                mediaType: "application/json");
+                            __httpRequest.Content = __httpRequestContent;
                 global::Speechify.AutoSDKRequestOptionsSupport.ApplyHeaders(
                     request: __httpRequest,
                     clientHeaders: Options.Headers,
@@ -190,13 +181,11 @@ namespace Speechify
                 PrepareRequest(
                     client: HttpClient,
                     request: __httpRequest);
-                PrepareListTestsRequest(
+                PrepareCreateTestRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
-                    agentId: agentId!,
-                    cursor: cursor,
-                    limit: limit,
-                    speechifyVersion: speechifyVersion);
+                    speechifyVersion: speechifyVersion,
+                    request: request);
 
                 return __httpRequest;
             }
@@ -213,10 +202,10 @@ namespace Speechify
                     await global::Speechify.AutoSDKRequestOptionsSupport.OnBeforeRequestAsync(
                             clientOptions: Options,
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "ListTests",
-                                methodName: "ListTestsAsync",
-                                pathTemplate: "$\"/v1/agents/{agentId}/tests\"",
-                                httpMethod: "GET",
+                                operationId: "CreateTest",
+                                methodName: "CreateTestAsync",
+                                pathTemplate: "\"/v1/agents/tests\"",
+                                httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
                                 response: null,
@@ -247,10 +236,10 @@ namespace Speechify
                         await global::Speechify.AutoSDKRequestOptionsSupport.OnAfterErrorAsync(
                             clientOptions: Options,
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "ListTests",
-                                methodName: "ListTestsAsync",
-                                pathTemplate: "$\"/v1/agents/{agentId}/tests\"",
-                                httpMethod: "GET",
+                                operationId: "CreateTest",
+                                methodName: "CreateTestAsync",
+                                pathTemplate: "\"/v1/agents/tests\"",
+                                httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
                                 response: null,
@@ -288,10 +277,10 @@ namespace Speechify
                         await global::Speechify.AutoSDKRequestOptionsSupport.OnAfterErrorAsync(
                             clientOptions: Options,
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "ListTests",
-                                methodName: "ListTestsAsync",
-                                pathTemplate: "$\"/v1/agents/{agentId}/tests\"",
-                                httpMethod: "GET",
+                                operationId: "CreateTest",
+                                methodName: "CreateTestAsync",
+                                pathTemplate: "\"/v1/agents/tests\"",
+                                httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
                                 response: __response,
@@ -328,7 +317,7 @@ namespace Speechify
                 ProcessResponse(
                     client: HttpClient,
                     response: __response);
-                ProcessListTestsResponse(
+                ProcessCreateTestResponse(
                     httpClient: HttpClient,
                     httpResponseMessage: __response);
                 if (__response.IsSuccessStatusCode)
@@ -336,10 +325,10 @@ namespace Speechify
                     await global::Speechify.AutoSDKRequestOptionsSupport.OnAfterSuccessAsync(
                             clientOptions: Options,
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "ListTests",
-                                methodName: "ListTestsAsync",
-                                pathTemplate: "$\"/v1/agents/{agentId}/tests\"",
-                                httpMethod: "GET",
+                                operationId: "CreateTest",
+                                methodName: "CreateTestAsync",
+                                pathTemplate: "\"/v1/agents/tests\"",
+                                httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
                                 response: __response,
@@ -358,10 +347,10 @@ namespace Speechify
                     await global::Speechify.AutoSDKRequestOptionsSupport.OnAfterErrorAsync(
                             clientOptions: Options,
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "ListTests",
-                                methodName: "ListTestsAsync",
-                                pathTemplate: "$\"/v1/agents/{agentId}/tests\"",
-                                httpMethod: "GET",
+                                operationId: "CreateTest",
+                                methodName: "CreateTestAsync",
+                                pathTemplate: "\"/v1/agents/tests\"",
+                                httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
                                 response: __response,
@@ -499,7 +488,7 @@ namespace Speechify
                                     client: HttpClient,
                                     response: __response,
                                     content: ref __content);
-                                ProcessListTestsResponseContent(
+                                ProcessCreateTestResponseContent(
                                     httpClient: HttpClient,
                                     httpResponseMessage: __response,
                                     content: ref __content);
@@ -508,9 +497,9 @@ namespace Speechify
                                 {
                                     __response.EnsureSuccessStatusCode();
 
-                                    var __value = global::Speechify.ListTestsResponse.FromJson(__content, JsonSerializerContext) ??
+                                    var __value = global::Speechify.AgentTest.FromJson(__content, JsonSerializerContext) ??
                                         throw new global::System.InvalidOperationException($"Response deserialization failed for \"{__content}\" ");
-                                    return new global::Speechify.AutoSDKHttpResponse<global::Speechify.ListTestsResponse>(
+                                    return new global::Speechify.AutoSDKHttpResponse<global::Speechify.AgentTest>(
                                         statusCode: __response.StatusCode,
                                         headers: global::Speechify.AutoSDKHttpResponse.CreateHeaders(__response),
                                         requestUri: __response.RequestMessage?.RequestUri,
@@ -540,9 +529,9 @@ namespace Speechify
                 #endif
                                     ).ConfigureAwait(false);
 
-                                    var __value = await global::Speechify.ListTestsResponse.FromJsonStreamAsync(__content, JsonSerializerContext).ConfigureAwait(false) ??
+                                    var __value = await global::Speechify.AgentTest.FromJsonStreamAsync(__content, JsonSerializerContext).ConfigureAwait(false) ??
                                         throw new global::System.InvalidOperationException("Response deserialization failed.");
-                                    return new global::Speechify.AutoSDKHttpResponse<global::Speechify.ListTestsResponse>(
+                                    return new global::Speechify.AutoSDKHttpResponse<global::Speechify.AgentTest>(
                                         statusCode: __response.StatusCode,
                                         headers: global::Speechify.AutoSDKHttpResponse.CreateHeaders(__response),
                                         requestUri: __response.RequestMessage?.RequestUri,
@@ -581,6 +570,86 @@ namespace Speechify
             {
                 __httpRequest?.Dispose();
             }
+        }
+        /// <summary>
+        /// Create Test<br/>
+        /// Create a workspace-level test. The optional `agent_id` is the<br/>
+        /// authoring agent: when supplied it seeds the test's tool schemas and<br/>
+        /// variables and is recorded as authored-from provenance. Omit it to<br/>
+        /// create a bare workspace test with no authoring agent (`agent_id`<br/>
+        /// comes back `null`). `agent_id` is never a scope - every read, list,<br/>
+        /// and run is scoped by workspace, and the run target is bound at run<br/>
+        /// time (`POST /v1/agents/tests/runs`) independently of it.
+        /// </summary>
+        /// <param name="speechifyVersion"></param>
+        /// <param name="agentId">
+        /// Optional authoring agent (`agent_&lt;26 char Crockford base32&gt;`).<br/>
+        /// When supplied it must be an agent in the caller's workspace; it<br/>
+        /// seeds the test's tool schemas and variables and is recorded as<br/>
+        /// authored-from provenance. Omit it to create a bare workspace<br/>
+        /// test with no authoring agent. It is never a scope, and the run<br/>
+        /// target is bound at run time independently of it.
+        /// </param>
+        /// <param name="name">
+        /// Short human-readable label for the test.
+        /// </param>
+        /// <param name="description">
+        /// Optional longer description of what this test verifies.
+        /// </param>
+        /// <param name="type">
+        /// Discriminates the shape of `AgentTest.config`.<br/>
+        /// - `reply` - send one message to the agent and judge the response with an LLM.<br/>
+        /// - `tool` - assert that the agent calls a specific tool given a context.<br/>
+        /// - `simulation` - run a multi-turn conversation between the agent and an AI caller.
+        /// </param>
+        /// <param name="config">
+        /// Type-specific configuration. Must match the shape for the given `type`.
+        /// </param>
+        /// <param name="toolMockConfig">
+        /// Optional tool-mocking config applied during every run of this test.
+        /// </param>
+        /// <param name="variables">
+        /// Per-test variable values substituted into string fields of the<br/>
+        /// config at run-start. Keys use the same rules as agent-level<br/>
+        /// `DynamicVariable` keys.
+        /// </param>
+        /// <param name="folderId">
+        /// Prefixed wire identifier (`folder_&lt;26 char Crockford base32&gt;`)<br/>
+        /// of the folder to place the test in. Omit / null for root.
+        /// </param>
+        /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
+        /// <param name="cancellationToken">The token to cancel the operation with</param>
+        /// <exception cref="global::System.InvalidOperationException"></exception>
+        public async global::System.Threading.Tasks.Task<global::Speechify.AgentTest> CreateTestAsync(
+            string name,
+            global::Speechify.TestType type,
+            global::Speechify.CreateAgentTestRequestConfig config,
+            string? speechifyVersion = default,
+            string? agentId = default,
+            string? description = default,
+            global::Speechify.ToolMockConfig? toolMockConfig = default,
+            object? variables = default,
+            string? folderId = default,
+            global::Speechify.AutoSDKRequestOptions? requestOptions = default,
+            global::System.Threading.CancellationToken cancellationToken = default)
+        {
+            var __request = new global::Speechify.CreateAgentTestRequest
+            {
+                AgentId = agentId,
+                Name = name,
+                Description = description,
+                Type = type,
+                Config = config,
+                ToolMockConfig = toolMockConfig,
+                Variables = variables,
+                FolderId = folderId,
+            };
+
+            return await CreateTestAsync(
+                speechifyVersion: speechifyVersion,
+                request: __request,
+                requestOptions: requestOptions,
+                cancellationToken: cancellationToken).ConfigureAwait(false);
         }
     }
 }

@@ -74,6 +74,13 @@ namespace Speechify
         public global::System.DateTime? UpdatedAt { get; set; }
 
         /// <summary>
+        /// The behavioral-eval gate outcome recorded for a publish. Present only<br/>
+        /// when the workspace is opted into the publish gate.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("gate")]
+        public global::Speechify.PublishGateResult? Gate { get; set; }
+
+        /// <summary>
         /// Additional properties that are not explicitly defined in the schema
         /// </summary>
         [global::System.Text.Json.Serialization.JsonExtensionData]
@@ -98,6 +105,10 @@ namespace Speechify
         /// <param name="notes"></param>
         /// <param name="publishedAt"></param>
         /// <param name="updatedAt"></param>
+        /// <param name="gate">
+        /// The behavioral-eval gate outcome recorded for a publish. Present only<br/>
+        /// when the workspace is opted into the publish gate.
+        /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
 #endif
@@ -111,7 +122,8 @@ namespace Speechify
             string? name,
             string? notes,
             global::System.DateTime? publishedAt,
-            global::System.DateTime? updatedAt)
+            global::System.DateTime? updatedAt,
+            global::Speechify.PublishGateResult? gate)
         {
             this.Id = id ?? throw new global::System.ArgumentNullException(nameof(id));
             this.AgentId = agentId ?? throw new global::System.ArgumentNullException(nameof(agentId));
@@ -123,6 +135,7 @@ namespace Speechify
             this.Notes = notes;
             this.PublishedAt = publishedAt;
             this.UpdatedAt = updatedAt;
+            this.Gate = gate;
         }
 
         /// <summary>
