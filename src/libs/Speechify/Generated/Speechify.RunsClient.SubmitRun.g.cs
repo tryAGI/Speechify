@@ -63,7 +63,10 @@ namespace Speechify
         /// consequential action).<br/>
         /// Returns `409 agent_run_not_pending` if the run is not awaiting approval,<br/>
         /// and `409 agent_run_action_stale` if `action_key` no longer matches the<br/>
-        /// run's current pending action.
+        /// run's current pending action.<br/>
+        /// This endpoint is in beta: it is available to workspaces granted<br/>
+        /// `durable_runs_access`, and every other workspace receives<br/>
+        /// `402 durable_runs_not_in_plan`.
         /// </summary>
         /// <param name="agentId"></param>
         /// <param name="runId"></param>
@@ -112,7 +115,10 @@ namespace Speechify
         /// consequential action).<br/>
         /// Returns `409 agent_run_not_pending` if the run is not awaiting approval,<br/>
         /// and `409 agent_run_action_stale` if `action_key` no longer matches the<br/>
-        /// run's current pending action.
+        /// run's current pending action.<br/>
+        /// This endpoint is in beta: it is available to workspaces granted<br/>
+        /// `durable_runs_access`, and every other workspace receives<br/>
+        /// `402 durable_runs_not_in_plan`.
         /// </summary>
         /// <param name="agentId"></param>
         /// <param name="runId"></param>
@@ -743,7 +749,10 @@ namespace Speechify
         /// consequential action).<br/>
         /// Returns `409 agent_run_not_pending` if the run is not awaiting approval,<br/>
         /// and `409 agent_run_action_stale` if `action_key` no longer matches the<br/>
-        /// run's current pending action.
+        /// run's current pending action.<br/>
+        /// This endpoint is in beta: it is available to workspaces granted<br/>
+        /// `durable_runs_access`, and every other workspace receives<br/>
+        /// `402 durable_runs_not_in_plan`.
         /// </summary>
         /// <param name="agentId"></param>
         /// <param name="runId"></param>

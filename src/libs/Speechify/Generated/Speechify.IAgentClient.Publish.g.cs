@@ -17,7 +17,11 @@ namespace Speechify
         /// Any agent publishes here. The conversations it answers are versioned<br/>
         /// separately, by promoting a flow version via<br/>
         /// `/v1/agents/{agent_id}/flow/publish`.<br/>
-        /// On an ungated workspace this succeeds and returns no `gate` object.
+        /// On an ungated workspace this succeeds and returns no `gate` object.<br/>
+        /// This endpoint is in beta: the gate runs only on workspaces granted<br/>
+        /// `publish_eval_gate`, and the runs a publish authorises need<br/>
+        /// `durable_runs_access` (the run endpoints answer<br/>
+        /// `402 durable_runs_not_in_plan` without it).
         /// </summary>
         /// <param name="agentId"></param>
         /// <param name="speechifyVersion"></param>
@@ -49,7 +53,11 @@ namespace Speechify
         /// Any agent publishes here. The conversations it answers are versioned<br/>
         /// separately, by promoting a flow version via<br/>
         /// `/v1/agents/{agent_id}/flow/publish`.<br/>
-        /// On an ungated workspace this succeeds and returns no `gate` object.
+        /// On an ungated workspace this succeeds and returns no `gate` object.<br/>
+        /// This endpoint is in beta: the gate runs only on workspaces granted<br/>
+        /// `publish_eval_gate`, and the runs a publish authorises need<br/>
+        /// `durable_runs_access` (the run endpoints answer<br/>
+        /// `402 durable_runs_not_in_plan` without it).
         /// </summary>
         /// <param name="agentId"></param>
         /// <param name="speechifyVersion"></param>
@@ -81,7 +89,11 @@ namespace Speechify
         /// Any agent publishes here. The conversations it answers are versioned<br/>
         /// separately, by promoting a flow version via<br/>
         /// `/v1/agents/{agent_id}/flow/publish`.<br/>
-        /// On an ungated workspace this succeeds and returns no `gate` object.
+        /// On an ungated workspace this succeeds and returns no `gate` object.<br/>
+        /// This endpoint is in beta: the gate runs only on workspaces granted<br/>
+        /// `publish_eval_gate`, and the runs a publish authorises need<br/>
+        /// `durable_runs_access` (the run endpoints answer<br/>
+        /// `402 durable_runs_not_in_plan` without it).
         /// </summary>
         /// <param name="agentId"></param>
         /// <param name="speechifyVersion"></param>

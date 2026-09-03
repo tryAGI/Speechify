@@ -6,7 +6,10 @@ namespace Speechify
     {
         /// <summary>
         /// Get Agent Run<br/>
-        /// Poll a run by its handle. Branch on `status`.
+        /// Poll a run by its handle. Branch on `status`.<br/>
+        /// This endpoint is in beta: it is available to workspaces granted<br/>
+        /// `durable_runs_access`, and every other workspace receives<br/>
+        /// `402 durable_runs_not_in_plan`.
         /// </summary>
         /// <param name="agentId"></param>
         /// <param name="runId"></param>
@@ -22,7 +25,10 @@ namespace Speechify
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Get Agent Run<br/>
-        /// Poll a run by its handle. Branch on `status`.
+        /// Poll a run by its handle. Branch on `status`.<br/>
+        /// This endpoint is in beta: it is available to workspaces granted<br/>
+        /// `durable_runs_access`, and every other workspace receives<br/>
+        /// `402 durable_runs_not_in_plan`.
         /// </summary>
         /// <param name="agentId"></param>
         /// <param name="runId"></param>
