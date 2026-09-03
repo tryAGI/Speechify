@@ -15,6 +15,14 @@ namespace Speechify
         public string? Reply { get; set; }
 
         /// <summary>
+        /// The structured output, present only when the run carried an<br/>
+        /// `output_schema` and the agent produced an object satisfying it.<br/>
+        /// Never present alongside `incomplete_reason: output_schema_violation`.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("data")]
+        public object? Data { get; set; }
+
+        /// <summary>
         /// The per-step conversation record.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("transcript")]
@@ -32,6 +40,11 @@ namespace Speechify
         /// <param name="reply">
         /// The agent's final answer.
         /// </param>
+        /// <param name="data">
+        /// The structured output, present only when the run carried an<br/>
+        /// `output_schema` and the agent produced an object satisfying it.<br/>
+        /// Never present alongside `incomplete_reason: output_schema_violation`.
+        /// </param>
         /// <param name="transcript">
         /// The per-step conversation record.
         /// </param>
@@ -40,9 +53,11 @@ namespace Speechify
 #endif
         public AgentRunOutput(
             string? reply,
+            object? data,
             global::System.Collections.Generic.IList<global::Speechify.AgentRunOutputTranscriptItems>? transcript)
         {
             this.Reply = reply;
+            this.Data = data;
             this.Transcript = transcript;
         }
 

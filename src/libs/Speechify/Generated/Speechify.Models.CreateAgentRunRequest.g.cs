@@ -28,6 +28,18 @@ namespace Speechify
         public int? MaxTurns { get; set; }
 
         /// <summary>
+        /// Optional JSON Schema (2020-12, top-level `type: object`) the run's<br/>
+        /// final answer must satisfy. When set, the agent answers with a JSON<br/>
+        /// object, the platform validates it against this schema (re-asking the<br/>
+        /// agent on a mismatch, bounded), and the conforming object is returned<br/>
+        /// as `output.data`. A run that never produces a conforming object<br/>
+        /// settles `succeeded` with `incomplete_reason: output_schema_violation`<br/>
+        /// and no `output.data`. At most 16 KiB.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("output_schema")]
+        public object? OutputSchema { get; set; }
+
+        /// <summary>
         /// Up to 16 arbitrary key/value pairs echoed back on the run.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("metadata")]
@@ -51,6 +63,15 @@ namespace Speechify
         /// <param name="maxTurns">
         /// Upper bound on the run's internal turn budget (server default when omitted; hard-capped).
         /// </param>
+        /// <param name="outputSchema">
+        /// Optional JSON Schema (2020-12, top-level `type: object`) the run's<br/>
+        /// final answer must satisfy. When set, the agent answers with a JSON<br/>
+        /// object, the platform validates it against this schema (re-asking the<br/>
+        /// agent on a mismatch, bounded), and the conforming object is returned<br/>
+        /// as `output.data`. A run that never produces a conforming object<br/>
+        /// settles `succeeded` with `incomplete_reason: output_schema_violation`<br/>
+        /// and no `output.data`. At most 16 KiB.
+        /// </param>
         /// <param name="metadata">
         /// Up to 16 arbitrary key/value pairs echoed back on the run.
         /// </param>
@@ -61,11 +82,13 @@ namespace Speechify
             string instruction,
             object? variables,
             int? maxTurns,
+            object? outputSchema,
             global::System.Collections.Generic.Dictionary<string, string>? metadata)
         {
             this.Instruction = instruction ?? throw new global::System.ArgumentNullException(nameof(instruction));
             this.Variables = variables;
             this.MaxTurns = maxTurns;
+            this.OutputSchema = outputSchema;
             this.Metadata = metadata;
         }
 

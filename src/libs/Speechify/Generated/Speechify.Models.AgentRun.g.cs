@@ -57,7 +57,7 @@ namespace Speechify
         public global::Speechify.AgentRunError? Error { get; set; }
 
         /// <summary>
-        /// Why a non-failed run stopped short (e.g. `max_turns`).
+        /// Why a non-failed run stopped short: `max_turns_exhausted`, `budget_exhausted`, or `output_schema_violation` (the agent never produced an object matching `input.output_schema`; `output.reply` keeps its prose and `output.data` is absent).
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("incomplete_reason")]
         public string? IncompleteReason { get; set; }
@@ -136,7 +136,7 @@ namespace Speechify
         /// Present only when `status` is `failed`.
         /// </param>
         /// <param name="incompleteReason">
-        /// Why a non-failed run stopped short (e.g. `max_turns`).
+        /// Why a non-failed run stopped short: `max_turns_exhausted`, `budget_exhausted`, or `output_schema_violation` (the agent never produced an object matching `input.output_schema`; `output.reply` keeps its prose and `output.data` is absent).
         /// </param>
         /// <param name="usage">
         /// Metered cost, populated at a terminal state: the run's wall-clock plus its aggregate token usage summed across every step. Token counts are THIS run's own - a run that delegated sub-goals does not include its children's usage, so a team run's total cost is this plus the usage of each run from `listRunChildren`.

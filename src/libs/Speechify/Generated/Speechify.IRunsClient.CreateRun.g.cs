@@ -85,6 +85,15 @@ namespace Speechify
         /// <param name="maxTurns">
         /// Upper bound on the run's internal turn budget (server default when omitted; hard-capped).
         /// </param>
+        /// <param name="outputSchema">
+        /// Optional JSON Schema (2020-12, top-level `type: object`) the run's<br/>
+        /// final answer must satisfy. When set, the agent answers with a JSON<br/>
+        /// object, the platform validates it against this schema (re-asking the<br/>
+        /// agent on a mismatch, bounded), and the conforming object is returned<br/>
+        /// as `output.data`. A run that never produces a conforming object<br/>
+        /// settles `succeeded` with `incomplete_reason: output_schema_violation`<br/>
+        /// and no `output.data`. At most 16 KiB.
+        /// </param>
         /// <param name="metadata">
         /// Up to 16 arbitrary key/value pairs echoed back on the run.
         /// </param>
@@ -98,6 +107,7 @@ namespace Speechify
             string? idempotencyKey = default,
             object? variables = default,
             int? maxTurns = default,
+            object? outputSchema = default,
             global::System.Collections.Generic.Dictionary<string, string>? metadata = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
