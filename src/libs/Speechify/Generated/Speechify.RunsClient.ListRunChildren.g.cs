@@ -58,7 +58,10 @@ namespace Speechify
         /// Each child runs under the MEMBER's agent, not this one, so children never<br/>
         /// appear in this agent's `listRuns`. This is the downward half of lineage; the<br/>
         /// upward half is `parent_run_id` on the run object. A run that delegated<br/>
-        /// nothing returns an empty list.
+        /// nothing returns an empty list.<br/>
+        /// This endpoint is in beta: it is available to workspaces granted<br/>
+        /// `durable_runs_access`, and every other workspace receives<br/>
+        /// `402 durable_runs_not_in_plan`.
         /// </summary>
         /// <param name="agentId"></param>
         /// <param name="runId"></param>
@@ -100,7 +103,10 @@ namespace Speechify
         /// Each child runs under the MEMBER's agent, not this one, so children never<br/>
         /// appear in this agent's `listRuns`. This is the downward half of lineage; the<br/>
         /// upward half is `parent_run_id` on the run object. A run that delegated<br/>
-        /// nothing returns an empty list.
+        /// nothing returns an empty list.<br/>
+        /// This endpoint is in beta: it is available to workspaces granted<br/>
+        /// `durable_runs_access`, and every other workspace receives<br/>
+        /// `402 durable_runs_not_in_plan`.
         /// </summary>
         /// <param name="agentId"></param>
         /// <param name="runId"></param>

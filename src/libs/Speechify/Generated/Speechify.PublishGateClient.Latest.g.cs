@@ -47,7 +47,9 @@ namespace Speechify
         /// Get Latest Publish Gate Run<br/>
         /// Return the agent's most recent publish-gate decision, or `null` when it has<br/>
         /// never been gated. This is the durable answer to "are this agent's checks<br/>
-        /// passing, and when were they last run", without republishing it.
+        /// passing, and when were they last run", without republishing it.<br/>
+        /// This endpoint is in beta: a decision exists only on workspaces granted<br/>
+        /// `publish_eval_gate`; every other workspace reads `null`.
         /// </summary>
         /// <param name="agentId"></param>
         /// <param name="speechifyVersion"></param>
@@ -73,7 +75,9 @@ namespace Speechify
         /// Get Latest Publish Gate Run<br/>
         /// Return the agent's most recent publish-gate decision, or `null` when it has<br/>
         /// never been gated. This is the durable answer to "are this agent's checks<br/>
-        /// passing, and when were they last run", without republishing it.
+        /// passing, and when were they last run", without republishing it.<br/>
+        /// This endpoint is in beta: a decision exists only on workspaces granted<br/>
+        /// `publish_eval_gate`; every other workspace reads `null`.
         /// </summary>
         /// <param name="agentId"></param>
         /// <param name="speechifyVersion"></param>

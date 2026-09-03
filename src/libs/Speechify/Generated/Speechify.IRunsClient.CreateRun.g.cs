@@ -17,7 +17,10 @@ namespace Speechify
         /// Refused with `422 tool_transport_unsupported` when one of the agent's<br/>
         /// attached MCP tools uses the legacy `sse` transport, which durable runs<br/>
         /// cannot execute; the message names the tool. Switch it to<br/>
-        /// `http_streamable` or detach it, then retry.
+        /// `http_streamable` or detach it, then retry.<br/>
+        /// This endpoint is in beta: it is available to workspaces granted<br/>
+        /// `durable_runs_access`, and every other workspace receives<br/>
+        /// `402 durable_runs_not_in_plan`.
         /// </summary>
         /// <param name="agentId"></param>
         /// <param name="speechifyVersion"></param>
@@ -49,7 +52,10 @@ namespace Speechify
         /// Refused with `422 tool_transport_unsupported` when one of the agent's<br/>
         /// attached MCP tools uses the legacy `sse` transport, which durable runs<br/>
         /// cannot execute; the message names the tool. Switch it to<br/>
-        /// `http_streamable` or detach it, then retry.
+        /// `http_streamable` or detach it, then retry.<br/>
+        /// This endpoint is in beta: it is available to workspaces granted<br/>
+        /// `durable_runs_access`, and every other workspace receives<br/>
+        /// `402 durable_runs_not_in_plan`.
         /// </summary>
         /// <param name="agentId"></param>
         /// <param name="speechifyVersion"></param>
@@ -81,7 +87,10 @@ namespace Speechify
         /// Refused with `422 tool_transport_unsupported` when one of the agent's<br/>
         /// attached MCP tools uses the legacy `sse` transport, which durable runs<br/>
         /// cannot execute; the message names the tool. Switch it to<br/>
-        /// `http_streamable` or detach it, then retry.
+        /// `http_streamable` or detach it, then retry.<br/>
+        /// This endpoint is in beta: it is available to workspaces granted<br/>
+        /// `durable_runs_access`, and every other workspace receives<br/>
+        /// `402 durable_runs_not_in_plan`.
         /// </summary>
         /// <param name="agentId"></param>
         /// <param name="speechifyVersion"></param>

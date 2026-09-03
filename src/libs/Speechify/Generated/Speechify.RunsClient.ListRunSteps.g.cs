@@ -58,7 +58,10 @@ namespace Speechify
         /// final answer is not a step; it lives on the run object (`getRun`). Use this<br/>
         /// to render or audit exactly what a run did between its instruction and its<br/>
         /// result.<br/>
-        /// Credential-shaped values in a step's arguments and content are redacted.
+        /// Credential-shaped values in a step's arguments and content are redacted.<br/>
+        /// This endpoint is in beta: it is available to workspaces granted<br/>
+        /// `durable_runs_access`, and every other workspace receives<br/>
+        /// `402 durable_runs_not_in_plan`.
         /// </summary>
         /// <param name="agentId"></param>
         /// <param name="runId"></param>
@@ -100,7 +103,10 @@ namespace Speechify
         /// final answer is not a step; it lives on the run object (`getRun`). Use this<br/>
         /// to render or audit exactly what a run did between its instruction and its<br/>
         /// result.<br/>
-        /// Credential-shaped values in a step's arguments and content are redacted.
+        /// Credential-shaped values in a step's arguments and content are redacted.<br/>
+        /// This endpoint is in beta: it is available to workspaces granted<br/>
+        /// `durable_runs_access`, and every other workspace receives<br/>
+        /// `402 durable_runs_not_in_plan`.
         /// </summary>
         /// <param name="agentId"></param>
         /// <param name="runId"></param>

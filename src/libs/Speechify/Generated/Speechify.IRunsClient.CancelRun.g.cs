@@ -8,7 +8,10 @@ namespace Speechify
         /// Cancel Agent Run<br/>
         /// Request cancellation. Idempotent: a queued run cancels immediately; a<br/>
         /// running run flips to `canceling` and settles at its next checkpoint; a<br/>
-        /// terminal run is unchanged.
+        /// terminal run is unchanged.<br/>
+        /// This endpoint is in beta: it is available to workspaces granted<br/>
+        /// `durable_runs_access`, and every other workspace receives<br/>
+        /// `402 durable_runs_not_in_plan`.
         /// </summary>
         /// <param name="agentId"></param>
         /// <param name="runId"></param>
@@ -30,7 +33,10 @@ namespace Speechify
         /// Cancel Agent Run<br/>
         /// Request cancellation. Idempotent: a queued run cancels immediately; a<br/>
         /// running run flips to `canceling` and settles at its next checkpoint; a<br/>
-        /// terminal run is unchanged.
+        /// terminal run is unchanged.<br/>
+        /// This endpoint is in beta: it is available to workspaces granted<br/>
+        /// `durable_runs_access`, and every other workspace receives<br/>
+        /// `402 durable_runs_not_in_plan`.
         /// </summary>
         /// <param name="agentId"></param>
         /// <param name="runId"></param>
