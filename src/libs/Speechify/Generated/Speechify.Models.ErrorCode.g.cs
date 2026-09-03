@@ -464,6 +464,10 @@ namespace Speechify
         /// <summary>
         ///
         /// </summary>
+        ToolTransportUnsupported,
+        /// <summary>
+        ///
+        /// </summary>
         TopupNotInPlan,
         /// <summary>
         ///
@@ -651,6 +655,7 @@ namespace Speechify
                 ErrorCode.TooManyVoices => "too_many_voices",
                 ErrorCode.ToolConfigShared => "tool_config_shared",
                 ErrorCode.ToolNotFound => "tool_not_found",
+                ErrorCode.ToolTransportUnsupported => "tool_transport_unsupported",
                 ErrorCode.TopupNotInPlan => "topup_not_in_plan",
                 ErrorCode.TriggerNotFound => "trigger_not_found",
                 ErrorCode.Unauthorized => "unauthorized",
@@ -789,6 +794,7 @@ namespace Speechify
                 "too_many_voices" => ErrorCode.TooManyVoices,
                 "tool_config_shared" => ErrorCode.ToolConfigShared,
                 "tool_not_found" => ErrorCode.ToolNotFound,
+                "tool_transport_unsupported" => ErrorCode.ToolTransportUnsupported,
                 "topup_not_in_plan" => ErrorCode.TopupNotInPlan,
                 "trigger_not_found" => ErrorCode.TriggerNotFound,
                 "unauthorized" => ErrorCode.Unauthorized,

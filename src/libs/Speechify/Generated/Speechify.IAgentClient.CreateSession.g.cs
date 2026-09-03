@@ -20,10 +20,16 @@ namespace Speechify
         ///   member of that list. Used directly by the<br/>
         ///   `&lt;speechify-agent&gt;` web component.<br/>
         /// Responds with the same `CreateConversationResponse` as<br/>
-        /// `createConversation`.
+        /// `createConversation`.<br/>
+        /// `Idempotency-Key` replay is scoped to the authenticated caller, so it<br/>
+        /// applies to Bearer requests only: an unauthenticated mint has no scope<br/>
+        /// to replay under, and retrying one mints a fresh session.
         /// </summary>
         /// <param name="agentId"></param>
         /// <param name="speechifyVersion"></param>
+        /// <param name="idempotencyKey">
+        /// Optional idempotency key. When omitted, the SDK generates one for this request.
+        /// </param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -33,6 +39,7 @@ namespace Speechify
 
             global::Speechify.CreateSessionRequest request,
             string? speechifyVersion = default,
+            string? idempotencyKey = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
@@ -51,10 +58,16 @@ namespace Speechify
         ///   member of that list. Used directly by the<br/>
         ///   `&lt;speechify-agent&gt;` web component.<br/>
         /// Responds with the same `CreateConversationResponse` as<br/>
-        /// `createConversation`.
+        /// `createConversation`.<br/>
+        /// `Idempotency-Key` replay is scoped to the authenticated caller, so it<br/>
+        /// applies to Bearer requests only: an unauthenticated mint has no scope<br/>
+        /// to replay under, and retrying one mints a fresh session.
         /// </summary>
         /// <param name="agentId"></param>
         /// <param name="speechifyVersion"></param>
+        /// <param name="idempotencyKey">
+        /// Optional idempotency key. When omitted, the SDK generates one for this request.
+        /// </param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -64,6 +77,7 @@ namespace Speechify
 
             global::Speechify.CreateSessionRequest request,
             string? speechifyVersion = default,
+            string? idempotencyKey = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
@@ -82,10 +96,16 @@ namespace Speechify
         ///   member of that list. Used directly by the<br/>
         ///   `&lt;speechify-agent&gt;` web component.<br/>
         /// Responds with the same `CreateConversationResponse` as<br/>
-        /// `createConversation`.
+        /// `createConversation`.<br/>
+        /// `Idempotency-Key` replay is scoped to the authenticated caller, so it<br/>
+        /// applies to Bearer requests only: an unauthenticated mint has no scope<br/>
+        /// to replay under, and retrying one mints a fresh session.
         /// </summary>
         /// <param name="agentId"></param>
         /// <param name="speechifyVersion"></param>
+        /// <param name="idempotencyKey">
+        /// Optional idempotency key. When omitted, the SDK generates one for this request.
+        /// </param>
         /// <param name="userIdentity">
         /// Opaque identifier for the end-user (e.g. your app's user ID),<br/>
         /// persisted as the conversation's `caller_identity` and used as the<br/>
@@ -123,6 +143,7 @@ namespace Speechify
         global::System.Threading.Tasks.Task<global::Speechify.CreateConversationResponse> CreateSessionAsync(
             string agentId,
             string? speechifyVersion = default,
+            string? idempotencyKey = default,
             string? userIdentity = default,
             string? language = default,
             object? dynamicVariables = default,

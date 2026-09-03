@@ -15,6 +15,9 @@ namespace Speechify
         /// time (`POST /v1/agents/tests/runs`) independently of it.
         /// </summary>
         /// <param name="speechifyVersion"></param>
+        /// <param name="idempotencyKey">
+        /// Optional idempotency key. When omitted, the SDK generates one for this request.
+        /// </param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -23,6 +26,7 @@ namespace Speechify
 
             global::Speechify.CreateAgentTestRequest request,
             string? speechifyVersion = default,
+            string? idempotencyKey = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
@@ -36,6 +40,9 @@ namespace Speechify
         /// time (`POST /v1/agents/tests/runs`) independently of it.
         /// </summary>
         /// <param name="speechifyVersion"></param>
+        /// <param name="idempotencyKey">
+        /// Optional idempotency key. When omitted, the SDK generates one for this request.
+        /// </param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -44,6 +51,7 @@ namespace Speechify
 
             global::Speechify.CreateAgentTestRequest request,
             string? speechifyVersion = default,
+            string? idempotencyKey = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
@@ -57,6 +65,9 @@ namespace Speechify
         /// time (`POST /v1/agents/tests/runs`) independently of it.
         /// </summary>
         /// <param name="speechifyVersion"></param>
+        /// <param name="idempotencyKey">
+        /// Optional idempotency key. When omitted, the SDK generates one for this request.
+        /// </param>
         /// <param name="agentId">
         /// Optional authoring agent (`agent_&lt;26 char Crockford base32&gt;`).<br/>
         /// When supplied it must be an agent in the caller's workspace; it<br/>
@@ -100,6 +111,7 @@ namespace Speechify
             global::Speechify.TestType type,
             global::Speechify.CreateAgentTestRequestConfig config,
             string? speechifyVersion = default,
+            string? idempotencyKey = default,
             string? agentId = default,
             string? description = default,
             global::Speechify.ToolMockConfig? toolMockConfig = default,

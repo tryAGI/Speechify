@@ -13,7 +13,11 @@ namespace Speechify
         /// a short-lived store). This is the managed-agent-platform primitive: start<br/>
         /// work, walk away, come back for the result.<br/>
         /// Idempotent via `Idempotency-Key`: a retry replays the first run instead of<br/>
-        /// starting a duplicate (the `run_id` is the idempotency handle).
+        /// starting a duplicate (the `run_id` is the idempotency handle).<br/>
+        /// Refused with `422 tool_transport_unsupported` when one of the agent's<br/>
+        /// attached MCP tools uses the legacy `sse` transport, which durable runs<br/>
+        /// cannot execute; the message names the tool. Switch it to<br/>
+        /// `http_streamable` or detach it, then retry.
         /// </summary>
         /// <param name="agentId"></param>
         /// <param name="speechifyVersion"></param>
@@ -41,7 +45,11 @@ namespace Speechify
         /// a short-lived store). This is the managed-agent-platform primitive: start<br/>
         /// work, walk away, come back for the result.<br/>
         /// Idempotent via `Idempotency-Key`: a retry replays the first run instead of<br/>
-        /// starting a duplicate (the `run_id` is the idempotency handle).
+        /// starting a duplicate (the `run_id` is the idempotency handle).<br/>
+        /// Refused with `422 tool_transport_unsupported` when one of the agent's<br/>
+        /// attached MCP tools uses the legacy `sse` transport, which durable runs<br/>
+        /// cannot execute; the message names the tool. Switch it to<br/>
+        /// `http_streamable` or detach it, then retry.
         /// </summary>
         /// <param name="agentId"></param>
         /// <param name="speechifyVersion"></param>
@@ -69,7 +77,11 @@ namespace Speechify
         /// a short-lived store). This is the managed-agent-platform primitive: start<br/>
         /// work, walk away, come back for the result.<br/>
         /// Idempotent via `Idempotency-Key`: a retry replays the first run instead of<br/>
-        /// starting a duplicate (the `run_id` is the idempotency handle).
+        /// starting a duplicate (the `run_id` is the idempotency handle).<br/>
+        /// Refused with `422 tool_transport_unsupported` when one of the agent's<br/>
+        /// attached MCP tools uses the legacy `sse` transport, which durable runs<br/>
+        /// cannot execute; the message names the tool. Switch it to<br/>
+        /// `http_streamable` or detach it, then retry.
         /// </summary>
         /// <param name="agentId"></param>
         /// <param name="speechifyVersion"></param>
