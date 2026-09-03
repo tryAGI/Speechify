@@ -28,11 +28,13 @@ namespace Speechify
         partial void PrepareCreateTestArguments(
             global::System.Net.Http.HttpClient httpClient,
             ref string? speechifyVersion,
+            ref string? idempotencyKey,
             global::Speechify.CreateAgentTestRequest request);
         partial void PrepareCreateTestRequest(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpRequestMessage httpRequestMessage,
             string? speechifyVersion,
+            string? idempotencyKey,
             global::Speechify.CreateAgentTestRequest request);
         partial void ProcessCreateTestResponse(
             global::System.Net.Http.HttpClient httpClient,
@@ -54,6 +56,9 @@ namespace Speechify
         /// time (`POST /v1/agents/tests/runs`) independently of it.
         /// </summary>
         /// <param name="speechifyVersion"></param>
+        /// <param name="idempotencyKey">
+        /// Optional idempotency key. When omitted, the SDK generates one for this request.
+        /// </param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -62,6 +67,7 @@ namespace Speechify
 
             global::Speechify.CreateAgentTestRequest request,
             string? speechifyVersion = default,
+            string? idempotencyKey = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
@@ -69,6 +75,7 @@ namespace Speechify
 
                 request: request,
                 speechifyVersion: speechifyVersion,
+                idempotencyKey: idempotencyKey,
                 requestOptions: requestOptions,
                 cancellationToken: cancellationToken
             ).ConfigureAwait(false);
@@ -86,6 +93,9 @@ namespace Speechify
         /// time (`POST /v1/agents/tests/runs`) independently of it.
         /// </summary>
         /// <param name="speechifyVersion"></param>
+        /// <param name="idempotencyKey">
+        /// Optional idempotency key. When omitted, the SDK generates one for this request.
+        /// </param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -94,6 +104,7 @@ namespace Speechify
 
             global::Speechify.CreateAgentTestRequest request,
             string? speechifyVersion = default,
+            string? idempotencyKey = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
@@ -104,6 +115,7 @@ namespace Speechify
             PrepareCreateTestArguments(
                 httpClient: HttpClient,
                 speechifyVersion: ref speechifyVersion,
+                idempotencyKey: ref idempotencyKey,
                 request: request);
 
 
@@ -166,6 +178,10 @@ namespace Speechify
             {
                 __httpRequest.Headers.TryAddWithoutValidation("Speechify-Version", speechifyVersion.ToString());
             }
+            var __idempotencyKey = global::System.String.IsNullOrWhiteSpace(idempotencyKey)
+                ? CreateIdempotencyKey()
+                : idempotencyKey;
+            __httpRequest.Headers.TryAddWithoutValidation("Idempotency-Key", __idempotencyKey);
 
                             var __httpRequestContentBody = request.ToJson(JsonSerializerContext);
                             var __httpRequestContent = new global::System.Net.Http.StringContent(
@@ -185,6 +201,7 @@ namespace Speechify
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
                     speechifyVersion: speechifyVersion,
+                    idempotencyKey: idempotencyKey,
                     request: request);
 
                 return __httpRequest;
@@ -475,6 +492,43 @@ namespace Speechify
                                         h => h.Key,
                                         h => h.Value));
                             }
+                            // The request conflicts with the current resource state - e.g. duplicate, optimistic-concurrency mismatch, or last-owner guard.
+                            if ((int)__response.StatusCode == 409)
+                            {
+                                string? __content_409 = null;
+                                global::System.Exception? __exception_409 = null;
+                                global::Speechify.Error? __value_409 = null;
+                                try
+                                {
+                                    if (__effectiveReadResponseAsString)
+                                    {
+                                        __content_409 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+                                        __value_409 = global::Speechify.Error.FromJson(__content_409, JsonSerializerContext);
+                                    }
+                                    else
+                                    {
+                                        __content_409 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+
+                                        __value_409 = global::Speechify.Error.FromJson(__content_409, JsonSerializerContext);
+                                    }
+                                }
+                                catch (global::System.Exception __ex)
+                                {
+                                    __exception_409 = __ex;
+                                }
+
+
+                                throw global::Speechify.ApiException<global::Speechify.Error>.Create(
+                                    statusCode: __response.StatusCode,
+                                    message: __content_409 ?? __response.ReasonPhrase ?? string.Empty,
+                                    innerException: __exception_409,
+                                    responseBody: __content_409,
+                                    responseObject: __value_409,
+                                    responseHeaders: global::System.Linq.Enumerable.ToDictionary(
+                                        __response.Headers,
+                                        h => h.Key,
+                                        h => h.Value));
+                            }
 
                             if (__effectiveReadResponseAsString)
                             {
@@ -582,6 +636,9 @@ namespace Speechify
         /// time (`POST /v1/agents/tests/runs`) independently of it.
         /// </summary>
         /// <param name="speechifyVersion"></param>
+        /// <param name="idempotencyKey">
+        /// Optional idempotency key. When omitted, the SDK generates one for this request.
+        /// </param>
         /// <param name="agentId">
         /// Optional authoring agent (`agent_&lt;26 char Crockford base32&gt;`).<br/>
         /// When supplied it must be an agent in the caller's workspace; it<br/>
@@ -625,6 +682,7 @@ namespace Speechify
             global::Speechify.TestType type,
             global::Speechify.CreateAgentTestRequestConfig config,
             string? speechifyVersion = default,
+            string? idempotencyKey = default,
             string? agentId = default,
             string? description = default,
             global::Speechify.ToolMockConfig? toolMockConfig = default,
@@ -647,6 +705,7 @@ namespace Speechify
 
             return await CreateTestAsync(
                 speechifyVersion: speechifyVersion,
+                idempotencyKey: idempotencyKey,
                 request: __request,
                 requestOptions: requestOptions,
                 cancellationToken: cancellationToken).ConfigureAwait(false);
