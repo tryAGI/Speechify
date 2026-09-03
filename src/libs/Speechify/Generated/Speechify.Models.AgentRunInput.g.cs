@@ -28,6 +28,12 @@ namespace Speechify
         public int? MaxTurns { get; set; }
 
         /// <summary>
+        /// The JSON Schema the run's structured output must satisfy, frozen at creation. Absent for a prose-only run.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("output_schema")]
+        public object? OutputSchema { get; set; }
+
+        /// <summary>
         /// The team members this run may delegate sub-goals to, present only on a team run (started via `runTeam`). Each is a member agent with its role and hand-off note. Absent for a solo agent run.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("delegation_targets")]
@@ -45,6 +51,9 @@ namespace Speechify
         /// <param name="instruction"></param>
         /// <param name="variables"></param>
         /// <param name="maxTurns"></param>
+        /// <param name="outputSchema">
+        /// The JSON Schema the run's structured output must satisfy, frozen at creation. Absent for a prose-only run.
+        /// </param>
         /// <param name="delegationTargets">
         /// The team members this run may delegate sub-goals to, present only on a team run (started via `runTeam`). Each is a member agent with its role and hand-off note. Absent for a solo agent run.
         /// </param>
@@ -55,11 +64,13 @@ namespace Speechify
             string instruction,
             object? variables,
             int? maxTurns,
+            object? outputSchema,
             global::System.Collections.Generic.IList<global::Speechify.AgentRunInputDelegationTargetsItems>? delegationTargets)
         {
             this.Instruction = instruction ?? throw new global::System.ArgumentNullException(nameof(instruction));
             this.Variables = variables;
             this.MaxTurns = maxTurns;
+            this.OutputSchema = outputSchema;
             this.DelegationTargets = delegationTargets;
         }
 

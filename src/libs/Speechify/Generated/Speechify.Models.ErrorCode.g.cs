@@ -52,6 +52,14 @@ namespace Speechify
         /// <summary>
         ///
         /// </summary>
+        ApiRouteConflict,
+        /// <summary>
+        ///
+        /// </summary>
+        ApiRouteNotFound,
+        /// <summary>
+        ///
+        /// </summary>
         AudioAssetNotFound,
         /// <summary>
         ///
@@ -132,6 +140,10 @@ namespace Speechify
         /// <summary>
         ///
         /// </summary>
+        ConsumerKeyNotFound,
+        /// <summary>
+        ///
+        /// </summary>
         ContactIdentifierConflict,
         /// <summary>
         ///
@@ -185,6 +197,18 @@ namespace Speechify
         ///
         /// </summary>
         FundedBalanceRequired,
+        /// <summary>
+        ///
+        /// </summary>
+        HostedApiNotFound,
+        /// <summary>
+        ///
+        /// </summary>
+        HostedApiSlugTaken,
+        /// <summary>
+        ///
+        /// </summary>
+        HostedApisNotInPlan,
         /// <summary>
         ///
         /// </summary>
@@ -324,6 +348,22 @@ namespace Speechify
         /// <summary>
         ///
         /// </summary>
+        RouteOutputUnavailable,
+        /// <summary>
+        ///
+        /// </summary>
+        RouteRunFailed,
+        /// <summary>
+        ///
+        /// </summary>
+        RouteRunLimitReached,
+        /// <summary>
+        ///
+        /// </summary>
+        RouteRunTimeout,
+        /// <summary>
+        ///
+        /// </summary>
         ServiceAccountLimitReached,
         /// <summary>
         ///
@@ -361,6 +401,34 @@ namespace Speechify
         ///
         /// </summary>
         SpendCapExceeded,
+        /// <summary>
+        ///
+        /// </summary>
+        StoreAssetNotFound,
+        /// <summary>
+        ///
+        /// </summary>
+        StoreBytesLimitReached,
+        /// <summary>
+        ///
+        /// </summary>
+        StoreDocumentLimitReached,
+        /// <summary>
+        ///
+        /// </summary>
+        StoreDocumentNotFound,
+        /// <summary>
+        ///
+        /// </summary>
+        StoreLimitReached,
+        /// <summary>
+        ///
+        /// </summary>
+        StoreNotConfigured,
+        /// <summary>
+        ///
+        /// </summary>
+        StoreNotFound,
         /// <summary>
         ///
         /// </summary>
@@ -480,6 +548,8 @@ namespace Speechify
                 ErrorCode.AgentRunNotFound => "agent_run_not_found",
                 ErrorCode.AgentRunNotPending => "agent_run_not_pending",
                 ErrorCode.AgentTestNotFound => "agent_test_not_found",
+                ErrorCode.ApiRouteConflict => "api_route_conflict",
+                ErrorCode.ApiRouteNotFound => "api_route_not_found",
                 ErrorCode.AudioAssetNotFound => "audio_asset_not_found",
                 ErrorCode.BadRequest => "bad_request",
                 ErrorCode.BatchCallsNotIncluded => "batch_calls_not_included",
@@ -500,6 +570,7 @@ namespace Speechify
                 ErrorCode.ConsentRecordingUnusable => "consent_recording_unusable",
                 ErrorCode.ConsentSpeakerMismatch => "consent_speaker_mismatch",
                 ErrorCode.ConsentVerificationUnavailable => "consent_verification_unavailable",
+                ErrorCode.ConsumerKeyNotFound => "consumer_key_not_found",
                 ErrorCode.ContactIdentifierConflict => "contact_identifier_conflict",
                 ErrorCode.ContactIdentifierNotFound => "contact_identifier_not_found",
                 ErrorCode.ContactNotFound => "contact_not_found",
@@ -514,6 +585,9 @@ namespace Speechify
                 ErrorCode.DurableRunsNotInPlan => "durable_runs_not_in_plan",
                 ErrorCode.Forbidden => "forbidden",
                 ErrorCode.FundedBalanceRequired => "funded_balance_required",
+                ErrorCode.HostedApiNotFound => "hosted_api_not_found",
+                ErrorCode.HostedApiSlugTaken => "hosted_api_slug_taken",
+                ErrorCode.HostedApisNotInPlan => "hosted_apis_not_in_plan",
                 ErrorCode.IdempotencyConflict => "idempotency_conflict",
                 ErrorCode.InsufficientScope => "insufficient_scope",
                 ErrorCode.IntendedUseRequired => "intended_use_required",
@@ -548,6 +622,10 @@ namespace Speechify
                 ErrorCode.PurchasedNumbersNotIncluded => "purchased_numbers_not_included",
                 ErrorCode.RateLimited => "rate_limited",
                 ErrorCode.RelayDisplacesAgent => "relay_displaces_agent",
+                ErrorCode.RouteOutputUnavailable => "route_output_unavailable",
+                ErrorCode.RouteRunFailed => "route_run_failed",
+                ErrorCode.RouteRunLimitReached => "route_run_limit_reached",
+                ErrorCode.RouteRunTimeout => "route_run_timeout",
                 ErrorCode.ServiceAccountLimitReached => "service_account_limit_reached",
                 ErrorCode.ServiceAccountsNotInPlan => "service_accounts_not_in_plan",
                 ErrorCode.ServiceUnavailable => "service_unavailable",
@@ -558,6 +636,13 @@ namespace Speechify
                 ErrorCode.SpeechMarksUnsupported => "speech_marks_unsupported",
                 ErrorCode.SpendBudgetExceeded => "spend_budget_exceeded",
                 ErrorCode.SpendCapExceeded => "spend_cap_exceeded",
+                ErrorCode.StoreAssetNotFound => "store_asset_not_found",
+                ErrorCode.StoreBytesLimitReached => "store_bytes_limit_reached",
+                ErrorCode.StoreDocumentLimitReached => "store_document_limit_reached",
+                ErrorCode.StoreDocumentNotFound => "store_document_not_found",
+                ErrorCode.StoreLimitReached => "store_limit_reached",
+                ErrorCode.StoreNotConfigured => "store_not_configured",
+                ErrorCode.StoreNotFound => "store_not_found",
                 ErrorCode.TeamNotFound => "team_not_found",
                 ErrorCode.TextChannelNotInPlan => "text_channel_not_in_plan",
                 ErrorCode.TextMessageQuotaExceeded => "text_message_quota_exceeded",
@@ -601,6 +686,8 @@ namespace Speechify
                 "agent_run_not_found" => ErrorCode.AgentRunNotFound,
                 "agent_run_not_pending" => ErrorCode.AgentRunNotPending,
                 "agent_test_not_found" => ErrorCode.AgentTestNotFound,
+                "api_route_conflict" => ErrorCode.ApiRouteConflict,
+                "api_route_not_found" => ErrorCode.ApiRouteNotFound,
                 "audio_asset_not_found" => ErrorCode.AudioAssetNotFound,
                 "bad_request" => ErrorCode.BadRequest,
                 "batch_calls_not_included" => ErrorCode.BatchCallsNotIncluded,
@@ -621,6 +708,7 @@ namespace Speechify
                 "consent_recording_unusable" => ErrorCode.ConsentRecordingUnusable,
                 "consent_speaker_mismatch" => ErrorCode.ConsentSpeakerMismatch,
                 "consent_verification_unavailable" => ErrorCode.ConsentVerificationUnavailable,
+                "consumer_key_not_found" => ErrorCode.ConsumerKeyNotFound,
                 "contact_identifier_conflict" => ErrorCode.ContactIdentifierConflict,
                 "contact_identifier_not_found" => ErrorCode.ContactIdentifierNotFound,
                 "contact_not_found" => ErrorCode.ContactNotFound,
@@ -635,6 +723,9 @@ namespace Speechify
                 "durable_runs_not_in_plan" => ErrorCode.DurableRunsNotInPlan,
                 "forbidden" => ErrorCode.Forbidden,
                 "funded_balance_required" => ErrorCode.FundedBalanceRequired,
+                "hosted_api_not_found" => ErrorCode.HostedApiNotFound,
+                "hosted_api_slug_taken" => ErrorCode.HostedApiSlugTaken,
+                "hosted_apis_not_in_plan" => ErrorCode.HostedApisNotInPlan,
                 "idempotency_conflict" => ErrorCode.IdempotencyConflict,
                 "insufficient_scope" => ErrorCode.InsufficientScope,
                 "intended_use_required" => ErrorCode.IntendedUseRequired,
@@ -669,6 +760,10 @@ namespace Speechify
                 "purchased_numbers_not_included" => ErrorCode.PurchasedNumbersNotIncluded,
                 "rate_limited" => ErrorCode.RateLimited,
                 "relay_displaces_agent" => ErrorCode.RelayDisplacesAgent,
+                "route_output_unavailable" => ErrorCode.RouteOutputUnavailable,
+                "route_run_failed" => ErrorCode.RouteRunFailed,
+                "route_run_limit_reached" => ErrorCode.RouteRunLimitReached,
+                "route_run_timeout" => ErrorCode.RouteRunTimeout,
                 "service_account_limit_reached" => ErrorCode.ServiceAccountLimitReached,
                 "service_accounts_not_in_plan" => ErrorCode.ServiceAccountsNotInPlan,
                 "service_unavailable" => ErrorCode.ServiceUnavailable,
@@ -679,6 +774,13 @@ namespace Speechify
                 "speech_marks_unsupported" => ErrorCode.SpeechMarksUnsupported,
                 "spend_budget_exceeded" => ErrorCode.SpendBudgetExceeded,
                 "spend_cap_exceeded" => ErrorCode.SpendCapExceeded,
+                "store_asset_not_found" => ErrorCode.StoreAssetNotFound,
+                "store_bytes_limit_reached" => ErrorCode.StoreBytesLimitReached,
+                "store_document_limit_reached" => ErrorCode.StoreDocumentLimitReached,
+                "store_document_not_found" => ErrorCode.StoreDocumentNotFound,
+                "store_limit_reached" => ErrorCode.StoreLimitReached,
+                "store_not_configured" => ErrorCode.StoreNotConfigured,
+                "store_not_found" => ErrorCode.StoreNotFound,
                 "team_not_found" => ErrorCode.TeamNotFound,
                 "text_channel_not_in_plan" => ErrorCode.TextChannelNotInPlan,
                 "text_message_quota_exceeded" => ErrorCode.TextMessageQuotaExceeded,
