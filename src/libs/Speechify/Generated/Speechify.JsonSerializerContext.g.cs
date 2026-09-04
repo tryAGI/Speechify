@@ -250,6 +250,7 @@ namespace Speechify
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.AgentRunOutput))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Speechify.AgentRunOutputTranscriptItems>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.AgentRunError))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.AgentRunIncompleteReason), TypeInfoPropertyName = "AgentRunIncompleteReason2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.AgentRunUsage))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.PendingActionDefaultDecision), TypeInfoPropertyName = "PendingActionDefaultDecision2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.PendingAction))]
@@ -513,7 +514,6 @@ namespace Speechify
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.ListSIPTrunksResponse))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Speechify.SIPTrunk>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.CreateSipTrunkRequestCredentials))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.CreateSIPTrunkRequest))]
     internal sealed partial class SourceGenerationContextChunk0 : global::System.Text.Json.Serialization.JsonSerializerContext
     {
     }
@@ -526,6 +526,7 @@ namespace Speechify
         Converters = new global::System.Type[]
         {
         })]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.CreateSIPTrunkRequest))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.Caller))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.ListCallersResponse))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Speechify.Caller>))]
@@ -635,6 +636,7 @@ namespace Speechify
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.WebhookDeliveryStatus?), TypeInfoPropertyName = "NullableWebhookDeliveryStatus2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.PublishGateRunDecision?), TypeInfoPropertyName = "NullablePublishGateRunDecision2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.AgentRunStatus?), TypeInfoPropertyName = "NullableAgentRunStatus2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.AgentRunIncompleteReason?), TypeInfoPropertyName = "NullableAgentRunIncompleteReason2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.PendingActionDefaultDecision?), TypeInfoPropertyName = "NullablePendingActionDefaultDecision2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.V1AgentsAgentIdRunsGetParametersStatus?), TypeInfoPropertyName = "NullableV1AgentsAgentIdRunsGetParametersStatus2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.V1AgentsRunsGetParametersStatus?), TypeInfoPropertyName = "NullableV1AgentsRunsGetParametersStatus2")]
@@ -1068,6 +1070,10 @@ namespace Speechify
                     || typeToConvert == typeof(global::Speechify.AgentRunStatus)
 
                     || typeToConvert == typeof(global::Speechify.AgentRunStatus?)
+
+                    || typeToConvert == typeof(global::Speechify.AgentRunIncompleteReason)
+
+                    || typeToConvert == typeof(global::Speechify.AgentRunIncompleteReason?)
 
                     || typeToConvert == typeof(global::Speechify.PendingActionDefaultDecision)
 
@@ -1816,6 +1822,16 @@ namespace Speechify
                 if (typeToConvert == typeof(global::Speechify.AgentRunStatus?))
                 {
                     return new global::Speechify.JsonConverters.AgentRunStatusNullableJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.AgentRunIncompleteReason))
+                {
+                    return new global::Speechify.JsonConverters.AgentRunIncompleteReasonJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.AgentRunIncompleteReason?))
+                {
+                    return new global::Speechify.JsonConverters.AgentRunIncompleteReasonNullableJsonConverter();
                 }
 
                 if (typeToConvert == typeof(global::Speechify.PendingActionDefaultDecision))

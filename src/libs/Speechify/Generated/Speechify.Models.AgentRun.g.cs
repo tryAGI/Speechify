@@ -4,7 +4,7 @@
 namespace Speechify
 {
     /// <summary>
-    /// A durable async agent run. Enqueue it, get this handle, poll `status` until terminal. Backed by a durable job, so it survives a deploy.
+    /// A durable async agent run. Enqueue it, get this handle, follow it with the run event stream (or poll `status`) until terminal. Backed by a durable job, so it survives a deploy.
     /// </summary>
     public sealed partial class AgentRun
     {
@@ -23,7 +23,7 @@ namespace Speechify
         public required string Id { get; set; }
 
         /// <summary>
-        ///
+        /// The agent that ran. On a delegated child this is the member agent, not the manager.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("agent_id")]
         [global::System.Text.Json.Serialization.JsonRequired]
@@ -60,11 +60,13 @@ namespace Speechify
         /// Why a non-failed run stopped short: `max_turns_exhausted`, `budget_exhausted`, or `output_schema_violation` (the agent never produced an object matching `input.output_schema`; `output.reply` keeps its prose and `output.data` is absent).
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("incomplete_reason")]
-        public string? IncompleteReason { get; set; }
+        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Speechify.JsonConverters.AgentRunIncompleteReasonJsonConverter))]
+        public global::Speechify.AgentRunIncompleteReason? IncompleteReason { get; set; }
 
         /// <summary>
-        /// Metered cost, populated at a terminal state: the run's wall-clock plus its aggregate token usage summed across every step. Token counts are THIS run's own - a run that delegated sub-goals does not include its children's usage, so a team run's total cost is this plus the usage of each run from `listRunChildren`.<br/>
-        /// Token counts are what to attribute and forecast spend against. The underlying model is not reported: which model serves a tier is ours to route and may change, and pricing lives in your plan rather than in the model name.
+        /// What the run cost, populated once it reaches a terminal state: its wall-clock time plus its token usage summed across every step.<br/>
+        /// The counts are THIS run's own. A run that delegated sub-goals does not include its children's, so a team run's true cost is this plus the usage of each run from `listRunChildren`.<br/>
+        /// Attribute and forecast spend against the token counts. The model is not reported; your plan, not a model name, is what prices a run.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("usage")]
         public global::Speechify.AgentRunUsage? Usage { get; set; }
@@ -88,20 +90,20 @@ namespace Speechify
         public string? ParentRunId { get; set; }
 
         /// <summary>
-        ///
+        /// When the run was accepted and queued.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("created_at")]
         [global::System.Text.Json.Serialization.JsonRequired]
         public required global::System.DateTime CreatedAt { get; set; }
 
         /// <summary>
-        ///
+        /// When a worker picked the run up. Absent while `queued`; the gap between this and `created_at` is queue wait, not agent time.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("started_at")]
         public global::System.DateTime? StartedAt { get; set; }
 
         /// <summary>
-        ///
+        /// When the run settled. Present for every terminal status - succeeded, failed, canceled and expired alike - and absent otherwise.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("ended_at")]
         public global::System.DateTime? EndedAt { get; set; }
@@ -118,14 +120,18 @@ namespace Speechify
         /// <param name="id">
         /// Run id (prefixed external id, `arun_...`).
         /// </param>
-        /// <param name="agentId"></param>
+        /// <param name="agentId">
+        /// The agent that ran. On a delegated child this is the member agent, not the manager.
+        /// </param>
         /// <param name="status">
         /// Lifecycle: `queued` -&gt; `running` -&gt; `succeeded` | `failed` | `canceled` | `expired`. `requires_action` (a pending human approval) and `canceling` are transient. Terminal set: succeeded, failed, canceled, expired.
         /// </param>
         /// <param name="input">
         /// The frozen request the run was created with.
         /// </param>
-        /// <param name="createdAt"></param>
+        /// <param name="createdAt">
+        /// When the run was accepted and queued.
+        /// </param>
         /// <param name="projectId">
         /// The project this run belongs to; null when it belongs to none.<br/>
         /// Captured when the run was created, so it does not move if the agent later does.
@@ -140,8 +146,9 @@ namespace Speechify
         /// Why a non-failed run stopped short: `max_turns_exhausted`, `budget_exhausted`, or `output_schema_violation` (the agent never produced an object matching `input.output_schema`; `output.reply` keeps its prose and `output.data` is absent).
         /// </param>
         /// <param name="usage">
-        /// Metered cost, populated at a terminal state: the run's wall-clock plus its aggregate token usage summed across every step. Token counts are THIS run's own - a run that delegated sub-goals does not include its children's usage, so a team run's total cost is this plus the usage of each run from `listRunChildren`.<br/>
-        /// Token counts are what to attribute and forecast spend against. The underlying model is not reported: which model serves a tier is ours to route and may change, and pricing lives in your plan rather than in the model name.
+        /// What the run cost, populated once it reaches a terminal state: its wall-clock time plus its token usage summed across every step.<br/>
+        /// The counts are THIS run's own. A run that delegated sub-goals does not include its children's, so a team run's true cost is this plus the usage of each run from `listRunChildren`.<br/>
+        /// Attribute and forecast spend against the token counts. The model is not reported; your plan, not a model name, is what prices a run.
         /// </param>
         /// <param name="pendingAction">
         /// A human approval a run is durably parked on (present on `AgentRun` only while `status` is `requires_action`). Rendered VERBATIM for the approver - never a summary the agent wrote - so an injected agent cannot misrepresent what it is about to do. Resolve it with `submitRun`.
@@ -150,8 +157,12 @@ namespace Speechify
         /// <param name="parentRunId">
         /// The run that delegated this one a sub-goal, absent on a root run. It is the upward half of lineage - what makes a child run of a member agent attributable to the team run that caused it (`listRunChildren` is the downward half).
         /// </param>
-        /// <param name="startedAt"></param>
-        /// <param name="endedAt"></param>
+        /// <param name="startedAt">
+        /// When a worker picked the run up. Absent while `queued`; the gap between this and `created_at` is queue wait, not agent time.
+        /// </param>
+        /// <param name="endedAt">
+        /// When the run settled. Present for every terminal status - succeeded, failed, canceled and expired alike - and absent otherwise.
+        /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
 #endif
@@ -164,7 +175,7 @@ namespace Speechify
             string? projectId,
             global::Speechify.AgentRunOutput? output,
             global::Speechify.AgentRunError? error,
-            string? incompleteReason,
+            global::Speechify.AgentRunIncompleteReason? incompleteReason,
             global::Speechify.AgentRunUsage? usage,
             global::Speechify.PendingAction? pendingAction,
             global::System.Collections.Generic.Dictionary<string, string>? metadata,

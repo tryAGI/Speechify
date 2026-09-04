@@ -57,6 +57,14 @@ namespace Speechify
         /// work, walk away, come back for the result.<br/>
         /// Idempotent via `Idempotency-Key`: a retry replays the first run instead of<br/>
         /// starting a duplicate (the `run_id` is the idempotency handle).<br/>
+        /// ## Publish the agent first<br/>
+        /// **Every workspace granted `durable_runs_access` is publish-gated**, so<br/>
+        /// this is the first thing a new integration hits. Call<br/>
+        /// `POST /v1/agents/{agent_id}/publish` before the first run, and again<br/>
+        /// after any change to the agent's configuration: the gate is keyed to a<br/>
+        /// fingerprint of that configuration, so an edited agent stops running<br/>
+        /// until it is republished. Until it passes, this endpoint returns<br/>
+        /// `422 agent_publish_gate_required`.<br/>
         /// Refused with `422 tool_transport_unsupported` when one of the agent's<br/>
         /// attached MCP tools uses the legacy `sse` transport, which durable runs<br/>
         /// cannot execute; the message names the tool. Switch it to<br/>
@@ -64,8 +72,10 @@ namespace Speechify
         /// Returns `429 concurrency_limit_reached` when the workspace already has<br/>
         /// 200 runs queued or running. Runs execute on a shared queue, so the<br/>
         /// ceiling is what keeps one workspace's backlog from delaying everyone<br/>
-        /// else's next run; it is not a plan limit. Wait for runs to finish, or<br/>
-        /// follow them with the run event stream, then retry.<br/>
+        /// else's next run; it is not a plan limit. `Retry-After` is a hint at the<br/>
+        /// scale runs take, not a promise - what actually frees a slot is one of<br/>
+        /// your own runs ending, so follow the ones you have with the event stream<br/>
+        /// and start the next when one does.<br/>
         /// This endpoint is in beta: it is available to workspaces granted<br/>
         /// `durable_runs_access`, and every other workspace receives<br/>
         /// `402 durable_runs_not_in_plan`.
@@ -110,6 +120,14 @@ namespace Speechify
         /// work, walk away, come back for the result.<br/>
         /// Idempotent via `Idempotency-Key`: a retry replays the first run instead of<br/>
         /// starting a duplicate (the `run_id` is the idempotency handle).<br/>
+        /// ## Publish the agent first<br/>
+        /// **Every workspace granted `durable_runs_access` is publish-gated**, so<br/>
+        /// this is the first thing a new integration hits. Call<br/>
+        /// `POST /v1/agents/{agent_id}/publish` before the first run, and again<br/>
+        /// after any change to the agent's configuration: the gate is keyed to a<br/>
+        /// fingerprint of that configuration, so an edited agent stops running<br/>
+        /// until it is republished. Until it passes, this endpoint returns<br/>
+        /// `422 agent_publish_gate_required`.<br/>
         /// Refused with `422 tool_transport_unsupported` when one of the agent's<br/>
         /// attached MCP tools uses the legacy `sse` transport, which durable runs<br/>
         /// cannot execute; the message names the tool. Switch it to<br/>
@@ -117,8 +135,10 @@ namespace Speechify
         /// Returns `429 concurrency_limit_reached` when the workspace already has<br/>
         /// 200 runs queued or running. Runs execute on a shared queue, so the<br/>
         /// ceiling is what keeps one workspace's backlog from delaying everyone<br/>
-        /// else's next run; it is not a plan limit. Wait for runs to finish, or<br/>
-        /// follow them with the run event stream, then retry.<br/>
+        /// else's next run; it is not a plan limit. `Retry-After` is a hint at the<br/>
+        /// scale runs take, not a promise - what actually frees a slot is one of<br/>
+        /// your own runs ending, so follow the ones you have with the event stream<br/>
+        /// and start the next when one does.<br/>
         /// This endpoint is in beta: it is available to workspaces granted<br/>
         /// `durable_runs_access`, and every other workspace receives<br/>
         /// `402 durable_runs_not_in_plan`.
@@ -744,6 +764,14 @@ namespace Speechify
         /// work, walk away, come back for the result.<br/>
         /// Idempotent via `Idempotency-Key`: a retry replays the first run instead of<br/>
         /// starting a duplicate (the `run_id` is the idempotency handle).<br/>
+        /// ## Publish the agent first<br/>
+        /// **Every workspace granted `durable_runs_access` is publish-gated**, so<br/>
+        /// this is the first thing a new integration hits. Call<br/>
+        /// `POST /v1/agents/{agent_id}/publish` before the first run, and again<br/>
+        /// after any change to the agent's configuration: the gate is keyed to a<br/>
+        /// fingerprint of that configuration, so an edited agent stops running<br/>
+        /// until it is republished. Until it passes, this endpoint returns<br/>
+        /// `422 agent_publish_gate_required`.<br/>
         /// Refused with `422 tool_transport_unsupported` when one of the agent's<br/>
         /// attached MCP tools uses the legacy `sse` transport, which durable runs<br/>
         /// cannot execute; the message names the tool. Switch it to<br/>
@@ -751,8 +779,10 @@ namespace Speechify
         /// Returns `429 concurrency_limit_reached` when the workspace already has<br/>
         /// 200 runs queued or running. Runs execute on a shared queue, so the<br/>
         /// ceiling is what keeps one workspace's backlog from delaying everyone<br/>
-        /// else's next run; it is not a plan limit. Wait for runs to finish, or<br/>
-        /// follow them with the run event stream, then retry.<br/>
+        /// else's next run; it is not a plan limit. `Retry-After` is a hint at the<br/>
+        /// scale runs take, not a promise - what actually frees a slot is one of<br/>
+        /// your own runs ending, so follow the ones you have with the event stream<br/>
+        /// and start the next when one does.<br/>
         /// This endpoint is in beta: it is available to workspaces granted<br/>
         /// `durable_runs_access`, and every other workspace receives<br/>
         /// `402 durable_runs_not_in_plan`.
@@ -763,7 +793,7 @@ namespace Speechify
         /// Optional idempotency key. When omitted, the SDK generates one for this request.
         /// </param>
         /// <param name="instruction">
-        /// The task or goal to give the agent. The agent runs its brain against this over a short internal conversation and returns its result.
+        /// The task or goal to give the agent. The agent runs its brain against this over a short internal conversation and returns its result. The server's limit is 8000 **bytes**, so a mostly non-ASCII instruction reaches it before 8000 characters.
         /// </param>
         /// <param name="variables">
         /// Per-run values that seed the agent's flow variables (override its<br/>
@@ -774,7 +804,19 @@ namespace Speechify
         /// acts for.
         /// </param>
         /// <param name="maxTurns">
-        /// Upper bound on the run's internal turn budget (server default when omitted; hard-capped).
+        /// Upper bound on the run's internal turn budget - one turn is one<br/>
+        /// plan-act-observe cycle, so a run that calls three tools uses at<br/>
+        /// least four. Defaults to 8 when omitted.<br/>
+        /// **Clamped silently to the workspace's per-run ceiling**, which is 5<br/>
+        /// on Free, 10 on Starter, 20 on Pro, 30 on Scale and 50 on<br/>
+        /// Enterprise. There is no error: read `input.max_turns` on the<br/>
+        /// returned run to see the budget the run actually got. On Free the<br/>
+        /// ceiling is *below* the default, so omitting this field there yields<br/>
+        /// 5, not 8.<br/>
+        /// A run that exhausts its budget settles `succeeded` with<br/>
+        /// `incomplete_reason: max_turns_exhausted` and whatever answer it had<br/>
+        /// reached. Schema repairs count against this budget too - see<br/>
+        /// `output_schema`.
         /// </param>
         /// <param name="userIdentity">
         /// The person this run acts for, in your own vocabulary - the same<br/>
@@ -793,16 +835,26 @@ namespace Speechify
         /// credentials for.
         /// </param>
         /// <param name="outputSchema">
-        /// Optional JSON Schema (2020-12, top-level `type: object`) the run's<br/>
-        /// final answer must satisfy. When set, the agent answers with a JSON<br/>
-        /// object, the platform validates it against this schema (re-asking the<br/>
-        /// agent on a mismatch, bounded), and the conforming object is returned<br/>
-        /// as `output.data`. A run that never produces a conforming object<br/>
-        /// settles `succeeded` with `incomplete_reason: output_schema_violation`<br/>
-        /// and no `output.data`. At most 16 KiB.
+        /// Optional JSON Schema (2020-12) the run's final answer must satisfy.<br/>
+        /// When set, the agent answers with a JSON object, the platform<br/>
+        /// validates it, and the conforming object is returned as<br/>
+        /// `output.data`.<br/>
+        /// The top level must be `type: object` - an array-typed or scalar<br/>
+        /// schema is refused at create with `400`. At most 16 KiB.<br/>
+        /// On a mismatch the platform re-asks the agent, feeding back up to 8<br/>
+        /// of the violations. **At most two repair attempts, and each one<br/>
+        /// spends a turn from `max_turns`** - so a schema-constrained run on a<br/>
+        /// 5-turn ceiling has little room left for tool calls. Each attempt is<br/>
+        /// journaled as an `observation` step whose `tool` is the reserved<br/>
+        /// name `output_schema`, which a timeline renderer should expect<br/>
+        /// alongside real tool names.<br/>
+        /// A run that never produces a conforming object settles `succeeded`<br/>
+        /// with `incomplete_reason: output_schema_violation` and no<br/>
+        /// `output.data` - its prose answer is still on `output.reply`. The<br/>
+        /// platform never returns an object the schema refused.
         /// </param>
         /// <param name="metadata">
-        /// Up to 16 arbitrary key/value pairs echoed back on the run.
+        /// Up to 16 arbitrary key/value pairs echoed back on the run. Your own correlation ids belong here - the platform never reads them.
         /// </param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>

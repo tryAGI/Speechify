@@ -60,7 +60,7 @@ namespace Speechify
         public string? TimeoutEffect { get; set; }
 
         /// <summary>
-        /// The decision applied automatically if nobody responds by `expires_at`.
+        /// The decision applied automatically if nobody responds by `expires_at`. Defaults to `deny`, so an unattended action is refused rather than taken.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("default_decision")]
         [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Speechify.JsonConverters.PendingActionDefaultDecisionJsonConverter))]
@@ -68,14 +68,14 @@ namespace Speechify
         public required global::Speechify.PendingActionDefaultDecision DefaultDecision { get; set; }
 
         /// <summary>
-        ///
+        /// When the run parked and started waiting for a person.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("requested_at")]
         [global::System.Text.Json.Serialization.JsonRequired]
         public required global::System.DateTime RequestedAt { get; set; }
 
         /// <summary>
-        /// When the run auto-applies `default_decision`.
+        /// When the run stops waiting and applies `default_decision` on its own. **The window is 4 hours from `requested_at` unless the action sets its own**, clamped to between 1 minute and 24 hours - so an approval raised in the evening is decided overnight without a human. Build your approvals inbox around that, or shorten the window on the actions that warrant it.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("expires_at")]
         [global::System.Text.Json.Serialization.JsonRequired]
@@ -100,11 +100,13 @@ namespace Speechify
         /// Why this action needs human approval.
         /// </param>
         /// <param name="defaultDecision">
-        /// The decision applied automatically if nobody responds by `expires_at`.
+        /// The decision applied automatically if nobody responds by `expires_at`. Defaults to `deny`, so an unattended action is refused rather than taken.
         /// </param>
-        /// <param name="requestedAt"></param>
+        /// <param name="requestedAt">
+        /// When the run parked and started waiting for a person.
+        /// </param>
         /// <param name="expiresAt">
-        /// When the run auto-applies `default_decision`.
+        /// When the run stops waiting and applies `default_decision` on its own. **The window is 4 hours from `requested_at` unless the action sets its own**, clamped to between 1 minute and 24 hours - so an approval raised in the evening is decided overnight without a human. Build your approvals inbox around that, or shorten the window on the actions that warrant it.
         /// </param>
         /// <param name="summary">
         /// Human-readable rendering of the action.

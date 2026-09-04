@@ -48,8 +48,11 @@ namespace Speechify
         /// Return the agent's most recent publish-gate decision, or `null` when it has<br/>
         /// never been gated. This is the durable answer to "are this agent's checks<br/>
         /// passing, and when were they last run", without republishing it.<br/>
-        /// This endpoint is in beta: a decision exists only on workspaces granted<br/>
-        /// `publish_eval_gate`; every other workspace reads `null`.
+        /// This endpoint is in beta: a decision exists on workspaces granted<br/>
+        /// `publish_eval_gate` or `red_team_publish_gate` - the second is enabled<br/>
+        /// automatically alongside `durable_runs_access`, so any workspace that can<br/>
+        /// start durable runs records decisions here. Every other workspace reads<br/>
+        /// `null`.
         /// </summary>
         /// <param name="agentId"></param>
         /// <param name="speechifyVersion"></param>
@@ -76,8 +79,11 @@ namespace Speechify
         /// Return the agent's most recent publish-gate decision, or `null` when it has<br/>
         /// never been gated. This is the durable answer to "are this agent's checks<br/>
         /// passing, and when were they last run", without republishing it.<br/>
-        /// This endpoint is in beta: a decision exists only on workspaces granted<br/>
-        /// `publish_eval_gate`; every other workspace reads `null`.
+        /// This endpoint is in beta: a decision exists on workspaces granted<br/>
+        /// `publish_eval_gate` or `red_team_publish_gate` - the second is enabled<br/>
+        /// automatically alongside `durable_runs_access`, so any workspace that can<br/>
+        /// start durable runs records decisions here. Every other workspace reads<br/>
+        /// `null`.
         /// </summary>
         /// <param name="agentId"></param>
         /// <param name="speechifyVersion"></param>

@@ -4,13 +4,14 @@
 namespace Speechify
 {
     /// <summary>
-    /// Metered cost, populated at a terminal state: the run's wall-clock plus its aggregate token usage summed across every step. Token counts are THIS run's own - a run that delegated sub-goals does not include its children's usage, so a team run's total cost is this plus the usage of each run from `listRunChildren`.<br/>
-    /// Token counts are what to attribute and forecast spend against. The underlying model is not reported: which model serves a tier is ours to route and may change, and pricing lives in your plan rather than in the model name.
+    /// What the run cost, populated once it reaches a terminal state: its wall-clock time plus its token usage summed across every step.<br/>
+    /// The counts are THIS run's own. A run that delegated sub-goals does not include its children's, so a team run's true cost is this plus the usage of each run from `listRunChildren`.<br/>
+    /// Attribute and forecast spend against the token counts. The model is not reported; your plan, not a model name, is what prices a run.
     /// </summary>
     public sealed partial class AgentRunUsage
     {
         /// <summary>
-        ///
+        /// Wall-clock time the agent spent working, summed across steps. Excludes time the run spent queued or parked on a human.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("duration_ms")]
         public int? DurationMs { get; set; }
@@ -42,7 +43,9 @@ namespace Speechify
         /// <summary>
         /// Initializes a new instance of the <see cref="AgentRunUsage" /> class.
         /// </summary>
-        /// <param name="durationMs"></param>
+        /// <param name="durationMs">
+        /// Wall-clock time the agent spent working, summed across steps. Excludes time the run spent queued or parked on a human.
+        /// </param>
         /// <param name="promptTokens">
         /// Prompt tokens summed across every step of the run.
         /// </param>

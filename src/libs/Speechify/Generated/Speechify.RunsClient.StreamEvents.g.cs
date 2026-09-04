@@ -52,10 +52,24 @@ namespace Speechify
         /// `incomplete_reason`. Consumers must ignore unknown event types.<br/>
         /// A run waiting on a human approval is not terminal: the stream reports<br/>
         /// `requires_action` and keeps tailing, so the client learns it has<br/>
-        /// something to decide. Each step event carries its `seq` as the event<br/>
-        /// id, so a dropped connection resumes exactly where it left off through<br/>
-        /// the standard `Last-Event-ID` header. Same read access as List Run<br/>
-        /// Steps.
+        /// something to decide.<br/>
+        /// ## The stream is expected to reconnect<br/>
+        /// **The server closes the connection after 4 minutes whether or not the<br/>
+        /// run has settled**, so a long run spans several connections. Only<br/>
+        /// `run.ended` means the run is over - a closed socket does not. The<br/>
+        /// response opens with `retry: 2000`, so a browser `EventSource`<br/>
+        /// reconnects on its own; a hand-rolled client must do the same.<br/>
+        /// Resume with the standard `Last-Event-ID` header. Step events carry<br/>
+        /// their `seq` as the event id, so a reconnect continues exactly where it<br/>
+        /// left off; status events carry no id, and an absent or unparseable<br/>
+        /// `Last-Event-ID` replays the journal from the beginning rather than<br/>
+        /// skipping it. On every connection, including a resume, the server emits<br/>
+        /// one `run.status.changed` carrying the run's current status before it<br/>
+        /// starts tailing. A `: keepalive` comment arrives every 15 seconds so an<br/>
+        /// intermediary does not time the connection out while the agent is<br/>
+        /// thinking.<br/>
+        /// Same read access as List Run Steps, and the same<br/>
+        /// `402 durable_runs_not_in_plan` on a workspace without the grant.
         /// </summary>
         /// <param name="agentId"></param>
         /// <param name="runId"></param>
