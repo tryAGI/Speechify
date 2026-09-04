@@ -67,6 +67,44 @@ namespace Speechify
         public string? ProjectId { get; set; }
 
         /// <summary>
+        /// The impact class you declared. Null means you declared none and the<br/>
+        /// tool's impact is read off its shape instead - see<br/>
+        /// `effective_action_class`.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("action_class")]
+        public global::Speechify.ToolActionClass? ActionClass { get; set; }
+
+        /// <summary>
+        /// The impact the tool actually carries: `action_class` when you set<br/>
+        /// one, otherwise the class its shape implies (a `GET` webhook reads, a<br/>
+        /// `POST` webhook reaches outside your team, an MCP or client tool can<br/>
+        /// do anything its author wired). Derived on every read, so changing a<br/>
+        /// webhook's method changes this with it. Read-only.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("effective_action_class")]
+        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Speechify.JsonConverters.ToolActionClassJsonConverter))]
+        [global::System.Text.Json.Serialization.JsonRequired]
+        public required global::Speechify.ToolActionClass EffectiveActionClass { get; set; }
+
+        /// <summary>
+        /// Your explicit override of the approval derived from the class.<br/>
+        /// Null means derived.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("approval")]
+        public global::Speechify.ToolApprovalClass? Approval { get; set; }
+
+        /// <summary>
+        /// What governs the tool on the autonomous path: `approval` when set,<br/>
+        /// else a webhook config's legacy `requires_approval`, else the class<br/>
+        /// default (`read` and `communicate_internal` run; every other class,<br/>
+        /// and an unclassified tool, requires approval). Read-only.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("effective_approval")]
+        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Speechify.JsonConverters.ToolApprovalClassJsonConverter))]
+        [global::System.Text.Json.Serialization.JsonRequired]
+        public required global::Speechify.ToolApprovalClass EffectiveApproval { get; set; }
+
+        /// <summary>
         ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("created_at")]
@@ -104,6 +142,19 @@ namespace Speechify
         /// <param name="config">
         /// One of `WebhookToolConfig`, `ClientToolConfig`, or `MCPToolConfig` depending on `kind`.
         /// </param>
+        /// <param name="effectiveActionClass">
+        /// The impact the tool actually carries: `action_class` when you set<br/>
+        /// one, otherwise the class its shape implies (a `GET` webhook reads, a<br/>
+        /// `POST` webhook reaches outside your team, an MCP or client tool can<br/>
+        /// do anything its author wired). Derived on every read, so changing a<br/>
+        /// webhook's method changes this with it. Read-only.
+        /// </param>
+        /// <param name="effectiveApproval">
+        /// What governs the tool on the autonomous path: `approval` when set,<br/>
+        /// else a webhook config's legacy `requires_approval`, else the class<br/>
+        /// default (`read` and `communicate_internal` run; every other class,<br/>
+        /// and an unclassified tool, requires approval). Read-only.
+        /// </param>
         /// <param name="createdAt"></param>
         /// <param name="updatedAt"></param>
         /// <param name="webhookSecret">
@@ -115,6 +166,15 @@ namespace Speechify
         /// Workspace project this resource lives in (prefixed external<br/>
         /// id). Null means the implicit Default project.
         /// </param>
+        /// <param name="actionClass">
+        /// The impact class you declared. Null means you declared none and the<br/>
+        /// tool's impact is read off its shape instead - see<br/>
+        /// `effective_action_class`.
+        /// </param>
+        /// <param name="approval">
+        /// Your explicit override of the approval derived from the class.<br/>
+        /// Null means derived.
+        /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
 #endif
@@ -124,10 +184,14 @@ namespace Speechify
             string description,
             global::Speechify.ToolKind kind,
             global::Speechify.ToolConfig config,
+            global::Speechify.ToolActionClass effectiveActionClass,
+            global::Speechify.ToolApprovalClass effectiveApproval,
             global::System.DateTime createdAt,
             global::System.DateTime updatedAt,
             string? webhookSecret,
-            string? projectId)
+            string? projectId,
+            global::Speechify.ToolActionClass? actionClass,
+            global::Speechify.ToolApprovalClass? approval)
         {
             this.Id = id ?? throw new global::System.ArgumentNullException(nameof(id));
             this.Name = name ?? throw new global::System.ArgumentNullException(nameof(name));
@@ -136,6 +200,10 @@ namespace Speechify
             this.Config = config;
             this.WebhookSecret = webhookSecret;
             this.ProjectId = projectId;
+            this.ActionClass = actionClass;
+            this.EffectiveActionClass = effectiveActionClass;
+            this.Approval = approval;
+            this.EffectiveApproval = effectiveApproval;
             this.CreatedAt = createdAt;
             this.UpdatedAt = updatedAt;
         }

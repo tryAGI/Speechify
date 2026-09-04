@@ -585,6 +585,15 @@ namespace Speechify
         /// - `mcp`:     worker connects to a customer-hosted MCP server and proxies tool calls
         /// </param>
         /// <param name="config"></param>
+        /// <param name="actionClass">
+        /// The impact class. Omit it and the tool's impact is read off its<br/>
+        /// shape instead, and keeps tracking it: a `GET` webhook reads, a<br/>
+        /// `POST` webhook reaches outside your team, an MCP or client tool can<br/>
+        /// do anything its author wired.
+        /// </param>
+        /// <param name="approval">
+        /// Overrides the approval derived from the class. Omitted means derived.
+        /// </param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::System.InvalidOperationException"></exception>
@@ -595,6 +604,8 @@ namespace Speechify
             global::Speechify.CreateToolRequestConfig config,
             string? speechifyVersion = default,
             string? projectId = default,
+            global::Speechify.ToolActionClass? actionClass = default,
+            global::Speechify.ToolApprovalClass? approval = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
@@ -605,6 +616,8 @@ namespace Speechify
                 Description = description,
                 Kind = kind,
                 Config = config,
+                ActionClass = actionClass,
+                Approval = approval,
             };
 
             return await CreateAsync(

@@ -75,6 +75,14 @@ namespace Speechify
         /// Defaults to true on the server when omitted.
         /// </param>
         /// <param name="config"></param>
+        /// <param name="actionClass">
+        /// The impact class for a shared kind (`webhook`/`client`/`mcp`),<br/>
+        /// whose definition is created here. Omitted, the server stamps the<br/>
+        /// verb default. Ignored for a built-in, whose class the platform fixes.
+        /// </param>
+        /// <param name="approval">
+        /// Overrides the approval derived from the class, for a shared kind.
+        /// </param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::System.InvalidOperationException"></exception>
@@ -86,6 +94,8 @@ namespace Speechify
             string? speechifyVersion = default,
             string? description = default,
             bool? enabled = default,
+            global::Speechify.ToolActionClass? actionClass = default,
+            global::Speechify.ToolApprovalClass? approval = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
     }

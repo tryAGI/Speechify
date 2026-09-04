@@ -48,6 +48,10 @@ namespace Speechify
         /// <summary>
         ///
         /// </summary>
+        AgentSkillLimitReached,
+        /// <summary>
+        ///
+        /// </summary>
         AgentTestNotFound,
         /// <summary>
         ///
@@ -392,6 +396,30 @@ namespace Speechify
         /// <summary>
         ///
         /// </summary>
+        SkillInUse,
+        /// <summary>
+        ///
+        /// </summary>
+        SkillLimitReached,
+        /// <summary>
+        ///
+        /// </summary>
+        SkillNotFound,
+        /// <summary>
+        ///
+        /// </summary>
+        SkillToolNameConflict,
+        /// <summary>
+        ///
+        /// </summary>
+        SkillVersionNotFound,
+        /// <summary>
+        ///
+        /// </summary>
+        SkillsNotInPlan,
+        /// <summary>
+        ///
+        /// </summary>
         SpeechMarksUnsupported,
         /// <summary>
         ///
@@ -551,6 +579,7 @@ namespace Speechify
                 ErrorCode.AgentRunActionStale => "agent_run_action_stale",
                 ErrorCode.AgentRunNotFound => "agent_run_not_found",
                 ErrorCode.AgentRunNotPending => "agent_run_not_pending",
+                ErrorCode.AgentSkillLimitReached => "agent_skill_limit_reached",
                 ErrorCode.AgentTestNotFound => "agent_test_not_found",
                 ErrorCode.ApiRouteConflict => "api_route_conflict",
                 ErrorCode.ApiRouteNotFound => "api_route_not_found",
@@ -637,6 +666,12 @@ namespace Speechify
                 ErrorCode.ShareLinkLimitReached => "share_link_limit_reached",
                 ErrorCode.ShareLinkNotFound => "share_link_not_found",
                 ErrorCode.SipTrunkNotFound => "sip_trunk_not_found",
+                ErrorCode.SkillInUse => "skill_in_use",
+                ErrorCode.SkillLimitReached => "skill_limit_reached",
+                ErrorCode.SkillNotFound => "skill_not_found",
+                ErrorCode.SkillToolNameConflict => "skill_tool_name_conflict",
+                ErrorCode.SkillVersionNotFound => "skill_version_not_found",
+                ErrorCode.SkillsNotInPlan => "skills_not_in_plan",
                 ErrorCode.SpeechMarksUnsupported => "speech_marks_unsupported",
                 ErrorCode.SpendBudgetExceeded => "spend_budget_exceeded",
                 ErrorCode.SpendCapExceeded => "spend_cap_exceeded",
@@ -690,6 +725,7 @@ namespace Speechify
                 "agent_run_action_stale" => ErrorCode.AgentRunActionStale,
                 "agent_run_not_found" => ErrorCode.AgentRunNotFound,
                 "agent_run_not_pending" => ErrorCode.AgentRunNotPending,
+                "agent_skill_limit_reached" => ErrorCode.AgentSkillLimitReached,
                 "agent_test_not_found" => ErrorCode.AgentTestNotFound,
                 "api_route_conflict" => ErrorCode.ApiRouteConflict,
                 "api_route_not_found" => ErrorCode.ApiRouteNotFound,
@@ -776,6 +812,12 @@ namespace Speechify
                 "share_link_limit_reached" => ErrorCode.ShareLinkLimitReached,
                 "share_link_not_found" => ErrorCode.ShareLinkNotFound,
                 "sip_trunk_not_found" => ErrorCode.SipTrunkNotFound,
+                "skill_in_use" => ErrorCode.SkillInUse,
+                "skill_limit_reached" => ErrorCode.SkillLimitReached,
+                "skill_not_found" => ErrorCode.SkillNotFound,
+                "skill_tool_name_conflict" => ErrorCode.SkillToolNameConflict,
+                "skill_version_not_found" => ErrorCode.SkillVersionNotFound,
+                "skills_not_in_plan" => ErrorCode.SkillsNotInPlan,
                 "speech_marks_unsupported" => ErrorCode.SpeechMarksUnsupported,
                 "spend_budget_exceeded" => ErrorCode.SpendBudgetExceeded,
                 "spend_cap_exceeded" => ErrorCode.SpendCapExceeded,

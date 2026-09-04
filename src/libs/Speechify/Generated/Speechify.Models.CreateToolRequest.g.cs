@@ -51,6 +51,23 @@ namespace Speechify
         public required global::Speechify.CreateToolRequestConfig Config { get; set; }
 
         /// <summary>
+        /// The impact class. Omit it and the tool's impact is read off its<br/>
+        /// shape instead, and keeps tracking it: a `GET` webhook reads, a<br/>
+        /// `POST` webhook reaches outside your team, an MCP or client tool can<br/>
+        /// do anything its author wired.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("action_class")]
+        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Speechify.JsonConverters.ToolActionClassJsonConverter))]
+        public global::Speechify.ToolActionClass? ActionClass { get; set; }
+
+        /// <summary>
+        /// Overrides the approval derived from the class. Omitted means derived.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("approval")]
+        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Speechify.JsonConverters.ToolApprovalClassJsonConverter))]
+        public global::Speechify.ToolApprovalClass? Approval { get; set; }
+
+        /// <summary>
         /// Additional properties that are not explicitly defined in the schema
         /// </summary>
         [global::System.Text.Json.Serialization.JsonExtensionData]
@@ -74,6 +91,15 @@ namespace Speechify
         /// `proj_...` id). Omit for the implicit Default project. An<br/>
         /// unknown id returns 404 project_not_found.
         /// </param>
+        /// <param name="actionClass">
+        /// The impact class. Omit it and the tool's impact is read off its<br/>
+        /// shape instead, and keeps tracking it: a `GET` webhook reads, a<br/>
+        /// `POST` webhook reaches outside your team, an MCP or client tool can<br/>
+        /// do anything its author wired.
+        /// </param>
+        /// <param name="approval">
+        /// Overrides the approval derived from the class. Omitted means derived.
+        /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
 #endif
@@ -82,13 +108,17 @@ namespace Speechify
             string description,
             global::Speechify.ToolKind kind,
             global::Speechify.CreateToolRequestConfig config,
-            string? projectId)
+            string? projectId,
+            global::Speechify.ToolActionClass? actionClass,
+            global::Speechify.ToolApprovalClass? approval)
         {
             this.ProjectId = projectId;
             this.Name = name ?? throw new global::System.ArgumentNullException(nameof(name));
             this.Description = description ?? throw new global::System.ArgumentNullException(nameof(description));
             this.Kind = kind;
             this.Config = config;
+            this.ActionClass = actionClass;
+            this.Approval = approval;
         }
 
         /// <summary>

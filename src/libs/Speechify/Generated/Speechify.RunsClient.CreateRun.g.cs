@@ -751,10 +751,31 @@ namespace Speechify
         /// The task or goal to give the agent. The agent runs its brain against this over a short internal conversation and returns its result.
         /// </param>
         /// <param name="variables">
-        /// Per-run values that seed the agent's flow variables (override its stored defaults).
+        /// Per-run values that seed the agent's flow variables (override its<br/>
+        /// stored defaults). The `system__*` namespace and the legacy `memory`<br/>
+        /// alias belong to the platform and are rejected with a 400 naming<br/>
+        /// `variables`, the same rule a conversation applies: the run binds its<br/>
+        /// own values there, including `system__caller_id` for the person it<br/>
+        /// acts for.
         /// </param>
         /// <param name="maxTurns">
         /// Upper bound on the run's internal turn budget (server default when omitted; hard-capped).
+        /// </param>
+        /// <param name="userIdentity">
+        /// The person this run acts for, in your own vocabulary - the same<br/>
+        /// field a conversation and a widget session take, so one workspace<br/>
+        /// never has two answers to who a person is. The agent opens the run<br/>
+        /// knowing what it has already learned about them.<br/>
+        /// Omit it to run the agent for nobody in particular, which is how a<br/>
+        /// run behaves with no memory of anyone. Must not begin with `user_`,<br/>
+        /// `embed_` or `anon_`, which name identities the platform derives.<br/>
+        /// Every tool the run calls is told this value: a webhook receives<br/>
+        /// it as `user_identity` inside the signed body, an MCP server as<br/>
+        /// the `Speechify-User-Identity` header, and it renders in a tool's<br/>
+        /// templated URL or headers as `{{system__caller_id}}`. A connector<br/>
+        /// you wrote can therefore look up that person's own third-party<br/>
+        /// token, which is how you integrate a system Speechify holds no<br/>
+        /// credentials for.
         /// </param>
         /// <param name="outputSchema">
         /// Optional JSON Schema (2020-12, top-level `type: object`) the run's<br/>
@@ -778,6 +799,7 @@ namespace Speechify
             string? idempotencyKey = default,
             object? variables = default,
             int? maxTurns = default,
+            string? userIdentity = default,
             object? outputSchema = default,
             global::System.Collections.Generic.Dictionary<string, string>? metadata = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
@@ -788,6 +810,7 @@ namespace Speechify
                 Instruction = instruction,
                 Variables = variables,
                 MaxTurns = maxTurns,
+                UserIdentity = userIdentity,
                 OutputSchema = outputSchema,
                 Metadata = metadata,
             };

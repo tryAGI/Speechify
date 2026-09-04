@@ -46,12 +46,14 @@ namespace Speechify.JsonConverters
             if (__jsonProps.Contains("long_running.wait_audio")) __score0++;
             if (__jsonProps.Contains("method")) __score0++;
             if (__jsonProps.Contains("params")) __score0++;
+            if (__jsonProps.Contains("requires_approval")) __score0++;
             if (__jsonProps.Contains("timeout_ms")) __score0++;
             if (__jsonProps.Contains("url")) __score0++;
             var __score1 = 0;
             if (__jsonProps.Contains("params")) __score1++;
             if (__jsonProps.Contains("timeout_ms")) __score1++;
             var __score2 = 0;
+            if (__jsonProps.Contains("action_classes")) __score2++;
             if (__jsonProps.Contains("auth")) __score2++;
             if (__jsonProps.Contains("endpoint")) __score2++;
             if (__jsonProps.Contains("long_running")) __score2++;

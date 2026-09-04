@@ -8,7 +8,17 @@ namespace Speechify
     /// configured transport at session start, runs `initialize` +<br/>
     /// `list_tools`, and registers each discovered remote tool as a<br/>
     /// livekit-agents function_tool proxying through the long-lived<br/>
-    /// ClientSession.
+    /// ClientSession.<br/>
+    /// On a durable run (`POST /v1/agents/{agent_id}/runs`) every request to<br/>
+    /// your server carries a `Speechify-User-Identity` header holding the<br/>
+    /// person the agent is acting for, exactly as your application supplied<br/>
+    /// it when it started the run. This is what lets a server you wrote hold<br/>
+    /// your users' third-party credentials and act for the right one; the<br/>
+    /// header is absent when the run is acting for nobody. It is a header<br/>
+    /// rather than a body field because MCP owns its own JSON-RPC envelope,<br/>
+    /// so trust it exactly as far as you trust the connection your server<br/>
+    /// already authenticated. Voice conversations and sessions do not carry<br/>
+    /// it yet.
     /// </summary>
     public sealed partial class MCPToolConfig
     {
@@ -45,6 +55,20 @@ namespace Speechify
         public global::Speechify.LongRunningToolConfig? LongRunning { get; set; }
 
         /// <summary>
+        /// What each of the server's own tools does, keyed by the remote tool<br/>
+        /// name. One MCP tool is a whole server of mixed verbs, so without<br/>
+        /// this the server carries a single impact and an autonomous run<br/>
+        /// either treats its writes as safe or stops for a human on its<br/>
+        /// lookups. Classify the lookups `read` and they run unattended.<br/>
+        /// A tool you do not name here keeps the server-level class, which is<br/>
+        /// deliberately the cautious one. An explicit server-level `approval`<br/>
+        /// still wins over everything here, so gating a whole server stays a<br/>
+        /// single switch you can trust.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("action_classes")]
+        public global::System.Collections.Generic.Dictionary<string, global::Speechify.ToolActionClass>? ActionClasses { get; set; }
+
+        /// <summary>
         /// Additional properties that are not explicitly defined in the schema
         /// </summary>
         [global::System.Text.Json.Serialization.JsonExtensionData]
@@ -67,6 +91,17 @@ namespace Speechify
         /// per-tool latency signal at config time, so this describes the<br/>
         /// server rather than one of its verbs.
         /// </param>
+        /// <param name="actionClasses">
+        /// What each of the server's own tools does, keyed by the remote tool<br/>
+        /// name. One MCP tool is a whole server of mixed verbs, so without<br/>
+        /// this the server carries a single impact and an autonomous run<br/>
+        /// either treats its writes as safe or stops for a human on its<br/>
+        /// lookups. Classify the lookups `read` and they run unattended.<br/>
+        /// A tool you do not name here keeps the server-level class, which is<br/>
+        /// deliberately the cautious one. An explicit server-level `approval`<br/>
+        /// still wins over everything here, so gating a whole server stays a<br/>
+        /// single switch you can trust.
+        /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
 #endif
@@ -74,12 +109,14 @@ namespace Speechify
             string endpoint,
             global::Speechify.MCPAuth auth,
             global::Speechify.MCPTransport? transport,
-            global::Speechify.LongRunningToolConfig? longRunning)
+            global::Speechify.LongRunningToolConfig? longRunning,
+            global::System.Collections.Generic.Dictionary<string, global::Speechify.ToolActionClass>? actionClasses)
         {
             this.Endpoint = endpoint ?? throw new global::System.ArgumentNullException(nameof(endpoint));
             this.Transport = transport;
             this.Auth = auth;
             this.LongRunning = longRunning;
+            this.ActionClasses = actionClasses;
         }
 
         /// <summary>
