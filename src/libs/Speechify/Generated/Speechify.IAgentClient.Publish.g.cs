@@ -18,9 +18,12 @@ namespace Speechify
         /// separately, by promoting a flow version via<br/>
         /// `/v1/agents/{agent_id}/flow/publish`.<br/>
         /// On an ungated workspace this succeeds and returns no `gate` object.<br/>
-        /// This endpoint is in beta: the gate runs only on workspaces granted<br/>
-        /// `publish_eval_gate`, and the runs a publish authorises need<br/>
-        /// `durable_runs_access` (the run endpoints answer<br/>
+        /// This endpoint is in beta: the gate runs on workspaces granted<br/>
+        /// `publish_eval_gate` **or** `red_team_publish_gate`, and the second is<br/>
+        /// enabled automatically for every workspace granted `durable_runs_access`<br/>
+        /// - so if you can start durable runs, you are gated and this call is a<br/>
+        /// prerequisite, not an option. The runs a publish authorises need<br/>
+        /// `durable_runs_access` too (the run endpoints answer<br/>
         /// `402 durable_runs_not_in_plan` without it).
         /// </summary>
         /// <param name="agentId"></param>
@@ -54,9 +57,12 @@ namespace Speechify
         /// separately, by promoting a flow version via<br/>
         /// `/v1/agents/{agent_id}/flow/publish`.<br/>
         /// On an ungated workspace this succeeds and returns no `gate` object.<br/>
-        /// This endpoint is in beta: the gate runs only on workspaces granted<br/>
-        /// `publish_eval_gate`, and the runs a publish authorises need<br/>
-        /// `durable_runs_access` (the run endpoints answer<br/>
+        /// This endpoint is in beta: the gate runs on workspaces granted<br/>
+        /// `publish_eval_gate` **or** `red_team_publish_gate`, and the second is<br/>
+        /// enabled automatically for every workspace granted `durable_runs_access`<br/>
+        /// - so if you can start durable runs, you are gated and this call is a<br/>
+        /// prerequisite, not an option. The runs a publish authorises need<br/>
+        /// `durable_runs_access` too (the run endpoints answer<br/>
         /// `402 durable_runs_not_in_plan` without it).
         /// </summary>
         /// <param name="agentId"></param>
@@ -90,9 +96,12 @@ namespace Speechify
         /// separately, by promoting a flow version via<br/>
         /// `/v1/agents/{agent_id}/flow/publish`.<br/>
         /// On an ungated workspace this succeeds and returns no `gate` object.<br/>
-        /// This endpoint is in beta: the gate runs only on workspaces granted<br/>
-        /// `publish_eval_gate`, and the runs a publish authorises need<br/>
-        /// `durable_runs_access` (the run endpoints answer<br/>
+        /// This endpoint is in beta: the gate runs on workspaces granted<br/>
+        /// `publish_eval_gate` **or** `red_team_publish_gate`, and the second is<br/>
+        /// enabled automatically for every workspace granted `durable_runs_access`<br/>
+        /// - so if you can start durable runs, you are gated and this call is a<br/>
+        /// prerequisite, not an option. The runs a publish authorises need<br/>
+        /// `durable_runs_access` too (the run endpoints answer<br/>
         /// `402 durable_runs_not_in_plan` without it).
         /// </summary>
         /// <param name="agentId"></param>

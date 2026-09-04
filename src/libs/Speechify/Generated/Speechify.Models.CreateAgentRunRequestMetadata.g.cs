@@ -4,7 +4,7 @@
 namespace Speechify
 {
     /// <summary>
-    /// Up to 16 arbitrary key/value pairs echoed back on the run.
+    /// Up to 16 arbitrary key/value pairs echoed back on the run. Your own correlation ids belong here - the platform never reads them.
     /// </summary>
     public sealed partial class CreateAgentRunRequestMetadata
     {

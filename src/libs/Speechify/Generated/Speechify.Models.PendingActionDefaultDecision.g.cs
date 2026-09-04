@@ -4,7 +4,7 @@
 namespace Speechify
 {
     /// <summary>
-    /// The decision applied automatically if nobody responds by `expires_at`.
+    /// The decision applied automatically if nobody responds by `expires_at`. Defaults to `deny`, so an unattended action is refused rather than taken.
     /// </summary>
     public enum PendingActionDefaultDecision
     {

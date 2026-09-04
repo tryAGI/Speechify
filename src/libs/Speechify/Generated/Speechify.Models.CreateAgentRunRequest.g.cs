@@ -9,7 +9,7 @@ namespace Speechify
     public sealed partial class CreateAgentRunRequest
     {
         /// <summary>
-        /// The task or goal to give the agent. The agent runs its brain against this over a short internal conversation and returns its result.
+        /// The task or goal to give the agent. The agent runs its brain against this over a short internal conversation and returns its result. The server's limit is 8000 **bytes**, so a mostly non-ASCII instruction reaches it before 8000 characters.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("instruction")]
         [global::System.Text.Json.Serialization.JsonRequired]
@@ -27,7 +27,19 @@ namespace Speechify
         public object? Variables { get; set; }
 
         /// <summary>
-        /// Upper bound on the run's internal turn budget (server default when omitted; hard-capped).
+        /// Upper bound on the run's internal turn budget - one turn is one<br/>
+        /// plan-act-observe cycle, so a run that calls three tools uses at<br/>
+        /// least four. Defaults to 8 when omitted.<br/>
+        /// **Clamped silently to the workspace's per-run ceiling**, which is 5<br/>
+        /// on Free, 10 on Starter, 20 on Pro, 30 on Scale and 50 on<br/>
+        /// Enterprise. There is no error: read `input.max_turns` on the<br/>
+        /// returned run to see the budget the run actually got. On Free the<br/>
+        /// ceiling is *below* the default, so omitting this field there yields<br/>
+        /// 5, not 8.<br/>
+        /// A run that exhausts its budget settles `succeeded` with<br/>
+        /// `incomplete_reason: max_turns_exhausted` and whatever answer it had<br/>
+        /// reached. Schema repairs count against this budget too - see<br/>
+        /// `output_schema`.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("max_turns")]
         public int? MaxTurns { get; set; }
@@ -52,19 +64,29 @@ namespace Speechify
         public string? UserIdentity { get; set; }
 
         /// <summary>
-        /// Optional JSON Schema (2020-12, top-level `type: object`) the run's<br/>
-        /// final answer must satisfy. When set, the agent answers with a JSON<br/>
-        /// object, the platform validates it against this schema (re-asking the<br/>
-        /// agent on a mismatch, bounded), and the conforming object is returned<br/>
-        /// as `output.data`. A run that never produces a conforming object<br/>
-        /// settles `succeeded` with `incomplete_reason: output_schema_violation`<br/>
-        /// and no `output.data`. At most 16 KiB.
+        /// Optional JSON Schema (2020-12) the run's final answer must satisfy.<br/>
+        /// When set, the agent answers with a JSON object, the platform<br/>
+        /// validates it, and the conforming object is returned as<br/>
+        /// `output.data`.<br/>
+        /// The top level must be `type: object` - an array-typed or scalar<br/>
+        /// schema is refused at create with `400`. At most 16 KiB.<br/>
+        /// On a mismatch the platform re-asks the agent, feeding back up to 8<br/>
+        /// of the violations. **At most two repair attempts, and each one<br/>
+        /// spends a turn from `max_turns`** - so a schema-constrained run on a<br/>
+        /// 5-turn ceiling has little room left for tool calls. Each attempt is<br/>
+        /// journaled as an `observation` step whose `tool` is the reserved<br/>
+        /// name `output_schema`, which a timeline renderer should expect<br/>
+        /// alongside real tool names.<br/>
+        /// A run that never produces a conforming object settles `succeeded`<br/>
+        /// with `incomplete_reason: output_schema_violation` and no<br/>
+        /// `output.data` - its prose answer is still on `output.reply`. The<br/>
+        /// platform never returns an object the schema refused.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("output_schema")]
         public object? OutputSchema { get; set; }
 
         /// <summary>
-        /// Up to 16 arbitrary key/value pairs echoed back on the run.
+        /// Up to 16 arbitrary key/value pairs echoed back on the run. Your own correlation ids belong here - the platform never reads them.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("metadata")]
         public global::System.Collections.Generic.Dictionary<string, string>? Metadata { get; set; }
@@ -79,7 +101,7 @@ namespace Speechify
         /// Initializes a new instance of the <see cref="CreateAgentRunRequest" /> class.
         /// </summary>
         /// <param name="instruction">
-        /// The task or goal to give the agent. The agent runs its brain against this over a short internal conversation and returns its result.
+        /// The task or goal to give the agent. The agent runs its brain against this over a short internal conversation and returns its result. The server's limit is 8000 **bytes**, so a mostly non-ASCII instruction reaches it before 8000 characters.
         /// </param>
         /// <param name="variables">
         /// Per-run values that seed the agent's flow variables (override its<br/>
@@ -90,7 +112,19 @@ namespace Speechify
         /// acts for.
         /// </param>
         /// <param name="maxTurns">
-        /// Upper bound on the run's internal turn budget (server default when omitted; hard-capped).
+        /// Upper bound on the run's internal turn budget - one turn is one<br/>
+        /// plan-act-observe cycle, so a run that calls three tools uses at<br/>
+        /// least four. Defaults to 8 when omitted.<br/>
+        /// **Clamped silently to the workspace's per-run ceiling**, which is 5<br/>
+        /// on Free, 10 on Starter, 20 on Pro, 30 on Scale and 50 on<br/>
+        /// Enterprise. There is no error: read `input.max_turns` on the<br/>
+        /// returned run to see the budget the run actually got. On Free the<br/>
+        /// ceiling is *below* the default, so omitting this field there yields<br/>
+        /// 5, not 8.<br/>
+        /// A run that exhausts its budget settles `succeeded` with<br/>
+        /// `incomplete_reason: max_turns_exhausted` and whatever answer it had<br/>
+        /// reached. Schema repairs count against this budget too - see<br/>
+        /// `output_schema`.
         /// </param>
         /// <param name="userIdentity">
         /// The person this run acts for, in your own vocabulary - the same<br/>
@@ -109,16 +143,26 @@ namespace Speechify
         /// credentials for.
         /// </param>
         /// <param name="outputSchema">
-        /// Optional JSON Schema (2020-12, top-level `type: object`) the run's<br/>
-        /// final answer must satisfy. When set, the agent answers with a JSON<br/>
-        /// object, the platform validates it against this schema (re-asking the<br/>
-        /// agent on a mismatch, bounded), and the conforming object is returned<br/>
-        /// as `output.data`. A run that never produces a conforming object<br/>
-        /// settles `succeeded` with `incomplete_reason: output_schema_violation`<br/>
-        /// and no `output.data`. At most 16 KiB.
+        /// Optional JSON Schema (2020-12) the run's final answer must satisfy.<br/>
+        /// When set, the agent answers with a JSON object, the platform<br/>
+        /// validates it, and the conforming object is returned as<br/>
+        /// `output.data`.<br/>
+        /// The top level must be `type: object` - an array-typed or scalar<br/>
+        /// schema is refused at create with `400`. At most 16 KiB.<br/>
+        /// On a mismatch the platform re-asks the agent, feeding back up to 8<br/>
+        /// of the violations. **At most two repair attempts, and each one<br/>
+        /// spends a turn from `max_turns`** - so a schema-constrained run on a<br/>
+        /// 5-turn ceiling has little room left for tool calls. Each attempt is<br/>
+        /// journaled as an `observation` step whose `tool` is the reserved<br/>
+        /// name `output_schema`, which a timeline renderer should expect<br/>
+        /// alongside real tool names.<br/>
+        /// A run that never produces a conforming object settles `succeeded`<br/>
+        /// with `incomplete_reason: output_schema_violation` and no<br/>
+        /// `output.data` - its prose answer is still on `output.reply`. The<br/>
+        /// platform never returns an object the schema refused.
         /// </param>
         /// <param name="metadata">
-        /// Up to 16 arbitrary key/value pairs echoed back on the run.
+        /// Up to 16 arbitrary key/value pairs echoed back on the run. Your own correlation ids belong here - the platform never reads them.
         /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]

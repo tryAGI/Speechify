@@ -40,7 +40,14 @@ namespace Speechify
         public string? Content { get; set; }
 
         /// <summary>
-        /// The tool a `tool_call` / `observation` step is about.
+        /// The tool a `tool_call` / `observation` step is about.<br/>
+        /// It is not always one of your own tools. Platform tools appear under<br/>
+        /// their reserved names - `search_knowledge`, `fetch_url`,<br/>
+        /// `store_query`, `store_get`, `store_put`, `store_delete`,<br/>
+        /// `store_read_asset` - an MCP tool appears as<br/>
+        /// `&lt;tool_name&gt;__&lt;remote_tool_name&gt;`, and a schema-repair observation<br/>
+        /// carries the reserved pseudo-tool `output_schema`. Match against<br/>
+        /// your own toolbelt expecting misses.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("tool")]
         public string? Tool { get; set; }
@@ -66,25 +73,25 @@ namespace Speechify
         public int? DurationMs { get; set; }
 
         /// <summary>
-        ///
+        /// Prompt tokens this step spent. The run's `usage` is the sum over its steps.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("prompt_tokens")]
         public int? PromptTokens { get; set; }
 
         /// <summary>
-        ///
+        /// Completion tokens this step spent.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("completion_tokens")]
         public int? CompletionTokens { get; set; }
 
         /// <summary>
-        ///
+        /// This step's prompt plus completion tokens.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("total_tokens")]
         public int? TotalTokens { get; set; }
 
         /// <summary>
-        ///
+        /// When the step was committed to the journal.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("created_at")]
         [global::System.Text.Json.Serialization.JsonRequired]
@@ -105,13 +112,22 @@ namespace Speechify
         /// <param name="kind">
         /// The step type. `output` is reserved for a future step kind - a run's final answer lives on the run object today, not in the journal.
         /// </param>
-        /// <param name="createdAt"></param>
+        /// <param name="createdAt">
+        /// When the step was committed to the journal.
+        /// </param>
         /// <param name="type"></param>
         /// <param name="content">
         /// The step's payload, per kind: a `plan`'s rationale, an `observation`'s result, or a `delegation`'s sub-goal (redacted).
         /// </param>
         /// <param name="tool">
-        /// The tool a `tool_call` / `observation` step is about.
+        /// The tool a `tool_call` / `observation` step is about.<br/>
+        /// It is not always one of your own tools. Platform tools appear under<br/>
+        /// their reserved names - `search_knowledge`, `fetch_url`,<br/>
+        /// `store_query`, `store_get`, `store_put`, `store_delete`,<br/>
+        /// `store_read_asset` - an MCP tool appears as<br/>
+        /// `&lt;tool_name&gt;__&lt;remote_tool_name&gt;`, and a schema-repair observation<br/>
+        /// carries the reserved pseudo-tool `output_schema`. Match against<br/>
+        /// your own toolbelt expecting misses.
         /// </param>
         /// <param name="args">
         /// The rendered arguments of a `tool_call`, with credential-shaped values redacted.
@@ -124,9 +140,15 @@ namespace Speechify
         /// <param name="durationMs">
         /// Wall-clock the brain spent producing this step.
         /// </param>
-        /// <param name="promptTokens"></param>
-        /// <param name="completionTokens"></param>
-        /// <param name="totalTokens"></param>
+        /// <param name="promptTokens">
+        /// Prompt tokens this step spent. The run's `usage` is the sum over its steps.
+        /// </param>
+        /// <param name="completionTokens">
+        /// Completion tokens this step spent.
+        /// </param>
+        /// <param name="totalTokens">
+        /// This step's prompt plus completion tokens.
+        /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
 #endif
