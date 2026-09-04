@@ -10,7 +10,21 @@ namespace Speechify
     public readonly partial struct ToolConfig : global::System.IEquatable<ToolConfig>
     {
         /// <summary>
-        /// Config shape for `kind=webhook`.
+        /// Config shape for `kind=webhook`.<br/>
+        /// On a durable run (`POST /v1/agents/{agent_id}/runs`) your endpoint is<br/>
+        /// told `user_identity`: the person the agent is acting for, exactly as<br/>
+        /// your application supplied it when it started the run. The field is<br/>
+        /// absent when the run is acting for nobody in particular, so treat an<br/>
+        /// absent value as "no person", never as a default one. Voice<br/>
+        /// conversations and sessions do not carry it yet.<br/>
+        /// On `method: POST` it rides inside the **signed** JSON body rather than<br/>
+        /// a header, so an endpoint deciding whose data to touch can verify the<br/>
+        /// answer with the same HMAC it already checks. On `method: GET` there is<br/>
+        /// no body to sign, so it arrives as a **`user_identity` query<br/>
+        /// parameter**, unverifiable exactly as the arguments beside it are: a<br/>
+        /// GET's signature covers an envelope that is not on the wire. Use POST<br/>
+        /// for any endpoint that authorizes on who the call is for. A tool<br/>
+        /// argument of the same name never overrides it.
         /// </summary>
 #if NET6_0_OR_GREATER
         public global::Speechify.WebhookToolConfig? WebhookToolConfig { get; init; }
@@ -88,7 +102,17 @@ namespace Speechify
         /// configured transport at session start, runs `initialize` +<br/>
         /// `list_tools`, and registers each discovered remote tool as a<br/>
         /// livekit-agents function_tool proxying through the long-lived<br/>
-        /// ClientSession.
+        /// ClientSession.<br/>
+        /// On a durable run (`POST /v1/agents/{agent_id}/runs`) every request to<br/>
+        /// your server carries a `Speechify-User-Identity` header holding the<br/>
+        /// person the agent is acting for, exactly as your application supplied<br/>
+        /// it when it started the run. This is what lets a server you wrote hold<br/>
+        /// your users' third-party credentials and act for the right one; the<br/>
+        /// header is absent when the run is acting for nobody. It is a header<br/>
+        /// rather than a body field because MCP owns its own JSON-RPC envelope,<br/>
+        /// so trust it exactly as far as you trust the connection your server<br/>
+        /// already authenticated. Voice conversations and sessions do not carry<br/>
+        /// it yet.
         /// </summary>
 #if NET6_0_OR_GREATER
         public global::Speechify.MCPToolConfig? MCPToolConfig { get; init; }

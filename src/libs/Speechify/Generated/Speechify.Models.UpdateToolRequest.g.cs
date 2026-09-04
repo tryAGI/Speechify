@@ -36,6 +36,18 @@ namespace Speechify
         public global::Speechify.UpdateToolRequestConfig? Config { get; set; }
 
         /// <summary>
+        /// A class sets it, an explicit null clears it to unclassified, omitted leaves it unchanged.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("action_class")]
+        public global::Speechify.ToolActionClass? ActionClass { get; set; }
+
+        /// <summary>
+        /// A class sets the override, an explicit null returns to derived, omitted leaves it unchanged.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("approval")]
+        public global::Speechify.ToolApprovalClass? Approval { get; set; }
+
+        /// <summary>
         /// Additional properties that are not explicitly defined in the schema
         /// </summary>
         [global::System.Text.Json.Serialization.JsonExtensionData]
@@ -52,6 +64,12 @@ namespace Speechify
         /// <param name="name"></param>
         /// <param name="description"></param>
         /// <param name="config"></param>
+        /// <param name="actionClass">
+        /// A class sets it, an explicit null clears it to unclassified, omitted leaves it unchanged.
+        /// </param>
+        /// <param name="approval">
+        /// A class sets the override, an explicit null returns to derived, omitted leaves it unchanged.
+        /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
 #endif
@@ -59,12 +77,16 @@ namespace Speechify
             string? projectId,
             string? name,
             string? description,
-            global::Speechify.UpdateToolRequestConfig? config)
+            global::Speechify.UpdateToolRequestConfig? config,
+            global::Speechify.ToolActionClass? actionClass,
+            global::Speechify.ToolApprovalClass? approval)
         {
             this.ProjectId = projectId;
             this.Name = name;
             this.Description = description;
             this.Config = config;
+            this.ActionClass = actionClass;
+            this.Approval = approval;
         }
 
         /// <summary>

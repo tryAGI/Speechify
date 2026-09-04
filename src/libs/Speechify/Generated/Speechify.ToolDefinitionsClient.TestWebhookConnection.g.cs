@@ -555,7 +555,21 @@ namespace Speechify
         /// </summary>
         /// <param name="speechifyVersion"></param>
         /// <param name="config">
-        /// Config shape for `kind=webhook`.
+        /// Config shape for `kind=webhook`.<br/>
+        /// On a durable run (`POST /v1/agents/{agent_id}/runs`) your endpoint is<br/>
+        /// told `user_identity`: the person the agent is acting for, exactly as<br/>
+        /// your application supplied it when it started the run. The field is<br/>
+        /// absent when the run is acting for nobody in particular, so treat an<br/>
+        /// absent value as "no person", never as a default one. Voice<br/>
+        /// conversations and sessions do not carry it yet.<br/>
+        /// On `method: POST` it rides inside the **signed** JSON body rather than<br/>
+        /// a header, so an endpoint deciding whose data to touch can verify the<br/>
+        /// answer with the same HMAC it already checks. On `method: GET` there is<br/>
+        /// no body to sign, so it arrives as a **`user_identity` query<br/>
+        /// parameter**, unverifiable exactly as the arguments beside it are: a<br/>
+        /// GET's signature covers an envelope that is not on the wire. Use POST<br/>
+        /// for any endpoint that authorizes on who the call is for. A tool<br/>
+        /// argument of the same name never overrides it.
         /// </param>
         /// <param name="toolId">
         /// Optional `tool_&lt;crockford&gt;` id of the existing tool to sign<br/>

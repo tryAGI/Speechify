@@ -78,6 +78,37 @@ namespace Speechify
         public string? WebhookSecret { get; set; }
 
         /// <summary>
+        /// The impact class you declared on the shared definition; the platform<br/>
+        /// fixes it for a built-in.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("action_class")]
+        public global::Speechify.ToolActionClass? ActionClass { get; set; }
+
+        /// <summary>
+        /// The impact the tool actually carries, derived from its shape when none was declared.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("effective_action_class")]
+        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Speechify.JsonConverters.ToolActionClassJsonConverter))]
+        [global::System.Text.Json.Serialization.JsonRequired]
+        public required global::Speechify.ToolActionClass EffectiveActionClass { get; set; }
+
+        /// <summary>
+        /// The explicit override on the shared definition. Absent for a built-in or when derived.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("approval")]
+        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Speechify.JsonConverters.ToolApprovalClassJsonConverter))]
+        public global::Speechify.ToolApprovalClass? Approval { get; set; }
+
+        /// <summary>
+        /// What governs the tool on the autonomous path. Present for the<br/>
+        /// shared kinds a durable run can execute; absent for a built-in,<br/>
+        /// which only ever runs in-process on a live session.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("effective_approval")]
+        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Speechify.JsonConverters.ToolApprovalClassJsonConverter))]
+        public global::Speechify.ToolApprovalClass? EffectiveApproval { get; set; }
+
+        /// <summary>
         ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("created_at")]
@@ -118,6 +149,9 @@ namespace Speechify
         /// <param name="config">
         /// Resolved config - `BuiltinToolConfig`, `WebhookToolConfig`, `ClientToolConfig`, or `MCPToolConfig` depending on `kind`.
         /// </param>
+        /// <param name="effectiveActionClass">
+        /// The impact the tool actually carries, derived from its shape when none was declared.
+        /// </param>
         /// <param name="createdAt"></param>
         /// <param name="updatedAt"></param>
         /// <param name="definitionId">
@@ -131,6 +165,18 @@ namespace Speechify
         /// **only** on the create response; subsequent reads return a<br/>
         /// masked placeholder.
         /// </param>
+        /// <param name="actionClass">
+        /// The impact class you declared on the shared definition; the platform<br/>
+        /// fixes it for a built-in.
+        /// </param>
+        /// <param name="approval">
+        /// The explicit override on the shared definition. Absent for a built-in or when derived.
+        /// </param>
+        /// <param name="effectiveApproval">
+        /// What governs the tool on the autonomous path. Present for the<br/>
+        /// shared kinds a durable run can execute; absent for a built-in,<br/>
+        /// which only ever runs in-process on a live session.
+        /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
 #endif
@@ -141,10 +187,14 @@ namespace Speechify
             string description,
             bool enabled,
             global::Speechify.AgentToolConfig config,
+            global::Speechify.ToolActionClass effectiveActionClass,
             global::System.DateTime createdAt,
             global::System.DateTime updatedAt,
             string? definitionId,
-            string? webhookSecret)
+            string? webhookSecret,
+            global::Speechify.ToolActionClass? actionClass,
+            global::Speechify.ToolApprovalClass? approval,
+            global::Speechify.ToolApprovalClass? effectiveApproval)
         {
             this.Id = id ?? throw new global::System.ArgumentNullException(nameof(id));
             this.Kind = kind;
@@ -154,6 +204,10 @@ namespace Speechify
             this.DefinitionId = definitionId;
             this.Config = config;
             this.WebhookSecret = webhookSecret;
+            this.ActionClass = actionClass;
+            this.EffectiveActionClass = effectiveActionClass;
+            this.Approval = approval;
+            this.EffectiveApproval = effectiveApproval;
             this.CreatedAt = createdAt;
             this.UpdatedAt = updatedAt;
         }

@@ -4,7 +4,21 @@
 namespace Speechify
 {
     /// <summary>
-    /// Config shape for `kind=webhook`.
+    /// Config shape for `kind=webhook`.<br/>
+    /// On a durable run (`POST /v1/agents/{agent_id}/runs`) your endpoint is<br/>
+    /// told `user_identity`: the person the agent is acting for, exactly as<br/>
+    /// your application supplied it when it started the run. The field is<br/>
+    /// absent when the run is acting for nobody in particular, so treat an<br/>
+    /// absent value as "no person", never as a default one. Voice<br/>
+    /// conversations and sessions do not carry it yet.<br/>
+    /// On `method: POST` it rides inside the **signed** JSON body rather than<br/>
+    /// a header, so an endpoint deciding whose data to touch can verify the<br/>
+    /// answer with the same HMAC it already checks. On `method: GET` there is<br/>
+    /// no body to sign, so it arrives as a **`user_identity` query<br/>
+    /// parameter**, unverifiable exactly as the arguments beside it are: a<br/>
+    /// GET's signature covers an envelope that is not on the wire. Use POST<br/>
+    /// for any endpoint that authorizes on who the call is for. A tool<br/>
+    /// argument of the same name never overrides it.
     /// </summary>
     public sealed partial class WebhookToolConfig
     {
@@ -67,6 +81,14 @@ namespace Speechify
         public global::Speechify.LongRunningToolConfig? LongRunning { get; set; }
 
         /// <summary>
+        /// Legacy spelling of `approval: require_approval` on the tool<br/>
+        /// definition. When true a durable run obtains human approval before<br/>
+        /// this tool runs. Prefer the definition-level `approval` field.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("requires_approval")]
+        public bool? RequiresApproval { get; set; }
+
+        /// <summary>
         /// Additional properties that are not explicitly defined in the schema
         /// </summary>
         [global::System.Text.Json.Serialization.JsonExtensionData]
@@ -104,6 +126,11 @@ namespace Speechify
         /// wait to fill; saving both is refused rather than storing a<br/>
         /// holding phrase that can never be spoken.
         /// </param>
+        /// <param name="requiresApproval">
+        /// Legacy spelling of `approval: require_approval` on the tool<br/>
+        /// definition. When true a durable run obtains human approval before<br/>
+        /// this tool runs. Prefer the definition-level `approval` field.
+        /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
 #endif
@@ -114,7 +141,8 @@ namespace Speechify
             int? timeoutMs,
             global::System.Collections.Generic.IList<global::Speechify.ToolParam>? @params,
             bool? fireAndForget,
-            global::Speechify.LongRunningToolConfig? longRunning)
+            global::Speechify.LongRunningToolConfig? longRunning,
+            bool? requiresApproval)
         {
             this.Url = url ?? throw new global::System.ArgumentNullException(nameof(url));
             this.Method = method;
@@ -123,6 +151,7 @@ namespace Speechify
             this.Params = @params;
             this.FireAndForget = fireAndForget;
             this.LongRunning = longRunning;
+            this.RequiresApproval = requiresApproval;
         }
 
         /// <summary>

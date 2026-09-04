@@ -59,6 +59,15 @@ namespace Speechify
         public global::System.Collections.Generic.IList<global::Speechify.AgentChannel>? Channels { get; set; }
 
         /// <summary>
+        /// The procedures this call ran with, each pinned to the version whose<br/>
+        /// body was rendered into the prompt. `prompt` above is the agent's own<br/>
+        /// instructions only. Empty array when none were attached; an ABSENT<br/>
+        /// key means the snapshot pre-dates this field.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("skills")]
+        public global::System.Collections.Generic.IList<global::Speechify.SkillPin>? Skills { get; set; }
+
+        /// <summary>
         /// Multilingual config as of call start. Absent on snapshots that pre-date the field and on single-language agents.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("additional_languages")]
@@ -224,6 +233,12 @@ namespace Speechify
         /// <param name="channels">
         /// Delivery-channel set the agent served at call time.
         /// </param>
+        /// <param name="skills">
+        /// The procedures this call ran with, each pinned to the version whose<br/>
+        /// body was rendered into the prompt. `prompt` above is the agent's own<br/>
+        /// instructions only. Empty array when none were attached; an ABSENT<br/>
+        /// key means the snapshot pre-dates this field.
+        /// </param>
         /// <param name="additionalLanguages">
         /// Multilingual config as of call start. Absent on snapshots that pre-date the field and on single-language agents.
         /// </param>
@@ -297,6 +312,7 @@ namespace Speechify
             string? firstMessage,
             string? language,
             global::System.Collections.Generic.IList<global::Speechify.AgentChannel>? channels,
+            global::System.Collections.Generic.IList<global::Speechify.SkillPin>? skills,
             global::System.Collections.Generic.IList<global::Speechify.AgentAdditionalLanguage>? additionalLanguages,
             string? llmProvider,
             string? llmModel,
@@ -327,6 +343,7 @@ namespace Speechify
             this.FirstMessage = firstMessage;
             this.Language = language;
             this.Channels = channels;
+            this.Skills = skills;
             this.AdditionalLanguages = additionalLanguages;
             this.LlmProvider = llmProvider;
             this.LlmModel = llmModel;

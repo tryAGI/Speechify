@@ -52,6 +52,22 @@ namespace Speechify
         public required global::Speechify.CreateAgentToolRequestConfig Config { get; set; }
 
         /// <summary>
+        /// The impact class for a shared kind (`webhook`/`client`/`mcp`),<br/>
+        /// whose definition is created here. Omitted, the server stamps the<br/>
+        /// verb default. Ignored for a built-in, whose class the platform fixes.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("action_class")]
+        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Speechify.JsonConverters.ToolActionClassJsonConverter))]
+        public global::Speechify.ToolActionClass? ActionClass { get; set; }
+
+        /// <summary>
+        /// Overrides the approval derived from the class, for a shared kind.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("approval")]
+        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Speechify.JsonConverters.ToolApprovalClassJsonConverter))]
+        public global::Speechify.ToolApprovalClass? Approval { get; set; }
+
+        /// <summary>
         /// Additional properties that are not explicitly defined in the schema
         /// </summary>
         [global::System.Text.Json.Serialization.JsonExtensionData]
@@ -73,6 +89,14 @@ namespace Speechify
         /// <param name="enabled">
         /// Defaults to true on the server when omitted.
         /// </param>
+        /// <param name="actionClass">
+        /// The impact class for a shared kind (`webhook`/`client`/`mcp`),<br/>
+        /// whose definition is created here. Omitted, the server stamps the<br/>
+        /// verb default. Ignored for a built-in, whose class the platform fixes.
+        /// </param>
+        /// <param name="approval">
+        /// Overrides the approval derived from the class, for a shared kind.
+        /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
 #endif
@@ -81,13 +105,17 @@ namespace Speechify
             string name,
             global::Speechify.CreateAgentToolRequestConfig config,
             string? description,
-            bool? enabled)
+            bool? enabled,
+            global::Speechify.ToolActionClass? actionClass,
+            global::Speechify.ToolApprovalClass? approval)
         {
             this.Kind = kind;
             this.Name = name ?? throw new global::System.ArgumentNullException(nameof(name));
             this.Description = description;
             this.Enabled = enabled;
             this.Config = config;
+            this.ActionClass = actionClass;
+            this.Approval = approval;
         }
 
         /// <summary>

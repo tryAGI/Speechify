@@ -52,6 +52,12 @@ namespace Speechify
         /// <param name="name"></param>
         /// <param name="description"></param>
         /// <param name="config"></param>
+        /// <param name="actionClass">
+        /// A class sets it, an explicit null clears it to unclassified, omitted leaves it unchanged.
+        /// </param>
+        /// <param name="approval">
+        /// A class sets the override, an explicit null returns to derived, omitted leaves it unchanged.
+        /// </param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::System.InvalidOperationException"></exception>
@@ -62,6 +68,8 @@ namespace Speechify
             string? name = default,
             string? description = default,
             global::Speechify.UpdateToolRequestConfig? config = default,
+            global::Speechify.ToolActionClass? actionClass = default,
+            global::Speechify.ToolApprovalClass? approval = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
     }
