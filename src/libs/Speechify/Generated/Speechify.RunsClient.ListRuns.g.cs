@@ -28,6 +28,7 @@ namespace Speechify
         partial void PrepareListRunsArguments(
             global::System.Net.Http.HttpClient httpClient,
             ref string agentId,
+            ref global::Speechify.V1AgentsAgentIdRunsGetParametersStatus? status,
             ref string? cursor,
             ref int? limit,
             ref string? speechifyVersion);
@@ -35,6 +36,7 @@ namespace Speechify
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpRequestMessage httpRequestMessage,
             string agentId,
+            global::Speechify.V1AgentsAgentIdRunsGetParametersStatus? status,
             string? cursor,
             int? limit,
             string? speechifyVersion);
@@ -55,6 +57,7 @@ namespace Speechify
         /// `402 durable_runs_not_in_plan`.
         /// </summary>
         /// <param name="agentId"></param>
+        /// <param name="status"></param>
         /// <param name="cursor"></param>
         /// <param name="limit">
         /// Default Value: 50
@@ -65,6 +68,7 @@ namespace Speechify
         /// <exception cref="global::Speechify.ApiException"></exception>
         public async global::System.Threading.Tasks.Task<global::Speechify.ListAgentRunsResponse> ListRunsAsync(
             string agentId,
+            global::Speechify.V1AgentsAgentIdRunsGetParametersStatus? status = default,
             string? cursor = default,
             int? limit = default,
             string? speechifyVersion = default,
@@ -73,6 +77,7 @@ namespace Speechify
         {
             var __response = await ListRunsAsResponseAsync(
                 agentId: agentId,
+                status: status,
                 cursor: cursor,
                 limit: limit,
                 speechifyVersion: speechifyVersion,
@@ -90,6 +95,7 @@ namespace Speechify
         /// `402 durable_runs_not_in_plan`.
         /// </summary>
         /// <param name="agentId"></param>
+        /// <param name="status"></param>
         /// <param name="cursor"></param>
         /// <param name="limit">
         /// Default Value: 50
@@ -100,6 +106,7 @@ namespace Speechify
         /// <exception cref="global::Speechify.ApiException"></exception>
         public async global::System.Threading.Tasks.Task<global::Speechify.AutoSDKHttpResponse<global::Speechify.ListAgentRunsResponse>> ListRunsAsResponseAsync(
             string agentId,
+            global::Speechify.V1AgentsAgentIdRunsGetParametersStatus? status = default,
             string? cursor = default,
             int? limit = default,
             string? speechifyVersion = default,
@@ -111,6 +118,7 @@ namespace Speechify
             PrepareListRunsArguments(
                 httpClient: HttpClient,
                 agentId: ref agentId,
+                status: ref status,
                 cursor: ref cursor,
                 limit: ref limit,
                 speechifyVersion: ref speechifyVersion);
@@ -142,6 +150,7 @@ namespace Speechify
                                 path: $"/v1/agents/{agentId}/runs",
                                 baseUri: HttpClient.BaseAddress);
                             __pathBuilder
+                                .AddOptionalParameter("status", status?.ToValueString())
                                 .AddOptionalParameter("cursor", cursor)
                                 .AddOptionalParameter("limit", limit?.ToString())
                                 ;
@@ -192,6 +201,7 @@ namespace Speechify
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
                     agentId: agentId!,
+                    status: status,
                     cursor: cursor,
                     limit: limit,
                     speechifyVersion: speechifyVersion);

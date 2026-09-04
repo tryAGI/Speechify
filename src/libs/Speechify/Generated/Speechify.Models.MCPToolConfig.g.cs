@@ -18,7 +18,13 @@ namespace Speechify
     /// rather than a body field because MCP owns its own JSON-RPC envelope,<br/>
     /// so trust it exactly as far as you trust the connection your server<br/>
     /// already authenticated. Voice conversations and sessions do not carry<br/>
-    /// it yet.
+    /// it yet.<br/>
+    /// Every request also carries `Speechify-Idempotency-Key`, stable for one<br/>
+    /// step of one run and identical to the `Idempotency-Key` a webhook tool<br/>
+    /// receives. A durable run is retried if the platform redelivers it, so a<br/>
+    /// tool that sends mail or takes payment can be called more than once for<br/>
+    /// the same decision: key on this header and refuse to act twice. One<br/>
+    /// connector serving both transports dedups on one identifier.
     /// </summary>
     public sealed partial class MCPToolConfig
     {

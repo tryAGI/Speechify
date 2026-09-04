@@ -63,7 +63,8 @@ namespace Speechify
         public string? IncompleteReason { get; set; }
 
         /// <summary>
-        /// Metered cost, populated at a terminal state: the run's wall-clock plus its aggregate token usage summed across every step. Token counts are THIS run's own - a run that delegated sub-goals does not include its children's usage, so a team run's total cost is this plus the usage of each run from `listRunChildren`.
+        /// Metered cost, populated at a terminal state: the run's wall-clock plus its aggregate token usage summed across every step. Token counts are THIS run's own - a run that delegated sub-goals does not include its children's usage, so a team run's total cost is this plus the usage of each run from `listRunChildren`.<br/>
+        /// Token counts are what to attribute and forecast spend against. The underlying model is not reported: which model serves a tier is ours to route and may change, and pricing lives in your plan rather than in the model name.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("usage")]
         public global::Speechify.AgentRunUsage? Usage { get; set; }
@@ -139,7 +140,8 @@ namespace Speechify
         /// Why a non-failed run stopped short: `max_turns_exhausted`, `budget_exhausted`, or `output_schema_violation` (the agent never produced an object matching `input.output_schema`; `output.reply` keeps its prose and `output.data` is absent).
         /// </param>
         /// <param name="usage">
-        /// Metered cost, populated at a terminal state: the run's wall-clock plus its aggregate token usage summed across every step. Token counts are THIS run's own - a run that delegated sub-goals does not include its children's usage, so a team run's total cost is this plus the usage of each run from `listRunChildren`.
+        /// Metered cost, populated at a terminal state: the run's wall-clock plus its aggregate token usage summed across every step. Token counts are THIS run's own - a run that delegated sub-goals does not include its children's usage, so a team run's total cost is this plus the usage of each run from `listRunChildren`.<br/>
+        /// Token counts are what to attribute and forecast spend against. The underlying model is not reported: which model serves a tier is ours to route and may change, and pricing lives in your plan rather than in the model name.
         /// </param>
         /// <param name="pendingAction">
         /// A human approval a run is durably parked on (present on `AgentRun` only while `status` is `requires_action`). Rendered VERBATIM for the approver - never a summary the agent wrote - so an injected agent cannot misrepresent what it is about to do. Resolve it with `submitRun`.

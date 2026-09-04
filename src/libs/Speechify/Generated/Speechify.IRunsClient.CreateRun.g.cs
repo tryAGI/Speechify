@@ -18,6 +18,11 @@ namespace Speechify
         /// attached MCP tools uses the legacy `sse` transport, which durable runs<br/>
         /// cannot execute; the message names the tool. Switch it to<br/>
         /// `http_streamable` or detach it, then retry.<br/>
+        /// Returns `429 concurrency_limit_reached` when the workspace already has<br/>
+        /// 200 runs queued or running. Runs execute on a shared queue, so the<br/>
+        /// ceiling is what keeps one workspace's backlog from delaying everyone<br/>
+        /// else's next run; it is not a plan limit. Wait for runs to finish, or<br/>
+        /// follow them with the run event stream, then retry.<br/>
         /// This endpoint is in beta: it is available to workspaces granted<br/>
         /// `durable_runs_access`, and every other workspace receives<br/>
         /// `402 durable_runs_not_in_plan`.
@@ -53,6 +58,11 @@ namespace Speechify
         /// attached MCP tools uses the legacy `sse` transport, which durable runs<br/>
         /// cannot execute; the message names the tool. Switch it to<br/>
         /// `http_streamable` or detach it, then retry.<br/>
+        /// Returns `429 concurrency_limit_reached` when the workspace already has<br/>
+        /// 200 runs queued or running. Runs execute on a shared queue, so the<br/>
+        /// ceiling is what keeps one workspace's backlog from delaying everyone<br/>
+        /// else's next run; it is not a plan limit. Wait for runs to finish, or<br/>
+        /// follow them with the run event stream, then retry.<br/>
         /// This endpoint is in beta: it is available to workspaces granted<br/>
         /// `durable_runs_access`, and every other workspace receives<br/>
         /// `402 durable_runs_not_in_plan`.
@@ -88,6 +98,11 @@ namespace Speechify
         /// attached MCP tools uses the legacy `sse` transport, which durable runs<br/>
         /// cannot execute; the message names the tool. Switch it to<br/>
         /// `http_streamable` or detach it, then retry.<br/>
+        /// Returns `429 concurrency_limit_reached` when the workspace already has<br/>
+        /// 200 runs queued or running. Runs execute on a shared queue, so the<br/>
+        /// ceiling is what keeps one workspace's backlog from delaying everyone<br/>
+        /// else's next run; it is not a plan limit. Wait for runs to finish, or<br/>
+        /// follow them with the run event stream, then retry.<br/>
         /// This endpoint is in beta: it is available to workspaces granted<br/>
         /// `durable_runs_access`, and every other workspace receives<br/>
         /// `402 durable_runs_not_in_plan`.

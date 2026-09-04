@@ -14,6 +14,10 @@ namespace Speechify
         /// to render or audit exactly what a run did between its instruction and its<br/>
         /// result.<br/>
         /// Credential-shaped values in a step's arguments and content are redacted.<br/>
+        /// **The journal is kept for 90 days**, after which an older run returns an<br/>
+        /// empty list here. The run itself is not deleted with it: its instruction,<br/>
+        /// answer and usage stay on the run object indefinitely. Export the trail<br/>
+        /// if you need it beyond that window.<br/>
         /// This endpoint is in beta: it is available to workspaces granted<br/>
         /// `durable_runs_access`, and every other workspace receives<br/>
         /// `402 durable_runs_not_in_plan`.
@@ -46,6 +50,10 @@ namespace Speechify
         /// to render or audit exactly what a run did between its instruction and its<br/>
         /// result.<br/>
         /// Credential-shaped values in a step's arguments and content are redacted.<br/>
+        /// **The journal is kept for 90 days**, after which an older run returns an<br/>
+        /// empty list here. The run itself is not deleted with it: its instruction,<br/>
+        /// answer and usage stay on the run object indefinitely. Export the trail<br/>
+        /// if you need it beyond that window.<br/>
         /// This endpoint is in beta: it is available to workspaces granted<br/>
         /// `durable_runs_access`, and every other workspace receives<br/>
         /// `402 durable_runs_not_in_plan`.
