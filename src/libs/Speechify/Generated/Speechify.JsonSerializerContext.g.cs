@@ -254,8 +254,10 @@ namespace Speechify
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.PendingActionDefaultDecision), TypeInfoPropertyName = "PendingActionDefaultDecision2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.PendingAction))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.AgentRun))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.V1AgentsAgentIdRunsGetParametersStatus), TypeInfoPropertyName = "V1AgentsAgentIdRunsGetParametersStatus2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.ListAgentRunsResponse))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Speechify.AgentRun>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.V1AgentsRunsGetParametersStatus), TypeInfoPropertyName = "V1AgentsRunsGetParametersStatus2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.SubmitAgentRunRequestDecision), TypeInfoPropertyName = "SubmitAgentRunRequestDecision2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.SubmitAgentRunRequest))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.AgentRunStepKind), TypeInfoPropertyName = "AgentRunStepKind2")]
@@ -264,6 +266,19 @@ namespace Speechify
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.AgentRunStep))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.ListAgentRunStepsResponse))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Speechify.AgentRunStep>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.AgentRunStepAddedEventKind), TypeInfoPropertyName = "AgentRunStepAddedEventKind2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.AgentRunStatusChangedEventStatus), TypeInfoPropertyName = "AgentRunStatusChangedEventStatus2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.AgentRunEndedEventStatus), TypeInfoPropertyName = "AgentRunEndedEventStatus2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.AgentRunEndedEventOutput))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.AgentRunStreamEvent), TypeInfoPropertyName = "AgentRunStreamEvent2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.AgentRunStreamEventVariant1))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.AgentRunStreamEventVariant1Type), TypeInfoPropertyName = "AgentRunStreamEventVariant1Type2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.AgentRunStreamEventVariant2))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.AgentRunStreamEventVariant2Type), TypeInfoPropertyName = "AgentRunStreamEventVariant2Type2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.AgentRunStreamEventVariant3))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.AgentRunStreamEventVariant3Type), TypeInfoPropertyName = "AgentRunStreamEventVariant3Type2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.AgentRunStreamEventDiscriminator))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.AgentRunStreamEventDiscriminatorType), TypeInfoPropertyName = "AgentRunStreamEventDiscriminatorType2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.KnowledgeBase))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.ListKnowledgeBasesResponse))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Speechify.KnowledgeBase>))]
@@ -499,6 +514,18 @@ namespace Speechify
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Speechify.SIPTrunk>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.CreateSipTrunkRequestCredentials))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.CreateSIPTrunkRequest))]
+    internal sealed partial class SourceGenerationContextChunk0 : global::System.Text.Json.Serialization.JsonSerializerContext
+    {
+    }
+
+    /// <summary>
+    ///
+    /// </summary>
+    [global::System.Text.Json.Serialization.JsonSourceGenerationOptions(
+        DefaultIgnoreCondition = global::System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull,
+        Converters = new global::System.Type[]
+        {
+        })]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.Caller))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.ListCallersResponse))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Speechify.Caller>))]
@@ -514,18 +541,6 @@ namespace Speechify
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Speechify.Project>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.CreateProjectRequest))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.UpdateProjectRequest))]
-    internal sealed partial class SourceGenerationContextChunk0 : global::System.Text.Json.Serialization.JsonSerializerContext
-    {
-    }
-
-    /// <summary>
-    ///
-    /// </summary>
-    [global::System.Text.Json.Serialization.JsonSourceGenerationOptions(
-        DefaultIgnoreCondition = global::System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull,
-        Converters = new global::System.Type[]
-        {
-        })]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.DeleteProjectRequestMode), TypeInfoPropertyName = "DeleteProjectRequestMode2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.DeleteProjectRequest))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.ProjectRestoredCounts))]
@@ -621,9 +636,19 @@ namespace Speechify
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.PublishGateRunDecision?), TypeInfoPropertyName = "NullablePublishGateRunDecision2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.AgentRunStatus?), TypeInfoPropertyName = "NullableAgentRunStatus2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.PendingActionDefaultDecision?), TypeInfoPropertyName = "NullablePendingActionDefaultDecision2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.V1AgentsAgentIdRunsGetParametersStatus?), TypeInfoPropertyName = "NullableV1AgentsAgentIdRunsGetParametersStatus2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.V1AgentsRunsGetParametersStatus?), TypeInfoPropertyName = "NullableV1AgentsRunsGetParametersStatus2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.SubmitAgentRunRequestDecision?), TypeInfoPropertyName = "NullableSubmitAgentRunRequestDecision2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.AgentRunStepKind?), TypeInfoPropertyName = "NullableAgentRunStepKind2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.RunStepDelegationChildStatus?), TypeInfoPropertyName = "NullableRunStepDelegationChildStatus2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.AgentRunStepAddedEventKind?), TypeInfoPropertyName = "NullableAgentRunStepAddedEventKind2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.AgentRunStatusChangedEventStatus?), TypeInfoPropertyName = "NullableAgentRunStatusChangedEventStatus2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.AgentRunEndedEventStatus?), TypeInfoPropertyName = "NullableAgentRunEndedEventStatus2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.AgentRunStreamEvent?), TypeInfoPropertyName = "NullableAgentRunStreamEvent2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.AgentRunStreamEventVariant1Type?), TypeInfoPropertyName = "NullableAgentRunStreamEventVariant1Type2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.AgentRunStreamEventVariant2Type?), TypeInfoPropertyName = "NullableAgentRunStreamEventVariant2Type2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.AgentRunStreamEventVariant3Type?), TypeInfoPropertyName = "NullableAgentRunStreamEventVariant3Type2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.AgentRunStreamEventDiscriminatorType?), TypeInfoPropertyName = "NullableAgentRunStreamEventDiscriminatorType2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.KnowledgeBaseDocumentSourceKind?), TypeInfoPropertyName = "NullableKnowledgeBaseDocumentSourceKind2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.KnowledgeBaseDocumentStatus?), TypeInfoPropertyName = "NullableKnowledgeBaseDocumentStatus2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.ImportJobKind?), TypeInfoPropertyName = "NullableImportJobKind2")]
@@ -811,6 +836,7 @@ namespace Speechify
          static void AddConverters(global::System.Text.Json.JsonSerializerOptions options)
         {
             options.Converters.Add(new global::Speechify.JsonConverters.SpeechStreamEventJsonConverter());
+            options.Converters.Add(new global::Speechify.JsonConverters.AgentRunStreamEventJsonConverter());
             options.Converters.Add(new global::Speechify.JsonConverters.MCPAuthJsonConverter());
             options.Converters.Add(new global::Speechify.JsonConverters.AgentToolConfigJsonConverter());
             options.Converters.Add(new global::Speechify.JsonConverters.CreateAgentToolRequestConfigJsonConverter());
@@ -1047,6 +1073,14 @@ namespace Speechify
 
                     || typeToConvert == typeof(global::Speechify.PendingActionDefaultDecision?)
 
+                    || typeToConvert == typeof(global::Speechify.V1AgentsAgentIdRunsGetParametersStatus)
+
+                    || typeToConvert == typeof(global::Speechify.V1AgentsAgentIdRunsGetParametersStatus?)
+
+                    || typeToConvert == typeof(global::Speechify.V1AgentsRunsGetParametersStatus)
+
+                    || typeToConvert == typeof(global::Speechify.V1AgentsRunsGetParametersStatus?)
+
                     || typeToConvert == typeof(global::Speechify.SubmitAgentRunRequestDecision)
 
                     || typeToConvert == typeof(global::Speechify.SubmitAgentRunRequestDecision?)
@@ -1058,6 +1092,34 @@ namespace Speechify
                     || typeToConvert == typeof(global::Speechify.RunStepDelegationChildStatus)
 
                     || typeToConvert == typeof(global::Speechify.RunStepDelegationChildStatus?)
+
+                    || typeToConvert == typeof(global::Speechify.AgentRunStepAddedEventKind)
+
+                    || typeToConvert == typeof(global::Speechify.AgentRunStepAddedEventKind?)
+
+                    || typeToConvert == typeof(global::Speechify.AgentRunStatusChangedEventStatus)
+
+                    || typeToConvert == typeof(global::Speechify.AgentRunStatusChangedEventStatus?)
+
+                    || typeToConvert == typeof(global::Speechify.AgentRunEndedEventStatus)
+
+                    || typeToConvert == typeof(global::Speechify.AgentRunEndedEventStatus?)
+
+                    || typeToConvert == typeof(global::Speechify.AgentRunStreamEventVariant1Type)
+
+                    || typeToConvert == typeof(global::Speechify.AgentRunStreamEventVariant1Type?)
+
+                    || typeToConvert == typeof(global::Speechify.AgentRunStreamEventVariant2Type)
+
+                    || typeToConvert == typeof(global::Speechify.AgentRunStreamEventVariant2Type?)
+
+                    || typeToConvert == typeof(global::Speechify.AgentRunStreamEventVariant3Type)
+
+                    || typeToConvert == typeof(global::Speechify.AgentRunStreamEventVariant3Type?)
+
+                    || typeToConvert == typeof(global::Speechify.AgentRunStreamEventDiscriminatorType)
+
+                    || typeToConvert == typeof(global::Speechify.AgentRunStreamEventDiscriminatorType?)
 
                     || typeToConvert == typeof(global::Speechify.KnowledgeBaseDocumentSourceKind)
 
@@ -1766,6 +1828,26 @@ namespace Speechify
                     return new global::Speechify.JsonConverters.PendingActionDefaultDecisionNullableJsonConverter();
                 }
 
+                if (typeToConvert == typeof(global::Speechify.V1AgentsAgentIdRunsGetParametersStatus))
+                {
+                    return new global::Speechify.JsonConverters.V1AgentsAgentIdRunsGetParametersStatusJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.V1AgentsAgentIdRunsGetParametersStatus?))
+                {
+                    return new global::Speechify.JsonConverters.V1AgentsAgentIdRunsGetParametersStatusNullableJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.V1AgentsRunsGetParametersStatus))
+                {
+                    return new global::Speechify.JsonConverters.V1AgentsRunsGetParametersStatusJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.V1AgentsRunsGetParametersStatus?))
+                {
+                    return new global::Speechify.JsonConverters.V1AgentsRunsGetParametersStatusNullableJsonConverter();
+                }
+
                 if (typeToConvert == typeof(global::Speechify.SubmitAgentRunRequestDecision))
                 {
                     return new global::Speechify.JsonConverters.SubmitAgentRunRequestDecisionJsonConverter();
@@ -1794,6 +1876,76 @@ namespace Speechify
                 if (typeToConvert == typeof(global::Speechify.RunStepDelegationChildStatus?))
                 {
                     return new global::Speechify.JsonConverters.RunStepDelegationChildStatusNullableJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.AgentRunStepAddedEventKind))
+                {
+                    return new global::Speechify.JsonConverters.AgentRunStepAddedEventKindJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.AgentRunStepAddedEventKind?))
+                {
+                    return new global::Speechify.JsonConverters.AgentRunStepAddedEventKindNullableJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.AgentRunStatusChangedEventStatus))
+                {
+                    return new global::Speechify.JsonConverters.AgentRunStatusChangedEventStatusJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.AgentRunStatusChangedEventStatus?))
+                {
+                    return new global::Speechify.JsonConverters.AgentRunStatusChangedEventStatusNullableJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.AgentRunEndedEventStatus))
+                {
+                    return new global::Speechify.JsonConverters.AgentRunEndedEventStatusJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.AgentRunEndedEventStatus?))
+                {
+                    return new global::Speechify.JsonConverters.AgentRunEndedEventStatusNullableJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.AgentRunStreamEventVariant1Type))
+                {
+                    return new global::Speechify.JsonConverters.AgentRunStreamEventVariant1TypeJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.AgentRunStreamEventVariant1Type?))
+                {
+                    return new global::Speechify.JsonConverters.AgentRunStreamEventVariant1TypeNullableJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.AgentRunStreamEventVariant2Type))
+                {
+                    return new global::Speechify.JsonConverters.AgentRunStreamEventVariant2TypeJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.AgentRunStreamEventVariant2Type?))
+                {
+                    return new global::Speechify.JsonConverters.AgentRunStreamEventVariant2TypeNullableJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.AgentRunStreamEventVariant3Type))
+                {
+                    return new global::Speechify.JsonConverters.AgentRunStreamEventVariant3TypeJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.AgentRunStreamEventVariant3Type?))
+                {
+                    return new global::Speechify.JsonConverters.AgentRunStreamEventVariant3TypeNullableJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.AgentRunStreamEventDiscriminatorType))
+                {
+                    return new global::Speechify.JsonConverters.AgentRunStreamEventDiscriminatorTypeJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.AgentRunStreamEventDiscriminatorType?))
+                {
+                    return new global::Speechify.JsonConverters.AgentRunStreamEventDiscriminatorTypeNullableJsonConverter();
                 }
 
                 if (typeToConvert == typeof(global::Speechify.KnowledgeBaseDocumentSourceKind))
