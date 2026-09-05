@@ -49,8 +49,9 @@ namespace Speechify
         /// <summary>
         /// A short steer for how the agent uses its knowledge bases: what to<br/>
         /// look up first, what never to quote, how to answer when nothing<br/>
-        /// matches. It reaches the model as guidance under the prompt on<br/>
-        /// every channel. Empty means none.
+        /// matches. It reaches the model as guidance under the prompt and<br/>
+        /// shapes the per-turn retrieval query on every channel: live<br/>
+        /// calls, text conversations and agent tests. Empty means none.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("knowledge_instruction")]
         public string? KnowledgeInstruction { get; set; }
@@ -357,8 +358,9 @@ namespace Speechify
         /// <param name="knowledgeInstruction">
         /// A short steer for how the agent uses its knowledge bases: what to<br/>
         /// look up first, what never to quote, how to answer when nothing<br/>
-        /// matches. It reaches the model as guidance under the prompt on<br/>
-        /// every channel. Empty means none.
+        /// matches. It reaches the model as guidance under the prompt and<br/>
+        /// shapes the per-turn retrieval query on every channel: live<br/>
+        /// calls, text conversations and agent tests. Empty means none.
         /// </param>
         /// <param name="additionalLanguages">
         /// Extra languages this agent serves in the same session beyond<br/>

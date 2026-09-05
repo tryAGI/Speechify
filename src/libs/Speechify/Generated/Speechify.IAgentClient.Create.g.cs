@@ -58,8 +58,9 @@ namespace Speechify
         /// <param name="knowledgeInstruction">
         /// A short steer for how the agent uses its knowledge bases: what to<br/>
         /// look up first, what never to quote, how to answer when nothing<br/>
-        /// matches. It reaches the model as guidance under the prompt on<br/>
-        /// every channel. Empty means none.
+        /// matches. It reaches the model as guidance under the prompt and<br/>
+        /// shapes the per-turn retrieval query on every channel: live<br/>
+        /// calls, text conversations and agent tests. Empty means none.
         /// </param>
         /// <param name="firstMessage">
         /// Greeting spoken verbatim at session start when included in the agent's flow graph. Omit for an agent with no channels, which opens no live turn.
