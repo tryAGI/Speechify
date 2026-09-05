@@ -3,11 +3,11 @@
 
 namespace Speechify
 {
-    public partial class AgentClient
+    public partial class KnowledgeBasesClient
     {
 
 
-        private static readonly global::Speechify.EndPointSecurityRequirement s_UpdateSecurityRequirement0 =
+        private static readonly global::Speechify.EndPointSecurityRequirement s_ListEvalCasesSecurityRequirement0 =
             new global::Speechify.EndPointSecurityRequirement
             {
                 Authorizations = new global::Speechify.EndPointAuthorizationRequirement[]
@@ -21,52 +21,59 @@ namespace Speechify
                     },
                 },
             };
-        private static readonly global::Speechify.EndPointSecurityRequirement[] s_UpdateSecurityRequirements =
+        private static readonly global::Speechify.EndPointSecurityRequirement[] s_ListEvalCasesSecurityRequirements =
             new global::Speechify.EndPointSecurityRequirement[]
-            {                s_UpdateSecurityRequirement0,
+            {                s_ListEvalCasesSecurityRequirement0,
             };
-        partial void PrepareUpdateArguments(
+        partial void PrepareListEvalCasesArguments(
             global::System.Net.Http.HttpClient httpClient,
-            ref string agentId,
-            ref string? speechifyVersion,
-            global::Speechify.UpdateAgentRequest request);
-        partial void PrepareUpdateRequest(
+            ref string kbId,
+            ref string? cursor,
+            ref int? limit,
+            ref string? speechifyVersion);
+        partial void PrepareListEvalCasesRequest(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpRequestMessage httpRequestMessage,
-            string agentId,
-            string? speechifyVersion,
-            global::Speechify.UpdateAgentRequest request);
-        partial void ProcessUpdateResponse(
+            string kbId,
+            string? cursor,
+            int? limit,
+            string? speechifyVersion);
+        partial void ProcessListEvalCasesResponse(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpResponseMessage httpResponseMessage);
 
-        partial void ProcessUpdateResponseContent(
+        partial void ProcessListEvalCasesResponseContent(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpResponseMessage httpResponseMessage,
             ref string content);
 
         /// <summary>
-        /// Update Agent<br/>
-        /// Update a voice agent. Only fields present on the request body are changed.
+        /// List Evaluation Cases<br/>
+        /// List the labelled questions of a knowledge base, newest first.<br/>
+        /// Cursor-paginated: omit `cursor` to fetch the first page. Default<br/>
+        /// page size is 50 and max is 200. Walk pages while `has_more` is true.
         /// </summary>
-        /// <param name="agentId"></param>
+        /// <param name="kbId"></param>
+        /// <param name="cursor"></param>
+        /// <param name="limit">
+        /// Default Value: 50
+        /// </param>
         /// <param name="speechifyVersion"></param>
-        /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
-        public async global::System.Threading.Tasks.Task<global::Speechify.Agent> UpdateAsync(
-            string agentId,
-
-            global::Speechify.UpdateAgentRequest request,
+        public async global::System.Threading.Tasks.Task<global::Speechify.ListKnowledgeBaseEvalCasesResponse> ListEvalCasesAsync(
+            string kbId,
+            string? cursor = default,
+            int? limit = default,
             string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
-            var __response = await UpdateAsResponseAsync(
-                agentId: agentId,
-
-                request: request,
+            var __response = await ListEvalCasesAsResponseAsync(
+                kbId: kbId,
+                cursor: cursor,
+                limit: limit,
                 speechifyVersion: speechifyVersion,
                 requestOptions: requestOptions,
                 cancellationToken: cancellationToken
@@ -75,38 +82,42 @@ namespace Speechify
             return __response.Body;
         }
         /// <summary>
-        /// Update Agent<br/>
-        /// Update a voice agent. Only fields present on the request body are changed.
+        /// List Evaluation Cases<br/>
+        /// List the labelled questions of a knowledge base, newest first.<br/>
+        /// Cursor-paginated: omit `cursor` to fetch the first page. Default<br/>
+        /// page size is 50 and max is 200. Walk pages while `has_more` is true.
         /// </summary>
-        /// <param name="agentId"></param>
+        /// <param name="kbId"></param>
+        /// <param name="cursor"></param>
+        /// <param name="limit">
+        /// Default Value: 50
+        /// </param>
         /// <param name="speechifyVersion"></param>
-        /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
-        public async global::System.Threading.Tasks.Task<global::Speechify.AutoSDKHttpResponse<global::Speechify.Agent>> UpdateAsResponseAsync(
-            string agentId,
-
-            global::Speechify.UpdateAgentRequest request,
+        public async global::System.Threading.Tasks.Task<global::Speechify.AutoSDKHttpResponse<global::Speechify.ListKnowledgeBaseEvalCasesResponse>> ListEvalCasesAsResponseAsync(
+            string kbId,
+            string? cursor = default,
+            int? limit = default,
             string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
-            request = request ?? throw new global::System.ArgumentNullException(nameof(request));
-
             PrepareArguments(
                 client: HttpClient);
-            PrepareUpdateArguments(
+            PrepareListEvalCasesArguments(
                 httpClient: HttpClient,
-                agentId: ref agentId,
-                speechifyVersion: ref speechifyVersion,
-                request: request);
+                kbId: ref kbId,
+                cursor: ref cursor,
+                limit: ref limit,
+                speechifyVersion: ref speechifyVersion);
 
 
             var __authorizations = global::Speechify.EndPointSecurityResolver.ResolveAuthorizations(
                 availableAuthorizations: Authorizations,
-                securityRequirements: s_UpdateSecurityRequirements,
-                operationName: "UpdateAsync");
+                securityRequirements: s_ListEvalCasesSecurityRequirements,
+                operationName: "ListEvalCasesAsync");
 
             using var __timeoutCancellationTokenSource = global::Speechify.AutoSDKRequestOptionsSupport.CreateTimeoutCancellationTokenSource(
                 clientOptions: Options,
@@ -126,15 +137,19 @@ namespace Speechify
             {
 
                             var __pathBuilder = new global::Speechify.PathBuilder(
-                                path: $"/v1/agents/{agentId}",
+                                path: $"/v1/agents/knowledge-bases/{kbId}/eval-cases",
                                 baseUri: HttpClient.BaseAddress);
+                            __pathBuilder
+                                .AddOptionalParameter("cursor", cursor)
+                                .AddOptionalParameter("limit", limit?.ToString())
+                                ;
                             var __path = __pathBuilder.ToString();
                 __path = global::Speechify.AutoSDKRequestOptionsSupport.AppendQueryParameters(
                     path: __path,
                     clientParameters: Options.QueryParameters,
                     requestParameters: requestOptions?.QueryParameters);
                 var __httpRequest = new global::System.Net.Http.HttpRequestMessage(
-                    method: new global::System.Net.Http.HttpMethod("PATCH"),
+                    method: global::System.Net.Http.HttpMethod.Get,
                     requestUri: new global::System.Uri(__path, global::System.UriKind.RelativeOrAbsolute));
 #if NET6_0_OR_GREATER
                 __httpRequest.Version = global::System.Net.HttpVersion.Version11;
@@ -163,12 +178,6 @@ namespace Speechify
                 __httpRequest.Headers.TryAddWithoutValidation("Speechify-Version", speechifyVersion.ToString());
             }
 
-                            var __httpRequestContentBody = request.ToJson(JsonSerializerContext);
-                            var __httpRequestContent = new global::System.Net.Http.StringContent(
-                                content: __httpRequestContentBody,
-                                encoding: global::System.Text.Encoding.UTF8,
-                                mediaType: "application/json");
-                            __httpRequest.Content = __httpRequestContent;
                 global::Speechify.AutoSDKRequestOptionsSupport.ApplyHeaders(
                     request: __httpRequest,
                     clientHeaders: Options.Headers,
@@ -177,12 +186,13 @@ namespace Speechify
                 PrepareRequest(
                     client: HttpClient,
                     request: __httpRequest);
-                PrepareUpdateRequest(
+                PrepareListEvalCasesRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
-                    agentId: agentId!,
-                    speechifyVersion: speechifyVersion,
-                    request: request);
+                    kbId: kbId!,
+                    cursor: cursor,
+                    limit: limit,
+                    speechifyVersion: speechifyVersion);
 
                 return __httpRequest;
             }
@@ -199,10 +209,10 @@ namespace Speechify
                     await global::Speechify.AutoSDKRequestOptionsSupport.OnBeforeRequestAsync(
                             clientOptions: Options,
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "Update",
-                                methodName: "UpdateAsync",
-                                pathTemplate: "$\"/v1/agents/{agentId}\"",
-                                httpMethod: "PATCH",
+                                operationId: "ListEvalCases",
+                                methodName: "ListEvalCasesAsync",
+                                pathTemplate: "$\"/v1/agents/knowledge-bases/{kbId}/eval-cases\"",
+                                httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
                                 response: null,
@@ -233,10 +243,10 @@ namespace Speechify
                         await global::Speechify.AutoSDKRequestOptionsSupport.OnAfterErrorAsync(
                             clientOptions: Options,
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "Update",
-                                methodName: "UpdateAsync",
-                                pathTemplate: "$\"/v1/agents/{agentId}\"",
-                                httpMethod: "PATCH",
+                                operationId: "ListEvalCases",
+                                methodName: "ListEvalCasesAsync",
+                                pathTemplate: "$\"/v1/agents/knowledge-bases/{kbId}/eval-cases\"",
+                                httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
                                 response: null,
@@ -274,10 +284,10 @@ namespace Speechify
                         await global::Speechify.AutoSDKRequestOptionsSupport.OnAfterErrorAsync(
                             clientOptions: Options,
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "Update",
-                                methodName: "UpdateAsync",
-                                pathTemplate: "$\"/v1/agents/{agentId}\"",
-                                httpMethod: "PATCH",
+                                operationId: "ListEvalCases",
+                                methodName: "ListEvalCasesAsync",
+                                pathTemplate: "$\"/v1/agents/knowledge-bases/{kbId}/eval-cases\"",
+                                httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
                                 response: __response,
@@ -314,7 +324,7 @@ namespace Speechify
                 ProcessResponse(
                     client: HttpClient,
                     response: __response);
-                ProcessUpdateResponse(
+                ProcessListEvalCasesResponse(
                     httpClient: HttpClient,
                     httpResponseMessage: __response);
                 if (__response.IsSuccessStatusCode)
@@ -322,10 +332,10 @@ namespace Speechify
                     await global::Speechify.AutoSDKRequestOptionsSupport.OnAfterSuccessAsync(
                             clientOptions: Options,
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "Update",
-                                methodName: "UpdateAsync",
-                                pathTemplate: "$\"/v1/agents/{agentId}\"",
-                                httpMethod: "PATCH",
+                                operationId: "ListEvalCases",
+                                methodName: "ListEvalCasesAsync",
+                                pathTemplate: "$\"/v1/agents/knowledge-bases/{kbId}/eval-cases\"",
+                                httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
                                 response: __response,
@@ -344,10 +354,10 @@ namespace Speechify
                     await global::Speechify.AutoSDKRequestOptionsSupport.OnAfterErrorAsync(
                             clientOptions: Options,
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "Update",
-                                methodName: "UpdateAsync",
-                                pathTemplate: "$\"/v1/agents/{agentId}\"",
-                                httpMethod: "PATCH",
+                                operationId: "ListEvalCases",
+                                methodName: "ListEvalCasesAsync",
+                                pathTemplate: "$\"/v1/agents/knowledge-bases/{kbId}/eval-cases\"",
+                                httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
                                 response: __response,
@@ -472,43 +482,6 @@ namespace Speechify
                                         h => h.Key,
                                         h => h.Value));
                             }
-                            // The request conflicts with the current resource state - e.g. duplicate, optimistic-concurrency mismatch, or last-owner guard.
-                            if ((int)__response.StatusCode == 409)
-                            {
-                                string? __content_409 = null;
-                                global::System.Exception? __exception_409 = null;
-                                global::Speechify.Error? __value_409 = null;
-                                try
-                                {
-                                    if (__effectiveReadResponseAsString)
-                                    {
-                                        __content_409 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
-                                        __value_409 = global::Speechify.Error.FromJson(__content_409, JsonSerializerContext);
-                                    }
-                                    else
-                                    {
-                                        __content_409 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
-
-                                        __value_409 = global::Speechify.Error.FromJson(__content_409, JsonSerializerContext);
-                                    }
-                                }
-                                catch (global::System.Exception __ex)
-                                {
-                                    __exception_409 = __ex;
-                                }
-
-
-                                throw global::Speechify.ApiException<global::Speechify.Error>.Create(
-                                    statusCode: __response.StatusCode,
-                                    message: __content_409 ?? __response.ReasonPhrase ?? string.Empty,
-                                    innerException: __exception_409,
-                                    responseBody: __content_409,
-                                    responseObject: __value_409,
-                                    responseHeaders: global::System.Linq.Enumerable.ToDictionary(
-                                        __response.Headers,
-                                        h => h.Key,
-                                        h => h.Value));
-                            }
 
                             if (__effectiveReadResponseAsString)
                             {
@@ -522,7 +495,7 @@ namespace Speechify
                                     client: HttpClient,
                                     response: __response,
                                     content: ref __content);
-                                ProcessUpdateResponseContent(
+                                ProcessListEvalCasesResponseContent(
                                     httpClient: HttpClient,
                                     httpResponseMessage: __response,
                                     content: ref __content);
@@ -531,9 +504,9 @@ namespace Speechify
                                 {
                                     __response.EnsureSuccessStatusCode();
 
-                                    var __value = global::Speechify.Agent.FromJson(__content, JsonSerializerContext) ??
+                                    var __value = global::Speechify.ListKnowledgeBaseEvalCasesResponse.FromJson(__content, JsonSerializerContext) ??
                                         throw new global::System.InvalidOperationException($"Response deserialization failed for \"{__content}\" ");
-                                    return new global::Speechify.AutoSDKHttpResponse<global::Speechify.Agent>(
+                                    return new global::Speechify.AutoSDKHttpResponse<global::Speechify.ListKnowledgeBaseEvalCasesResponse>(
                                         statusCode: __response.StatusCode,
                                         headers: global::Speechify.AutoSDKHttpResponse.CreateHeaders(__response),
                                         requestUri: __response.RequestMessage?.RequestUri,
@@ -563,9 +536,9 @@ namespace Speechify
                 #endif
                                     ).ConfigureAwait(false);
 
-                                    var __value = await global::Speechify.Agent.FromJsonStreamAsync(__content, JsonSerializerContext).ConfigureAwait(false) ??
+                                    var __value = await global::Speechify.ListKnowledgeBaseEvalCasesResponse.FromJsonStreamAsync(__content, JsonSerializerContext).ConfigureAwait(false) ??
                                         throw new global::System.InvalidOperationException("Response deserialization failed.");
-                                    return new global::Speechify.AutoSDKHttpResponse<global::Speechify.Agent>(
+                                    return new global::Speechify.AutoSDKHttpResponse<global::Speechify.ListKnowledgeBaseEvalCasesResponse>(
                                         statusCode: __response.StatusCode,
                                         headers: global::Speechify.AutoSDKHttpResponse.CreateHeaders(__response),
                                         requestUri: __response.RequestMessage?.RequestUri,
@@ -604,170 +577,6 @@ namespace Speechify
             {
                 __httpRequest?.Dispose();
             }
-        }
-        /// <summary>
-        /// Update Agent<br/>
-        /// Update a voice agent. Only fields present on the request body are changed.
-        /// </summary>
-        /// <param name="agentId"></param>
-        /// <param name="speechifyVersion"></param>
-        /// <param name="projectId">
-        /// Move the resource between workspace projects: a `proj_...` id<br/>
-        /// moves it there, an explicit null moves it back to the implicit<br/>
-        /// Default project, omitted leaves it unchanged.
-        /// </param>
-        /// <param name="name"></param>
-        /// <param name="prompt"></param>
-        /// <param name="knowledgeInstruction">
-        /// A short steer for how the agent uses its knowledge bases: what to<br/>
-        /// look up first, what never to quote, how to answer when nothing<br/>
-        /// matches. It reaches the model as guidance under the prompt and<br/>
-        /// shapes the per-turn retrieval query on every channel: live<br/>
-        /// calls, text conversations and agent tests. Empty means none.
-        /// </param>
-        /// <param name="firstMessage"></param>
-        /// <param name="language"></param>
-        /// <param name="channels">
-        /// Replaces the agent's enabled delivery channels. Adding `voice`<br/>
-        /// requires the agent to have a `tts.voice_id` (already set or set in<br/>
-        /// the same request). Omit to leave channels unchanged.
-        /// </param>
-        /// <param name="additionalLanguages">
-        /// Replaces the stored list wholesale when present; an empty<br/>
-        /// array clears it back to a single-language agent. Omit to<br/>
-        /// leave unchanged.
-        /// </param>
-        /// <param name="llm">
-        /// Language-model configuration. Omit the whole block on create to<br/>
-        /// run on the platform default model. On update (merge-patch) send<br/>
-        /// only the sub-fields you want to change: an explicit null clears a<br/>
-        /// nullable field to its default, a value sets it, and anything<br/>
-        /// omitted is left unchanged. `provider`/`model` are validated as a<br/>
-        /// pair, inheriting the omitted half from the stored value.
-        /// </param>
-        /// <param name="tts">
-        /// Text-to-speech voice and delivery configuration.
-        /// </param>
-        /// <param name="turnHandling">
-        /// Turn-handling and silence-timeout configuration.
-        /// </param>
-        /// <param name="memory">
-        /// Per-caller long-term memory configuration.
-        /// </param>
-        /// <param name="navigator">
-        /// Autonomous IVR-navigation configuration for outbound calls.
-        /// </param>
-        /// <param name="guardrails">
-        /// Runtime safety controls that are opt-in per agent rather than<br/>
-        /// platform defaults, because each one bills work an ordinary call<br/>
-        /// does not do.
-        /// </param>
-        /// <param name="backgroundNoise">
-        /// Optional ambient background-noise bed mixed into the call.
-        /// </param>
-        /// <param name="widgetConfig">
-        /// Customer-editable appearance + behaviour payload for the<br/>
-        /// embedded `&lt;speechify-agent&gt;` pill: button text, avatar style,<br/>
-        /// orb colours, terms-and-conditions markdown, transcript display.<br/>
-        /// Every field is optional - empty fields fall back to the<br/>
-        /// widget's compile-time defaults.
-        /// </param>
-        /// <param name="isPublic"></param>
-        /// <param name="allowedOrigins"></param>
-        /// <param name="hostnameAllowlist">
-        /// When supplied, replaces the stored list. Pass an empty<br/>
-        /// array to clear enforcement (public agent is open again).<br/>
-        /// Omit the field to leave the existing value unchanged.
-        /// </param>
-        /// <param name="webhookUrl"></param>
-        /// <param name="webhookSecret">
-        /// Rotate the HMAC secret. Write-only.
-        /// </param>
-        /// <param name="amd">
-        /// AMD routing config (PATCH-replace, wholesale). Omit to leave the stored config unchanged.
-        /// </param>
-        /// <param name="maxCallDurationSeconds">
-        /// Hard cap on the wall-clock length of a single call on this<br/>
-        /// agent, in seconds. When a call reaches it the agent ends the<br/>
-        /// call automatically. Voice agents only. Null means no<br/>
-        /// per-agent cap: the call is bounded only by your plan's call<br/>
-        /// ceiling, which is also the hard upper bound for this field -<br/>
-        /// a value above it is rejected. On a PATCH, null clears a<br/>
-        /// previously set cap.
-        /// </param>
-        /// <param name="saveAudioRecording"></param>
-        /// <param name="aiDisclosure">
-        /// Opt-in AI-disclosure opening line (PATCH-replace, wholesale). Omit to leave the stored config unchanged.
-        /// </param>
-        /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
-        /// <param name="cancellationToken">The token to cancel the operation with</param>
-        /// <exception cref="global::System.InvalidOperationException"></exception>
-        public async global::System.Threading.Tasks.Task<global::Speechify.Agent> UpdateAsync(
-            string agentId,
-            string? speechifyVersion = default,
-            string? projectId = default,
-            string? name = default,
-            string? prompt = default,
-            string? knowledgeInstruction = default,
-            string? firstMessage = default,
-            string? language = default,
-            global::System.Collections.Generic.IList<global::Speechify.AgentChannel>? channels = default,
-            global::System.Collections.Generic.IList<global::Speechify.AgentAdditionalLanguage>? additionalLanguages = default,
-            global::Speechify.AgentLLMConfig? llm = default,
-            global::Speechify.AgentTTSConfig? tts = default,
-            global::Speechify.AgentTurnHandlingConfig? turnHandling = default,
-            global::Speechify.AgentMemoryConfig? memory = default,
-            global::Speechify.AgentNavigatorConfig? navigator = default,
-            global::Speechify.AgentGuardrailsConfig? guardrails = default,
-            global::Speechify.AgentBackgroundNoiseConfig? backgroundNoise = default,
-            global::Speechify.WidgetConfig? widgetConfig = default,
-            bool? isPublic = default,
-            global::System.Collections.Generic.IList<string>? allowedOrigins = default,
-            global::System.Collections.Generic.IList<string>? hostnameAllowlist = default,
-            string? webhookUrl = default,
-            string? webhookSecret = default,
-            global::Speechify.AMDConfig? amd = default,
-            int? maxCallDurationSeconds = default,
-            bool? saveAudioRecording = default,
-            global::Speechify.AIDisclosure? aiDisclosure = default,
-            global::Speechify.AutoSDKRequestOptions? requestOptions = default,
-            global::System.Threading.CancellationToken cancellationToken = default)
-        {
-            var __request = new global::Speechify.UpdateAgentRequest
-            {
-                ProjectId = projectId,
-                Name = name,
-                Prompt = prompt,
-                KnowledgeInstruction = knowledgeInstruction,
-                FirstMessage = firstMessage,
-                Language = language,
-                Channels = channels,
-                AdditionalLanguages = additionalLanguages,
-                Llm = llm,
-                Tts = tts,
-                TurnHandling = turnHandling,
-                Memory = memory,
-                Navigator = navigator,
-                Guardrails = guardrails,
-                BackgroundNoise = backgroundNoise,
-                WidgetConfig = widgetConfig,
-                IsPublic = isPublic,
-                AllowedOrigins = allowedOrigins,
-                HostnameAllowlist = hostnameAllowlist,
-                WebhookUrl = webhookUrl,
-                WebhookSecret = webhookSecret,
-                Amd = amd,
-                MaxCallDurationSeconds = maxCallDurationSeconds,
-                SaveAudioRecording = saveAudioRecording,
-                AiDisclosure = aiDisclosure,
-            };
-
-            return await UpdateAsync(
-                agentId: agentId,
-                speechifyVersion: speechifyVersion,
-                request: __request,
-                requestOptions: requestOptions,
-                cancellationToken: cancellationToken).ConfigureAwait(false);
         }
     }
 }

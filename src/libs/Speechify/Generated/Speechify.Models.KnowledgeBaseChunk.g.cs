@@ -45,6 +45,13 @@ namespace Speechify
         public required string Content { get; set; }
 
         /// <summary>
+        /// A sentence or two that situates the passage within its document,<br/>
+        /// written at ingest when contextual chunks are on. Absent otherwise.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("context")]
+        public string? Context { get; set; }
+
+        /// <summary>
         /// The headings the chunk sits under, outermost first; empty when the document has none.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("heading_path")]
@@ -71,6 +78,10 @@ namespace Speechify
         /// <param name="headingPath">
         /// The headings the chunk sits under, outermost first; empty when the document has none.
         /// </param>
+        /// <param name="context">
+        /// A sentence or two that situates the passage within its document,<br/>
+        /// written at ingest when contextual chunks are on. Absent otherwise.
+        /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
 #endif
@@ -80,13 +91,15 @@ namespace Speechify
             string kbId,
             int chunkIndex,
             string content,
-            global::System.Collections.Generic.IList<string> headingPath)
+            global::System.Collections.Generic.IList<string> headingPath,
+            string? context)
         {
             this.Id = id ?? throw new global::System.ArgumentNullException(nameof(id));
             this.DocumentId = documentId ?? throw new global::System.ArgumentNullException(nameof(documentId));
             this.KbId = kbId ?? throw new global::System.ArgumentNullException(nameof(kbId));
             this.ChunkIndex = chunkIndex;
             this.Content = content ?? throw new global::System.ArgumentNullException(nameof(content));
+            this.Context = context;
             this.HeadingPath = headingPath ?? throw new global::System.ArgumentNullException(nameof(headingPath));
         }
 
