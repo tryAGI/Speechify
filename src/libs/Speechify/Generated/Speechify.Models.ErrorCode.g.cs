@@ -108,6 +108,10 @@ namespace Speechify
         /// <summary>
         ///
         /// </summary>
+        ChannelNotInPlan,
+        /// <summary>
+        ///
+        /// </summary>
         ConcurrencyLimitReached,
         /// <summary>
         ///
@@ -594,6 +598,7 @@ namespace Speechify
                 ErrorCode.CallNotFound => "call_not_found",
                 ErrorCode.CallerNotFound => "caller_not_found",
                 ErrorCode.ChannelInstanceNotFound => "channel_instance_not_found",
+                ErrorCode.ChannelNotInPlan => "channel_not_in_plan",
                 ErrorCode.ConcurrencyLimitReached => "concurrency_limit_reached",
                 ErrorCode.Conflict => "conflict",
                 ErrorCode.ConsentChallengeAlreadyUsed => "consent_challenge_already_used",
@@ -740,6 +745,7 @@ namespace Speechify
                 "call_not_found" => ErrorCode.CallNotFound,
                 "caller_not_found" => ErrorCode.CallerNotFound,
                 "channel_instance_not_found" => ErrorCode.ChannelInstanceNotFound,
+                "channel_not_in_plan" => ErrorCode.ChannelNotInPlan,
                 "concurrency_limit_reached" => ErrorCode.ConcurrencyLimitReached,
                 "conflict" => ErrorCode.Conflict,
                 "consent_challenge_already_used" => ErrorCode.ConsentChallengeAlreadyUsed,
