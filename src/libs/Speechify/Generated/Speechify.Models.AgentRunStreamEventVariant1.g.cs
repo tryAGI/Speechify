@@ -42,7 +42,7 @@ namespace Speechify
         /// <summary>
         /// The tool a `tool_call` / `observation` step is about.<br/>
         /// It is not always one of your own tools. Platform tools appear under<br/>
-        /// their reserved names - `search_knowledge`, `fetch_url`,<br/>
+        /// their reserved names - `search_knowledge`, `fetch_url`, `run_code`,<br/>
         /// `store_query`, `store_get`, `store_put`, `store_delete`,<br/>
         /// `store_read_asset` - an MCP tool appears as<br/>
         /// `&lt;tool_name&gt;__&lt;remote_tool_name&gt;`, and a schema-repair observation<br/>
@@ -122,7 +122,7 @@ namespace Speechify
         /// <param name="tool">
         /// The tool a `tool_call` / `observation` step is about.<br/>
         /// It is not always one of your own tools. Platform tools appear under<br/>
-        /// their reserved names - `search_knowledge`, `fetch_url`,<br/>
+        /// their reserved names - `search_knowledge`, `fetch_url`, `run_code`,<br/>
         /// `store_query`, `store_get`, `store_put`, `store_delete`,<br/>
         /// `store_read_asset` - an MCP tool appears as<br/>
         /// `&lt;tool_name&gt;__&lt;remote_tool_name&gt;`, and a schema-repair observation<br/>
