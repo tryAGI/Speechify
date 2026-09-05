@@ -25,7 +25,11 @@ namespace Speechify
         public required int IntervalDays { get; set; }
 
         /// <summary>
-        ///
+        /// Delete the document once the source itself has answered "page gone"<br/>
+        /// (HTTP 404 or 410) on 5 consecutive refreshes. A transient failure<br/>
+        /// (outage, timeout, block) never removes a document: the last<br/>
+        /// successfully fetched version keeps serving and the failure streak<br/>
+        /// is reported in `consecutive_fetch_failures`.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("auto_remove_enabled")]
         [global::System.Text.Json.Serialization.JsonRequired]
@@ -38,7 +42,9 @@ namespace Speechify
         public global::System.DateTime? LastRefreshedAt { get; set; }
 
         /// <summary>
-        ///
+        /// Refreshes in a row that failed to fetch the source. Reset to zero<br/>
+        /// by the next successful fetch. While non-zero, the document still<br/>
+        /// serves its last successfully fetched version.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("consecutive_fetch_failures")]
         [global::System.Text.Json.Serialization.JsonRequired]
@@ -55,8 +61,18 @@ namespace Speechify
         /// </summary>
         /// <param name="enabled"></param>
         /// <param name="intervalDays"></param>
-        /// <param name="autoRemoveEnabled"></param>
-        /// <param name="consecutiveFetchFailures"></param>
+        /// <param name="autoRemoveEnabled">
+        /// Delete the document once the source itself has answered "page gone"<br/>
+        /// (HTTP 404 or 410) on 5 consecutive refreshes. A transient failure<br/>
+        /// (outage, timeout, block) never removes a document: the last<br/>
+        /// successfully fetched version keeps serving and the failure streak<br/>
+        /// is reported in `consecutive_fetch_failures`.
+        /// </param>
+        /// <param name="consecutiveFetchFailures">
+        /// Refreshes in a row that failed to fetch the source. Reset to zero<br/>
+        /// by the next successful fetch. While non-zero, the document still<br/>
+        /// serves its last successfully fetched version.
+        /// </param>
         /// <param name="lastRefreshedAt"></param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]

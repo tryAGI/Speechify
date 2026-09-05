@@ -51,6 +51,12 @@ namespace Speechify
         /// </param>
         /// <param name="name"></param>
         /// <param name="prompt"></param>
+        /// <param name="knowledgeInstruction">
+        /// A short steer for how the agent uses its knowledge bases: what to<br/>
+        /// look up first, what never to quote, how to answer when nothing<br/>
+        /// matches. It reaches the model as guidance under the prompt on<br/>
+        /// every channel. Empty means none.
+        /// </param>
         /// <param name="firstMessage"></param>
         /// <param name="language"></param>
         /// <param name="channels">
@@ -134,6 +140,7 @@ namespace Speechify
             string? projectId = default,
             string? name = default,
             string? prompt = default,
+            string? knowledgeInstruction = default,
             string? firstMessage = default,
             string? language = default,
             global::System.Collections.Generic.IList<global::Speechify.AgentChannel>? channels = default,

@@ -41,6 +41,12 @@ namespace Speechify
         public string? Prompt { get; set; }
 
         /// <summary>
+        /// The agent's knowledge instruction as captured, empty when none was set.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("knowledge_instruction")]
+        public string? KnowledgeInstruction { get; set; }
+
+        /// <summary>
         ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("first_message")]
@@ -228,6 +234,9 @@ namespace Speechify
         /// <param name="capturedAt"></param>
         /// <param name="name"></param>
         /// <param name="prompt"></param>
+        /// <param name="knowledgeInstruction">
+        /// The agent's knowledge instruction as captured, empty when none was set.
+        /// </param>
         /// <param name="firstMessage"></param>
         /// <param name="language"></param>
         /// <param name="channels">
@@ -309,6 +318,7 @@ namespace Speechify
             global::System.DateTime? capturedAt,
             string? name,
             string? prompt,
+            string? knowledgeInstruction,
             string? firstMessage,
             string? language,
             global::System.Collections.Generic.IList<global::Speechify.AgentChannel>? channels,
@@ -340,6 +350,7 @@ namespace Speechify
             this.CapturedAt = capturedAt;
             this.Name = name;
             this.Prompt = prompt;
+            this.KnowledgeInstruction = knowledgeInstruction;
             this.FirstMessage = firstMessage;
             this.Language = language;
             this.Channels = channels;

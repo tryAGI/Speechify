@@ -61,6 +61,19 @@ namespace Speechify
         public required string Score { get; set; }
 
         /// <summary>
+        /// The headings the passage sat under when it was retrieved, outermost first.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("heading_path")]
+        [global::System.Text.Json.Serialization.JsonRequired]
+        public required global::System.Collections.Generic.IList<string> HeadingPath { get; set; }
+
+        /// <summary>
+        ///
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("source_url")]
+        public string? SourceUrl { get; set; }
+
+        /// <summary>
         /// Additional properties that are not explicitly defined in the schema
         /// </summary>
         [global::System.Text.Json.Serialization.JsonExtensionData]
@@ -79,6 +92,10 @@ namespace Speechify
         /// <param name="chunkIndex"></param>
         /// <param name="content"></param>
         /// <param name="score"></param>
+        /// <param name="headingPath">
+        /// The headings the passage sat under when it was retrieved, outermost first.
+        /// </param>
+        /// <param name="sourceUrl"></param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
 #endif
@@ -89,7 +106,9 @@ namespace Speechify
             string filename,
             int chunkIndex,
             string content,
-            string score)
+            string score,
+            global::System.Collections.Generic.IList<string> headingPath,
+            string? sourceUrl)
         {
             this.ChunkId = chunkId ?? throw new global::System.ArgumentNullException(nameof(chunkId));
             this.DocumentId = documentId ?? throw new global::System.ArgumentNullException(nameof(documentId));
@@ -98,6 +117,8 @@ namespace Speechify
             this.ChunkIndex = chunkIndex;
             this.Content = content ?? throw new global::System.ArgumentNullException(nameof(content));
             this.Score = score ?? throw new global::System.ArgumentNullException(nameof(score));
+            this.HeadingPath = headingPath ?? throw new global::System.ArgumentNullException(nameof(headingPath));
+            this.SourceUrl = sourceUrl;
         }
 
         /// <summary>

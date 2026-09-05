@@ -21,7 +21,9 @@ namespace Speechify
         public int? IntervalDays { get; set; }
 
         /// <summary>
-        ///
+        /// Delete the document once the source itself has answered "page gone"<br/>
+        /// (HTTP 404 or 410) on 5 consecutive refreshes. Transient fetch<br/>
+        /// failures never remove a document.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("auto_remove_enabled")]
         public bool? AutoRemoveEnabled { get; set; }
@@ -37,7 +39,11 @@ namespace Speechify
         /// </summary>
         /// <param name="enabled"></param>
         /// <param name="intervalDays"></param>
-        /// <param name="autoRemoveEnabled"></param>
+        /// <param name="autoRemoveEnabled">
+        /// Delete the document once the source itself has answered "page gone"<br/>
+        /// (HTTP 404 or 410) on 5 consecutive refreshes. Transient fetch<br/>
+        /// failures never remove a document.
+        /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
 #endif

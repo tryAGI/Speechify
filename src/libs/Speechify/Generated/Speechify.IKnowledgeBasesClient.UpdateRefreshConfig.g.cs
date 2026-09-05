@@ -57,7 +57,11 @@ namespace Speechify
         /// <param name="speechifyVersion"></param>
         /// <param name="enabled"></param>
         /// <param name="intervalDays"></param>
-        /// <param name="autoRemoveEnabled"></param>
+        /// <param name="autoRemoveEnabled">
+        /// Delete the document once the source itself has answered "page gone"<br/>
+        /// (HTTP 404 or 410) on 5 consecutive refreshes. Transient fetch<br/>
+        /// failures never remove a document.
+        /// </param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::System.InvalidOperationException"></exception>

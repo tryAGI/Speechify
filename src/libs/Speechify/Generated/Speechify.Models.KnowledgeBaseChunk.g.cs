@@ -45,6 +45,13 @@ namespace Speechify
         public required string Content { get; set; }
 
         /// <summary>
+        /// The headings the chunk sits under, outermost first; empty when the document has none.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("heading_path")]
+        [global::System.Text.Json.Serialization.JsonRequired]
+        public required global::System.Collections.Generic.IList<string> HeadingPath { get; set; }
+
+        /// <summary>
         /// Additional properties that are not explicitly defined in the schema
         /// </summary>
         [global::System.Text.Json.Serialization.JsonExtensionData]
@@ -61,6 +68,9 @@ namespace Speechify
         /// </param>
         /// <param name="chunkIndex"></param>
         /// <param name="content"></param>
+        /// <param name="headingPath">
+        /// The headings the chunk sits under, outermost first; empty when the document has none.
+        /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
 #endif
@@ -69,13 +79,15 @@ namespace Speechify
             string documentId,
             string kbId,
             int chunkIndex,
-            string content)
+            string content,
+            global::System.Collections.Generic.IList<string> headingPath)
         {
             this.Id = id ?? throw new global::System.ArgumentNullException(nameof(id));
             this.DocumentId = documentId ?? throw new global::System.ArgumentNullException(nameof(documentId));
             this.KbId = kbId ?? throw new global::System.ArgumentNullException(nameof(kbId));
             this.ChunkIndex = chunkIndex;
             this.Content = content ?? throw new global::System.ArgumentNullException(nameof(content));
+            this.HeadingPath = headingPath ?? throw new global::System.ArgumentNullException(nameof(headingPath));
         }
 
         /// <summary>

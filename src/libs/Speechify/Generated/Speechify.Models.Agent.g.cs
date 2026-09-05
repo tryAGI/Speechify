@@ -47,6 +47,15 @@ namespace Speechify
         public required string Prompt { get; set; }
 
         /// <summary>
+        /// A short steer for how the agent uses its knowledge bases: what to<br/>
+        /// look up first, what never to quote, how to answer when nothing<br/>
+        /// matches. It reaches the model as guidance under the prompt on<br/>
+        /// every channel. Empty means none.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("knowledge_instruction")]
+        public string? KnowledgeInstruction { get; set; }
+
+        /// <summary>
         /// Spoken verbatim at session start when present in the customer's flow graph.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("first_message")]
@@ -345,6 +354,12 @@ namespace Speechify
         /// </param>
         /// <param name="createdAt"></param>
         /// <param name="updatedAt"></param>
+        /// <param name="knowledgeInstruction">
+        /// A short steer for how the agent uses its knowledge bases: what to<br/>
+        /// look up first, what never to quote, how to answer when nothing<br/>
+        /// matches. It reaches the model as guidance under the prompt on<br/>
+        /// every channel. Empty means none.
+        /// </param>
         /// <param name="additionalLanguages">
         /// Extra languages this agent serves in the same session beyond<br/>
         /// its default `language`. When non-empty the agent can switch<br/>
@@ -423,6 +438,7 @@ namespace Speechify
             global::Speechify.AIDisclosure aiDisclosure,
             global::System.DateTime createdAt,
             global::System.DateTime updatedAt,
+            string? knowledgeInstruction,
             global::System.Collections.Generic.IList<global::Speechify.AgentAdditionalLanguage>? additionalLanguages,
             global::Speechify.WidgetConfig? widgetConfig,
             global::System.Collections.Generic.IList<string>? hostnameAllowlist,
@@ -436,6 +452,7 @@ namespace Speechify
             this.Slug = slug ?? throw new global::System.ArgumentNullException(nameof(slug));
             this.Channels = channels ?? throw new global::System.ArgumentNullException(nameof(channels));
             this.Prompt = prompt ?? throw new global::System.ArgumentNullException(nameof(prompt));
+            this.KnowledgeInstruction = knowledgeInstruction;
             this.FirstMessage = firstMessage ?? throw new global::System.ArgumentNullException(nameof(firstMessage));
             this.Language = language ?? throw new global::System.ArgumentNullException(nameof(language));
             this.AdditionalLanguages = additionalLanguages;
