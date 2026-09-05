@@ -543,6 +543,12 @@ namespace Speechify
         /// `tts.voice_id`.
         /// </param>
         /// <param name="prompt"></param>
+        /// <param name="knowledgeInstruction">
+        /// A short steer for how the agent uses its knowledge bases: what to<br/>
+        /// look up first, what never to quote, how to answer when nothing<br/>
+        /// matches. It reaches the model as guidance under the prompt on<br/>
+        /// every channel. Empty means none.
+        /// </param>
         /// <param name="firstMessage">
         /// Greeting spoken verbatim at session start when included in the agent's flow graph. Omit for an agent with no channels, which opens no live turn.
         /// </param>
@@ -630,6 +636,7 @@ namespace Speechify
             string? projectId = default,
             string? slug = default,
             global::System.Collections.Generic.IList<global::Speechify.AgentChannel>? channels = default,
+            string? knowledgeInstruction = default,
             string? firstMessage = default,
             string? language = default,
             global::System.Collections.Generic.IList<global::Speechify.AgentAdditionalLanguage>? additionalLanguages = default,
@@ -660,6 +667,7 @@ namespace Speechify
                 Slug = slug,
                 Channels = channels,
                 Prompt = prompt,
+                KnowledgeInstruction = knowledgeInstruction,
                 FirstMessage = firstMessage,
                 Language = language,
                 AdditionalLanguages = additionalLanguages,

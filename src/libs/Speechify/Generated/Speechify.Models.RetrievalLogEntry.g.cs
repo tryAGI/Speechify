@@ -63,6 +63,30 @@ namespace Speechify
         public required string NodeKey { get; set; }
 
         /// <summary>
+        /// The retrieval contract that produced this row, so results can be<br/>
+        /// compared like with like across a rollout. Rows recorded before<br/>
+        /// versioning carry `v1`.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("retrieval_version")]
+        [global::System.Text.Json.Serialization.JsonRequired]
+        public required string RetrievalVersion { get; set; }
+
+        /// <summary>
+        /// The verdict the agent was given for this search. Absent on rows<br/>
+        /// recorded before coverage existed.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("coverage")]
+        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Speechify.JsonConverters.RetrievalCoverageJsonConverter))]
+        public global::Speechify.RetrievalCoverage? Coverage { get; set; }
+
+        /// <summary>
+        /// How long the search took, in milliseconds. Absent on rows<br/>
+        /// recorded before it was measured.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("latency_ms")]
+        public int? LatencyMs { get; set; }
+
+        /// <summary>
         /// The knowledge bases this search actually ran against. Equal<br/>
         /// to the agent's full attached set unless the active subagent<br/>
         /// node carried a `knowledge_base_filter`, in which case it is<br/>
@@ -104,6 +128,11 @@ namespace Speechify
         /// search. Empty when the call ran without a flow, or for rows<br/>
         /// recorded before phase attribution existed.
         /// </param>
+        /// <param name="retrievalVersion">
+        /// The retrieval contract that produced this row, so results can be<br/>
+        /// compared like with like across a rollout. Rows recorded before<br/>
+        /// versioning carry `v1`.
+        /// </param>
         /// <param name="searchedKnowledgeBaseIds">
         /// The knowledge bases this search actually ran against. Equal<br/>
         /// to the agent's full attached set unless the active subagent<br/>
@@ -113,6 +142,14 @@ namespace Speechify
         /// ones returned a hit.
         /// </param>
         /// <param name="createdAt"></param>
+        /// <param name="coverage">
+        /// The verdict the agent was given for this search. Absent on rows<br/>
+        /// recorded before coverage existed.
+        /// </param>
+        /// <param name="latencyMs">
+        /// How long the search took, in milliseconds. Absent on rows<br/>
+        /// recorded before it was measured.
+        /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
 #endif
@@ -124,8 +161,11 @@ namespace Speechify
             int limit,
             int hitCount,
             string nodeKey,
+            string retrievalVersion,
             global::System.Collections.Generic.IList<string> searchedKnowledgeBaseIds,
-            global::System.DateTime createdAt)
+            global::System.DateTime createdAt,
+            global::Speechify.RetrievalCoverage? coverage,
+            int? latencyMs)
         {
             this.Id = id ?? throw new global::System.ArgumentNullException(nameof(id));
             this.ConversationId = conversationId ?? throw new global::System.ArgumentNullException(nameof(conversationId));
@@ -134,6 +174,9 @@ namespace Speechify
             this.Limit = limit;
             this.HitCount = hitCount;
             this.NodeKey = nodeKey ?? throw new global::System.ArgumentNullException(nameof(nodeKey));
+            this.RetrievalVersion = retrievalVersion ?? throw new global::System.ArgumentNullException(nameof(retrievalVersion));
+            this.Coverage = coverage;
+            this.LatencyMs = latencyMs;
             this.SearchedKnowledgeBaseIds = searchedKnowledgeBaseIds ?? throw new global::System.ArgumentNullException(nameof(searchedKnowledgeBaseIds));
             this.CreatedAt = createdAt;
         }

@@ -46,6 +46,15 @@ namespace Speechify
         public required string Prompt { get; set; }
 
         /// <summary>
+        /// A short steer for how the agent uses its knowledge bases: what to<br/>
+        /// look up first, what never to quote, how to answer when nothing<br/>
+        /// matches. It reaches the model as guidance under the prompt on<br/>
+        /// every channel. Empty means none.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("knowledge_instruction")]
+        public string? KnowledgeInstruction { get; set; }
+
+        /// <summary>
         /// Greeting spoken verbatim at session start when included in the agent's flow graph. Omit for an agent with no channels, which opens no live turn.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("first_message")]
@@ -209,6 +218,12 @@ namespace Speechify
         /// reached by its triggers only. Serving `voice` requires a<br/>
         /// `tts.voice_id`.
         /// </param>
+        /// <param name="knowledgeInstruction">
+        /// A short steer for how the agent uses its knowledge bases: what to<br/>
+        /// look up first, what never to quote, how to answer when nothing<br/>
+        /// matches. It reaches the model as guidance under the prompt on<br/>
+        /// every channel. Empty means none.
+        /// </param>
         /// <param name="firstMessage">
         /// Greeting spoken verbatim at session start when included in the agent's flow graph. Omit for an agent with no channels, which opens no live turn.
         /// </param>
@@ -295,6 +310,7 @@ namespace Speechify
             string? projectId,
             string? slug,
             global::System.Collections.Generic.IList<global::Speechify.AgentChannel>? channels,
+            string? knowledgeInstruction,
             string? firstMessage,
             string? language,
             global::System.Collections.Generic.IList<global::Speechify.AgentAdditionalLanguage>? additionalLanguages,
@@ -321,6 +337,7 @@ namespace Speechify
             this.Slug = slug;
             this.Channels = channels;
             this.Prompt = prompt ?? throw new global::System.ArgumentNullException(nameof(prompt));
+            this.KnowledgeInstruction = knowledgeInstruction;
             this.FirstMessage = firstMessage;
             this.Language = language;
             this.AdditionalLanguages = additionalLanguages;

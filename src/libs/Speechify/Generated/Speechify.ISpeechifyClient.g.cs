@@ -61,6 +61,16 @@ namespace Speechify
         /// <summary>
         ///
         /// </summary>
+        public AgentsClient Agents { get; }
+
+        /// <summary>
+        ///
+        /// </summary>
+        public AssetsClient Assets { get; }
+
+        /// <summary>
+        ///
+        /// </summary>
         public AudioClient Audio { get; }
 
         /// <summary>
@@ -86,7 +96,22 @@ namespace Speechify
         /// <summary>
         ///
         /// </summary>
+        public ContactsClient Contacts { get; }
+
+        /// <summary>
+        ///
+        /// </summary>
         public ConversationsClient Conversations { get; }
+
+        /// <summary>
+        ///
+        /// </summary>
+        public DocumentsClient Documents { get; }
+
+        /// <summary>
+        ///
+        /// </summary>
+        public EndpointsClient Endpoints { get; }
 
         /// <summary>
         ///
@@ -96,7 +121,17 @@ namespace Speechify
         /// <summary>
         ///
         /// </summary>
+        public HostedApisClient HostedApis { get; }
+
+        /// <summary>
+        ///
+        /// </summary>
         public IvrMemoryClient IvrMemory { get; }
+
+        /// <summary>
+        ///
+        /// </summary>
+        public KeysClient Keys { get; }
 
         /// <summary>
         ///
@@ -136,6 +171,11 @@ namespace Speechify
         /// <summary>
         ///
         /// </summary>
+        public RoutesClient Routes { get; }
+
+        /// <summary>
+        ///
+        /// </summary>
         public RunsClient Runs { get; }
 
         /// <summary>
@@ -151,12 +191,32 @@ namespace Speechify
         /// <summary>
         ///
         /// </summary>
+        public SkillsClient Skills { get; }
+
+        /// <summary>
+        ///
+        /// </summary>
+        public StoresClient Stores { get; }
+
+        /// <summary>
+        ///
+        /// </summary>
+        public TeamsClient Teams { get; }
+
+        /// <summary>
+        ///
+        /// </summary>
         public TestsClient Tests { get; }
 
         /// <summary>
         ///
         /// </summary>
         public ToolDefinitionsClient ToolDefinitions { get; }
+
+        /// <summary>
+        ///
+        /// </summary>
+        public TriggersClient Triggers { get; }
 
         /// <summary>
         ///

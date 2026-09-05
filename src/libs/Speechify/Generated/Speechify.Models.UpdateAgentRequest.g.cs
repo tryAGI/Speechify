@@ -36,6 +36,15 @@ namespace Speechify
         public string? Prompt { get; set; }
 
         /// <summary>
+        /// A short steer for how the agent uses its knowledge bases: what to<br/>
+        /// look up first, what never to quote, how to answer when nothing<br/>
+        /// matches. It reaches the model as guidance under the prompt on<br/>
+        /// every channel. Empty means none.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("knowledge_instruction")]
+        public string? KnowledgeInstruction { get; set; }
+
+        /// <summary>
         ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("first_message")]
@@ -200,6 +209,12 @@ namespace Speechify
         /// </param>
         /// <param name="name"></param>
         /// <param name="prompt"></param>
+        /// <param name="knowledgeInstruction">
+        /// A short steer for how the agent uses its knowledge bases: what to<br/>
+        /// look up first, what never to quote, how to answer when nothing<br/>
+        /// matches. It reaches the model as guidance under the prompt on<br/>
+        /// every channel. Empty means none.
+        /// </param>
         /// <param name="firstMessage"></param>
         /// <param name="language"></param>
         /// <param name="channels">
@@ -281,6 +296,7 @@ namespace Speechify
             string? projectId,
             string? name,
             string? prompt,
+            string? knowledgeInstruction,
             string? firstMessage,
             string? language,
             global::System.Collections.Generic.IList<global::Speechify.AgentChannel>? channels,
@@ -306,6 +322,7 @@ namespace Speechify
             this.ProjectId = projectId;
             this.Name = name;
             this.Prompt = prompt;
+            this.KnowledgeInstruction = knowledgeInstruction;
             this.FirstMessage = firstMessage;
             this.Language = language;
             this.Channels = channels;

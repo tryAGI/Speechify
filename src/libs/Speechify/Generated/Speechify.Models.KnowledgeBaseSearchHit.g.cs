@@ -58,6 +58,29 @@ namespace Speechify
         public required string Score { get; set; }
 
         /// <summary>
+        /// The headings the passage sits under, outermost first. Empty for a<br/>
+        /// document without headings, or one indexed before headings were kept.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("heading_path")]
+        [global::System.Text.Json.Serialization.JsonRequired]
+        public required global::System.Collections.Generic.IList<string> HeadingPath { get; set; }
+
+        /// <summary>
+        /// The page the document was imported from, when it came from a URL.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("source_url")]
+        public string? SourceUrl { get; set; }
+
+        /// <summary>
+        /// The component scores behind a hit's position, for a caller that<br/>
+        /// wants to see why a passage ranked where it did. Each field is absent<br/>
+        /// when the stage that produces it did not run. `score` on the hit keeps<br/>
+        /// its cosine meaning regardless.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("ranking")]
+        public global::Speechify.SearchHitRanking? Ranking { get; set; }
+
+        /// <summary>
         /// Additional properties that are not explicitly defined in the schema
         /// </summary>
         [global::System.Text.Json.Serialization.JsonExtensionData]
@@ -75,6 +98,19 @@ namespace Speechify
         /// <param name="score">
         /// Cosine similarity (higher = more relevant).
         /// </param>
+        /// <param name="headingPath">
+        /// The headings the passage sits under, outermost first. Empty for a<br/>
+        /// document without headings, or one indexed before headings were kept.
+        /// </param>
+        /// <param name="sourceUrl">
+        /// The page the document was imported from, when it came from a URL.
+        /// </param>
+        /// <param name="ranking">
+        /// The component scores behind a hit's position, for a caller that<br/>
+        /// wants to see why a passage ranked where it did. Each field is absent<br/>
+        /// when the stage that produces it did not run. `score` on the hit keeps<br/>
+        /// its cosine meaning regardless.
+        /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
 #endif
@@ -85,7 +121,10 @@ namespace Speechify
             string filename,
             int chunkIndex,
             string content,
-            string score)
+            string score,
+            global::System.Collections.Generic.IList<string> headingPath,
+            string? sourceUrl,
+            global::Speechify.SearchHitRanking? ranking)
         {
             this.ChunkId = chunkId ?? throw new global::System.ArgumentNullException(nameof(chunkId));
             this.DocumentId = documentId ?? throw new global::System.ArgumentNullException(nameof(documentId));
@@ -94,6 +133,9 @@ namespace Speechify
             this.ChunkIndex = chunkIndex;
             this.Content = content ?? throw new global::System.ArgumentNullException(nameof(content));
             this.Score = score ?? throw new global::System.ArgumentNullException(nameof(score));
+            this.HeadingPath = headingPath ?? throw new global::System.ArgumentNullException(nameof(headingPath));
+            this.SourceUrl = sourceUrl;
+            this.Ranking = ranking;
         }
 
         /// <summary>
