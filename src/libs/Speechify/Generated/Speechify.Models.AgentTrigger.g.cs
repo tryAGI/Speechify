@@ -67,7 +67,9 @@ namespace Speechify
         public global::Speechify.TriggerWebhookConfig? Webhook { get; set; }
 
         /// <summary>
-        /// When a schedule trigger next fires. Absent for a webhook or a disabled schedule.
+        /// When a schedule trigger next fires, as an absolute UTC instant<br/>
+        /// computed in the schedule's `timezone`. Absent for a webhook or a<br/>
+        /// disabled schedule.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("next_fire_at")]
         public global::System.DateTime? NextFireAt { get; set; }
@@ -162,7 +164,9 @@ namespace Speechify
         /// The inbound-fire config of a webhook trigger.
         /// </param>
         /// <param name="nextFireAt">
-        /// When a schedule trigger next fires. Absent for a webhook or a disabled schedule.
+        /// When a schedule trigger next fires, as an absolute UTC instant<br/>
+        /// computed in the schedule's `timezone`. Absent for a webhook or a<br/>
+        /// disabled schedule.
         /// </param>
         /// <param name="lastFiredAt"></param>
         /// <param name="lastFireStatus">
