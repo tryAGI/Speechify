@@ -84,6 +84,17 @@ namespace Speechify
         public required int ChunkCount { get; set; }
 
         /// <summary>
+        /// `always` places the document in every prompt of the agents its<br/>
+        /// knowledge base is attached to; `on_demand` (the default) leaves it<br/>
+        /// on retrieval. A knowledge base small enough to fit the automatic<br/>
+        /// budget is placed in the prompt whole regardless of this setting.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("injection_mode")]
+        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Speechify.JsonConverters.KnowledgeBaseDocumentInjectionModeJsonConverter))]
+        [global::System.Text.Json.Serialization.JsonRequired]
+        public required global::Speechify.KnowledgeBaseDocumentInjectionMode InjectionMode { get; set; }
+
+        /// <summary>
         /// Document lifecycle. `fetching` is the pre-scrape state used<br/>
         /// only by url-sourced rows; file and text docs skip straight<br/>
         /// to `embedding` because their content is available<br/>
@@ -138,6 +149,12 @@ namespace Speechify
         /// <param name="byteSize"></param>
         /// <param name="charCount"></param>
         /// <param name="chunkCount"></param>
+        /// <param name="injectionMode">
+        /// `always` places the document in every prompt of the agents its<br/>
+        /// knowledge base is attached to; `on_demand` (the default) leaves it<br/>
+        /// on retrieval. A knowledge base small enough to fit the automatic<br/>
+        /// budget is placed in the prompt whole regardless of this setting.
+        /// </param>
         /// <param name="status">
         /// Document lifecycle. `fetching` is the pre-scrape state used<br/>
         /// only by url-sourced rows; file and text docs skip straight<br/>
@@ -170,6 +187,7 @@ namespace Speechify
             long byteSize,
             int charCount,
             int chunkCount,
+            global::Speechify.KnowledgeBaseDocumentInjectionMode injectionMode,
             global::Speechify.KnowledgeBaseDocumentStatus status,
             global::System.DateTime createdAt,
             global::System.DateTime updatedAt,
@@ -187,6 +205,7 @@ namespace Speechify
             this.ByteSize = byteSize;
             this.CharCount = charCount;
             this.ChunkCount = chunkCount;
+            this.InjectionMode = injectionMode;
             this.Status = status;
             this.Error = error;
             this.CreatedAt = createdAt;

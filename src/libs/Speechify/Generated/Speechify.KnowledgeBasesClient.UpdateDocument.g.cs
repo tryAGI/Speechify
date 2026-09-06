@@ -49,8 +49,11 @@ namespace Speechify
 
         /// <summary>
         /// Update Knowledge Base Document<br/>
-        /// Update a document. Currently supports moving the document<br/>
-        /// between folders via `folder_id`.
+        /// Update a document: move it between folders via `folder_id`, or pin<br/>
+        /// it into every prompt via `injection_mode`. The two are independent;<br/>
+        /// a body naming only one leaves the other unchanged. A pin is refused<br/>
+        /// with 422 when the knowledge base's pinned documents would exceed<br/>
+        /// the prompt budget, naming the token counts.
         /// </summary>
         /// <param name="kbId"></param>
         /// <param name="documentId"></param>
@@ -82,8 +85,11 @@ namespace Speechify
         }
         /// <summary>
         /// Update Knowledge Base Document<br/>
-        /// Update a document. Currently supports moving the document<br/>
-        /// between folders via `folder_id`.
+        /// Update a document: move it between folders via `folder_id`, or pin<br/>
+        /// it into every prompt via `injection_mode`. The two are independent;<br/>
+        /// a body naming only one leaves the other unchanged. A pin is refused<br/>
+        /// with 422 when the knowledge base's pinned documents would exceed<br/>
+        /// the prompt budget, naming the token counts.
         /// </summary>
         /// <param name="kbId"></param>
         /// <param name="documentId"></param>
@@ -483,6 +489,43 @@ namespace Speechify
                                         h => h.Key,
                                         h => h.Value));
                             }
+                            // The request was well-formed but semantically rejected - typically a referential integrity violation (e.g. flow node references an audio asset in another workspace) or a state machine refusal.
+                            if ((int)__response.StatusCode == 422)
+                            {
+                                string? __content_422 = null;
+                                global::System.Exception? __exception_422 = null;
+                                global::Speechify.Error? __value_422 = null;
+                                try
+                                {
+                                    if (__effectiveReadResponseAsString)
+                                    {
+                                        __content_422 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+                                        __value_422 = global::Speechify.Error.FromJson(__content_422, JsonSerializerContext);
+                                    }
+                                    else
+                                    {
+                                        __content_422 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+
+                                        __value_422 = global::Speechify.Error.FromJson(__content_422, JsonSerializerContext);
+                                    }
+                                }
+                                catch (global::System.Exception __ex)
+                                {
+                                    __exception_422 = __ex;
+                                }
+
+
+                                throw global::Speechify.ApiException<global::Speechify.Error>.Create(
+                                    statusCode: __response.StatusCode,
+                                    message: __content_422 ?? __response.ReasonPhrase ?? string.Empty,
+                                    innerException: __exception_422,
+                                    responseBody: __content_422,
+                                    responseObject: __value_422,
+                                    responseHeaders: global::System.Linq.Enumerable.ToDictionary(
+                                        __response.Headers,
+                                        h => h.Key,
+                                        h => h.Value));
+                            }
 
                             if (__effectiveReadResponseAsString)
                             {
@@ -581,8 +624,11 @@ namespace Speechify
         }
         /// <summary>
         /// Update Knowledge Base Document<br/>
-        /// Update a document. Currently supports moving the document<br/>
-        /// between folders via `folder_id`.
+        /// Update a document: move it between folders via `folder_id`, or pin<br/>
+        /// it into every prompt via `injection_mode`. The two are independent;<br/>
+        /// a body naming only one leaves the other unchanged. A pin is refused<br/>
+        /// with 422 when the knowledge base's pinned documents would exceed<br/>
+        /// the prompt budget, naming the token counts.
         /// </summary>
         /// <param name="kbId"></param>
         /// <param name="documentId"></param>
@@ -592,6 +638,10 @@ namespace Speechify
         /// (`kfolder_&lt;26 char Crockford base32&gt;`); null moves the<br/>
         /// document to the knowledge base root.
         /// </param>
+        /// <param name="injectionMode">
+        /// `always` keeps the document in every prompt; `on_demand`<br/>
+        /// returns it to retrieval.
+        /// </param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::System.InvalidOperationException"></exception>
@@ -600,12 +650,14 @@ namespace Speechify
             string documentId,
             string? speechifyVersion = default,
             string? folderId = default,
+            global::Speechify.V1AgentsKnowledgeBasesKbIdDocumentsDocumentIdPatchRequestBodyContentApplicationJsonSchemaInjectionMode? injectionMode = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
             var __request = new global::Speechify.UpdateDocumentRequest
             {
                 FolderId = folderId,
+                InjectionMode = injectionMode,
             };
 
             return await UpdateDocumentAsync(

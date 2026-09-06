@@ -39,6 +39,17 @@ namespace Speechify
         public required int DocumentCount { get; set; }
 
         /// <summary>
+        /// The prompt budget in force for this knowledge base, present on the<br/>
+        /// by-id read. `auto_tokens` is the automatic tier's budget (0 when the<br/>
+        /// tier is off): a knowledge base whose documents count at most that<br/>
+        /// many tokens is placed in the prompt whole. `pin_budget_tokens`<br/>
+        /// bounds the documents pinned with `injection_mode: always`, and<br/>
+        /// `pinned_tokens` is what they count today.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("injection")]
+        public global::Speechify.KnowledgeBaseInjection? Injection { get; set; }
+
+        /// <summary>
         /// Workspace project this resource lives in (prefixed external<br/>
         /// id). Null means the implicit Default project.
         /// </summary>
@@ -82,6 +93,14 @@ namespace Speechify
         /// </param>
         /// <param name="createdAt"></param>
         /// <param name="updatedAt"></param>
+        /// <param name="injection">
+        /// The prompt budget in force for this knowledge base, present on the<br/>
+        /// by-id read. `auto_tokens` is the automatic tier's budget (0 when the<br/>
+        /// tier is off): a knowledge base whose documents count at most that<br/>
+        /// many tokens is placed in the prompt whole. `pin_budget_tokens`<br/>
+        /// bounds the documents pinned with `injection_mode: always`, and<br/>
+        /// `pinned_tokens` is what they count today.
+        /// </param>
         /// <param name="projectId">
         /// Workspace project this resource lives in (prefixed external<br/>
         /// id). Null means the implicit Default project.
@@ -96,12 +115,14 @@ namespace Speechify
             int documentCount,
             global::System.DateTime createdAt,
             global::System.DateTime updatedAt,
+            global::Speechify.KnowledgeBaseInjection? injection,
             string? projectId)
         {
             this.Id = id ?? throw new global::System.ArgumentNullException(nameof(id));
             this.Name = name ?? throw new global::System.ArgumentNullException(nameof(name));
             this.Description = description ?? throw new global::System.ArgumentNullException(nameof(description));
             this.DocumentCount = documentCount;
+            this.Injection = injection;
             this.ProjectId = projectId;
             this.CreatedAt = createdAt;
             this.UpdatedAt = updatedAt;

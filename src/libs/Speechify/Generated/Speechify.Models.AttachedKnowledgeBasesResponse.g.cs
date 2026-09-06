@@ -32,6 +32,17 @@ namespace Speechify
         public required global::System.Collections.Generic.IList<global::Speechify.KnowledgeBase> KnowledgeBases { get; set; }
 
         /// <summary>
+        /// How the agent's attached knowledge reaches the model, on the<br/>
+        /// first page only. `whole` means the entire attached corpus rides<br/>
+        /// in the prompt and the agent never searches (`corpus_tokens` is<br/>
+        /// its size); otherwise retrieval is on and `pinned_documents`<br/>
+        /// counts the documents pinned into every prompt beside it.<br/>
+        /// `auto_tokens` is the automatic tier's budget, 0 when off.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("injection")]
+        public global::Speechify.AttachedKnowledgeBasesResponseInjection? Injection { get; set; }
+
+        /// <summary>
         /// Additional properties that are not explicitly defined in the schema
         /// </summary>
         [global::System.Text.Json.Serialization.JsonExtensionData]
@@ -50,17 +61,27 @@ namespace Speechify
         /// reached the end of the list (`has_more` is also `false`<br/>
         /// in that case).
         /// </param>
+        /// <param name="injection">
+        /// How the agent's attached knowledge reaches the model, on the<br/>
+        /// first page only. `whole` means the entire attached corpus rides<br/>
+        /// in the prompt and the agent never searches (`corpus_tokens` is<br/>
+        /// its size); otherwise retrieval is on and `pinned_documents`<br/>
+        /// counts the documents pinned into every prompt beside it.<br/>
+        /// `auto_tokens` is the automatic tier's budget, 0 when off.
+        /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
 #endif
         public AttachedKnowledgeBasesResponse(
             bool hasMore,
             global::System.Collections.Generic.IList<global::Speechify.KnowledgeBase> knowledgeBases,
-            string? nextCursor)
+            string? nextCursor,
+            global::Speechify.AttachedKnowledgeBasesResponseInjection? injection)
         {
             this.NextCursor = nextCursor;
             this.HasMore = hasMore;
             this.KnowledgeBases = knowledgeBases ?? throw new global::System.ArgumentNullException(nameof(knowledgeBases));
+            this.Injection = injection;
         }
 
         /// <summary>
