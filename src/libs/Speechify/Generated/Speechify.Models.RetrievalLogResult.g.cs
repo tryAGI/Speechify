@@ -74,6 +74,12 @@ namespace Speechify
         public string? SourceUrl { get; set; }
 
         /// <summary>
+        /// The component scores behind the position at the time of the search; absent when only the cosine ranked the hit.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("ranking")]
+        public global::Speechify.SearchHitRanking? Ranking { get; set; }
+
+        /// <summary>
         /// Additional properties that are not explicitly defined in the schema
         /// </summary>
         [global::System.Text.Json.Serialization.JsonExtensionData]
@@ -96,6 +102,9 @@ namespace Speechify
         /// The headings the passage sat under when it was retrieved, outermost first.
         /// </param>
         /// <param name="sourceUrl"></param>
+        /// <param name="ranking">
+        /// The component scores behind the position at the time of the search; absent when only the cosine ranked the hit.
+        /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
 #endif
@@ -108,7 +117,8 @@ namespace Speechify
             string content,
             string score,
             global::System.Collections.Generic.IList<string> headingPath,
-            string? sourceUrl)
+            string? sourceUrl,
+            global::Speechify.SearchHitRanking? ranking)
         {
             this.ChunkId = chunkId ?? throw new global::System.ArgumentNullException(nameof(chunkId));
             this.DocumentId = documentId ?? throw new global::System.ArgumentNullException(nameof(documentId));
@@ -119,6 +129,7 @@ namespace Speechify
             this.Score = score ?? throw new global::System.ArgumentNullException(nameof(score));
             this.HeadingPath = headingPath ?? throw new global::System.ArgumentNullException(nameof(headingPath));
             this.SourceUrl = sourceUrl;
+            this.Ranking = ranking;
         }
 
         /// <summary>

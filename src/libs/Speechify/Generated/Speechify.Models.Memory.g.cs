@@ -53,6 +53,16 @@ namespace Speechify
         public string? SourceConversationId { get; set; }
 
         /// <summary>
+        /// When set, the prefixed wire identifier<br/>
+        /// (`arun_&lt;26 char Crockford base32&gt;`) of the durable run this<br/>
+        /// memory was learned on. A memory has one source: exactly one of<br/>
+        /// `source_conversation_id` and `source_run_id` is set, unless the<br/>
+        /// source was deleted.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("source_run_id")]
+        public string? SourceRunId { get; set; }
+
+        /// <summary>
         /// LLM self-reported 0-1 confidence in the fact's durability and relevance.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("confidence")]
@@ -107,6 +117,13 @@ namespace Speechify
         /// memory was extracted from. May be null if the source was<br/>
         /// deleted.
         /// </param>
+        /// <param name="sourceRunId">
+        /// When set, the prefixed wire identifier<br/>
+        /// (`arun_&lt;26 char Crockford base32&gt;`) of the durable run this<br/>
+        /// memory was learned on. A memory has one source: exactly one of<br/>
+        /// `source_conversation_id` and `source_run_id` is set, unless the<br/>
+        /// source was deleted.
+        /// </param>
         /// <param name="score">
         /// Populated only on retrieval hits — recency-weighted cosine similarity.
         /// </param>
@@ -121,6 +138,7 @@ namespace Speechify
             string confidence,
             global::System.DateTime createdAt,
             string? sourceConversationId,
+            string? sourceRunId,
             string? score)
         {
             this.Id = id ?? throw new global::System.ArgumentNullException(nameof(id));
@@ -128,6 +146,7 @@ namespace Speechify
             this.CallerIdentity = callerIdentity ?? throw new global::System.ArgumentNullException(nameof(callerIdentity));
             this.Fact = fact ?? throw new global::System.ArgumentNullException(nameof(fact));
             this.SourceConversationId = sourceConversationId;
+            this.SourceRunId = sourceRunId;
             this.Confidence = confidence ?? throw new global::System.ArgumentNullException(nameof(confidence));
             this.Score = score;
             this.CreatedAt = createdAt;

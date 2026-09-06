@@ -13,6 +13,7 @@ namespace Speechify
         /// </summary>
         /// <param name="agentId"></param>
         /// <param name="status"></param>
+        /// <param name="userIdentity"></param>
         /// <param name="cursor"></param>
         /// <param name="limit">
         /// Default Value: 50
@@ -24,6 +25,7 @@ namespace Speechify
         global::System.Threading.Tasks.Task<global::Speechify.ListAgentRunsResponse> ListRunsAsync(
             string agentId,
             global::Speechify.V1AgentsAgentIdRunsGetParametersStatus? status = default,
+            string? userIdentity = default,
             string? cursor = default,
             int? limit = default,
             string? speechifyVersion = default,
@@ -38,6 +40,7 @@ namespace Speechify
         /// </summary>
         /// <param name="agentId"></param>
         /// <param name="status"></param>
+        /// <param name="userIdentity"></param>
         /// <param name="cursor"></param>
         /// <param name="limit">
         /// Default Value: 50
@@ -49,6 +52,7 @@ namespace Speechify
         global::System.Threading.Tasks.Task<global::Speechify.AutoSDKHttpResponse<global::Speechify.ListAgentRunsResponse>> ListRunsAsResponseAsync(
             string agentId,
             global::Speechify.V1AgentsAgentIdRunsGetParametersStatus? status = default,
+            string? userIdentity = default,
             string? cursor = default,
             int? limit = default,
             string? speechifyVersion = default,

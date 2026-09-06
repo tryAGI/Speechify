@@ -226,6 +226,7 @@ namespace Speechify
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.Memory))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.ListMemoriesResponse))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Speechify.Memory>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.SearchHitRanking))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.RetrievalLogResult))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.RetrievalCoverage), TypeInfoPropertyName = "RetrievalCoverage2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.RetrievalLogEntry))]
@@ -286,7 +287,6 @@ namespace Speechify
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Speechify.KnowledgeBase>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.CreateKnowledgeBaseRequest))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.SearchKnowledgeBasesRequest))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.SearchHitRanking))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.KnowledgeBaseSearchHit))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.SearchKnowledgeBasesResponse))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Speechify.KnowledgeBaseSearchHit>))]
@@ -668,6 +668,10 @@ namespace Speechify
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.MergeContactsRequest))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.MergeContactsResponseMerged))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.MergeContactsResponse))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.BillingEntitlementsMaxLlmModelClass), TypeInfoPropertyName = "BillingEntitlementsMaxLlmModelClass2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.BillingEntitlements))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.EntitlementsResponse))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.Dictionary<string, global::Speechify.BillingEntitlements>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.ContactResolver))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.PutContactResolverRequest))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.WebhookEndpoint))]
@@ -865,6 +869,7 @@ namespace Speechify
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.ContactIdentifierKind?), TypeInfoPropertyName = "NullableContactIdentifierKind2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.ContactIdentifierAssertedBy?), TypeInfoPropertyName = "NullableContactIdentifierAssertedBy2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.AttachContactIdentifierRequestKind?), TypeInfoPropertyName = "NullableAttachContactIdentifierRequestKind2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.BillingEntitlementsMaxLlmModelClass?), TypeInfoPropertyName = "NullableBillingEntitlementsMaxLlmModelClass2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.DeleteProjectRequestMode?), TypeInfoPropertyName = "NullableDeleteProjectRequestMode2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.ProjectTeardownBlockerKind?), TypeInfoPropertyName = "NullableProjectTeardownBlockerKind2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.ProjectTeardownBlockerBlocksItems?), TypeInfoPropertyName = "NullableProjectTeardownBlockerBlocksItems2")]
@@ -1564,6 +1569,10 @@ namespace Speechify
                     || typeToConvert == typeof(global::Speechify.AttachContactIdentifierRequestKind)
 
                     || typeToConvert == typeof(global::Speechify.AttachContactIdentifierRequestKind?)
+
+                    || typeToConvert == typeof(global::Speechify.BillingEntitlementsMaxLlmModelClass)
+
+                    || typeToConvert == typeof(global::Speechify.BillingEntitlementsMaxLlmModelClass?)
 
                     || typeToConvert == typeof(global::Speechify.DeleteProjectRequestMode)
 
@@ -2852,6 +2861,16 @@ namespace Speechify
                 if (typeToConvert == typeof(global::Speechify.AttachContactIdentifierRequestKind?))
                 {
                     return new global::Speechify.JsonConverters.AttachContactIdentifierRequestKindNullableJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.BillingEntitlementsMaxLlmModelClass))
+                {
+                    return new global::Speechify.JsonConverters.BillingEntitlementsMaxLlmModelClassJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.BillingEntitlementsMaxLlmModelClass?))
+                {
+                    return new global::Speechify.JsonConverters.BillingEntitlementsMaxLlmModelClassNullableJsonConverter();
                 }
 
                 if (typeToConvert == typeof(global::Speechify.DeleteProjectRequestMode))

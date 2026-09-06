@@ -17,7 +17,12 @@ namespace Speechify
 
         /// <summary>
         /// Per-run values that seed the agent's flow variables (override its<br/>
-        /// stored defaults). The `system__*` namespace and the legacy `memory`<br/>
+        /// stored defaults). The agent's prompt renders against the result<br/>
+        /// before every step: a declared variable the run does not supply<br/>
+        /// takes its default, one the run supplies takes the run's value, and<br/>
+        /// a placeholder nothing supplies renders empty. The reserved<br/>
+        /// `system__caller_id`, `system__agent_id`, `system__language` and<br/>
+        /// `system__memory` keys are bound by the platform. The `system__*` namespace and the legacy `memory`<br/>
         /// alias belong to the platform and are rejected with a 400 naming<br/>
         /// `variables`, the same rule a conversation applies: the run binds its<br/>
         /// own values there, including `system__caller_id` for the person it<br/>
@@ -30,10 +35,13 @@ namespace Speechify
         /// Upper bound on the run's internal turn budget - one turn is one<br/>
         /// plan-act-observe cycle, so a run that calls three tools uses at<br/>
         /// least four. Defaults to 8 when omitted.<br/>
-        /// **Clamped silently to the workspace's per-run ceiling**, which is 5<br/>
-        /// on Free, 10 on Starter, 20 on Pro, 30 on Scale and 50 on<br/>
-        /// Enterprise. There is no error: read `input.max_turns` on the<br/>
-        /// returned run to see the budget the run actually got. On Free the<br/>
+        /// **Clamped to the workspace's per-run ceiling** (5 on Free, 10<br/>
+        /// on Starter, 20 on Pro, 30 on Scale, 50 on Enterprise; per-workspace<br/>
+        /// overrides apply): the run's `input.max_turns` echoes the budget it<br/>
+        /// actually got, and `GET /v1/workspaces/current/entitlements`<br/>
+        /// (`max_run_turns`) reports the ceiling up front, so plan against<br/>
+        /// that rather than the value you sent. An omitted `max_turns` takes<br/>
+        /// the default, clamped to the ceiling. On Free the<br/>
         /// ceiling is *below* the default, so omitting this field there yields<br/>
         /// 5, not 8.<br/>
         /// A run that exhausts its budget settles `succeeded` with<br/>
@@ -48,9 +56,11 @@ namespace Speechify
         /// The person this run acts for, in your own vocabulary - the same<br/>
         /// field a conversation and a widget session take, so one workspace<br/>
         /// never has two answers to who a person is. The agent opens the run<br/>
-        /// knowing what it has already learned about them.<br/>
+        /// knowing what it has already learned about them, and what a run<br/>
+        /// that succeeds learns from its instruction and its reply is<br/>
+        /// written back under this value, exactly as a call writes memory.<br/>
         /// Omit it to run the agent for nobody in particular, which is how a<br/>
-        /// run behaves with no memory of anyone. Must not begin with `user_`,<br/>
+        /// run behaves with no memory of anyone and learns nothing. Must not begin with `user_`,<br/>
         /// `embed_` or `anon_`, which name identities the platform derives.<br/>
         /// Every tool the run calls is told this value: a webhook receives<br/>
         /// it as `user_identity` inside the signed body, an MCP server as<br/>
@@ -105,7 +115,12 @@ namespace Speechify
         /// </param>
         /// <param name="variables">
         /// Per-run values that seed the agent's flow variables (override its<br/>
-        /// stored defaults). The `system__*` namespace and the legacy `memory`<br/>
+        /// stored defaults). The agent's prompt renders against the result<br/>
+        /// before every step: a declared variable the run does not supply<br/>
+        /// takes its default, one the run supplies takes the run's value, and<br/>
+        /// a placeholder nothing supplies renders empty. The reserved<br/>
+        /// `system__caller_id`, `system__agent_id`, `system__language` and<br/>
+        /// `system__memory` keys are bound by the platform. The `system__*` namespace and the legacy `memory`<br/>
         /// alias belong to the platform and are rejected with a 400 naming<br/>
         /// `variables`, the same rule a conversation applies: the run binds its<br/>
         /// own values there, including `system__caller_id` for the person it<br/>
@@ -115,10 +130,13 @@ namespace Speechify
         /// Upper bound on the run's internal turn budget - one turn is one<br/>
         /// plan-act-observe cycle, so a run that calls three tools uses at<br/>
         /// least four. Defaults to 8 when omitted.<br/>
-        /// **Clamped silently to the workspace's per-run ceiling**, which is 5<br/>
-        /// on Free, 10 on Starter, 20 on Pro, 30 on Scale and 50 on<br/>
-        /// Enterprise. There is no error: read `input.max_turns` on the<br/>
-        /// returned run to see the budget the run actually got. On Free the<br/>
+        /// **Clamped to the workspace's per-run ceiling** (5 on Free, 10<br/>
+        /// on Starter, 20 on Pro, 30 on Scale, 50 on Enterprise; per-workspace<br/>
+        /// overrides apply): the run's `input.max_turns` echoes the budget it<br/>
+        /// actually got, and `GET /v1/workspaces/current/entitlements`<br/>
+        /// (`max_run_turns`) reports the ceiling up front, so plan against<br/>
+        /// that rather than the value you sent. An omitted `max_turns` takes<br/>
+        /// the default, clamped to the ceiling. On Free the<br/>
         /// ceiling is *below* the default, so omitting this field there yields<br/>
         /// 5, not 8.<br/>
         /// A run that exhausts its budget settles `succeeded` with<br/>
@@ -130,9 +148,11 @@ namespace Speechify
         /// The person this run acts for, in your own vocabulary - the same<br/>
         /// field a conversation and a widget session take, so one workspace<br/>
         /// never has two answers to who a person is. The agent opens the run<br/>
-        /// knowing what it has already learned about them.<br/>
+        /// knowing what it has already learned about them, and what a run<br/>
+        /// that succeeds learns from its instruction and its reply is<br/>
+        /// written back under this value, exactly as a call writes memory.<br/>
         /// Omit it to run the agent for nobody in particular, which is how a<br/>
-        /// run behaves with no memory of anyone. Must not begin with `user_`,<br/>
+        /// run behaves with no memory of anyone and learns nothing. Must not begin with `user_`,<br/>
         /// `embed_` or `anon_`, which name identities the platform derives.<br/>
         /// Every tool the run calls is told this value: a webhook receives<br/>
         /// it as `user_identity` inside the signed body, an MCP server as<br/>

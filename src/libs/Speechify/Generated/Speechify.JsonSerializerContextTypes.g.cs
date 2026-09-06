@@ -869,247 +869,247 @@ namespace Speechify
         /// <summary>
         ///
         /// </summary>
-        public global::Speechify.RetrievalLogResult? Type209 { get; set; }
+        public global::Speechify.SearchHitRanking? Type209 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Speechify.RetrievalCoverage? Type210 { get; set; }
+        public global::Speechify.RetrievalLogResult? Type210 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Speechify.RetrievalLogEntry? Type211 { get; set; }
+        public global::Speechify.RetrievalCoverage? Type211 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::System.Collections.Generic.IList<global::Speechify.RetrievalLogResult>? Type212 { get; set; }
+        public global::Speechify.RetrievalLogEntry? Type212 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Speechify.ListRetrievalLogsResponse? Type213 { get; set; }
+        public global::System.Collections.Generic.IList<global::Speechify.RetrievalLogResult>? Type213 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::System.Collections.Generic.IList<global::Speechify.RetrievalLogEntry>? Type214 { get; set; }
+        public global::Speechify.ListRetrievalLogsResponse? Type214 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Speechify.WebhookDeliveryStatus? Type215 { get; set; }
+        public global::System.Collections.Generic.IList<global::Speechify.RetrievalLogEntry>? Type215 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Speechify.WebhookDelivery? Type216 { get; set; }
+        public global::Speechify.WebhookDeliveryStatus? Type216 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Speechify.ListWebhookDeliveriesResponse? Type217 { get; set; }
+        public global::Speechify.WebhookDelivery? Type217 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::System.Collections.Generic.IList<global::Speechify.WebhookDelivery>? Type218 { get; set; }
+        public global::Speechify.ListWebhookDeliveriesResponse? Type218 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Speechify.ShadowConversationResponse? Type219 { get; set; }
+        public global::System.Collections.Generic.IList<global::Speechify.WebhookDelivery>? Type219 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Speechify.PublishAgentRequest? Type220 { get; set; }
+        public global::Speechify.ShadowConversationResponse? Type220 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Speechify.PublishAgentResponse? Type221 { get; set; }
+        public global::Speechify.PublishAgentRequest? Type221 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Speechify.PublishGateRunDecision? Type222 { get; set; }
+        public global::Speechify.PublishAgentResponse? Type222 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Speechify.PublishGateRun? Type223 { get; set; }
+        public global::Speechify.PublishGateRunDecision? Type223 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Speechify.LatestPublishGateRunResponse? Type224 { get; set; }
+        public global::Speechify.PublishGateRun? Type224 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Speechify.CreateAgentRunRequest? Type225 { get; set; }
+        public global::Speechify.LatestPublishGateRunResponse? Type225 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Speechify.AgentRunStatus? Type226 { get; set; }
+        public global::Speechify.CreateAgentRunRequest? Type226 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Speechify.AgentRunInputDelegationTargetsItems? Type227 { get; set; }
+        public global::Speechify.AgentRunStatus? Type227 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Speechify.AgentRunInput? Type228 { get; set; }
+        public global::Speechify.AgentRunInputDelegationTargetsItems? Type228 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::System.Collections.Generic.IList<global::Speechify.AgentRunInputDelegationTargetsItems>? Type229 { get; set; }
+        public global::Speechify.AgentRunInput? Type229 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Speechify.AgentRunOutputTranscriptItems? Type230 { get; set; }
+        public global::System.Collections.Generic.IList<global::Speechify.AgentRunInputDelegationTargetsItems>? Type230 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Speechify.AgentRunOutput? Type231 { get; set; }
+        public global::Speechify.AgentRunOutputTranscriptItems? Type231 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::System.Collections.Generic.IList<global::Speechify.AgentRunOutputTranscriptItems>? Type232 { get; set; }
+        public global::Speechify.AgentRunOutput? Type232 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Speechify.AgentRunError? Type233 { get; set; }
+        public global::System.Collections.Generic.IList<global::Speechify.AgentRunOutputTranscriptItems>? Type233 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Speechify.AgentRunIncompleteReason? Type234 { get; set; }
+        public global::Speechify.AgentRunError? Type234 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Speechify.AgentRunUsage? Type235 { get; set; }
+        public global::Speechify.AgentRunIncompleteReason? Type235 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Speechify.PendingActionDefaultDecision? Type236 { get; set; }
+        public global::Speechify.AgentRunUsage? Type236 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Speechify.PendingAction? Type237 { get; set; }
+        public global::Speechify.PendingActionDefaultDecision? Type237 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Speechify.AgentRun? Type238 { get; set; }
+        public global::Speechify.PendingAction? Type238 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Speechify.V1AgentsAgentIdRunsGetParametersStatus? Type239 { get; set; }
+        public global::Speechify.AgentRun? Type239 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Speechify.ListAgentRunsResponse? Type240 { get; set; }
+        public global::Speechify.V1AgentsAgentIdRunsGetParametersStatus? Type240 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::System.Collections.Generic.IList<global::Speechify.AgentRun>? Type241 { get; set; }
+        public global::Speechify.ListAgentRunsResponse? Type241 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Speechify.V1AgentsRunsGetParametersStatus? Type242 { get; set; }
+        public global::System.Collections.Generic.IList<global::Speechify.AgentRun>? Type242 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Speechify.SubmitAgentRunRequestDecision? Type243 { get; set; }
+        public global::Speechify.V1AgentsRunsGetParametersStatus? Type243 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Speechify.SubmitAgentRunRequest? Type244 { get; set; }
+        public global::Speechify.SubmitAgentRunRequestDecision? Type244 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Speechify.AgentRunStepKind? Type245 { get; set; }
+        public global::Speechify.SubmitAgentRunRequest? Type245 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Speechify.RunStepDelegationChildStatus? Type246 { get; set; }
+        public global::Speechify.AgentRunStepKind? Type246 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Speechify.RunStepDelegation? Type247 { get; set; }
+        public global::Speechify.RunStepDelegationChildStatus? Type247 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Speechify.AgentRunStep? Type248 { get; set; }
+        public global::Speechify.RunStepDelegation? Type248 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Speechify.ListAgentRunStepsResponse? Type249 { get; set; }
+        public global::Speechify.AgentRunStep? Type249 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::System.Collections.Generic.IList<global::Speechify.AgentRunStep>? Type250 { get; set; }
+        public global::Speechify.ListAgentRunStepsResponse? Type250 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Speechify.AgentRunStepAddedEventKind? Type251 { get; set; }
+        public global::System.Collections.Generic.IList<global::Speechify.AgentRunStep>? Type251 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Speechify.AgentRunStatusChangedEventStatus? Type252 { get; set; }
+        public global::Speechify.AgentRunStepAddedEventKind? Type252 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Speechify.AgentRunEndedEventStatus? Type253 { get; set; }
+        public global::Speechify.AgentRunStatusChangedEventStatus? Type253 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Speechify.AgentRunEndedEventOutput? Type254 { get; set; }
+        public global::Speechify.AgentRunEndedEventStatus? Type254 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Speechify.AgentRunStreamEvent? Type255 { get; set; }
+        public global::Speechify.AgentRunEndedEventOutput? Type255 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Speechify.AgentRunStreamEventVariant1? Type256 { get; set; }
+        public global::Speechify.AgentRunStreamEvent? Type256 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Speechify.AgentRunStreamEventVariant1Type? Type257 { get; set; }
+        public global::Speechify.AgentRunStreamEventVariant1? Type257 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Speechify.AgentRunStreamEventVariant2? Type258 { get; set; }
+        public global::Speechify.AgentRunStreamEventVariant1Type? Type258 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Speechify.AgentRunStreamEventVariant2Type? Type259 { get; set; }
+        public global::Speechify.AgentRunStreamEventVariant2? Type259 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Speechify.AgentRunStreamEventVariant3? Type260 { get; set; }
+        public global::Speechify.AgentRunStreamEventVariant2Type? Type260 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Speechify.AgentRunStreamEventVariant3Type? Type261 { get; set; }
+        public global::Speechify.AgentRunStreamEventVariant3? Type261 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Speechify.AgentRunStreamEventDiscriminator? Type262 { get; set; }
+        public global::Speechify.AgentRunStreamEventVariant3Type? Type262 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Speechify.AgentRunStreamEventDiscriminatorType? Type263 { get; set; }
+        public global::Speechify.AgentRunStreamEventDiscriminator? Type263 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Speechify.KnowledgeBase? Type264 { get; set; }
+        public global::Speechify.AgentRunStreamEventDiscriminatorType? Type264 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Speechify.ListKnowledgeBasesResponse? Type265 { get; set; }
+        public global::Speechify.KnowledgeBase? Type265 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::System.Collections.Generic.IList<global::Speechify.KnowledgeBase>? Type266 { get; set; }
+        public global::Speechify.ListKnowledgeBasesResponse? Type266 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Speechify.CreateKnowledgeBaseRequest? Type267 { get; set; }
+        public global::System.Collections.Generic.IList<global::Speechify.KnowledgeBase>? Type267 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Speechify.SearchKnowledgeBasesRequest? Type268 { get; set; }
+        public global::Speechify.CreateKnowledgeBaseRequest? Type268 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Speechify.SearchHitRanking? Type269 { get; set; }
+        public global::Speechify.SearchKnowledgeBasesRequest? Type269 { get; set; }
         /// <summary>
         ///
         /// </summary>
@@ -2589,219 +2589,235 @@ namespace Speechify
         /// <summary>
         ///
         /// </summary>
-        public global::Speechify.ContactResolver? Type639 { get; set; }
+        public global::Speechify.BillingEntitlementsMaxLlmModelClass? Type639 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Speechify.PutContactResolverRequest? Type640 { get; set; }
+        public global::Speechify.BillingEntitlements? Type640 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Speechify.WebhookEndpoint? Type641 { get; set; }
+        public global::Speechify.EntitlementsResponse? Type641 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Speechify.ListWebhookEndpointsResponse? Type642 { get; set; }
+        public global::System.Collections.Generic.Dictionary<string, global::Speechify.BillingEntitlements>? Type642 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::System.Collections.Generic.IList<global::Speechify.WebhookEndpoint>? Type643 { get; set; }
+        public global::Speechify.ContactResolver? Type643 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Speechify.CreateWebhookEndpointRequest? Type644 { get; set; }
+        public global::Speechify.PutContactResolverRequest? Type644 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Speechify.UpdateWebhookEndpointRequest? Type645 { get; set; }
+        public global::Speechify.WebhookEndpoint? Type645 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Speechify.WebhookEndpointDelivery? Type646 { get; set; }
+        public global::Speechify.ListWebhookEndpointsResponse? Type646 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Speechify.ListWebhookEndpointDeliveriesResponse? Type647 { get; set; }
+        public global::System.Collections.Generic.IList<global::Speechify.WebhookEndpoint>? Type647 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::System.Collections.Generic.IList<global::Speechify.WebhookEndpointDelivery>? Type648 { get; set; }
+        public global::Speechify.CreateWebhookEndpointRequest? Type648 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Speechify.Project? Type649 { get; set; }
+        public global::Speechify.UpdateWebhookEndpointRequest? Type649 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Speechify.ListProjectsResponse? Type650 { get; set; }
+        public global::Speechify.WebhookEndpointDelivery? Type650 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::System.Collections.Generic.IList<global::Speechify.Project>? Type651 { get; set; }
+        public global::Speechify.ListWebhookEndpointDeliveriesResponse? Type651 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Speechify.CreateProjectRequest? Type652 { get; set; }
+        public global::System.Collections.Generic.IList<global::Speechify.WebhookEndpointDelivery>? Type652 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Speechify.UpdateProjectRequest? Type653 { get; set; }
+        public global::Speechify.Project? Type653 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Speechify.DeleteProjectRequestMode? Type654 { get; set; }
+        public global::Speechify.ListProjectsResponse? Type654 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Speechify.DeleteProjectRequest? Type655 { get; set; }
+        public global::System.Collections.Generic.IList<global::Speechify.Project>? Type655 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Speechify.ProjectRestoredCounts? Type656 { get; set; }
+        public global::Speechify.CreateProjectRequest? Type656 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Speechify.ProjectStillRevokedCounts? Type657 { get; set; }
+        public global::Speechify.UpdateProjectRequest? Type657 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Speechify.ProjectRestore? Type658 { get; set; }
+        public global::Speechify.DeleteProjectRequestMode? Type658 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Speechify.ProjectTeardownBlockerKind? Type659 { get; set; }
+        public global::Speechify.DeleteProjectRequest? Type659 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Speechify.ProjectTeardownBlockerBlocksItems? Type660 { get; set; }
+        public global::Speechify.ProjectRestoredCounts? Type660 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Speechify.ProjectTeardownBlocker? Type661 { get; set; }
+        public global::Speechify.ProjectStillRevokedCounts? Type661 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::System.Collections.Generic.IList<global::Speechify.ProjectTeardownBlockerBlocksItems>? Type662 { get; set; }
+        public global::Speechify.ProjectRestore? Type662 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Speechify.ProjectTeardownGroup? Type663 { get; set; }
+        public global::Speechify.ProjectTeardownBlockerKind? Type663 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Speechify.ProjectTeardown? Type664 { get; set; }
+        public global::Speechify.ProjectTeardownBlockerBlocksItems? Type664 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::System.Collections.Generic.IList<global::Speechify.ProjectTeardownBlocker>? Type665 { get; set; }
+        public global::Speechify.ProjectTeardownBlocker? Type665 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::System.Collections.Generic.IList<global::Speechify.ProjectTeardownGroup>? Type666 { get; set; }
+        public global::System.Collections.Generic.IList<global::Speechify.ProjectTeardownBlockerBlocksItems>? Type666 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Speechify.ProjectResourceCounts? Type667 { get; set; }
+        public global::Speechify.ProjectTeardownGroup? Type667 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Speechify.ProjectStats? Type668 { get; set; }
+        public global::Speechify.ProjectTeardown? Type668 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Speechify.PromoteProjectRequest? Type669 { get; set; }
+        public global::System.Collections.Generic.IList<global::Speechify.ProjectTeardownBlocker>? Type669 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Speechify.PromoteCreated? Type670 { get; set; }
+        public global::System.Collections.Generic.IList<global::Speechify.ProjectTeardownGroup>? Type670 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Speechify.PromoteReused? Type671 { get; set; }
+        public global::Speechify.ProjectResourceCounts? Type671 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Speechify.PromoteAttentionKind? Type672 { get; set; }
+        public global::Speechify.ProjectStats? Type672 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Speechify.PromoteAttentionReason? Type673 { get; set; }
+        public global::Speechify.PromoteProjectRequest? Type673 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Speechify.PromoteAttention? Type674 { get; set; }
+        public global::Speechify.PromoteCreated? Type674 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Speechify.PromoteProjectResponse? Type675 { get; set; }
+        public global::Speechify.PromoteReused? Type675 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::System.Collections.Generic.IList<global::Speechify.PromoteAttention>? Type676 { get; set; }
+        public global::Speechify.PromoteAttentionKind? Type676 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Speechify.ProjectAuditEventType? Type677 { get; set; }
+        public global::Speechify.PromoteAttentionReason? Type677 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Speechify.ProjectAuditEvent? Type678 { get; set; }
+        public global::Speechify.PromoteAttention? Type678 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Speechify.ProjectAuditResponse? Type679 { get; set; }
+        public global::Speechify.PromoteProjectResponse? Type679 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::System.Collections.Generic.IList<global::Speechify.ProjectAuditEvent>? Type680 { get; set; }
+        public global::System.Collections.Generic.IList<global::Speechify.PromoteAttention>? Type680 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Speechify.ProjectMember? Type681 { get; set; }
+        public global::Speechify.ProjectAuditEventType? Type681 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Speechify.ProjectMembersResponse? Type682 { get; set; }
+        public global::Speechify.ProjectAuditEvent? Type682 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::System.Collections.Generic.IList<global::Speechify.ProjectMember>? Type683 { get; set; }
+        public global::Speechify.ProjectAuditResponse? Type683 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Speechify.GrantProjectMemberRequest? Type684 { get; set; }
+        public global::System.Collections.Generic.IList<global::Speechify.ProjectAuditEvent>? Type684 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Speechify.CreateRequest? Type685 { get; set; }
+        public global::Speechify.ProjectMember? Type685 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Speechify.DetectRequest? Type686 { get; set; }
+        public global::Speechify.ProjectMembersResponse? Type686 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Speechify.VerifyRequest? Type687 { get; set; }
+        public global::System.Collections.Generic.IList<global::Speechify.ProjectMember>? Type687 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Speechify.UploadDocumentRequest? Type688 { get; set; }
+        public global::Speechify.GrantProjectMemberRequest? Type688 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Speechify.UpdateDocumentRequest? Type689 { get; set; }
+        public global::Speechify.CreateRequest? Type689 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Speechify.RunTestRequest? Type690 { get; set; }
+        public global::Speechify.DetectRequest? Type690 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Speechify.UploadRequest? Type691 { get; set; }
+        public global::Speechify.VerifyRequest? Type691 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Speechify.UploadAssetRequest? Type692 { get; set; }
+        public global::Speechify.UploadDocumentRequest? Type692 { get; set; }
+        /// <summary>
+        ///
+        /// </summary>
+        public global::Speechify.UpdateDocumentRequest? Type693 { get; set; }
+        /// <summary>
+        ///
+        /// </summary>
+        public global::Speechify.RunTestRequest? Type694 { get; set; }
+        /// <summary>
+        ///
+        /// </summary>
+        public global::Speechify.UploadRequest? Type695 { get; set; }
+        /// <summary>
+        ///
+        /// </summary>
+        public global::Speechify.UploadAssetRequest? Type696 { get; set; }
 
         /// <summary>
         ///

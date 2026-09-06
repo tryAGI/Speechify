@@ -228,5 +228,10 @@ namespace Speechify
         /// </summary>
         public WatermarkClient Watermark { get; }
 
+        /// <summary>
+        ///
+        /// </summary>
+        public WorkspacesClient Workspaces { get; }
+
     }
 }
