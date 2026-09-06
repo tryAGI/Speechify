@@ -22,7 +22,12 @@ namespace Speechify
         public int? IntervalSeconds { get; set; }
 
         /// <summary>
-        /// IANA timezone applied to `cron` (e.g. "America/New_York"). Defaults to UTC.
+        /// IANA time zone name applied to `cron`, such as `America/New_York`,<br/>
+        /// `Europe/Berlin` or `Asia/Tokyo`. Any name in the IANA time zone<br/>
+        /// database is accepted; an unknown name is refused with a 400 that<br/>
+        /// names `schedule.timezone`. The cron fires at the same local<br/>
+        /// wall-clock time on both sides of a daylight-saving change.<br/>
+        /// Defaults to UTC.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("timezone")]
         public string? Timezone { get; set; }
@@ -43,7 +48,12 @@ namespace Speechify
         /// Fire every N seconds (minimum 60, maximum 7776000 = 90 days).
         /// </param>
         /// <param name="timezone">
-        /// IANA timezone applied to `cron` (e.g. "America/New_York"). Defaults to UTC.
+        /// IANA time zone name applied to `cron`, such as `America/New_York`,<br/>
+        /// `Europe/Berlin` or `Asia/Tokyo`. Any name in the IANA time zone<br/>
+        /// database is accepted; an unknown name is refused with a 400 that<br/>
+        /// names `schedule.timezone`. The cron fires at the same local<br/>
+        /// wall-clock time on both sides of a daylight-saving change.<br/>
+        /// Defaults to UTC.
         /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
