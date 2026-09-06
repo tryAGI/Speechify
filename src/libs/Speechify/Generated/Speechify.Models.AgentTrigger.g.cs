@@ -79,6 +79,27 @@ namespace Speechify
         public global::System.DateTime? LastFiredAt { get; set; }
 
         /// <summary>
+        /// The outcome of the most recent fire: `dispatched` with a run,<br/>
+        /// `failed` with the reason in `last_fire_error`, or `pending` while a<br/>
+        /// transient failure waits for its retry. Absent until the trigger has<br/>
+        /// fired once. A `failed` trigger stays `failed` until a later fire<br/>
+        /// succeeds; `trigger.fire_failed` is delivered each time.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("last_fire_status")]
+        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Speechify.JsonConverters.AgentTriggerLastFireStatusJsonConverter))]
+        public global::Speechify.AgentTriggerLastFireStatus? LastFireStatus { get; set; }
+
+        /// <summary>
+        /// Why the most recent fire did not start a run: the error code a request<br/>
+        /// would have been answered with and what to do about it, for example<br/>
+        /// `agent_publish_gate_required: the agent's current configuration has not<br/>
+        /// passed the publish gate; publish it and the next fire runs`. Empty when<br/>
+        /// the last fire dispatched.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("last_fire_error")]
+        public string? LastFireError { get; set; }
+
+        /// <summary>
         ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("created_at")]
@@ -144,6 +165,20 @@ namespace Speechify
         /// When a schedule trigger next fires. Absent for a webhook or a disabled schedule.
         /// </param>
         /// <param name="lastFiredAt"></param>
+        /// <param name="lastFireStatus">
+        /// The outcome of the most recent fire: `dispatched` with a run,<br/>
+        /// `failed` with the reason in `last_fire_error`, or `pending` while a<br/>
+        /// transient failure waits for its retry. Absent until the trigger has<br/>
+        /// fired once. A `failed` trigger stays `failed` until a later fire<br/>
+        /// succeeds; `trigger.fire_failed` is delivered each time.
+        /// </param>
+        /// <param name="lastFireError">
+        /// Why the most recent fire did not start a run: the error code a request<br/>
+        /// would have been answered with and what to do about it, for example<br/>
+        /// `agent_publish_gate_required: the agent's current configuration has not<br/>
+        /// passed the publish gate; publish it and the next fire runs`. Empty when<br/>
+        /// the last fire dispatched.
+        /// </param>
         /// <param name="firePath">
         /// The inbound fire URL path for a webhook trigger; prepend the API<br/>
         /// host. Absent for a schedule trigger.
@@ -171,6 +206,8 @@ namespace Speechify
             global::Speechify.TriggerWebhookConfig? webhook,
             global::System.DateTime? nextFireAt,
             global::System.DateTime? lastFiredAt,
+            global::Speechify.AgentTriggerLastFireStatus? lastFireStatus,
+            string? lastFireError,
             string? firePath,
             string? secret,
             string? secretHint)
@@ -185,6 +222,8 @@ namespace Speechify
             this.Webhook = webhook;
             this.NextFireAt = nextFireAt;
             this.LastFiredAt = lastFiredAt;
+            this.LastFireStatus = lastFireStatus;
+            this.LastFireError = lastFireError;
             this.CreatedAt = createdAt;
             this.UpdatedAt = updatedAt;
             this.FirePath = firePath;

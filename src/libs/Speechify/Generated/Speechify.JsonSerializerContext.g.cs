@@ -282,6 +282,7 @@ namespace Speechify
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.AgentRunStreamEventVariant3Type), TypeInfoPropertyName = "AgentRunStreamEventVariant3Type2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.AgentRunStreamEventDiscriminator))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.AgentRunStreamEventDiscriminatorType), TypeInfoPropertyName = "AgentRunStreamEventDiscriminatorType2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.KnowledgeBaseInjection))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.KnowledgeBase))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.ListKnowledgeBasesResponse))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Speechify.KnowledgeBase>))]
@@ -315,14 +316,17 @@ namespace Speechify
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Speechify.KnowledgeBaseEvaluationHit>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.ListKnowledgeBaseEvaluationResultsResponse))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Speechify.KnowledgeBaseEvaluationResult>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.KnowledgeBaseDocumentInjectionMode), TypeInfoPropertyName = "KnowledgeBaseDocumentInjectionMode2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.KnowledgeBaseDocumentStatus), TypeInfoPropertyName = "KnowledgeBaseDocumentStatus2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.KnowledgeBaseDocument))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.ListKnowledgeBaseDocumentsResponse))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Speechify.KnowledgeBaseDocument>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.KnowledgeBaseDocumentDetailInjectionMode), TypeInfoPropertyName = "KnowledgeBaseDocumentDetailInjectionMode2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.DependentAgent))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.RefreshConfig))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.KnowledgeBaseDocumentDetail))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Speechify.DependentAgent>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.V1AgentsKnowledgeBasesKbIdDocumentsDocumentIdPatchRequestBodyContentApplicationJsonSchemaInjectionMode), TypeInfoPropertyName = "V1AgentsKnowledgeBasesKbIdDocumentsDocumentIdPatchRequestBodyContentApplicationJsonSchemaInjectionMode2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.KnowledgeBaseChunk))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.ListKnowledgeBaseChunksResponse))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Speechify.KnowledgeBaseChunk>))]
@@ -349,6 +353,7 @@ namespace Speechify
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.UpdateFolderRequest))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.ListImportJobsResponse))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Speechify.ImportJob>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.AttachedKnowledgeBasesResponseInjection))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.AttachedKnowledgeBasesResponse))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.ToolKind), TypeInfoPropertyName = "ToolKind2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.ToolParamType), TypeInfoPropertyName = "ToolParamType2")]
@@ -509,11 +514,6 @@ namespace Speechify
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.IntendedUseMarketingOrInformational), TypeInfoPropertyName = "IntendedUseMarketingOrInformational2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.IntendedUse))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.PurchasePhoneNumberRequest))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.UpdatePhoneNumberRequest))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.CreateOutboundCallRequest))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.CreateOutboundCallResponse))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.BatchCall))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.ListBatchCallsResponse))]
     internal sealed partial class SourceGenerationContextChunk0 : global::System.Text.Json.Serialization.JsonSerializerContext
     {
     }
@@ -526,6 +526,11 @@ namespace Speechify
         Converters = new global::System.Type[]
         {
         })]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.UpdatePhoneNumberRequest))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.CreateOutboundCallRequest))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.CreateOutboundCallResponse))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.BatchCall))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.ListBatchCallsResponse))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Speechify.BatchCall>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.BatchRecipientRequest))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.CreateBatchCallRequest))]
@@ -575,6 +580,7 @@ namespace Speechify
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.TriggerRunSpec))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.TriggerScheduleConfig))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.TriggerWebhookConfig))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.AgentTriggerLastFireStatus), TypeInfoPropertyName = "AgentTriggerLastFireStatus2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.AgentTrigger))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.ListAgentTriggersResponse))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Speechify.AgentTrigger>))]
@@ -800,7 +806,10 @@ namespace Speechify
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.AgentRunStreamEventDiscriminatorType?), TypeInfoPropertyName = "NullableAgentRunStreamEventDiscriminatorType2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.KnowledgeBaseDocumentSourceKind?), TypeInfoPropertyName = "NullableKnowledgeBaseDocumentSourceKind2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.JobStatus?), TypeInfoPropertyName = "NullableJobStatus2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.KnowledgeBaseDocumentInjectionMode?), TypeInfoPropertyName = "NullableKnowledgeBaseDocumentInjectionMode2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.KnowledgeBaseDocumentStatus?), TypeInfoPropertyName = "NullableKnowledgeBaseDocumentStatus2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.KnowledgeBaseDocumentDetailInjectionMode?), TypeInfoPropertyName = "NullableKnowledgeBaseDocumentDetailInjectionMode2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.V1AgentsKnowledgeBasesKbIdDocumentsDocumentIdPatchRequestBodyContentApplicationJsonSchemaInjectionMode?), TypeInfoPropertyName = "NullableV1AgentsKnowledgeBasesKbIdDocumentsDocumentIdPatchRequestBodyContentApplicationJsonSchemaInjectionMode2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.ImportJobKind?), TypeInfoPropertyName = "NullableImportJobKind2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.RefreshHistoryEntryStatus?), TypeInfoPropertyName = "NullableRefreshHistoryEntryStatus2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.ToolKind?), TypeInfoPropertyName = "NullableToolKind2")]
@@ -851,6 +860,7 @@ namespace Speechify
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.SIPTransport?), TypeInfoPropertyName = "NullableSIPTransport2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.SIPMediaEncryption?), TypeInfoPropertyName = "NullableSIPMediaEncryption2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.AgentTriggerType?), TypeInfoPropertyName = "NullableAgentTriggerType2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.AgentTriggerLastFireStatus?), TypeInfoPropertyName = "NullableAgentTriggerLastFireStatus2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.CreateAgentTriggerRequestType?), TypeInfoPropertyName = "NullableCreateAgentTriggerRequestType2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.AgentTriggerFireResponseStatus?), TypeInfoPropertyName = "NullableAgentTriggerFireResponseStatus2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.StoreWhereClauseOp?), TypeInfoPropertyName = "NullableStoreWhereClauseOp2")]
@@ -1334,9 +1344,21 @@ namespace Speechify
 
                     || typeToConvert == typeof(global::Speechify.JobStatus?)
 
+                    || typeToConvert == typeof(global::Speechify.KnowledgeBaseDocumentInjectionMode)
+
+                    || typeToConvert == typeof(global::Speechify.KnowledgeBaseDocumentInjectionMode?)
+
                     || typeToConvert == typeof(global::Speechify.KnowledgeBaseDocumentStatus)
 
                     || typeToConvert == typeof(global::Speechify.KnowledgeBaseDocumentStatus?)
+
+                    || typeToConvert == typeof(global::Speechify.KnowledgeBaseDocumentDetailInjectionMode)
+
+                    || typeToConvert == typeof(global::Speechify.KnowledgeBaseDocumentDetailInjectionMode?)
+
+                    || typeToConvert == typeof(global::Speechify.V1AgentsKnowledgeBasesKbIdDocumentsDocumentIdPatchRequestBodyContentApplicationJsonSchemaInjectionMode)
+
+                    || typeToConvert == typeof(global::Speechify.V1AgentsKnowledgeBasesKbIdDocumentsDocumentIdPatchRequestBodyContentApplicationJsonSchemaInjectionMode?)
 
                     || typeToConvert == typeof(global::Speechify.ImportJobKind)
 
@@ -1497,6 +1519,10 @@ namespace Speechify
                     || typeToConvert == typeof(global::Speechify.AgentTriggerType)
 
                     || typeToConvert == typeof(global::Speechify.AgentTriggerType?)
+
+                    || typeToConvert == typeof(global::Speechify.AgentTriggerLastFireStatus)
+
+                    || typeToConvert == typeof(global::Speechify.AgentTriggerLastFireStatus?)
 
                     || typeToConvert == typeof(global::Speechify.CreateAgentTriggerRequestType)
 
@@ -2273,6 +2299,16 @@ namespace Speechify
                     return new global::Speechify.JsonConverters.JobStatusNullableJsonConverter();
                 }
 
+                if (typeToConvert == typeof(global::Speechify.KnowledgeBaseDocumentInjectionMode))
+                {
+                    return new global::Speechify.JsonConverters.KnowledgeBaseDocumentInjectionModeJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.KnowledgeBaseDocumentInjectionMode?))
+                {
+                    return new global::Speechify.JsonConverters.KnowledgeBaseDocumentInjectionModeNullableJsonConverter();
+                }
+
                 if (typeToConvert == typeof(global::Speechify.KnowledgeBaseDocumentStatus))
                 {
                     return new global::Speechify.JsonConverters.KnowledgeBaseDocumentStatusJsonConverter();
@@ -2281,6 +2317,26 @@ namespace Speechify
                 if (typeToConvert == typeof(global::Speechify.KnowledgeBaseDocumentStatus?))
                 {
                     return new global::Speechify.JsonConverters.KnowledgeBaseDocumentStatusNullableJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.KnowledgeBaseDocumentDetailInjectionMode))
+                {
+                    return new global::Speechify.JsonConverters.KnowledgeBaseDocumentDetailInjectionModeJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.KnowledgeBaseDocumentDetailInjectionMode?))
+                {
+                    return new global::Speechify.JsonConverters.KnowledgeBaseDocumentDetailInjectionModeNullableJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.V1AgentsKnowledgeBasesKbIdDocumentsDocumentIdPatchRequestBodyContentApplicationJsonSchemaInjectionMode))
+                {
+                    return new global::Speechify.JsonConverters.V1AgentsKnowledgeBasesKbIdDocumentsDocumentIdPatchRequestBodyContentApplicationJsonSchemaInjectionModeJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.V1AgentsKnowledgeBasesKbIdDocumentsDocumentIdPatchRequestBodyContentApplicationJsonSchemaInjectionMode?))
+                {
+                    return new global::Speechify.JsonConverters.V1AgentsKnowledgeBasesKbIdDocumentsDocumentIdPatchRequestBodyContentApplicationJsonSchemaInjectionModeNullableJsonConverter();
                 }
 
                 if (typeToConvert == typeof(global::Speechify.ImportJobKind))
@@ -2681,6 +2737,16 @@ namespace Speechify
                 if (typeToConvert == typeof(global::Speechify.AgentTriggerType?))
                 {
                     return new global::Speechify.JsonConverters.AgentTriggerTypeNullableJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.AgentTriggerLastFireStatus))
+                {
+                    return new global::Speechify.JsonConverters.AgentTriggerLastFireStatusJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.AgentTriggerLastFireStatus?))
+                {
+                    return new global::Speechify.JsonConverters.AgentTriggerLastFireStatusNullableJsonConverter();
                 }
 
                 if (typeToConvert == typeof(global::Speechify.CreateAgentTriggerRequestType))

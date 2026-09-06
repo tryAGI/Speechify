@@ -87,6 +87,17 @@ namespace Speechify
         public required int ChunkCount { get; set; }
 
         /// <summary>
+        /// `always` places the document in every prompt of the agents its<br/>
+        /// knowledge base is attached to; `on_demand` (the default) leaves it<br/>
+        /// on retrieval. A knowledge base small enough to fit the automatic<br/>
+        /// budget is placed in the prompt whole regardless of this setting.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("injection_mode")]
+        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Speechify.JsonConverters.KnowledgeBaseDocumentDetailInjectionModeJsonConverter))]
+        [global::System.Text.Json.Serialization.JsonRequired]
+        public required global::Speechify.KnowledgeBaseDocumentDetailInjectionMode InjectionMode { get; set; }
+
+        /// <summary>
         /// Document lifecycle. `fetching` is the pre-scrape state used<br/>
         /// only by url-sourced rows; file and text docs skip straight<br/>
         /// to `embedding` because their content is available<br/>
@@ -123,6 +134,13 @@ namespace Speechify
         [global::System.Text.Json.Serialization.JsonPropertyName("content_preview")]
         [global::System.Text.Json.Serialization.JsonRequired]
         public required string ContentPreview { get; set; }
+
+        /// <summary>
+        /// The document's size in prompt tokens, the number the prompt budget counts.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("token_count")]
+        [global::System.Text.Json.Serialization.JsonRequired]
+        public required int TokenCount { get; set; }
 
         /// <summary>
         ///
@@ -170,6 +188,12 @@ namespace Speechify
         /// <param name="byteSize"></param>
         /// <param name="charCount"></param>
         /// <param name="chunkCount"></param>
+        /// <param name="injectionMode">
+        /// `always` places the document in every prompt of the agents its<br/>
+        /// knowledge base is attached to; `on_demand` (the default) leaves it<br/>
+        /// on retrieval. A knowledge base small enough to fit the automatic<br/>
+        /// budget is placed in the prompt whole regardless of this setting.
+        /// </param>
         /// <param name="status">
         /// Document lifecycle. `fetching` is the pre-scrape state used<br/>
         /// only by url-sourced rows; file and text docs skip straight<br/>
@@ -179,6 +203,9 @@ namespace Speechify
         /// <param name="createdAt"></param>
         /// <param name="updatedAt"></param>
         /// <param name="contentPreview"></param>
+        /// <param name="tokenCount">
+        /// The document's size in prompt tokens, the number the prompt budget counts.
+        /// </param>
         /// <param name="previewTruncated"></param>
         /// <param name="dependentAgents"></param>
         /// <param name="sourceUrl">
@@ -210,10 +237,12 @@ namespace Speechify
             long byteSize,
             int charCount,
             int chunkCount,
+            global::Speechify.KnowledgeBaseDocumentDetailInjectionMode injectionMode,
             global::Speechify.KnowledgeBaseDocumentStatus status,
             global::System.DateTime createdAt,
             global::System.DateTime updatedAt,
             string contentPreview,
+            int tokenCount,
             bool previewTruncated,
             global::System.Collections.Generic.IList<global::Speechify.DependentAgent> dependentAgents,
             string? sourceUrl,
@@ -231,11 +260,13 @@ namespace Speechify
             this.ByteSize = byteSize;
             this.CharCount = charCount;
             this.ChunkCount = chunkCount;
+            this.InjectionMode = injectionMode;
             this.Status = status;
             this.Error = error;
             this.CreatedAt = createdAt;
             this.UpdatedAt = updatedAt;
             this.ContentPreview = contentPreview ?? throw new global::System.ArgumentNullException(nameof(contentPreview));
+            this.TokenCount = tokenCount;
             this.PreviewTruncated = previewTruncated;
             this.DependentAgents = dependentAgents ?? throw new global::System.ArgumentNullException(nameof(dependentAgents));
             this.Refresh = refresh;
