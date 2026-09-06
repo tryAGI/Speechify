@@ -25,13 +25,35 @@ namespace Speechify
         public object? Variables { get; set; }
 
         /// <summary>
+        /// The person this team run acts for, in your own vocabulary - the same<br/>
+        /// field a single-agent run, a conversation and a widget session take,<br/>
+        /// so one workspace never has two answers to who a person is. The<br/>
+        /// manager run carries it and every child it delegates inherits it, so<br/>
+        /// each member opens knowing what the platform has learned about that<br/>
+        /// person.<br/>
+        /// Omit it to run the team for nobody in particular. Must not begin<br/>
+        /// with `user_`, `embed_` or `anon_`, which name identities the platform<br/>
+        /// derives.<br/>
+        /// Every tool called anywhere in the team run - by the manager or by a<br/>
+        /// delegated member - is told this value: a webhook receives it as<br/>
+        /// `user_identity` inside the signed body, an MCP server as the<br/>
+        /// `Speechify-User-Identity` header, and it renders in a tool's<br/>
+        /// templated URL or headers as `{{system__caller_id}}`.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("user_identity")]
+        public string? UserIdentity { get; set; }
+
+        /// <summary>
         /// Upper bound on the manager run's internal turn budget - one turn is<br/>
         /// one plan-act-observe cycle. Defaults to 8 when omitted, and bounds<br/>
         /// the MANAGER only: each delegated child gets its own budget.<br/>
-        /// **Clamped silently to the workspace's per-run ceiling**, which is 5<br/>
-        /// on Free, 10 on Starter, 20 on Pro, 30 on Scale and 50 on<br/>
-        /// Enterprise. There is no error: read `input.max_turns` on the<br/>
-        /// returned run to see the budget it actually got.
+        /// **Clamped to the workspace's per-run ceiling** (5 on Free, 10<br/>
+        /// on Starter, 20 on Pro, 30 on Scale, 50 on Enterprise; per-workspace<br/>
+        /// overrides apply): the run's `input.max_turns` echoes the budget it<br/>
+        /// actually got, and `GET /v1/workspaces/current/entitlements`<br/>
+        /// (`max_run_turns`) reports the ceiling up front, so plan against<br/>
+        /// that rather than the value you sent. An omitted `max_turns` takes<br/>
+        /// the default, clamped to the ceiling.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("max_turns")]
         public int? MaxTurns { get; set; }
@@ -82,14 +104,33 @@ namespace Speechify
         /// namespace and the legacy `memory` alias belong to the platform and<br/>
         /// are rejected with a 400 naming `variables`.
         /// </param>
+        /// <param name="userIdentity">
+        /// The person this team run acts for, in your own vocabulary - the same<br/>
+        /// field a single-agent run, a conversation and a widget session take,<br/>
+        /// so one workspace never has two answers to who a person is. The<br/>
+        /// manager run carries it and every child it delegates inherits it, so<br/>
+        /// each member opens knowing what the platform has learned about that<br/>
+        /// person.<br/>
+        /// Omit it to run the team for nobody in particular. Must not begin<br/>
+        /// with `user_`, `embed_` or `anon_`, which name identities the platform<br/>
+        /// derives.<br/>
+        /// Every tool called anywhere in the team run - by the manager or by a<br/>
+        /// delegated member - is told this value: a webhook receives it as<br/>
+        /// `user_identity` inside the signed body, an MCP server as the<br/>
+        /// `Speechify-User-Identity` header, and it renders in a tool's<br/>
+        /// templated URL or headers as `{{system__caller_id}}`.
+        /// </param>
         /// <param name="maxTurns">
         /// Upper bound on the manager run's internal turn budget - one turn is<br/>
         /// one plan-act-observe cycle. Defaults to 8 when omitted, and bounds<br/>
         /// the MANAGER only: each delegated child gets its own budget.<br/>
-        /// **Clamped silently to the workspace's per-run ceiling**, which is 5<br/>
-        /// on Free, 10 on Starter, 20 on Pro, 30 on Scale and 50 on<br/>
-        /// Enterprise. There is no error: read `input.max_turns` on the<br/>
-        /// returned run to see the budget it actually got.
+        /// **Clamped to the workspace's per-run ceiling** (5 on Free, 10<br/>
+        /// on Starter, 20 on Pro, 30 on Scale, 50 on Enterprise; per-workspace<br/>
+        /// overrides apply): the run's `input.max_turns` echoes the budget it<br/>
+        /// actually got, and `GET /v1/workspaces/current/entitlements`<br/>
+        /// (`max_run_turns`) reports the ceiling up front, so plan against<br/>
+        /// that rather than the value you sent. An omitted `max_turns` takes<br/>
+        /// the default, clamped to the ceiling.
         /// </param>
         /// <param name="outputSchema">
         /// Optional JSON Schema (2020-12) the run's final answer must satisfy.<br/>
@@ -119,12 +160,14 @@ namespace Speechify
         public CreateTeamRunRequest(
             string instruction,
             object? variables,
+            string? userIdentity,
             int? maxTurns,
             object? outputSchema,
             global::System.Collections.Generic.Dictionary<string, string>? metadata)
         {
             this.Instruction = instruction ?? throw new global::System.ArgumentNullException(nameof(instruction));
             this.Variables = variables;
+            this.UserIdentity = userIdentity;
             this.MaxTurns = maxTurns;
             this.OutputSchema = outputSchema;
             this.Metadata = metadata;

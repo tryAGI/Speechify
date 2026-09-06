@@ -58,6 +58,12 @@ namespace Speechify
         public required string ContentHash { get; set; }
 
         /// <summary>
+        /// The component scores behind the position; absent when only the cosine ranked the hit.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("ranking")]
+        public global::Speechify.SearchHitRanking? Ranking { get; set; }
+
+        /// <summary>
         /// Additional properties that are not explicitly defined in the schema
         /// </summary>
         [global::System.Text.Json.Serialization.JsonExtensionData]
@@ -77,6 +83,9 @@ namespace Speechify
         /// <param name="contentHash">
         /// A fingerprint of the whole passage, so two hits can be told apart past the excerpt.
         /// </param>
+        /// <param name="ranking">
+        /// The component scores behind the position; absent when only the cosine ranked the hit.
+        /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
 #endif
@@ -87,7 +96,8 @@ namespace Speechify
             double score,
             global::System.Collections.Generic.IList<string> headingPath,
             string excerpt,
-            string contentHash)
+            string contentHash,
+            global::Speechify.SearchHitRanking? ranking)
         {
             this.DocumentId = documentId ?? throw new global::System.ArgumentNullException(nameof(documentId));
             this.Filename = filename ?? throw new global::System.ArgumentNullException(nameof(filename));
@@ -96,6 +106,7 @@ namespace Speechify
             this.HeadingPath = headingPath ?? throw new global::System.ArgumentNullException(nameof(headingPath));
             this.Excerpt = excerpt ?? throw new global::System.ArgumentNullException(nameof(excerpt));
             this.ContentHash = contentHash ?? throw new global::System.ArgumentNullException(nameof(contentHash));
+            this.Ranking = ranking;
         }
 
         /// <summary>

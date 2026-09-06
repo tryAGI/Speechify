@@ -36,6 +36,10 @@ namespace Speechify
         /// <summary>
         ///
         /// </summary>
+        AgentPublishGateUnavailable,
+        /// <summary>
+        ///
+        /// </summary>
         AgentRunActionStale,
         /// <summary>
         ///
@@ -580,6 +584,7 @@ namespace Speechify
                 ErrorCode.AgentNotFound => "agent_not_found",
                 ErrorCode.AgentPublishGateFailed => "agent_publish_gate_failed",
                 ErrorCode.AgentPublishGateRequired => "agent_publish_gate_required",
+                ErrorCode.AgentPublishGateUnavailable => "agent_publish_gate_unavailable",
                 ErrorCode.AgentRunActionStale => "agent_run_action_stale",
                 ErrorCode.AgentRunNotFound => "agent_run_not_found",
                 ErrorCode.AgentRunNotPending => "agent_run_not_pending",
@@ -727,6 +732,7 @@ namespace Speechify
                 "agent_not_found" => ErrorCode.AgentNotFound,
                 "agent_publish_gate_failed" => ErrorCode.AgentPublishGateFailed,
                 "agent_publish_gate_required" => ErrorCode.AgentPublishGateRequired,
+                "agent_publish_gate_unavailable" => ErrorCode.AgentPublishGateUnavailable,
                 "agent_run_action_stale" => ErrorCode.AgentRunActionStale,
                 "agent_run_not_found" => ErrorCode.AgentRunNotFound,
                 "agent_run_not_pending" => ErrorCode.AgentRunNotPending,

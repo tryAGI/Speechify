@@ -3,11 +3,11 @@
 
 namespace Speechify
 {
-    public partial class RunsClient
+    public partial class WorkspacesClient
     {
 
 
-        private static readonly global::Speechify.EndPointSecurityRequirement s_ListSecurityRequirement0 =
+        private static readonly global::Speechify.EndPointSecurityRequirement s_GetEntitlementsSecurityRequirement0 =
             new global::Speechify.EndPointSecurityRequirement
             {
                 Authorizations = new global::Speechify.EndPointAuthorizationRequirement[]
@@ -21,78 +21,48 @@ namespace Speechify
                     },
                 },
             };
-        private static readonly global::Speechify.EndPointSecurityRequirement[] s_ListSecurityRequirements =
+        private static readonly global::Speechify.EndPointSecurityRequirement[] s_GetEntitlementsSecurityRequirements =
             new global::Speechify.EndPointSecurityRequirement[]
-            {                s_ListSecurityRequirement0,
+            {                s_GetEntitlementsSecurityRequirement0,
             };
-        partial void PrepareListArguments(
+        partial void PrepareGetEntitlementsArguments(
             global::System.Net.Http.HttpClient httpClient,
-            ref global::Speechify.V1AgentsRunsGetParametersStatus? status,
-            ref string? userIdentity,
-            ref string? projectId,
-            ref string? cursor,
-            ref int? limit,
             ref string? speechifyVersion);
-        partial void PrepareListRequest(
+        partial void PrepareGetEntitlementsRequest(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpRequestMessage httpRequestMessage,
-            global::Speechify.V1AgentsRunsGetParametersStatus? status,
-            string? userIdentity,
-            string? projectId,
-            string? cursor,
-            int? limit,
             string? speechifyVersion);
-        partial void ProcessListResponse(
+        partial void ProcessGetEntitlementsResponse(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpResponseMessage httpResponseMessage);
 
-        partial void ProcessListResponseContent(
+        partial void ProcessGetEntitlementsResponseContent(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpResponseMessage httpResponseMessage,
             ref string content);
 
         /// <summary>
-        /// List Runs<br/>
-        /// List runs across the whole workspace, newest first, optionally narrowed<br/>
-        /// to one `status`.<br/>
-        /// Use this rather than listing per agent when you want to know what is<br/>
-        /// happening overall, and above all what is waiting on a person: pass<br/>
-        /// `?status=requires_action`. Listing per agent cannot answer that<br/>
-        /// question completely, because a run delegated to a team member executes<br/>
-        /// under that member's agent - so an approval that blocks the team's work<br/>
-        /// appears under an agent you would not think to open.<br/>
-        /// Respects `?project_id` like every other workspace-wide list.<br/>
-        /// This endpoint is in beta: it is available to workspaces granted<br/>
-        /// `durable_runs_access`, and every other workspace receives<br/>
-        /// `402 durable_runs_not_in_plan`.
+        /// Get Workspace Entitlements<br/>
+        /// The per-tier entitlements catalog plus the caller's RESOLVED entitlements<br/>
+        /// for the current workspace (tier defaults composed with any per-tenant<br/>
+        /// override). Readable with an API key as well as a console session: it is<br/>
+        /// how an integration learns what it may use before a feature endpoint<br/>
+        /// answers `402`. Branch on `current.durable_runs_access`,<br/>
+        /// `current.text_agent_access`, `current.hosted_apis_access` and<br/>
+        /// `current.skills_access`, and size a run from `current.max_run_turns`.<br/>
+        /// The console renders quota affordances and upgrade-card limits from the<br/>
+        /// same single server-authoritative source instead of a hardcoded mirror.
         /// </summary>
-        /// <param name="status"></param>
-        /// <param name="userIdentity"></param>
-        /// <param name="projectId"></param>
-        /// <param name="cursor"></param>
-        /// <param name="limit">
-        /// Default Value: 50
-        /// </param>
         /// <param name="speechifyVersion"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
-        public async global::System.Threading.Tasks.Task<global::Speechify.ListAgentRunsResponse> ListAsync(
-            global::Speechify.V1AgentsRunsGetParametersStatus? status = default,
-            string? userIdentity = default,
-            string? projectId = default,
-            string? cursor = default,
-            int? limit = default,
+        public async global::System.Threading.Tasks.Task<global::Speechify.EntitlementsResponse> GetEntitlementsAsync(
             string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
-            var __response = await ListAsResponseAsync(
-                status: status,
-                userIdentity: userIdentity,
-                projectId: projectId,
-                cursor: cursor,
-                limit: limit,
+            var __response = await GetEntitlementsAsResponseAsync(
                 speechifyVersion: speechifyVersion,
                 requestOptions: requestOptions,
                 cancellationToken: cancellationToken
@@ -101,57 +71,37 @@ namespace Speechify
             return __response.Body;
         }
         /// <summary>
-        /// List Runs<br/>
-        /// List runs across the whole workspace, newest first, optionally narrowed<br/>
-        /// to one `status`.<br/>
-        /// Use this rather than listing per agent when you want to know what is<br/>
-        /// happening overall, and above all what is waiting on a person: pass<br/>
-        /// `?status=requires_action`. Listing per agent cannot answer that<br/>
-        /// question completely, because a run delegated to a team member executes<br/>
-        /// under that member's agent - so an approval that blocks the team's work<br/>
-        /// appears under an agent you would not think to open.<br/>
-        /// Respects `?project_id` like every other workspace-wide list.<br/>
-        /// This endpoint is in beta: it is available to workspaces granted<br/>
-        /// `durable_runs_access`, and every other workspace receives<br/>
-        /// `402 durable_runs_not_in_plan`.
+        /// Get Workspace Entitlements<br/>
+        /// The per-tier entitlements catalog plus the caller's RESOLVED entitlements<br/>
+        /// for the current workspace (tier defaults composed with any per-tenant<br/>
+        /// override). Readable with an API key as well as a console session: it is<br/>
+        /// how an integration learns what it may use before a feature endpoint<br/>
+        /// answers `402`. Branch on `current.durable_runs_access`,<br/>
+        /// `current.text_agent_access`, `current.hosted_apis_access` and<br/>
+        /// `current.skills_access`, and size a run from `current.max_run_turns`.<br/>
+        /// The console renders quota affordances and upgrade-card limits from the<br/>
+        /// same single server-authoritative source instead of a hardcoded mirror.
         /// </summary>
-        /// <param name="status"></param>
-        /// <param name="userIdentity"></param>
-        /// <param name="projectId"></param>
-        /// <param name="cursor"></param>
-        /// <param name="limit">
-        /// Default Value: 50
-        /// </param>
         /// <param name="speechifyVersion"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
-        public async global::System.Threading.Tasks.Task<global::Speechify.AutoSDKHttpResponse<global::Speechify.ListAgentRunsResponse>> ListAsResponseAsync(
-            global::Speechify.V1AgentsRunsGetParametersStatus? status = default,
-            string? userIdentity = default,
-            string? projectId = default,
-            string? cursor = default,
-            int? limit = default,
+        public async global::System.Threading.Tasks.Task<global::Speechify.AutoSDKHttpResponse<global::Speechify.EntitlementsResponse>> GetEntitlementsAsResponseAsync(
             string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
             PrepareArguments(
                 client: HttpClient);
-            PrepareListArguments(
+            PrepareGetEntitlementsArguments(
                 httpClient: HttpClient,
-                status: ref status,
-                userIdentity: ref userIdentity,
-                projectId: ref projectId,
-                cursor: ref cursor,
-                limit: ref limit,
                 speechifyVersion: ref speechifyVersion);
 
 
             var __authorizations = global::Speechify.EndPointSecurityResolver.ResolveAuthorizations(
                 availableAuthorizations: Authorizations,
-                securityRequirements: s_ListSecurityRequirements,
-                operationName: "ListAsync");
+                securityRequirements: s_GetEntitlementsSecurityRequirements,
+                operationName: "GetEntitlementsAsync");
 
             using var __timeoutCancellationTokenSource = global::Speechify.AutoSDKRequestOptionsSupport.CreateTimeoutCancellationTokenSource(
                 clientOptions: Options,
@@ -171,15 +121,8 @@ namespace Speechify
             {
 
                             var __pathBuilder = new global::Speechify.PathBuilder(
-                                path: "/v1/agents/runs",
+                                path: "/v1/workspaces/current/entitlements",
                                 baseUri: HttpClient.BaseAddress);
-                            __pathBuilder
-                                .AddOptionalParameter("status", status?.ToValueString())
-                                .AddOptionalParameter("user_identity", userIdentity)
-                                .AddOptionalParameter("project_id", projectId)
-                                .AddOptionalParameter("cursor", cursor)
-                                .AddOptionalParameter("limit", limit?.ToString())
-                                ;
                             var __path = __pathBuilder.ToString();
                 __path = global::Speechify.AutoSDKRequestOptionsSupport.AppendQueryParameters(
                     path: __path,
@@ -223,14 +166,9 @@ namespace Speechify
                 PrepareRequest(
                     client: HttpClient,
                     request: __httpRequest);
-                PrepareListRequest(
+                PrepareGetEntitlementsRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
-                    status: status,
-                    userIdentity: userIdentity,
-                    projectId: projectId,
-                    cursor: cursor,
-                    limit: limit,
                     speechifyVersion: speechifyVersion);
 
                 return __httpRequest;
@@ -248,9 +186,9 @@ namespace Speechify
                     await global::Speechify.AutoSDKRequestOptionsSupport.OnBeforeRequestAsync(
                             clientOptions: Options,
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "List",
-                                methodName: "ListAsync",
-                                pathTemplate: "\"/v1/agents/runs\"",
+                                operationId: "GetEntitlements",
+                                methodName: "GetEntitlementsAsync",
+                                pathTemplate: "\"/v1/workspaces/current/entitlements\"",
                                 httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -282,9 +220,9 @@ namespace Speechify
                         await global::Speechify.AutoSDKRequestOptionsSupport.OnAfterErrorAsync(
                             clientOptions: Options,
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "List",
-                                methodName: "ListAsync",
-                                pathTemplate: "\"/v1/agents/runs\"",
+                                operationId: "GetEntitlements",
+                                methodName: "GetEntitlementsAsync",
+                                pathTemplate: "\"/v1/workspaces/current/entitlements\"",
                                 httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -323,9 +261,9 @@ namespace Speechify
                         await global::Speechify.AutoSDKRequestOptionsSupport.OnAfterErrorAsync(
                             clientOptions: Options,
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "List",
-                                methodName: "ListAsync",
-                                pathTemplate: "\"/v1/agents/runs\"",
+                                operationId: "GetEntitlements",
+                                methodName: "GetEntitlementsAsync",
+                                pathTemplate: "\"/v1/workspaces/current/entitlements\"",
                                 httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -363,7 +301,7 @@ namespace Speechify
                 ProcessResponse(
                     client: HttpClient,
                     response: __response);
-                ProcessListResponse(
+                ProcessGetEntitlementsResponse(
                     httpClient: HttpClient,
                     httpResponseMessage: __response);
                 if (__response.IsSuccessStatusCode)
@@ -371,9 +309,9 @@ namespace Speechify
                     await global::Speechify.AutoSDKRequestOptionsSupport.OnAfterSuccessAsync(
                             clientOptions: Options,
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "List",
-                                methodName: "ListAsync",
-                                pathTemplate: "\"/v1/agents/runs\"",
+                                operationId: "GetEntitlements",
+                                methodName: "GetEntitlementsAsync",
+                                pathTemplate: "\"/v1/workspaces/current/entitlements\"",
                                 httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -393,9 +331,9 @@ namespace Speechify
                     await global::Speechify.AutoSDKRequestOptionsSupport.OnAfterErrorAsync(
                             clientOptions: Options,
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "List",
-                                methodName: "ListAsync",
-                                pathTemplate: "\"/v1/agents/runs\"",
+                                operationId: "GetEntitlements",
+                                methodName: "GetEntitlementsAsync",
+                                pathTemplate: "\"/v1/workspaces/current/entitlements\"",
                                 httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -410,43 +348,6 @@ namespace Speechify
                                 retryReason: global::System.String.Empty,
                                 cancellationToken: __effectiveCancellationToken)).ConfigureAwait(false);
                 }
-                            // The request was malformed or failed validation. The response body is the standard `Error` envelope; for validation failures `error.fields` enumerates the offending fields as a `path -> message` map (code = `validation_failed`).
-                            if ((int)__response.StatusCode == 400)
-                            {
-                                string? __content_400 = null;
-                                global::System.Exception? __exception_400 = null;
-                                global::Speechify.Error? __value_400 = null;
-                                try
-                                {
-                                    if (__effectiveReadResponseAsString)
-                                    {
-                                        __content_400 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
-                                        __value_400 = global::Speechify.Error.FromJson(__content_400, JsonSerializerContext);
-                                    }
-                                    else
-                                    {
-                                        __content_400 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
-
-                                        __value_400 = global::Speechify.Error.FromJson(__content_400, JsonSerializerContext);
-                                    }
-                                }
-                                catch (global::System.Exception __ex)
-                                {
-                                    __exception_400 = __ex;
-                                }
-
-
-                                throw global::Speechify.ApiException<global::Speechify.Error>.Create(
-                                    statusCode: __response.StatusCode,
-                                    message: __content_400 ?? __response.ReasonPhrase ?? string.Empty,
-                                    innerException: __exception_400,
-                                    responseBody: __content_400,
-                                    responseObject: __value_400,
-                                    responseHeaders: global::System.Linq.Enumerable.ToDictionary(
-                                        __response.Headers,
-                                        h => h.Key,
-                                        h => h.Value));
-                            }
                             // Authentication is missing or invalid. The request did not carry a recognised credential (console session token, API key, or worker JWT).
                             if ((int)__response.StatusCode == 401)
                             {
@@ -484,80 +385,6 @@ namespace Speechify
                                         h => h.Key,
                                         h => h.Value));
                             }
-                            // The workspace has insufficient credits, or the request needs a plan tier the workspace is not on (e.g. voice cloning). Distinct from `Forbidden` so SDK consumers can drive upgrade UX.
-                            if ((int)__response.StatusCode == 402)
-                            {
-                                string? __content_402 = null;
-                                global::System.Exception? __exception_402 = null;
-                                global::Speechify.Error? __value_402 = null;
-                                try
-                                {
-                                    if (__effectiveReadResponseAsString)
-                                    {
-                                        __content_402 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
-                                        __value_402 = global::Speechify.Error.FromJson(__content_402, JsonSerializerContext);
-                                    }
-                                    else
-                                    {
-                                        __content_402 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
-
-                                        __value_402 = global::Speechify.Error.FromJson(__content_402, JsonSerializerContext);
-                                    }
-                                }
-                                catch (global::System.Exception __ex)
-                                {
-                                    __exception_402 = __ex;
-                                }
-
-
-                                throw global::Speechify.ApiException<global::Speechify.Error>.Create(
-                                    statusCode: __response.StatusCode,
-                                    message: __content_402 ?? __response.ReasonPhrase ?? string.Empty,
-                                    innerException: __exception_402,
-                                    responseBody: __content_402,
-                                    responseObject: __value_402,
-                                    responseHeaders: global::System.Linq.Enumerable.ToDictionary(
-                                        __response.Headers,
-                                        h => h.Key,
-                                        h => h.Value));
-                            }
-                            // Rate limit or concurrency limit exceeded. `error.code` distinguishes request-rate limiting (`rate_limited`) from concurrency exhaustion (`concurrency_limit_reached`). Carries `Retry-After` and the request-rate budget headers; a concurrency-exhaustion 429 also carries `RateLimit-Remaining-Calls: 0`.
-                            if ((int)__response.StatusCode == 429)
-                            {
-                                string? __content_429 = null;
-                                global::System.Exception? __exception_429 = null;
-                                global::Speechify.Error? __value_429 = null;
-                                try
-                                {
-                                    if (__effectiveReadResponseAsString)
-                                    {
-                                        __content_429 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
-                                        __value_429 = global::Speechify.Error.FromJson(__content_429, JsonSerializerContext);
-                                    }
-                                    else
-                                    {
-                                        __content_429 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
-
-                                        __value_429 = global::Speechify.Error.FromJson(__content_429, JsonSerializerContext);
-                                    }
-                                }
-                                catch (global::System.Exception __ex)
-                                {
-                                    __exception_429 = __ex;
-                                }
-
-
-                                throw global::Speechify.ApiException<global::Speechify.Error>.Create(
-                                    statusCode: __response.StatusCode,
-                                    message: __content_429 ?? __response.ReasonPhrase ?? string.Empty,
-                                    innerException: __exception_429,
-                                    responseBody: __content_429,
-                                    responseObject: __value_429,
-                                    responseHeaders: global::System.Linq.Enumerable.ToDictionary(
-                                        __response.Headers,
-                                        h => h.Key,
-                                        h => h.Value));
-                            }
 
                             if (__effectiveReadResponseAsString)
                             {
@@ -571,7 +398,7 @@ namespace Speechify
                                     client: HttpClient,
                                     response: __response,
                                     content: ref __content);
-                                ProcessListResponseContent(
+                                ProcessGetEntitlementsResponseContent(
                                     httpClient: HttpClient,
                                     httpResponseMessage: __response,
                                     content: ref __content);
@@ -580,9 +407,9 @@ namespace Speechify
                                 {
                                     __response.EnsureSuccessStatusCode();
 
-                                    var __value = global::Speechify.ListAgentRunsResponse.FromJson(__content, JsonSerializerContext) ??
+                                    var __value = global::Speechify.EntitlementsResponse.FromJson(__content, JsonSerializerContext) ??
                                         throw new global::System.InvalidOperationException($"Response deserialization failed for \"{__content}\" ");
-                                    return new global::Speechify.AutoSDKHttpResponse<global::Speechify.ListAgentRunsResponse>(
+                                    return new global::Speechify.AutoSDKHttpResponse<global::Speechify.EntitlementsResponse>(
                                         statusCode: __response.StatusCode,
                                         headers: global::Speechify.AutoSDKHttpResponse.CreateHeaders(__response),
                                         requestUri: __response.RequestMessage?.RequestUri,
@@ -612,9 +439,9 @@ namespace Speechify
                 #endif
                                     ).ConfigureAwait(false);
 
-                                    var __value = await global::Speechify.ListAgentRunsResponse.FromJsonStreamAsync(__content, JsonSerializerContext).ConfigureAwait(false) ??
+                                    var __value = await global::Speechify.EntitlementsResponse.FromJsonStreamAsync(__content, JsonSerializerContext).ConfigureAwait(false) ??
                                         throw new global::System.InvalidOperationException("Response deserialization failed.");
-                                    return new global::Speechify.AutoSDKHttpResponse<global::Speechify.ListAgentRunsResponse>(
+                                    return new global::Speechify.AutoSDKHttpResponse<global::Speechify.EntitlementsResponse>(
                                         statusCode: __response.StatusCode,
                                         headers: global::Speechify.AutoSDKHttpResponse.CreateHeaders(__response),
                                         requestUri: __response.RequestMessage?.RequestUri,

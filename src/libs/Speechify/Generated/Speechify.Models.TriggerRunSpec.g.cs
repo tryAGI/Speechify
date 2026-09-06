@@ -51,6 +51,29 @@ namespace Speechify
         public object? OutputSchema { get; set; }
 
         /// <summary>
+        /// The person every run this trigger fires acts for, in your own<br/>
+        /// vocabulary - the same field a request-started run takes. A<br/>
+        /// scheduled or webhook-fired run then opens with that person's<br/>
+        /// memory, every tool it calls is told who it is for, and<br/>
+        /// `GET /v1/agents/runs?user_identity=` finds it, so you keep no<br/>
+        /// trigger-to-person index of your own. Validated when the trigger is<br/>
+        /// saved, by the run surface's rule: must not begin with `user_`,<br/>
+        /// `embed_` or `anon_`.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("user_identity")]
+        public string? UserIdentity { get; set; }
+
+        /// <summary>
+        /// Up to 16 key/value pairs merged onto every run this trigger fires,<br/>
+        /// beside the `trigger_id` and `trigger_fire_key` the platform stamps.<br/>
+        /// Your own correlation ids belong here. The platform's keys<br/>
+        /// (`trigger`, `trigger_id`, `trigger_fire_key`) are refused with a<br/>
+        /// 400 when the trigger is saved, since the stamp would win.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("metadata")]
+        public global::System.Collections.Generic.Dictionary<string, string>? Metadata { get; set; }
+
+        /// <summary>
         /// Additional properties that are not explicitly defined in the schema
         /// </summary>
         [global::System.Text.Json.Serialization.JsonExtensionData]
@@ -88,6 +111,23 @@ namespace Speechify
         /// `output.data` - its prose answer is still on `output.reply`. The<br/>
         /// platform never returns an object the schema refused.
         /// </param>
+        /// <param name="userIdentity">
+        /// The person every run this trigger fires acts for, in your own<br/>
+        /// vocabulary - the same field a request-started run takes. A<br/>
+        /// scheduled or webhook-fired run then opens with that person's<br/>
+        /// memory, every tool it calls is told who it is for, and<br/>
+        /// `GET /v1/agents/runs?user_identity=` finds it, so you keep no<br/>
+        /// trigger-to-person index of your own. Validated when the trigger is<br/>
+        /// saved, by the run surface's rule: must not begin with `user_`,<br/>
+        /// `embed_` or `anon_`.
+        /// </param>
+        /// <param name="metadata">
+        /// Up to 16 key/value pairs merged onto every run this trigger fires,<br/>
+        /// beside the `trigger_id` and `trigger_fire_key` the platform stamps.<br/>
+        /// Your own correlation ids belong here. The platform's keys<br/>
+        /// (`trigger`, `trigger_id`, `trigger_fire_key`) are refused with a<br/>
+        /// 400 when the trigger is saved, since the stamp would win.
+        /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
 #endif
@@ -95,12 +135,16 @@ namespace Speechify
             string instruction,
             object? variables,
             int? maxTurns,
-            object? outputSchema)
+            object? outputSchema,
+            string? userIdentity,
+            global::System.Collections.Generic.Dictionary<string, string>? metadata)
         {
             this.Instruction = instruction ?? throw new global::System.ArgumentNullException(nameof(instruction));
             this.Variables = variables;
             this.MaxTurns = maxTurns;
             this.OutputSchema = outputSchema;
+            this.UserIdentity = userIdentity;
+            this.Metadata = metadata;
         }
 
         /// <summary>

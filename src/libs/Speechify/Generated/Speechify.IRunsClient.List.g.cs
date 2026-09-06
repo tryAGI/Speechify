@@ -20,6 +20,7 @@ namespace Speechify
         /// `402 durable_runs_not_in_plan`.
         /// </summary>
         /// <param name="status"></param>
+        /// <param name="userIdentity"></param>
         /// <param name="projectId"></param>
         /// <param name="cursor"></param>
         /// <param name="limit">
@@ -31,6 +32,7 @@ namespace Speechify
         /// <exception cref="global::Speechify.ApiException"></exception>
         global::System.Threading.Tasks.Task<global::Speechify.ListAgentRunsResponse> ListAsync(
             global::Speechify.V1AgentsRunsGetParametersStatus? status = default,
+            string? userIdentity = default,
             string? projectId = default,
             string? cursor = default,
             int? limit = default,
@@ -53,6 +55,7 @@ namespace Speechify
         /// `402 durable_runs_not_in_plan`.
         /// </summary>
         /// <param name="status"></param>
+        /// <param name="userIdentity"></param>
         /// <param name="projectId"></param>
         /// <param name="cursor"></param>
         /// <param name="limit">
@@ -64,6 +67,7 @@ namespace Speechify
         /// <exception cref="global::Speechify.ApiException"></exception>
         global::System.Threading.Tasks.Task<global::Speechify.AutoSDKHttpResponse<global::Speechify.ListAgentRunsResponse>> ListAsResponseAsync(
             global::Speechify.V1AgentsRunsGetParametersStatus? status = default,
+            string? userIdentity = default,
             string? projectId = default,
             string? cursor = default,
             int? limit = default,
