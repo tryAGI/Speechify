@@ -39,7 +39,9 @@ namespace Speechify
         /// `trigger.fire_failed`) belong to no project and reach workspace-wide<br/>
         /// endpoints only, so a scoped endpoint subscribed to those alone is<br/>
         /// refused with a 400 naming `enabled_events` rather than accepted<br/>
-        /// and never delivered to.
+        /// and never delivered to. A scoped endpoint records no delivery for<br/>
+        /// another project's events, so read its deliveries list next to the<br/>
+        /// project's own runs or conversations list.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("project_id")]
         public string? ProjectId { get; set; }
@@ -164,7 +166,9 @@ namespace Speechify
         /// `trigger.fire_failed`) belong to no project and reach workspace-wide<br/>
         /// endpoints only, so a scoped endpoint subscribed to those alone is<br/>
         /// refused with a 400 naming `enabled_events` rather than accepted<br/>
-        /// and never delivered to.
+        /// and never delivered to. A scoped endpoint records no delivery for<br/>
+        /// another project's events, so read its deliveries list next to the<br/>
+        /// project's own runs or conversations list.
         /// </param>
         /// <param name="description">
         /// Optional human-readable label for the endpoint.
