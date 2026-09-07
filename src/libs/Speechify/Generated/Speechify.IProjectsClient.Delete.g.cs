@@ -24,10 +24,14 @@ namespace Speechify
         /// audio assets, scoped webhook endpoints and scoped vault credentials<br/>
         /// are deleted; API keys and service accounts pinned to the project are<br/>
         /// revoked; member grants and pending-invite scopes on the project are<br/>
-        /// cleared. Conversations, callers, batch calls, suite runs and memories<br/>
-        /// are operational records and survive exactly as on a detach: a<br/>
-        /// conversation keeps its frozen attribution, the others move to the<br/>
-        /// Default project. Refused with 409 while a phone number is attached<br/>
+        /// cleared. The runs and conversations of a deleted agent go with that<br/>
+        /// agent, transcripts and recordings included, and stop being readable<br/>
+        /// the moment the purge lands - a detach leaves them alone, because a<br/>
+        /// detached project's agents are still live. Callers, suite runs and<br/>
+        /// memories are operational records and survive either mode, moving to<br/>
+        /// the Default project; a batch call survives the project the same way,<br/>
+        /// but not the agent it dialled for, so a purge's agents take their<br/>
+        /// campaigns with them once they are permanently removed. Refused with 409 while a phone number is attached<br/>
         /// (release or move it first), while a member's only project grant is<br/>
         /// this one, or while a live invite carries only this project (clearing<br/>
         /// either would widen that person to the whole workspace, the invite one<br/>
@@ -78,10 +82,14 @@ namespace Speechify
         /// audio assets, scoped webhook endpoints and scoped vault credentials<br/>
         /// are deleted; API keys and service accounts pinned to the project are<br/>
         /// revoked; member grants and pending-invite scopes on the project are<br/>
-        /// cleared. Conversations, callers, batch calls, suite runs and memories<br/>
-        /// are operational records and survive exactly as on a detach: a<br/>
-        /// conversation keeps its frozen attribution, the others move to the<br/>
-        /// Default project. Refused with 409 while a phone number is attached<br/>
+        /// cleared. The runs and conversations of a deleted agent go with that<br/>
+        /// agent, transcripts and recordings included, and stop being readable<br/>
+        /// the moment the purge lands - a detach leaves them alone, because a<br/>
+        /// detached project's agents are still live. Callers, suite runs and<br/>
+        /// memories are operational records and survive either mode, moving to<br/>
+        /// the Default project; a batch call survives the project the same way,<br/>
+        /// but not the agent it dialled for, so a purge's agents take their<br/>
+        /// campaigns with them once they are permanently removed. Refused with 409 while a phone number is attached<br/>
         /// (release or move it first), while a member's only project grant is<br/>
         /// this one, or while a live invite carries only this project (clearing<br/>
         /// either would widen that person to the whole workspace, the invite one<br/>
@@ -132,10 +140,14 @@ namespace Speechify
         /// audio assets, scoped webhook endpoints and scoped vault credentials<br/>
         /// are deleted; API keys and service accounts pinned to the project are<br/>
         /// revoked; member grants and pending-invite scopes on the project are<br/>
-        /// cleared. Conversations, callers, batch calls, suite runs and memories<br/>
-        /// are operational records and survive exactly as on a detach: a<br/>
-        /// conversation keeps its frozen attribution, the others move to the<br/>
-        /// Default project. Refused with 409 while a phone number is attached<br/>
+        /// cleared. The runs and conversations of a deleted agent go with that<br/>
+        /// agent, transcripts and recordings included, and stop being readable<br/>
+        /// the moment the purge lands - a detach leaves them alone, because a<br/>
+        /// detached project's agents are still live. Callers, suite runs and<br/>
+        /// memories are operational records and survive either mode, moving to<br/>
+        /// the Default project; a batch call survives the project the same way,<br/>
+        /// but not the agent it dialled for, so a purge's agents take their<br/>
+        /// campaigns with them once they are permanently removed. Refused with 409 while a phone number is attached<br/>
         /// (release or move it first), while a member's only project grant is<br/>
         /// this one, or while a live invite carries only this project (clearing<br/>
         /// either would widen that person to the whole workspace, the invite one<br/>

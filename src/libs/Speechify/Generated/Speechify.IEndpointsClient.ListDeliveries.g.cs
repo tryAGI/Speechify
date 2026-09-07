@@ -13,7 +13,14 @@ namespace Speechify
         /// (`last_status_code`, `last_response_body`, `last_response_headers`), so<br/>
         /// you can verify the signature and debug failures. Cursor-paginated: omit<br/>
         /// `cursor` for the first page; walk pages while `has_more` is true (default<br/>
-        /// page size 50, max 200).
+        /// page size 50, max 200).<br/>
+        /// An endpoint that was not a target of an event has no row for it: a<br/>
+        /// project-scoped endpoint records nothing for another project's events.<br/>
+        /// An empty list therefore means either nothing matched or nothing<br/>
+        /// happened. To tell them apart, list the project's own activity first<br/>
+        /// (`GET /v1/agents/runs?project_id=…`, the conversations list): activity<br/>
+        /// there with no delivery here is a defect to report; none there means<br/>
+        /// there was nothing to deliver.
         /// </summary>
         /// <param name="webhookEndpointId"></param>
         /// <param name="cursor"></param>
@@ -40,7 +47,14 @@ namespace Speechify
         /// (`last_status_code`, `last_response_body`, `last_response_headers`), so<br/>
         /// you can verify the signature and debug failures. Cursor-paginated: omit<br/>
         /// `cursor` for the first page; walk pages while `has_more` is true (default<br/>
-        /// page size 50, max 200).
+        /// page size 50, max 200).<br/>
+        /// An endpoint that was not a target of an event has no row for it: a<br/>
+        /// project-scoped endpoint records nothing for another project's events.<br/>
+        /// An empty list therefore means either nothing matched or nothing<br/>
+        /// happened. To tell them apart, list the project's own activity first<br/>
+        /// (`GET /v1/agents/runs?project_id=…`, the conversations list): activity<br/>
+        /// there with no delivery here is a defect to report; none there means<br/>
+        /// there was nothing to deliver.
         /// </summary>
         /// <param name="webhookEndpointId"></param>
         /// <param name="cursor"></param>

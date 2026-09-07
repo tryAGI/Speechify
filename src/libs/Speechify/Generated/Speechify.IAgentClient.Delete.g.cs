@@ -6,8 +6,22 @@ namespace Speechify
     {
         /// <summary>
         /// Delete Agent<br/>
-        /// Delete a voice agent. Conversations and attached tools remain. The<br/>
-        /// agent's tests are deleted with it; their run history is retained.<br/>
+        /// Delete an agent, and with it everything that belonged only to that<br/>
+        /// agent.<br/>
+        /// **Goes with the agent**, immediately unreadable through every<br/>
+        /// endpoint: its runs and their step journals and approvals, its<br/>
+        /// conversations and the transcripts, messages and recordings inside<br/>
+        /// them, what it learned about the people it spoke to, its triggers,<br/>
+        /// share links, channel bindings, team memberships and the batch<br/>
+        /// campaigns it dialled. A run that has not settled is asked to stop,<br/>
+        /// including one parked waiting on a person or on a delegated child. These are removed for good 30 days<br/>
+        /// later; until then the delete can still be walked back by support.<br/>
+        /// **Survives the agent**, because it belongs to the workspace rather<br/>
+        /// than to this agent: attached tools, knowledge bases, stores and<br/>
+        /// skills (only the attachment is dropped), the agent's tests, phone<br/>
+        /// numbers, and the teams it belonged to.<br/>
+        /// **Kept regardless**, because it is accounting rather than content:<br/>
+        /// the usage the workspace was billed for.<br/>
         /// Refused with `409 agent_in_use` while a live phone number still<br/>
         /// routes to the agent, including the agent a webhook binding<br/>
         /// provisioned for its number; `used_by` names the numbers. Unbind them<br/>
@@ -26,8 +40,22 @@ namespace Speechify
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Delete Agent<br/>
-        /// Delete a voice agent. Conversations and attached tools remain. The<br/>
-        /// agent's tests are deleted with it; their run history is retained.<br/>
+        /// Delete an agent, and with it everything that belonged only to that<br/>
+        /// agent.<br/>
+        /// **Goes with the agent**, immediately unreadable through every<br/>
+        /// endpoint: its runs and their step journals and approvals, its<br/>
+        /// conversations and the transcripts, messages and recordings inside<br/>
+        /// them, what it learned about the people it spoke to, its triggers,<br/>
+        /// share links, channel bindings, team memberships and the batch<br/>
+        /// campaigns it dialled. A run that has not settled is asked to stop,<br/>
+        /// including one parked waiting on a person or on a delegated child. These are removed for good 30 days<br/>
+        /// later; until then the delete can still be walked back by support.<br/>
+        /// **Survives the agent**, because it belongs to the workspace rather<br/>
+        /// than to this agent: attached tools, knowledge bases, stores and<br/>
+        /// skills (only the attachment is dropped), the agent's tests, phone<br/>
+        /// numbers, and the teams it belonged to.<br/>
+        /// **Kept regardless**, because it is accounting rather than content:<br/>
+        /// the usage the workspace was billed for.<br/>
         /// Refused with `409 agent_in_use` while a live phone number still<br/>
         /// routes to the agent, including the agent a webhook binding<br/>
         /// provisioned for its number; `used_by` names the numbers. Unbind them<br/>

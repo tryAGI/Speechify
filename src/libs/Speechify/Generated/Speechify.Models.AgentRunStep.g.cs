@@ -69,19 +69,25 @@ namespace Speechify
         public string? Model { get; set; }
 
         /// <summary>
-        /// Prompt tokens this step spent. The run's `usage` is the sum over its steps.
+        /// Input tokens this step spent, cached reads included. The run's `usage` is the sum over its steps.
         /// </summary>
-        [global::System.Text.Json.Serialization.JsonPropertyName("prompt_tokens")]
-        public int? PromptTokens { get; set; }
+        [global::System.Text.Json.Serialization.JsonPropertyName("input_tokens")]
+        public int? InputTokens { get; set; }
 
         /// <summary>
-        /// Completion tokens this step spent.
+        /// The subset of `input_tokens` served from provider cache reads. Absent when the provider reported none.
         /// </summary>
-        [global::System.Text.Json.Serialization.JsonPropertyName("completion_tokens")]
-        public int? CompletionTokens { get; set; }
+        [global::System.Text.Json.Serialization.JsonPropertyName("cached_input_tokens")]
+        public int? CachedInputTokens { get; set; }
 
         /// <summary>
-        /// This step's prompt plus completion tokens.
+        /// Output tokens this step spent.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("output_tokens")]
+        public int? OutputTokens { get; set; }
+
+        /// <summary>
+        /// This step's input plus output tokens.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("total_tokens")]
         public int? TotalTokens { get; set; }
@@ -138,14 +144,17 @@ namespace Speechify
         /// <param name="model">
         /// The model that served this step, as the provider reported it; absent when it reported none. The run's `usage.models` is the sum over its steps by this value.
         /// </param>
-        /// <param name="promptTokens">
-        /// Prompt tokens this step spent. The run's `usage` is the sum over its steps.
+        /// <param name="inputTokens">
+        /// Input tokens this step spent, cached reads included. The run's `usage` is the sum over its steps.
         /// </param>
-        /// <param name="completionTokens">
-        /// Completion tokens this step spent.
+        /// <param name="cachedInputTokens">
+        /// The subset of `input_tokens` served from provider cache reads. Absent when the provider reported none.
+        /// </param>
+        /// <param name="outputTokens">
+        /// Output tokens this step spent.
         /// </param>
         /// <param name="totalTokens">
-        /// This step's prompt plus completion tokens.
+        /// This step's input plus output tokens.
         /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
@@ -160,8 +169,9 @@ namespace Speechify
             global::Speechify.RunStepDelegation? delegation,
             int? durationMs,
             string? model,
-            int? promptTokens,
-            int? completionTokens,
+            int? inputTokens,
+            int? cachedInputTokens,
+            int? outputTokens,
             int? totalTokens)
         {
             this.Seq = seq;
@@ -172,8 +182,9 @@ namespace Speechify
             this.Delegation = delegation;
             this.DurationMs = durationMs;
             this.Model = model;
-            this.PromptTokens = promptTokens;
-            this.CompletionTokens = completionTokens;
+            this.InputTokens = inputTokens;
+            this.CachedInputTokens = cachedInputTokens;
+            this.OutputTokens = outputTokens;
             this.TotalTokens = totalTokens;
             this.CreatedAt = createdAt;
         }

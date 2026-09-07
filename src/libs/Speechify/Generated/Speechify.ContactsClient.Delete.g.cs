@@ -53,9 +53,21 @@ namespace Speechify
         /// and has to be fired once per agent and once per channel; this reaches<br/>
         /// all of them, because "everything about this person" is a question the<br/>
         /// contact model can answer.<br/>
-        /// Conversations survive - they are the billing and forensic record - but<br/>
-        /// the facts extracted from them, and the copies of those facts frozen<br/>
-        /// into past prompts, do not.<br/>
+        /// Their calls, chats and durable runs are scrubbed rather than deleted,<br/>
+        /// the same way and for the same reason: the row keeps its id, status,<br/>
+        /// timings and usage - the accounting the workspace was billed on, which<br/>
+        /// is not the person's to erase - and loses everything that describes<br/>
+        /// them. For a call that means the transcript, the identity, the phone<br/>
+        /// numbers, the frozen prompt and variables; for a run, the instruction,<br/>
+        /// the variables, the output and every journalled step. The facts<br/>
+        /// extracted from either, and the copies frozen into past prompts, go<br/>
+        /// with them.<br/>
+        /// A recording stops being served from the moment of the request, and a<br/>
+        /// call still in progress can no longer append to its transcript, so a<br/>
+        /// turn that lands after the erasure cannot put the person back. The<br/>
+        /// audio itself is not yet collected from storage - that is tracked<br/>
+        /// separately - so treat the erasure as complete for every API surface<br/>
+        /// and pending for the stored bytes.<br/>
         /// The identifiers are tombstoned as part of the purge, which is what<br/>
         /// stops the person's phone number ever resolving again: a later merge<br/>
         /// naming the purged contact moves rows that are already dead rather than<br/>
@@ -98,9 +110,21 @@ namespace Speechify
         /// and has to be fired once per agent and once per channel; this reaches<br/>
         /// all of them, because "everything about this person" is a question the<br/>
         /// contact model can answer.<br/>
-        /// Conversations survive - they are the billing and forensic record - but<br/>
-        /// the facts extracted from them, and the copies of those facts frozen<br/>
-        /// into past prompts, do not.<br/>
+        /// Their calls, chats and durable runs are scrubbed rather than deleted,<br/>
+        /// the same way and for the same reason: the row keeps its id, status,<br/>
+        /// timings and usage - the accounting the workspace was billed on, which<br/>
+        /// is not the person's to erase - and loses everything that describes<br/>
+        /// them. For a call that means the transcript, the identity, the phone<br/>
+        /// numbers, the frozen prompt and variables; for a run, the instruction,<br/>
+        /// the variables, the output and every journalled step. The facts<br/>
+        /// extracted from either, and the copies frozen into past prompts, go<br/>
+        /// with them.<br/>
+        /// A recording stops being served from the moment of the request, and a<br/>
+        /// call still in progress can no longer append to its transcript, so a<br/>
+        /// turn that lands after the erasure cannot put the person back. The<br/>
+        /// audio itself is not yet collected from storage - that is tracked<br/>
+        /// separately - so treat the erasure as complete for every API surface<br/>
+        /// and pending for the stored bytes.<br/>
         /// The identifiers are tombstoned as part of the purge, which is what<br/>
         /// stops the person's phone number ever resolving again: a later merge<br/>
         /// naming the purged contact moves rows that are already dead rather than<br/>
