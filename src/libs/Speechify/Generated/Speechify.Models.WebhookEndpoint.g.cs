@@ -31,7 +31,15 @@ namespace Speechify
         /// <summary>
         /// The project whose events this endpoint receives (prefixed<br/>
         /// external id). Null means workspace-wide - it receives every<br/>
-        /// project's events. Endpoints have no Default project.
+        /// project's events. Endpoints have no Default project.<br/>
+        /// An event is routed by the project frozen on the row that produced<br/>
+        /// it: a conversation's, an API key's, a run's (captured when the run<br/>
+        /// was created, so it does not move if the agent later does). The<br/>
+        /// workspace-level events (`batch_call.*`, `workspace.spend_budget.*`,<br/>
+        /// `trigger.fire_failed`) belong to no project and reach workspace-wide<br/>
+        /// endpoints only, so a scoped endpoint subscribed to those alone is<br/>
+        /// refused with a 400 naming `enabled_events` rather than accepted<br/>
+        /// and never delivered to.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("project_id")]
         public string? ProjectId { get; set; }
@@ -148,7 +156,15 @@ namespace Speechify
         /// <param name="projectId">
         /// The project whose events this endpoint receives (prefixed<br/>
         /// external id). Null means workspace-wide - it receives every<br/>
-        /// project's events. Endpoints have no Default project.
+        /// project's events. Endpoints have no Default project.<br/>
+        /// An event is routed by the project frozen on the row that produced<br/>
+        /// it: a conversation's, an API key's, a run's (captured when the run<br/>
+        /// was created, so it does not move if the agent later does). The<br/>
+        /// workspace-level events (`batch_call.*`, `workspace.spend_budget.*`,<br/>
+        /// `trigger.fire_failed`) belong to no project and reach workspace-wide<br/>
+        /// endpoints only, so a scoped endpoint subscribed to those alone is<br/>
+        /// refused with a 400 naming `enabled_events` rather than accepted<br/>
+        /// and never delivered to.
         /// </param>
         /// <param name="description">
         /// Optional human-readable label for the endpoint.

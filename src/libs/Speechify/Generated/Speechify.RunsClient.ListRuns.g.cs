@@ -54,6 +54,8 @@ namespace Speechify
         /// <summary>
         /// List Agent Runs<br/>
         /// List an agent's runs, newest first.<br/>
+        /// The filters are exactly the ones listed here. A query parameter this<br/>
+        /// list does not accept is a 400 naming it, never silently ignored.<br/>
         /// This endpoint is in beta: it is available to workspaces granted<br/>
         /// `durable_runs_access`, and every other workspace receives<br/>
         /// `402 durable_runs_not_in_plan`.
@@ -95,6 +97,8 @@ namespace Speechify
         /// <summary>
         /// List Agent Runs<br/>
         /// List an agent's runs, newest first.<br/>
+        /// The filters are exactly the ones listed here. A query parameter this<br/>
+        /// list does not accept is a 400 naming it, never silently ignored.<br/>
         /// This endpoint is in beta: it is available to workspaces granted<br/>
         /// `durable_runs_access`, and every other workspace receives<br/>
         /// `402 durable_runs_not_in_plan`.

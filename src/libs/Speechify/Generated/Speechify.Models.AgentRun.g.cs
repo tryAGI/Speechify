@@ -64,9 +64,10 @@ namespace Speechify
         public global::Speechify.AgentRunIncompleteReason? IncompleteReason { get; set; }
 
         /// <summary>
-        /// What the run cost, populated once it reaches a terminal state: its wall-clock time plus its token usage summed across every step.<br/>
-        /// The counts are THIS run's own. A run that delegated sub-goals does not include its children's, so a team run's true cost is this plus the usage of each run from `listRunChildren`.<br/>
-        /// Attribute and forecast spend against the token counts. The model is not reported; your plan, not a model name, is what prices a run.
+        /// What the run spent, populated once it reaches a terminal state: its wall-clock time plus its token usage summed across every step, and the same tokens split by the model that spent them (`models`).<br/>
+        /// The counts are THIS run's own. A run that delegated sub-goals does not include its children's, so a team run's true cost is this plus the usage of each run from `listRunChildren`; each child reports its own `usage` the same way, and nothing is counted twice.<br/>
+        /// It is final. Usage is written once, when the run settles, and never restated; the same object rides every `run.*` webhook event.<br/>
+        /// No dollar figure is carried: price the run against your plan's per-model token rates using `models`, and treat your invoice as authoritative.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("usage")]
         public global::Speechify.AgentRunUsage? Usage { get; set; }
@@ -146,9 +147,10 @@ namespace Speechify
         /// Why a non-failed run stopped short: `max_turns_exhausted`, `budget_exhausted`, or `output_schema_violation` (the agent never produced an object matching `input.output_schema`; `output.reply` keeps its prose and `output.data` is absent).
         /// </param>
         /// <param name="usage">
-        /// What the run cost, populated once it reaches a terminal state: its wall-clock time plus its token usage summed across every step.<br/>
-        /// The counts are THIS run's own. A run that delegated sub-goals does not include its children's, so a team run's true cost is this plus the usage of each run from `listRunChildren`.<br/>
-        /// Attribute and forecast spend against the token counts. The model is not reported; your plan, not a model name, is what prices a run.
+        /// What the run spent, populated once it reaches a terminal state: its wall-clock time plus its token usage summed across every step, and the same tokens split by the model that spent them (`models`).<br/>
+        /// The counts are THIS run's own. A run that delegated sub-goals does not include its children's, so a team run's true cost is this plus the usage of each run from `listRunChildren`; each child reports its own `usage` the same way, and nothing is counted twice.<br/>
+        /// It is final. Usage is written once, when the run settles, and never restated; the same object rides every `run.*` webhook event.<br/>
+        /// No dollar figure is carried: price the run against your plan's per-model token rates using `models`, and treat your invoice as authoritative.
         /// </param>
         /// <param name="pendingAction">
         /// A human approval a run is durably parked on (present on `AgentRun` only while `status` is `requires_action`). Rendered VERBATIM for the approver - never a summary the agent wrote - so an injected agent cannot misrepresent what it is about to do. Resolve it with `submitRun`.

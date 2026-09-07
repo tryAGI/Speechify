@@ -63,6 +63,12 @@ namespace Speechify
         public int? DurationMs { get; set; }
 
         /// <summary>
+        /// The model that served this step, as the provider reported it; absent when it reported none. The run's `usage.models` is the sum over its steps by this value.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("model")]
+        public string? Model { get; set; }
+
+        /// <summary>
         /// Prompt tokens this step spent. The run's `usage` is the sum over its steps.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("prompt_tokens")]
@@ -129,6 +135,9 @@ namespace Speechify
         /// <param name="durationMs">
         /// Wall-clock the brain spent producing this step.
         /// </param>
+        /// <param name="model">
+        /// The model that served this step, as the provider reported it; absent when it reported none. The run's `usage.models` is the sum over its steps by this value.
+        /// </param>
         /// <param name="promptTokens">
         /// Prompt tokens this step spent. The run's `usage` is the sum over its steps.
         /// </param>
@@ -150,6 +159,7 @@ namespace Speechify
             object? args,
             global::Speechify.RunStepDelegation? delegation,
             int? durationMs,
+            string? model,
             int? promptTokens,
             int? completionTokens,
             int? totalTokens)
@@ -161,6 +171,7 @@ namespace Speechify
             this.Args = args;
             this.Delegation = delegation;
             this.DurationMs = durationMs;
+            this.Model = model;
             this.PromptTokens = promptTokens;
             this.CompletionTokens = completionTokens;
             this.TotalTokens = totalTokens;
