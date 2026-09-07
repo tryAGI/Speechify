@@ -14,6 +14,7 @@ namespace Speechify
         /// leaves the callers it already knows attributed where they were met.
         /// </summary>
         /// <param name="agentId"></param>
+        /// <param name="contactId"></param>
         /// <param name="q"></param>
         /// <param name="lastSeenAfter"></param>
         /// <param name="projectId"></param>
@@ -27,6 +28,7 @@ namespace Speechify
         /// <exception cref="global::Speechify.ApiException"></exception>
         global::System.Threading.Tasks.Task<global::Speechify.ListCallersResponse> ListAsync(
             string? agentId = default,
+            string? contactId = default,
             string? q = default,
             global::System.DateTime? lastSeenAfter = default,
             string? projectId = default,
@@ -45,6 +47,7 @@ namespace Speechify
         /// leaves the callers it already knows attributed where they were met.
         /// </summary>
         /// <param name="agentId"></param>
+        /// <param name="contactId"></param>
         /// <param name="q"></param>
         /// <param name="lastSeenAfter"></param>
         /// <param name="projectId"></param>
@@ -58,6 +61,7 @@ namespace Speechify
         /// <exception cref="global::Speechify.ApiException"></exception>
         global::System.Threading.Tasks.Task<global::Speechify.AutoSDKHttpResponse<global::Speechify.ListCallersResponse>> ListAsResponseAsync(
             string? agentId = default,
+            string? contactId = default,
             string? q = default,
             global::System.DateTime? lastSeenAfter = default,
             string? projectId = default,

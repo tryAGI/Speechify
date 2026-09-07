@@ -30,6 +30,14 @@ namespace Speechify
     /// names it skips generating one (max<br/>
     /// 600 characters, short enough that the line and the "press 1 to<br/>
     /// take the call" after it fit one playout).<br/>
+    /// Warm mode also takes `ringing_timeout_ms`, how long the<br/>
+    /// destination may ring before the transfer is given up on. Omit it<br/>
+    /// to ring for 30 seconds. The accepted range is the one an outbound call<br/>
+    /// already publishes, 1000-80000 ms; a whole number of milliseconds<br/>
+    /// outside it is rejected here, and on the flow node, rather than<br/>
+    /// quietly shortened.<br/>
+    /// Transferring into a queue usually needs longer than 30 seconds,<br/>
+    /// because the queue's own rollover never gets the chance to fire.<br/>
     /// `play_audio` takes `audio_asset_id`.
     /// </summary>
     public sealed partial class BuiltinToolConfigBuiltinConfig

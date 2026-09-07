@@ -27,6 +27,7 @@ namespace Speechify
             };
         partial void PrepareListArguments(
             global::System.Net.Http.HttpClient httpClient,
+            ref string? agentId,
             ref string? q,
             ref string? cursor,
             ref int? limit,
@@ -34,6 +35,7 @@ namespace Speechify
         partial void PrepareListRequest(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpRequestMessage httpRequestMessage,
+            string? agentId,
             string? q,
             string? cursor,
             int? limit,
@@ -55,8 +57,11 @@ namespace Speechify
         /// 200).<br/>
         /// Contacts are workspace-level, not per-agent: the same person reached<br/>
         /// on two agents and on two channels is one row here, while<br/>
-        /// `/v1/agents/callers` stays the per-agent observation of them.
+        /// `/v1/agents/callers` stays the per-agent observation of them. Filter<br/>
+        /// by `agent_id` for the people one agent has reached; each row names<br/>
+        /// the agents that reached it in `agent_ids`.
         /// </summary>
+        /// <param name="agentId"></param>
         /// <param name="q"></param>
         /// <param name="cursor"></param>
         /// <param name="limit">
@@ -67,6 +72,7 @@ namespace Speechify
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
         public async global::System.Threading.Tasks.Task<global::Speechify.ListContactsResponse> ListAsync(
+            string? agentId = default,
             string? q = default,
             string? cursor = default,
             int? limit = default,
@@ -75,6 +81,7 @@ namespace Speechify
             global::System.Threading.CancellationToken cancellationToken = default)
         {
             var __response = await ListAsResponseAsync(
+                agentId: agentId,
                 q: q,
                 cursor: cursor,
                 limit: limit,
@@ -93,8 +100,11 @@ namespace Speechify
         /// 200).<br/>
         /// Contacts are workspace-level, not per-agent: the same person reached<br/>
         /// on two agents and on two channels is one row here, while<br/>
-        /// `/v1/agents/callers` stays the per-agent observation of them.
+        /// `/v1/agents/callers` stays the per-agent observation of them. Filter<br/>
+        /// by `agent_id` for the people one agent has reached; each row names<br/>
+        /// the agents that reached it in `agent_ids`.
         /// </summary>
+        /// <param name="agentId"></param>
         /// <param name="q"></param>
         /// <param name="cursor"></param>
         /// <param name="limit">
@@ -105,6 +115,7 @@ namespace Speechify
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
         public async global::System.Threading.Tasks.Task<global::Speechify.AutoSDKHttpResponse<global::Speechify.ListContactsResponse>> ListAsResponseAsync(
+            string? agentId = default,
             string? q = default,
             string? cursor = default,
             int? limit = default,
@@ -116,6 +127,7 @@ namespace Speechify
                 client: HttpClient);
             PrepareListArguments(
                 httpClient: HttpClient,
+                agentId: ref agentId,
                 q: ref q,
                 cursor: ref cursor,
                 limit: ref limit,
@@ -148,6 +160,7 @@ namespace Speechify
                                 path: "/v1/contacts",
                                 baseUri: HttpClient.BaseAddress);
                             __pathBuilder
+                                .AddOptionalParameter("agent_id", agentId)
                                 .AddOptionalParameter("q", q)
                                 .AddOptionalParameter("cursor", cursor)
                                 .AddOptionalParameter("limit", limit?.ToString())
@@ -198,6 +211,7 @@ namespace Speechify
                 PrepareListRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
+                    agentId: agentId,
                     q: q,
                     cursor: cursor,
                     limit: limit,
