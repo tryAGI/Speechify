@@ -4,9 +4,10 @@
 namespace Speechify
 {
     /// <summary>
-    /// What the run cost, populated once it reaches a terminal state: its wall-clock time plus its token usage summed across every step.<br/>
-    /// The counts are THIS run's own. A run that delegated sub-goals does not include its children's, so a team run's true cost is this plus the usage of each run from `listRunChildren`.<br/>
-    /// Attribute and forecast spend against the token counts. The model is not reported; your plan, not a model name, is what prices a run.
+    /// What the run spent, populated once it reaches a terminal state: its wall-clock time plus its token usage summed across every step, and the same tokens split by the model that spent them (`models`).<br/>
+    /// The counts are THIS run's own. A run that delegated sub-goals does not include its children's, so a team run's true cost is this plus the usage of each run from `listRunChildren`; each child reports its own `usage` the same way, and nothing is counted twice.<br/>
+    /// It is final. Usage is written once, when the run settles, and never restated; the same object rides every `run.*` webhook event.<br/>
+    /// No dollar figure is carried: price the run against your plan's per-model token rates using `models`, and treat your invoice as authoritative.
     /// </summary>
     public sealed partial class AgentRunUsage
     {
@@ -35,6 +36,12 @@ namespace Speechify
         public int? TotalTokens { get; set; }
 
         /// <summary>
+        /// The token usage split per model, in the order the run first used each; the totals above are the sum over these entries. A run that never changed model has one entry. The model named is the one that actually served the steps, which can differ from the model the agent is configured with when the platform routes a step elsewhere; it is a report, not a promise that the same model serves the next run. An entry whose `model` is empty covers steps whose provider reported no model name.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("models")]
+        public global::System.Collections.Generic.IList<global::Speechify.AgentRunUsageModelsItems>? Models { get; set; }
+
+        /// <summary>
         /// Additional properties that are not explicitly defined in the schema
         /// </summary>
         [global::System.Text.Json.Serialization.JsonExtensionData]
@@ -55,6 +62,9 @@ namespace Speechify
         /// <param name="totalTokens">
         /// `prompt_tokens` + `completion_tokens`.
         /// </param>
+        /// <param name="models">
+        /// The token usage split per model, in the order the run first used each; the totals above are the sum over these entries. A run that never changed model has one entry. The model named is the one that actually served the steps, which can differ from the model the agent is configured with when the platform routes a step elsewhere; it is a report, not a promise that the same model serves the next run. An entry whose `model` is empty covers steps whose provider reported no model name.
+        /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
 #endif
@@ -62,12 +72,14 @@ namespace Speechify
             int? durationMs,
             int? promptTokens,
             int? completionTokens,
-            int? totalTokens)
+            int? totalTokens,
+            global::System.Collections.Generic.IList<global::Speechify.AgentRunUsageModelsItems>? models)
         {
             this.DurationMs = durationMs;
             this.PromptTokens = promptTokens;
             this.CompletionTokens = completionTokens;
             this.TotalTokens = totalTokens;
+            this.Models = models;
         }
 
         /// <summary>

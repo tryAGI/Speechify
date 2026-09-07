@@ -566,7 +566,9 @@ namespace Speechify
         /// receives. A durable run is retried if the platform redelivers it, so a<br/>
         /// tool that sends mail or takes payment can be called more than once for<br/>
         /// the same decision: key on this header and refuse to act twice. One<br/>
-        /// connector serving both transports dedups on one identifier.
+        /// connector serving both transports dedups on one identifier. The key<br/>
+        /// is `&lt;run_id&gt;:&lt;step&gt;`, and `GET /v1/agents/runs/{run_id}` resolves the<br/>
+        /// run, its agent and the person it acts for from the id alone.
         /// </param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>

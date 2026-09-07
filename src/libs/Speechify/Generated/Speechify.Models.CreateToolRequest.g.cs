@@ -54,7 +54,12 @@ namespace Speechify
         /// The impact class. Omit it and the tool's impact is read off its<br/>
         /// shape instead, and keeps tracking it: a `GET` webhook reads, a<br/>
         /// `POST` webhook reaches outside your team, an MCP or client tool can<br/>
-        /// do anything its author wired.
+        /// do anything its author wired.<br/>
+        /// On an MCP tool it is also the ceiling for what the server may claim<br/>
+        /// about its own tools: a class a `tools/list` entry declares under<br/>
+        /// `_meta["speechify/action_class"]` is honoured when it is at least<br/>
+        /// this strong and held to this class when weaker (see<br/>
+        /// `MCPToolConfig.action_classes`).
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("action_class")]
         [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Speechify.JsonConverters.ToolActionClassJsonConverter))]
@@ -95,7 +100,12 @@ namespace Speechify
         /// The impact class. Omit it and the tool's impact is read off its<br/>
         /// shape instead, and keeps tracking it: a `GET` webhook reads, a<br/>
         /// `POST` webhook reaches outside your team, an MCP or client tool can<br/>
-        /// do anything its author wired.
+        /// do anything its author wired.<br/>
+        /// On an MCP tool it is also the ceiling for what the server may claim<br/>
+        /// about its own tools: a class a `tools/list` entry declares under<br/>
+        /// `_meta["speechify/action_class"]` is honoured when it is at least<br/>
+        /// this strong and held to this class when weaker (see<br/>
+        /// `MCPToolConfig.action_classes`).
         /// </param>
         /// <param name="approval">
         /// Overrides the approval derived from the class. Omitted means derived.
