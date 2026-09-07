@@ -8,7 +8,13 @@ namespace Speechify
         /// Update Agent Trigger<br/>
         /// Update a trigger. Merge-patch semantics: an omitted field is left<br/>
         /// unchanged. `type` is immutable. Changing a schedule's cadence or<br/>
-        /// `enabled` reschedules its next fire.
+        /// `enabled` reschedules its next fire.<br/>
+        /// A field this endpoint does not define is refused with `400<br/>
+        /// validation_failed` naming every unknown field, rather than accepted<br/>
+        /// and silently dropped.<br/>
+        /// Keys inside `run.variables` and `run.metadata`, and the contents of<br/>
+        /// `run.output_schema`, are your own data rather than field names, and<br/>
+        /// are never refused.
         /// </summary>
         /// <param name="agentId"></param>
         /// <param name="triggerId"></param>
@@ -29,7 +35,13 @@ namespace Speechify
         /// Update Agent Trigger<br/>
         /// Update a trigger. Merge-patch semantics: an omitted field is left<br/>
         /// unchanged. `type` is immutable. Changing a schedule's cadence or<br/>
-        /// `enabled` reschedules its next fire.
+        /// `enabled` reschedules its next fire.<br/>
+        /// A field this endpoint does not define is refused with `400<br/>
+        /// validation_failed` naming every unknown field, rather than accepted<br/>
+        /// and silently dropped.<br/>
+        /// Keys inside `run.variables` and `run.metadata`, and the contents of<br/>
+        /// `run.output_schema`, are your own data rather than field names, and<br/>
+        /// are never refused.
         /// </summary>
         /// <param name="agentId"></param>
         /// <param name="triggerId"></param>
@@ -50,7 +62,13 @@ namespace Speechify
         /// Update Agent Trigger<br/>
         /// Update a trigger. Merge-patch semantics: an omitted field is left<br/>
         /// unchanged. `type` is immutable. Changing a schedule's cadence or<br/>
-        /// `enabled` reschedules its next fire.
+        /// `enabled` reschedules its next fire.<br/>
+        /// A field this endpoint does not define is refused with `400<br/>
+        /// validation_failed` naming every unknown field, rather than accepted<br/>
+        /// and silently dropped.<br/>
+        /// Keys inside `run.variables` and `run.metadata`, and the contents of<br/>
+        /// `run.output_schema`, are your own data rather than field names, and<br/>
+        /// are never refused.
         /// </summary>
         /// <param name="agentId"></param>
         /// <param name="triggerId"></param>

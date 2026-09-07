@@ -66,7 +66,10 @@ namespace Speechify
         /// run's current pending action.<br/>
         /// This endpoint is in beta: it is available to workspaces granted<br/>
         /// `durable_runs_access`, and every other workspace receives<br/>
-        /// `402 durable_runs_not_in_plan`.
+        /// `402 durable_runs_not_in_plan`.<br/>
+        /// A field this endpoint does not define is refused with `400<br/>
+        /// validation_failed` naming every unknown field, rather than accepted<br/>
+        /// and silently dropped.
         /// </summary>
         /// <param name="agentId"></param>
         /// <param name="runId"></param>
@@ -118,7 +121,10 @@ namespace Speechify
         /// run's current pending action.<br/>
         /// This endpoint is in beta: it is available to workspaces granted<br/>
         /// `durable_runs_access`, and every other workspace receives<br/>
-        /// `402 durable_runs_not_in_plan`.
+        /// `402 durable_runs_not_in_plan`.<br/>
+        /// A field this endpoint does not define is refused with `400<br/>
+        /// validation_failed` naming every unknown field, rather than accepted<br/>
+        /// and silently dropped.
         /// </summary>
         /// <param name="agentId"></param>
         /// <param name="runId"></param>
@@ -752,7 +758,10 @@ namespace Speechify
         /// run's current pending action.<br/>
         /// This endpoint is in beta: it is available to workspaces granted<br/>
         /// `durable_runs_access`, and every other workspace receives<br/>
-        /// `402 durable_runs_not_in_plan`.
+        /// `402 durable_runs_not_in_plan`.<br/>
+        /// A field this endpoint does not define is refused with `400<br/>
+        /// validation_failed` naming every unknown field, rather than accepted<br/>
+        /// and silently dropped.
         /// </summary>
         /// <param name="agentId"></param>
         /// <param name="runId"></param>

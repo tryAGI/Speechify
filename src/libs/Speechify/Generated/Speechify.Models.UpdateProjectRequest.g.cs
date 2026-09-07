@@ -14,6 +14,17 @@ namespace Speechify
     public sealed partial class UpdateProjectRequest
     {
         /// <summary>
+        /// Sets the project's concurrent-run ceiling; `null` removes it.<br/>
+        /// Must be a positive integer at or below the workspace's own run<br/>
+        /// ceiling, otherwise the request is refused with<br/>
+        /// `400 validation_failed` naming the field and the ceiling.<br/>
+        /// Requires the `billing.manage` permission. Takes effect on the<br/>
+        /// next run start attributed to the project.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("max_concurrent_runs")]
+        public int? MaxConcurrentRuns { get; set; }
+
+        /// <summary>
         /// Sets the project's active-call ceiling; `null` removes it.<br/>
         /// Must be a positive integer at or below the workspace's own<br/>
         /// active-call cap, otherwise the request is refused with<br/>
@@ -70,6 +81,14 @@ namespace Speechify
         /// <summary>
         /// Initializes a new instance of the <see cref="UpdateProjectRequest" /> class.
         /// </summary>
+        /// <param name="maxConcurrentRuns">
+        /// Sets the project's concurrent-run ceiling; `null` removes it.<br/>
+        /// Must be a positive integer at or below the workspace's own run<br/>
+        /// ceiling, otherwise the request is refused with<br/>
+        /// `400 validation_failed` naming the field and the ceiling.<br/>
+        /// Requires the `billing.manage` permission. Takes effect on the<br/>
+        /// next run start attributed to the project.
+        /// </param>
         /// <param name="maxConcurrentCalls">
         /// Sets the project's active-call ceiling; `null` removes it.<br/>
         /// Must be a positive integer at or below the workspace's own<br/>
@@ -110,11 +129,13 @@ namespace Speechify
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
 #endif
         public UpdateProjectRequest(
+            int? maxConcurrentRuns,
             int? maxConcurrentCalls,
             int? maxRequestsPerMinute,
             string? name,
             double? monthlyBudget)
         {
+            this.MaxConcurrentRuns = maxConcurrentRuns;
             this.MaxConcurrentCalls = maxConcurrentCalls;
             this.MaxRequestsPerMinute = maxRequestsPerMinute;
             this.Name = name;

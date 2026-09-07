@@ -6,7 +6,26 @@ namespace Speechify
     /// <summary>
     /// A workspace tool definition: a reusable webhook / client / MCP<br/>
     /// integration created once and attached to many agents. Built-ins<br/>
-    /// are NOT definitions - they are per-agent (see `AgentTool`).
+    /// are NOT definitions - they are per-agent (see `AgentTool`).<br/>
+    /// **A tool row belongs to exactly one project and is reused only inside<br/>
+    /// it.** An attach whose agent and tool sit in different projects is<br/>
+    /// refused with `409 cross_project_reference`, and there is no<br/>
+    /// workspace-shared tier for a tool the way there is for a vault<br/>
+    /// credential: a tool with no `project_id` lives in the implicit Default<br/>
+    /// project and attaches only to agents that also live there. So an<br/>
+    /// application running one project per business customer duplicates its<br/>
+    /// connector tool per customer, and that is deliberate rather than a<br/>
+    /// limitation to route around. A tool row carries the endpoint, the<br/>
+    /// headers and the credential reference the agent will call with, and<br/>
+    /// those are exactly what an application wants to be able to vary, revoke<br/>
+    /// or rotate for ONE of its customers without touching the others. Its<br/>
+    /// `project_id` is also what makes a tool follow its agents through a<br/>
+    /// move, a promote and a project teardown; a shared row would have to be<br/>
+    /// left behind by all three.<br/>
+    /// What does NOT need duplicating is the person: the customer's end-user<br/>
+    /// travels per call as `user_identity` in the signed webhook body or the<br/>
+    /// `Speechify-User-Identity` header, so one connector row per project<br/>
+    /// serves every person under that customer.
     /// </summary>
     public sealed partial class Tool
     {

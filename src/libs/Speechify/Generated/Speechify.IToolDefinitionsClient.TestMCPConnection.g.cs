@@ -12,7 +12,10 @@ namespace Speechify
         /// discovered tool catalogue or a structured error string. Pass<br/>
         /// `tool_id` from the edit-form flow when the auth payload carries<br/>
         /// `_set` markers but no plaintext, so the server can hydrate the<br/>
-        /// stored secret from the encrypted column before probing.
+        /// stored secret from the encrypted column before probing.<br/>
+        /// A field this endpoint does not define is refused with `400<br/>
+        /// validation_failed` naming every unknown field, rather than accepted<br/>
+        /// and silently dropped.
         /// </summary>
         /// <param name="speechifyVersion"></param>
         /// <param name="request"></param>
@@ -33,7 +36,10 @@ namespace Speechify
         /// discovered tool catalogue or a structured error string. Pass<br/>
         /// `tool_id` from the edit-form flow when the auth payload carries<br/>
         /// `_set` markers but no plaintext, so the server can hydrate the<br/>
-        /// stored secret from the encrypted column before probing.
+        /// stored secret from the encrypted column before probing.<br/>
+        /// A field this endpoint does not define is refused with `400<br/>
+        /// validation_failed` naming every unknown field, rather than accepted<br/>
+        /// and silently dropped.
         /// </summary>
         /// <param name="speechifyVersion"></param>
         /// <param name="request"></param>
@@ -54,7 +60,10 @@ namespace Speechify
         /// discovered tool catalogue or a structured error string. Pass<br/>
         /// `tool_id` from the edit-form flow when the auth payload carries<br/>
         /// `_set` markers but no plaintext, so the server can hydrate the<br/>
-        /// stored secret from the encrypted column before probing.
+        /// stored secret from the encrypted column before probing.<br/>
+        /// A field this endpoint does not define is refused with `400<br/>
+        /// validation_failed` naming every unknown field, rather than accepted<br/>
+        /// and silently dropped.
         /// </summary>
         /// <param name="speechifyVersion"></param>
         /// <param name="config">

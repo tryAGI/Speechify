@@ -6,7 +6,12 @@ namespace Speechify
     {
         /// <summary>
         /// Create Agent<br/>
-        /// Create a voice agent.
+        /// Create a voice agent.<br/>
+        /// The agent lands in the project named by `project_id`, or in the<br/>
+        /// implicit Default project when none is given. Each project holds at<br/>
+        /// most a fixed number of live agents; a create past that answers<br/>
+        /// `409 agent_limit_reached` naming the ceiling, and deleting an agent<br/>
+        /// in that project - or creating this one in another - frees a slot.
         /// </summary>
         /// <param name="speechifyVersion"></param>
         /// <param name="request"></param>
@@ -21,7 +26,12 @@ namespace Speechify
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Create Agent<br/>
-        /// Create a voice agent.
+        /// Create a voice agent.<br/>
+        /// The agent lands in the project named by `project_id`, or in the<br/>
+        /// implicit Default project when none is given. Each project holds at<br/>
+        /// most a fixed number of live agents; a create past that answers<br/>
+        /// `409 agent_limit_reached` naming the ceiling, and deleting an agent<br/>
+        /// in that project - or creating this one in another - frees a slot.
         /// </summary>
         /// <param name="speechifyVersion"></param>
         /// <param name="request"></param>
@@ -36,7 +46,12 @@ namespace Speechify
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Create Agent<br/>
-        /// Create a voice agent.
+        /// Create a voice agent.<br/>
+        /// The agent lands in the project named by `project_id`, or in the<br/>
+        /// implicit Default project when none is given. Each project holds at<br/>
+        /// most a fixed number of live agents; a create past that answers<br/>
+        /// `409 agent_limit_reached` naming the ceiling, and deleting an agent<br/>
+        /// in that project - or creating this one in another - frees a slot.
         /// </summary>
         /// <param name="speechifyVersion"></param>
         /// <param name="projectId">

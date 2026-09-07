@@ -11,7 +11,13 @@ namespace Speechify
         /// editable here — its shared config/name is edited on the<br/>
         /// definition (`PATCH /v1/agents/tool-definitions/{tool_definition_id}`), since the<br/>
         /// definition is referenced live by every agent it is attached to;<br/>
-        /// attempting a shared-config edit here returns `tool_config_shared`.
+        /// attempting a shared-config edit here returns `tool_config_shared`.<br/>
+        /// A field this endpoint does not define is refused with `400<br/>
+        /// validation_failed` naming every unknown field, rather than accepted<br/>
+        /// and silently dropped.<br/>
+        /// The contents of `config` are your own data at this level; they are<br/>
+        /// validated against the tool kind's own schema, which has always<br/>
+        /// refused an unknown key there.
         /// </summary>
         /// <param name="agentId"></param>
         /// <param name="toolId"></param>
@@ -35,7 +41,13 @@ namespace Speechify
         /// editable here — its shared config/name is edited on the<br/>
         /// definition (`PATCH /v1/agents/tool-definitions/{tool_definition_id}`), since the<br/>
         /// definition is referenced live by every agent it is attached to;<br/>
-        /// attempting a shared-config edit here returns `tool_config_shared`.
+        /// attempting a shared-config edit here returns `tool_config_shared`.<br/>
+        /// A field this endpoint does not define is refused with `400<br/>
+        /// validation_failed` naming every unknown field, rather than accepted<br/>
+        /// and silently dropped.<br/>
+        /// The contents of `config` are your own data at this level; they are<br/>
+        /// validated against the tool kind's own schema, which has always<br/>
+        /// refused an unknown key there.
         /// </summary>
         /// <param name="agentId"></param>
         /// <param name="toolId"></param>
@@ -59,7 +71,13 @@ namespace Speechify
         /// editable here — its shared config/name is edited on the<br/>
         /// definition (`PATCH /v1/agents/tool-definitions/{tool_definition_id}`), since the<br/>
         /// definition is referenced live by every agent it is attached to;<br/>
-        /// attempting a shared-config edit here returns `tool_config_shared`.
+        /// attempting a shared-config edit here returns `tool_config_shared`.<br/>
+        /// A field this endpoint does not define is refused with `400<br/>
+        /// validation_failed` naming every unknown field, rather than accepted<br/>
+        /// and silently dropped.<br/>
+        /// The contents of `config` are your own data at this level; they are<br/>
+        /// validated against the tool kind's own schema, which has always<br/>
+        /// refused an unknown key there.
         /// </summary>
         /// <param name="agentId"></param>
         /// <param name="toolId"></param>

@@ -54,7 +54,10 @@ namespace Speechify
         /// `Speechify-Webhook-Test: true` header so a careful endpoint<br/>
         /// can recognise the test and skip its real side effect. Pass<br/>
         /// `tool_id` from the edit-form flow so the server signs the probe<br/>
-        /// with the tool's stored HMAC secret.
+        /// with the tool's stored HMAC secret.<br/>
+        /// A field this endpoint does not define is refused with `400<br/>
+        /// validation_failed` naming every unknown field, rather than accepted<br/>
+        /// and silently dropped.
         /// </summary>
         /// <param name="speechifyVersion"></param>
         /// <param name="request"></param>
@@ -89,7 +92,10 @@ namespace Speechify
         /// `Speechify-Webhook-Test: true` header so a careful endpoint<br/>
         /// can recognise the test and skip its real side effect. Pass<br/>
         /// `tool_id` from the edit-form flow so the server signs the probe<br/>
-        /// with the tool's stored HMAC secret.
+        /// with the tool's stored HMAC secret.<br/>
+        /// A field this endpoint does not define is refused with `400<br/>
+        /// validation_failed` naming every unknown field, rather than accepted<br/>
+        /// and silently dropped.
         /// </summary>
         /// <param name="speechifyVersion"></param>
         /// <param name="request"></param>
@@ -551,7 +557,10 @@ namespace Speechify
         /// `Speechify-Webhook-Test: true` header so a careful endpoint<br/>
         /// can recognise the test and skip its real side effect. Pass<br/>
         /// `tool_id` from the edit-form flow so the server signs the probe<br/>
-        /// with the tool's stored HMAC secret.
+        /// with the tool's stored HMAC secret.<br/>
+        /// A field this endpoint does not define is refused with `400<br/>
+        /// validation_failed` naming every unknown field, rather than accepted<br/>
+        /// and silently dropped.
         /// </summary>
         /// <param name="speechifyVersion"></param>
         /// <param name="config">

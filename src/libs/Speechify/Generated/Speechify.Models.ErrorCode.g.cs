@@ -24,6 +24,10 @@ namespace Speechify
         /// <summary>
         ///
         /// </summary>
+        AgentLimitReached,
+        /// <summary>
+        ///
+        /// </summary>
         AgentNotFound,
         /// <summary>
         ///
@@ -581,6 +585,7 @@ namespace Speechify
             {
                 ErrorCode.AccountDeletionBlocked => "account_deletion_blocked",
                 ErrorCode.AgentInUse => "agent_in_use",
+                ErrorCode.AgentLimitReached => "agent_limit_reached",
                 ErrorCode.AgentNotFound => "agent_not_found",
                 ErrorCode.AgentPublishGateFailed => "agent_publish_gate_failed",
                 ErrorCode.AgentPublishGateRequired => "agent_publish_gate_required",
@@ -729,6 +734,7 @@ namespace Speechify
             {
                 "account_deletion_blocked" => ErrorCode.AccountDeletionBlocked,
                 "agent_in_use" => ErrorCode.AgentInUse,
+                "agent_limit_reached" => ErrorCode.AgentLimitReached,
                 "agent_not_found" => ErrorCode.AgentNotFound,
                 "agent_publish_gate_failed" => ErrorCode.AgentPublishGateFailed,
                 "agent_publish_gate_required" => ErrorCode.AgentPublishGateRequired,

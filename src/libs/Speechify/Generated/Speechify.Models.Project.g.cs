@@ -13,10 +13,19 @@ namespace Speechify
     /// stays workspace-level with no billing split. A project may<br/>
     /// carry a monthly spend LIMIT, which bounds work without splitting<br/>
     /// the bill, capacity CEILINGS (`max_concurrent_calls`,<br/>
-    /// `max_requests_per_minute`) that sit below the workspace's own<br/>
-    /// plan limits so one project cannot consume the whole allowance,<br/>
-    /// and it may be ARCHIVED, which suspends all work and spend inside<br/>
-    /// it while everything stays readable.
+    /// `max_requests_per_minute`, `max_concurrent_runs`) that sit below<br/>
+    /// the workspace's own plan limits so one project cannot consume the<br/>
+    /// whole allowance, and it may be ARCHIVED, which suspends all work<br/>
+    /// and spend inside it while everything stays readable.<br/>
+    /// An application building on this platform models one of its OWN<br/>
+    /// business customers as a project: it is the level that both<br/>
+    /// attributes cost (`monthly_spend`, grouped per project on the usage<br/>
+    /// breakdown) and ENFORCES it (`monthly_budget` and the three capacity<br/>
+    /// ceilings). The person an agent is dealing with is NOT a project -<br/>
+    /// that is `user_identity` on a conversation or a run. How many<br/>
+    /// projects a workspace may hold is the workspace's own ceiling; a<br/>
+    /// create past it answers `409 project_limit_reached`, and deleting an<br/>
+    /// unused project frees a slot.
     /// </summary>
     public sealed partial class Project
     {
@@ -56,6 +65,24 @@ namespace Speechify
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("max_concurrent_calls")]
         public int? MaxConcurrentCalls { get; set; }
+
+        /// <summary>
+        /// The most durable agent runs this project may have queued or<br/>
+        /// running at once, present only when set. Checked after the<br/>
+        /// workspace's own run ceiling on every run start (a request, a<br/>
+        /// team run, or an unattended trigger fire), keyed on the project<br/>
+        /// the run is ATTRIBUTED to - its agent's project, captured at<br/>
+        /// creation - so a workspace-wide key starting a run in this<br/>
+        /// project counts against it. A run over the ceiling is refused<br/>
+        /// with the same `429 concurrency_limit_reached` the workspace<br/>
+        /// ceiling answers, carrying `Retry-After`, while sibling projects<br/>
+        /// keep their headroom. A run parked on a human approval or on its<br/>
+        /// children holds no slot and does not count. Never higher than the<br/>
+        /// workspace's own run ceiling: a project can narrow the<br/>
+        /// workspace's capacity, not raise it.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("max_concurrent_runs")]
+        public int? MaxConcurrentRuns { get; set; }
 
         /// <summary>
         /// The most API requests per minute credentials pinned to this<br/>
@@ -169,6 +196,21 @@ namespace Speechify
         /// workspace's cap: a project can narrow the workspace's<br/>
         /// capacity, not raise it.
         /// </param>
+        /// <param name="maxConcurrentRuns">
+        /// The most durable agent runs this project may have queued or<br/>
+        /// running at once, present only when set. Checked after the<br/>
+        /// workspace's own run ceiling on every run start (a request, a<br/>
+        /// team run, or an unattended trigger fire), keyed on the project<br/>
+        /// the run is ATTRIBUTED to - its agent's project, captured at<br/>
+        /// creation - so a workspace-wide key starting a run in this<br/>
+        /// project counts against it. A run over the ceiling is refused<br/>
+        /// with the same `429 concurrency_limit_reached` the workspace<br/>
+        /// ceiling answers, carrying `Retry-After`, while sibling projects<br/>
+        /// keep their headroom. A run parked on a human approval or on its<br/>
+        /// children holds no slot and does not count. Never higher than the<br/>
+        /// workspace's own run ceiling: a project can narrow the<br/>
+        /// workspace's capacity, not raise it.
+        /// </param>
         /// <param name="maxRequestsPerMinute">
         /// The most API requests per minute credentials pinned to this<br/>
         /// project may make across every surface, present only when set.<br/>
@@ -210,6 +252,7 @@ namespace Speechify
             global::System.DateTime? archivedAt,
             global::System.DateTime? purgedAt,
             int? maxConcurrentCalls,
+            int? maxConcurrentRuns,
             int? maxRequestsPerMinute,
             double? monthlyBudget,
             double? monthlySpend)
@@ -217,6 +260,7 @@ namespace Speechify
             this.ArchivedAt = archivedAt;
             this.PurgedAt = purgedAt;
             this.MaxConcurrentCalls = maxConcurrentCalls;
+            this.MaxConcurrentRuns = maxConcurrentRuns;
             this.MaxRequestsPerMinute = maxRequestsPerMinute;
             this.MonthlyBudget = monthlyBudget;
             this.MonthlySpend = monthlySpend;
