@@ -18,11 +18,20 @@ namespace Speechify
         /// agent: the publish gate (`422 agent_publish_gate_required` until the<br/>
         /// manager's current configuration is published), the MCP transport check<br/>
         /// (`422 tool_transport_unsupported`), the 200-run workspace backlog<br/>
-        /// ceiling (`429 concurrency_limit_reached` - and a team run's children<br/>
-        /// count towards it as they start), and the spend gate.<br/>
+        /// ceiling and the manager's project ceiling<br/>
+        /// (`429 concurrency_limit_reached` - and a team run's children count<br/>
+        /// towards both as they start), and the spend gate, including the<br/>
+        /// manager's project (`402 project_spend_limit_exceeded`,<br/>
+        /// `409 project_archived`).<br/>
         /// This endpoint is in beta: it is available to workspaces granted<br/>
         /// `durable_runs_access`, and every other workspace receives<br/>
-        /// `402 durable_runs_not_in_plan`.
+        /// `402 durable_runs_not_in_plan`.<br/>
+        /// A field this endpoint does not define is refused with `400<br/>
+        /// validation_failed` naming every unknown field, rather than accepted<br/>
+        /// and silently dropped.<br/>
+        /// Keys inside `variables` and `metadata`, and the contents of<br/>
+        /// `output_schema`, are your own data rather than field names, and are<br/>
+        /// never refused.
         /// </summary>
         /// <param name="teamId"></param>
         /// <param name="speechifyVersion"></param>
@@ -55,11 +64,20 @@ namespace Speechify
         /// agent: the publish gate (`422 agent_publish_gate_required` until the<br/>
         /// manager's current configuration is published), the MCP transport check<br/>
         /// (`422 tool_transport_unsupported`), the 200-run workspace backlog<br/>
-        /// ceiling (`429 concurrency_limit_reached` - and a team run's children<br/>
-        /// count towards it as they start), and the spend gate.<br/>
+        /// ceiling and the manager's project ceiling<br/>
+        /// (`429 concurrency_limit_reached` - and a team run's children count<br/>
+        /// towards both as they start), and the spend gate, including the<br/>
+        /// manager's project (`402 project_spend_limit_exceeded`,<br/>
+        /// `409 project_archived`).<br/>
         /// This endpoint is in beta: it is available to workspaces granted<br/>
         /// `durable_runs_access`, and every other workspace receives<br/>
-        /// `402 durable_runs_not_in_plan`.
+        /// `402 durable_runs_not_in_plan`.<br/>
+        /// A field this endpoint does not define is refused with `400<br/>
+        /// validation_failed` naming every unknown field, rather than accepted<br/>
+        /// and silently dropped.<br/>
+        /// Keys inside `variables` and `metadata`, and the contents of<br/>
+        /// `output_schema`, are your own data rather than field names, and are<br/>
+        /// never refused.
         /// </summary>
         /// <param name="teamId"></param>
         /// <param name="speechifyVersion"></param>
@@ -92,11 +110,20 @@ namespace Speechify
         /// agent: the publish gate (`422 agent_publish_gate_required` until the<br/>
         /// manager's current configuration is published), the MCP transport check<br/>
         /// (`422 tool_transport_unsupported`), the 200-run workspace backlog<br/>
-        /// ceiling (`429 concurrency_limit_reached` - and a team run's children<br/>
-        /// count towards it as they start), and the spend gate.<br/>
+        /// ceiling and the manager's project ceiling<br/>
+        /// (`429 concurrency_limit_reached` - and a team run's children count<br/>
+        /// towards both as they start), and the spend gate, including the<br/>
+        /// manager's project (`402 project_spend_limit_exceeded`,<br/>
+        /// `409 project_archived`).<br/>
         /// This endpoint is in beta: it is available to workspaces granted<br/>
         /// `durable_runs_access`, and every other workspace receives<br/>
-        /// `402 durable_runs_not_in_plan`.
+        /// `402 durable_runs_not_in_plan`.<br/>
+        /// A field this endpoint does not define is refused with `400<br/>
+        /// validation_failed` naming every unknown field, rather than accepted<br/>
+        /// and silently dropped.<br/>
+        /// Keys inside `variables` and `metadata`, and the contents of<br/>
+        /// `output_schema`, are your own data rather than field names, and are<br/>
+        /// never refused.
         /// </summary>
         /// <param name="teamId"></param>
         /// <param name="speechifyVersion"></param>

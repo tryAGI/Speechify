@@ -70,15 +70,33 @@ namespace Speechify
         /// cannot execute; the message names the tool. Switch it to<br/>
         /// `http_streamable` or detach it, then retry.<br/>
         /// Returns `429 concurrency_limit_reached` when the workspace already has<br/>
-        /// 200 runs queued or running. Runs execute on a shared queue, so the<br/>
-        /// ceiling is what keeps one workspace's backlog from delaying everyone<br/>
-        /// else's next run; it is not a plan limit. `Retry-After` is a hint at the<br/>
-        /// scale runs take, not a promise - what actually frees a slot is one of<br/>
-        /// your own runs ending, so follow the ones you have with the event stream<br/>
-        /// and start the next when one does.<br/>
+        /// 200 runs queued or running, and the same code when the run's PROJECT is<br/>
+        /// at its own `max_concurrent_runs` ceiling - only the message says which<br/>
+        /// bit, so one retry path handles both. Runs execute on a shared queue, so<br/>
+        /// the workspace ceiling is what keeps one workspace's backlog from<br/>
+        /// delaying everyone else's next run; it is not a plan limit. The project<br/>
+        /// ceiling narrows it further, which is how an application keeps one of its<br/>
+        /// customers from occupying every slot the workspace has. `Retry-After` is<br/>
+        /// a hint at the scale runs take, not a promise - what actually frees a<br/>
+        /// slot is one of your own runs ending, so follow the ones you have with<br/>
+        /// the event stream and start the next when one does.<br/>
+        /// ## The project a run bills to<br/>
+        /// A run is attributed to its AGENT's project, captured at creation and<br/>
+        /// frozen there, so moving the agent later never moves a finished run's<br/>
+        /// cost. That project's money gates apply to the run exactly as they apply<br/>
+        /// to a call in it: `402 project_spend_limit_exceeded` once its<br/>
+        /// `monthly_budget` is reached, and `409 project_archived` while it is<br/>
+        /// archived. Both can fire for a workspace-wide key, because the project<br/>
+        /// charged is the agent's rather than the key's pin.<br/>
         /// This endpoint is in beta: it is available to workspaces granted<br/>
         /// `durable_runs_access`, and every other workspace receives<br/>
-        /// `402 durable_runs_not_in_plan`.
+        /// `402 durable_runs_not_in_plan`.<br/>
+        /// A field this endpoint does not define is refused with `400<br/>
+        /// validation_failed` naming every unknown field, rather than accepted<br/>
+        /// and silently dropped.<br/>
+        /// Keys inside `variables` and `metadata`, and the contents of<br/>
+        /// `output_schema`, are your own data rather than field names, and are<br/>
+        /// never refused.
         /// </summary>
         /// <param name="agentId"></param>
         /// <param name="speechifyVersion"></param>
@@ -133,15 +151,33 @@ namespace Speechify
         /// cannot execute; the message names the tool. Switch it to<br/>
         /// `http_streamable` or detach it, then retry.<br/>
         /// Returns `429 concurrency_limit_reached` when the workspace already has<br/>
-        /// 200 runs queued or running. Runs execute on a shared queue, so the<br/>
-        /// ceiling is what keeps one workspace's backlog from delaying everyone<br/>
-        /// else's next run; it is not a plan limit. `Retry-After` is a hint at the<br/>
-        /// scale runs take, not a promise - what actually frees a slot is one of<br/>
-        /// your own runs ending, so follow the ones you have with the event stream<br/>
-        /// and start the next when one does.<br/>
+        /// 200 runs queued or running, and the same code when the run's PROJECT is<br/>
+        /// at its own `max_concurrent_runs` ceiling - only the message says which<br/>
+        /// bit, so one retry path handles both. Runs execute on a shared queue, so<br/>
+        /// the workspace ceiling is what keeps one workspace's backlog from<br/>
+        /// delaying everyone else's next run; it is not a plan limit. The project<br/>
+        /// ceiling narrows it further, which is how an application keeps one of its<br/>
+        /// customers from occupying every slot the workspace has. `Retry-After` is<br/>
+        /// a hint at the scale runs take, not a promise - what actually frees a<br/>
+        /// slot is one of your own runs ending, so follow the ones you have with<br/>
+        /// the event stream and start the next when one does.<br/>
+        /// ## The project a run bills to<br/>
+        /// A run is attributed to its AGENT's project, captured at creation and<br/>
+        /// frozen there, so moving the agent later never moves a finished run's<br/>
+        /// cost. That project's money gates apply to the run exactly as they apply<br/>
+        /// to a call in it: `402 project_spend_limit_exceeded` once its<br/>
+        /// `monthly_budget` is reached, and `409 project_archived` while it is<br/>
+        /// archived. Both can fire for a workspace-wide key, because the project<br/>
+        /// charged is the agent's rather than the key's pin.<br/>
         /// This endpoint is in beta: it is available to workspaces granted<br/>
         /// `durable_runs_access`, and every other workspace receives<br/>
-        /// `402 durable_runs_not_in_plan`.
+        /// `402 durable_runs_not_in_plan`.<br/>
+        /// A field this endpoint does not define is refused with `400<br/>
+        /// validation_failed` naming every unknown field, rather than accepted<br/>
+        /// and silently dropped.<br/>
+        /// Keys inside `variables` and `metadata`, and the contents of<br/>
+        /// `output_schema`, are your own data rather than field names, and are<br/>
+        /// never refused.
         /// </summary>
         /// <param name="agentId"></param>
         /// <param name="speechifyVersion"></param>
@@ -584,6 +620,43 @@ namespace Speechify
                                         h => h.Key,
                                         h => h.Value));
                             }
+                            // The request conflicts with the current resource state - e.g. duplicate, optimistic-concurrency mismatch, or last-owner guard.
+                            if ((int)__response.StatusCode == 409)
+                            {
+                                string? __content_409 = null;
+                                global::System.Exception? __exception_409 = null;
+                                global::Speechify.Error? __value_409 = null;
+                                try
+                                {
+                                    if (__effectiveReadResponseAsString)
+                                    {
+                                        __content_409 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+                                        __value_409 = global::Speechify.Error.FromJson(__content_409, JsonSerializerContext);
+                                    }
+                                    else
+                                    {
+                                        __content_409 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+
+                                        __value_409 = global::Speechify.Error.FromJson(__content_409, JsonSerializerContext);
+                                    }
+                                }
+                                catch (global::System.Exception __ex)
+                                {
+                                    __exception_409 = __ex;
+                                }
+
+
+                                throw global::Speechify.ApiException<global::Speechify.Error>.Create(
+                                    statusCode: __response.StatusCode,
+                                    message: __content_409 ?? __response.ReasonPhrase ?? string.Empty,
+                                    innerException: __exception_409,
+                                    responseBody: __content_409,
+                                    responseObject: __value_409,
+                                    responseHeaders: global::System.Linq.Enumerable.ToDictionary(
+                                        __response.Headers,
+                                        h => h.Key,
+                                        h => h.Value));
+                            }
                             // The request was well-formed but semantically rejected - typically a referential integrity violation (e.g. flow node references an audio asset in another workspace) or a state machine refusal.
                             if ((int)__response.StatusCode == 422)
                             {
@@ -777,15 +850,33 @@ namespace Speechify
         /// cannot execute; the message names the tool. Switch it to<br/>
         /// `http_streamable` or detach it, then retry.<br/>
         /// Returns `429 concurrency_limit_reached` when the workspace already has<br/>
-        /// 200 runs queued or running. Runs execute on a shared queue, so the<br/>
-        /// ceiling is what keeps one workspace's backlog from delaying everyone<br/>
-        /// else's next run; it is not a plan limit. `Retry-After` is a hint at the<br/>
-        /// scale runs take, not a promise - what actually frees a slot is one of<br/>
-        /// your own runs ending, so follow the ones you have with the event stream<br/>
-        /// and start the next when one does.<br/>
+        /// 200 runs queued or running, and the same code when the run's PROJECT is<br/>
+        /// at its own `max_concurrent_runs` ceiling - only the message says which<br/>
+        /// bit, so one retry path handles both. Runs execute on a shared queue, so<br/>
+        /// the workspace ceiling is what keeps one workspace's backlog from<br/>
+        /// delaying everyone else's next run; it is not a plan limit. The project<br/>
+        /// ceiling narrows it further, which is how an application keeps one of its<br/>
+        /// customers from occupying every slot the workspace has. `Retry-After` is<br/>
+        /// a hint at the scale runs take, not a promise - what actually frees a<br/>
+        /// slot is one of your own runs ending, so follow the ones you have with<br/>
+        /// the event stream and start the next when one does.<br/>
+        /// ## The project a run bills to<br/>
+        /// A run is attributed to its AGENT's project, captured at creation and<br/>
+        /// frozen there, so moving the agent later never moves a finished run's<br/>
+        /// cost. That project's money gates apply to the run exactly as they apply<br/>
+        /// to a call in it: `402 project_spend_limit_exceeded` once its<br/>
+        /// `monthly_budget` is reached, and `409 project_archived` while it is<br/>
+        /// archived. Both can fire for a workspace-wide key, because the project<br/>
+        /// charged is the agent's rather than the key's pin.<br/>
         /// This endpoint is in beta: it is available to workspaces granted<br/>
         /// `durable_runs_access`, and every other workspace receives<br/>
-        /// `402 durable_runs_not_in_plan`.
+        /// `402 durable_runs_not_in_plan`.<br/>
+        /// A field this endpoint does not define is refused with `400<br/>
+        /// validation_failed` naming every unknown field, rather than accepted<br/>
+        /// and silently dropped.<br/>
+        /// Keys inside `variables` and `metadata`, and the contents of<br/>
+        /// `output_schema`, are your own data rather than field names, and are<br/>
+        /// never refused.
         /// </summary>
         /// <param name="agentId"></param>
         /// <param name="speechifyVersion"></param>

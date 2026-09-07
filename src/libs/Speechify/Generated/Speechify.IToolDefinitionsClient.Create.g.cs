@@ -8,7 +8,13 @@ namespace Speechify
         /// Create Tool<br/>
         /// Create a tool. For webhook tools, the response includes the HMAC<br/>
         /// `webhook_secret` exactly once — store it immediately; subsequent<br/>
-        /// reads return a masked placeholder.
+        /// reads return a masked placeholder.<br/>
+        /// A field this endpoint does not define is refused with `400<br/>
+        /// validation_failed` naming every unknown field, rather than accepted<br/>
+        /// and silently dropped.<br/>
+        /// The contents of `config` are your own data at this level; they are<br/>
+        /// validated against the tool kind's own schema, which has always<br/>
+        /// refused an unknown key there.
         /// </summary>
         /// <param name="speechifyVersion"></param>
         /// <param name="request"></param>
@@ -25,7 +31,13 @@ namespace Speechify
         /// Create Tool<br/>
         /// Create a tool. For webhook tools, the response includes the HMAC<br/>
         /// `webhook_secret` exactly once — store it immediately; subsequent<br/>
-        /// reads return a masked placeholder.
+        /// reads return a masked placeholder.<br/>
+        /// A field this endpoint does not define is refused with `400<br/>
+        /// validation_failed` naming every unknown field, rather than accepted<br/>
+        /// and silently dropped.<br/>
+        /// The contents of `config` are your own data at this level; they are<br/>
+        /// validated against the tool kind's own schema, which has always<br/>
+        /// refused an unknown key there.
         /// </summary>
         /// <param name="speechifyVersion"></param>
         /// <param name="request"></param>
@@ -42,7 +54,13 @@ namespace Speechify
         /// Create Tool<br/>
         /// Create a tool. For webhook tools, the response includes the HMAC<br/>
         /// `webhook_secret` exactly once — store it immediately; subsequent<br/>
-        /// reads return a masked placeholder.
+        /// reads return a masked placeholder.<br/>
+        /// A field this endpoint does not define is refused with `400<br/>
+        /// validation_failed` naming every unknown field, rather than accepted<br/>
+        /// and silently dropped.<br/>
+        /// The contents of `config` are your own data at this level; they are<br/>
+        /// validated against the tool kind's own schema, which has always<br/>
+        /// refused an unknown key there.
         /// </summary>
         /// <param name="speechifyVersion"></param>
         /// <param name="projectId">

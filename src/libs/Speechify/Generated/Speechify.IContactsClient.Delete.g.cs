@@ -23,15 +23,19 @@ namespace Speechify
         /// the variables, the output and every journalled step. The facts<br/>
         /// extracted from either, and the copies frozen into past prompts, go<br/>
         /// with them.<br/>
-        /// A recording stops being served from the moment of the request, and a<br/>
-        /// call still in progress can no longer append to its transcript, so a<br/>
-        /// turn that lands after the erasure cannot put the person back.<br/>
-        /// The stored audio itself is deleted 30 days later, not immediately.<br/>
-        /// This is deliberate: an erasure that destroyed the bytes on request<br/>
-        /// would be a way to erase evidence, so the recording stops being<br/>
-        /// reachable at once and stays recoverable by us for the same 30 days a<br/>
-        /// deleted agent or a purged project does. Absent an erasure, every<br/>
+        /// The transcript and the recording of a call both stop being readable<br/>
+        /// from the moment of the request, and a call still in progress can no<br/>
+        /// longer append to its transcript, so a turn that lands after the<br/>
+        /// erasure cannot put the person back.<br/>
+        /// Both are destroyed 30 days later, not immediately. This is<br/>
+        /// deliberate: an erasure that destroyed them on request would be a way<br/>
+        /// to erase evidence of what happened on the call, so they stop being<br/>
+        /// reachable at once and stay recoverable by us for the same 30 days a<br/>
+        /// deleted agent or a purged project does. Absent an erasure, a<br/>
         /// recording is kept for one year from the call and removed after that.<br/>
+        /// `conversations_erased` and `messages_erased` count what stopped being<br/>
+        /// readable, which is what the request asked for; the rows behind them<br/>
+        /// are removed on the schedule above.<br/>
         /// The identifiers are tombstoned as part of the purge, which is what<br/>
         /// stops the person's phone number ever resolving again: a later merge<br/>
         /// naming the purged contact moves rows that are already dead rather than<br/>
@@ -73,15 +77,19 @@ namespace Speechify
         /// the variables, the output and every journalled step. The facts<br/>
         /// extracted from either, and the copies frozen into past prompts, go<br/>
         /// with them.<br/>
-        /// A recording stops being served from the moment of the request, and a<br/>
-        /// call still in progress can no longer append to its transcript, so a<br/>
-        /// turn that lands after the erasure cannot put the person back.<br/>
-        /// The stored audio itself is deleted 30 days later, not immediately.<br/>
-        /// This is deliberate: an erasure that destroyed the bytes on request<br/>
-        /// would be a way to erase evidence, so the recording stops being<br/>
-        /// reachable at once and stays recoverable by us for the same 30 days a<br/>
-        /// deleted agent or a purged project does. Absent an erasure, every<br/>
+        /// The transcript and the recording of a call both stop being readable<br/>
+        /// from the moment of the request, and a call still in progress can no<br/>
+        /// longer append to its transcript, so a turn that lands after the<br/>
+        /// erasure cannot put the person back.<br/>
+        /// Both are destroyed 30 days later, not immediately. This is<br/>
+        /// deliberate: an erasure that destroyed them on request would be a way<br/>
+        /// to erase evidence of what happened on the call, so they stop being<br/>
+        /// reachable at once and stay recoverable by us for the same 30 days a<br/>
+        /// deleted agent or a purged project does. Absent an erasure, a<br/>
         /// recording is kept for one year from the call and removed after that.<br/>
+        /// `conversations_erased` and `messages_erased` count what stopped being<br/>
+        /// readable, which is what the request asked for; the rows behind them<br/>
+        /// are removed on the schedule above.<br/>
         /// The identifiers are tombstoned as part of the purge, which is what<br/>
         /// stops the person's phone number ever resolving again: a later merge<br/>
         /// naming the purged contact moves rows that are already dead rather than<br/>

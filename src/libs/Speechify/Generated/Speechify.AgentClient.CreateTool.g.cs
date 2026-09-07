@@ -53,7 +53,13 @@ namespace Speechify
         /// `kind=webhook`, `client`, or `mcp` this atomically creates a<br/>
         /// workspace tool definition AND attaches it to the agent in one<br/>
         /// call. To attach a definition that already exists, use<br/>
-        /// `PUT /v1/agents/{agent_id}/tools/{tool_id}` instead.
+        /// `PUT /v1/agents/{agent_id}/tools/{tool_id}` instead.<br/>
+        /// A field this endpoint does not define is refused with `400<br/>
+        /// validation_failed` naming every unknown field, rather than accepted<br/>
+        /// and silently dropped.<br/>
+        /// The contents of `config` are your own data at this level; they are<br/>
+        /// validated against the tool kind's own schema, which has always<br/>
+        /// refused an unknown key there.
         /// </summary>
         /// <param name="agentId"></param>
         /// <param name="speechifyVersion"></param>
@@ -88,7 +94,13 @@ namespace Speechify
         /// `kind=webhook`, `client`, or `mcp` this atomically creates a<br/>
         /// workspace tool definition AND attaches it to the agent in one<br/>
         /// call. To attach a definition that already exists, use<br/>
-        /// `PUT /v1/agents/{agent_id}/tools/{tool_id}` instead.
+        /// `PUT /v1/agents/{agent_id}/tools/{tool_id}` instead.<br/>
+        /// A field this endpoint does not define is refused with `400<br/>
+        /// validation_failed` naming every unknown field, rather than accepted<br/>
+        /// and silently dropped.<br/>
+        /// The contents of `config` are your own data at this level; they are<br/>
+        /// validated against the tool kind's own schema, which has always<br/>
+        /// refused an unknown key there.
         /// </summary>
         /// <param name="agentId"></param>
         /// <param name="speechifyVersion"></param>
@@ -625,7 +637,13 @@ namespace Speechify
         /// `kind=webhook`, `client`, or `mcp` this atomically creates a<br/>
         /// workspace tool definition AND attaches it to the agent in one<br/>
         /// call. To attach a definition that already exists, use<br/>
-        /// `PUT /v1/agents/{agent_id}/tools/{tool_id}` instead.
+        /// `PUT /v1/agents/{agent_id}/tools/{tool_id}` instead.<br/>
+        /// A field this endpoint does not define is refused with `400<br/>
+        /// validation_failed` naming every unknown field, rather than accepted<br/>
+        /// and silently dropped.<br/>
+        /// The contents of `config` are your own data at this level; they are<br/>
+        /// validated against the tool kind's own schema, which has always<br/>
+        /// refused an unknown key there.
         /// </summary>
         /// <param name="agentId"></param>
         /// <param name="speechifyVersion"></param>

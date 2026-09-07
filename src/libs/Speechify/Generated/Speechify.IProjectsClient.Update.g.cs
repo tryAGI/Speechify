@@ -59,6 +59,14 @@ namespace Speechify
         /// </summary>
         /// <param name="projectId"></param>
         /// <param name="speechifyVersion"></param>
+        /// <param name="maxConcurrentRuns">
+        /// Sets the project's concurrent-run ceiling; `null` removes it.<br/>
+        /// Must be a positive integer at or below the workspace's own run<br/>
+        /// ceiling, otherwise the request is refused with<br/>
+        /// `400 validation_failed` naming the field and the ceiling.<br/>
+        /// Requires the `billing.manage` permission. Takes effect on the<br/>
+        /// next run start attributed to the project.
+        /// </param>
         /// <param name="maxConcurrentCalls">
         /// Sets the project's active-call ceiling; `null` removes it.<br/>
         /// Must be a positive integer at or below the workspace's own<br/>
@@ -101,6 +109,7 @@ namespace Speechify
         global::System.Threading.Tasks.Task<global::Speechify.Project> UpdateAsync(
             string projectId,
             string? speechifyVersion = default,
+            int? maxConcurrentRuns = default,
             int? maxConcurrentCalls = default,
             int? maxRequestsPerMinute = default,
             string? name = default,

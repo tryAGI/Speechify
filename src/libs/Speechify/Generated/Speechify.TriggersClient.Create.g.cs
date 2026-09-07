@@ -52,7 +52,13 @@ namespace Speechify
         /// Create a trigger that starts a durable run of a task agent. A<br/>
         /// `schedule` trigger fires on a cron expression or an interval; a<br/>
         /// `webhook` trigger returns a one-time `secret` plus a `fire_path` your<br/>
-        /// backend POSTs to. Idempotent via `Idempotency-Key`.
+        /// backend POSTs to. Idempotent via `Idempotency-Key`.<br/>
+        /// A field this endpoint does not define is refused with `400<br/>
+        /// validation_failed` naming every unknown field, rather than accepted<br/>
+        /// and silently dropped.<br/>
+        /// Keys inside `run.variables` and `run.metadata`, and the contents of<br/>
+        /// `run.output_schema`, are your own data rather than field names, and<br/>
+        /// are never refused.
         /// </summary>
         /// <param name="agentId"></param>
         /// <param name="speechifyVersion"></param>
@@ -89,7 +95,13 @@ namespace Speechify
         /// Create a trigger that starts a durable run of a task agent. A<br/>
         /// `schedule` trigger fires on a cron expression or an interval; a<br/>
         /// `webhook` trigger returns a one-time `secret` plus a `fire_path` your<br/>
-        /// backend POSTs to. Idempotent via `Idempotency-Key`.
+        /// backend POSTs to. Idempotent via `Idempotency-Key`.<br/>
+        /// A field this endpoint does not define is refused with `400<br/>
+        /// validation_failed` naming every unknown field, rather than accepted<br/>
+        /// and silently dropped.<br/>
+        /// Keys inside `run.variables` and `run.metadata`, and the contents of<br/>
+        /// `run.output_schema`, are your own data rather than field names, and<br/>
+        /// are never refused.
         /// </summary>
         /// <param name="agentId"></param>
         /// <param name="speechifyVersion"></param>
@@ -633,7 +645,13 @@ namespace Speechify
         /// Create a trigger that starts a durable run of a task agent. A<br/>
         /// `schedule` trigger fires on a cron expression or an interval; a<br/>
         /// `webhook` trigger returns a one-time `secret` plus a `fire_path` your<br/>
-        /// backend POSTs to. Idempotent via `Idempotency-Key`.
+        /// backend POSTs to. Idempotent via `Idempotency-Key`.<br/>
+        /// A field this endpoint does not define is refused with `400<br/>
+        /// validation_failed` naming every unknown field, rather than accepted<br/>
+        /// and silently dropped.<br/>
+        /// Keys inside `run.variables` and `run.metadata`, and the contents of<br/>
+        /// `run.output_schema`, are your own data rather than field names, and<br/>
+        /// are never refused.
         /// </summary>
         /// <param name="agentId"></param>
         /// <param name="speechifyVersion"></param>
