@@ -18,6 +18,7 @@ namespace Speechify
         /// (turn-based, roomless, no call duration).
         /// </param>
         /// <param name="callerIdentity"></param>
+        /// <param name="contactId"></param>
         /// <param name="q"></param>
         /// <param name="startedAfter"></param>
         /// <param name="startedBefore"></param>
@@ -33,6 +34,7 @@ namespace Speechify
             global::Speechify.ConversationStatus? status = default,
             global::Speechify.ConversationTransport? transport = default,
             string? callerIdentity = default,
+            string? contactId = default,
             string? q = default,
             global::System.DateTime? startedAfter = default,
             global::System.DateTime? startedBefore = default,
@@ -56,6 +58,7 @@ namespace Speechify
         /// (turn-based, roomless, no call duration).
         /// </param>
         /// <param name="callerIdentity"></param>
+        /// <param name="contactId"></param>
         /// <param name="q"></param>
         /// <param name="startedAfter"></param>
         /// <param name="startedBefore"></param>
@@ -71,6 +74,7 @@ namespace Speechify
             global::Speechify.ConversationStatus? status = default,
             global::Speechify.ConversationTransport? transport = default,
             string? callerIdentity = default,
+            string? contactId = default,
             string? q = default,
             global::System.DateTime? startedAfter = default,
             global::System.DateTime? startedBefore = default,

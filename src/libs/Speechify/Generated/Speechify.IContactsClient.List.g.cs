@@ -12,8 +12,11 @@ namespace Speechify
         /// 200).<br/>
         /// Contacts are workspace-level, not per-agent: the same person reached<br/>
         /// on two agents and on two channels is one row here, while<br/>
-        /// `/v1/agents/callers` stays the per-agent observation of them.
+        /// `/v1/agents/callers` stays the per-agent observation of them. Filter<br/>
+        /// by `agent_id` for the people one agent has reached; each row names<br/>
+        /// the agents that reached it in `agent_ids`.
         /// </summary>
+        /// <param name="agentId"></param>
         /// <param name="q"></param>
         /// <param name="cursor"></param>
         /// <param name="limit">
@@ -24,6 +27,7 @@ namespace Speechify
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
         global::System.Threading.Tasks.Task<global::Speechify.ListContactsResponse> ListAsync(
+            string? agentId = default,
             string? q = default,
             string? cursor = default,
             int? limit = default,
@@ -38,8 +42,11 @@ namespace Speechify
         /// 200).<br/>
         /// Contacts are workspace-level, not per-agent: the same person reached<br/>
         /// on two agents and on two channels is one row here, while<br/>
-        /// `/v1/agents/callers` stays the per-agent observation of them.
+        /// `/v1/agents/callers` stays the per-agent observation of them. Filter<br/>
+        /// by `agent_id` for the people one agent has reached; each row names<br/>
+        /// the agents that reached it in `agent_ids`.
         /// </summary>
+        /// <param name="agentId"></param>
         /// <param name="q"></param>
         /// <param name="cursor"></param>
         /// <param name="limit">
@@ -50,6 +57,7 @@ namespace Speechify
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
         global::System.Threading.Tasks.Task<global::Speechify.AutoSDKHttpResponse<global::Speechify.ListContactsResponse>> ListAsResponseAsync(
+            string? agentId = default,
             string? q = default,
             string? cursor = default,
             int? limit = default,

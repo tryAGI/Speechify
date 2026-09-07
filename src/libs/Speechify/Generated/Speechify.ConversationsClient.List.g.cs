@@ -33,6 +33,7 @@ namespace Speechify
             ref global::Speechify.ConversationStatus? status,
             ref global::Speechify.ConversationTransport? transport,
             ref string? callerIdentity,
+            ref string? contactId,
             ref string? q,
             ref global::System.DateTime? startedAfter,
             ref global::System.DateTime? startedBefore,
@@ -49,6 +50,7 @@ namespace Speechify
             global::Speechify.ConversationStatus? status,
             global::Speechify.ConversationTransport? transport,
             string? callerIdentity,
+            string? contactId,
             string? q,
             global::System.DateTime? startedAfter,
             global::System.DateTime? startedBefore,
@@ -89,6 +91,7 @@ namespace Speechify
         /// (turn-based, roomless, no call duration).
         /// </param>
         /// <param name="callerIdentity"></param>
+        /// <param name="contactId"></param>
         /// <param name="q"></param>
         /// <param name="startedAfter"></param>
         /// <param name="startedBefore"></param>
@@ -106,6 +109,7 @@ namespace Speechify
             global::Speechify.ConversationStatus? status = default,
             global::Speechify.ConversationTransport? transport = default,
             string? callerIdentity = default,
+            string? contactId = default,
             string? q = default,
             global::System.DateTime? startedAfter = default,
             global::System.DateTime? startedBefore = default,
@@ -123,6 +127,7 @@ namespace Speechify
                 status: status,
                 transport: transport,
                 callerIdentity: callerIdentity,
+                contactId: contactId,
                 q: q,
                 startedAfter: startedAfter,
                 startedBefore: startedBefore,
@@ -160,6 +165,7 @@ namespace Speechify
         /// (turn-based, roomless, no call duration).
         /// </param>
         /// <param name="callerIdentity"></param>
+        /// <param name="contactId"></param>
         /// <param name="q"></param>
         /// <param name="startedAfter"></param>
         /// <param name="startedBefore"></param>
@@ -177,6 +183,7 @@ namespace Speechify
             global::Speechify.ConversationStatus? status = default,
             global::Speechify.ConversationTransport? transport = default,
             string? callerIdentity = default,
+            string? contactId = default,
             string? q = default,
             global::System.DateTime? startedAfter = default,
             global::System.DateTime? startedBefore = default,
@@ -197,6 +204,7 @@ namespace Speechify
                 status: ref status,
                 transport: ref transport,
                 callerIdentity: ref callerIdentity,
+                contactId: ref contactId,
                 q: ref q,
                 startedAfter: ref startedAfter,
                 startedBefore: ref startedBefore,
@@ -238,6 +246,7 @@ namespace Speechify
                                 .AddOptionalParameter("status", status?.ToValueString())
                                 .AddOptionalParameter("transport", transport?.ToValueString())
                                 .AddOptionalParameter("caller_identity", callerIdentity)
+                                .AddOptionalParameter("contact_id", contactId)
                                 .AddOptionalParameter("q", q)
                                 .AddOptionalParameter("started_after", startedAfter?.ToString("yyyy-MM-ddTHH:mm:ssZ"))
                                 .AddOptionalParameter("started_before", startedBefore?.ToString("yyyy-MM-ddTHH:mm:ssZ"))
@@ -297,6 +306,7 @@ namespace Speechify
                     status: status,
                     transport: transport,
                     callerIdentity: callerIdentity,
+                    contactId: contactId,
                     q: q,
                     startedAfter: startedAfter,
                     startedBefore: startedBefore,
@@ -482,6 +492,43 @@ namespace Speechify
                                 retryReason: global::System.String.Empty,
                                 cancellationToken: __effectiveCancellationToken)).ConfigureAwait(false);
                 }
+                            // The request was malformed or failed validation. The response body is the standard `Error` envelope; for validation failures `error.fields` enumerates the offending fields as a `path -> message` map (code = `validation_failed`).
+                            if ((int)__response.StatusCode == 400)
+                            {
+                                string? __content_400 = null;
+                                global::System.Exception? __exception_400 = null;
+                                global::Speechify.Error? __value_400 = null;
+                                try
+                                {
+                                    if (__effectiveReadResponseAsString)
+                                    {
+                                        __content_400 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+                                        __value_400 = global::Speechify.Error.FromJson(__content_400, JsonSerializerContext);
+                                    }
+                                    else
+                                    {
+                                        __content_400 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+
+                                        __value_400 = global::Speechify.Error.FromJson(__content_400, JsonSerializerContext);
+                                    }
+                                }
+                                catch (global::System.Exception __ex)
+                                {
+                                    __exception_400 = __ex;
+                                }
+
+
+                                throw global::Speechify.ApiException<global::Speechify.Error>.Create(
+                                    statusCode: __response.StatusCode,
+                                    message: __content_400 ?? __response.ReasonPhrase ?? string.Empty,
+                                    innerException: __exception_400,
+                                    responseBody: __content_400,
+                                    responseObject: __value_400,
+                                    responseHeaders: global::System.Linq.Enumerable.ToDictionary(
+                                        __response.Headers,
+                                        h => h.Key,
+                                        h => h.Value));
+                            }
                             // Authentication is missing or invalid. The request did not carry a recognised credential (console session token, API key, or worker JWT).
                             if ((int)__response.StatusCode == 401)
                             {

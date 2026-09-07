@@ -64,10 +64,13 @@ namespace Speechify
         /// with them.<br/>
         /// A recording stops being served from the moment of the request, and a<br/>
         /// call still in progress can no longer append to its transcript, so a<br/>
-        /// turn that lands after the erasure cannot put the person back. The<br/>
-        /// audio itself is not yet collected from storage - that is tracked<br/>
-        /// separately - so treat the erasure as complete for every API surface<br/>
-        /// and pending for the stored bytes.<br/>
+        /// turn that lands after the erasure cannot put the person back.<br/>
+        /// The stored audio itself is deleted 30 days later, not immediately.<br/>
+        /// This is deliberate: an erasure that destroyed the bytes on request<br/>
+        /// would be a way to erase evidence, so the recording stops being<br/>
+        /// reachable at once and stays recoverable by us for the same 30 days a<br/>
+        /// deleted agent or a purged project does. Absent an erasure, every<br/>
+        /// recording is kept for one year from the call and removed after that.<br/>
         /// The identifiers are tombstoned as part of the purge, which is what<br/>
         /// stops the person's phone number ever resolving again: a later merge<br/>
         /// naming the purged contact moves rows that are already dead rather than<br/>
@@ -121,10 +124,13 @@ namespace Speechify
         /// with them.<br/>
         /// A recording stops being served from the moment of the request, and a<br/>
         /// call still in progress can no longer append to its transcript, so a<br/>
-        /// turn that lands after the erasure cannot put the person back. The<br/>
-        /// audio itself is not yet collected from storage - that is tracked<br/>
-        /// separately - so treat the erasure as complete for every API surface<br/>
-        /// and pending for the stored bytes.<br/>
+        /// turn that lands after the erasure cannot put the person back.<br/>
+        /// The stored audio itself is deleted 30 days later, not immediately.<br/>
+        /// This is deliberate: an erasure that destroyed the bytes on request<br/>
+        /// would be a way to erase evidence, so the recording stops being<br/>
+        /// reachable at once and stays recoverable by us for the same 30 days a<br/>
+        /// deleted agent or a purged project does. Absent an erasure, every<br/>
+        /// recording is kept for one year from the call and removed after that.<br/>
         /// The identifiers are tombstoned as part of the purge, which is what<br/>
         /// stops the person's phone number ever resolving again: a later merge<br/>
         /// naming the purged contact moves rows that are already dead rather than<br/>

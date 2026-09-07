@@ -147,6 +147,13 @@ namespace Speechify
         public string? CallerIdentity { get; set; }
 
         /// <summary>
+        /// The workspace person this conversation resolved to. Absent while<br/>
+        /// the conversation has no resolved contact.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("contact_id")]
+        public string? ContactId { get; set; }
+
+        /// <summary>
         /// E.164 of the phone number that placed the call. For<br/>
         /// `sip_outbound` this is the workspace number used as the<br/>
         /// caller ID; for `sip_inbound` it is the external caller's<br/>
@@ -326,6 +333,10 @@ namespace Speechify
         /// independent from the opaque realtime participant identity. Empty<br/>
         /// string for anonymous widget sessions.
         /// </param>
+        /// <param name="contactId">
+        /// The workspace person this conversation resolved to. Absent while<br/>
+        /// the conversation has no resolved contact.
+        /// </param>
         /// <param name="fromNumber">
         /// E.164 of the phone number that placed the call. For<br/>
         /// `sip_outbound` this is the workspace number used as the<br/>
@@ -405,6 +416,7 @@ namespace Speechify
             global::System.DateTime? recordingStartedAt,
             global::Speechify.ConversationEndReason? endReason,
             string? callerIdentity,
+            string? contactId,
             string? fromNumber,
             string? toNumber,
             global::Speechify.AgentSnapshot? agentSnapshot,
@@ -427,6 +439,7 @@ namespace Speechify
             this.EndReason = endReason;
             this.Metadata = metadata ?? throw new global::System.ArgumentNullException(nameof(metadata));
             this.CallerIdentity = callerIdentity;
+            this.ContactId = contactId;
             this.FromNumber = fromNumber;
             this.ToNumber = toNumber;
             this.AgentSnapshot = agentSnapshot;

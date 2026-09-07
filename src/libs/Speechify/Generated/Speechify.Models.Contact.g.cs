@@ -49,6 +49,15 @@ namespace Speechify
         public required global::System.Collections.Generic.IList<global::Speechify.ContactIdentifier> Identifiers { get; set; }
 
         /// <summary>
+        /// The agents that have reached this person, each holding its own<br/>
+        /// view of them under `/v1/agents/callers`. Always present; empty for<br/>
+        /// a contact nobody has spoken to yet.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("agent_ids")]
+        [global::System.Text.Json.Serialization.JsonRequired]
+        public required global::System.Collections.Generic.IList<string> AgentIds { get; set; }
+
+        /// <summary>
         /// Earliest sighting across every channel and agent. A merge widens<br/>
         /// this to span both records, because the window belongs to the<br/>
         /// person rather than to whichever record saw them first.
@@ -102,6 +111,11 @@ namespace Speechify
         /// The contact's live identifiers. Always present; empty only for a<br/>
         /// contact whose every link has been detached.
         /// </param>
+        /// <param name="agentIds">
+        /// The agents that have reached this person, each holding its own<br/>
+        /// view of them under `/v1/agents/callers`. Always present; empty for<br/>
+        /// a contact nobody has spoken to yet.
+        /// </param>
         /// <param name="firstSeenAt">
         /// Earliest sighting across every channel and agent. A merge widens<br/>
         /// this to span both records, because the window belongs to the<br/>
@@ -122,6 +136,7 @@ namespace Speechify
             string tenantId,
             object metadata,
             global::System.Collections.Generic.IList<global::Speechify.ContactIdentifier> identifiers,
+            global::System.Collections.Generic.IList<string> agentIds,
             global::System.DateTime firstSeenAt,
             global::System.DateTime lastSeenAt,
             global::System.DateTime createdAt,
@@ -133,6 +148,7 @@ namespace Speechify
             this.DisplayName = displayName;
             this.Metadata = metadata ?? throw new global::System.ArgumentNullException(nameof(metadata));
             this.Identifiers = identifiers ?? throw new global::System.ArgumentNullException(nameof(identifiers));
+            this.AgentIds = agentIds ?? throw new global::System.ArgumentNullException(nameof(agentIds));
             this.FirstSeenAt = firstSeenAt;
             this.LastSeenAt = lastSeenAt;
             this.CreatedAt = createdAt;

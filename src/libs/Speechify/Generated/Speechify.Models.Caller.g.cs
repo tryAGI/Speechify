@@ -37,6 +37,13 @@ namespace Speechify
         public required string AgentId { get; set; }
 
         /// <summary>
+        /// The workspace person this row is one agent's view of. Absent only<br/>
+        /// for a row minted before contacts existed and not seen since.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("contact_id")]
+        public string? ContactId { get; set; }
+
+        /// <summary>
         /// The raw identifier the caller arrived with (E.164 phone for SIP, LiveKit<br/>
         /// participant id for web). Stable for the life of the caller row.
         /// </summary>
@@ -139,6 +146,10 @@ namespace Speechify
         /// </param>
         /// <param name="createdAt"></param>
         /// <param name="updatedAt"></param>
+        /// <param name="contactId">
+        /// The workspace person this row is one agent's view of. Absent only<br/>
+        /// for a row minted before contacts existed and not seen since.
+        /// </param>
         /// <param name="displayName">
         /// Operator-editable display name, nullable.
         /// </param>
@@ -159,12 +170,14 @@ namespace Speechify
             int conversationCount,
             global::System.DateTime createdAt,
             global::System.DateTime updatedAt,
+            string? contactId,
             string? displayName,
             string? externalRef)
         {
             this.Id = id ?? throw new global::System.ArgumentNullException(nameof(id));
             this.TenantId = tenantId ?? throw new global::System.ArgumentNullException(nameof(tenantId));
             this.AgentId = agentId ?? throw new global::System.ArgumentNullException(nameof(agentId));
+            this.ContactId = contactId;
             this.CallerIdentity = callerIdentity ?? throw new global::System.ArgumentNullException(nameof(callerIdentity));
             this.DisplayName = displayName;
             this.ExternalRef = externalRef;

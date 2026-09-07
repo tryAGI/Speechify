@@ -28,6 +28,7 @@ namespace Speechify
         partial void PrepareListArguments(
             global::System.Net.Http.HttpClient httpClient,
             ref string? agentId,
+            ref string? contactId,
             ref string? q,
             ref global::System.DateTime? lastSeenAfter,
             ref string? projectId,
@@ -38,6 +39,7 @@ namespace Speechify
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpRequestMessage httpRequestMessage,
             string? agentId,
+            string? contactId,
             string? q,
             global::System.DateTime? lastSeenAfter,
             string? projectId,
@@ -63,6 +65,7 @@ namespace Speechify
         /// leaves the callers it already knows attributed where they were met.
         /// </summary>
         /// <param name="agentId"></param>
+        /// <param name="contactId"></param>
         /// <param name="q"></param>
         /// <param name="lastSeenAfter"></param>
         /// <param name="projectId"></param>
@@ -76,6 +79,7 @@ namespace Speechify
         /// <exception cref="global::Speechify.ApiException"></exception>
         public async global::System.Threading.Tasks.Task<global::Speechify.ListCallersResponse> ListAsync(
             string? agentId = default,
+            string? contactId = default,
             string? q = default,
             global::System.DateTime? lastSeenAfter = default,
             string? projectId = default,
@@ -87,6 +91,7 @@ namespace Speechify
         {
             var __response = await ListAsResponseAsync(
                 agentId: agentId,
+                contactId: contactId,
                 q: q,
                 lastSeenAfter: lastSeenAfter,
                 projectId: projectId,
@@ -109,6 +114,7 @@ namespace Speechify
         /// leaves the callers it already knows attributed where they were met.
         /// </summary>
         /// <param name="agentId"></param>
+        /// <param name="contactId"></param>
         /// <param name="q"></param>
         /// <param name="lastSeenAfter"></param>
         /// <param name="projectId"></param>
@@ -122,6 +128,7 @@ namespace Speechify
         /// <exception cref="global::Speechify.ApiException"></exception>
         public async global::System.Threading.Tasks.Task<global::Speechify.AutoSDKHttpResponse<global::Speechify.ListCallersResponse>> ListAsResponseAsync(
             string? agentId = default,
+            string? contactId = default,
             string? q = default,
             global::System.DateTime? lastSeenAfter = default,
             string? projectId = default,
@@ -136,6 +143,7 @@ namespace Speechify
             PrepareListArguments(
                 httpClient: HttpClient,
                 agentId: ref agentId,
+                contactId: ref contactId,
                 q: ref q,
                 lastSeenAfter: ref lastSeenAfter,
                 projectId: ref projectId,
@@ -171,6 +179,7 @@ namespace Speechify
                                 baseUri: HttpClient.BaseAddress);
                             __pathBuilder
                                 .AddOptionalParameter("agent_id", agentId)
+                                .AddOptionalParameter("contact_id", contactId)
                                 .AddOptionalParameter("q", q)
                                 .AddOptionalParameter("last_seen_after", lastSeenAfter?.ToString("yyyy-MM-ddTHH:mm:ssZ"))
                                 .AddOptionalParameter("project_id", projectId)
@@ -224,6 +233,7 @@ namespace Speechify
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
                     agentId: agentId,
+                    contactId: contactId,
                     q: q,
                     lastSeenAfter: lastSeenAfter,
                     projectId: projectId,
