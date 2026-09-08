@@ -3,11 +3,11 @@
 
 namespace Speechify
 {
-    public partial class AssetsClient
+    public partial class FilesClient
     {
 
 
-        private static readonly global::Speechify.EndPointSecurityRequirement s_GetAssetSecurityRequirement0 =
+        private static readonly global::Speechify.EndPointSecurityRequirement s_DeleteSecurityRequirement0 =
             new global::Speechify.EndPointSecurityRequirement
             {
                 Authorizations = new global::Speechify.EndPointAuthorizationRequirement[]
@@ -21,51 +21,47 @@ namespace Speechify
                     },
                 },
             };
-        private static readonly global::Speechify.EndPointSecurityRequirement[] s_GetAssetSecurityRequirements =
+        private static readonly global::Speechify.EndPointSecurityRequirement[] s_DeleteSecurityRequirements =
             new global::Speechify.EndPointSecurityRequirement[]
-            {                s_GetAssetSecurityRequirement0,
+            {                s_DeleteSecurityRequirement0,
             };
-        partial void PrepareGetAssetArguments(
+        partial void PrepareDeleteArguments(
             global::System.Net.Http.HttpClient httpClient,
-            ref string storeId,
-            ref string assetId,
+            ref string fileId,
             ref string? speechifyVersion);
-        partial void PrepareGetAssetRequest(
+        partial void PrepareDeleteRequest(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpRequestMessage httpRequestMessage,
-            string storeId,
-            string assetId,
+            string fileId,
             string? speechifyVersion);
-        partial void ProcessGetAssetResponse(
+        partial void ProcessDeleteResponse(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpResponseMessage httpResponseMessage);
 
-        partial void ProcessGetAssetResponseContent(
+        partial void ProcessDeleteResponseContent(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpResponseMessage httpResponseMessage,
             ref string content);
 
         /// <summary>
-        /// Get Asset<br/>
-        /// Read an asset's metadata.<br/>
-        /// Dark launch: requires the `hosted_apis_access` entitlement (402 `hosted_apis_not_in_plan` otherwise).
+        /// Delete File<br/>
+        /// Delete a file and its bytes. A run already holding it as an attachment<br/>
+        /// stops being able to read it.<br/>
+        /// Dark launch: requires the `durable_runs_access` entitlement (402 `durable_runs_not_in_plan` otherwise).
         /// </summary>
-        /// <param name="storeId"></param>
-        /// <param name="assetId"></param>
+        /// <param name="fileId"></param>
         /// <param name="speechifyVersion"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
-        public async global::System.Threading.Tasks.Task<global::Speechify.StoreAsset> GetAssetAsync(
-            string storeId,
-            string assetId,
+        public async global::System.Threading.Tasks.Task<string> DeleteAsync(
+            string fileId,
             string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
-            var __response = await GetAssetAsResponseAsync(
-                storeId: storeId,
-                assetId: assetId,
+            var __response = await DeleteAsResponseAsync(
+                fileId: fileId,
                 speechifyVersion: speechifyVersion,
                 requestOptions: requestOptions,
                 cancellationToken: cancellationToken
@@ -74,36 +70,34 @@ namespace Speechify
             return __response.Body;
         }
         /// <summary>
-        /// Get Asset<br/>
-        /// Read an asset's metadata.<br/>
-        /// Dark launch: requires the `hosted_apis_access` entitlement (402 `hosted_apis_not_in_plan` otherwise).
+        /// Delete File<br/>
+        /// Delete a file and its bytes. A run already holding it as an attachment<br/>
+        /// stops being able to read it.<br/>
+        /// Dark launch: requires the `durable_runs_access` entitlement (402 `durable_runs_not_in_plan` otherwise).
         /// </summary>
-        /// <param name="storeId"></param>
-        /// <param name="assetId"></param>
+        /// <param name="fileId"></param>
         /// <param name="speechifyVersion"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
-        public async global::System.Threading.Tasks.Task<global::Speechify.AutoSDKHttpResponse<global::Speechify.StoreAsset>> GetAssetAsResponseAsync(
-            string storeId,
-            string assetId,
+        public async global::System.Threading.Tasks.Task<global::Speechify.AutoSDKHttpResponse<string>> DeleteAsResponseAsync(
+            string fileId,
             string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
             PrepareArguments(
                 client: HttpClient);
-            PrepareGetAssetArguments(
+            PrepareDeleteArguments(
                 httpClient: HttpClient,
-                storeId: ref storeId,
-                assetId: ref assetId,
+                fileId: ref fileId,
                 speechifyVersion: ref speechifyVersion);
 
 
             var __authorizations = global::Speechify.EndPointSecurityResolver.ResolveAuthorizations(
                 availableAuthorizations: Authorizations,
-                securityRequirements: s_GetAssetSecurityRequirements,
-                operationName: "GetAssetAsync");
+                securityRequirements: s_DeleteSecurityRequirements,
+                operationName: "DeleteAsync");
 
             using var __timeoutCancellationTokenSource = global::Speechify.AutoSDKRequestOptionsSupport.CreateTimeoutCancellationTokenSource(
                 clientOptions: Options,
@@ -123,7 +117,7 @@ namespace Speechify
             {
 
                             var __pathBuilder = new global::Speechify.PathBuilder(
-                                path: $"/v1/stores/{storeId}/assets/{assetId}",
+                                path: $"/v1/files/{fileId}",
                                 baseUri: HttpClient.BaseAddress);
                             var __path = __pathBuilder.ToString();
                 __path = global::Speechify.AutoSDKRequestOptionsSupport.AppendQueryParameters(
@@ -131,7 +125,7 @@ namespace Speechify
                     clientParameters: Options.QueryParameters,
                     requestParameters: requestOptions?.QueryParameters);
                 var __httpRequest = new global::System.Net.Http.HttpRequestMessage(
-                    method: global::System.Net.Http.HttpMethod.Get,
+                    method: global::System.Net.Http.HttpMethod.Delete,
                     requestUri: new global::System.Uri(__path, global::System.UriKind.RelativeOrAbsolute));
 #if NET6_0_OR_GREATER
                 __httpRequest.Version = global::System.Net.HttpVersion.Version11;
@@ -168,11 +162,10 @@ namespace Speechify
                 PrepareRequest(
                     client: HttpClient,
                     request: __httpRequest);
-                PrepareGetAssetRequest(
+                PrepareDeleteRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
-                    storeId: storeId!,
-                    assetId: assetId!,
+                    fileId: fileId!,
                     speechifyVersion: speechifyVersion);
 
                 return __httpRequest;
@@ -190,10 +183,10 @@ namespace Speechify
                     await global::Speechify.AutoSDKRequestOptionsSupport.OnBeforeRequestAsync(
                             clientOptions: Options,
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "GetAsset",
-                                methodName: "GetAssetAsync",
-                                pathTemplate: "$\"/v1/stores/{storeId}/assets/{assetId}\"",
-                                httpMethod: "GET",
+                                operationId: "Delete",
+                                methodName: "DeleteAsync",
+                                pathTemplate: "$\"/v1/files/{fileId}\"",
+                                httpMethod: "DELETE",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
                                 response: null,
@@ -224,10 +217,10 @@ namespace Speechify
                         await global::Speechify.AutoSDKRequestOptionsSupport.OnAfterErrorAsync(
                             clientOptions: Options,
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "GetAsset",
-                                methodName: "GetAssetAsync",
-                                pathTemplate: "$\"/v1/stores/{storeId}/assets/{assetId}\"",
-                                httpMethod: "GET",
+                                operationId: "Delete",
+                                methodName: "DeleteAsync",
+                                pathTemplate: "$\"/v1/files/{fileId}\"",
+                                httpMethod: "DELETE",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
                                 response: null,
@@ -265,10 +258,10 @@ namespace Speechify
                         await global::Speechify.AutoSDKRequestOptionsSupport.OnAfterErrorAsync(
                             clientOptions: Options,
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "GetAsset",
-                                methodName: "GetAssetAsync",
-                                pathTemplate: "$\"/v1/stores/{storeId}/assets/{assetId}\"",
-                                httpMethod: "GET",
+                                operationId: "Delete",
+                                methodName: "DeleteAsync",
+                                pathTemplate: "$\"/v1/files/{fileId}\"",
+                                httpMethod: "DELETE",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
                                 response: __response,
@@ -305,7 +298,7 @@ namespace Speechify
                 ProcessResponse(
                     client: HttpClient,
                     response: __response);
-                ProcessGetAssetResponse(
+                ProcessDeleteResponse(
                     httpClient: HttpClient,
                     httpResponseMessage: __response);
                 if (__response.IsSuccessStatusCode)
@@ -313,10 +306,10 @@ namespace Speechify
                     await global::Speechify.AutoSDKRequestOptionsSupport.OnAfterSuccessAsync(
                             clientOptions: Options,
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "GetAsset",
-                                methodName: "GetAssetAsync",
-                                pathTemplate: "$\"/v1/stores/{storeId}/assets/{assetId}\"",
-                                httpMethod: "GET",
+                                operationId: "Delete",
+                                methodName: "DeleteAsync",
+                                pathTemplate: "$\"/v1/files/{fileId}\"",
+                                httpMethod: "DELETE",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
                                 response: __response,
@@ -335,10 +328,10 @@ namespace Speechify
                     await global::Speechify.AutoSDKRequestOptionsSupport.OnAfterErrorAsync(
                             clientOptions: Options,
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "GetAsset",
-                                methodName: "GetAssetAsync",
-                                pathTemplate: "$\"/v1/stores/{storeId}/assets/{assetId}\"",
-                                httpMethod: "GET",
+                                operationId: "Delete",
+                                methodName: "DeleteAsync",
+                                pathTemplate: "$\"/v1/files/{fileId}\"",
+                                httpMethod: "DELETE",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
                                 response: __response,
@@ -513,7 +506,7 @@ namespace Speechify
                                     client: HttpClient,
                                     response: __response,
                                     content: ref __content);
-                                ProcessGetAssetResponseContent(
+                                ProcessDeleteResponseContent(
                                     httpClient: HttpClient,
                                     httpResponseMessage: __response,
                                     content: ref __content);
@@ -522,13 +515,11 @@ namespace Speechify
                                 {
                                     __response.EnsureSuccessStatusCode();
 
-                                    var __value = global::Speechify.StoreAsset.FromJson(__content, JsonSerializerContext) ??
-                                        throw new global::System.InvalidOperationException($"Response deserialization failed for \"{__content}\" ");
-                                    return new global::Speechify.AutoSDKHttpResponse<global::Speechify.StoreAsset>(
+                                    return new global::Speechify.AutoSDKHttpResponse<string>(
                                         statusCode: __response.StatusCode,
                                         headers: global::Speechify.AutoSDKHttpResponse.CreateHeaders(__response),
                                         requestUri: __response.RequestMessage?.RequestUri,
-                                        body: __value);
+                                        body: __content);
                                 }
                                 catch (global::System.Exception __ex)
                                 {
@@ -548,19 +539,17 @@ namespace Speechify
                                 try
                                 {
                                     __response.EnsureSuccessStatusCode();
-                                    using var __content = await __response.Content.ReadAsStreamAsync(
+                                    var __content = await __response.Content.ReadAsStringAsync(
                 #if NET5_0_OR_GREATER
                                         __effectiveCancellationToken
                 #endif
                                     ).ConfigureAwait(false);
 
-                                    var __value = await global::Speechify.StoreAsset.FromJsonStreamAsync(__content, JsonSerializerContext).ConfigureAwait(false) ??
-                                        throw new global::System.InvalidOperationException("Response deserialization failed.");
-                                    return new global::Speechify.AutoSDKHttpResponse<global::Speechify.StoreAsset>(
+                                    return new global::Speechify.AutoSDKHttpResponse<string>(
                                         statusCode: __response.StatusCode,
                                         headers: global::Speechify.AutoSDKHttpResponse.CreateHeaders(__response),
                                         requestUri: __response.RequestMessage?.RequestUri,
-                                        body: __value);
+                                        body: __content);
                                 }
                                 catch (global::System.Exception __ex)
                                 {

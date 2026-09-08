@@ -11,6 +11,10 @@ namespace Speechify
         /// <summary>
         ///
         /// </summary>
+        File,
+        /// <summary>
+        ///
+        /// </summary>
         Run,
         /// <summary>
         ///
@@ -38,6 +42,7 @@ namespace Speechify
         {
             return value switch
             {
+                HostedApiResolverType.File => "file",
                 HostedApiResolverType.Run => "run",
                 HostedApiResolverType.RunLatest => "run_latest",
                 HostedApiResolverType.StoreDocument => "store_document",
@@ -52,6 +57,7 @@ namespace Speechify
         {
             return value switch
             {
+                "file" => HostedApiResolverType.File,
                 "run" => HostedApiResolverType.Run,
                 "run_latest" => HostedApiResolverType.RunLatest,
                 "store_document" => HostedApiResolverType.StoreDocument,

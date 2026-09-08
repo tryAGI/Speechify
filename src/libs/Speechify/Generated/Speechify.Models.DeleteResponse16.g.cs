@@ -6,7 +6,7 @@ namespace Speechify
     /// <summary>
     ///
     /// </summary>
-    public sealed partial class DeleteAssetResponse
+    public sealed partial class DeleteResponse16
     {
 
         /// <summary>

@@ -66,11 +66,6 @@ namespace Speechify
         /// <summary>
         ///
         /// </summary>
-        public AssetsClient Assets { get; }
-
-        /// <summary>
-        ///
-        /// </summary>
         public AudioClient Audio { get; }
 
         /// <summary>
@@ -112,6 +107,11 @@ namespace Speechify
         ///
         /// </summary>
         public EndpointsClient Endpoints { get; }
+
+        /// <summary>
+        ///
+        /// </summary>
+        public FilesClient Files { get; }
 
         /// <summary>
         ///

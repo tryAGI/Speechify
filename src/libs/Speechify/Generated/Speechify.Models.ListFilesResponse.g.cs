@@ -8,7 +8,7 @@ namespace Speechify
     /// list response via `allOf`. Ships `has_more` alongside `next_cursor`<br/>
     /// as two equivalent end-of-pages signals (defense-in-depth).
     /// </summary>
-    public sealed partial class ListStoreAssetsResponse
+    public sealed partial class ListFilesResponse
     {
         /// <summary>
         /// Opaque keyset cursor for the next page. Pass back as the<br/>
@@ -29,9 +29,9 @@ namespace Speechify
         /// <summary>
         ///
         /// </summary>
-        [global::System.Text.Json.Serialization.JsonPropertyName("assets")]
+        [global::System.Text.Json.Serialization.JsonPropertyName("files")]
         [global::System.Text.Json.Serialization.JsonRequired]
-        public required global::System.Collections.Generic.IList<global::Speechify.StoreAsset> Assets { get; set; }
+        public required global::System.Collections.Generic.IList<global::Speechify.File> Files { get; set; }
 
         /// <summary>
         /// Additional properties that are not explicitly defined in the schema
@@ -40,12 +40,12 @@ namespace Speechify
         public global::System.Collections.Generic.IDictionary<string, object> AdditionalProperties { get; set; } = new global::System.Collections.Generic.Dictionary<string, object>();
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="ListStoreAssetsResponse" /> class.
+        /// Initializes a new instance of the <see cref="ListFilesResponse" /> class.
         /// </summary>
         /// <param name="hasMore">
         /// True when more rows exist beyond this page.
         /// </param>
-        /// <param name="assets"></param>
+        /// <param name="files"></param>
         /// <param name="nextCursor">
         /// Opaque keyset cursor for the next page. Pass back as the<br/>
         /// `cursor` request parameter. `null` when the caller has<br/>
@@ -55,20 +55,20 @@ namespace Speechify
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
 #endif
-        public ListStoreAssetsResponse(
+        public ListFilesResponse(
             bool hasMore,
-            global::System.Collections.Generic.IList<global::Speechify.StoreAsset> assets,
+            global::System.Collections.Generic.IList<global::Speechify.File> files,
             string? nextCursor)
         {
             this.NextCursor = nextCursor;
             this.HasMore = hasMore;
-            this.Assets = assets ?? throw new global::System.ArgumentNullException(nameof(assets));
+            this.Files = files ?? throw new global::System.ArgumentNullException(nameof(files));
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="ListStoreAssetsResponse" /> class.
+        /// Initializes a new instance of the <see cref="ListFilesResponse" /> class.
         /// </summary>
-        public ListStoreAssetsResponse()
+        public ListFilesResponse()
         {
         }
 

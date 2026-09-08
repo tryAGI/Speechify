@@ -208,6 +208,18 @@ namespace Speechify
         /// <summary>
         ///
         /// </summary>
+        FileNotFound,
+        /// <summary>
+        ///
+        /// </summary>
+        FilePathTaken,
+        /// <summary>
+        ///
+        /// </summary>
+        FileStorageLimitReached,
+        /// <summary>
+        ///
+        /// </summary>
         Forbidden,
         /// <summary>
         ///
@@ -444,10 +456,6 @@ namespace Speechify
         /// <summary>
         ///
         /// </summary>
-        StoreAssetNotFound,
-        /// <summary>
-        ///
-        /// </summary>
         StoreBytesLimitReached,
         /// <summary>
         ///
@@ -631,6 +639,9 @@ namespace Speechify
                 ErrorCode.CrossProjectReference => "cross_project_reference",
                 ErrorCode.DestinationNotAllowed => "destination_not_allowed",
                 ErrorCode.DurableRunsNotInPlan => "durable_runs_not_in_plan",
+                ErrorCode.FileNotFound => "file_not_found",
+                ErrorCode.FilePathTaken => "file_path_taken",
+                ErrorCode.FileStorageLimitReached => "file_storage_limit_reached",
                 ErrorCode.Forbidden => "forbidden",
                 ErrorCode.FundedBalanceRequired => "funded_balance_required",
                 ErrorCode.HostedApiNotFound => "hosted_api_not_found",
@@ -690,7 +701,6 @@ namespace Speechify
                 ErrorCode.SpeechMarksUnsupported => "speech_marks_unsupported",
                 ErrorCode.SpendBudgetExceeded => "spend_budget_exceeded",
                 ErrorCode.SpendCapExceeded => "spend_cap_exceeded",
-                ErrorCode.StoreAssetNotFound => "store_asset_not_found",
                 ErrorCode.StoreBytesLimitReached => "store_bytes_limit_reached",
                 ErrorCode.StoreDocumentLimitReached => "store_document_limit_reached",
                 ErrorCode.StoreDocumentNotFound => "store_document_not_found",
@@ -780,6 +790,9 @@ namespace Speechify
                 "cross_project_reference" => ErrorCode.CrossProjectReference,
                 "destination_not_allowed" => ErrorCode.DestinationNotAllowed,
                 "durable_runs_not_in_plan" => ErrorCode.DurableRunsNotInPlan,
+                "file_not_found" => ErrorCode.FileNotFound,
+                "file_path_taken" => ErrorCode.FilePathTaken,
+                "file_storage_limit_reached" => ErrorCode.FileStorageLimitReached,
                 "forbidden" => ErrorCode.Forbidden,
                 "funded_balance_required" => ErrorCode.FundedBalanceRequired,
                 "hosted_api_not_found" => ErrorCode.HostedApiNotFound,
@@ -839,7 +852,6 @@ namespace Speechify
                 "speech_marks_unsupported" => ErrorCode.SpeechMarksUnsupported,
                 "spend_budget_exceeded" => ErrorCode.SpendBudgetExceeded,
                 "spend_cap_exceeded" => ErrorCode.SpendCapExceeded,
-                "store_asset_not_found" => ErrorCode.StoreAssetNotFound,
                 "store_bytes_limit_reached" => ErrorCode.StoreBytesLimitReached,
                 "store_document_limit_reached" => ErrorCode.StoreDocumentLimitReached,
                 "store_document_not_found" => ErrorCode.StoreDocumentNotFound,

@@ -40,6 +40,13 @@ namespace Speechify
         public object? OutputSchema { get; set; }
 
         /// <summary>
+        /// The files the run was handed, frozen at creation. Absent for a<br/>
+        /// run with no attachment.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("attachments")]
+        public global::System.Collections.Generic.IList<string>? Attachments { get; set; }
+
+        /// <summary>
         /// The team members this run may delegate sub-goals to, present only on a team run (started via `runTeam`). Each is a member agent with its role and hand-off note. Absent for a solo agent run.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("delegation_targets")]
@@ -63,6 +70,10 @@ namespace Speechify
         /// <param name="outputSchema">
         /// The JSON Schema the run's structured output must satisfy, frozen at creation. Absent for a prose-only run.
         /// </param>
+        /// <param name="attachments">
+        /// The files the run was handed, frozen at creation. Absent for a<br/>
+        /// run with no attachment.
+        /// </param>
         /// <param name="delegationTargets">
         /// The team members this run may delegate sub-goals to, present only on a team run (started via `runTeam`). Each is a member agent with its role and hand-off note. Absent for a solo agent run.
         /// </param>
@@ -75,6 +86,7 @@ namespace Speechify
             int? maxTurns,
             string? userIdentity,
             object? outputSchema,
+            global::System.Collections.Generic.IList<string>? attachments,
             global::System.Collections.Generic.IList<global::Speechify.AgentRunInputDelegationTargetsItems>? delegationTargets)
         {
             this.Instruction = instruction ?? throw new global::System.ArgumentNullException(nameof(instruction));
@@ -82,6 +94,7 @@ namespace Speechify
             this.MaxTurns = maxTurns;
             this.UserIdentity = userIdentity;
             this.OutputSchema = outputSchema;
+            this.Attachments = attachments;
             this.DelegationTargets = delegationTargets;
         }
 

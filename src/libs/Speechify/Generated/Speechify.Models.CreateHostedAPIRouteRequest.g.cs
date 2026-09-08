@@ -40,7 +40,8 @@ namespace Speechify
         /// `store_query` (store_id, collection, where, order_by, limit),<br/>
         /// `store_document` (store_id, collection, document_id),<br/>
         /// `run_latest` (trigger_id of a schedule trigger),<br/>
-        /// `run` (trigger_id of a webhook trigger, wait_seconds).
+        /// `run` (trigger_id of a webhook trigger, wait_seconds),<br/>
+        /// `file` (file_path of a published file).
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("resolver")]
         [global::System.Text.Json.Serialization.JsonRequired]
@@ -82,7 +83,8 @@ namespace Speechify
         /// `store_query` (store_id, collection, where, order_by, limit),<br/>
         /// `store_document` (store_id, collection, document_id),<br/>
         /// `run_latest` (trigger_id of a schedule trigger),<br/>
-        /// `run` (trigger_id of a webhook trigger, wait_seconds).
+        /// `run` (trigger_id of a webhook trigger, wait_seconds),<br/>
+        /// `file` (file_path of a published file).
         /// </param>
         /// <param name="name"></param>
         /// <param name="description"></param>
