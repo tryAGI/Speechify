@@ -39,7 +39,7 @@ namespace Speechify
         public int? TotalTokens { get; set; }
 
         /// <summary>
-        /// What the run cost in millionths of a US dollar, the sum of `models[].cost_micro_usd`, priced at your plan's rates on the rate card named by `rate_card_version`. Informational; the invoice is authoritative.
+        /// What the run cost in millionths of a US dollar, the sum of `models[].cost_micro_usd` and `tools[].cost_micro_usd`, priced at your plan's rates on the rate card named by `rate_card_version`. Informational; the invoice is authoritative.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("cost_micro_usd")]
         public long? CostMicroUsd { get; set; }
@@ -55,6 +55,12 @@ namespace Speechify
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("models")]
         public global::System.Collections.Generic.IList<global::Speechify.AgentRunUsageModelsItems>? Models { get; set; }
+
+        /// <summary>
+        /// What the run's built-in tools cost, one entry per tool it called, in name order. A built-in is priced per CALL rather than per token - a web search, a generated image - and its cost is part of `cost_micro_usd` alongside the models, so metering your own customers off that number does not under-report the part of the run you did not pay a model for. Absent when the run called no built-in that costs anything. Only built-ins that reach a paid vendor appear here - reading a public page and running code in the run's own sandbox cost nothing per call, so they are in the run's journal rather than in its cost.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("tools")]
+        public global::System.Collections.Generic.IList<global::Speechify.AgentRunUsageToolsItems>? Tools { get; set; }
 
         /// <summary>
         /// Additional properties that are not explicitly defined in the schema
@@ -81,13 +87,16 @@ namespace Speechify
         /// `input_tokens` + `output_tokens`.
         /// </param>
         /// <param name="costMicroUsd">
-        /// What the run cost in millionths of a US dollar, the sum of `models[].cost_micro_usd`, priced at your plan's rates on the rate card named by `rate_card_version`. Informational; the invoice is authoritative.
+        /// What the run cost in millionths of a US dollar, the sum of `models[].cost_micro_usd` and `tools[].cost_micro_usd`, priced at your plan's rates on the rate card named by `rate_card_version`. Informational; the invoice is authoritative.
         /// </param>
         /// <param name="rateCardVersion">
         /// The rate card version the cost was computed against.
         /// </param>
         /// <param name="models">
         /// The token usage and cost split per model, in the order the run first used each; the totals above are the sum over these entries. A run that never changed model has one entry. The model named is the one that actually served the steps, which can differ from the model the agent is configured with when the platform routes a step elsewhere; it is a report, not a promise that the same model serves the next run. An entry whose `model` is empty covers steps whose provider reported no model name.
+        /// </param>
+        /// <param name="tools">
+        /// What the run's built-in tools cost, one entry per tool it called, in name order. A built-in is priced per CALL rather than per token - a web search, a generated image - and its cost is part of `cost_micro_usd` alongside the models, so metering your own customers off that number does not under-report the part of the run you did not pay a model for. Absent when the run called no built-in that costs anything. Only built-ins that reach a paid vendor appear here - reading a public page and running code in the run's own sandbox cost nothing per call, so they are in the run's journal rather than in its cost.
         /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
@@ -100,7 +109,8 @@ namespace Speechify
             int? totalTokens,
             long? costMicroUsd,
             string? rateCardVersion,
-            global::System.Collections.Generic.IList<global::Speechify.AgentRunUsageModelsItems>? models)
+            global::System.Collections.Generic.IList<global::Speechify.AgentRunUsageModelsItems>? models,
+            global::System.Collections.Generic.IList<global::Speechify.AgentRunUsageToolsItems>? tools)
         {
             this.DurationMs = durationMs;
             this.InputTokens = inputTokens;
@@ -110,6 +120,7 @@ namespace Speechify
             this.CostMicroUsd = costMicroUsd;
             this.RateCardVersion = rateCardVersion;
             this.Models = models;
+            this.Tools = tools;
         }
 
         /// <summary>
