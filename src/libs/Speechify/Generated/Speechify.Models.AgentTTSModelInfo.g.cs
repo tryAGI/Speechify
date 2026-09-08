@@ -1,4 +1,6 @@
 
+#pragma warning disable CS0618 // Type or member is obsolete
+
 #nullable enable
 
 namespace Speechify
@@ -39,9 +41,8 @@ namespace Speechify
         public required bool Beta { get; set; }
 
         /// <summary>
-        /// True for the model an agent lands on with no pin and an<br/>
-        /// uncurated voice. The floor of the catalog, and the only entry<br/>
-        /// selectable for every agent and every voice.
+        /// True for the model an agent lands on with no pin. The floor of<br/>
+        /// the catalog, and the only entry selectable in every language.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("default")]
         [global::System.Text.Json.Serialization.JsonRequired]
@@ -56,14 +57,11 @@ namespace Speechify
         public required bool EnglishOnly { get; set; }
 
         /// <summary>
-        /// A voice must be registered for this model before it can be<br/>
-        /// selected with that voice, because the model has a voice roster<br/>
-        /// built for it. False for a model offered across the catalog.<br/>
-        /// Either way, the voice's `models` array on GET /v1/agents/voices is<br/>
-        /// the per-voice answer and the one to drive a picker from - a voice<br/>
-        /// built for a curated model is absent from the open models too. This<br/>
-        /// flag explains WHY a voice is absent; it does not decide whether to<br/>
-        /// check.
+        /// Deprecated and always `false`. No model requires a voice to be<br/>
+        /// registered for it: every training conditions on the voice's own<br/>
+        /// prompt audio, so every model is selectable on every voice we speak<br/>
+        /// ourselves. The field stays on the response for compatibility and<br/>
+        /// can be ignored.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("requires_voice_curation")]
         [global::System.Text.Json.Serialization.JsonRequired]
@@ -88,23 +86,19 @@ namespace Speechify
         /// simply not one agents are steered onto by default.
         /// </param>
         /// <param name="default">
-        /// True for the model an agent lands on with no pin and an<br/>
-        /// uncurated voice. The floor of the catalog, and the only entry<br/>
-        /// selectable for every agent and every voice.
+        /// True for the model an agent lands on with no pin. The floor of<br/>
+        /// the catalog, and the only entry selectable in every language.
         /// </param>
         /// <param name="englishOnly">
         /// The model has no multilingual deployment. An agent that resolves<br/>
         /// through the multilingual serving cannot select it at all.
         /// </param>
         /// <param name="requiresVoiceCuration">
-        /// A voice must be registered for this model before it can be<br/>
-        /// selected with that voice, because the model has a voice roster<br/>
-        /// built for it. False for a model offered across the catalog.<br/>
-        /// Either way, the voice's `models` array on GET /v1/agents/voices is<br/>
-        /// the per-voice answer and the one to drive a picker from - a voice<br/>
-        /// built for a curated model is absent from the open models too. This<br/>
-        /// flag explains WHY a voice is absent; it does not decide whether to<br/>
-        /// check.
+        /// Deprecated and always `false`. No model requires a voice to be<br/>
+        /// registered for it: every training conditions on the voice's own<br/>
+        /// prompt audio, so every model is selectable on every voice we speak<br/>
+        /// ourselves. The field stays on the response for compatibility and<br/>
+        /// can be ignored.
         /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]

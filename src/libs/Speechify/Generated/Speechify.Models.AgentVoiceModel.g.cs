@@ -6,17 +6,12 @@ namespace Speechify
     /// <summary>
     /// One Simba model version the voice can be synthesised through, and<br/>
     /// therefore one an agent on this voice may pin with `tts.model`.<br/>
-    /// Every agent voice supports `simba-3.0`. English-only upgrade tiers<br/>
-    /// (`simba-3.5-turbo`, `simba-3.2`) are listed when this voice can<br/>
-    /// select them: a tier with `requires_voice_curation` only where the<br/>
-    /// voice is curated for it, a tier without it on any voice we speak<br/>
-    /// ourselves EXCEPT one built for a curated roster, whose speaker<br/>
-    /// embedding is valid for that training alone. A partner voice lists no<br/>
+    /// Every voice we speak ourselves supports every model listed here -<br/>
+    /// `simba-3.0` plus the English-only tiers `simba-3.2` and<br/>
+    /// `simba-3.5-turbo` - because each training conditions on the voice's<br/>
+    /// own prompt audio, cloned voices included. A partner voice lists no<br/>
     /// tier at all - Simba model selection does not apply to it.<br/>
-    /// So read this array rather than inferring membership from<br/>
-    /// `requires_voice_curation`: a voice can be absent from a model that<br/>
-    /// needs no curation. It is the per-voice answer for every model, and a<br/>
-    /// pin outside it is a 400. Which of these `tts.model: null`<br/>
+    /// A pin outside this array is a 400. Which of these `tts.model: null`<br/>
     /// actually resolves to is `default_model`, not the order here.<br/>
     /// Like `default_model`, the tiers listed here are the ENGLISH answer,<br/>
     /// and they are a fact about the voice rather than about any one agent.<br/>

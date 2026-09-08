@@ -581,6 +581,7 @@ namespace Speechify
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.AgentTriggerType), TypeInfoPropertyName = "AgentTriggerType2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.TriggerRunSpec))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.TriggerScheduleConfig))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.TriggerWebhookConfigUserIdentitySource), TypeInfoPropertyName = "TriggerWebhookConfigUserIdentitySource2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.TriggerWebhookConfig))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.AgentTriggerLastFireStatus), TypeInfoPropertyName = "AgentTriggerLastFireStatus2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.AgentTrigger))]
@@ -862,6 +863,7 @@ namespace Speechify
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.SIPTransport?), TypeInfoPropertyName = "NullableSIPTransport2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.SIPMediaEncryption?), TypeInfoPropertyName = "NullableSIPMediaEncryption2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.AgentTriggerType?), TypeInfoPropertyName = "NullableAgentTriggerType2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.TriggerWebhookConfigUserIdentitySource?), TypeInfoPropertyName = "NullableTriggerWebhookConfigUserIdentitySource2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.AgentTriggerLastFireStatus?), TypeInfoPropertyName = "NullableAgentTriggerLastFireStatus2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.CreateAgentTriggerRequestType?), TypeInfoPropertyName = "NullableCreateAgentTriggerRequestType2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.AgentTriggerFireResponseStatus?), TypeInfoPropertyName = "NullableAgentTriggerFireResponseStatus2")]
@@ -1522,6 +1524,10 @@ namespace Speechify
                     || typeToConvert == typeof(global::Speechify.AgentTriggerType)
 
                     || typeToConvert == typeof(global::Speechify.AgentTriggerType?)
+
+                    || typeToConvert == typeof(global::Speechify.TriggerWebhookConfigUserIdentitySource)
+
+                    || typeToConvert == typeof(global::Speechify.TriggerWebhookConfigUserIdentitySource?)
 
                     || typeToConvert == typeof(global::Speechify.AgentTriggerLastFireStatus)
 
@@ -2740,6 +2746,16 @@ namespace Speechify
                 if (typeToConvert == typeof(global::Speechify.AgentTriggerType?))
                 {
                     return new global::Speechify.JsonConverters.AgentTriggerTypeNullableJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.TriggerWebhookConfigUserIdentitySource))
+                {
+                    return new global::Speechify.JsonConverters.TriggerWebhookConfigUserIdentitySourceJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.TriggerWebhookConfigUserIdentitySource?))
+                {
+                    return new global::Speechify.JsonConverters.TriggerWebhookConfigUserIdentitySourceNullableJsonConverter();
                 }
 
                 if (typeToConvert == typeof(global::Speechify.AgentTriggerLastFireStatus))

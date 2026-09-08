@@ -17,14 +17,12 @@ namespace Speechify
         /// - `english_only` - the model has no multilingual deployment, so an<br/>
         ///   agent that declares `additional_languages` (or whose `language` is<br/>
         ///   not English) cannot select it.<br/>
-        /// - `requires_voice_curation` - a voice must be registered for the<br/>
-        ///   model before it can be selected with that voice. The voice's<br/>
-        ///   `models` array on GET /v1/agents/voices is the per-voice answer,<br/>
-        ///   and it changes as voices are curated, with no release here. It is<br/>
-        ///   false for a model offered across the catalog, which every Speechify<br/>
-        ///   voice can then select.<br/>
-        /// Drive a model picker from this and the voice catalog together and it<br/>
-        /// can only offer combinations POST/PATCH /v1/agents will accept.<br/>
+        /// - `requires_voice_curation` - deprecated and always false. No model<br/>
+        ///   asks a voice for a registration: every training conditions on the<br/>
+        ///   voice's own prompt audio, so every model is selectable on every<br/>
+        ///   voice we speak ourselves, cloned voices included.<br/>
+        /// Drive a model picker from this and the agent's languages and it can<br/>
+        /// only offer combinations POST/PATCH /v1/agents will accept.<br/>
         /// Returns the full set in one response: bounded by the platform's<br/>
         /// curated model catalog, so it is intentionally not paginated.
         /// </summary>
@@ -49,14 +47,12 @@ namespace Speechify
         /// - `english_only` - the model has no multilingual deployment, so an<br/>
         ///   agent that declares `additional_languages` (or whose `language` is<br/>
         ///   not English) cannot select it.<br/>
-        /// - `requires_voice_curation` - a voice must be registered for the<br/>
-        ///   model before it can be selected with that voice. The voice's<br/>
-        ///   `models` array on GET /v1/agents/voices is the per-voice answer,<br/>
-        ///   and it changes as voices are curated, with no release here. It is<br/>
-        ///   false for a model offered across the catalog, which every Speechify<br/>
-        ///   voice can then select.<br/>
-        /// Drive a model picker from this and the voice catalog together and it<br/>
-        /// can only offer combinations POST/PATCH /v1/agents will accept.<br/>
+        /// - `requires_voice_curation` - deprecated and always false. No model<br/>
+        ///   asks a voice for a registration: every training conditions on the<br/>
+        ///   voice's own prompt audio, so every model is selectable on every<br/>
+        ///   voice we speak ourselves, cloned voices included.<br/>
+        /// Drive a model picker from this and the agent's languages and it can<br/>
+        /// only offer combinations POST/PATCH /v1/agents will accept.<br/>
         /// Returns the full set in one response: bounded by the platform's<br/>
         /// curated model catalog, so it is intentionally not paginated.
         /// </summary>

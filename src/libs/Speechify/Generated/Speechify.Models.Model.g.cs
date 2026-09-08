@@ -1,4 +1,6 @@
 
+#pragma warning disable CS0618 // Type or member is obsolete
+
 #nullable enable
 
 namespace Speechify
@@ -26,8 +28,8 @@ namespace Speechify
         /// <summary>
         /// Whether this is the model used when a synthesis request omits<br/>
         /// `model`. Exactly one model in the list is the default. Distinct<br/>
-        /// from `recommended`: the default accepts every voice, while the<br/>
-        /// recommended model may serve a curated or English-only set.
+        /// from `recommended`: the default accepts every voice in every<br/>
+        /// language, while the recommended model may be English-only.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("default")]
         [global::System.Text.Json.Serialization.JsonRequired]
@@ -103,13 +105,12 @@ namespace Speechify
         public required global::System.Collections.Generic.IList<string> Endpoints { get; set; }
 
         /// <summary>
-        /// Whether the model's stock voices are restricted to the set curated<br/>
-        /// for it. When true, pick a stock voice whose `models` array in<br/>
-        /// GET /v1/voices names this model; any other stock voice is rejected.<br/>
-        /// When false, every stock catalogue voice works. Cloned voices are<br/>
-        /// governed separately - always read each voice's own `models` array in<br/>
-        /// GET /v1/voices, which reflects what your workspace may actually<br/>
-        /// synthesize.
+        /// Deprecated and always `false`. No model restricts synthesis to a<br/>
+        /// registered voice set: every training conditions on the voice's own<br/>
+        /// prompt audio, so every catalogue voice and every cloned voice works<br/>
+        /// on every model, subject only to `english_voices_only`. Each voice's<br/>
+        /// `models` array in GET /v1/voices stays the per-voice answer. The<br/>
+        /// field remains on the response for compatibility.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("curated_voices")]
         [global::System.Text.Json.Serialization.JsonRequired]
@@ -143,8 +144,8 @@ namespace Speechify
         /// <param name="default">
         /// Whether this is the model used when a synthesis request omits<br/>
         /// `model`. Exactly one model in the list is the default. Distinct<br/>
-        /// from `recommended`: the default accepts every voice, while the<br/>
-        /// recommended model may serve a curated or English-only set.
+        /// from `recommended`: the default accepts every voice in every<br/>
+        /// language, while the recommended model may be English-only.
         /// </param>
         /// <param name="recommended">
         /// Whether this is the model we recommend for new integrations.<br/>
@@ -172,13 +173,12 @@ namespace Speechify
         /// response, so branch on it instead of discovering it at call time.
         /// </param>
         /// <param name="curatedVoices">
-        /// Whether the model's stock voices are restricted to the set curated<br/>
-        /// for it. When true, pick a stock voice whose `models` array in<br/>
-        /// GET /v1/voices names this model; any other stock voice is rejected.<br/>
-        /// When false, every stock catalogue voice works. Cloned voices are<br/>
-        /// governed separately - always read each voice's own `models` array in<br/>
-        /// GET /v1/voices, which reflects what your workspace may actually<br/>
-        /// synthesize.
+        /// Deprecated and always `false`. No model restricts synthesis to a<br/>
+        /// registered voice set: every training conditions on the voice's own<br/>
+        /// prompt audio, so every catalogue voice and every cloned voice works<br/>
+        /// on every model, subject only to `english_voices_only`. Each voice's<br/>
+        /// `models` array in GET /v1/voices stays the per-voice answer. The<br/>
+        /// field remains on the response for compatibility.
         /// </param>
         /// <param name="englishVoicesOnly">
         /// Whether the model rejects a non-English voice. Independent of<br/>
