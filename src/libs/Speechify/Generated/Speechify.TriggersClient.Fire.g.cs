@@ -29,12 +29,14 @@ namespace Speechify
             global::System.Net.Http.HttpClient httpClient,
             ref string triggerId,
             ref string? speechifyVersion,
+            ref string? speechifyUserIdentity,
             object request);
         partial void PrepareFireRequest(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpRequestMessage httpRequestMessage,
             string triggerId,
             string? speechifyVersion,
+            string? speechifyUserIdentity,
             object request);
         partial void ProcessFireResponse(
             global::System.Net.Http.HttpClient httpClient,
@@ -51,10 +53,24 @@ namespace Speechify
         /// one-time fire token as `Authorization: Bearer &lt;secret&gt;`. The JSON body<br/>
         /// becomes the started run's payload variable. Supply an `Idempotency-Key`<br/>
         /// (or `Speechify-Delivery-Id`) header to make a redelivery replay the<br/>
-        /// original run instead of starting a second one.
+        /// original run instead of starting a second one.<br/>
+        /// **Reacting to something that happened, for one person.** Set the<br/>
+        /// trigger's `webhook.user_identity_source` to `fire` and send<br/>
+        /// `Speechify-User-Identity` on each POST. The run then acts for that<br/>
+        /// person - their memory, and every tool call told who it is for - so one<br/>
+        /// trigger serves every person your connector watches and you hold no<br/>
+        /// trigger id per person. Use the plain form (`user_identity_source:<br/>
+        /// trigger`) when the work is the same whoever it is for: a nightly<br/>
+        /// reconciliation, an alert fan-out, a build that finished.<br/>
+        /// **Rate.** A trigger admits 60 fires a minute, and 12 a minute for any<br/>
+        /// one person; past either the endpoint answers `429` with `Retry-After`.<br/>
+        /// A fire starts a durable run against your credit balance, so a burst is<br/>
+        /// deferred rather than fanned out. Retry the refused delivery under the<br/>
+        /// same delivery id and it runs exactly once.
         /// </summary>
         /// <param name="triggerId"></param>
         /// <param name="speechifyVersion"></param>
+        /// <param name="speechifyUserIdentity"></param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -64,6 +80,7 @@ namespace Speechify
 
             object request,
             string? speechifyVersion = default,
+            string? speechifyUserIdentity = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
@@ -72,6 +89,7 @@ namespace Speechify
 
                 request: request,
                 speechifyVersion: speechifyVersion,
+                speechifyUserIdentity: speechifyUserIdentity,
                 requestOptions: requestOptions,
                 cancellationToken: cancellationToken
             ).ConfigureAwait(false);
@@ -84,10 +102,24 @@ namespace Speechify
         /// one-time fire token as `Authorization: Bearer &lt;secret&gt;`. The JSON body<br/>
         /// becomes the started run's payload variable. Supply an `Idempotency-Key`<br/>
         /// (or `Speechify-Delivery-Id`) header to make a redelivery replay the<br/>
-        /// original run instead of starting a second one.
+        /// original run instead of starting a second one.<br/>
+        /// **Reacting to something that happened, for one person.** Set the<br/>
+        /// trigger's `webhook.user_identity_source` to `fire` and send<br/>
+        /// `Speechify-User-Identity` on each POST. The run then acts for that<br/>
+        /// person - their memory, and every tool call told who it is for - so one<br/>
+        /// trigger serves every person your connector watches and you hold no<br/>
+        /// trigger id per person. Use the plain form (`user_identity_source:<br/>
+        /// trigger`) when the work is the same whoever it is for: a nightly<br/>
+        /// reconciliation, an alert fan-out, a build that finished.<br/>
+        /// **Rate.** A trigger admits 60 fires a minute, and 12 a minute for any<br/>
+        /// one person; past either the endpoint answers `429` with `Retry-After`.<br/>
+        /// A fire starts a durable run against your credit balance, so a burst is<br/>
+        /// deferred rather than fanned out. Retry the refused delivery under the<br/>
+        /// same delivery id and it runs exactly once.
         /// </summary>
         /// <param name="triggerId"></param>
         /// <param name="speechifyVersion"></param>
+        /// <param name="speechifyUserIdentity"></param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -97,6 +129,7 @@ namespace Speechify
 
             object request,
             string? speechifyVersion = default,
+            string? speechifyUserIdentity = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
@@ -108,6 +141,7 @@ namespace Speechify
                 httpClient: HttpClient,
                 triggerId: ref triggerId,
                 speechifyVersion: ref speechifyVersion,
+                speechifyUserIdentity: ref speechifyUserIdentity,
                 request: request);
 
 
@@ -170,6 +204,10 @@ namespace Speechify
             {
                 __httpRequest.Headers.TryAddWithoutValidation("Speechify-Version", speechifyVersion.ToString());
             }
+            if (speechifyUserIdentity != default)
+            {
+                __httpRequest.Headers.TryAddWithoutValidation("Speechify-User-Identity", speechifyUserIdentity.ToString());
+            }
 
                             var __httpRequestContentBody = global::System.Text.Json.JsonSerializer.Serialize(request, request.GetType(), JsonSerializerContext);
                             var __httpRequestContent = new global::System.Net.Http.StringContent(
@@ -190,6 +228,7 @@ namespace Speechify
                     httpRequestMessage: __httpRequest,
                     triggerId: triggerId!,
                     speechifyVersion: speechifyVersion,
+                    speechifyUserIdentity: speechifyUserIdentity,
                     request: request);
 
                 return __httpRequest;
@@ -369,6 +408,43 @@ namespace Speechify
                                 retryReason: global::System.String.Empty,
                                 cancellationToken: __effectiveCancellationToken)).ConfigureAwait(false);
                 }
+                            // The request was malformed or failed validation. The response body is the standard `Error` envelope; for validation failures `error.fields` enumerates the offending fields as a `path -> message` map (code = `validation_failed`).
+                            if ((int)__response.StatusCode == 400)
+                            {
+                                string? __content_400 = null;
+                                global::System.Exception? __exception_400 = null;
+                                global::Speechify.Error? __value_400 = null;
+                                try
+                                {
+                                    if (__effectiveReadResponseAsString)
+                                    {
+                                        __content_400 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+                                        __value_400 = global::Speechify.Error.FromJson(__content_400, JsonSerializerContext);
+                                    }
+                                    else
+                                    {
+                                        __content_400 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+
+                                        __value_400 = global::Speechify.Error.FromJson(__content_400, JsonSerializerContext);
+                                    }
+                                }
+                                catch (global::System.Exception __ex)
+                                {
+                                    __exception_400 = __ex;
+                                }
+
+
+                                throw global::Speechify.ApiException<global::Speechify.Error>.Create(
+                                    statusCode: __response.StatusCode,
+                                    message: __content_400 ?? __response.ReasonPhrase ?? string.Empty,
+                                    innerException: __exception_400,
+                                    responseBody: __content_400,
+                                    responseObject: __value_400,
+                                    responseHeaders: global::System.Linq.Enumerable.ToDictionary(
+                                        __response.Headers,
+                                        h => h.Key,
+                                        h => h.Value));
+                            }
                             // Authentication is missing or invalid. The request did not carry a recognised credential (console session token, API key, or worker JWT).
                             if ((int)__response.StatusCode == 401)
                             {
@@ -480,6 +556,43 @@ namespace Speechify
                                         h => h.Key,
                                         h => h.Value));
                             }
+                            // Rate limit or concurrency limit exceeded. `error.code` distinguishes request-rate limiting (`rate_limited`) from concurrency exhaustion (`concurrency_limit_reached`). Carries `Retry-After` and the request-rate budget headers; a concurrency-exhaustion 429 also carries `RateLimit-Remaining-Calls: 0`.
+                            if ((int)__response.StatusCode == 429)
+                            {
+                                string? __content_429 = null;
+                                global::System.Exception? __exception_429 = null;
+                                global::Speechify.Error? __value_429 = null;
+                                try
+                                {
+                                    if (__effectiveReadResponseAsString)
+                                    {
+                                        __content_429 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+                                        __value_429 = global::Speechify.Error.FromJson(__content_429, JsonSerializerContext);
+                                    }
+                                    else
+                                    {
+                                        __content_429 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+
+                                        __value_429 = global::Speechify.Error.FromJson(__content_429, JsonSerializerContext);
+                                    }
+                                }
+                                catch (global::System.Exception __ex)
+                                {
+                                    __exception_429 = __ex;
+                                }
+
+
+                                throw global::Speechify.ApiException<global::Speechify.Error>.Create(
+                                    statusCode: __response.StatusCode,
+                                    message: __content_429 ?? __response.ReasonPhrase ?? string.Empty,
+                                    innerException: __exception_429,
+                                    responseBody: __content_429,
+                                    responseObject: __value_429,
+                                    responseHeaders: global::System.Linq.Enumerable.ToDictionary(
+                                        __response.Headers,
+                                        h => h.Key,
+                                        h => h.Value));
+                            }
 
                             if (__effectiveReadResponseAsString)
                             {
@@ -582,16 +695,31 @@ namespace Speechify
         /// one-time fire token as `Authorization: Bearer &lt;secret&gt;`. The JSON body<br/>
         /// becomes the started run's payload variable. Supply an `Idempotency-Key`<br/>
         /// (or `Speechify-Delivery-Id`) header to make a redelivery replay the<br/>
-        /// original run instead of starting a second one.
+        /// original run instead of starting a second one.<br/>
+        /// **Reacting to something that happened, for one person.** Set the<br/>
+        /// trigger's `webhook.user_identity_source` to `fire` and send<br/>
+        /// `Speechify-User-Identity` on each POST. The run then acts for that<br/>
+        /// person - their memory, and every tool call told who it is for - so one<br/>
+        /// trigger serves every person your connector watches and you hold no<br/>
+        /// trigger id per person. Use the plain form (`user_identity_source:<br/>
+        /// trigger`) when the work is the same whoever it is for: a nightly<br/>
+        /// reconciliation, an alert fan-out, a build that finished.<br/>
+        /// **Rate.** A trigger admits 60 fires a minute, and 12 a minute for any<br/>
+        /// one person; past either the endpoint answers `429` with `Retry-After`.<br/>
+        /// A fire starts a durable run against your credit balance, so a burst is<br/>
+        /// deferred rather than fanned out. Retry the refused delivery under the<br/>
+        /// same delivery id and it runs exactly once.
         /// </summary>
         /// <param name="triggerId"></param>
         /// <param name="speechifyVersion"></param>
+        /// <param name="speechifyUserIdentity"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::System.InvalidOperationException"></exception>
         public async global::System.Threading.Tasks.Task<global::Speechify.AgentTriggerFireResponse> FireAsync(
             string triggerId,
             string? speechifyVersion = default,
+            string? speechifyUserIdentity = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
@@ -602,6 +730,7 @@ namespace Speechify
             return await FireAsync(
                 triggerId: triggerId,
                 speechifyVersion: speechifyVersion,
+                speechifyUserIdentity: speechifyUserIdentity,
                 request: __request,
                 requestOptions: requestOptions,
                 cancellationToken: cancellationToken).ConfigureAwait(false);

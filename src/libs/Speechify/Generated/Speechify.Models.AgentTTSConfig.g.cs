@@ -26,21 +26,21 @@ namespace Speechify
         /// <summary>
         /// Pins the Simba model this agent synthesizes on. **Null is the<br/>
         /// default and the recommended setting**: the agent follows the<br/>
-        /// model its voice is curated for, so a voice promoted to a newer<br/>
-        /// training moves with it and no configuration goes stale.<br/>
+        /// model VMS proposes for its voice (`default_model` on<br/>
+        /// GET /v1/agents/voices), so a voice promoted to a newer training<br/>
+        /// moves with it and no configuration goes stale.<br/>
         /// Set it to override that choice in either direction - onto an<br/>
         /// experimental training, or back down off one. Call<br/>
-        /// GET /v1/agents/tts-models for the catalog, and read the voice's<br/>
-        /// `models` and `default_model` on GET /v1/agents/voices for what<br/>
-        /// this particular voice can serve on.<br/>
+        /// GET /v1/agents/tts-models for the catalog. Every model there<br/>
+        /// serves every voice we speak ourselves; a partner voice takes none<br/>
+        /// of them, because its provider selects its own model.<br/>
         /// A write is rejected when the agent could not actually be served<br/>
         /// with the model: an English-only model on an agent that resolves<br/>
         /// through the multilingual serving (it declares<br/>
-        /// `additional_languages`, or its own `language` is not English),<br/>
-        /// or a model the chosen voice is not curated for. The pair is<br/>
-        /// re-checked whenever `voice_id`, `language`, or<br/>
-        /// `additional_languages` change, so a stored pin cannot be<br/>
-        /// orphaned by an edit elsewhere.<br/>
+        /// `additional_languages`, or its own `language` is not English), or<br/>
+        /// any Simba model on a partner voice. It is re-checked whenever<br/>
+        /// `language` or `additional_languages` change, so a stored pin<br/>
+        /// cannot be orphaned by an edit elsewhere.<br/>
         /// Send `null` (or `""`) to clear it back to automatic.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("model")]
@@ -66,21 +66,21 @@ namespace Speechify
         /// <param name="model">
         /// Pins the Simba model this agent synthesizes on. **Null is the<br/>
         /// default and the recommended setting**: the agent follows the<br/>
-        /// model its voice is curated for, so a voice promoted to a newer<br/>
-        /// training moves with it and no configuration goes stale.<br/>
+        /// model VMS proposes for its voice (`default_model` on<br/>
+        /// GET /v1/agents/voices), so a voice promoted to a newer training<br/>
+        /// moves with it and no configuration goes stale.<br/>
         /// Set it to override that choice in either direction - onto an<br/>
         /// experimental training, or back down off one. Call<br/>
-        /// GET /v1/agents/tts-models for the catalog, and read the voice's<br/>
-        /// `models` and `default_model` on GET /v1/agents/voices for what<br/>
-        /// this particular voice can serve on.<br/>
+        /// GET /v1/agents/tts-models for the catalog. Every model there<br/>
+        /// serves every voice we speak ourselves; a partner voice takes none<br/>
+        /// of them, because its provider selects its own model.<br/>
         /// A write is rejected when the agent could not actually be served<br/>
         /// with the model: an English-only model on an agent that resolves<br/>
         /// through the multilingual serving (it declares<br/>
-        /// `additional_languages`, or its own `language` is not English),<br/>
-        /// or a model the chosen voice is not curated for. The pair is<br/>
-        /// re-checked whenever `voice_id`, `language`, or<br/>
-        /// `additional_languages` change, so a stored pin cannot be<br/>
-        /// orphaned by an edit elsewhere.<br/>
+        /// `additional_languages`, or its own `language` is not English), or<br/>
+        /// any Simba model on a partner voice. It is re-checked whenever<br/>
+        /// `language` or `additional_languages` change, so a stored pin<br/>
+        /// cannot be orphaned by an edit elsewhere.<br/>
         /// Send `null` (or `""`) to clear it back to automatic.
         /// </param>
 #if NET7_0_OR_GREATER

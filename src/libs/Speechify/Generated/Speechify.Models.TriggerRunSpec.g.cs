@@ -58,7 +58,9 @@ namespace Speechify
         /// `GET /v1/agents/runs?user_identity=` finds it, so you keep no<br/>
         /// trigger-to-person index of your own. Validated when the trigger is<br/>
         /// saved, by the run surface's rule: must not begin with `user_`,<br/>
-        /// `embed_` or `anon_`.
+        /// `embed_` or `anon_`.<br/>
+        /// Leave it empty and set `webhook.user_identity_source` to `fire`<br/>
+        /// when one trigger serves many people and each delivery says which.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("user_identity")]
         public string? UserIdentity { get; set; }
@@ -119,7 +121,9 @@ namespace Speechify
         /// `GET /v1/agents/runs?user_identity=` finds it, so you keep no<br/>
         /// trigger-to-person index of your own. Validated when the trigger is<br/>
         /// saved, by the run surface's rule: must not begin with `user_`,<br/>
-        /// `embed_` or `anon_`.
+        /// `embed_` or `anon_`.<br/>
+        /// Leave it empty and set `webhook.user_identity_source` to `fire`<br/>
+        /// when one trigger serves many people and each delivery says which.
         /// </param>
         /// <param name="metadata">
         /// Up to 16 key/value pairs merged onto every run this trigger fires,<br/>
