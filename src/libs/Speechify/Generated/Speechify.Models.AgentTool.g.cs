@@ -100,9 +100,12 @@ namespace Speechify
         public global::Speechify.ToolApprovalClass? Approval { get; set; }
 
         /// <summary>
-        /// What governs the tool on the autonomous path. Present for the<br/>
-        /// shared kinds a durable run can execute; absent for a built-in,<br/>
-        /// which only ever runs in-process on a live session.
+        /// What governs the tool on the autonomous path. Present for the shared<br/>
+        /// kinds a durable run can execute, and for a `control_plane` built-in<br/>
+        /// (see `execution` on `GET /v1/agents/tool-capabilities`), which runs<br/>
+        /// on that path too - there it is the class default, or `disabled` when<br/>
+        /// you set `enabled: false`. Absent for a built-in the worker runs,<br/>
+        /// which only ever fires inside a live session.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("effective_approval")]
         [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Speechify.JsonConverters.ToolApprovalClassJsonConverter))]
@@ -173,9 +176,12 @@ namespace Speechify
         /// The explicit override on the shared definition. Absent for a built-in or when derived.
         /// </param>
         /// <param name="effectiveApproval">
-        /// What governs the tool on the autonomous path. Present for the<br/>
-        /// shared kinds a durable run can execute; absent for a built-in,<br/>
-        /// which only ever runs in-process on a live session.
+        /// What governs the tool on the autonomous path. Present for the shared<br/>
+        /// kinds a durable run can execute, and for a `control_plane` built-in<br/>
+        /// (see `execution` on `GET /v1/agents/tool-capabilities`), which runs<br/>
+        /// on that path too - there it is the class default, or `disabled` when<br/>
+        /// you set `enabled: false`. Absent for a built-in the worker runs,<br/>
+        /// which only ever fires inside a live session.
         /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
