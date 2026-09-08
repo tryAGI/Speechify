@@ -8,7 +8,8 @@ namespace Speechify
     /// `store_query` (store_id, collection, where, order_by, limit),<br/>
     /// `store_document` (store_id, collection, document_id),<br/>
     /// `run_latest` (trigger_id of a schedule trigger),<br/>
-    /// `run` (trigger_id of a webhook trigger, wait_seconds).
+    /// `run` (trigger_id of a webhook trigger, wait_seconds),<br/>
+    /// `file` (file_path of a published file).
     /// </summary>
     public sealed partial class HostedAPIResolver
     {
@@ -57,6 +58,24 @@ namespace Speechify
         public int? Limit { get; set; }
 
         /// <summary>
+        /// The path a `kept` file was published under, for a `file` route.<br/>
+        /// The route answers that file's bytes under the file's own media type<br/>
+        /// - the only route type that does not return JSON - so a page renders<br/>
+        /// and a spreadsheet downloads. Must be a GET.<br/>
+        /// A literal path, or a `{{path.x}}` template that replaces the whole<br/>
+        /// value, so one route can serve many files: mount `/{name}` and the<br/>
+        /// URL segment names the published path. A template embedded in a<br/>
+        /// longer path (`a/{{path.x}}.html`) is refused - substitution here<br/>
+        /// replaces the value, it does not interpolate into it.<br/>
+        /// Only a `kept` file is reachable: working material handed to a run<br/>
+        /// cannot be published by pointing a route at it. A path with nothing<br/>
+        /// at it answers `404`, so an artifact can be wired before it is<br/>
+        /// uploaded and replaced without touching the route.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("file_path")]
+        public string? FilePath { get; set; }
+
+        /// <summary>
         ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("trigger_id")]
@@ -88,6 +107,21 @@ namespace Speechify
         /// <param name="limit">
         /// Default page size; the consumer's `limit` query parameter overrides it.
         /// </param>
+        /// <param name="filePath">
+        /// The path a `kept` file was published under, for a `file` route.<br/>
+        /// The route answers that file's bytes under the file's own media type<br/>
+        /// - the only route type that does not return JSON - so a page renders<br/>
+        /// and a spreadsheet downloads. Must be a GET.<br/>
+        /// A literal path, or a `{{path.x}}` template that replaces the whole<br/>
+        /// value, so one route can serve many files: mount `/{name}` and the<br/>
+        /// URL segment names the published path. A template embedded in a<br/>
+        /// longer path (`a/{{path.x}}.html`) is refused - substitution here<br/>
+        /// replaces the value, it does not interpolate into it.<br/>
+        /// Only a `kept` file is reachable: working material handed to a run<br/>
+        /// cannot be published by pointing a route at it. A path with nothing<br/>
+        /// at it answers `404`, so an artifact can be wired before it is<br/>
+        /// uploaded and replaced without touching the route.
+        /// </param>
         /// <param name="triggerId"></param>
         /// <param name="waitSeconds">
         /// How long a `run` route waits for the run before answering 202 (default 20; 0 answers 202 at once).
@@ -103,6 +137,7 @@ namespace Speechify
             global::System.Collections.Generic.IList<global::Speechify.HostedApiResolverWhereItems>? where,
             global::Speechify.HostedApiResolverOrderBy? orderBy,
             int? limit,
+            string? filePath,
             string? triggerId,
             int? waitSeconds)
         {
@@ -113,6 +148,7 @@ namespace Speechify
             this.Where = where;
             this.OrderBy = orderBy;
             this.Limit = limit;
+            this.FilePath = filePath;
             this.TriggerId = triggerId;
             this.WaitSeconds = waitSeconds;
         }

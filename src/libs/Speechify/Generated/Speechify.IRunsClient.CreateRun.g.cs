@@ -199,6 +199,18 @@ namespace Speechify
         /// <param name="instruction">
         /// The task or goal to give the agent. The agent runs its brain against this over a short internal conversation and returns its result. The server's limit is 8000 **bytes**, so a mostly non-ASCII instruction reaches it before 8000 characters.
         /// </param>
+        /// <param name="attachments">
+        /// The files to hand the agent, as `file_...` ids from<br/>
+        /// `POST /v1/files`. The<br/>
+        /// agent is told what it holds and reads one with its `read_file`<br/>
+        /// tool: PDF, HTML, Markdown and plain text are extracted, and an<br/>
+        /// image is transcribed and described by a vision model. At most 10.<br/>
+        /// Each id is checked at admission against this workspace **and**<br/>
+        /// against `user_identity`: a file uploaded for one person is not<br/>
+        /// readable by a run acting for another. An id that does not resolve<br/>
+        /// fails the request with a `400` naming `attachments` - the run is<br/>
+        /// never started over a file it cannot read.
+        /// </param>
         /// <param name="variables">
         /// Per-run values that seed the agent's flow variables (override its<br/>
         /// stored defaults). The agent's prompt renders against the result<br/>
@@ -278,6 +290,7 @@ namespace Speechify
             string instruction,
             string? speechifyVersion = default,
             string? idempotencyKey = default,
+            global::System.Collections.Generic.IList<string>? attachments = default,
             object? variables = default,
             int? maxTurns = default,
             string? userIdentity = default,

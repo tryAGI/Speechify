@@ -605,6 +605,13 @@ namespace Speechify
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Speechify.AgentSkill>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.AttachSkillRequest))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.UpdateAgentSkillRequest))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.V1FilesGetParametersKind), TypeInfoPropertyName = "V1FilesGetParametersKind2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.FileKind), TypeInfoPropertyName = "FileKind2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.FileSource))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.File))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.ListFilesResponse))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Speechify.File>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.V1FilesPostRequestBodyContentMultipartFormDataSchemaKind), TypeInfoPropertyName = "V1FilesPostRequestBodyContentMultipartFormDataSchemaKind2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.Store))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.ListStoresResponse))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Speechify.Store>))]
@@ -632,9 +639,6 @@ namespace Speechify
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.StoreBatchResult))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.StoreBatchResponse))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Speechify.StoreBatchResult>))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.StoreAsset))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.ListStoreAssetsResponse))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Speechify.StoreAsset>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.ListAgentStoresResponse))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.HostedApiAuthMode), TypeInfoPropertyName = "HostedApiAuthMode2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.HostedAPI))]
@@ -734,7 +738,7 @@ namespace Speechify
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.UpdateDocumentRequest))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.RunTestRequest))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.UploadRequest))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.UploadAssetRequest))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.UploadRequest2))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.GetSpeechRequestAudioFormat?), TypeInfoPropertyName = "NullableGetSpeechRequestAudioFormat2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.GetSpeechRequestModel?), TypeInfoPropertyName = "NullableGetSpeechRequestModel2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(bool?))]
@@ -867,6 +871,9 @@ namespace Speechify
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.AgentTriggerLastFireStatus?), TypeInfoPropertyName = "NullableAgentTriggerLastFireStatus2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.CreateAgentTriggerRequestType?), TypeInfoPropertyName = "NullableCreateAgentTriggerRequestType2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.AgentTriggerFireResponseStatus?), TypeInfoPropertyName = "NullableAgentTriggerFireResponseStatus2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.V1FilesGetParametersKind?), TypeInfoPropertyName = "NullableV1FilesGetParametersKind2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.FileKind?), TypeInfoPropertyName = "NullableFileKind2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.V1FilesPostRequestBodyContentMultipartFormDataSchemaKind?), TypeInfoPropertyName = "NullableV1FilesPostRequestBodyContentMultipartFormDataSchemaKind2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.StoreWhereClauseOp?), TypeInfoPropertyName = "NullableStoreWhereClauseOp2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.StoreOrderByDirection?), TypeInfoPropertyName = "NullableStoreOrderByDirection2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.StoreBatchWriteOp?), TypeInfoPropertyName = "NullableStoreBatchWriteOp2")]
@@ -991,13 +998,13 @@ namespace Speechify
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.Skill>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.SkillVersion>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.AgentSkill>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.File>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.Store>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.StoreCollection>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.StoreDocument>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.StoreWhereClause>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.StoreBatchWrite>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.StoreBatchResult>))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.StoreAsset>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.HostedAPI>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.HostedApiResolverWhereItems>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.HostedAPIRoute>))]
@@ -1540,6 +1547,18 @@ namespace Speechify
                     || typeToConvert == typeof(global::Speechify.AgentTriggerFireResponseStatus)
 
                     || typeToConvert == typeof(global::Speechify.AgentTriggerFireResponseStatus?)
+
+                    || typeToConvert == typeof(global::Speechify.V1FilesGetParametersKind)
+
+                    || typeToConvert == typeof(global::Speechify.V1FilesGetParametersKind?)
+
+                    || typeToConvert == typeof(global::Speechify.FileKind)
+
+                    || typeToConvert == typeof(global::Speechify.FileKind?)
+
+                    || typeToConvert == typeof(global::Speechify.V1FilesPostRequestBodyContentMultipartFormDataSchemaKind)
+
+                    || typeToConvert == typeof(global::Speechify.V1FilesPostRequestBodyContentMultipartFormDataSchemaKind?)
 
                     || typeToConvert == typeof(global::Speechify.StoreWhereClauseOp)
 
@@ -2786,6 +2805,36 @@ namespace Speechify
                 if (typeToConvert == typeof(global::Speechify.AgentTriggerFireResponseStatus?))
                 {
                     return new global::Speechify.JsonConverters.AgentTriggerFireResponseStatusNullableJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.V1FilesGetParametersKind))
+                {
+                    return new global::Speechify.JsonConverters.V1FilesGetParametersKindJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.V1FilesGetParametersKind?))
+                {
+                    return new global::Speechify.JsonConverters.V1FilesGetParametersKindNullableJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.FileKind))
+                {
+                    return new global::Speechify.JsonConverters.FileKindJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.FileKind?))
+                {
+                    return new global::Speechify.JsonConverters.FileKindNullableJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.V1FilesPostRequestBodyContentMultipartFormDataSchemaKind))
+                {
+                    return new global::Speechify.JsonConverters.V1FilesPostRequestBodyContentMultipartFormDataSchemaKindJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.V1FilesPostRequestBodyContentMultipartFormDataSchemaKind?))
+                {
+                    return new global::Speechify.JsonConverters.V1FilesPostRequestBodyContentMultipartFormDataSchemaKindNullableJsonConverter();
                 }
 
                 if (typeToConvert == typeof(global::Speechify.StoreWhereClauseOp))

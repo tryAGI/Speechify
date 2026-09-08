@@ -3,11 +3,11 @@
 
 namespace Speechify
 {
-    public partial class AssetsClient
+    public partial class FilesClient
     {
 
 
-        private static readonly global::Speechify.EndPointSecurityRequirement s_UploadAssetSecurityRequirement0 =
+        private static readonly global::Speechify.EndPointSecurityRequirement s_UploadSecurityRequirement0 =
             new global::Speechify.EndPointSecurityRequirement
             {
                 Authorizations = new global::Speechify.EndPointAuthorizationRequirement[]
@@ -21,52 +21,62 @@ namespace Speechify
                     },
                 },
             };
-        private static readonly global::Speechify.EndPointSecurityRequirement[] s_UploadAssetSecurityRequirements =
+        private static readonly global::Speechify.EndPointSecurityRequirement[] s_UploadSecurityRequirements =
             new global::Speechify.EndPointSecurityRequirement[]
-            {                s_UploadAssetSecurityRequirement0,
+            {                s_UploadSecurityRequirement0,
             };
-        partial void PrepareUploadAssetArguments(
+        partial void PrepareUploadArguments(
             global::System.Net.Http.HttpClient httpClient,
-            ref string storeId,
             ref string? speechifyVersion,
-            global::Speechify.UploadAssetRequest request);
-        partial void PrepareUploadAssetRequest(
+            global::Speechify.UploadRequest2 request);
+        partial void PrepareUploadRequest(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpRequestMessage httpRequestMessage,
-            string storeId,
             string? speechifyVersion,
-            global::Speechify.UploadAssetRequest request);
-        partial void ProcessUploadAssetResponse(
+            global::Speechify.UploadRequest2 request);
+        partial void ProcessUploadResponse(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpResponseMessage httpResponseMessage);
 
-        partial void ProcessUploadAssetResponseContent(
+        partial void ProcessUploadResponseContent(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpResponseMessage httpResponseMessage,
             ref string content);
 
         /// <summary>
-        /// Upload Asset<br/>
-        /// Upload one file (multipart form field `file`, at most 25 MiB). The<br/>
-        /// part's content type is stored and served back from `bytes_path`.<br/>
-        /// Dark launch: requires the `hosted_apis_access` entitlement (402 `hosted_apis_not_in_plan` otherwise).
+        /// Upload File<br/>
+        /// Upload one file (multipart form field `file`, at most 25 MiB) so a run<br/>
+        /// can be handed it: pass the returned `id` in `attachments` on<br/>
+        /// `POST /v1/agents/{agent_id}/runs`, a team run, or a trigger's run spec.<br/>
+        /// Scope it with `user_identity` to the person it belongs to, and only a<br/>
+        /// run acting for that person can read it; leave it empty and any run in<br/>
+        /// the workspace can.<br/>
+        /// `kind` decides how long it lives. The default, `ephemeral`, is deleted<br/>
+        /// automatically 14 days after upload (`expires_at`) - working material<br/>
+        /// rather than a corpus; for documents an agent should search later, use a<br/>
+        /// knowledge base. Send `kind: kept` for something that survives until you<br/>
+        /// delete it, and give a `kept` file a `path` to publish it where a<br/>
+        /// hosted-API route can serve it. A workspace's `kept` files are bounded by<br/>
+        /// its plan; past the ceiling an upload answers `409`<br/>
+        /// `file_storage_limit_reached`.<br/>
+        /// An agent reads an attached file inside the run through its `read_file`<br/>
+        /// tool: PDF, HTML, Markdown and plain text are extracted, and an image is<br/>
+        /// transcribed and described by a vision model.<br/>
+        /// Dark launch: requires the `durable_runs_access` entitlement (402 `durable_runs_not_in_plan` otherwise).
         /// </summary>
-        /// <param name="storeId"></param>
         /// <param name="speechifyVersion"></param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
-        public async global::System.Threading.Tasks.Task<global::Speechify.StoreAsset> UploadAssetAsync(
-            string storeId,
+        public async global::System.Threading.Tasks.Task<global::Speechify.File> UploadAsync(
 
-            global::Speechify.UploadAssetRequest request,
+            global::Speechify.UploadRequest2 request,
             string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
-            var __response = await UploadAssetAsResponseAsync(
-                storeId: storeId,
+            var __response = await UploadAsResponseAsync(
 
                 request: request,
                 speechifyVersion: speechifyVersion,
@@ -77,21 +87,34 @@ namespace Speechify
             return __response.Body;
         }
         /// <summary>
-        /// Upload Asset<br/>
-        /// Upload one file (multipart form field `file`, at most 25 MiB). The<br/>
-        /// part's content type is stored and served back from `bytes_path`.<br/>
-        /// Dark launch: requires the `hosted_apis_access` entitlement (402 `hosted_apis_not_in_plan` otherwise).
+        /// Upload File<br/>
+        /// Upload one file (multipart form field `file`, at most 25 MiB) so a run<br/>
+        /// can be handed it: pass the returned `id` in `attachments` on<br/>
+        /// `POST /v1/agents/{agent_id}/runs`, a team run, or a trigger's run spec.<br/>
+        /// Scope it with `user_identity` to the person it belongs to, and only a<br/>
+        /// run acting for that person can read it; leave it empty and any run in<br/>
+        /// the workspace can.<br/>
+        /// `kind` decides how long it lives. The default, `ephemeral`, is deleted<br/>
+        /// automatically 14 days after upload (`expires_at`) - working material<br/>
+        /// rather than a corpus; for documents an agent should search later, use a<br/>
+        /// knowledge base. Send `kind: kept` for something that survives until you<br/>
+        /// delete it, and give a `kept` file a `path` to publish it where a<br/>
+        /// hosted-API route can serve it. A workspace's `kept` files are bounded by<br/>
+        /// its plan; past the ceiling an upload answers `409`<br/>
+        /// `file_storage_limit_reached`.<br/>
+        /// An agent reads an attached file inside the run through its `read_file`<br/>
+        /// tool: PDF, HTML, Markdown and plain text are extracted, and an image is<br/>
+        /// transcribed and described by a vision model.<br/>
+        /// Dark launch: requires the `durable_runs_access` entitlement (402 `durable_runs_not_in_plan` otherwise).
         /// </summary>
-        /// <param name="storeId"></param>
         /// <param name="speechifyVersion"></param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
-        public async global::System.Threading.Tasks.Task<global::Speechify.AutoSDKHttpResponse<global::Speechify.StoreAsset>> UploadAssetAsResponseAsync(
-            string storeId,
+        public async global::System.Threading.Tasks.Task<global::Speechify.AutoSDKHttpResponse<global::Speechify.File>> UploadAsResponseAsync(
 
-            global::Speechify.UploadAssetRequest request,
+            global::Speechify.UploadRequest2 request,
             string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
@@ -100,17 +123,16 @@ namespace Speechify
 
             PrepareArguments(
                 client: HttpClient);
-            PrepareUploadAssetArguments(
+            PrepareUploadArguments(
                 httpClient: HttpClient,
-                storeId: ref storeId,
                 speechifyVersion: ref speechifyVersion,
                 request: request);
 
 
             var __authorizations = global::Speechify.EndPointSecurityResolver.ResolveAuthorizations(
                 availableAuthorizations: Authorizations,
-                securityRequirements: s_UploadAssetSecurityRequirements,
-                operationName: "UploadAssetAsync");
+                securityRequirements: s_UploadSecurityRequirements,
+                operationName: "UploadAsync");
 
             using var __timeoutCancellationTokenSource = global::Speechify.AutoSDKRequestOptionsSupport.CreateTimeoutCancellationTokenSource(
                 clientOptions: Options,
@@ -130,7 +152,7 @@ namespace Speechify
             {
 
                             var __pathBuilder = new global::Speechify.PathBuilder(
-                                path: $"/v1/stores/{storeId}/assets",
+                                path: "/v1/files",
                                 baseUri: HttpClient.BaseAddress);
                             var __path = __pathBuilder.ToString();
                 __path = global::Speechify.AutoSDKRequestOptionsSupport.AppendQueryParameters(
@@ -207,6 +229,39 @@ namespace Speechify
                                 __contentFile.Headers.ContentDisposition.FileNameStar = null;
                             }
 
+                            if (request.UserIdentity != default)
+                            {
+
+                                __httpRequestContent.Add(
+                                    content: new global::System.Net.Http.StringContent(request.UserIdentity ?? string.Empty),
+                                    name: "\"user_identity\"");
+
+                            }
+                            if (request.Kind != default)
+                            {
+
+                                __httpRequestContent.Add(
+                                    content: new global::System.Net.Http.StringContent((request.Kind).HasValue ? (request.Kind).GetValueOrDefault().ToValueString() : string.Empty),
+                                    name: "\"kind\"");
+
+                            }
+                            if (request.Path != default)
+                            {
+
+                                __httpRequestContent.Add(
+                                    content: new global::System.Net.Http.StringContent(request.Path ?? string.Empty),
+                                    name: "\"path\"");
+
+                            }
+                            if (request.ProjectId != default)
+                            {
+
+                                __httpRequestContent.Add(
+                                    content: new global::System.Net.Http.StringContent(request.ProjectId ?? string.Empty),
+                                    name: "\"project_id\"");
+
+                            }
+
                             __httpRequest.Content = __httpRequestContent;
 
                 global::Speechify.AutoSDKRequestOptionsSupport.ApplyHeaders(
@@ -217,10 +272,9 @@ namespace Speechify
                 PrepareRequest(
                     client: HttpClient,
                     request: __httpRequest);
-                PrepareUploadAssetRequest(
+                PrepareUploadRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
-                    storeId: storeId!,
                     speechifyVersion: speechifyVersion,
                     request: request);
 
@@ -239,9 +293,9 @@ namespace Speechify
                     await global::Speechify.AutoSDKRequestOptionsSupport.OnBeforeRequestAsync(
                             clientOptions: Options,
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "UploadAsset",
-                                methodName: "UploadAssetAsync",
-                                pathTemplate: "$\"/v1/stores/{storeId}/assets\"",
+                                operationId: "Upload",
+                                methodName: "UploadAsync",
+                                pathTemplate: "\"/v1/files\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -273,9 +327,9 @@ namespace Speechify
                         await global::Speechify.AutoSDKRequestOptionsSupport.OnAfterErrorAsync(
                             clientOptions: Options,
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "UploadAsset",
-                                methodName: "UploadAssetAsync",
-                                pathTemplate: "$\"/v1/stores/{storeId}/assets\"",
+                                operationId: "Upload",
+                                methodName: "UploadAsync",
+                                pathTemplate: "\"/v1/files\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -314,9 +368,9 @@ namespace Speechify
                         await global::Speechify.AutoSDKRequestOptionsSupport.OnAfterErrorAsync(
                             clientOptions: Options,
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "UploadAsset",
-                                methodName: "UploadAssetAsync",
-                                pathTemplate: "$\"/v1/stores/{storeId}/assets\"",
+                                operationId: "Upload",
+                                methodName: "UploadAsync",
+                                pathTemplate: "\"/v1/files\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -354,7 +408,7 @@ namespace Speechify
                 ProcessResponse(
                     client: HttpClient,
                     response: __response);
-                ProcessUploadAssetResponse(
+                ProcessUploadResponse(
                     httpClient: HttpClient,
                     httpResponseMessage: __response);
                 if (__response.IsSuccessStatusCode)
@@ -362,9 +416,9 @@ namespace Speechify
                     await global::Speechify.AutoSDKRequestOptionsSupport.OnAfterSuccessAsync(
                             clientOptions: Options,
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "UploadAsset",
-                                methodName: "UploadAssetAsync",
-                                pathTemplate: "$\"/v1/stores/{storeId}/assets\"",
+                                operationId: "Upload",
+                                methodName: "UploadAsync",
+                                pathTemplate: "\"/v1/files\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -384,9 +438,9 @@ namespace Speechify
                     await global::Speechify.AutoSDKRequestOptionsSupport.OnAfterErrorAsync(
                             clientOptions: Options,
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "UploadAsset",
-                                methodName: "UploadAssetAsync",
-                                pathTemplate: "$\"/v1/stores/{storeId}/assets\"",
+                                operationId: "Upload",
+                                methodName: "UploadAsync",
+                                pathTemplate: "\"/v1/files\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -549,6 +603,43 @@ namespace Speechify
                                         h => h.Key,
                                         h => h.Value));
                             }
+                            // The request conflicts with the current resource state - e.g. duplicate, optimistic-concurrency mismatch, or last-owner guard.
+                            if ((int)__response.StatusCode == 409)
+                            {
+                                string? __content_409 = null;
+                                global::System.Exception? __exception_409 = null;
+                                global::Speechify.Error? __value_409 = null;
+                                try
+                                {
+                                    if (__effectiveReadResponseAsString)
+                                    {
+                                        __content_409 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+                                        __value_409 = global::Speechify.Error.FromJson(__content_409, JsonSerializerContext);
+                                    }
+                                    else
+                                    {
+                                        __content_409 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+
+                                        __value_409 = global::Speechify.Error.FromJson(__content_409, JsonSerializerContext);
+                                    }
+                                }
+                                catch (global::System.Exception __ex)
+                                {
+                                    __exception_409 = __ex;
+                                }
+
+
+                                throw global::Speechify.ApiException<global::Speechify.Error>.Create(
+                                    statusCode: __response.StatusCode,
+                                    message: __content_409 ?? __response.ReasonPhrase ?? string.Empty,
+                                    innerException: __exception_409,
+                                    responseBody: __content_409,
+                                    responseObject: __value_409,
+                                    responseHeaders: global::System.Linq.Enumerable.ToDictionary(
+                                        __response.Headers,
+                                        h => h.Key,
+                                        h => h.Value));
+                            }
                             // Request body exceeded a per-endpoint size limit (e.g. KB document upload cap, batch-call CSV cap, audio-asset WAV cap).
                             if ((int)__response.StatusCode == 413)
                             {
@@ -636,7 +727,7 @@ namespace Speechify
                                     client: HttpClient,
                                     response: __response,
                                     content: ref __content);
-                                ProcessUploadAssetResponseContent(
+                                ProcessUploadResponseContent(
                                     httpClient: HttpClient,
                                     httpResponseMessage: __response,
                                     content: ref __content);
@@ -645,9 +736,9 @@ namespace Speechify
                                 {
                                     __response.EnsureSuccessStatusCode();
 
-                                    var __value = global::Speechify.StoreAsset.FromJson(__content, JsonSerializerContext) ??
+                                    var __value = global::Speechify.File.FromJson(__content, JsonSerializerContext) ??
                                         throw new global::System.InvalidOperationException($"Response deserialization failed for \"{__content}\" ");
-                                    return new global::Speechify.AutoSDKHttpResponse<global::Speechify.StoreAsset>(
+                                    return new global::Speechify.AutoSDKHttpResponse<global::Speechify.File>(
                                         statusCode: __response.StatusCode,
                                         headers: global::Speechify.AutoSDKHttpResponse.CreateHeaders(__response),
                                         requestUri: __response.RequestMessage?.RequestUri,
@@ -677,9 +768,9 @@ namespace Speechify
                 #endif
                                     ).ConfigureAwait(false);
 
-                                    var __value = await global::Speechify.StoreAsset.FromJsonStreamAsync(__content, JsonSerializerContext).ConfigureAwait(false) ??
+                                    var __value = await global::Speechify.File.FromJsonStreamAsync(__content, JsonSerializerContext).ConfigureAwait(false) ??
                                         throw new global::System.InvalidOperationException("Response deserialization failed.");
-                                    return new global::Speechify.AutoSDKHttpResponse<global::Speechify.StoreAsset>(
+                                    return new global::Speechify.AutoSDKHttpResponse<global::Speechify.File>(
                                         statusCode: __response.StatusCode,
                                         headers: global::Speechify.AutoSDKHttpResponse.CreateHeaders(__response),
                                         requestUri: __response.RequestMessage?.RequestUri,
@@ -720,12 +811,26 @@ namespace Speechify
             }
         }
         /// <summary>
-        /// Upload Asset<br/>
-        /// Upload one file (multipart form field `file`, at most 25 MiB). The<br/>
-        /// part's content type is stored and served back from `bytes_path`.<br/>
-        /// Dark launch: requires the `hosted_apis_access` entitlement (402 `hosted_apis_not_in_plan` otherwise).
+        /// Upload File<br/>
+        /// Upload one file (multipart form field `file`, at most 25 MiB) so a run<br/>
+        /// can be handed it: pass the returned `id` in `attachments` on<br/>
+        /// `POST /v1/agents/{agent_id}/runs`, a team run, or a trigger's run spec.<br/>
+        /// Scope it with `user_identity` to the person it belongs to, and only a<br/>
+        /// run acting for that person can read it; leave it empty and any run in<br/>
+        /// the workspace can.<br/>
+        /// `kind` decides how long it lives. The default, `ephemeral`, is deleted<br/>
+        /// automatically 14 days after upload (`expires_at`) - working material<br/>
+        /// rather than a corpus; for documents an agent should search later, use a<br/>
+        /// knowledge base. Send `kind: kept` for something that survives until you<br/>
+        /// delete it, and give a `kept` file a `path` to publish it where a<br/>
+        /// hosted-API route can serve it. A workspace's `kept` files are bounded by<br/>
+        /// its plan; past the ceiling an upload answers `409`<br/>
+        /// `file_storage_limit_reached`.<br/>
+        /// An agent reads an attached file inside the run through its `read_file`<br/>
+        /// tool: PDF, HTML, Markdown and plain text are extracted, and an image is<br/>
+        /// transcribed and described by a vision model.<br/>
+        /// Dark launch: requires the `durable_runs_access` entitlement (402 `durable_runs_not_in_plan` otherwise).
         /// </summary>
-        /// <param name="storeId"></param>
         /// <param name="speechifyVersion"></param>
         /// <param name="file">
         /// The file to store (at most 25 MiB).
@@ -733,25 +838,54 @@ namespace Speechify
         /// <param name="filename">
         /// The file to store (at most 25 MiB).
         /// </param>
+        /// <param name="userIdentity">
+        /// The person this file is for, in your own vocabulary - the same value<br/>
+        /// a run, a conversation and a widget session take. Only a run acting<br/>
+        /// for that person can read it. Omit for a workspace-wide file.
+        /// </param>
+        /// <param name="kind">
+        /// How long to keep it. `ephemeral` (the default) is working material<br/>
+        /// for a run and is deleted after 14 days. `kept` survives until you<br/>
+        /// delete it - use it for anything an agent produced that you intend to<br/>
+        /// keep or serve.
+        /// </param>
+        /// <param name="path">
+        /// Publish the file under this name so a hosted-API route can serve it,<br/>
+        /// for example `index.html` or `reports/q3.html`. Unique among the<br/>
+        /// workspace's live files, and only valid on a `kept` file with no<br/>
+        /// `user_identity` - a path on something that expires in a fortnight is<br/>
+        /// a URL that breaks, and a route answers whoever holds the URL, so it<br/>
+        /// has no person to scope to. A path already in use answers `409`.
+        /// </param>
+        /// <param name="projectId">
+        /// The project to create the file in, as a `proj_...` id; omit for the<br/>
+        /// caller's default.
+        /// </param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::System.InvalidOperationException"></exception>
-        public async global::System.Threading.Tasks.Task<global::Speechify.StoreAsset> UploadAssetAsync(
-            string storeId,
+        public async global::System.Threading.Tasks.Task<global::Speechify.File> UploadAsync(
             byte[] file,
             string filename,
             string? speechifyVersion = default,
+            string? userIdentity = default,
+            global::Speechify.V1FilesPostRequestBodyContentMultipartFormDataSchemaKind? kind = default,
+            string? path = default,
+            string? projectId = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
-            var __request = new global::Speechify.UploadAssetRequest
+            var __request = new global::Speechify.UploadRequest2
             {
                 File = file,
                 Filename = filename,
+                UserIdentity = userIdentity,
+                Kind = kind,
+                Path = path,
+                ProjectId = projectId,
             };
 
-            return await UploadAssetAsync(
-                storeId: storeId,
+            return await UploadAsync(
                 speechifyVersion: speechifyVersion,
                 request: __request,
                 requestOptions: requestOptions,
@@ -759,12 +893,26 @@ namespace Speechify
         }
 
         /// <summary>
-        /// Upload Asset<br/>
-        /// Upload one file (multipart form field `file`, at most 25 MiB). The<br/>
-        /// part's content type is stored and served back from `bytes_path`.<br/>
-        /// Dark launch: requires the `hosted_apis_access` entitlement (402 `hosted_apis_not_in_plan` otherwise).
+        /// Upload File<br/>
+        /// Upload one file (multipart form field `file`, at most 25 MiB) so a run<br/>
+        /// can be handed it: pass the returned `id` in `attachments` on<br/>
+        /// `POST /v1/agents/{agent_id}/runs`, a team run, or a trigger's run spec.<br/>
+        /// Scope it with `user_identity` to the person it belongs to, and only a<br/>
+        /// run acting for that person can read it; leave it empty and any run in<br/>
+        /// the workspace can.<br/>
+        /// `kind` decides how long it lives. The default, `ephemeral`, is deleted<br/>
+        /// automatically 14 days after upload (`expires_at`) - working material<br/>
+        /// rather than a corpus; for documents an agent should search later, use a<br/>
+        /// knowledge base. Send `kind: kept` for something that survives until you<br/>
+        /// delete it, and give a `kept` file a `path` to publish it where a<br/>
+        /// hosted-API route can serve it. A workspace's `kept` files are bounded by<br/>
+        /// its plan; past the ceiling an upload answers `409`<br/>
+        /// `file_storage_limit_reached`.<br/>
+        /// An agent reads an attached file inside the run through its `read_file`<br/>
+        /// tool: PDF, HTML, Markdown and plain text are extracted, and an image is<br/>
+        /// transcribed and described by a vision model.<br/>
+        /// Dark launch: requires the `durable_runs_access` entitlement (402 `durable_runs_not_in_plan` otherwise).
         /// </summary>
-        /// <param name="storeId"></param>
         /// <param name="speechifyVersion"></param>
         /// <param name="file">
         /// The file to store (at most 25 MiB).
@@ -772,37 +920,66 @@ namespace Speechify
         /// <param name="filename">
         /// The file to store (at most 25 MiB).
         /// </param>
+        /// <param name="userIdentity">
+        /// The person this file is for, in your own vocabulary - the same value<br/>
+        /// a run, a conversation and a widget session take. Only a run acting<br/>
+        /// for that person can read it. Omit for a workspace-wide file.
+        /// </param>
+        /// <param name="kind">
+        /// How long to keep it. `ephemeral` (the default) is working material<br/>
+        /// for a run and is deleted after 14 days. `kept` survives until you<br/>
+        /// delete it - use it for anything an agent produced that you intend to<br/>
+        /// keep or serve.
+        /// </param>
+        /// <param name="path">
+        /// Publish the file under this name so a hosted-API route can serve it,<br/>
+        /// for example `index.html` or `reports/q3.html`. Unique among the<br/>
+        /// workspace's live files, and only valid on a `kept` file with no<br/>
+        /// `user_identity` - a path on something that expires in a fortnight is<br/>
+        /// a URL that breaks, and a route answers whoever holds the URL, so it<br/>
+        /// has no person to scope to. A path already in use answers `409`.
+        /// </param>
+        /// <param name="projectId">
+        /// The project to create the file in, as a `proj_...` id; omit for the<br/>
+        /// caller's default.
+        /// </param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
-        public async global::System.Threading.Tasks.Task<global::Speechify.StoreAsset> UploadAssetAsync(
-            string storeId,
+        public async global::System.Threading.Tasks.Task<global::Speechify.File> UploadAsync(
             global::System.IO.Stream file,
             string filename,
             string? speechifyVersion = default,
+            string? userIdentity = default,
+            global::Speechify.V1FilesPostRequestBodyContentMultipartFormDataSchemaKind? kind = default,
+            string? path = default,
+            string? projectId = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
 
             file = file ?? throw new global::System.ArgumentNullException(nameof(file));
-            var request = new global::Speechify.UploadAssetRequest
+            var request = new global::Speechify.UploadRequest2
             {
                 File = global::System.Array.Empty<byte>(),
                 Filename = filename,
+                UserIdentity = userIdentity,
+                Kind = kind,
+                Path = path,
+                ProjectId = projectId,
             };
             PrepareArguments(
                 client: HttpClient);
-            PrepareUploadAssetArguments(
+            PrepareUploadArguments(
                 httpClient: HttpClient,
-                storeId: ref storeId,
                 speechifyVersion: ref speechifyVersion,
                 request: request);
 
 
             var __authorizations = global::Speechify.EndPointSecurityResolver.ResolveAuthorizations(
                 availableAuthorizations: Authorizations,
-                securityRequirements: s_UploadAssetSecurityRequirements,
-                operationName: "UploadAssetAsync");
+                securityRequirements: s_UploadSecurityRequirements,
+                operationName: "UploadAsync");
 
             using var __timeoutCancellationTokenSource = global::Speechify.AutoSDKRequestOptionsSupport.CreateTimeoutCancellationTokenSource(
                 clientOptions: Options,
@@ -822,7 +999,7 @@ namespace Speechify
             {
 
                             var __pathBuilder = new global::Speechify.PathBuilder(
-                                path: $"/v1/stores/{storeId}/assets",
+                                path: "/v1/files",
                                 baseUri: HttpClient.BaseAddress);
                             var __path = __pathBuilder.ToString();
                 __path = global::Speechify.AutoSDKRequestOptionsSupport.AppendQueryParameters(
@@ -899,6 +1076,39 @@ namespace Speechify
                                 __contentFile.Headers.ContentDisposition.FileNameStar = null;
                             }
 
+                            if (request.UserIdentity != default)
+                            {
+
+                                __httpRequestContent.Add(
+                                    content: new global::System.Net.Http.StringContent(request.UserIdentity ?? string.Empty),
+                                    name: "\"user_identity\"");
+
+                            }
+                            if (request.Kind != default)
+                            {
+
+                                __httpRequestContent.Add(
+                                    content: new global::System.Net.Http.StringContent((request.Kind).HasValue ? (request.Kind).GetValueOrDefault().ToValueString() : string.Empty),
+                                    name: "\"kind\"");
+
+                            }
+                            if (request.Path != default)
+                            {
+
+                                __httpRequestContent.Add(
+                                    content: new global::System.Net.Http.StringContent(request.Path ?? string.Empty),
+                                    name: "\"path\"");
+
+                            }
+                            if (request.ProjectId != default)
+                            {
+
+                                __httpRequestContent.Add(
+                                    content: new global::System.Net.Http.StringContent(request.ProjectId ?? string.Empty),
+                                    name: "\"project_id\"");
+
+                            }
+
                             __httpRequest.Content = __httpRequestContent;
 
                 global::Speechify.AutoSDKRequestOptionsSupport.ApplyHeaders(
@@ -909,10 +1119,9 @@ namespace Speechify
                 PrepareRequest(
                     client: HttpClient,
                     request: __httpRequest);
-                PrepareUploadAssetRequest(
+                PrepareUploadRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
-                    storeId: storeId!,
                     speechifyVersion: speechifyVersion,
                     request: request);
 
@@ -931,9 +1140,9 @@ namespace Speechify
                     await global::Speechify.AutoSDKRequestOptionsSupport.OnBeforeRequestAsync(
                             clientOptions: Options,
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "UploadAsset",
-                                methodName: "UploadAssetAsync",
-                                pathTemplate: "$\"/v1/stores/{storeId}/assets\"",
+                                operationId: "Upload",
+                                methodName: "UploadAsync",
+                                pathTemplate: "\"/v1/files\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -965,9 +1174,9 @@ namespace Speechify
                         await global::Speechify.AutoSDKRequestOptionsSupport.OnAfterErrorAsync(
                             clientOptions: Options,
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "UploadAsset",
-                                methodName: "UploadAssetAsync",
-                                pathTemplate: "$\"/v1/stores/{storeId}/assets\"",
+                                operationId: "Upload",
+                                methodName: "UploadAsync",
+                                pathTemplate: "\"/v1/files\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -1006,9 +1215,9 @@ namespace Speechify
                         await global::Speechify.AutoSDKRequestOptionsSupport.OnAfterErrorAsync(
                             clientOptions: Options,
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "UploadAsset",
-                                methodName: "UploadAssetAsync",
-                                pathTemplate: "$\"/v1/stores/{storeId}/assets\"",
+                                operationId: "Upload",
+                                methodName: "UploadAsync",
+                                pathTemplate: "\"/v1/files\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -1046,7 +1255,7 @@ namespace Speechify
                 ProcessResponse(
                     client: HttpClient,
                     response: __response);
-                ProcessUploadAssetResponse(
+                ProcessUploadResponse(
                     httpClient: HttpClient,
                     httpResponseMessage: __response);
                 if (__response.IsSuccessStatusCode)
@@ -1054,9 +1263,9 @@ namespace Speechify
                     await global::Speechify.AutoSDKRequestOptionsSupport.OnAfterSuccessAsync(
                             clientOptions: Options,
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "UploadAsset",
-                                methodName: "UploadAssetAsync",
-                                pathTemplate: "$\"/v1/stores/{storeId}/assets\"",
+                                operationId: "Upload",
+                                methodName: "UploadAsync",
+                                pathTemplate: "\"/v1/files\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -1076,9 +1285,9 @@ namespace Speechify
                     await global::Speechify.AutoSDKRequestOptionsSupport.OnAfterErrorAsync(
                             clientOptions: Options,
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "UploadAsset",
-                                methodName: "UploadAssetAsync",
-                                pathTemplate: "$\"/v1/stores/{storeId}/assets\"",
+                                operationId: "Upload",
+                                methodName: "UploadAsync",
+                                pathTemplate: "\"/v1/files\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -1241,6 +1450,43 @@ namespace Speechify
                                         h => h.Key,
                                         h => h.Value));
                             }
+                            // The request conflicts with the current resource state - e.g. duplicate, optimistic-concurrency mismatch, or last-owner guard.
+                            if ((int)__response.StatusCode == 409)
+                            {
+                                string? __content_409 = null;
+                                global::System.Exception? __exception_409 = null;
+                                global::Speechify.Error? __value_409 = null;
+                                try
+                                {
+                                    if (__effectiveReadResponseAsString)
+                                    {
+                                        __content_409 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+                                        __value_409 = global::Speechify.Error.FromJson(__content_409, JsonSerializerContext);
+                                    }
+                                    else
+                                    {
+                                        __content_409 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+
+                                        __value_409 = global::Speechify.Error.FromJson(__content_409, JsonSerializerContext);
+                                    }
+                                }
+                                catch (global::System.Exception __ex)
+                                {
+                                    __exception_409 = __ex;
+                                }
+
+
+                                throw global::Speechify.ApiException<global::Speechify.Error>.Create(
+                                    statusCode: __response.StatusCode,
+                                    message: __content_409 ?? __response.ReasonPhrase ?? string.Empty,
+                                    innerException: __exception_409,
+                                    responseBody: __content_409,
+                                    responseObject: __value_409,
+                                    responseHeaders: global::System.Linq.Enumerable.ToDictionary(
+                                        __response.Headers,
+                                        h => h.Key,
+                                        h => h.Value));
+                            }
                             // Request body exceeded a per-endpoint size limit (e.g. KB document upload cap, batch-call CSV cap, audio-asset WAV cap).
                             if ((int)__response.StatusCode == 413)
                             {
@@ -1328,7 +1574,7 @@ namespace Speechify
                                     client: HttpClient,
                                     response: __response,
                                     content: ref __content);
-                                ProcessUploadAssetResponseContent(
+                                ProcessUploadResponseContent(
                                     httpClient: HttpClient,
                                     httpResponseMessage: __response,
                                     content: ref __content);
@@ -1338,7 +1584,7 @@ namespace Speechify
                                     __response.EnsureSuccessStatusCode();
 
                                     return
-                                        global::Speechify.StoreAsset.FromJson(__content, JsonSerializerContext) ??
+                                        global::Speechify.File.FromJson(__content, JsonSerializerContext) ??
                                         throw new global::System.InvalidOperationException($"Response deserialization failed for \"{__content}\" ");
                                 }
                                 catch (global::System.Exception __ex)
@@ -1366,7 +1612,7 @@ namespace Speechify
                                     ).ConfigureAwait(false);
 
                                     return
-                                        await global::Speechify.StoreAsset.FromJsonStreamAsync(__content, JsonSerializerContext).ConfigureAwait(false) ??
+                                        await global::Speechify.File.FromJsonStreamAsync(__content, JsonSerializerContext).ConfigureAwait(false) ??
                                         throw new global::System.InvalidOperationException("Response deserialization failed.");
                                 }
                                 catch (global::System.Exception __ex)
@@ -1404,12 +1650,26 @@ namespace Speechify
             }
         }
         /// <summary>
-        /// Upload Asset<br/>
-        /// Upload one file (multipart form field `file`, at most 25 MiB). The<br/>
-        /// part's content type is stored and served back from `bytes_path`.<br/>
-        /// Dark launch: requires the `hosted_apis_access` entitlement (402 `hosted_apis_not_in_plan` otherwise).
+        /// Upload File<br/>
+        /// Upload one file (multipart form field `file`, at most 25 MiB) so a run<br/>
+        /// can be handed it: pass the returned `id` in `attachments` on<br/>
+        /// `POST /v1/agents/{agent_id}/runs`, a team run, or a trigger's run spec.<br/>
+        /// Scope it with `user_identity` to the person it belongs to, and only a<br/>
+        /// run acting for that person can read it; leave it empty and any run in<br/>
+        /// the workspace can.<br/>
+        /// `kind` decides how long it lives. The default, `ephemeral`, is deleted<br/>
+        /// automatically 14 days after upload (`expires_at`) - working material<br/>
+        /// rather than a corpus; for documents an agent should search later, use a<br/>
+        /// knowledge base. Send `kind: kept` for something that survives until you<br/>
+        /// delete it, and give a `kept` file a `path` to publish it where a<br/>
+        /// hosted-API route can serve it. A workspace's `kept` files are bounded by<br/>
+        /// its plan; past the ceiling an upload answers `409`<br/>
+        /// `file_storage_limit_reached`.<br/>
+        /// An agent reads an attached file inside the run through its `read_file`<br/>
+        /// tool: PDF, HTML, Markdown and plain text are extracted, and an image is<br/>
+        /// transcribed and described by a vision model.<br/>
+        /// Dark launch: requires the `durable_runs_access` entitlement (402 `durable_runs_not_in_plan` otherwise).
         /// </summary>
-        /// <param name="storeId"></param>
         /// <param name="speechifyVersion"></param>
         /// <param name="file">
         /// The file to store (at most 25 MiB).
@@ -1417,37 +1677,66 @@ namespace Speechify
         /// <param name="filename">
         /// The file to store (at most 25 MiB).
         /// </param>
+        /// <param name="userIdentity">
+        /// The person this file is for, in your own vocabulary - the same value<br/>
+        /// a run, a conversation and a widget session take. Only a run acting<br/>
+        /// for that person can read it. Omit for a workspace-wide file.
+        /// </param>
+        /// <param name="kind">
+        /// How long to keep it. `ephemeral` (the default) is working material<br/>
+        /// for a run and is deleted after 14 days. `kept` survives until you<br/>
+        /// delete it - use it for anything an agent produced that you intend to<br/>
+        /// keep or serve.
+        /// </param>
+        /// <param name="path">
+        /// Publish the file under this name so a hosted-API route can serve it,<br/>
+        /// for example `index.html` or `reports/q3.html`. Unique among the<br/>
+        /// workspace's live files, and only valid on a `kept` file with no<br/>
+        /// `user_identity` - a path on something that expires in a fortnight is<br/>
+        /// a URL that breaks, and a route answers whoever holds the URL, so it<br/>
+        /// has no person to scope to. A path already in use answers `409`.
+        /// </param>
+        /// <param name="projectId">
+        /// The project to create the file in, as a `proj_...` id; omit for the<br/>
+        /// caller's default.
+        /// </param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
-        public async global::System.Threading.Tasks.Task<global::Speechify.AutoSDKHttpResponse<global::Speechify.StoreAsset>> UploadAssetAsResponseAsync(
-            string storeId,
+        public async global::System.Threading.Tasks.Task<global::Speechify.AutoSDKHttpResponse<global::Speechify.File>> UploadAsResponseAsync(
             global::System.IO.Stream file,
             string filename,
             string? speechifyVersion = default,
+            string? userIdentity = default,
+            global::Speechify.V1FilesPostRequestBodyContentMultipartFormDataSchemaKind? kind = default,
+            string? path = default,
+            string? projectId = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
 
             file = file ?? throw new global::System.ArgumentNullException(nameof(file));
-            var request = new global::Speechify.UploadAssetRequest
+            var request = new global::Speechify.UploadRequest2
             {
                 File = global::System.Array.Empty<byte>(),
                 Filename = filename,
+                UserIdentity = userIdentity,
+                Kind = kind,
+                Path = path,
+                ProjectId = projectId,
             };
             PrepareArguments(
                 client: HttpClient);
-            PrepareUploadAssetArguments(
+            PrepareUploadArguments(
                 httpClient: HttpClient,
-                storeId: ref storeId,
                 speechifyVersion: ref speechifyVersion,
                 request: request);
 
 
             var __authorizations = global::Speechify.EndPointSecurityResolver.ResolveAuthorizations(
                 availableAuthorizations: Authorizations,
-                securityRequirements: s_UploadAssetSecurityRequirements,
-                operationName: "UploadAssetAsync");
+                securityRequirements: s_UploadSecurityRequirements,
+                operationName: "UploadAsync");
 
             using var __timeoutCancellationTokenSource = global::Speechify.AutoSDKRequestOptionsSupport.CreateTimeoutCancellationTokenSource(
                 clientOptions: Options,
@@ -1467,7 +1756,7 @@ namespace Speechify
             {
 
                             var __pathBuilder = new global::Speechify.PathBuilder(
-                                path: $"/v1/stores/{storeId}/assets",
+                                path: "/v1/files",
                                 baseUri: HttpClient.BaseAddress);
                             var __path = __pathBuilder.ToString();
                 __path = global::Speechify.AutoSDKRequestOptionsSupport.AppendQueryParameters(
@@ -1544,6 +1833,39 @@ namespace Speechify
                                 __contentFile.Headers.ContentDisposition.FileNameStar = null;
                             }
 
+                            if (request.UserIdentity != default)
+                            {
+
+                                __httpRequestContent.Add(
+                                    content: new global::System.Net.Http.StringContent(request.UserIdentity ?? string.Empty),
+                                    name: "\"user_identity\"");
+
+                            }
+                            if (request.Kind != default)
+                            {
+
+                                __httpRequestContent.Add(
+                                    content: new global::System.Net.Http.StringContent((request.Kind).HasValue ? (request.Kind).GetValueOrDefault().ToValueString() : string.Empty),
+                                    name: "\"kind\"");
+
+                            }
+                            if (request.Path != default)
+                            {
+
+                                __httpRequestContent.Add(
+                                    content: new global::System.Net.Http.StringContent(request.Path ?? string.Empty),
+                                    name: "\"path\"");
+
+                            }
+                            if (request.ProjectId != default)
+                            {
+
+                                __httpRequestContent.Add(
+                                    content: new global::System.Net.Http.StringContent(request.ProjectId ?? string.Empty),
+                                    name: "\"project_id\"");
+
+                            }
+
                             __httpRequest.Content = __httpRequestContent;
 
                 global::Speechify.AutoSDKRequestOptionsSupport.ApplyHeaders(
@@ -1554,10 +1876,9 @@ namespace Speechify
                 PrepareRequest(
                     client: HttpClient,
                     request: __httpRequest);
-                PrepareUploadAssetRequest(
+                PrepareUploadRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
-                    storeId: storeId!,
                     speechifyVersion: speechifyVersion,
                     request: request);
 
@@ -1576,9 +1897,9 @@ namespace Speechify
                     await global::Speechify.AutoSDKRequestOptionsSupport.OnBeforeRequestAsync(
                             clientOptions: Options,
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "UploadAsset",
-                                methodName: "UploadAssetAsync",
-                                pathTemplate: "$\"/v1/stores/{storeId}/assets\"",
+                                operationId: "Upload",
+                                methodName: "UploadAsync",
+                                pathTemplate: "\"/v1/files\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -1610,9 +1931,9 @@ namespace Speechify
                         await global::Speechify.AutoSDKRequestOptionsSupport.OnAfterErrorAsync(
                             clientOptions: Options,
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "UploadAsset",
-                                methodName: "UploadAssetAsync",
-                                pathTemplate: "$\"/v1/stores/{storeId}/assets\"",
+                                operationId: "Upload",
+                                methodName: "UploadAsync",
+                                pathTemplate: "\"/v1/files\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -1651,9 +1972,9 @@ namespace Speechify
                         await global::Speechify.AutoSDKRequestOptionsSupport.OnAfterErrorAsync(
                             clientOptions: Options,
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "UploadAsset",
-                                methodName: "UploadAssetAsync",
-                                pathTemplate: "$\"/v1/stores/{storeId}/assets\"",
+                                operationId: "Upload",
+                                methodName: "UploadAsync",
+                                pathTemplate: "\"/v1/files\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -1691,7 +2012,7 @@ namespace Speechify
                 ProcessResponse(
                     client: HttpClient,
                     response: __response);
-                ProcessUploadAssetResponse(
+                ProcessUploadResponse(
                     httpClient: HttpClient,
                     httpResponseMessage: __response);
                 if (__response.IsSuccessStatusCode)
@@ -1699,9 +2020,9 @@ namespace Speechify
                     await global::Speechify.AutoSDKRequestOptionsSupport.OnAfterSuccessAsync(
                             clientOptions: Options,
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "UploadAsset",
-                                methodName: "UploadAssetAsync",
-                                pathTemplate: "$\"/v1/stores/{storeId}/assets\"",
+                                operationId: "Upload",
+                                methodName: "UploadAsync",
+                                pathTemplate: "\"/v1/files\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -1721,9 +2042,9 @@ namespace Speechify
                     await global::Speechify.AutoSDKRequestOptionsSupport.OnAfterErrorAsync(
                             clientOptions: Options,
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "UploadAsset",
-                                methodName: "UploadAssetAsync",
-                                pathTemplate: "$\"/v1/stores/{storeId}/assets\"",
+                                operationId: "Upload",
+                                methodName: "UploadAsync",
+                                pathTemplate: "\"/v1/files\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -1886,6 +2207,43 @@ namespace Speechify
                                         h => h.Key,
                                         h => h.Value));
                             }
+                            // The request conflicts with the current resource state - e.g. duplicate, optimistic-concurrency mismatch, or last-owner guard.
+                            if ((int)__response.StatusCode == 409)
+                            {
+                                string? __content_409 = null;
+                                global::System.Exception? __exception_409 = null;
+                                global::Speechify.Error? __value_409 = null;
+                                try
+                                {
+                                    if (__effectiveReadResponseAsString)
+                                    {
+                                        __content_409 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+                                        __value_409 = global::Speechify.Error.FromJson(__content_409, JsonSerializerContext);
+                                    }
+                                    else
+                                    {
+                                        __content_409 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+
+                                        __value_409 = global::Speechify.Error.FromJson(__content_409, JsonSerializerContext);
+                                    }
+                                }
+                                catch (global::System.Exception __ex)
+                                {
+                                    __exception_409 = __ex;
+                                }
+
+
+                                throw global::Speechify.ApiException<global::Speechify.Error>.Create(
+                                    statusCode: __response.StatusCode,
+                                    message: __content_409 ?? __response.ReasonPhrase ?? string.Empty,
+                                    innerException: __exception_409,
+                                    responseBody: __content_409,
+                                    responseObject: __value_409,
+                                    responseHeaders: global::System.Linq.Enumerable.ToDictionary(
+                                        __response.Headers,
+                                        h => h.Key,
+                                        h => h.Value));
+                            }
                             // Request body exceeded a per-endpoint size limit (e.g. KB document upload cap, batch-call CSV cap, audio-asset WAV cap).
                             if ((int)__response.StatusCode == 413)
                             {
@@ -1973,7 +2331,7 @@ namespace Speechify
                                     client: HttpClient,
                                     response: __response,
                                     content: ref __content);
-                                ProcessUploadAssetResponseContent(
+                                ProcessUploadResponseContent(
                                     httpClient: HttpClient,
                                     httpResponseMessage: __response,
                                     content: ref __content);
@@ -1982,9 +2340,9 @@ namespace Speechify
                                 {
                                     __response.EnsureSuccessStatusCode();
 
-                                    var __value = global::Speechify.StoreAsset.FromJson(__content, JsonSerializerContext) ??
+                                    var __value = global::Speechify.File.FromJson(__content, JsonSerializerContext) ??
                                         throw new global::System.InvalidOperationException($"Response deserialization failed for \"{__content}\" ");
-                                    return new global::Speechify.AutoSDKHttpResponse<global::Speechify.StoreAsset>(
+                                    return new global::Speechify.AutoSDKHttpResponse<global::Speechify.File>(
                                         statusCode: __response.StatusCode,
                                         headers: global::Speechify.AutoSDKHttpResponse.CreateHeaders(__response),
                                         requestUri: __response.RequestMessage?.RequestUri,
@@ -2014,9 +2372,9 @@ namespace Speechify
                 #endif
                                     ).ConfigureAwait(false);
 
-                                    var __value = await global::Speechify.StoreAsset.FromJsonStreamAsync(__content, JsonSerializerContext).ConfigureAwait(false) ??
+                                    var __value = await global::Speechify.File.FromJsonStreamAsync(__content, JsonSerializerContext).ConfigureAwait(false) ??
                                         throw new global::System.InvalidOperationException("Response deserialization failed.");
-                                    return new global::Speechify.AutoSDKHttpResponse<global::Speechify.StoreAsset>(
+                                    return new global::Speechify.AutoSDKHttpResponse<global::Speechify.File>(
                                         statusCode: __response.StatusCode,
                                         headers: global::Speechify.AutoSDKHttpResponse.CreateHeaders(__response),
                                         requestUri: __response.RequestMessage?.RequestUri,

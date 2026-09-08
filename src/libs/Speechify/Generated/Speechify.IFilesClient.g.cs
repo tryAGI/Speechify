@@ -7,7 +7,7 @@ namespace Speechify
     /// If no httpClient is provided, a new one will be created.<br/>
     /// If no baseUri is provided, the default baseUri from OpenAPI spec will be used.
     /// </summary>
-    public partial interface IAssetsClient : global::System.IDisposable
+    public partial interface IFilesClient : global::System.IDisposable
     {
         /// <summary>
         /// The HttpClient instance.

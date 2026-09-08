@@ -3,11 +3,11 @@
 
 namespace Speechify
 {
-    public partial class AssetsClient
+    public partial class FilesClient
     {
 
 
-        private static readonly global::Speechify.EndPointSecurityRequirement s_GetAssetBytesSecurityRequirement0 =
+        private static readonly global::Speechify.EndPointSecurityRequirement s_GetContentSecurityRequirement0 =
             new global::Speechify.EndPointSecurityRequirement
             {
                 Authorizations = new global::Speechify.EndPointAuthorizationRequirement[]
@@ -21,51 +21,48 @@ namespace Speechify
                     },
                 },
             };
-        private static readonly global::Speechify.EndPointSecurityRequirement[] s_GetAssetBytesSecurityRequirements =
+        private static readonly global::Speechify.EndPointSecurityRequirement[] s_GetContentSecurityRequirements =
             new global::Speechify.EndPointSecurityRequirement[]
-            {                s_GetAssetBytesSecurityRequirement0,
+            {                s_GetContentSecurityRequirement0,
             };
-        partial void PrepareGetAssetBytesArguments(
+        partial void PrepareGetContentArguments(
             global::System.Net.Http.HttpClient httpClient,
-            ref string storeId,
-            ref string assetId,
+            ref string fileId,
             ref string? speechifyVersion);
-        partial void PrepareGetAssetBytesRequest(
+        partial void PrepareGetContentRequest(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpRequestMessage httpRequestMessage,
-            string storeId,
-            string assetId,
+            string fileId,
             string? speechifyVersion);
-        partial void ProcessGetAssetBytesResponse(
+        partial void ProcessGetContentResponse(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpResponseMessage httpResponseMessage);
 
-        partial void ProcessGetAssetBytesResponseContent(
+        partial void ProcessGetContentResponseContent(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpResponseMessage httpResponseMessage,
             ref byte[] content);
 
         /// <summary>
-        /// Get Asset Bytes<br/>
-        /// Stream the asset's bytes with its stored content type. Private and uncacheable.<br/>
-        /// Dark launch: requires the `hosted_apis_access` entitlement (402 `hosted_apis_not_in_plan` otherwise).
+        /// Get File Content<br/>
+        /// Download the file's bytes. Private, uncacheable, and always served as<br/>
+        /// an `application/octet-stream` attachment whatever the file's own type -<br/>
+        /// read `content_type` from the file object for what it actually is.<br/>
+        /// Dark launch: requires the `durable_runs_access` entitlement (402 `durable_runs_not_in_plan` otherwise).
         /// </summary>
-        /// <param name="storeId"></param>
-        /// <param name="assetId"></param>
+        /// <param name="fileId"></param>
         /// <param name="speechifyVersion"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
-        public async global::System.Threading.Tasks.Task<byte[]> GetAssetBytesAsync(
-            string storeId,
-            string assetId,
+        public async global::System.Threading.Tasks.Task<byte[]> GetContentAsync(
+            string fileId,
             string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
-            var __response = await GetAssetBytesAsResponseAsync(
-                storeId: storeId,
-                assetId: assetId,
+            var __response = await GetContentAsResponseAsync(
+                fileId: fileId,
                 speechifyVersion: speechifyVersion,
                 requestOptions: requestOptions,
                 cancellationToken: cancellationToken
@@ -74,36 +71,35 @@ namespace Speechify
             return __response.Body;
         }
         /// <summary>
-        /// Get Asset Bytes<br/>
-        /// Stream the asset's bytes with its stored content type. Private and uncacheable.<br/>
-        /// Dark launch: requires the `hosted_apis_access` entitlement (402 `hosted_apis_not_in_plan` otherwise).
+        /// Get File Content<br/>
+        /// Download the file's bytes. Private, uncacheable, and always served as<br/>
+        /// an `application/octet-stream` attachment whatever the file's own type -<br/>
+        /// read `content_type` from the file object for what it actually is.<br/>
+        /// Dark launch: requires the `durable_runs_access` entitlement (402 `durable_runs_not_in_plan` otherwise).
         /// </summary>
-        /// <param name="storeId"></param>
-        /// <param name="assetId"></param>
+        /// <param name="fileId"></param>
         /// <param name="speechifyVersion"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
-        public async global::System.Threading.Tasks.Task<global::System.IO.Stream> GetAssetBytesAsStreamAsync(
-            string storeId,
-            string assetId,
+        public async global::System.Threading.Tasks.Task<global::System.IO.Stream> GetContentAsStreamAsync(
+            string fileId,
             string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
             PrepareArguments(
                 client: HttpClient);
-            PrepareGetAssetBytesArguments(
+            PrepareGetContentArguments(
                 httpClient: HttpClient,
-                storeId: ref storeId,
-                assetId: ref assetId,
+                fileId: ref fileId,
                 speechifyVersion: ref speechifyVersion);
 
 
             var __authorizations = global::Speechify.EndPointSecurityResolver.ResolveAuthorizations(
                 availableAuthorizations: Authorizations,
-                securityRequirements: s_GetAssetBytesSecurityRequirements,
-                operationName: "GetAssetBytesAsync");
+                securityRequirements: s_GetContentSecurityRequirements,
+                operationName: "GetContentAsync");
 
             using var __timeoutCancellationTokenSource = global::Speechify.AutoSDKRequestOptionsSupport.CreateTimeoutCancellationTokenSource(
                 clientOptions: Options,
@@ -123,7 +119,7 @@ namespace Speechify
             {
 
                             var __pathBuilder = new global::Speechify.PathBuilder(
-                                path: $"/v1/stores/{storeId}/assets/{assetId}/bytes",
+                                path: $"/v1/files/{fileId}/content",
                                 baseUri: HttpClient.BaseAddress);
                             var __path = __pathBuilder.ToString();
                 __path = global::Speechify.AutoSDKRequestOptionsSupport.AppendQueryParameters(
@@ -168,11 +164,10 @@ namespace Speechify
                 PrepareRequest(
                     client: HttpClient,
                     request: __httpRequest);
-                PrepareGetAssetBytesRequest(
+                PrepareGetContentRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
-                    storeId: storeId!,
-                    assetId: assetId!,
+                    fileId: fileId!,
                     speechifyVersion: speechifyVersion);
 
                 return __httpRequest;
@@ -190,9 +185,9 @@ namespace Speechify
                     await global::Speechify.AutoSDKRequestOptionsSupport.OnBeforeRequestAsync(
                             clientOptions: Options,
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "GetAssetBytes",
-                                methodName: "GetAssetBytesAsync",
-                                pathTemplate: "$\"/v1/stores/{storeId}/assets/{assetId}/bytes\"",
+                                operationId: "GetContent",
+                                methodName: "GetContentAsync",
+                                pathTemplate: "$\"/v1/files/{fileId}/content\"",
                                 httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -224,9 +219,9 @@ namespace Speechify
                         await global::Speechify.AutoSDKRequestOptionsSupport.OnAfterErrorAsync(
                             clientOptions: Options,
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "GetAssetBytes",
-                                methodName: "GetAssetBytesAsync",
-                                pathTemplate: "$\"/v1/stores/{storeId}/assets/{assetId}/bytes\"",
+                                operationId: "GetContent",
+                                methodName: "GetContentAsync",
+                                pathTemplate: "$\"/v1/files/{fileId}/content\"",
                                 httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -265,9 +260,9 @@ namespace Speechify
                         await global::Speechify.AutoSDKRequestOptionsSupport.OnAfterErrorAsync(
                             clientOptions: Options,
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "GetAssetBytes",
-                                methodName: "GetAssetBytesAsync",
-                                pathTemplate: "$\"/v1/stores/{storeId}/assets/{assetId}/bytes\"",
+                                operationId: "GetContent",
+                                methodName: "GetContentAsync",
+                                pathTemplate: "$\"/v1/files/{fileId}/content\"",
                                 httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -305,7 +300,7 @@ namespace Speechify
                 ProcessResponse(
                     client: HttpClient,
                     response: __response);
-                ProcessGetAssetBytesResponse(
+                ProcessGetContentResponse(
                     httpClient: HttpClient,
                     httpResponseMessage: __response);
                 if (__response.IsSuccessStatusCode)
@@ -313,9 +308,9 @@ namespace Speechify
                     await global::Speechify.AutoSDKRequestOptionsSupport.OnAfterSuccessAsync(
                             clientOptions: Options,
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "GetAssetBytes",
-                                methodName: "GetAssetBytesAsync",
-                                pathTemplate: "$\"/v1/stores/{storeId}/assets/{assetId}/bytes\"",
+                                operationId: "GetContent",
+                                methodName: "GetContentAsync",
+                                pathTemplate: "$\"/v1/files/{fileId}/content\"",
                                 httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -335,9 +330,9 @@ namespace Speechify
                     await global::Speechify.AutoSDKRequestOptionsSupport.OnAfterErrorAsync(
                             clientOptions: Options,
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "GetAssetBytes",
-                                methodName: "GetAssetBytesAsync",
-                                pathTemplate: "$\"/v1/stores/{storeId}/assets/{assetId}/bytes\"",
+                                operationId: "GetContent",
+                                methodName: "GetContentAsync",
+                                pathTemplate: "$\"/v1/files/{fileId}/content\"",
                                 httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -552,36 +547,35 @@ namespace Speechify
             }
         }
         /// <summary>
-        /// Get Asset Bytes<br/>
-        /// Stream the asset's bytes with its stored content type. Private and uncacheable.<br/>
-        /// Dark launch: requires the `hosted_apis_access` entitlement (402 `hosted_apis_not_in_plan` otherwise).
+        /// Get File Content<br/>
+        /// Download the file's bytes. Private, uncacheable, and always served as<br/>
+        /// an `application/octet-stream` attachment whatever the file's own type -<br/>
+        /// read `content_type` from the file object for what it actually is.<br/>
+        /// Dark launch: requires the `durable_runs_access` entitlement (402 `durable_runs_not_in_plan` otherwise).
         /// </summary>
-        /// <param name="storeId"></param>
-        /// <param name="assetId"></param>
+        /// <param name="fileId"></param>
         /// <param name="speechifyVersion"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
-        public async global::System.Threading.Tasks.Task<global::Speechify.AutoSDKHttpResponse<byte[]>> GetAssetBytesAsResponseAsync(
-            string storeId,
-            string assetId,
+        public async global::System.Threading.Tasks.Task<global::Speechify.AutoSDKHttpResponse<byte[]>> GetContentAsResponseAsync(
+            string fileId,
             string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
             PrepareArguments(
                 client: HttpClient);
-            PrepareGetAssetBytesArguments(
+            PrepareGetContentArguments(
                 httpClient: HttpClient,
-                storeId: ref storeId,
-                assetId: ref assetId,
+                fileId: ref fileId,
                 speechifyVersion: ref speechifyVersion);
 
 
             var __authorizations = global::Speechify.EndPointSecurityResolver.ResolveAuthorizations(
                 availableAuthorizations: Authorizations,
-                securityRequirements: s_GetAssetBytesSecurityRequirements,
-                operationName: "GetAssetBytesAsync");
+                securityRequirements: s_GetContentSecurityRequirements,
+                operationName: "GetContentAsync");
 
             using var __timeoutCancellationTokenSource = global::Speechify.AutoSDKRequestOptionsSupport.CreateTimeoutCancellationTokenSource(
                 clientOptions: Options,
@@ -601,7 +595,7 @@ namespace Speechify
             {
 
                             var __pathBuilder = new global::Speechify.PathBuilder(
-                                path: $"/v1/stores/{storeId}/assets/{assetId}/bytes",
+                                path: $"/v1/files/{fileId}/content",
                                 baseUri: HttpClient.BaseAddress);
                             var __path = __pathBuilder.ToString();
                 __path = global::Speechify.AutoSDKRequestOptionsSupport.AppendQueryParameters(
@@ -646,11 +640,10 @@ namespace Speechify
                 PrepareRequest(
                     client: HttpClient,
                     request: __httpRequest);
-                PrepareGetAssetBytesRequest(
+                PrepareGetContentRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
-                    storeId: storeId!,
-                    assetId: assetId!,
+                    fileId: fileId!,
                     speechifyVersion: speechifyVersion);
 
                 return __httpRequest;
@@ -668,9 +661,9 @@ namespace Speechify
                     await global::Speechify.AutoSDKRequestOptionsSupport.OnBeforeRequestAsync(
                             clientOptions: Options,
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "GetAssetBytes",
-                                methodName: "GetAssetBytesAsync",
-                                pathTemplate: "$\"/v1/stores/{storeId}/assets/{assetId}/bytes\"",
+                                operationId: "GetContent",
+                                methodName: "GetContentAsync",
+                                pathTemplate: "$\"/v1/files/{fileId}/content\"",
                                 httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -702,9 +695,9 @@ namespace Speechify
                         await global::Speechify.AutoSDKRequestOptionsSupport.OnAfterErrorAsync(
                             clientOptions: Options,
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "GetAssetBytes",
-                                methodName: "GetAssetBytesAsync",
-                                pathTemplate: "$\"/v1/stores/{storeId}/assets/{assetId}/bytes\"",
+                                operationId: "GetContent",
+                                methodName: "GetContentAsync",
+                                pathTemplate: "$\"/v1/files/{fileId}/content\"",
                                 httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -743,9 +736,9 @@ namespace Speechify
                         await global::Speechify.AutoSDKRequestOptionsSupport.OnAfterErrorAsync(
                             clientOptions: Options,
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "GetAssetBytes",
-                                methodName: "GetAssetBytesAsync",
-                                pathTemplate: "$\"/v1/stores/{storeId}/assets/{assetId}/bytes\"",
+                                operationId: "GetContent",
+                                methodName: "GetContentAsync",
+                                pathTemplate: "$\"/v1/files/{fileId}/content\"",
                                 httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -783,7 +776,7 @@ namespace Speechify
                 ProcessResponse(
                     client: HttpClient,
                     response: __response);
-                ProcessGetAssetBytesResponse(
+                ProcessGetContentResponse(
                     httpClient: HttpClient,
                     httpResponseMessage: __response);
                 if (__response.IsSuccessStatusCode)
@@ -791,9 +784,9 @@ namespace Speechify
                     await global::Speechify.AutoSDKRequestOptionsSupport.OnAfterSuccessAsync(
                             clientOptions: Options,
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "GetAssetBytes",
-                                methodName: "GetAssetBytesAsync",
-                                pathTemplate: "$\"/v1/stores/{storeId}/assets/{assetId}/bytes\"",
+                                operationId: "GetContent",
+                                methodName: "GetContentAsync",
+                                pathTemplate: "$\"/v1/files/{fileId}/content\"",
                                 httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -813,9 +806,9 @@ namespace Speechify
                     await global::Speechify.AutoSDKRequestOptionsSupport.OnAfterErrorAsync(
                             clientOptions: Options,
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "GetAssetBytes",
-                                methodName: "GetAssetBytesAsync",
-                                pathTemplate: "$\"/v1/stores/{storeId}/assets/{assetId}/bytes\"",
+                                operationId: "GetContent",
+                                methodName: "GetContentAsync",
+                                pathTemplate: "$\"/v1/files/{fileId}/content\"",
                                 httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -987,7 +980,7 @@ namespace Speechify
                 #endif
                                 ).ConfigureAwait(false);
 
-                                ProcessGetAssetBytesResponseContent(
+                                ProcessGetContentResponseContent(
                                     httpClient: HttpClient,
                                     httpResponseMessage: __response,
                                     content: ref __content);

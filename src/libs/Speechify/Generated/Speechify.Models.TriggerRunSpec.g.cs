@@ -16,6 +16,17 @@ namespace Speechify
         public required string Instruction { get; set; }
 
         /// <summary>
+        /// The files every run this trigger fires is handed, as `file_...`<br/>
+        /// ids from `POST /v1/files`. At most 10.<br/>
+        /// An `ephemeral` file expires 14 days after upload while a trigger<br/>
+        /// does not, so a fire whose attachment has lapsed is refused by the<br/>
+        /// run surface and the fire fails - loudly, rather than running the<br/>
+        /// agent over nothing. Attach a `kept` file to a standing trigger.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("attachments")]
+        public global::System.Collections.Generic.IList<string>? Attachments { get; set; }
+
+        /// <summary>
         /// Variable seed for the run. A webhook fire's JSON body is merged in<br/>
         /// under the webhook's `payload_variable` key.
         /// </summary>
@@ -87,6 +98,14 @@ namespace Speechify
         /// <param name="instruction">
         /// The goal instruction that drives the run (1-8000 characters).
         /// </param>
+        /// <param name="attachments">
+        /// The files every run this trigger fires is handed, as `file_...`<br/>
+        /// ids from `POST /v1/files`. At most 10.<br/>
+        /// An `ephemeral` file expires 14 days after upload while a trigger<br/>
+        /// does not, so a fire whose attachment has lapsed is refused by the<br/>
+        /// run surface and the fire fails - loudly, rather than running the<br/>
+        /// agent over nothing. Attach a `kept` file to a standing trigger.
+        /// </param>
         /// <param name="variables">
         /// Variable seed for the run. A webhook fire's JSON body is merged in<br/>
         /// under the webhook's `payload_variable` key.
@@ -137,6 +156,7 @@ namespace Speechify
 #endif
         public TriggerRunSpec(
             string instruction,
+            global::System.Collections.Generic.IList<string>? attachments,
             object? variables,
             int? maxTurns,
             object? outputSchema,
@@ -144,6 +164,7 @@ namespace Speechify
             global::System.Collections.Generic.Dictionary<string, string>? metadata)
         {
             this.Instruction = instruction ?? throw new global::System.ArgumentNullException(nameof(instruction));
+            this.Attachments = attachments;
             this.Variables = variables;
             this.MaxTurns = maxTurns;
             this.OutputSchema = outputSchema;
