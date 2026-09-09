@@ -138,6 +138,29 @@ namespace Speechify
         public required bool TextAgentAccess { get; set; }
 
         /// <summary>
+        /// Text conversations the workspace may be ANSWERING at once, across<br/>
+        /// every channel that runs on the text runtime (the API text channel<br/>
+        /// and Slack alike); 0 means uncapped. A conversation consumes a slot<br/>
+        /// only while a turn is in flight and gives it back when the turn<br/>
+        /// finishes, so opening or holding open a conversation costs nothing<br/>
+        /// against this. Sending a message while the workspace is at the cap<br/>
+        /// returns 429 concurrency_limit_reached with `Retry-After`, and<br/>
+        /// retrying works: slots free as turns complete.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("text_agent_max_concurrent_conversations")]
+        [global::System.Text.Json.Serialization.JsonRequired]
+        public required int TextAgentMaxConcurrentConversations { get; set; }
+
+        /// <summary>
+        /// Billed text turns the workspace may process per calendar month<br/>
+        /// (UTC); 0 means uncapped. Past it a turn returns 402<br/>
+        /// text_message_quota_exceeded until the month rolls over.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("text_agent_monthly_message_cap")]
+        [global::System.Text.Json.Serialization.JsonRequired]
+        public required int TextAgentMonthlyMessageCap { get; set; }
+
+        /// <summary>
         /// Whether the workspace may start and read durable async agent runs,<br/>
         /// including the approvals they raise and team runs. When false, those<br/>
         /// endpoints return 402 durable_runs_not_in_plan.
@@ -338,6 +361,21 @@ namespace Speechify
         /// channel. When false, enabling the text channel or opening a text<br/>
         /// conversation returns 402 text_channel_not_in_plan.
         /// </param>
+        /// <param name="textAgentMaxConcurrentConversations">
+        /// Text conversations the workspace may be ANSWERING at once, across<br/>
+        /// every channel that runs on the text runtime (the API text channel<br/>
+        /// and Slack alike); 0 means uncapped. A conversation consumes a slot<br/>
+        /// only while a turn is in flight and gives it back when the turn<br/>
+        /// finishes, so opening or holding open a conversation costs nothing<br/>
+        /// against this. Sending a message while the workspace is at the cap<br/>
+        /// returns 429 concurrency_limit_reached with `Retry-After`, and<br/>
+        /// retrying works: slots free as turns complete.
+        /// </param>
+        /// <param name="textAgentMonthlyMessageCap">
+        /// Billed text turns the workspace may process per calendar month<br/>
+        /// (UTC); 0 means uncapped. Past it a turn returns 402<br/>
+        /// text_message_quota_exceeded until the month rolls over.
+        /// </param>
         /// <param name="durableRunsAccess">
         /// Whether the workspace may start and read durable async agent runs,<br/>
         /// including the approvals they raise and team runs. When false, those<br/>
@@ -429,6 +467,8 @@ namespace Speechify
             bool customLlmEndpoint,
             bool waymarkAccess,
             bool textAgentAccess,
+            int textAgentMaxConcurrentConversations,
+            int textAgentMonthlyMessageCap,
             bool durableRunsAccess,
             int maxRunTurns,
             bool slackChannelAccess,
@@ -463,6 +503,8 @@ namespace Speechify
             this.CustomLlmEndpoint = customLlmEndpoint;
             this.WaymarkAccess = waymarkAccess;
             this.TextAgentAccess = textAgentAccess;
+            this.TextAgentMaxConcurrentConversations = textAgentMaxConcurrentConversations;
+            this.TextAgentMonthlyMessageCap = textAgentMonthlyMessageCap;
             this.DurableRunsAccess = durableRunsAccess;
             this.MaxRunTurns = maxRunTurns;
             this.SlackChannelAccess = slackChannelAccess;

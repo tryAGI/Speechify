@@ -9,8 +9,13 @@ namespace Speechify
     /// holding the project open, with the modes each refuses, and<br/>
     /// `blocker_count` is how many there are in total. `removes` is what a purge deletes or revokes, one<br/>
     /// entry per kind in a fixed order (zero counts included). `retains` is<br/>
-    /// the operational records a purge keeps (a conversation with its frozen<br/>
-    /// attribution, the rest moved to the Default project).
+    /// everything a purge KEEPS, in two halves: the records of work that<br/>
+    /// happened (a conversation with its frozen attribution, runs, calls,<br/>
+    /// callers, memories - the rest moved to the Default project), and the<br/>
+    /// resources whose own lifecycle a purge does not reach (external<br/>
+    /// brains, skills, teams, channels, stores, hosted APIs, files), which<br/>
+    /// move to the Default project and stay readable. Both lists are in a<br/>
+    /// fixed order with zero counts included.
     /// </summary>
     public sealed partial class ProjectTeardown
     {

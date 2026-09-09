@@ -138,6 +138,24 @@ namespace Speechify
         public required string Name { get; set; }
 
         /// <summary>
+        /// How many resources this project holds: agents and their tests,<br/>
+        /// knowledge bases, tools, audio assets, phone numbers, external<br/>
+        /// brains, skills, teams, channels, stores, hosted APIs and files.<br/>
+        /// Records of work that happened - conversations, runs, calls,<br/>
+        /// callers, memories - are not counted, and never hold a project<br/>
+        /// open.<br/>
+        /// It is the count the unqualified delete refuses on, so a project<br/>
+        /// reading `0` is one `DELETE /v1/projects/{project_id}` accepts<br/>
+        /// with no body. That is what makes an application's own cleanup a<br/>
+        /// single list call rather than a stats read per project. Use<br/>
+        /// `GET /v1/projects/{project_id}/stats` for the per-kind<br/>
+        /// breakdown.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("resource_count")]
+        [global::System.Text.Json.Serialization.JsonRequired]
+        public required int ResourceCount { get; set; }
+
+        /// <summary>
         ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("created_at")]
@@ -165,6 +183,20 @@ namespace Speechify
         /// </param>
         /// <param name="name">
         /// Human-readable label, unique per workspace (case-insensitive).
+        /// </param>
+        /// <param name="resourceCount">
+        /// How many resources this project holds: agents and their tests,<br/>
+        /// knowledge bases, tools, audio assets, phone numbers, external<br/>
+        /// brains, skills, teams, channels, stores, hosted APIs and files.<br/>
+        /// Records of work that happened - conversations, runs, calls,<br/>
+        /// callers, memories - are not counted, and never hold a project<br/>
+        /// open.<br/>
+        /// It is the count the unqualified delete refuses on, so a project<br/>
+        /// reading `0` is one `DELETE /v1/projects/{project_id}` accepts<br/>
+        /// with no body. That is what makes an application's own cleanup a<br/>
+        /// single list call rather than a stats read per project. Use<br/>
+        /// `GET /v1/projects/{project_id}/stats` for the per-kind<br/>
+        /// breakdown.
         /// </param>
         /// <param name="createdAt"></param>
         /// <param name="updatedAt"></param>
@@ -247,6 +279,7 @@ namespace Speechify
         public Project(
             string id,
             string name,
+            int resourceCount,
             global::System.DateTime createdAt,
             global::System.DateTime updatedAt,
             global::System.DateTime? archivedAt,
@@ -266,6 +299,7 @@ namespace Speechify
             this.MonthlySpend = monthlySpend;
             this.Id = id ?? throw new global::System.ArgumentNullException(nameof(id));
             this.Name = name ?? throw new global::System.ArgumentNullException(nameof(name));
+            this.ResourceCount = resourceCount;
             this.CreatedAt = createdAt;
             this.UpdatedAt = updatedAt;
         }

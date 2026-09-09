@@ -44,6 +44,10 @@ namespace Speechify
         /// <summary>
         ///
         /// </summary>
+        AgentPublishGateToolUnreachable,
+        /// <summary>
+        ///
+        /// </summary>
         AgentPublishGateUnavailable,
         /// <summary>
         ///
@@ -348,6 +352,10 @@ namespace Speechify
         /// <summary>
         ///
         /// </summary>
+        ProjectNotEmpty,
+        /// <summary>
+        ///
+        /// </summary>
         ProjectNotFound,
         /// <summary>
         ///
@@ -606,6 +614,7 @@ namespace Speechify
                 ErrorCode.AgentNotFound => "agent_not_found",
                 ErrorCode.AgentPublishGateFailed => "agent_publish_gate_failed",
                 ErrorCode.AgentPublishGateRequired => "agent_publish_gate_required",
+                ErrorCode.AgentPublishGateToolUnreachable => "agent_publish_gate_tool_unreachable",
                 ErrorCode.AgentPublishGateUnavailable => "agent_publish_gate_unavailable",
                 ErrorCode.AgentRunActionStale => "agent_run_action_stale",
                 ErrorCode.AgentRunNotFound => "agent_run_not_found",
@@ -682,6 +691,7 @@ namespace Speechify
                 ErrorCode.ProjectLimitReached => "project_limit_reached",
                 ErrorCode.ProjectNameTaken => "project_name_taken",
                 ErrorCode.ProjectNotArchived => "project_not_archived",
+                ErrorCode.ProjectNotEmpty => "project_not_empty",
                 ErrorCode.ProjectNotFound => "project_not_found",
                 ErrorCode.ProjectNotPurged => "project_not_purged",
                 ErrorCode.ProjectRestoreWindowExpired => "project_restore_window_expired",
@@ -759,6 +769,7 @@ namespace Speechify
                 "agent_not_found" => ErrorCode.AgentNotFound,
                 "agent_publish_gate_failed" => ErrorCode.AgentPublishGateFailed,
                 "agent_publish_gate_required" => ErrorCode.AgentPublishGateRequired,
+                "agent_publish_gate_tool_unreachable" => ErrorCode.AgentPublishGateToolUnreachable,
                 "agent_publish_gate_unavailable" => ErrorCode.AgentPublishGateUnavailable,
                 "agent_run_action_stale" => ErrorCode.AgentRunActionStale,
                 "agent_run_not_found" => ErrorCode.AgentRunNotFound,
@@ -835,6 +846,7 @@ namespace Speechify
                 "project_limit_reached" => ErrorCode.ProjectLimitReached,
                 "project_name_taken" => ErrorCode.ProjectNameTaken,
                 "project_not_archived" => ErrorCode.ProjectNotArchived,
+                "project_not_empty" => ErrorCode.ProjectNotEmpty,
                 "project_not_found" => ErrorCode.ProjectNotFound,
                 "project_not_purged" => ErrorCode.ProjectNotPurged,
                 "project_restore_window_expired" => ErrorCode.ProjectRestoreWindowExpired,

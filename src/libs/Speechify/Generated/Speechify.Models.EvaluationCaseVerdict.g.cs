@@ -59,6 +59,21 @@ namespace Speechify
         public required long DurationMs { get; set; }
 
         /// <summary>
+        /// Who could not run this case, present only when `outcome` is<br/>
+        /// `errored` (a scored case has no fault to attribute). `platform`<br/>
+        /// is ours - the eval worker, the judge or the probe corpus - and is<br/>
+        /// the default, so an unattributed failure is never blamed on the<br/>
+        /// caller. `agent_config` is the agent's OWN configuration, today an<br/>
+        /// attached MCP server that could not be reached; waiting does not<br/>
+        /// fix it. A publish refused entirely by `agent_config` cases answers<br/>
+        /// `422 agent_publish_gate_tool_unreachable` rather than the<br/>
+        /// retryable `503 agent_publish_gate_unavailable`.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("fault")]
+        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Speechify.JsonConverters.EvaluationCaseVerdictFaultJsonConverter))]
+        public global::Speechify.EvaluationCaseVerdictFault? Fault { get; set; }
+
+        /// <summary>
         ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("criteria")]
@@ -92,6 +107,17 @@ namespace Speechify
         /// <param name="rationale"></param>
         /// <param name="durationMs"></param>
         /// <param name="criteria"></param>
+        /// <param name="fault">
+        /// Who could not run this case, present only when `outcome` is<br/>
+        /// `errored` (a scored case has no fault to attribute). `platform`<br/>
+        /// is ours - the eval worker, the judge or the probe corpus - and is<br/>
+        /// the default, so an unattributed failure is never blamed on the<br/>
+        /// caller. `agent_config` is the agent's OWN configuration, today an<br/>
+        /// attached MCP server that could not be reached; waiting does not<br/>
+        /// fix it. A publish refused entirely by `agent_config` cases answers<br/>
+        /// `422 agent_publish_gate_tool_unreachable` rather than the<br/>
+        /// retryable `503 agent_publish_gate_unavailable`.
+        /// </param>
         /// <param name="result">
         /// Full per-type run detail (transcript, tool calls, per-type<br/>
         /// result), for a consumer that needs the synthetic conversation.<br/>
@@ -109,6 +135,7 @@ namespace Speechify
             string rationale,
             long durationMs,
             global::System.Collections.Generic.IList<global::Speechify.EvaluationCriterionVerdict> criteria,
+            global::Speechify.EvaluationCaseVerdictFault? fault,
             object? result)
         {
             this.CaseId = caseId ?? throw new global::System.ArgumentNullException(nameof(caseId));
@@ -118,6 +145,7 @@ namespace Speechify
             this.Passed = passed;
             this.Rationale = rationale ?? throw new global::System.ArgumentNullException(nameof(rationale));
             this.DurationMs = durationMs;
+            this.Fault = fault;
             this.Criteria = criteria ?? throw new global::System.ArgumentNullException(nameof(criteria));
             this.Result = result;
         }

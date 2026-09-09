@@ -15,7 +15,11 @@ namespace Speechify
         /// <summary>
         /// Live counts of every resource kind grouped under one project. Each<br/>
         /// count is zero, never absent, when the project holds none of that<br/>
-        /// kind.
+        /// kind.<br/>
+        /// The resource kinds here are what the project's `resource_count`<br/>
+        /// totals, plus the records of work that happened (conversations,<br/>
+        /// callers, batch calls, suite runs, memories), which are counted but<br/>
+        /// never hold a project open.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("resource_counts")]
         [global::System.Text.Json.Serialization.JsonRequired]
@@ -33,7 +37,11 @@ namespace Speechify
         /// <param name="resourceCounts">
         /// Live counts of every resource kind grouped under one project. Each<br/>
         /// count is zero, never absent, when the project holds none of that<br/>
-        /// kind.
+        /// kind.<br/>
+        /// The resource kinds here are what the project's `resource_count`<br/>
+        /// totals, plus the records of work that happened (conversations,<br/>
+        /// callers, batch calls, suite runs, memories), which are counted but<br/>
+        /// never hold a project open.
         /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
