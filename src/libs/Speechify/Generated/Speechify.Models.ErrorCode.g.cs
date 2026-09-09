@@ -20,6 +20,10 @@ namespace Speechify
         /// <summary>
         ///
         /// </summary>
+        AgentConfigTooLarge,
+        /// <summary>
+        ///
+        /// </summary>
         AgentInUse,
         /// <summary>
         ///
@@ -508,6 +512,10 @@ namespace Speechify
         /// <summary>
         ///
         /// </summary>
+        ToolNameTaken,
+        /// <summary>
+        ///
+        /// </summary>
         ToolNotFound,
         /// <summary>
         ///
@@ -592,6 +600,7 @@ namespace Speechify
             return value switch
             {
                 ErrorCode.AccountDeletionBlocked => "account_deletion_blocked",
+                ErrorCode.AgentConfigTooLarge => "agent_config_too_large",
                 ErrorCode.AgentInUse => "agent_in_use",
                 ErrorCode.AgentLimitReached => "agent_limit_reached",
                 ErrorCode.AgentNotFound => "agent_not_found",
@@ -714,6 +723,7 @@ namespace Speechify
                 ErrorCode.ThreadNotFound => "thread_not_found",
                 ErrorCode.TooManyVoices => "too_many_voices",
                 ErrorCode.ToolConfigShared => "tool_config_shared",
+                ErrorCode.ToolNameTaken => "tool_name_taken",
                 ErrorCode.ToolNotFound => "tool_not_found",
                 ErrorCode.ToolTransportUnsupported => "tool_transport_unsupported",
                 ErrorCode.TopupNotInPlan => "topup_not_in_plan",
@@ -743,6 +753,7 @@ namespace Speechify
             return value switch
             {
                 "account_deletion_blocked" => ErrorCode.AccountDeletionBlocked,
+                "agent_config_too_large" => ErrorCode.AgentConfigTooLarge,
                 "agent_in_use" => ErrorCode.AgentInUse,
                 "agent_limit_reached" => ErrorCode.AgentLimitReached,
                 "agent_not_found" => ErrorCode.AgentNotFound,
@@ -865,6 +876,7 @@ namespace Speechify
                 "thread_not_found" => ErrorCode.ThreadNotFound,
                 "too_many_voices" => ErrorCode.TooManyVoices,
                 "tool_config_shared" => ErrorCode.ToolConfigShared,
+                "tool_name_taken" => ErrorCode.ToolNameTaken,
                 "tool_not_found" => ErrorCode.ToolNotFound,
                 "tool_transport_unsupported" => ErrorCode.ToolTransportUnsupported,
                 "topup_not_in_plan" => ErrorCode.TopupNotInPlan,

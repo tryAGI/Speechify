@@ -64,9 +64,12 @@ namespace Speechify
         /// and a spreadsheet downloads. Must be a GET.<br/>
         /// A literal path, or a `{{path.x}}` template that replaces the whole<br/>
         /// value, so one route can serve many files: mount `/{name}` and the<br/>
-        /// URL segment names the published path. A template embedded in a<br/>
-        /// longer path (`a/{{path.x}}.html`) is refused - substitution here<br/>
-        /// replaces the value, it does not interpolate into it.<br/>
+        /// URL names the published path. A published path is slash-separated,<br/>
+        /// and the template carries the whole path after its route - a route<br/>
+        /// at `/files/{name}` serves `/files/reports/q3.csv` as well as a file<br/>
+        /// at the top level. A template embedded in a longer path<br/>
+        /// (`a/{{path.x}}.html`) is refused - substitution here replaces the<br/>
+        /// value, it does not interpolate into it.<br/>
         /// Only a `kept` file is reachable: working material handed to a run<br/>
         /// cannot be published by pointing a route at it. A path with nothing<br/>
         /// at it answers `404`, so an artifact can be wired before it is<br/>
@@ -114,9 +117,12 @@ namespace Speechify
         /// and a spreadsheet downloads. Must be a GET.<br/>
         /// A literal path, or a `{{path.x}}` template that replaces the whole<br/>
         /// value, so one route can serve many files: mount `/{name}` and the<br/>
-        /// URL segment names the published path. A template embedded in a<br/>
-        /// longer path (`a/{{path.x}}.html`) is refused - substitution here<br/>
-        /// replaces the value, it does not interpolate into it.<br/>
+        /// URL names the published path. A published path is slash-separated,<br/>
+        /// and the template carries the whole path after its route - a route<br/>
+        /// at `/files/{name}` serves `/files/reports/q3.csv` as well as a file<br/>
+        /// at the top level. A template embedded in a longer path<br/>
+        /// (`a/{{path.x}}.html`) is refused - substitution here replaces the<br/>
+        /// value, it does not interpolate into it.<br/>
         /// Only a `kept` file is reachable: working material handed to a run<br/>
         /// cannot be published by pointing a route at it. A path with nothing<br/>
         /// at it answers `404`, so an artifact can be wired before it is<br/>

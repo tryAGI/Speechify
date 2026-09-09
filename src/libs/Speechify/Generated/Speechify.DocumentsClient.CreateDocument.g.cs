@@ -54,7 +54,8 @@ namespace Speechify
         /// Write a document, minting an id when none is given. Prefer `putDocument`<br/>
         /// with a stable id you derive from the content, so a retry never<br/>
         /// duplicates. Bounded by the store's document limit (409<br/>
-        /// `store_document_limit_reached`).<br/>
+        /// `store_document_limit_reached`). `query` and `batch` are reserved ids<br/>
+        /// (400 `validation_failed`).<br/>
         /// Dark launch: requires the `hosted_apis_access` entitlement (402 `hosted_apis_not_in_plan` otherwise).
         /// </summary>
         /// <param name="storeId"></param>
@@ -95,7 +96,8 @@ namespace Speechify
         /// Write a document, minting an id when none is given. Prefer `putDocument`<br/>
         /// with a stable id you derive from the content, so a retry never<br/>
         /// duplicates. Bounded by the store's document limit (409<br/>
-        /// `store_document_limit_reached`).<br/>
+        /// `store_document_limit_reached`). `query` and `batch` are reserved ids<br/>
+        /// (400 `validation_failed`).<br/>
         /// Dark launch: requires the `hosted_apis_access` entitlement (402 `hosted_apis_not_in_plan` otherwise).
         /// </summary>
         /// <param name="storeId"></param>
@@ -718,7 +720,8 @@ namespace Speechify
         /// Write a document, minting an id when none is given. Prefer `putDocument`<br/>
         /// with a stable id you derive from the content, so a retry never<br/>
         /// duplicates. Bounded by the store's document limit (409<br/>
-        /// `store_document_limit_reached`).<br/>
+        /// `store_document_limit_reached`). `query` and `batch` are reserved ids<br/>
+        /// (400 `validation_failed`).<br/>
         /// Dark launch: requires the `hosted_apis_access` entitlement (402 `hosted_apis_not_in_plan` otherwise).
         /// </summary>
         /// <param name="storeId"></param>
@@ -728,8 +731,9 @@ namespace Speechify
         /// Optional idempotency key. When omitted, the SDK generates one for this request.
         /// </param>
         /// <param name="id">
-        /// On `createDocument`, the id to write at (letters, digits, `_ . - : ~ @ +`, at most 200);<br/>
-        /// minted when absent. Ignored on `putDocument` / `updateDocument`, where the URL names it.
+        /// On `createDocument`, the id to write at (letters, digits, `_ . - : ~ @ +`, at most 200,<br/>
+        /// not the reserved `query` or `batch`); minted when absent. Ignored on `putDocument` /<br/>
+        /// `updateDocument`, where the URL names it.
         /// </param>
         /// <param name="data">
         /// The document body (a JSON object, at most 256 KiB). On `updateDocument`, the fields to merge; a null removes a field.

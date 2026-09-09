@@ -54,6 +54,11 @@ namespace Speechify
         /// workspace tool definition AND attaches it to the agent in one<br/>
         /// call. To attach a definition that already exists, use<br/>
         /// `PUT /v1/agents/{agent_id}/tools/{tool_id}` instead.<br/>
+        /// Names are refused two ways: a `webhook` / `client` / `mcp` definition<br/>
+        /// is unique per **project**, a `builtin` is unique per **agent**, and an<br/>
+        /// agent may not carry both under one name. Either refusal is `409<br/>
+        /// tool_name_taken` with `error.details.held_by` naming the holder, which<br/>
+        /// for a definition is not necessarily attached to this agent.<br/>
         /// A field this endpoint does not define is refused with `400<br/>
         /// validation_failed` naming every unknown field, rather than accepted<br/>
         /// and silently dropped.<br/>
@@ -95,6 +100,11 @@ namespace Speechify
         /// workspace tool definition AND attaches it to the agent in one<br/>
         /// call. To attach a definition that already exists, use<br/>
         /// `PUT /v1/agents/{agent_id}/tools/{tool_id}` instead.<br/>
+        /// Names are refused two ways: a `webhook` / `client` / `mcp` definition<br/>
+        /// is unique per **project**, a `builtin` is unique per **agent**, and an<br/>
+        /// agent may not carry both under one name. Either refusal is `409<br/>
+        /// tool_name_taken` with `error.details.held_by` naming the holder, which<br/>
+        /// for a definition is not necessarily attached to this agent.<br/>
         /// A field this endpoint does not define is refused with `400<br/>
         /// validation_failed` naming every unknown field, rather than accepted<br/>
         /// and silently dropped.<br/>
@@ -496,24 +506,24 @@ namespace Speechify
                                         h => h.Key,
                                         h => h.Value));
                             }
-                            // The request conflicts with the current resource state - e.g. duplicate, optimistic-concurrency mismatch, or last-owner guard.
+                            // The name is already taken. On `tool_name_taken`, `details.held_by` names what holds it - one of the agent's built-ins, or a tool definition in the agent's project, which `attached_to_agent: false` marks as one this agent's own tool list does not show. A holder deleted between the refusal and the lookup falls back to the generic `conflict` code with no `details`, rather than naming a resource the caller would no longer find.
                             if ((int)__response.StatusCode == 409)
                             {
                                 string? __content_409 = null;
                                 global::System.Exception? __exception_409 = null;
-                                global::Speechify.Error? __value_409 = null;
+                                global::Speechify.ToolNameTakenError? __value_409 = null;
                                 try
                                 {
                                     if (__effectiveReadResponseAsString)
                                     {
                                         __content_409 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
-                                        __value_409 = global::Speechify.Error.FromJson(__content_409, JsonSerializerContext);
+                                        __value_409 = global::Speechify.ToolNameTakenError.FromJson(__content_409, JsonSerializerContext);
                                     }
                                     else
                                     {
                                         __content_409 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
 
-                                        __value_409 = global::Speechify.Error.FromJson(__content_409, JsonSerializerContext);
+                                        __value_409 = global::Speechify.ToolNameTakenError.FromJson(__content_409, JsonSerializerContext);
                                     }
                                 }
                                 catch (global::System.Exception __ex)
@@ -522,7 +532,7 @@ namespace Speechify
                                 }
 
 
-                                throw global::Speechify.ApiException<global::Speechify.Error>.Create(
+                                throw global::Speechify.ApiException<global::Speechify.ToolNameTakenError>.Create(
                                     statusCode: __response.StatusCode,
                                     message: __content_409 ?? __response.ReasonPhrase ?? string.Empty,
                                     innerException: __exception_409,
@@ -638,6 +648,11 @@ namespace Speechify
         /// workspace tool definition AND attaches it to the agent in one<br/>
         /// call. To attach a definition that already exists, use<br/>
         /// `PUT /v1/agents/{agent_id}/tools/{tool_id}` instead.<br/>
+        /// Names are refused two ways: a `webhook` / `client` / `mcp` definition<br/>
+        /// is unique per **project**, a `builtin` is unique per **agent**, and an<br/>
+        /// agent may not carry both under one name. Either refusal is `409<br/>
+        /// tool_name_taken` with `error.details.held_by` naming the holder, which<br/>
+        /// for a definition is not necessarily attached to this agent.<br/>
         /// A field this endpoint does not define is refused with `400<br/>
         /// validation_failed` naming every unknown field, rather than accepted<br/>
         /// and silently dropped.<br/>

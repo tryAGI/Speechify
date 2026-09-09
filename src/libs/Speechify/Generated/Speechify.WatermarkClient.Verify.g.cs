@@ -471,7 +471,7 @@ namespace Speechify
                                         h => h.Key,
                                         h => h.Value));
                             }
-                            // Request body exceeded a per-endpoint size limit (e.g. KB document upload cap, batch-call CSV cap, audio-asset WAV cap).
+                            // Request body exceeded a per-endpoint size limit (e.g. the file upload cap, KB document upload cap, batch-call CSV cap).
                             if ((int)__response.StatusCode == 413)
                             {
                                 string? __content_413 = null;
@@ -1206,7 +1206,7 @@ namespace Speechify
                                         h => h.Key,
                                         h => h.Value));
                             }
-                            // Request body exceeded a per-endpoint size limit (e.g. KB document upload cap, batch-call CSV cap, audio-asset WAV cap).
+                            // Request body exceeded a per-endpoint size limit (e.g. the file upload cap, KB document upload cap, batch-call CSV cap).
                             if ((int)__response.StatusCode == 413)
                             {
                                 string? __content_413 = null;
@@ -1872,7 +1872,7 @@ namespace Speechify
                                         h => h.Key,
                                         h => h.Value));
                             }
-                            // Request body exceeded a per-endpoint size limit (e.g. KB document upload cap, batch-call CSV cap, audio-asset WAV cap).
+                            // Request body exceeded a per-endpoint size limit (e.g. the file upload cap, KB document upload cap, batch-call CSV cap).
                             if ((int)__response.StatusCode == 413)
                             {
                                 string? __content_413 = null;

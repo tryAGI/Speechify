@@ -442,24 +442,24 @@ namespace Speechify
                                         h => h.Key,
                                         h => h.Value));
                             }
-                            // The request conflicts with the current resource state - e.g. duplicate, optimistic-concurrency mismatch, or last-owner guard.
+                            // The name is already taken in this project. On `tool_name_taken`, `details.held_by` names what holds it so the caller can attach it, free it, or rename; a holder deleted between the refusal and the lookup falls back to the generic `conflict` code with no `details`.
                             if ((int)__response.StatusCode == 409)
                             {
                                 string? __content_409 = null;
                                 global::System.Exception? __exception_409 = null;
-                                global::Speechify.Error? __value_409 = null;
+                                global::Speechify.ToolNameTakenError? __value_409 = null;
                                 try
                                 {
                                     if (__effectiveReadResponseAsString)
                                     {
                                         __content_409 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
-                                        __value_409 = global::Speechify.Error.FromJson(__content_409, JsonSerializerContext);
+                                        __value_409 = global::Speechify.ToolNameTakenError.FromJson(__content_409, JsonSerializerContext);
                                     }
                                     else
                                     {
                                         __content_409 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
 
-                                        __value_409 = global::Speechify.Error.FromJson(__content_409, JsonSerializerContext);
+                                        __value_409 = global::Speechify.ToolNameTakenError.FromJson(__content_409, JsonSerializerContext);
                                     }
                                 }
                                 catch (global::System.Exception __ex)
@@ -468,7 +468,7 @@ namespace Speechify
                                 }
 
 
-                                throw global::Speechify.ApiException<global::Speechify.Error>.Create(
+                                throw global::Speechify.ApiException<global::Speechify.ToolNameTakenError>.Create(
                                     statusCode: __response.StatusCode,
                                     message: __content_409 ?? __response.ReasonPhrase ?? string.Empty,
                                     innerException: __exception_409,

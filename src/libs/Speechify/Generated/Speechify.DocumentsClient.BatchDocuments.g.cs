@@ -53,7 +53,8 @@ namespace Speechify
         /// Batch Write Documents<br/>
         /// Apply up to 50 writes (`set`, `update`, `delete`) in order. Not atomic<br/>
         /// across writes: it stops at the first failure, whose index the error<br/>
-        /// names, and reports every write it applied.<br/>
+        /// names, and reports every write it applied. A `set` or `update` naming a<br/>
+        /// reserved id (`query`, `batch`) is refused with 400 `validation_failed`.<br/>
         /// Dark launch: requires the `hosted_apis_access` entitlement (402 `hosted_apis_not_in_plan` otherwise).
         /// </summary>
         /// <param name="storeId"></param>
@@ -93,7 +94,8 @@ namespace Speechify
         /// Batch Write Documents<br/>
         /// Apply up to 50 writes (`set`, `update`, `delete`) in order. Not atomic<br/>
         /// across writes: it stops at the first failure, whose index the error<br/>
-        /// names, and reports every write it applied.<br/>
+        /// names, and reports every write it applied. A `set` or `update` naming a<br/>
+        /// reserved id (`query`, `batch`) is refused with 400 `validation_failed`.<br/>
         /// Dark launch: requires the `hosted_apis_access` entitlement (402 `hosted_apis_not_in_plan` otherwise).
         /// </summary>
         /// <param name="storeId"></param>
@@ -715,7 +717,8 @@ namespace Speechify
         /// Batch Write Documents<br/>
         /// Apply up to 50 writes (`set`, `update`, `delete`) in order. Not atomic<br/>
         /// across writes: it stops at the first failure, whose index the error<br/>
-        /// names, and reports every write it applied.<br/>
+        /// names, and reports every write it applied. A `set` or `update` naming a<br/>
+        /// reserved id (`query`, `batch`) is refused with 400 `validation_failed`.<br/>
         /// Dark launch: requires the `hosted_apis_access` entitlement (402 `hosted_apis_not_in_plan` otherwise).
         /// </summary>
         /// <param name="storeId"></param>

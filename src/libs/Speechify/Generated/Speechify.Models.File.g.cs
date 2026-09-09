@@ -24,7 +24,8 @@ namespace Speechify
         public string? ProjectId { get; set; }
 
         /// <summary>
-        ///
+        /// The name the upload was sent under, with surrounding whitespace<br/>
+        /// trimmed. It is a name and never a path, so it carries no `/` or `\`.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("filename")]
         [global::System.Text.Json.Serialization.JsonRequired]
@@ -115,7 +116,10 @@ namespace Speechify
         /// Initializes a new instance of the <see cref="File" /> class.
         /// </summary>
         /// <param name="id"></param>
-        /// <param name="filename"></param>
+        /// <param name="filename">
+        /// The name the upload was sent under, with surrounding whitespace<br/>
+        /// trimmed. It is a name and never a path, so it carries no `/` or `\`.
+        /// </param>
         /// <param name="contentType">
         /// The file's media type, normalised from the upload. An agent can read<br/>
         /// `application/pdf`, `text/plain`, `text/markdown`, `text/html` and<br/>

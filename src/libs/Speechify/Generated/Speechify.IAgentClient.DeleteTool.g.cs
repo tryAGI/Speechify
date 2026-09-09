@@ -8,7 +8,13 @@ namespace Speechify
         /// Delete Agent Tool<br/>
         /// Remove a tool from the agent. A built-in instance is deleted; an<br/>
         /// attached external tool is detached (the workspace definition<br/>
-        /// survives and stays attachable elsewhere).
+        /// survives and stays attachable elsewhere).<br/>
+        /// A detached definition **keeps its name** in the agent's project, so<br/>
+        /// creating a new tool under that name here is refused with `409<br/>
+        /// tool_name_taken` even though the agent's tool list is empty. The<br/>
+        /// definition is listed at `GET /v1/agents/tool-definitions` under the<br/>
+        /// same id: re-attach it with `PUT /v1/agents/{agent_id}/tools/{tool_id}`,<br/>
+        /// or delete it there to free the name.
         /// </summary>
         /// <param name="agentId"></param>
         /// <param name="toolId"></param>
@@ -26,7 +32,13 @@ namespace Speechify
         /// Delete Agent Tool<br/>
         /// Remove a tool from the agent. A built-in instance is deleted; an<br/>
         /// attached external tool is detached (the workspace definition<br/>
-        /// survives and stays attachable elsewhere).
+        /// survives and stays attachable elsewhere).<br/>
+        /// A detached definition **keeps its name** in the agent's project, so<br/>
+        /// creating a new tool under that name here is refused with `409<br/>
+        /// tool_name_taken` even though the agent's tool list is empty. The<br/>
+        /// definition is listed at `GET /v1/agents/tool-definitions` under the<br/>
+        /// same id: re-attach it with `PUT /v1/agents/{agent_id}/tools/{tool_id}`,<br/>
+        /// or delete it there to free the name.
         /// </summary>
         /// <param name="agentId"></param>
         /// <param name="toolId"></param>
