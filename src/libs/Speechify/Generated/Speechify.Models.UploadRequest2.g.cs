@@ -9,14 +9,26 @@ namespace Speechify
     public sealed partial class UploadRequest2
     {
         /// <summary>
-        /// The file to store (at most 25 MiB).
+        /// The file to store (at most 25 MiB). The part's `filename` is stored<br/>
+        /// as sent apart from surrounding whitespace, which is trimmed, and it<br/>
+        /// is a name rather than a path: at most 255 characters, no `/` or `\`,<br/>
+        /// and not `.` or `..`. A name carrying one is refused with<br/>
+        /// `validation_failed` instead of being shortened to its last segment -<br/>
+        /// where the bytes live is derived from your workspace and the file's<br/>
+        /// own id, never from the name you send.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("file")]
         [global::System.Text.Json.Serialization.JsonRequired]
         public required byte[] File { get; set; }
 
         /// <summary>
-        /// The file to store (at most 25 MiB).
+        /// The file to store (at most 25 MiB). The part's `filename` is stored<br/>
+        /// as sent apart from surrounding whitespace, which is trimmed, and it<br/>
+        /// is a name rather than a path: at most 255 characters, no `/` or `\`,<br/>
+        /// and not `.` or `..`. A name carrying one is refused with<br/>
+        /// `validation_failed` instead of being shortened to its last segment -<br/>
+        /// where the bytes live is derived from your workspace and the file's<br/>
+        /// own id, never from the name you send.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("filename")]
         [global::System.Text.Json.Serialization.JsonRequired]
@@ -68,10 +80,22 @@ namespace Speechify
         /// Initializes a new instance of the <see cref="UploadRequest2" /> class.
         /// </summary>
         /// <param name="file">
-        /// The file to store (at most 25 MiB).
+        /// The file to store (at most 25 MiB). The part's `filename` is stored<br/>
+        /// as sent apart from surrounding whitespace, which is trimmed, and it<br/>
+        /// is a name rather than a path: at most 255 characters, no `/` or `\`,<br/>
+        /// and not `.` or `..`. A name carrying one is refused with<br/>
+        /// `validation_failed` instead of being shortened to its last segment -<br/>
+        /// where the bytes live is derived from your workspace and the file's<br/>
+        /// own id, never from the name you send.
         /// </param>
         /// <param name="filename">
-        /// The file to store (at most 25 MiB).
+        /// The file to store (at most 25 MiB). The part's `filename` is stored<br/>
+        /// as sent apart from surrounding whitespace, which is trimmed, and it<br/>
+        /// is a name rather than a path: at most 255 characters, no `/` or `\`,<br/>
+        /// and not `.` or `..`. A name carrying one is refused with<br/>
+        /// `validation_failed` instead of being shortened to its last segment -<br/>
+        /// where the bytes live is derived from your workspace and the file's<br/>
+        /// own id, never from the name you send.
         /// </param>
         /// <param name="userIdentity">
         /// The person this file is for, in your own vocabulary - the same value<br/>

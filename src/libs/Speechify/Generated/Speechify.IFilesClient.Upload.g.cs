@@ -19,7 +19,8 @@ namespace Speechify
         /// delete it, and give a `kept` file a `path` to publish it where a<br/>
         /// hosted-API route can serve it. A workspace's `kept` files are bounded by<br/>
         /// its plan; past the ceiling an upload answers `409`<br/>
-        /// `file_storage_limit_reached`.<br/>
+        /// `file_storage_limit_reached`. An upload past the 25 MiB size limit<br/>
+        /// answers `413` `payload_too_large`, whatever the size of the body.<br/>
         /// An agent reads an attached file inside the run through its `read_file`<br/>
         /// tool: PDF, HTML, Markdown and plain text are extracted, and an image is<br/>
         /// transcribed and described by a vision model.<br/>
@@ -51,7 +52,8 @@ namespace Speechify
         /// delete it, and give a `kept` file a `path` to publish it where a<br/>
         /// hosted-API route can serve it. A workspace's `kept` files are bounded by<br/>
         /// its plan; past the ceiling an upload answers `409`<br/>
-        /// `file_storage_limit_reached`.<br/>
+        /// `file_storage_limit_reached`. An upload past the 25 MiB size limit<br/>
+        /// answers `413` `payload_too_large`, whatever the size of the body.<br/>
         /// An agent reads an attached file inside the run through its `read_file`<br/>
         /// tool: PDF, HTML, Markdown and plain text are extracted, and an image is<br/>
         /// transcribed and described by a vision model.<br/>
@@ -83,7 +85,8 @@ namespace Speechify
         /// delete it, and give a `kept` file a `path` to publish it where a<br/>
         /// hosted-API route can serve it. A workspace's `kept` files are bounded by<br/>
         /// its plan; past the ceiling an upload answers `409`<br/>
-        /// `file_storage_limit_reached`.<br/>
+        /// `file_storage_limit_reached`. An upload past the 25 MiB size limit<br/>
+        /// answers `413` `payload_too_large`, whatever the size of the body.<br/>
         /// An agent reads an attached file inside the run through its `read_file`<br/>
         /// tool: PDF, HTML, Markdown and plain text are extracted, and an image is<br/>
         /// transcribed and described by a vision model.<br/>
@@ -91,10 +94,22 @@ namespace Speechify
         /// </summary>
         /// <param name="speechifyVersion"></param>
         /// <param name="file">
-        /// The file to store (at most 25 MiB).
+        /// The file to store (at most 25 MiB). The part's `filename` is stored<br/>
+        /// as sent apart from surrounding whitespace, which is trimmed, and it<br/>
+        /// is a name rather than a path: at most 255 characters, no `/` or `\`,<br/>
+        /// and not `.` or `..`. A name carrying one is refused with<br/>
+        /// `validation_failed` instead of being shortened to its last segment -<br/>
+        /// where the bytes live is derived from your workspace and the file's<br/>
+        /// own id, never from the name you send.
         /// </param>
         /// <param name="filename">
-        /// The file to store (at most 25 MiB).
+        /// The file to store (at most 25 MiB). The part's `filename` is stored<br/>
+        /// as sent apart from surrounding whitespace, which is trimmed, and it<br/>
+        /// is a name rather than a path: at most 255 characters, no `/` or `\`,<br/>
+        /// and not `.` or `..`. A name carrying one is refused with<br/>
+        /// `validation_failed` instead of being shortened to its last segment -<br/>
+        /// where the bytes live is derived from your workspace and the file's<br/>
+        /// own id, never from the name you send.
         /// </param>
         /// <param name="userIdentity">
         /// The person this file is for, in your own vocabulary - the same value<br/>
@@ -148,7 +163,8 @@ namespace Speechify
         /// delete it, and give a `kept` file a `path` to publish it where a<br/>
         /// hosted-API route can serve it. A workspace's `kept` files are bounded by<br/>
         /// its plan; past the ceiling an upload answers `409`<br/>
-        /// `file_storage_limit_reached`.<br/>
+        /// `file_storage_limit_reached`. An upload past the 25 MiB size limit<br/>
+        /// answers `413` `payload_too_large`, whatever the size of the body.<br/>
         /// An agent reads an attached file inside the run through its `read_file`<br/>
         /// tool: PDF, HTML, Markdown and plain text are extracted, and an image is<br/>
         /// transcribed and described by a vision model.<br/>
@@ -156,10 +172,22 @@ namespace Speechify
         /// </summary>
         /// <param name="speechifyVersion"></param>
         /// <param name="file">
-        /// The file to store (at most 25 MiB).
+        /// The file to store (at most 25 MiB). The part's `filename` is stored<br/>
+        /// as sent apart from surrounding whitespace, which is trimmed, and it<br/>
+        /// is a name rather than a path: at most 255 characters, no `/` or `\`,<br/>
+        /// and not `.` or `..`. A name carrying one is refused with<br/>
+        /// `validation_failed` instead of being shortened to its last segment -<br/>
+        /// where the bytes live is derived from your workspace and the file's<br/>
+        /// own id, never from the name you send.
         /// </param>
         /// <param name="filename">
-        /// The file to store (at most 25 MiB).
+        /// The file to store (at most 25 MiB). The part's `filename` is stored<br/>
+        /// as sent apart from surrounding whitespace, which is trimmed, and it<br/>
+        /// is a name rather than a path: at most 255 characters, no `/` or `\`,<br/>
+        /// and not `.` or `..`. A name carrying one is refused with<br/>
+        /// `validation_failed` instead of being shortened to its last segment -<br/>
+        /// where the bytes live is derived from your workspace and the file's<br/>
+        /// own id, never from the name you send.
         /// </param>
         /// <param name="userIdentity">
         /// The person this file is for, in your own vocabulary - the same value<br/>
@@ -212,7 +240,8 @@ namespace Speechify
         /// delete it, and give a `kept` file a `path` to publish it where a<br/>
         /// hosted-API route can serve it. A workspace's `kept` files are bounded by<br/>
         /// its plan; past the ceiling an upload answers `409`<br/>
-        /// `file_storage_limit_reached`.<br/>
+        /// `file_storage_limit_reached`. An upload past the 25 MiB size limit<br/>
+        /// answers `413` `payload_too_large`, whatever the size of the body.<br/>
         /// An agent reads an attached file inside the run through its `read_file`<br/>
         /// tool: PDF, HTML, Markdown and plain text are extracted, and an image is<br/>
         /// transcribed and described by a vision model.<br/>
@@ -220,10 +249,22 @@ namespace Speechify
         /// </summary>
         /// <param name="speechifyVersion"></param>
         /// <param name="file">
-        /// The file to store (at most 25 MiB).
+        /// The file to store (at most 25 MiB). The part's `filename` is stored<br/>
+        /// as sent apart from surrounding whitespace, which is trimmed, and it<br/>
+        /// is a name rather than a path: at most 255 characters, no `/` or `\`,<br/>
+        /// and not `.` or `..`. A name carrying one is refused with<br/>
+        /// `validation_failed` instead of being shortened to its last segment -<br/>
+        /// where the bytes live is derived from your workspace and the file's<br/>
+        /// own id, never from the name you send.
         /// </param>
         /// <param name="filename">
-        /// The file to store (at most 25 MiB).
+        /// The file to store (at most 25 MiB). The part's `filename` is stored<br/>
+        /// as sent apart from surrounding whitespace, which is trimmed, and it<br/>
+        /// is a name rather than a path: at most 255 characters, no `/` or `\`,<br/>
+        /// and not `.` or `..`. A name carrying one is refused with<br/>
+        /// `validation_failed` instead of being shortened to its last segment -<br/>
+        /// where the bytes live is derived from your workspace and the file's<br/>
+        /// own id, never from the name you send.
         /// </param>
         /// <param name="userIdentity">
         /// The person this file is for, in your own vocabulary - the same value<br/>

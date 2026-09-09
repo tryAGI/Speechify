@@ -675,8 +675,9 @@ namespace Speechify
         /// <param name="documentId"></param>
         /// <param name="speechifyVersion"></param>
         /// <param name="id">
-        /// On `createDocument`, the id to write at (letters, digits, `_ . - : ~ @ +`, at most 200);<br/>
-        /// minted when absent. Ignored on `putDocument` / `updateDocument`, where the URL names it.
+        /// On `createDocument`, the id to write at (letters, digits, `_ . - : ~ @ +`, at most 200,<br/>
+        /// not the reserved `query` or `batch`); minted when absent. Ignored on `putDocument` /<br/>
+        /// `updateDocument`, where the URL names it.
         /// </param>
         /// <param name="data">
         /// The document body (a JSON object, at most 256 KiB). On `updateDocument`, the fields to merge; a null removes a field.

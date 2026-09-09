@@ -13,6 +13,11 @@ namespace Speechify
         /// workspace tool definition AND attaches it to the agent in one<br/>
         /// call. To attach a definition that already exists, use<br/>
         /// `PUT /v1/agents/{agent_id}/tools/{tool_id}` instead.<br/>
+        /// Names are refused two ways: a `webhook` / `client` / `mcp` definition<br/>
+        /// is unique per **project**, a `builtin` is unique per **agent**, and an<br/>
+        /// agent may not carry both under one name. Either refusal is `409<br/>
+        /// tool_name_taken` with `error.details.held_by` naming the holder, which<br/>
+        /// for a definition is not necessarily attached to this agent.<br/>
         /// A field this endpoint does not define is refused with `400<br/>
         /// validation_failed` naming every unknown field, rather than accepted<br/>
         /// and silently dropped.<br/>
@@ -42,6 +47,11 @@ namespace Speechify
         /// workspace tool definition AND attaches it to the agent in one<br/>
         /// call. To attach a definition that already exists, use<br/>
         /// `PUT /v1/agents/{agent_id}/tools/{tool_id}` instead.<br/>
+        /// Names are refused two ways: a `webhook` / `client` / `mcp` definition<br/>
+        /// is unique per **project**, a `builtin` is unique per **agent**, and an<br/>
+        /// agent may not carry both under one name. Either refusal is `409<br/>
+        /// tool_name_taken` with `error.details.held_by` naming the holder, which<br/>
+        /// for a definition is not necessarily attached to this agent.<br/>
         /// A field this endpoint does not define is refused with `400<br/>
         /// validation_failed` naming every unknown field, rather than accepted<br/>
         /// and silently dropped.<br/>
@@ -71,6 +81,11 @@ namespace Speechify
         /// workspace tool definition AND attaches it to the agent in one<br/>
         /// call. To attach a definition that already exists, use<br/>
         /// `PUT /v1/agents/{agent_id}/tools/{tool_id}` instead.<br/>
+        /// Names are refused two ways: a `webhook` / `client` / `mcp` definition<br/>
+        /// is unique per **project**, a `builtin` is unique per **agent**, and an<br/>
+        /// agent may not carry both under one name. Either refusal is `409<br/>
+        /// tool_name_taken` with `error.details.held_by` naming the holder, which<br/>
+        /// for a definition is not necessarily attached to this agent.<br/>
         /// A field this endpoint does not define is refused with `400<br/>
         /// validation_failed` naming every unknown field, rather than accepted<br/>
         /// and silently dropped.<br/>

@@ -72,6 +72,19 @@ namespace Speechify
         public required bool VoiceOnly { get; set; }
 
         /// <summary>
+        /// Whether only an autonomous run can execute this built-in. A live<br/>
+        /// conversation - voice or text - never offers one, so attaching it to<br/>
+        /// an agent that only holds conversations leaves it inert. This is NOT<br/>
+        /// the same as `execution`: `fetch_url` is `control_plane` and a text<br/>
+        /// turn does run it.<br/>
+        /// Deliberately not required, so a console deployed ahead of the server<br/>
+        /// reads it as absent and simply shows no badge, rather than failing on<br/>
+        /// a missing required field.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("runs_only")]
+        public bool? RunsOnly { get; set; }
+
+        /// <summary>
         /// Additional properties that are not explicitly defined in the schema
         /// </summary>
         [global::System.Text.Json.Serialization.JsonExtensionData]
@@ -113,6 +126,16 @@ namespace Speechify
         /// voice-only built-in to an agent that does not serve the voice channel<br/>
         /// is refused.
         /// </param>
+        /// <param name="runsOnly">
+        /// Whether only an autonomous run can execute this built-in. A live<br/>
+        /// conversation - voice or text - never offers one, so attaching it to<br/>
+        /// an agent that only holds conversations leaves it inert. This is NOT<br/>
+        /// the same as `execution`: `fetch_url` is `control_plane` and a text<br/>
+        /// turn does run it.<br/>
+        /// Deliberately not required, so a console deployed ahead of the server<br/>
+        /// reads it as absent and simply shows no badge, rather than failing on<br/>
+        /// a missing required field.
+        /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
 #endif
@@ -123,7 +146,8 @@ namespace Speechify
             global::Speechify.ToolActionClass actionClass,
             global::Speechify.SystemBuiltinInfoExecution execution,
             bool defaultOn,
-            bool voiceOnly)
+            bool voiceOnly,
+            bool? runsOnly)
         {
             this.Name = name ?? throw new global::System.ArgumentNullException(nameof(name));
             this.Label = label ?? throw new global::System.ArgumentNullException(nameof(label));
@@ -132,6 +156,7 @@ namespace Speechify
             this.Execution = execution;
             this.DefaultOn = defaultOn;
             this.VoiceOnly = voiceOnly;
+            this.RunsOnly = runsOnly;
         }
 
         /// <summary>

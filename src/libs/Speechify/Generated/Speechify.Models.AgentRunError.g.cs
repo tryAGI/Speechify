@@ -9,13 +9,13 @@ namespace Speechify
     public sealed partial class AgentRunError
     {
         /// <summary>
-        ///
+        /// What class of failure this was. Branch on this, never on `message`.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("code")]
         public string? Code { get; set; }
 
         /// <summary>
-        ///
+        /// A stable human-readable sentence for the class in `code`. It never carries the underlying cause, so it is not a diagnostic: quote the run's `id` to support instead.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("message")]
         public string? Message { get; set; }
@@ -29,8 +29,12 @@ namespace Speechify
         /// <summary>
         /// Initializes a new instance of the <see cref="AgentRunError" /> class.
         /// </summary>
-        /// <param name="code"></param>
-        /// <param name="message"></param>
+        /// <param name="code">
+        /// What class of failure this was. Branch on this, never on `message`.
+        /// </param>
+        /// <param name="message">
+        /// A stable human-readable sentence for the class in `code`. It never carries the underlying cause, so it is not a diagnostic: quote the run's `id` to support instead.
+        /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
 #endif

@@ -9,8 +9,9 @@ namespace Speechify
     public sealed partial class WriteStoreDocumentRequest
     {
         /// <summary>
-        /// On `createDocument`, the id to write at (letters, digits, `_ . - : ~ @ +`, at most 200);<br/>
-        /// minted when absent. Ignored on `putDocument` / `updateDocument`, where the URL names it.
+        /// On `createDocument`, the id to write at (letters, digits, `_ . - : ~ @ +`, at most 200,<br/>
+        /// not the reserved `query` or `batch`); minted when absent. Ignored on `putDocument` /<br/>
+        /// `updateDocument`, where the URL names it.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("id")]
         public string? Id { get; set; }
@@ -35,8 +36,9 @@ namespace Speechify
         /// The document body (a JSON object, at most 256 KiB). On `updateDocument`, the fields to merge; a null removes a field.
         /// </param>
         /// <param name="id">
-        /// On `createDocument`, the id to write at (letters, digits, `_ . - : ~ @ +`, at most 200);<br/>
-        /// minted when absent. Ignored on `putDocument` / `updateDocument`, where the URL names it.
+        /// On `createDocument`, the id to write at (letters, digits, `_ . - : ~ @ +`, at most 200,<br/>
+        /// not the reserved `query` or `batch`); minted when absent. Ignored on `putDocument` /<br/>
+        /// `updateDocument`, where the URL names it.
         /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
