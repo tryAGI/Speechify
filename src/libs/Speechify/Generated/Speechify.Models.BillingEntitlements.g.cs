@@ -181,7 +181,7 @@ namespace Speechify
         public required int MaxStoreDocuments { get; set; }
 
         /// <summary>
-        /// Bytes one store may hold across its documents and files; 0 means uncapped.
+        /// Bytes one store may hold across its documents; 0 means uncapped.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("max_store_bytes")]
         [global::System.Text.Json.Serialization.JsonRequired]
@@ -362,7 +362,7 @@ namespace Speechify
         /// Documents one store may hold; 0 means uncapped.
         /// </param>
         /// <param name="maxStoreBytes">
-        /// Bytes one store may hold across its documents and files; 0 means uncapped.
+        /// Bytes one store may hold across its documents; 0 means uncapped.
         /// </param>
         /// <param name="skillsAccess">
         /// Whether the skill catalog and per-agent attachment surface are available.

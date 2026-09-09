@@ -7,8 +7,10 @@ namespace Speechify
         /// <summary>
         /// List Stores<br/>
         /// List the stores in the caller's workspace, most recently updated<br/>
-        /// first. A store is the durable document + asset store a durable run<br/>
-        /// writes to (through its store tools) and a hosted-API route serves.<br/>
+        /// first. A store is the durable collection of JSON documents a durable<br/>
+        /// run writes to (through its store tools) and a hosted-API route serves.<br/>
+        /// Uploaded bytes are not stores: a file is its own resource at<br/>
+        /// `/v1/files`.<br/>
         /// Cursor-paginated; walk pages while `has_more` is true.<br/>
         /// Dark launch: requires the `hosted_apis_access` entitlement (402 `hosted_apis_not_in_plan` otherwise).
         /// </summary>
@@ -31,8 +33,10 @@ namespace Speechify
         /// <summary>
         /// List Stores<br/>
         /// List the stores in the caller's workspace, most recently updated<br/>
-        /// first. A store is the durable document + asset store a durable run<br/>
-        /// writes to (through its store tools) and a hosted-API route serves.<br/>
+        /// first. A store is the durable collection of JSON documents a durable<br/>
+        /// run writes to (through its store tools) and a hosted-API route serves.<br/>
+        /// Uploaded bytes are not stores: a file is its own resource at<br/>
+        /// `/v1/files`.<br/>
         /// Cursor-paginated; walk pages while `has_more` is true.<br/>
         /// Dark launch: requires the `hosted_apis_access` entitlement (402 `hosted_apis_not_in_plan` otherwise).
         /// </summary>
