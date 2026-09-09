@@ -4,10 +4,11 @@
 namespace Speechify
 {
     /// <summary>
-    /// A durable document + asset store. Runs write to it through<br/>
+    /// A durable collection of JSON documents. Runs write to it through<br/>
     /// their store tools; hosted-API routes serve it; your own code reads and<br/>
     /// writes it directly. Document bodies live in object storage, so a<br/>
-    /// growing dataset costs nothing on the database.
+    /// growing dataset costs nothing on the database. A store holds no<br/>
+    /// uploaded bytes - a file is its own resource at `/v1/files`.
     /// </summary>
     public sealed partial class Store
     {
@@ -46,7 +47,7 @@ namespace Speechify
         public required global::System.DateTime CreatedAt { get; set; }
 
         /// <summary>
-        /// Bytes the store holds across its documents and files, kept in step with every write.
+        /// Bytes the store holds across its documents, kept in step with every write.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("used_bytes")]
         [global::System.Text.Json.Serialization.JsonRequired]
@@ -73,7 +74,7 @@ namespace Speechify
         /// <param name="description"></param>
         /// <param name="createdAt"></param>
         /// <param name="usedBytes">
-        /// Bytes the store holds across its documents and files, kept in step with every write.
+        /// Bytes the store holds across its documents, kept in step with every write.
         /// </param>
         /// <param name="updatedAt"></param>
         /// <param name="projectId">
