@@ -509,7 +509,7 @@ namespace Speechify
                                         h => h.Key,
                                         h => h.Value));
                             }
-                            // The behavioral-eval publish gate refused the publish (`agent_publish_gate_failed`): the agent's configured suite did not pass. `error.details` carries the verdict (per-case, per-criterion).
+                            // The behavioral-eval publish gate refused the publish, on one of two codes the caller can FIX (neither is waited out):  - `agent_publish_gate_failed`: the agent's configured suite did not   pass. `error.details` carries the verdict (per-case, per-criterion). - `agent_publish_gate_tool_unreachable`: the checks never ran because   a tool the agent is attached to could not be reached. Nothing was   judged, and no retry helps while the endpoint is down;   `error.message` names the tool, the endpoint and the reason.  The one publish failure that IS waited out is the `503`.
                             if ((int)__response.StatusCode == 422)
                             {
                                 string? __content_422 = null;
@@ -583,7 +583,7 @@ namespace Speechify
                                         h => h.Key,
                                         h => h.Value));
                             }
-                            // The publish checks could not run (`agent_publish_gate_unavailable`): the eval worker, the judge or the probe corpus errored, so nothing about the agent was judged. Not a verdict on the configuration; retry after `Retry-After`. `error.details` lists the cases that could not run.
+                            // The publish checks could not run (`agent_publish_gate_unavailable`): the eval worker, the judge or the probe corpus errored, so nothing about the agent was judged. This is OURS, and the only publish failure a caller waits out: not a verdict on the configuration, retry after `Retry-After`. `error.details` lists the cases that could not run. A check that could not run because of the agent's own configuration is the `422 agent_publish_gate_tool_unreachable` instead.
                             if ((int)__response.StatusCode == 503)
                             {
                                 string? __content_503 = null;

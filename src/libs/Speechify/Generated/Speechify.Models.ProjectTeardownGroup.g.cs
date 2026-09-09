@@ -6,7 +6,11 @@ namespace Speechify
     /// <summary>
     /// One resource kind a purge would remove or keep: a live count and, for<br/>
     /// removed kinds, a bounded sample of names. Retained kinds carry no<br/>
-    /// sample, because a caller identity or a memory is personal data.
+    /// sample, because a caller identity or a memory is personal data.<br/>
+    /// The same shape carries the contents of a project whose delete was<br/>
+    /// refused, under `error.details.contents` on a `409 project_not_empty`;<br/>
+    /// there the sample is a bounded list of names, so a caller reads what is<br/>
+    /// in the way rather than only how much.
     /// </summary>
     public sealed partial class ProjectTeardownGroup
     {

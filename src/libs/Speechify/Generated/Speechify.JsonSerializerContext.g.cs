@@ -137,6 +137,7 @@ namespace Speechify
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.AgentFlowGetSchemaResponse200))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.PublishGateResultDecision), TypeInfoPropertyName = "PublishGateResultDecision2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.EvaluationCaseVerdictOutcome), TypeInfoPropertyName = "EvaluationCaseVerdictOutcome2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.EvaluationCaseVerdictFault), TypeInfoPropertyName = "EvaluationCaseVerdictFault2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.EvaluationCriterionVerdictStatus), TypeInfoPropertyName = "EvaluationCriterionVerdictStatus2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.EvaluationCriterionVerdict))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.EvaluationCaseVerdict))]
@@ -513,7 +514,6 @@ namespace Speechify
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.PhoneNumber))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Speechify.PhoneNumberCapability>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.ListPhoneNumbersResponse))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Speechify.PhoneNumber>))]
     internal sealed partial class SourceGenerationContextChunk0 : global::System.Text.Json.Serialization.JsonSerializerContext
     {
     }
@@ -526,6 +526,7 @@ namespace Speechify
         Converters = new global::System.Type[]
         {
         })]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Speechify.PhoneNumber>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.TwilioImportSpec))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.TelnyxImportSpec))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.ImportPhoneNumberRequest))]
@@ -788,6 +789,7 @@ namespace Speechify
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.AgentPhoneNumberReferenceResourceType?), TypeInfoPropertyName = "NullableAgentPhoneNumberReferenceResourceType2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.PublishGateResultDecision?), TypeInfoPropertyName = "NullablePublishGateResultDecision2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.EvaluationCaseVerdictOutcome?), TypeInfoPropertyName = "NullableEvaluationCaseVerdictOutcome2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.EvaluationCaseVerdictFault?), TypeInfoPropertyName = "NullableEvaluationCaseVerdictFault2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.EvaluationCriterionVerdictStatus?), TypeInfoPropertyName = "NullableEvaluationCriterionVerdictStatus2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.DataCollectionFieldType?), TypeInfoPropertyName = "NullableDataCollectionFieldType2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.DynamicVariableType?), TypeInfoPropertyName = "NullableDynamicVariableType2")]
@@ -1024,8 +1026,6 @@ namespace Speechify
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.Contact>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.WebhookEndpoint>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.WebhookEndpointDelivery>))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.Project>))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.ProjectTeardownBlockerBlocksItems>))]
     internal sealed partial class SourceGenerationContextChunk1 : global::System.Text.Json.Serialization.JsonSerializerContext
     {
     }
@@ -1038,6 +1038,8 @@ namespace Speechify
         Converters = new global::System.Type[]
         {
         })]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.Project>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.ProjectTeardownBlockerBlocksItems>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.ProjectTeardownBlocker>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.ProjectTeardownGroup>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.PromoteAttention>))]
@@ -1250,6 +1252,10 @@ namespace Speechify
                     || typeToConvert == typeof(global::Speechify.EvaluationCaseVerdictOutcome)
 
                     || typeToConvert == typeof(global::Speechify.EvaluationCaseVerdictOutcome?)
+
+                    || typeToConvert == typeof(global::Speechify.EvaluationCaseVerdictFault)
+
+                    || typeToConvert == typeof(global::Speechify.EvaluationCaseVerdictFault?)
 
                     || typeToConvert == typeof(global::Speechify.EvaluationCriterionVerdictStatus)
 
@@ -2036,6 +2042,16 @@ namespace Speechify
                 if (typeToConvert == typeof(global::Speechify.EvaluationCaseVerdictOutcome?))
                 {
                     return new global::Speechify.JsonConverters.EvaluationCaseVerdictOutcomeNullableJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.EvaluationCaseVerdictFault))
+                {
+                    return new global::Speechify.JsonConverters.EvaluationCaseVerdictFaultJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.EvaluationCaseVerdictFault?))
+                {
+                    return new global::Speechify.JsonConverters.EvaluationCaseVerdictFaultNullableJsonConverter();
                 }
 
                 if (typeToConvert == typeof(global::Speechify.EvaluationCriterionVerdictStatus))

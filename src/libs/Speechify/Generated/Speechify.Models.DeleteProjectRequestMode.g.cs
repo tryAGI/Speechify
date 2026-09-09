@@ -4,9 +4,9 @@
 namespace Speechify
 {
     /// <summary>
-    /// `detach` removes the grouping row only; `purge` removes the<br/>
-    /// project with its contents.<br/>
-    /// Default Value: detach
+    /// `detach` removes the grouping row only and moves every resource<br/>
+    /// to the Default project; `purge` removes the project with its<br/>
+    /// contents. Omitted, the delete removes only an empty project.
     /// </summary>
     public enum DeleteProjectRequestMode
     {

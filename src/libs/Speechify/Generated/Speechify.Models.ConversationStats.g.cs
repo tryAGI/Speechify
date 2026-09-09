@@ -44,6 +44,17 @@ namespace Speechify
         public required long Pending { get; set; }
 
         /// <summary>
+        /// Conversations that are a realtime session in progress - a call you<br/>
+        /// could listen to or end. A strict subset of `active` + `pending`,<br/>
+        /// and deliberately smaller: a text conversation stays non-terminal<br/>
+        /// for as long as the person might return to the thread, so it is<br/>
+        /// open rather than live and is not counted here.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("live")]
+        [global::System.Text.Json.Serialization.JsonRequired]
+        public required long Live { get; set; }
+
+        /// <summary>
         ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("avg_duration_ms")]
@@ -69,6 +80,13 @@ namespace Speechify
         /// <param name="failed"></param>
         /// <param name="active"></param>
         /// <param name="pending"></param>
+        /// <param name="live">
+        /// Conversations that are a realtime session in progress - a call you<br/>
+        /// could listen to or end. A strict subset of `active` + `pending`,<br/>
+        /// and deliberately smaller: a text conversation stays non-terminal<br/>
+        /// for as long as the person might return to the thread, so it is<br/>
+        /// open rather than live and is not counted here.
+        /// </param>
         /// <param name="avgDurationMs"></param>
         /// <param name="avgCostCents"></param>
 #if NET7_0_OR_GREATER
@@ -80,6 +98,7 @@ namespace Speechify
             long failed,
             long active,
             long pending,
+            long live,
             double? avgDurationMs,
             double? avgCostCents)
         {
@@ -88,6 +107,7 @@ namespace Speechify
             this.Failed = failed;
             this.Active = active;
             this.Pending = pending;
+            this.Live = live;
             this.AvgDurationMs = avgDurationMs;
             this.AvgCostCents = avgCostCents;
         }

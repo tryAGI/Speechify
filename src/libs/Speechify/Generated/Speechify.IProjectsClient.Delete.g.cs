@@ -6,10 +6,22 @@ namespace Speechify
     {
         /// <summary>
         /// Delete Project<br/>
-        /// Delete a project in one of two modes.<br/>
-        /// **Detach** (the default, no body or `mode: detach`): only the<br/>
-        /// grouping row is removed; every resource in the project moves to the<br/>
-        /// implicit Default project. Refused with 409<br/>
+        /// Delete a project. With no body it deletes a project that holds<br/>
+        /// nothing, and refuses one that does; `mode` is how you say what should<br/>
+        /// happen to what it holds.<br/>
+        /// **Empty** (no body): the project is removed only while it holds no<br/>
+        /// resources. A project that holds any is refused with 409<br/>
+        /// `project_not_empty`, and the refusal enumerates what is inside:<br/>
+        /// `error.details.resource_count` is the total, and<br/>
+        /// `error.details.contents` names each kind with a count and up to five<br/>
+        /// names. Every project row also carries that total as `resource_count`,<br/>
+        /// so an application can find the projects it may delete in one list<br/>
+        /// call. Records of work - conversations, runs, calls, callers, memories<br/>
+        /// - never hold a project open and are not counted.<br/>
+        /// **Detach** (`mode: detach`): only the grouping row is removed; every<br/>
+        /// resource in the project moves to the implicit Default project, where<br/>
+        /// it stays readable and is listed by `?project_id=default`. This is what<br/>
+        /// an unqualified delete used to do silently. Refused with 409<br/>
         /// `project_has_scoped_credentials` while an API key, service account,<br/>
         /// vault credential, webhook endpoint, member grant or pending invite is<br/>
         /// scoped to the project, because detaching any of those would silently<br/>
@@ -31,7 +43,13 @@ namespace Speechify
         /// memories are operational records and survive either mode, moving to<br/>
         /// the Default project; a batch call survives the project the same way,<br/>
         /// but not the agent it dialled for, so a purge's agents take their<br/>
-        /// campaigns with them once they are permanently removed. Refused with 409 while a phone number is attached<br/>
+        /// campaigns with them once they are permanently removed. External brains,<br/>
+        /// skills, teams, channels, stores, hosted APIs and files are resources<br/>
+        /// with their own lifecycle and their own delete, so a purge does NOT<br/>
+        /// remove them either: they move to the Default project too, the teardown<br/>
+        /// preview lists every one of them under `retains`, and because they DO<br/>
+        /// hold a project open an unqualified delete refuses while any of them is<br/>
+        /// in the project. Refused with 409 while a phone number is attached<br/>
         /// (release or move it first), while a member's only project grant is<br/>
         /// this one, or while a live invite carries only this project (clearing<br/>
         /// either would widen that person to the whole workspace, the invite one<br/>
@@ -64,10 +82,22 @@ namespace Speechify
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Delete Project<br/>
-        /// Delete a project in one of two modes.<br/>
-        /// **Detach** (the default, no body or `mode: detach`): only the<br/>
-        /// grouping row is removed; every resource in the project moves to the<br/>
-        /// implicit Default project. Refused with 409<br/>
+        /// Delete a project. With no body it deletes a project that holds<br/>
+        /// nothing, and refuses one that does; `mode` is how you say what should<br/>
+        /// happen to what it holds.<br/>
+        /// **Empty** (no body): the project is removed only while it holds no<br/>
+        /// resources. A project that holds any is refused with 409<br/>
+        /// `project_not_empty`, and the refusal enumerates what is inside:<br/>
+        /// `error.details.resource_count` is the total, and<br/>
+        /// `error.details.contents` names each kind with a count and up to five<br/>
+        /// names. Every project row also carries that total as `resource_count`,<br/>
+        /// so an application can find the projects it may delete in one list<br/>
+        /// call. Records of work - conversations, runs, calls, callers, memories<br/>
+        /// - never hold a project open and are not counted.<br/>
+        /// **Detach** (`mode: detach`): only the grouping row is removed; every<br/>
+        /// resource in the project moves to the implicit Default project, where<br/>
+        /// it stays readable and is listed by `?project_id=default`. This is what<br/>
+        /// an unqualified delete used to do silently. Refused with 409<br/>
         /// `project_has_scoped_credentials` while an API key, service account,<br/>
         /// vault credential, webhook endpoint, member grant or pending invite is<br/>
         /// scoped to the project, because detaching any of those would silently<br/>
@@ -89,7 +119,13 @@ namespace Speechify
         /// memories are operational records and survive either mode, moving to<br/>
         /// the Default project; a batch call survives the project the same way,<br/>
         /// but not the agent it dialled for, so a purge's agents take their<br/>
-        /// campaigns with them once they are permanently removed. Refused with 409 while a phone number is attached<br/>
+        /// campaigns with them once they are permanently removed. External brains,<br/>
+        /// skills, teams, channels, stores, hosted APIs and files are resources<br/>
+        /// with their own lifecycle and their own delete, so a purge does NOT<br/>
+        /// remove them either: they move to the Default project too, the teardown<br/>
+        /// preview lists every one of them under `retains`, and because they DO<br/>
+        /// hold a project open an unqualified delete refuses while any of them is<br/>
+        /// in the project. Refused with 409 while a phone number is attached<br/>
         /// (release or move it first), while a member's only project grant is<br/>
         /// this one, or while a live invite carries only this project (clearing<br/>
         /// either would widen that person to the whole workspace, the invite one<br/>
@@ -122,10 +158,22 @@ namespace Speechify
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Delete Project<br/>
-        /// Delete a project in one of two modes.<br/>
-        /// **Detach** (the default, no body or `mode: detach`): only the<br/>
-        /// grouping row is removed; every resource in the project moves to the<br/>
-        /// implicit Default project. Refused with 409<br/>
+        /// Delete a project. With no body it deletes a project that holds<br/>
+        /// nothing, and refuses one that does; `mode` is how you say what should<br/>
+        /// happen to what it holds.<br/>
+        /// **Empty** (no body): the project is removed only while it holds no<br/>
+        /// resources. A project that holds any is refused with 409<br/>
+        /// `project_not_empty`, and the refusal enumerates what is inside:<br/>
+        /// `error.details.resource_count` is the total, and<br/>
+        /// `error.details.contents` names each kind with a count and up to five<br/>
+        /// names. Every project row also carries that total as `resource_count`,<br/>
+        /// so an application can find the projects it may delete in one list<br/>
+        /// call. Records of work - conversations, runs, calls, callers, memories<br/>
+        /// - never hold a project open and are not counted.<br/>
+        /// **Detach** (`mode: detach`): only the grouping row is removed; every<br/>
+        /// resource in the project moves to the implicit Default project, where<br/>
+        /// it stays readable and is listed by `?project_id=default`. This is what<br/>
+        /// an unqualified delete used to do silently. Refused with 409<br/>
         /// `project_has_scoped_credentials` while an API key, service account,<br/>
         /// vault credential, webhook endpoint, member grant or pending invite is<br/>
         /// scoped to the project, because detaching any of those would silently<br/>
@@ -147,7 +195,13 @@ namespace Speechify
         /// memories are operational records and survive either mode, moving to<br/>
         /// the Default project; a batch call survives the project the same way,<br/>
         /// but not the agent it dialled for, so a purge's agents take their<br/>
-        /// campaigns with them once they are permanently removed. Refused with 409 while a phone number is attached<br/>
+        /// campaigns with them once they are permanently removed. External brains,<br/>
+        /// skills, teams, channels, stores, hosted APIs and files are resources<br/>
+        /// with their own lifecycle and their own delete, so a purge does NOT<br/>
+        /// remove them either: they move to the Default project too, the teardown<br/>
+        /// preview lists every one of them under `retains`, and because they DO<br/>
+        /// hold a project open an unqualified delete refuses while any of them is<br/>
+        /// in the project. Refused with 409 while a phone number is attached<br/>
         /// (release or move it first), while a member's only project grant is<br/>
         /// this one, or while a live invite carries only this project (clearing<br/>
         /// either would widen that person to the whole workspace, the invite one<br/>
@@ -168,9 +222,9 @@ namespace Speechify
         /// <param name="projectId"></param>
         /// <param name="speechifyVersion"></param>
         /// <param name="mode">
-        /// `detach` removes the grouping row only; `purge` removes the<br/>
-        /// project with its contents.<br/>
-        /// Default Value: detach
+        /// `detach` removes the grouping row only and moves every resource<br/>
+        /// to the Default project; `purge` removes the project with its<br/>
+        /// contents. Omitted, the delete removes only an empty project.
         /// </param>
         /// <param name="confirm">
         /// Required for `purge`: the project's name, exactly as returned by<br/>
