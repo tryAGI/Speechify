@@ -9,8 +9,8 @@ namespace Speechify
         /// Write a document, minting an id when none is given. Prefer `putDocument`<br/>
         /// with a stable id you derive from the content, so a retry never<br/>
         /// duplicates. Bounded by the store's document limit (409<br/>
-        /// `store_document_limit_reached`). `query` and `batch` are reserved ids<br/>
-        /// (400 `validation_failed`).<br/>
+        /// `store_document_limit_reached`). `query`, `batch` and `aggregate` are<br/>
+        /// reserved ids (400 `validation_failed`).<br/>
         /// Dark launch: requires the `hosted_apis_access` entitlement (402 `hosted_apis_not_in_plan` otherwise).
         /// </summary>
         /// <param name="storeId"></param>
@@ -37,8 +37,8 @@ namespace Speechify
         /// Write a document, minting an id when none is given. Prefer `putDocument`<br/>
         /// with a stable id you derive from the content, so a retry never<br/>
         /// duplicates. Bounded by the store's document limit (409<br/>
-        /// `store_document_limit_reached`). `query` and `batch` are reserved ids<br/>
-        /// (400 `validation_failed`).<br/>
+        /// `store_document_limit_reached`). `query`, `batch` and `aggregate` are<br/>
+        /// reserved ids (400 `validation_failed`).<br/>
         /// Dark launch: requires the `hosted_apis_access` entitlement (402 `hosted_apis_not_in_plan` otherwise).
         /// </summary>
         /// <param name="storeId"></param>
@@ -65,8 +65,8 @@ namespace Speechify
         /// Write a document, minting an id when none is given. Prefer `putDocument`<br/>
         /// with a stable id you derive from the content, so a retry never<br/>
         /// duplicates. Bounded by the store's document limit (409<br/>
-        /// `store_document_limit_reached`). `query` and `batch` are reserved ids<br/>
-        /// (400 `validation_failed`).<br/>
+        /// `store_document_limit_reached`). `query`, `batch` and `aggregate` are<br/>
+        /// reserved ids (400 `validation_failed`).<br/>
         /// Dark launch: requires the `hosted_apis_access` entitlement (402 `hosted_apis_not_in_plan` otherwise).
         /// </summary>
         /// <param name="storeId"></param>

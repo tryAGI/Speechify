@@ -123,14 +123,17 @@ namespace Speechify
         /// <summary>
         /// Coarse termination category. Most reasons are assigned by the<br/>
         /// agent runtime as the call ends; `caller_hangup` may also be<br/>
-        /// applied server-side as a post-call catch-all. The `dial_*`<br/>
-        /// reasons are assigned server-side on a `failed` conversation<br/>
-        /// for an outbound call that never connected.<br/>
+        /// applied server-side as a post-call catch-all, and<br/>
+        /// `operator_ended` is assigned server-side when the force-end<br/>
+        /// endpoint is called. The `dial_*` reasons are assigned<br/>
+        /// server-side on a `failed` conversation for an outbound call<br/>
+        /// that never connected.<br/>
         /// * `voicemail_message_left` — AMD machine-vm + we spoke the configured drop-message.<br/>
         /// * `voicemail_hangup` — AMD machine-vm + we terminated silently (action=hangup or empty-message bypass).<br/>
         /// * `ivr_hangup` — AMD machine-ivr + action=hangup.<br/>
         /// * `unavailable_hangup` — AMD machine-unavailable (mailbox full / disconnected).<br/>
         /// * `agent_ended` — LLM-driven end_call builtin.<br/>
+        /// * `operator_ended` - the conversation was closed deliberately through the force-end endpoint, by a person in the console or by your own backend. Distinguishes a human intervention from the agent deciding it was done or the caller going away.<br/>
         /// * `inactivity_timeout` — the call ended after the configured silence window elapsed with no activity.<br/>
         /// * `loop_detected` — a loop guard force-ended the call after several consecutive near-identical user turns (typically an IVR replaying its menu while the agent kept reacting instead of ending the call).<br/>
         /// * `max_duration_reached` - the max-call-duration limit force-ended the call at the platform ceiling (a safety bound on runaway calls).<br/>
@@ -348,14 +351,17 @@ namespace Speechify
         /// <param name="endReason">
         /// Coarse termination category. Most reasons are assigned by the<br/>
         /// agent runtime as the call ends; `caller_hangup` may also be<br/>
-        /// applied server-side as a post-call catch-all. The `dial_*`<br/>
-        /// reasons are assigned server-side on a `failed` conversation<br/>
-        /// for an outbound call that never connected.<br/>
+        /// applied server-side as a post-call catch-all, and<br/>
+        /// `operator_ended` is assigned server-side when the force-end<br/>
+        /// endpoint is called. The `dial_*` reasons are assigned<br/>
+        /// server-side on a `failed` conversation for an outbound call<br/>
+        /// that never connected.<br/>
         /// * `voicemail_message_left` — AMD machine-vm + we spoke the configured drop-message.<br/>
         /// * `voicemail_hangup` — AMD machine-vm + we terminated silently (action=hangup or empty-message bypass).<br/>
         /// * `ivr_hangup` — AMD machine-ivr + action=hangup.<br/>
         /// * `unavailable_hangup` — AMD machine-unavailable (mailbox full / disconnected).<br/>
         /// * `agent_ended` — LLM-driven end_call builtin.<br/>
+        /// * `operator_ended` - the conversation was closed deliberately through the force-end endpoint, by a person in the console or by your own backend. Distinguishes a human intervention from the agent deciding it was done or the caller going away.<br/>
         /// * `inactivity_timeout` — the call ended after the configured silence window elapsed with no activity.<br/>
         /// * `loop_detected` — a loop guard force-ended the call after several consecutive near-identical user turns (typically an IVR replaying its menu while the agent kept reacting instead of ending the call).<br/>
         /// * `max_duration_reached` - the max-call-duration limit force-ended the call at the platform ceiling (a safety bound on runaway calls).<br/>

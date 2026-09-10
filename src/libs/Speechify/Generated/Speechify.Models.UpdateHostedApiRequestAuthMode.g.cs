@@ -15,11 +15,19 @@ namespace Speechify
         /// <summary>
         ///
         /// </summary>
+        Owner,
+        /// <summary>
+        ///
+        /// </summary>
         Public,
         /// <summary>
         ///
         /// </summary>
         UserToken,
+        /// <summary>
+        ///
+        /// </summary>
+        Workspace,
     }
 
     /// <summary>
@@ -35,8 +43,10 @@ namespace Speechify
             return value switch
             {
                 UpdateHostedApiRequestAuthMode.ConsumerKey => "consumer_key",
+                UpdateHostedApiRequestAuthMode.Owner => "owner",
                 UpdateHostedApiRequestAuthMode.Public => "public",
                 UpdateHostedApiRequestAuthMode.UserToken => "user_token",
+                UpdateHostedApiRequestAuthMode.Workspace => "workspace",
                 _ => throw new global::System.ArgumentOutOfRangeException(nameof(value), value, null),
             };
         }
@@ -48,8 +58,10 @@ namespace Speechify
             return value switch
             {
                 "consumer_key" => UpdateHostedApiRequestAuthMode.ConsumerKey,
+                "owner" => UpdateHostedApiRequestAuthMode.Owner,
                 "public" => UpdateHostedApiRequestAuthMode.Public,
                 "user_token" => UpdateHostedApiRequestAuthMode.UserToken,
+                "workspace" => UpdateHostedApiRequestAuthMode.Workspace,
                 _ => null,
             };
         }

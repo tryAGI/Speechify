@@ -112,6 +112,16 @@ namespace Speechify
         public global::Speechify.ToolApprovalClass? EffectiveApproval { get; set; }
 
         /// <summary>
+        /// Where a call to this tool can execute (see `reach` on `Tool`).<br/>
+        /// Read-only, and absent for a `builtin`: a built-in's reach is a<br/>
+        /// property of the capability rather than of the kind, and is<br/>
+        /// published as `voice_only` / `runs_only` on<br/>
+        /// `GET /v1/agents/tool-capabilities`.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("reach")]
+        public global::System.Collections.Generic.IList<global::Speechify.ToolReach>? Reach { get; set; }
+
+        /// <summary>
         ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("created_at")]
@@ -183,6 +193,13 @@ namespace Speechify
         /// you set `enabled: false`. Absent for a built-in the worker runs,<br/>
         /// which only ever fires inside a live session.
         /// </param>
+        /// <param name="reach">
+        /// Where a call to this tool can execute (see `reach` on `Tool`).<br/>
+        /// Read-only, and absent for a `builtin`: a built-in's reach is a<br/>
+        /// property of the capability rather than of the kind, and is<br/>
+        /// published as `voice_only` / `runs_only` on<br/>
+        /// `GET /v1/agents/tool-capabilities`.
+        /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
 #endif
@@ -200,7 +217,8 @@ namespace Speechify
             string? webhookSecret,
             global::Speechify.ToolActionClass? actionClass,
             global::Speechify.ToolApprovalClass? approval,
-            global::Speechify.ToolApprovalClass? effectiveApproval)
+            global::Speechify.ToolApprovalClass? effectiveApproval,
+            global::System.Collections.Generic.IList<global::Speechify.ToolReach>? reach)
         {
             this.Id = id ?? throw new global::System.ArgumentNullException(nameof(id));
             this.Kind = kind;
@@ -214,6 +232,7 @@ namespace Speechify
             this.EffectiveActionClass = effectiveActionClass;
             this.Approval = approval;
             this.EffectiveApproval = effectiveApproval;
+            this.Reach = reach;
             this.CreatedAt = createdAt;
             this.UpdatedAt = updatedAt;
         }

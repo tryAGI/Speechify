@@ -29,7 +29,7 @@ namespace Speechify
         public string? Description { get; set; }
 
         /// <summary>
-        /// consumer_key when omitted.
+        /// consumer_key when omitted. `public` is refused with 403 `hosted_api_public_refused` where the workspace's policy does not allow internet-facing APIs.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("auth_mode")]
         [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Speechify.JsonConverters.CreateHostedApiRequestAuthModeJsonConverter))]
@@ -52,6 +52,12 @@ namespace Speechify
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("daily_read_cap")]
         public int? DailyReadCap { get; set; }
+
+        /// <summary>
+        /// Documents the API's write routes may land per UTC day; 10000 when omitted.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("daily_write_cap")]
+        public int? DailyWriteCap { get; set; }
 
         /// <summary>
         ///
@@ -80,7 +86,7 @@ namespace Speechify
         /// <param name="name"></param>
         /// <param name="description"></param>
         /// <param name="authMode">
-        /// consumer_key when omitted.
+        /// consumer_key when omitted. `public` is refused with 403 `hosted_api_public_refused` where the workspace's policy does not allow internet-facing APIs.
         /// </param>
         /// <param name="corsOrigins"></param>
         /// <param name="dailyRunCap">
@@ -88,6 +94,9 @@ namespace Speechify
         /// </param>
         /// <param name="dailyReadCap">
         /// Reads the API may serve from storage per UTC day; 100000 when omitted.
+        /// </param>
+        /// <param name="dailyWriteCap">
+        /// Documents the API's write routes may land per UTC day; 10000 when omitted.
         /// </param>
         /// <param name="projectId"></param>
         /// <param name="userTokenJwksUrl">
@@ -104,6 +113,7 @@ namespace Speechify
             global::System.Collections.Generic.IList<string>? corsOrigins,
             int? dailyRunCap,
             int? dailyReadCap,
+            int? dailyWriteCap,
             string? projectId,
             string? userTokenJwksUrl)
         {
@@ -114,6 +124,7 @@ namespace Speechify
             this.CorsOrigins = corsOrigins;
             this.DailyRunCap = dailyRunCap;
             this.DailyReadCap = dailyReadCap;
+            this.DailyWriteCap = dailyWriteCap;
             this.ProjectId = projectId;
             this.UserTokenJwksUrl = userTokenJwksUrl;
         }

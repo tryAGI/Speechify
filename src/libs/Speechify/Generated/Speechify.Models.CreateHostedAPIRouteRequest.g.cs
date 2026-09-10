@@ -42,6 +42,11 @@ namespace Speechify
         /// `store_aggregate` (store_id, collection, where, group_by, metrics:<br/>
         /// a summary in one request, from the same implementation as the<br/>
         /// collection's `aggregate` operation),<br/>
+        /// `store_write` (store_id, collection, write_mode, document_id: the<br/>
+        /// request body lands as a document, the fast path past a run for the<br/>
+        /// one thing a read resolver cannot do; POST only, never on a public<br/>
+        /// API, and on an API that names its caller the document is that<br/>
+        /// person's),<br/>
         /// `run_latest` (trigger_id of a schedule trigger),<br/>
         /// `run` (trigger_id of a webhook trigger, wait_seconds),<br/>
         /// `file` (file_path of one published file; or, on a route whose path<br/>
@@ -89,6 +94,11 @@ namespace Speechify
         /// `store_aggregate` (store_id, collection, where, group_by, metrics:<br/>
         /// a summary in one request, from the same implementation as the<br/>
         /// collection's `aggregate` operation),<br/>
+        /// `store_write` (store_id, collection, write_mode, document_id: the<br/>
+        /// request body lands as a document, the fast path past a run for the<br/>
+        /// one thing a read resolver cannot do; POST only, never on a public<br/>
+        /// API, and on an API that names its caller the document is that<br/>
+        /// person's),<br/>
         /// `run_latest` (trigger_id of a schedule trigger),<br/>
         /// `run` (trigger_id of a webhook trigger, wait_seconds),<br/>
         /// `file` (file_path of one published file; or, on a route whose path<br/>

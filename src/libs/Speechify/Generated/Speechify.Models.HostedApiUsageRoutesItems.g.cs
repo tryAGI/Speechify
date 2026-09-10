@@ -23,6 +23,13 @@ namespace Speechify
         public required long Reads { get; set; }
 
         /// <summary>
+        ///
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("writes")]
+        [global::System.Text.Json.Serialization.JsonRequired]
+        public required long Writes { get; set; }
+
+        /// <summary>
         /// Additional properties that are not explicitly defined in the schema
         /// </summary>
         [global::System.Text.Json.Serialization.JsonExtensionData]
@@ -33,15 +40,18 @@ namespace Speechify
         /// </summary>
         /// <param name="routeId"></param>
         /// <param name="reads"></param>
+        /// <param name="writes"></param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
 #endif
         public HostedApiUsageRoutesItems(
             string routeId,
-            long reads)
+            long reads,
+            long writes)
         {
             this.RouteId = routeId ?? throw new global::System.ArgumentNullException(nameof(routeId));
             this.Reads = reads;
+            this.Writes = writes;
         }
 
         /// <summary>

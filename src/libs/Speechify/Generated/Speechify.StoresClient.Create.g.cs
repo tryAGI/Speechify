@@ -49,6 +49,10 @@ namespace Speechify
         /// Create Store<br/>
         /// Create a store. Names are unique per workspace among live stores.<br/>
         /// Bounded by the workspace's store limit (409 `store_limit_reached`).<br/>
+        /// Collections are implicit (the first write names one), a document is a<br/>
+        /// JSON object of at most 256 KiB whose top-level scalar fields are<br/>
+        /// indexed, and the ids `query`, `batch` and `aggregate` are reserved for<br/>
+        /// the operations of the same name.<br/>
         /// Dark launch: requires the `hosted_apis_access` entitlement (402 `hosted_apis_not_in_plan` otherwise).
         /// </summary>
         /// <param name="speechifyVersion"></param>
@@ -82,6 +86,10 @@ namespace Speechify
         /// Create Store<br/>
         /// Create a store. Names are unique per workspace among live stores.<br/>
         /// Bounded by the workspace's store limit (409 `store_limit_reached`).<br/>
+        /// Collections are implicit (the first write names one), a document is a<br/>
+        /// JSON object of at most 256 KiB whose top-level scalar fields are<br/>
+        /// indexed, and the ids `query`, `batch` and `aggregate` are reserved for<br/>
+        /// the operations of the same name.<br/>
         /// Dark launch: requires the `hosted_apis_access` entitlement (402 `hosted_apis_not_in_plan` otherwise).
         /// </summary>
         /// <param name="speechifyVersion"></param>
@@ -695,6 +703,10 @@ namespace Speechify
         /// Create Store<br/>
         /// Create a store. Names are unique per workspace among live stores.<br/>
         /// Bounded by the workspace's store limit (409 `store_limit_reached`).<br/>
+        /// Collections are implicit (the first write names one), a document is a<br/>
+        /// JSON object of at most 256 KiB whose top-level scalar fields are<br/>
+        /// indexed, and the ids `query`, `batch` and `aggregate` are reserved for<br/>
+        /// the operations of the same name.<br/>
         /// Dark launch: requires the `hosted_apis_access` entitlement (402 `hosted_apis_not_in_plan` otherwise).
         /// </summary>
         /// <param name="speechifyVersion"></param>

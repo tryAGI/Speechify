@@ -6,21 +6,26 @@ namespace Speechify
     {
         /// <summary>
         /// Create Route<br/>
-        /// Add a route: a method + path answered by a resolver. `store_query` and<br/>
-        /// `store_document` serve a store; `run_latest` serves the newest<br/>
-        /// structured output of a schedule trigger's runs; `run` starts a run<br/>
-        /// through a webhook trigger per request (POST only, never on a public<br/>
-        /// API) and waits up to `wait_seconds` before answering 202 with a<br/>
-        /// handle to poll at `/_runs/{run_id}`; `file` serves one published file,<br/>
-        /// or a whole published tree when the path ends in `*` (`/app/*` with<br/>
-        /// `file_root` and `file_index`). Where-clause values and the<br/>
-        /// document id may be `{{query.x}}`, `{{path.x}}` or `{{body.x}}`<br/>
-        /// templates bound from the consumer's request, or `{{user.x}}` claims<br/>
-        /// of the verified end-user token on a `user_token` API; a clause whose<br/>
-        /// template is absent is skipped. Two bindings are refused at write<br/>
-        /// time: `{{user.*}}` on an API that does not verify end-user tokens,<br/>
-        /// and a clause on `user_identity` bound from a request template, which<br/>
-        /// would let any caller read any user's rows.<br/>
+        /// Add a route: a method + path answered by a resolver. `store_query`,<br/>
+        /// `store_document` and `store_aggregate` serve a store; `store_write`<br/>
+        /// lands the POST body as a document (`write_mode` create / replace /<br/>
+        /// merge; POST only, never on a public API, counted against<br/>
+        /// `daily_write_cap`, deduplicated on `Idempotency-Key`); `run_latest`<br/>
+        /// serves the newest structured output of a schedule trigger's runs;<br/>
+        /// `run` starts a run through a webhook trigger per request (POST only,<br/>
+        /// never on a public API) and waits up to `wait_seconds` before answering<br/>
+        /// 202 with a handle to poll at `/_runs/{run_id}`; `file` serves one<br/>
+        /// published file, or a whole published tree when the path ends in `*`<br/>
+        /// (`/app/*` with `file_root` and `file_index`). Where-clause values and<br/>
+        /// the document id may be `{{query.x}}`, `{{path.x}}` or `{{body.x}}`<br/>
+        /// templates bound from the consumer's request, or `{{user.x}}` claims of<br/>
+        /// the verified caller on a `user_token`, `workspace` or `owner` API; a<br/>
+        /// clause whose template is absent is skipped. On those three modes a<br/>
+        /// written document is stamped `user_identity` as the caller and only<br/>
+        /// they can replace or merge it. Two bindings are refused at write time:<br/>
+        /// `{{user.*}}` on an API that names no caller, and a clause on<br/>
+        /// `user_identity` bound from a request template, which would let any<br/>
+        /// caller read any user's rows.<br/>
         /// Dark launch: requires the `hosted_apis_access` entitlement (402 `hosted_apis_not_in_plan` otherwise).
         /// </summary>
         /// <param name="apiId"></param>
@@ -42,21 +47,26 @@ namespace Speechify
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Create Route<br/>
-        /// Add a route: a method + path answered by a resolver. `store_query` and<br/>
-        /// `store_document` serve a store; `run_latest` serves the newest<br/>
-        /// structured output of a schedule trigger's runs; `run` starts a run<br/>
-        /// through a webhook trigger per request (POST only, never on a public<br/>
-        /// API) and waits up to `wait_seconds` before answering 202 with a<br/>
-        /// handle to poll at `/_runs/{run_id}`; `file` serves one published file,<br/>
-        /// or a whole published tree when the path ends in `*` (`/app/*` with<br/>
-        /// `file_root` and `file_index`). Where-clause values and the<br/>
-        /// document id may be `{{query.x}}`, `{{path.x}}` or `{{body.x}}`<br/>
-        /// templates bound from the consumer's request, or `{{user.x}}` claims<br/>
-        /// of the verified end-user token on a `user_token` API; a clause whose<br/>
-        /// template is absent is skipped. Two bindings are refused at write<br/>
-        /// time: `{{user.*}}` on an API that does not verify end-user tokens,<br/>
-        /// and a clause on `user_identity` bound from a request template, which<br/>
-        /// would let any caller read any user's rows.<br/>
+        /// Add a route: a method + path answered by a resolver. `store_query`,<br/>
+        /// `store_document` and `store_aggregate` serve a store; `store_write`<br/>
+        /// lands the POST body as a document (`write_mode` create / replace /<br/>
+        /// merge; POST only, never on a public API, counted against<br/>
+        /// `daily_write_cap`, deduplicated on `Idempotency-Key`); `run_latest`<br/>
+        /// serves the newest structured output of a schedule trigger's runs;<br/>
+        /// `run` starts a run through a webhook trigger per request (POST only,<br/>
+        /// never on a public API) and waits up to `wait_seconds` before answering<br/>
+        /// 202 with a handle to poll at `/_runs/{run_id}`; `file` serves one<br/>
+        /// published file, or a whole published tree when the path ends in `*`<br/>
+        /// (`/app/*` with `file_root` and `file_index`). Where-clause values and<br/>
+        /// the document id may be `{{query.x}}`, `{{path.x}}` or `{{body.x}}`<br/>
+        /// templates bound from the consumer's request, or `{{user.x}}` claims of<br/>
+        /// the verified caller on a `user_token`, `workspace` or `owner` API; a<br/>
+        /// clause whose template is absent is skipped. On those three modes a<br/>
+        /// written document is stamped `user_identity` as the caller and only<br/>
+        /// they can replace or merge it. Two bindings are refused at write time:<br/>
+        /// `{{user.*}}` on an API that names no caller, and a clause on<br/>
+        /// `user_identity` bound from a request template, which would let any<br/>
+        /// caller read any user's rows.<br/>
         /// Dark launch: requires the `hosted_apis_access` entitlement (402 `hosted_apis_not_in_plan` otherwise).
         /// </summary>
         /// <param name="apiId"></param>
@@ -78,21 +88,26 @@ namespace Speechify
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Create Route<br/>
-        /// Add a route: a method + path answered by a resolver. `store_query` and<br/>
-        /// `store_document` serve a store; `run_latest` serves the newest<br/>
-        /// structured output of a schedule trigger's runs; `run` starts a run<br/>
-        /// through a webhook trigger per request (POST only, never on a public<br/>
-        /// API) and waits up to `wait_seconds` before answering 202 with a<br/>
-        /// handle to poll at `/_runs/{run_id}`; `file` serves one published file,<br/>
-        /// or a whole published tree when the path ends in `*` (`/app/*` with<br/>
-        /// `file_root` and `file_index`). Where-clause values and the<br/>
-        /// document id may be `{{query.x}}`, `{{path.x}}` or `{{body.x}}`<br/>
-        /// templates bound from the consumer's request, or `{{user.x}}` claims<br/>
-        /// of the verified end-user token on a `user_token` API; a clause whose<br/>
-        /// template is absent is skipped. Two bindings are refused at write<br/>
-        /// time: `{{user.*}}` on an API that does not verify end-user tokens,<br/>
-        /// and a clause on `user_identity` bound from a request template, which<br/>
-        /// would let any caller read any user's rows.<br/>
+        /// Add a route: a method + path answered by a resolver. `store_query`,<br/>
+        /// `store_document` and `store_aggregate` serve a store; `store_write`<br/>
+        /// lands the POST body as a document (`write_mode` create / replace /<br/>
+        /// merge; POST only, never on a public API, counted against<br/>
+        /// `daily_write_cap`, deduplicated on `Idempotency-Key`); `run_latest`<br/>
+        /// serves the newest structured output of a schedule trigger's runs;<br/>
+        /// `run` starts a run through a webhook trigger per request (POST only,<br/>
+        /// never on a public API) and waits up to `wait_seconds` before answering<br/>
+        /// 202 with a handle to poll at `/_runs/{run_id}`; `file` serves one<br/>
+        /// published file, or a whole published tree when the path ends in `*`<br/>
+        /// (`/app/*` with `file_root` and `file_index`). Where-clause values and<br/>
+        /// the document id may be `{{query.x}}`, `{{path.x}}` or `{{body.x}}`<br/>
+        /// templates bound from the consumer's request, or `{{user.x}}` claims of<br/>
+        /// the verified caller on a `user_token`, `workspace` or `owner` API; a<br/>
+        /// clause whose template is absent is skipped. On those three modes a<br/>
+        /// written document is stamped `user_identity` as the caller and only<br/>
+        /// they can replace or merge it. Two bindings are refused at write time:<br/>
+        /// `{{user.*}}` on an API that names no caller, and a clause on<br/>
+        /// `user_identity` bound from a request template, which would let any<br/>
+        /// caller read any user's rows.<br/>
         /// Dark launch: requires the `hosted_apis_access` entitlement (402 `hosted_apis_not_in_plan` otherwise).
         /// </summary>
         /// <param name="apiId"></param>
@@ -113,6 +128,11 @@ namespace Speechify
         /// `store_aggregate` (store_id, collection, where, group_by, metrics:<br/>
         /// a summary in one request, from the same implementation as the<br/>
         /// collection's `aggregate` operation),<br/>
+        /// `store_write` (store_id, collection, write_mode, document_id: the<br/>
+        /// request body lands as a document, the fast path past a run for the<br/>
+        /// one thing a read resolver cannot do; POST only, never on a public<br/>
+        /// API, and on an API that names its caller the document is that<br/>
+        /// person's),<br/>
         /// `run_latest` (trigger_id of a schedule trigger),<br/>
         /// `run` (trigger_id of a webhook trigger, wait_seconds),<br/>
         /// `file` (file_path of one published file; or, on a route whose path<br/>

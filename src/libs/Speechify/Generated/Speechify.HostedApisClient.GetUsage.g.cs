@@ -45,10 +45,11 @@ namespace Speechify
 
         /// <summary>
         /// Get Hosted API Usage<br/>
-        /// Today's reads and runs against the API's daily caps, with each route's<br/>
-        /// share of the reads. A read is a request a store, file or run_latest<br/>
-        /// route answered from storage; a response served from the cache is not<br/>
-        /// one. `counters_available` is false where nothing counts (no Redis), so<br/>
+        /// Today's reads, runs and writes against the API's daily caps, with each<br/>
+        /// route's share of the reads and writes. A read is a request a store,<br/>
+        /// file or run_latest route answered from storage; a response served from<br/>
+        /// the cache is not one. A write is a document a `store_write` route<br/>
+        /// landed; a replayed Idempotency-Key is not one. `counters_available` is false where nothing counts (no Redis), so<br/>
         /// a zero is never mistaken for a quiet day.<br/>
         /// Dark launch: requires the `hosted_apis_access` entitlement (402 `hosted_apis_not_in_plan` otherwise).
         /// </summary>
@@ -74,10 +75,11 @@ namespace Speechify
         }
         /// <summary>
         /// Get Hosted API Usage<br/>
-        /// Today's reads and runs against the API's daily caps, with each route's<br/>
-        /// share of the reads. A read is a request a store, file or run_latest<br/>
-        /// route answered from storage; a response served from the cache is not<br/>
-        /// one. `counters_available` is false where nothing counts (no Redis), so<br/>
+        /// Today's reads, runs and writes against the API's daily caps, with each<br/>
+        /// route's share of the reads and writes. A read is a request a store,<br/>
+        /// file or run_latest route answered from storage; a response served from<br/>
+        /// the cache is not one. A write is a document a `store_write` route<br/>
+        /// landed; a replayed Idempotency-Key is not one. `counters_available` is false where nothing counts (no Redis), so<br/>
         /// a zero is never mistaken for a quiet day.<br/>
         /// Dark launch: requires the `hosted_apis_access` entitlement (402 `hosted_apis_not_in_plan` otherwise).
         /// </summary>

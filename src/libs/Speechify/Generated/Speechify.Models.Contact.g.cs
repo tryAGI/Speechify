@@ -67,7 +67,13 @@ namespace Speechify
         public required global::System.DateTime FirstSeenAt { get; set; }
 
         /// <summary>
-        ///
+        /// The most recent sighting recorded for this person, across every<br/>
+        /// channel and agent: the time of the last turn they spoke, or of the<br/>
+        /// last conversation opened for them if they have not spoken since.<br/>
+        /// A person mid-exchange on a long-running thread therefore reads as<br/>
+        /// seen at their latest message rather than when the thread opened.<br/>
+        /// Drives the default list ordering, and a merge widens it to span<br/>
+        /// both records.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("last_seen_at")]
         [global::System.Text.Json.Serialization.JsonRequired]
@@ -121,7 +127,15 @@ namespace Speechify
         /// this to span both records, because the window belongs to the<br/>
         /// person rather than to whichever record saw them first.
         /// </param>
-        /// <param name="lastSeenAt"></param>
+        /// <param name="lastSeenAt">
+        /// The most recent sighting recorded for this person, across every<br/>
+        /// channel and agent: the time of the last turn they spoke, or of the<br/>
+        /// last conversation opened for them if they have not spoken since.<br/>
+        /// A person mid-exchange on a long-running thread therefore reads as<br/>
+        /// seen at their latest message rather than when the thread opened.<br/>
+        /// Drives the default list ordering, and a merge widens it to span<br/>
+        /// both records.
+        /// </param>
         /// <param name="createdAt"></param>
         /// <param name="updatedAt"></param>
         /// <param name="displayName">
