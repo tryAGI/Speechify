@@ -52,6 +52,12 @@ namespace Speechify
         public int? DailyReadCap { get; set; }
 
         /// <summary>
+        ///
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("daily_write_cap")]
+        public int? DailyWriteCap { get; set; }
+
+        /// <summary>
         /// Replace the registered key set; an empty string removes it, after which the signing secret verifies tokens again.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("user_token_jwks_url")]
@@ -75,6 +81,7 @@ namespace Speechify
         /// </param>
         /// <param name="dailyRunCap"></param>
         /// <param name="dailyReadCap"></param>
+        /// <param name="dailyWriteCap"></param>
         /// <param name="userTokenJwksUrl">
         /// Replace the registered key set; an empty string removes it, after which the signing secret verifies tokens again.
         /// </param>
@@ -89,6 +96,7 @@ namespace Speechify
             bool? enabled,
             int? dailyRunCap,
             int? dailyReadCap,
+            int? dailyWriteCap,
             string? userTokenJwksUrl)
         {
             this.Name = name;
@@ -98,6 +106,7 @@ namespace Speechify
             this.Enabled = enabled;
             this.DailyRunCap = dailyRunCap;
             this.DailyReadCap = dailyReadCap;
+            this.DailyWriteCap = dailyWriteCap;
             this.UserTokenJwksUrl = userTokenJwksUrl;
         }
 

@@ -10,6 +10,11 @@ namespace Speechify
     /// `store_aggregate` (store_id, collection, where, group_by, metrics:<br/>
     /// a summary in one request, from the same implementation as the<br/>
     /// collection's `aggregate` operation),<br/>
+    /// `store_write` (store_id, collection, write_mode, document_id: the<br/>
+    /// request body lands as a document, the fast path past a run for the<br/>
+    /// one thing a read resolver cannot do; POST only, never on a public<br/>
+    /// API, and on an API that names its caller the document is that<br/>
+    /// person's),<br/>
     /// `run_latest` (trigger_id of a schedule trigger),<br/>
     /// `run` (trigger_id of a webhook trigger, wait_seconds),<br/>
     /// `file` (file_path of one published file; or, on a route whose path<br/>
@@ -38,10 +43,22 @@ namespace Speechify
         public string? Collection { get; set; }
 
         /// <summary>
-        /// A literal id, a `{{path.x}}` / `{{query.x}}` template bound from the request, or a `{{user.x}}` claim of the verified end-user token.
+        /// A literal id, a `{{path.x}}` / `{{query.x}}` / `{{body.x}}` template bound from the request, or a `{{user.x}}` claim of the verified caller. On a `store_write` route it names the document a replace or merge lands on, and is refused on a create.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("document_id")]
         public string? DocumentId { get; set; }
+
+        /// <summary>
+        /// For a `store_write` route: `create` mints an id and answers 201<br/>
+        /// with the document; `replace` and `merge` land on `document_id`<br/>
+        /// (a merge sets the fields sent and keeps the rest) and answer 200.<br/>
+        /// Omitted, a route with a document_id merges and one without<br/>
+        /// creates. On an API that names its caller, a replace or merge of<br/>
+        /// another person's document is not found.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("write_mode")]
+        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Speechify.JsonConverters.HostedApiResolverWriteModeJsonConverter))]
+        public global::Speechify.HostedApiResolverWriteMode? WriteMode { get; set; }
 
         /// <summary>
         ///
@@ -142,7 +159,15 @@ namespace Speechify
         /// <param name="storeId"></param>
         /// <param name="collection"></param>
         /// <param name="documentId">
-        /// A literal id, a `{{path.x}}` / `{{query.x}}` template bound from the request, or a `{{user.x}}` claim of the verified end-user token.
+        /// A literal id, a `{{path.x}}` / `{{query.x}}` / `{{body.x}}` template bound from the request, or a `{{user.x}}` claim of the verified caller. On a `store_write` route it names the document a replace or merge lands on, and is refused on a create.
+        /// </param>
+        /// <param name="writeMode">
+        /// For a `store_write` route: `create` mints an id and answers 201<br/>
+        /// with the document; `replace` and `merge` land on `document_id`<br/>
+        /// (a merge sets the fields sent and keeps the rest) and answer 200.<br/>
+        /// Omitted, a route with a document_id merges and one without<br/>
+        /// creates. On an API that names its caller, a replace or merge of<br/>
+        /// another person's document is not found.
         /// </param>
         /// <param name="where"></param>
         /// <param name="orderBy"></param>
@@ -202,6 +227,7 @@ namespace Speechify
             string? storeId,
             string? collection,
             string? documentId,
+            global::Speechify.HostedApiResolverWriteMode? writeMode,
             global::System.Collections.Generic.IList<global::Speechify.HostedApiResolverWhereItems>? where,
             global::Speechify.HostedApiResolverOrderBy? orderBy,
             int? limit,
@@ -217,6 +243,7 @@ namespace Speechify
             this.StoreId = storeId;
             this.Collection = collection;
             this.DocumentId = documentId;
+            this.WriteMode = writeMode;
             this.Where = where;
             this.OrderBy = orderBy;
             this.Limit = limit;

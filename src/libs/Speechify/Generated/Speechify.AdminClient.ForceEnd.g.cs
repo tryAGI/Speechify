@@ -48,7 +48,10 @@ namespace Speechify
         /// Force-terminate an ongoing conversation. Idempotent: a<br/>
         /// conversation that has already ended returns 204 the same as a<br/>
         /// successful first-time termination. Requires an `owner` or `admin`<br/>
-        /// of the workspace — the same gate as take-over.
+        /// of the workspace — the same gate as take-over.<br/>
+        /// The conversation records `end_reason: operator_ended`, so a<br/>
+        /// conversation closed this way can be told apart from one the agent<br/>
+        /// or the caller ended.
         /// </summary>
         /// <param name="conversationId"></param>
         /// <param name="speechifyVersion"></param>
@@ -75,7 +78,10 @@ namespace Speechify
         /// Force-terminate an ongoing conversation. Idempotent: a<br/>
         /// conversation that has already ended returns 204 the same as a<br/>
         /// successful first-time termination. Requires an `owner` or `admin`<br/>
-        /// of the workspace — the same gate as take-over.
+        /// of the workspace — the same gate as take-over.<br/>
+        /// The conversation records `end_reason: operator_ended`, so a<br/>
+        /// conversation closed this way can be told apart from one the agent<br/>
+        /// or the caller ended.
         /// </summary>
         /// <param name="conversationId"></param>
         /// <param name="speechifyVersion"></param>

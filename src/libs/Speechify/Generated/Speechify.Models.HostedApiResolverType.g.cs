@@ -32,6 +32,10 @@ namespace Speechify
         ///
         /// </summary>
         StoreQuery,
+        /// <summary>
+        ///
+        /// </summary>
+        StoreWrite,
     }
 
     /// <summary>
@@ -52,6 +56,7 @@ namespace Speechify
                 HostedApiResolverType.StoreAggregate => "store_aggregate",
                 HostedApiResolverType.StoreDocument => "store_document",
                 HostedApiResolverType.StoreQuery => "store_query",
+                HostedApiResolverType.StoreWrite => "store_write",
                 _ => throw new global::System.ArgumentOutOfRangeException(nameof(value), value, null),
             };
         }
@@ -68,6 +73,7 @@ namespace Speechify
                 "store_aggregate" => HostedApiResolverType.StoreAggregate,
                 "store_document" => HostedApiResolverType.StoreDocument,
                 "store_query" => HostedApiResolverType.StoreQuery,
+                "store_write" => HostedApiResolverType.StoreWrite,
                 _ => null,
             };
         }

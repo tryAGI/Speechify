@@ -124,6 +124,21 @@ namespace Speechify
         public required global::Speechify.ToolApprovalClass EffectiveApproval { get; set; }
 
         /// <summary>
+        /// Where a call to this tool can execute, derived from its `kind`.<br/>
+        /// Read-only.<br/>
+        /// A `webhook` or `mcp` tool reaches every surface. A `client` tool<br/>
+        /// reaches `voice` only: its call is answered by your own application<br/>
+        /// over the live session's data channel, so it needs a realtime<br/>
+        /// session your client is connected to. Neither the roomless text<br/>
+        /// runtime nor an autonomous run has one, and both drop the tool<br/>
+        /// before the model is offered it - so attaching a `client` tool to<br/>
+        /// an agent with no `voice` channel attaches a capability that can<br/>
+        /// never fire.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("reach")]
+        public global::System.Collections.Generic.IList<global::Speechify.ToolReach>? Reach { get; set; }
+
+        /// <summary>
         ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("created_at")]
@@ -194,6 +209,18 @@ namespace Speechify
         /// Your explicit override of the approval derived from the class.<br/>
         /// Null means derived.
         /// </param>
+        /// <param name="reach">
+        /// Where a call to this tool can execute, derived from its `kind`.<br/>
+        /// Read-only.<br/>
+        /// A `webhook` or `mcp` tool reaches every surface. A `client` tool<br/>
+        /// reaches `voice` only: its call is answered by your own application<br/>
+        /// over the live session's data channel, so it needs a realtime<br/>
+        /// session your client is connected to. Neither the roomless text<br/>
+        /// runtime nor an autonomous run has one, and both drop the tool<br/>
+        /// before the model is offered it - so attaching a `client` tool to<br/>
+        /// an agent with no `voice` channel attaches a capability that can<br/>
+        /// never fire.
+        /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
 #endif
@@ -210,7 +237,8 @@ namespace Speechify
             string? webhookSecret,
             string? projectId,
             global::Speechify.ToolActionClass? actionClass,
-            global::Speechify.ToolApprovalClass? approval)
+            global::Speechify.ToolApprovalClass? approval,
+            global::System.Collections.Generic.IList<global::Speechify.ToolReach>? reach)
         {
             this.Id = id ?? throw new global::System.ArgumentNullException(nameof(id));
             this.Name = name ?? throw new global::System.ArgumentNullException(nameof(name));
@@ -223,6 +251,7 @@ namespace Speechify
             this.EffectiveActionClass = effectiveActionClass;
             this.Approval = approval;
             this.EffectiveApproval = effectiveApproval;
+            this.Reach = reach;
             this.CreatedAt = createdAt;
             this.UpdatedAt = updatedAt;
         }

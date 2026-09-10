@@ -44,6 +44,20 @@ namespace Speechify
         public required int DailyRunCap { get; set; }
 
         /// <summary>
+        /// Documents landed today through the API's write routes.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("writes")]
+        [global::System.Text.Json.Serialization.JsonRequired]
+        public required long Writes { get; set; }
+
+        /// <summary>
+        ///
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("daily_write_cap")]
+        [global::System.Text.Json.Serialization.JsonRequired]
+        public required int DailyWriteCap { get; set; }
+
+        /// <summary>
         ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("routes")]
@@ -77,6 +91,10 @@ namespace Speechify
         /// Runs started today through the API's run routes.
         /// </param>
         /// <param name="dailyRunCap"></param>
+        /// <param name="writes">
+        /// Documents landed today through the API's write routes.
+        /// </param>
+        /// <param name="dailyWriteCap"></param>
         /// <param name="routes"></param>
         /// <param name="countersAvailable">
         /// False where nothing counts (no Redis); the numbers are then zero, not quiet.
@@ -90,6 +108,8 @@ namespace Speechify
             int dailyReadCap,
             long runs,
             int dailyRunCap,
+            long writes,
+            int dailyWriteCap,
             global::System.Collections.Generic.IList<global::Speechify.HostedApiUsageRoutesItems> routes,
             bool countersAvailable)
         {
@@ -98,6 +118,8 @@ namespace Speechify
             this.DailyReadCap = dailyReadCap;
             this.Runs = runs;
             this.DailyRunCap = dailyRunCap;
+            this.Writes = writes;
+            this.DailyWriteCap = dailyWriteCap;
             this.Routes = routes ?? throw new global::System.ArgumentNullException(nameof(routes));
             this.CountersAvailable = countersAvailable;
         }

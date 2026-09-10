@@ -4,7 +4,7 @@
 namespace Speechify
 {
     /// <summary>
-    /// consumer_key when omitted.
+    /// consumer_key when omitted. `public` is refused with 403 `hosted_api_public_refused` where the workspace's policy does not allow internet-facing APIs.
     /// </summary>
     public enum CreateHostedApiRequestAuthMode
     {
@@ -15,11 +15,19 @@ namespace Speechify
         /// <summary>
         ///
         /// </summary>
+        Owner,
+        /// <summary>
+        ///
+        /// </summary>
         Public,
         /// <summary>
         ///
         /// </summary>
         UserToken,
+        /// <summary>
+        ///
+        /// </summary>
+        Workspace,
     }
 
     /// <summary>
@@ -35,8 +43,10 @@ namespace Speechify
             return value switch
             {
                 CreateHostedApiRequestAuthMode.ConsumerKey => "consumer_key",
+                CreateHostedApiRequestAuthMode.Owner => "owner",
                 CreateHostedApiRequestAuthMode.Public => "public",
                 CreateHostedApiRequestAuthMode.UserToken => "user_token",
+                CreateHostedApiRequestAuthMode.Workspace => "workspace",
                 _ => throw new global::System.ArgumentOutOfRangeException(nameof(value), value, null),
             };
         }
@@ -48,8 +58,10 @@ namespace Speechify
             return value switch
             {
                 "consumer_key" => CreateHostedApiRequestAuthMode.ConsumerKey,
+                "owner" => CreateHostedApiRequestAuthMode.Owner,
                 "public" => CreateHostedApiRequestAuthMode.Public,
                 "user_token" => CreateHostedApiRequestAuthMode.UserToken,
+                "workspace" => CreateHostedApiRequestAuthMode.Workspace,
                 _ => null,
             };
         }

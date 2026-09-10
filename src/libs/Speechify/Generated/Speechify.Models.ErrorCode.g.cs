@@ -244,6 +244,10 @@ namespace Speechify
         /// <summary>
         ///
         /// </summary>
+        HostedApiPublicRefused,
+        /// <summary>
+        ///
+        /// </summary>
         HostedApiSlugTaken,
         /// <summary>
         ///
@@ -409,6 +413,10 @@ namespace Speechify
         ///
         /// </summary>
         RouteRunTimeout,
+        /// <summary>
+        ///
+        /// </summary>
+        RouteWriteLimitReached,
         /// <summary>
         ///
         /// </summary>
@@ -680,6 +688,7 @@ namespace Speechify
                 ErrorCode.Forbidden => "forbidden",
                 ErrorCode.FundedBalanceRequired => "funded_balance_required",
                 ErrorCode.HostedApiNotFound => "hosted_api_not_found",
+                ErrorCode.HostedApiPublicRefused => "hosted_api_public_refused",
                 ErrorCode.HostedApiSlugTaken => "hosted_api_slug_taken",
                 ErrorCode.HostedApisNotInPlan => "hosted_apis_not_in_plan",
                 ErrorCode.IdempotencyConflict => "idempotency_conflict",
@@ -722,6 +731,7 @@ namespace Speechify
                 ErrorCode.RouteRunFailed => "route_run_failed",
                 ErrorCode.RouteRunLimitReached => "route_run_limit_reached",
                 ErrorCode.RouteRunTimeout => "route_run_timeout",
+                ErrorCode.RouteWriteLimitReached => "route_write_limit_reached",
                 ErrorCode.ServiceAccountLimitReached => "service_account_limit_reached",
                 ErrorCode.ServiceAccountsNotInPlan => "service_accounts_not_in_plan",
                 ErrorCode.ServiceUnavailable => "service_unavailable",
@@ -839,6 +849,7 @@ namespace Speechify
                 "forbidden" => ErrorCode.Forbidden,
                 "funded_balance_required" => ErrorCode.FundedBalanceRequired,
                 "hosted_api_not_found" => ErrorCode.HostedApiNotFound,
+                "hosted_api_public_refused" => ErrorCode.HostedApiPublicRefused,
                 "hosted_api_slug_taken" => ErrorCode.HostedApiSlugTaken,
                 "hosted_apis_not_in_plan" => ErrorCode.HostedApisNotInPlan,
                 "idempotency_conflict" => ErrorCode.IdempotencyConflict,
@@ -881,6 +892,7 @@ namespace Speechify
                 "route_run_failed" => ErrorCode.RouteRunFailed,
                 "route_run_limit_reached" => ErrorCode.RouteRunLimitReached,
                 "route_run_timeout" => ErrorCode.RouteRunTimeout,
+                "route_write_limit_reached" => ErrorCode.RouteWriteLimitReached,
                 "service_account_limit_reached" => ErrorCode.ServiceAccountLimitReached,
                 "service_accounts_not_in_plan" => ErrorCode.ServiceAccountsNotInPlan,
                 "service_unavailable" => ErrorCode.ServiceUnavailable,

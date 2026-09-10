@@ -48,6 +48,11 @@ namespace Speechify
         /// Upload one file (multipart form field `file`, at most 25 MiB) so a run<br/>
         /// can be handed it: pass the returned `id` in `attachments` on<br/>
         /// `POST /v1/agents/{agent_id}/runs`, a team run, or a trigger's run spec.<br/>
+        /// A file uploaded with `kind: kept` and a `path` is published: a hosted<br/>
+        /// API's `file` route serves it under its own media type, and a tree of<br/>
+        /// them (`dash/index.html`, `dash/assets/main.js`) is served by one route<br/>
+        /// at `/app/*`. A path is slash-separated segments of letters, digits, or<br/>
+        /// `. _ ~ -`, no leading or trailing slash, at most 600 characters.<br/>
         /// Scope it with `user_identity` to the person it belongs to, and only a<br/>
         /// run acting for that person can read it; leave it empty and any run in<br/>
         /// the workspace can.<br/>
@@ -92,6 +97,11 @@ namespace Speechify
         /// Upload one file (multipart form field `file`, at most 25 MiB) so a run<br/>
         /// can be handed it: pass the returned `id` in `attachments` on<br/>
         /// `POST /v1/agents/{agent_id}/runs`, a team run, or a trigger's run spec.<br/>
+        /// A file uploaded with `kind: kept` and a `path` is published: a hosted<br/>
+        /// API's `file` route serves it under its own media type, and a tree of<br/>
+        /// them (`dash/index.html`, `dash/assets/main.js`) is served by one route<br/>
+        /// at `/app/*`. A path is slash-separated segments of letters, digits, or<br/>
+        /// `. _ ~ -`, no leading or trailing slash, at most 600 characters.<br/>
         /// Scope it with `user_identity` to the person it belongs to, and only a<br/>
         /// run acting for that person can read it; leave it empty and any run in<br/>
         /// the workspace can.<br/>
@@ -817,6 +827,11 @@ namespace Speechify
         /// Upload one file (multipart form field `file`, at most 25 MiB) so a run<br/>
         /// can be handed it: pass the returned `id` in `attachments` on<br/>
         /// `POST /v1/agents/{agent_id}/runs`, a team run, or a trigger's run spec.<br/>
+        /// A file uploaded with `kind: kept` and a `path` is published: a hosted<br/>
+        /// API's `file` route serves it under its own media type, and a tree of<br/>
+        /// them (`dash/index.html`, `dash/assets/main.js`) is served by one route<br/>
+        /// at `/app/*`. A path is slash-separated segments of letters, digits, or<br/>
+        /// `. _ ~ -`, no leading or trailing slash, at most 600 characters.<br/>
         /// Scope it with `user_identity` to the person it belongs to, and only a<br/>
         /// run acting for that person can read it; leave it empty and any run in<br/>
         /// the workspace can.<br/>
@@ -912,6 +927,11 @@ namespace Speechify
         /// Upload one file (multipart form field `file`, at most 25 MiB) so a run<br/>
         /// can be handed it: pass the returned `id` in `attachments` on<br/>
         /// `POST /v1/agents/{agent_id}/runs`, a team run, or a trigger's run spec.<br/>
+        /// A file uploaded with `kind: kept` and a `path` is published: a hosted<br/>
+        /// API's `file` route serves it under its own media type, and a tree of<br/>
+        /// them (`dash/index.html`, `dash/assets/main.js`) is served by one route<br/>
+        /// at `/app/*`. A path is slash-separated segments of letters, digits, or<br/>
+        /// `. _ ~ -`, no leading or trailing slash, at most 600 characters.<br/>
         /// Scope it with `user_identity` to the person it belongs to, and only a<br/>
         /// run acting for that person can read it; leave it empty and any run in<br/>
         /// the workspace can.<br/>
@@ -1682,6 +1702,11 @@ namespace Speechify
         /// Upload one file (multipart form field `file`, at most 25 MiB) so a run<br/>
         /// can be handed it: pass the returned `id` in `attachments` on<br/>
         /// `POST /v1/agents/{agent_id}/runs`, a team run, or a trigger's run spec.<br/>
+        /// A file uploaded with `kind: kept` and a `path` is published: a hosted<br/>
+        /// API's `file` route serves it under its own media type, and a tree of<br/>
+        /// them (`dash/index.html`, `dash/assets/main.js`) is served by one route<br/>
+        /// at `/app/*`. A path is slash-separated segments of letters, digits, or<br/>
+        /// `. _ ~ -`, no leading or trailing slash, at most 600 characters.<br/>
         /// Scope it with `user_identity` to the person it belongs to, and only a<br/>
         /// run acting for that person can read it; leave it empty and any run in<br/>
         /// the workspace can.<br/>

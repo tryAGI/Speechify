@@ -8,6 +8,12 @@ namespace Speechify
         /// Create Hosted API<br/>
         /// Create a hosted API. The slug is a DNS label, globally unique on the<br/>
         /// shared domain (409 `hosted_api_slug_taken`) and immutable afterwards.<br/>
+        /// `auth_mode` names the audience, narrowest first: `owner`, `workspace`<br/>
+        /// (the platform's own credentials), `user_token` (a JWT your backend<br/>
+        /// signs per user), `consumer_key` (a `ck_` key you mint) or `public`<br/>
+        /// (anyone, reads only). A workspace can refuse `public` as policy (403<br/>
+        /// `hosted_api_public_refused`). Reads, runs and writes are each bounded<br/>
+        /// per UTC day (`daily_read_cap`, `daily_run_cap`, `daily_write_cap`).<br/>
         /// Dark launch: requires the `hosted_apis_access` entitlement (402 `hosted_apis_not_in_plan` otherwise).
         /// </summary>
         /// <param name="speechifyVersion"></param>
@@ -29,6 +35,12 @@ namespace Speechify
         /// Create Hosted API<br/>
         /// Create a hosted API. The slug is a DNS label, globally unique on the<br/>
         /// shared domain (409 `hosted_api_slug_taken`) and immutable afterwards.<br/>
+        /// `auth_mode` names the audience, narrowest first: `owner`, `workspace`<br/>
+        /// (the platform's own credentials), `user_token` (a JWT your backend<br/>
+        /// signs per user), `consumer_key` (a `ck_` key you mint) or `public`<br/>
+        /// (anyone, reads only). A workspace can refuse `public` as policy (403<br/>
+        /// `hosted_api_public_refused`). Reads, runs and writes are each bounded<br/>
+        /// per UTC day (`daily_read_cap`, `daily_run_cap`, `daily_write_cap`).<br/>
         /// Dark launch: requires the `hosted_apis_access` entitlement (402 `hosted_apis_not_in_plan` otherwise).
         /// </summary>
         /// <param name="speechifyVersion"></param>
@@ -50,6 +62,12 @@ namespace Speechify
         /// Create Hosted API<br/>
         /// Create a hosted API. The slug is a DNS label, globally unique on the<br/>
         /// shared domain (409 `hosted_api_slug_taken`) and immutable afterwards.<br/>
+        /// `auth_mode` names the audience, narrowest first: `owner`, `workspace`<br/>
+        /// (the platform's own credentials), `user_token` (a JWT your backend<br/>
+        /// signs per user), `consumer_key` (a `ck_` key you mint) or `public`<br/>
+        /// (anyone, reads only). A workspace can refuse `public` as policy (403<br/>
+        /// `hosted_api_public_refused`). Reads, runs and writes are each bounded<br/>
+        /// per UTC day (`daily_read_cap`, `daily_run_cap`, `daily_write_cap`).<br/>
         /// Dark launch: requires the `hosted_apis_access` entitlement (402 `hosted_apis_not_in_plan` otherwise).
         /// </summary>
         /// <param name="speechifyVersion"></param>
@@ -62,7 +80,7 @@ namespace Speechify
         /// <param name="name"></param>
         /// <param name="description"></param>
         /// <param name="authMode">
-        /// consumer_key when omitted.
+        /// consumer_key when omitted. `public` is refused with 403 `hosted_api_public_refused` where the workspace's policy does not allow internet-facing APIs.
         /// </param>
         /// <param name="corsOrigins"></param>
         /// <param name="dailyRunCap">
@@ -70,6 +88,9 @@ namespace Speechify
         /// </param>
         /// <param name="dailyReadCap">
         /// Reads the API may serve from storage per UTC day; 100000 when omitted.
+        /// </param>
+        /// <param name="dailyWriteCap">
+        /// Documents the API's write routes may land per UTC day; 10000 when omitted.
         /// </param>
         /// <param name="projectId"></param>
         /// <param name="userTokenJwksUrl">
@@ -88,6 +109,7 @@ namespace Speechify
             global::System.Collections.Generic.IList<string>? corsOrigins = default,
             int? dailyRunCap = default,
             int? dailyReadCap = default,
+            int? dailyWriteCap = default,
             string? projectId = default,
             string? userTokenJwksUrl = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,

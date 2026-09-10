@@ -48,10 +48,13 @@ namespace Speechify
         /// <summary>
         /// Update Hosted API<br/>
         /// Update a hosted API (merge-patch). Switching to `public` is refused<br/>
-        /// while a `run` route exists: an anonymous caller must not start runs<br/>
-        /// that spend the workspace's budget. Switching away from `user_token`<br/>
-        /// is refused while a route binds `{{user.*}}`: nothing else supplies<br/>
-        /// a user.<br/>
+        /// while a `run` or `store_write` route exists: an anonymous caller must<br/>
+        /// not start runs that spend the workspace's budget or write to a store,<br/>
+        /// and it is refused outright where the workspace's policy does not allow<br/>
+        /// internet-facing APIs (403 `hosted_api_public_refused`). Switching to a<br/>
+        /// mode that names no caller (`consumer_key`, `public`) is refused while<br/>
+        /// a route binds `{{user.*}}`: only `user_token`, `workspace` and `owner`<br/>
+        /// supply a person.<br/>
         /// Dark launch: requires the `hosted_apis_access` entitlement (402 `hosted_apis_not_in_plan` otherwise).
         /// </summary>
         /// <param name="apiId"></param>
@@ -82,10 +85,13 @@ namespace Speechify
         /// <summary>
         /// Update Hosted API<br/>
         /// Update a hosted API (merge-patch). Switching to `public` is refused<br/>
-        /// while a `run` route exists: an anonymous caller must not start runs<br/>
-        /// that spend the workspace's budget. Switching away from `user_token`<br/>
-        /// is refused while a route binds `{{user.*}}`: nothing else supplies<br/>
-        /// a user.<br/>
+        /// while a `run` or `store_write` route exists: an anonymous caller must<br/>
+        /// not start runs that spend the workspace's budget or write to a store,<br/>
+        /// and it is refused outright where the workspace's policy does not allow<br/>
+        /// internet-facing APIs (403 `hosted_api_public_refused`). Switching to a<br/>
+        /// mode that names no caller (`consumer_key`, `public`) is refused while<br/>
+        /// a route binds `{{user.*}}`: only `user_token`, `workspace` and `owner`<br/>
+        /// supply a person.<br/>
         /// Dark launch: requires the `hosted_apis_access` entitlement (402 `hosted_apis_not_in_plan` otherwise).
         /// </summary>
         /// <param name="apiId"></param>
@@ -618,10 +624,13 @@ namespace Speechify
         /// <summary>
         /// Update Hosted API<br/>
         /// Update a hosted API (merge-patch). Switching to `public` is refused<br/>
-        /// while a `run` route exists: an anonymous caller must not start runs<br/>
-        /// that spend the workspace's budget. Switching away from `user_token`<br/>
-        /// is refused while a route binds `{{user.*}}`: nothing else supplies<br/>
-        /// a user.<br/>
+        /// while a `run` or `store_write` route exists: an anonymous caller must<br/>
+        /// not start runs that spend the workspace's budget or write to a store,<br/>
+        /// and it is refused outright where the workspace's policy does not allow<br/>
+        /// internet-facing APIs (403 `hosted_api_public_refused`). Switching to a<br/>
+        /// mode that names no caller (`consumer_key`, `public`) is refused while<br/>
+        /// a route binds `{{user.*}}`: only `user_token`, `workspace` and `owner`<br/>
+        /// supply a person.<br/>
         /// Dark launch: requires the `hosted_apis_access` entitlement (402 `hosted_apis_not_in_plan` otherwise).
         /// </summary>
         /// <param name="apiId"></param>
@@ -635,6 +644,7 @@ namespace Speechify
         /// </param>
         /// <param name="dailyRunCap"></param>
         /// <param name="dailyReadCap"></param>
+        /// <param name="dailyWriteCap"></param>
         /// <param name="userTokenJwksUrl">
         /// Replace the registered key set; an empty string removes it, after which the signing secret verifies tokens again.
         /// </param>
@@ -651,6 +661,7 @@ namespace Speechify
             bool? enabled = default,
             int? dailyRunCap = default,
             int? dailyReadCap = default,
+            int? dailyWriteCap = default,
             string? userTokenJwksUrl = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
@@ -664,6 +675,7 @@ namespace Speechify
                 Enabled = enabled,
                 DailyRunCap = dailyRunCap,
                 DailyReadCap = dailyReadCap,
+                DailyWriteCap = dailyWriteCap,
                 UserTokenJwksUrl = userTokenJwksUrl,
             };
 

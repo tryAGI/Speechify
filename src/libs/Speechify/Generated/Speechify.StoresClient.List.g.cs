@@ -50,8 +50,12 @@ namespace Speechify
         /// <summary>
         /// List Stores<br/>
         /// List the stores in the caller's workspace, most recently updated<br/>
-        /// first. A store is the durable collection of JSON documents a durable<br/>
-        /// run writes to (through its store tools) and a hosted-API route serves.<br/>
+        /// first. A store is a workspace-owned database of JSON documents in<br/>
+        /// named collections, Firestore-shaped: filter on top-level scalar<br/>
+        /// fields, order on one, page with a cursor, and aggregate in one<br/>
+        /// request; no joins, nested-field filters, full-text search or SQL, on<br/>
+        /// purpose. A durable run writes it through its store tools, a hosted-API<br/>
+        /// route serves it, and your own backend reads and writes it here.<br/>
         /// Uploaded bytes are not stores: a file is its own resource at<br/>
         /// `/v1/files`.<br/>
         /// Cursor-paginated; walk pages while `has_more` is true.<br/>
@@ -88,8 +92,12 @@ namespace Speechify
         /// <summary>
         /// List Stores<br/>
         /// List the stores in the caller's workspace, most recently updated<br/>
-        /// first. A store is the durable collection of JSON documents a durable<br/>
-        /// run writes to (through its store tools) and a hosted-API route serves.<br/>
+        /// first. A store is a workspace-owned database of JSON documents in<br/>
+        /// named collections, Firestore-shaped: filter on top-level scalar<br/>
+        /// fields, order on one, page with a cursor, and aggregate in one<br/>
+        /// request; no joins, nested-field filters, full-text search or SQL, on<br/>
+        /// purpose. A durable run writes it through its store tools, a hosted-API<br/>
+        /// route serves it, and your own backend reads and writes it here.<br/>
         /// Uploaded bytes are not stores: a file is its own resource at<br/>
         /// `/v1/files`.<br/>
         /// Cursor-paginated; walk pages while `has_more` is true.<br/>

@@ -56,8 +56,8 @@ namespace Speechify
         /// Write (create or replace) a document at this id. 201 for a new<br/>
         /// document, 200 for a new version of an existing one. `data` must be a<br/>
         /// JSON object of at most 256 KiB; its top-level scalar fields become the<br/>
-        /// queryable projection. The reserved ids `query` and `batch` are refused<br/>
-        /// (400 `validation_failed`).<br/>
+        /// queryable projection. The reserved ids `query`, `batch` and<br/>
+        /// `aggregate` are refused (400 `validation_failed`).<br/>
         /// Writing from a document you read? Send its `ETag` (equivalently its<br/>
         /// `revision`) in `If-Match` and the write applies only if nothing has<br/>
         /// changed since,<br/>
@@ -104,8 +104,8 @@ namespace Speechify
         /// Write (create or replace) a document at this id. 201 for a new<br/>
         /// document, 200 for a new version of an existing one. `data` must be a<br/>
         /// JSON object of at most 256 KiB; its top-level scalar fields become the<br/>
-        /// queryable projection. The reserved ids `query` and `batch` are refused<br/>
-        /// (400 `validation_failed`).<br/>
+        /// queryable projection. The reserved ids `query`, `batch` and<br/>
+        /// `aggregate` are refused (400 `validation_failed`).<br/>
         /// Writing from a document you read? Send its `ETag` (equivalently its<br/>
         /// `revision`) in `If-Match` and the write applies only if nothing has<br/>
         /// changed since,<br/>
@@ -772,8 +772,8 @@ namespace Speechify
         /// Write (create or replace) a document at this id. 201 for a new<br/>
         /// document, 200 for a new version of an existing one. `data` must be a<br/>
         /// JSON object of at most 256 KiB; its top-level scalar fields become the<br/>
-        /// queryable projection. The reserved ids `query` and `batch` are refused<br/>
-        /// (400 `validation_failed`).<br/>
+        /// queryable projection. The reserved ids `query`, `batch` and<br/>
+        /// `aggregate` are refused (400 `validation_failed`).<br/>
         /// Writing from a document you read? Send its `ETag` (equivalently its<br/>
         /// `revision`) in `If-Match` and the write applies only if nothing has<br/>
         /// changed since,<br/>

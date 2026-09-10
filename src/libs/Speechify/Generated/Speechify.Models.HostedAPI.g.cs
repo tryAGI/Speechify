@@ -53,14 +53,20 @@ namespace Speechify
         public required string Description { get; set; }
 
         /// <summary>
-        /// `consumer_key`: every request presents a `ck_` bearer minted for this<br/>
-        /// API. `public`: no credential; only read resolvers may be served, and<br/>
-        /// the per-IP limiter is the only bound. `user_token`: every request<br/>
-        /// presents a short-lived JWT your backend signed for the calling user<br/>
-        /// (`sub`, `exp` within 24 hours, optional `aud` naming this API),<br/>
-        /// verified against the API's signing secret (HS256) or its registered<br/>
-        /// JWKS URL (RS256 / ES256 / EdDSA). Routes bind the verified claims as<br/>
-        /// `{{user.sub}}` and the response cache is keyed per user.
+        /// Who the API answers, narrowest first. `owner`: only the API's owner,<br/>
+        /// with their own Speechify API key or console session. `workspace`:<br/>
+        /// any member of the owning workspace, the same way. `user_token`:<br/>
+        /// every request presents a short-lived JWT your backend signed for the<br/>
+        /// calling user (`sub`, `exp` within 24 hours, optional `aud` naming<br/>
+        /// this API), verified against the API's signing secret (HS256) or its<br/>
+        /// registered JWKS URL (RS256 / ES256 / EdDSA). `consumer_key`: every<br/>
+        /// request presents a `ck_` bearer minted for this API. `public`: no<br/>
+        /// credential; only read resolvers may be served, the per-IP limiter is<br/>
+        /// the only bound, and a workspace can refuse it as policy<br/>
+        /// (`hosted_apis_public_allowed`). The three modes that name a person<br/>
+        /// (`owner`, `workspace`, `user_token`) let routes bind `{{user.sub}}`,<br/>
+        /// key the response cache per person, and stamp a written document as<br/>
+        /// that person's.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("auth_mode")]
         [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Speechify.JsonConverters.HostedApiAuthModeJsonConverter))]
@@ -100,6 +106,15 @@ namespace Speechify
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("daily_read_cap")]
         public int? DailyReadCap { get; set; }
+
+        /// <summary>
+        /// Documents the API's write routes may land per UTC day; the storage<br/>
+        /// ceiling behind a leaked key on a write route. Past the cap a write<br/>
+        /// route answers 429 `route_write_limit_reached`. Optional on the wire<br/>
+        /// for the same reason as `daily_read_cap`.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("daily_write_cap")]
+        public int? DailyWriteCap { get; set; }
 
         /// <summary>
         ///
@@ -154,14 +169,20 @@ namespace Speechify
         /// <param name="name"></param>
         /// <param name="description"></param>
         /// <param name="authMode">
-        /// `consumer_key`: every request presents a `ck_` bearer minted for this<br/>
-        /// API. `public`: no credential; only read resolvers may be served, and<br/>
-        /// the per-IP limiter is the only bound. `user_token`: every request<br/>
-        /// presents a short-lived JWT your backend signed for the calling user<br/>
-        /// (`sub`, `exp` within 24 hours, optional `aud` naming this API),<br/>
-        /// verified against the API's signing secret (HS256) or its registered<br/>
-        /// JWKS URL (RS256 / ES256 / EdDSA). Routes bind the verified claims as<br/>
-        /// `{{user.sub}}` and the response cache is keyed per user.
+        /// Who the API answers, narrowest first. `owner`: only the API's owner,<br/>
+        /// with their own Speechify API key or console session. `workspace`:<br/>
+        /// any member of the owning workspace, the same way. `user_token`:<br/>
+        /// every request presents a short-lived JWT your backend signed for the<br/>
+        /// calling user (`sub`, `exp` within 24 hours, optional `aud` naming<br/>
+        /// this API), verified against the API's signing secret (HS256) or its<br/>
+        /// registered JWKS URL (RS256 / ES256 / EdDSA). `consumer_key`: every<br/>
+        /// request presents a `ck_` bearer minted for this API. `public`: no<br/>
+        /// credential; only read resolvers may be served, the per-IP limiter is<br/>
+        /// the only bound, and a workspace can refuse it as policy<br/>
+        /// (`hosted_apis_public_allowed`). The three modes that name a person<br/>
+        /// (`owner`, `workspace`, `user_token`) let routes bind `{{user.sub}}`,<br/>
+        /// key the response cache per person, and stamp a written document as<br/>
+        /// that person's.
         /// </param>
         /// <param name="corsOrigins">
         /// Browser origins allowed to call the API (`*` for any). Empty for server-to-server only.
@@ -181,6 +202,12 @@ namespace Speechify
         /// route answers 429 `route_read_limit_reached`. Without Redis nothing<br/>
         /// counts: a public route is paused by the limiter in that state, a<br/>
         /// keyed or tokened caller passes.
+        /// </param>
+        /// <param name="dailyWriteCap">
+        /// Documents the API's write routes may land per UTC day; the storage<br/>
+        /// ceiling behind a leaked key on a write route. Past the cap a write<br/>
+        /// route answers 429 `route_write_limit_reached`. Optional on the wire<br/>
+        /// for the same reason as `daily_read_cap`.
         /// </param>
         /// <param name="projectId"></param>
         /// <param name="userTokenJwksUrl">
@@ -209,6 +236,7 @@ namespace Speechify
             global::System.DateTime createdAt,
             global::System.DateTime updatedAt,
             int? dailyReadCap,
+            int? dailyWriteCap,
             string? projectId,
             string? userTokenJwksUrl,
             string? userTokenSecretHint)
@@ -224,6 +252,7 @@ namespace Speechify
             this.Enabled = enabled;
             this.DailyRunCap = dailyRunCap;
             this.DailyReadCap = dailyReadCap;
+            this.DailyWriteCap = dailyWriteCap;
             this.ProjectId = projectId;
             this.UserTokenJwksUrl = userTokenJwksUrl;
             this.UserTokenSecretHint = userTokenSecretHint;
