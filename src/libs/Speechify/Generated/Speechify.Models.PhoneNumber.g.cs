@@ -1,6 +1,4 @@
 
-#pragma warning disable CS0618 // Type or member is obsolete
-
 #nullable enable
 
 namespace Speechify
@@ -85,15 +83,6 @@ namespace Speechify
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("brain_id")]
         public string? BrainId { get; set; }
-
-        /// <summary>
-        /// **Deprecated. Use `brain_id`.** Returned only by the deprecated<br/>
-        /// rotate-secret operation on this resource, to carry the brain's<br/>
-        /// one-time `signing_secret`; omitted everywhere else.
-        /// </summary>
-        [global::System.Text.Json.Serialization.JsonPropertyName("relay")]
-        [global::System.Obsolete("This property marked as deprecated.")]
-        public global::Speechify.PhoneNumberRelay? Relay { get; set; }
 
         /// <summary>
         /// ISO-3166 alpha-2 country of the number. Present on purchased<br/>

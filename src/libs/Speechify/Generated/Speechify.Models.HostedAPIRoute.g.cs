@@ -31,7 +31,7 @@ namespace Speechify
         public required global::Speechify.HostedApiRouteMethod Method { get; set; }
 
         /// <summary>
-        ///
+        /// Lowercase segments, one-segment `{params}`, and optionally a trailing `*` that serves a published tree (file routes only).
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("path")]
         [global::System.Text.Json.Serialization.JsonRequired]
@@ -55,9 +55,13 @@ namespace Speechify
         /// What answers a route. `type` selects the fields that apply:<br/>
         /// `store_query` (store_id, collection, where, order_by, limit),<br/>
         /// `store_document` (store_id, collection, document_id),<br/>
+        /// `store_aggregate` (store_id, collection, where, group_by, metrics:<br/>
+        /// a summary in one request, from the same implementation as the<br/>
+        /// collection's `aggregate` operation),<br/>
         /// `run_latest` (trigger_id of a schedule trigger),<br/>
         /// `run` (trigger_id of a webhook trigger, wait_seconds),<br/>
-        /// `file` (file_path of a published file).
+        /// `file` (file_path of one published file; or, on a route whose path<br/>
+        /// ends in `*`, file_root and file_index for a whole published tree).
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("resolver")]
         [global::System.Text.Json.Serialization.JsonRequired]
@@ -70,7 +74,12 @@ namespace Speechify
         public object? ResponseSchema { get; set; }
 
         /// <summary>
-        /// Cache-Control max-age on GET responses; 0 disables caching.
+        /// Cache-Control max-age on GET responses, and the shared response<br/>
+        /// cache's lifetime for store and run_latest routes; 0 disables<br/>
+        /// caching, except on a public API, where a GET route with 0 is served<br/>
+        /// with the platform default of 60 seconds so an anonymous crawler<br/>
+        /// never reads storage per request. File routes are never in the<br/>
+        /// response cache; they carry the header for the edge.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("cache_ttl_seconds")]
         [global::System.Text.Json.Serialization.JsonRequired]
@@ -109,19 +118,30 @@ namespace Speechify
         /// <param name="id"></param>
         /// <param name="apiId"></param>
         /// <param name="method"></param>
-        /// <param name="path"></param>
+        /// <param name="path">
+        /// Lowercase segments, one-segment `{params}`, and optionally a trailing `*` that serves a published tree (file routes only).
+        /// </param>
         /// <param name="name"></param>
         /// <param name="description"></param>
         /// <param name="resolver">
         /// What answers a route. `type` selects the fields that apply:<br/>
         /// `store_query` (store_id, collection, where, order_by, limit),<br/>
         /// `store_document` (store_id, collection, document_id),<br/>
+        /// `store_aggregate` (store_id, collection, where, group_by, metrics:<br/>
+        /// a summary in one request, from the same implementation as the<br/>
+        /// collection's `aggregate` operation),<br/>
         /// `run_latest` (trigger_id of a schedule trigger),<br/>
         /// `run` (trigger_id of a webhook trigger, wait_seconds),<br/>
-        /// `file` (file_path of a published file).
+        /// `file` (file_path of one published file; or, on a route whose path<br/>
+        /// ends in `*`, file_root and file_index for a whole published tree).
         /// </param>
         /// <param name="cacheTtlSeconds">
-        /// Cache-Control max-age on GET responses; 0 disables caching.
+        /// Cache-Control max-age on GET responses, and the shared response<br/>
+        /// cache's lifetime for store and run_latest routes; 0 disables<br/>
+        /// caching, except on a public API, where a GET route with 0 is served<br/>
+        /// with the platform default of 60 seconds so an anonymous crawler<br/>
+        /// never reads storage per request. File routes are never in the<br/>
+        /// response cache; they carry the header for the edge.
         /// </param>
         /// <param name="enabled"></param>
         /// <param name="createdAt"></param>

@@ -669,9 +669,13 @@ namespace Speechify
         /// What answers a route. `type` selects the fields that apply:<br/>
         /// `store_query` (store_id, collection, where, order_by, limit),<br/>
         /// `store_document` (store_id, collection, document_id),<br/>
+        /// `store_aggregate` (store_id, collection, where, group_by, metrics:<br/>
+        /// a summary in one request, from the same implementation as the<br/>
+        /// collection's `aggregate` operation),<br/>
         /// `run_latest` (trigger_id of a schedule trigger),<br/>
         /// `run` (trigger_id of a webhook trigger, wait_seconds),<br/>
-        /// `file` (file_path of a published file).
+        /// `file` (file_path of one published file; or, on a route whose path<br/>
+        /// ends in `*`, file_root and file_index for a whole published tree).
         /// </param>
         /// <param name="responseSchema"></param>
         /// <param name="cacheTtlSeconds"></param>

@@ -4,10 +4,17 @@
 namespace Speechify
 {
     /// <summary>
-    /// How the caller reached the agent. `web` is the browser /<br/>
+    /// Which runtime carried the conversation. `web` is the browser /<br/>
     /// SDK realtime path; the `sip_*` and `phone` variants come<br/>
-    /// from the telephony stack; `text` is the text/chat channel<br/>
-    /// (turn-based, roomless, no call duration).
+    /// from the telephony stack; `text` is the turn-based, roomless<br/>
+    /// runtime (no call duration) that the message API and every<br/>
+    /// messaging channel share.<br/>
+    /// A conversation reports the transport it actually ran on:<br/>
+    /// `web`, `sip_inbound`, `sip_outbound` or `text`. `phone` is<br/>
+    /// selectable when filtering a list and matches calls in either<br/>
+    /// direction; `whatsapp` is reserved and matches nothing today.<br/>
+    /// To tell two conversations on the same transport apart, filter<br/>
+    /// or read `channel` instead.
     /// </summary>
     public enum ConversationTransport
     {

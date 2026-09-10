@@ -23,11 +23,23 @@ namespace Speechify
         public required string Collection { get; set; }
 
         /// <summary>
-        /// Incremented on every write to this id.
+        /// Incremented on every write to this id. It counts writes to a live<br/>
+        /// document and starts again at 1 if the id is deleted and written<br/>
+        /// again, so use `revision`, not this, to write conditionally.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("version")]
         [global::System.Text.Json.Serialization.JsonRequired]
         public required int Version { get; set; }
+
+        /// <summary>
+        /// Names this exact version of the document and never repeats - not<br/>
+        /// for a later write, and not for a document deleted and written again<br/>
+        /// at the same id. Send it in `If-Match` (quoted, as the `ETag` of a<br/>
+        /// read returns it) to write only if nothing has changed since.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("revision")]
+        [global::System.Text.Json.Serialization.JsonRequired]
+        public required string Revision { get; set; }
 
         /// <summary>
         ///
@@ -74,7 +86,15 @@ namespace Speechify
         /// <param name="id"></param>
         /// <param name="collection"></param>
         /// <param name="version">
-        /// Incremented on every write to this id.
+        /// Incremented on every write to this id. It counts writes to a live<br/>
+        /// document and starts again at 1 if the id is deleted and written<br/>
+        /// again, so use `revision`, not this, to write conditionally.
+        /// </param>
+        /// <param name="revision">
+        /// Names this exact version of the document and never repeats - not<br/>
+        /// for a later write, and not for a document deleted and written again<br/>
+        /// at the same id. Send it in `If-Match` (quoted, as the `ETag` of a<br/>
+        /// read returns it) to write only if nothing has changed since.
         /// </param>
         /// <param name="sizeBytes"></param>
         /// <param name="createdAt"></param>
@@ -92,6 +112,7 @@ namespace Speechify
             string id,
             string collection,
             int version,
+            string revision,
             long sizeBytes,
             global::System.DateTime createdAt,
             global::System.DateTime updatedAt,
@@ -101,6 +122,7 @@ namespace Speechify
             this.Id = id ?? throw new global::System.ArgumentNullException(nameof(id));
             this.Collection = collection ?? throw new global::System.ArgumentNullException(nameof(collection));
             this.Version = version;
+            this.Revision = revision ?? throw new global::System.ArgumentNullException(nameof(revision));
             this.SizeBytes = sizeBytes;
             this.Source = source;
             this.CreatedAt = createdAt;

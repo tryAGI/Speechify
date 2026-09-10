@@ -11,12 +11,18 @@ namespace Speechify
         /// JSON object of at most 256 KiB; its top-level scalar fields become the<br/>
         /// queryable projection. The reserved ids `query` and `batch` are refused<br/>
         /// (400 `validation_failed`).<br/>
+        /// Writing from a document you read? Send its `ETag` (equivalently its<br/>
+        /// `revision`) in `If-Match` and the write applies only if nothing has<br/>
+        /// changed since,<br/>
+        /// answering 412 instead of overwriting somebody else's edit or bringing a<br/>
+        /// deleted document back.<br/>
         /// Dark launch: requires the `hosted_apis_access` entitlement (402 `hosted_apis_not_in_plan` otherwise).
         /// </summary>
         /// <param name="storeId"></param>
         /// <param name="collection"></param>
         /// <param name="documentId"></param>
         /// <param name="speechifyVersion"></param>
+        /// <param name="ifMatch"></param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -28,6 +34,7 @@ namespace Speechify
 
             global::Speechify.WriteStoreDocumentRequest request,
             string? speechifyVersion = default,
+            string? ifMatch = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
@@ -37,12 +44,18 @@ namespace Speechify
         /// JSON object of at most 256 KiB; its top-level scalar fields become the<br/>
         /// queryable projection. The reserved ids `query` and `batch` are refused<br/>
         /// (400 `validation_failed`).<br/>
+        /// Writing from a document you read? Send its `ETag` (equivalently its<br/>
+        /// `revision`) in `If-Match` and the write applies only if nothing has<br/>
+        /// changed since,<br/>
+        /// answering 412 instead of overwriting somebody else's edit or bringing a<br/>
+        /// deleted document back.<br/>
         /// Dark launch: requires the `hosted_apis_access` entitlement (402 `hosted_apis_not_in_plan` otherwise).
         /// </summary>
         /// <param name="storeId"></param>
         /// <param name="collection"></param>
         /// <param name="documentId"></param>
         /// <param name="speechifyVersion"></param>
+        /// <param name="ifMatch"></param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -54,6 +67,7 @@ namespace Speechify
 
             global::Speechify.WriteStoreDocumentRequest request,
             string? speechifyVersion = default,
+            string? ifMatch = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
@@ -63,12 +77,18 @@ namespace Speechify
         /// JSON object of at most 256 KiB; its top-level scalar fields become the<br/>
         /// queryable projection. The reserved ids `query` and `batch` are refused<br/>
         /// (400 `validation_failed`).<br/>
+        /// Writing from a document you read? Send its `ETag` (equivalently its<br/>
+        /// `revision`) in `If-Match` and the write applies only if nothing has<br/>
+        /// changed since,<br/>
+        /// answering 412 instead of overwriting somebody else's edit or bringing a<br/>
+        /// deleted document back.<br/>
         /// Dark launch: requires the `hosted_apis_access` entitlement (402 `hosted_apis_not_in_plan` otherwise).
         /// </summary>
         /// <param name="storeId"></param>
         /// <param name="collection"></param>
         /// <param name="documentId"></param>
         /// <param name="speechifyVersion"></param>
+        /// <param name="ifMatch"></param>
         /// <param name="id">
         /// On `createDocument`, the id to write at (letters, digits, `_ . - : ~ @ +`, at most 200,<br/>
         /// not the reserved `query` or `batch`); minted when absent. Ignored on `putDocument` /<br/>
@@ -86,6 +106,7 @@ namespace Speechify
             string documentId,
             object data,
             string? speechifyVersion = default,
+            string? ifMatch = default,
             string? id = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);

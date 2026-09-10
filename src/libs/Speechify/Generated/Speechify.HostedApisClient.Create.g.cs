@@ -676,7 +676,13 @@ namespace Speechify
         /// <param name="dailyRunCap">
         /// Runs the API may start per UTC day through its run routes; 1000 when omitted.
         /// </param>
+        /// <param name="dailyReadCap">
+        /// Reads the API may serve from storage per UTC day; 100000 when omitted.
+        /// </param>
         /// <param name="projectId"></param>
+        /// <param name="userTokenJwksUrl">
+        /// Register the key set end-user tokens are verified against (an `https` URL on a public host).
+        /// </param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::System.InvalidOperationException"></exception>
@@ -689,7 +695,9 @@ namespace Speechify
             global::Speechify.CreateHostedApiRequestAuthMode? authMode = default,
             global::System.Collections.Generic.IList<string>? corsOrigins = default,
             int? dailyRunCap = default,
+            int? dailyReadCap = default,
             string? projectId = default,
+            string? userTokenJwksUrl = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
@@ -701,7 +709,9 @@ namespace Speechify
                 AuthMode = authMode,
                 CorsOrigins = corsOrigins,
                 DailyRunCap = dailyRunCap,
+                DailyReadCap = dailyReadCap,
                 ProjectId = projectId,
+                UserTokenJwksUrl = userTokenJwksUrl,
             };
 
             return await CreateAsync(

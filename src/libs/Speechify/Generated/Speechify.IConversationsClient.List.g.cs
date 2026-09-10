@@ -22,11 +22,28 @@ namespace Speechify
         /// <param name="agentId"></param>
         /// <param name="status"></param>
         /// <param name="transport">
-        /// How the caller reached the agent. `web` is the browser /<br/>
+        /// Which runtime carried the conversation. `web` is the browser /<br/>
         /// SDK realtime path; the `sip_*` and `phone` variants come<br/>
-        /// from the telephony stack; `text` is the text/chat channel<br/>
-        /// (turn-based, roomless, no call duration).
+        /// from the telephony stack; `text` is the turn-based, roomless<br/>
+        /// runtime (no call duration) that the message API and every<br/>
+        /// messaging channel share.<br/>
+        /// A conversation reports the transport it actually ran on:<br/>
+        /// `web`, `sip_inbound`, `sip_outbound` or `text`. `phone` is<br/>
+        /// selectable when filtering a list and matches calls in either<br/>
+        /// direction; `whatsapp` is reserved and matches nothing today.<br/>
+        /// To tell two conversations on the same transport apart, filter<br/>
+        /// or read `channel` instead.
         /// </param>
+        /// <param name="channel">
+        /// Which front door the conversation arrived through, one level<br/>
+        /// coarser than `transport`, and the value to display or group a<br/>
+        /// conversation's channel by. Both telephony directions are<br/>
+        /// `voice`; the browser / SDK realtime path is `web`; the message<br/>
+        /// API is `text`; a conversation reached over a provider front<br/>
+        /// door names that provider (`slack`) rather than the transport it<br/>
+        /// shares with the message API.
+        /// </param>
+        /// <param name="live"></param>
         /// <param name="callerIdentity"></param>
         /// <param name="contactId"></param>
         /// <param name="q"></param>
@@ -45,6 +62,8 @@ namespace Speechify
             string? agentId = default,
             global::Speechify.ConversationStatus? status = default,
             global::Speechify.ConversationTransport? transport = default,
+            global::Speechify.ConversationChannel? channel = default,
+            bool? live = default,
             string? callerIdentity = default,
             string? contactId = default,
             string? q = default,
@@ -74,11 +93,28 @@ namespace Speechify
         /// <param name="agentId"></param>
         /// <param name="status"></param>
         /// <param name="transport">
-        /// How the caller reached the agent. `web` is the browser /<br/>
+        /// Which runtime carried the conversation. `web` is the browser /<br/>
         /// SDK realtime path; the `sip_*` and `phone` variants come<br/>
-        /// from the telephony stack; `text` is the text/chat channel<br/>
-        /// (turn-based, roomless, no call duration).
+        /// from the telephony stack; `text` is the turn-based, roomless<br/>
+        /// runtime (no call duration) that the message API and every<br/>
+        /// messaging channel share.<br/>
+        /// A conversation reports the transport it actually ran on:<br/>
+        /// `web`, `sip_inbound`, `sip_outbound` or `text`. `phone` is<br/>
+        /// selectable when filtering a list and matches calls in either<br/>
+        /// direction; `whatsapp` is reserved and matches nothing today.<br/>
+        /// To tell two conversations on the same transport apart, filter<br/>
+        /// or read `channel` instead.
         /// </param>
+        /// <param name="channel">
+        /// Which front door the conversation arrived through, one level<br/>
+        /// coarser than `transport`, and the value to display or group a<br/>
+        /// conversation's channel by. Both telephony directions are<br/>
+        /// `voice`; the browser / SDK realtime path is `web`; the message<br/>
+        /// API is `text`; a conversation reached over a provider front<br/>
+        /// door names that provider (`slack`) rather than the transport it<br/>
+        /// shares with the message API.
+        /// </param>
+        /// <param name="live"></param>
         /// <param name="callerIdentity"></param>
         /// <param name="contactId"></param>
         /// <param name="q"></param>
@@ -97,6 +133,8 @@ namespace Speechify
             string? agentId = default,
             global::Speechify.ConversationStatus? status = default,
             global::Speechify.ConversationTransport? transport = default,
+            global::Speechify.ConversationChannel? channel = default,
+            bool? live = default,
             string? callerIdentity = default,
             string? contactId = default,
             string? q = default,

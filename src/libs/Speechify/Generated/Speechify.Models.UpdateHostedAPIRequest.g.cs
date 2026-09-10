@@ -46,6 +46,18 @@ namespace Speechify
         public int? DailyRunCap { get; set; }
 
         /// <summary>
+        ///
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("daily_read_cap")]
+        public int? DailyReadCap { get; set; }
+
+        /// <summary>
+        /// Replace the registered key set; an empty string removes it, after which the signing secret verifies tokens again.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("user_token_jwks_url")]
+        public string? UserTokenJwksUrl { get; set; }
+
+        /// <summary>
         /// Additional properties that are not explicitly defined in the schema
         /// </summary>
         [global::System.Text.Json.Serialization.JsonExtensionData]
@@ -62,6 +74,10 @@ namespace Speechify
         /// A paused API answers 503 to every consumer request.
         /// </param>
         /// <param name="dailyRunCap"></param>
+        /// <param name="dailyReadCap"></param>
+        /// <param name="userTokenJwksUrl">
+        /// Replace the registered key set; an empty string removes it, after which the signing secret verifies tokens again.
+        /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
 #endif
@@ -71,7 +87,9 @@ namespace Speechify
             global::Speechify.UpdateHostedApiRequestAuthMode? authMode,
             global::System.Collections.Generic.IList<string>? corsOrigins,
             bool? enabled,
-            int? dailyRunCap)
+            int? dailyRunCap,
+            int? dailyReadCap,
+            string? userTokenJwksUrl)
         {
             this.Name = name;
             this.Description = description;
@@ -79,6 +97,8 @@ namespace Speechify
             this.CorsOrigins = corsOrigins;
             this.Enabled = enabled;
             this.DailyRunCap = dailyRunCap;
+            this.DailyReadCap = dailyReadCap;
+            this.UserTokenJwksUrl = userTokenJwksUrl;
         }
 
         /// <summary>

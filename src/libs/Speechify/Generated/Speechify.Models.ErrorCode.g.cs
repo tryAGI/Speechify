@@ -396,6 +396,10 @@ namespace Speechify
         /// <summary>
         ///
         /// </summary>
+        RouteReadLimitReached,
+        /// <summary>
+        ///
+        /// </summary>
         RouteRunFailed,
         /// <summary>
         ///
@@ -476,11 +480,19 @@ namespace Speechify
         /// <summary>
         ///
         /// </summary>
+        StoreDocumentDeleted,
+        /// <summary>
+        ///
+        /// </summary>
         StoreDocumentLimitReached,
         /// <summary>
         ///
         /// </summary>
         StoreDocumentNotFound,
+        /// <summary>
+        ///
+        /// </summary>
+        StoreDocumentVersionConflict,
         /// <summary>
         ///
         /// </summary>
@@ -706,6 +718,7 @@ namespace Speechify
                 ErrorCode.RateLimited => "rate_limited",
                 ErrorCode.RelayDisplacesAgent => "relay_displaces_agent",
                 ErrorCode.RouteOutputUnavailable => "route_output_unavailable",
+                ErrorCode.RouteReadLimitReached => "route_read_limit_reached",
                 ErrorCode.RouteRunFailed => "route_run_failed",
                 ErrorCode.RouteRunLimitReached => "route_run_limit_reached",
                 ErrorCode.RouteRunTimeout => "route_run_timeout",
@@ -726,8 +739,10 @@ namespace Speechify
                 ErrorCode.SpendBudgetExceeded => "spend_budget_exceeded",
                 ErrorCode.SpendCapExceeded => "spend_cap_exceeded",
                 ErrorCode.StoreBytesLimitReached => "store_bytes_limit_reached",
+                ErrorCode.StoreDocumentDeleted => "store_document_deleted",
                 ErrorCode.StoreDocumentLimitReached => "store_document_limit_reached",
                 ErrorCode.StoreDocumentNotFound => "store_document_not_found",
+                ErrorCode.StoreDocumentVersionConflict => "store_document_version_conflict",
                 ErrorCode.StoreLimitReached => "store_limit_reached",
                 ErrorCode.StoreNotConfigured => "store_not_configured",
                 ErrorCode.StoreNotFound => "store_not_found",
@@ -862,6 +877,7 @@ namespace Speechify
                 "rate_limited" => ErrorCode.RateLimited,
                 "relay_displaces_agent" => ErrorCode.RelayDisplacesAgent,
                 "route_output_unavailable" => ErrorCode.RouteOutputUnavailable,
+                "route_read_limit_reached" => ErrorCode.RouteReadLimitReached,
                 "route_run_failed" => ErrorCode.RouteRunFailed,
                 "route_run_limit_reached" => ErrorCode.RouteRunLimitReached,
                 "route_run_timeout" => ErrorCode.RouteRunTimeout,
@@ -882,8 +898,10 @@ namespace Speechify
                 "spend_budget_exceeded" => ErrorCode.SpendBudgetExceeded,
                 "spend_cap_exceeded" => ErrorCode.SpendCapExceeded,
                 "store_bytes_limit_reached" => ErrorCode.StoreBytesLimitReached,
+                "store_document_deleted" => ErrorCode.StoreDocumentDeleted,
                 "store_document_limit_reached" => ErrorCode.StoreDocumentLimitReached,
                 "store_document_not_found" => ErrorCode.StoreDocumentNotFound,
+                "store_document_version_conflict" => ErrorCode.StoreDocumentVersionConflict,
                 "store_limit_reached" => ErrorCode.StoreLimitReached,
                 "store_not_configured" => ErrorCode.StoreNotConfigured,
                 "store_not_found" => ErrorCode.StoreNotFound,

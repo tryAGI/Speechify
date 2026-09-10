@@ -23,6 +23,10 @@ namespace Speechify
         /// <summary>
         ///
         /// </summary>
+        StoreAggregate,
+        /// <summary>
+        ///
+        /// </summary>
         StoreDocument,
         /// <summary>
         ///
@@ -45,6 +49,7 @@ namespace Speechify
                 HostedApiResolverType.File => "file",
                 HostedApiResolverType.Run => "run",
                 HostedApiResolverType.RunLatest => "run_latest",
+                HostedApiResolverType.StoreAggregate => "store_aggregate",
                 HostedApiResolverType.StoreDocument => "store_document",
                 HostedApiResolverType.StoreQuery => "store_query",
                 _ => throw new global::System.ArgumentOutOfRangeException(nameof(value), value, null),
@@ -60,6 +65,7 @@ namespace Speechify
                 "file" => HostedApiResolverType.File,
                 "run" => HostedApiResolverType.Run,
                 "run_latest" => HostedApiResolverType.RunLatest,
+                "store_aggregate" => HostedApiResolverType.StoreAggregate,
                 "store_document" => HostedApiResolverType.StoreDocument,
                 "store_query" => HostedApiResolverType.StoreQuery,
                 _ => null,

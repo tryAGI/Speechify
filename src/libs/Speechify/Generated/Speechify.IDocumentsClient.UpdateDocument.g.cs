@@ -7,13 +7,16 @@ namespace Speechify
         /// <summary>
         /// Update Document<br/>
         /// Shallow-merge `data` into the stored document (a JSON null removes a<br/>
-        /// field) and write the result as a new version.<br/>
+        /// field) and write the result as a new version. `If-Match` makes the<br/>
+        /// merge conditional on the `revision` you read, so a patch never lands on<br/>
+        /// top of an edit you have not seen.<br/>
         /// Dark launch: requires the `hosted_apis_access` entitlement (402 `hosted_apis_not_in_plan` otherwise).
         /// </summary>
         /// <param name="storeId"></param>
         /// <param name="collection"></param>
         /// <param name="documentId"></param>
         /// <param name="speechifyVersion"></param>
+        /// <param name="ifMatch"></param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -25,18 +28,22 @@ namespace Speechify
 
             global::Speechify.WriteStoreDocumentRequest request,
             string? speechifyVersion = default,
+            string? ifMatch = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Update Document<br/>
         /// Shallow-merge `data` into the stored document (a JSON null removes a<br/>
-        /// field) and write the result as a new version.<br/>
+        /// field) and write the result as a new version. `If-Match` makes the<br/>
+        /// merge conditional on the `revision` you read, so a patch never lands on<br/>
+        /// top of an edit you have not seen.<br/>
         /// Dark launch: requires the `hosted_apis_access` entitlement (402 `hosted_apis_not_in_plan` otherwise).
         /// </summary>
         /// <param name="storeId"></param>
         /// <param name="collection"></param>
         /// <param name="documentId"></param>
         /// <param name="speechifyVersion"></param>
+        /// <param name="ifMatch"></param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -48,18 +55,22 @@ namespace Speechify
 
             global::Speechify.WriteStoreDocumentRequest request,
             string? speechifyVersion = default,
+            string? ifMatch = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Update Document<br/>
         /// Shallow-merge `data` into the stored document (a JSON null removes a<br/>
-        /// field) and write the result as a new version.<br/>
+        /// field) and write the result as a new version. `If-Match` makes the<br/>
+        /// merge conditional on the `revision` you read, so a patch never lands on<br/>
+        /// top of an edit you have not seen.<br/>
         /// Dark launch: requires the `hosted_apis_access` entitlement (402 `hosted_apis_not_in_plan` otherwise).
         /// </summary>
         /// <param name="storeId"></param>
         /// <param name="collection"></param>
         /// <param name="documentId"></param>
         /// <param name="speechifyVersion"></param>
+        /// <param name="ifMatch"></param>
         /// <param name="id">
         /// On `createDocument`, the id to write at (letters, digits, `_ . - : ~ @ +`, at most 200,<br/>
         /// not the reserved `query` or `batch`); minted when absent. Ignored on `putDocument` /<br/>
@@ -77,6 +88,7 @@ namespace Speechify
             string documentId,
             object data,
             string? speechifyVersion = default,
+            string? ifMatch = default,
             string? id = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);

@@ -7,9 +7,13 @@ namespace Speechify
     /// What answers a route. `type` selects the fields that apply:<br/>
     /// `store_query` (store_id, collection, where, order_by, limit),<br/>
     /// `store_document` (store_id, collection, document_id),<br/>
+    /// `store_aggregate` (store_id, collection, where, group_by, metrics:<br/>
+    /// a summary in one request, from the same implementation as the<br/>
+    /// collection's `aggregate` operation),<br/>
     /// `run_latest` (trigger_id of a schedule trigger),<br/>
     /// `run` (trigger_id of a webhook trigger, wait_seconds),<br/>
-    /// `file` (file_path of a published file).
+    /// `file` (file_path of one published file; or, on a route whose path<br/>
+    /// ends in `*`, file_root and file_index for a whole published tree).
     /// </summary>
     public sealed partial class HostedAPIResolver
     {
@@ -34,7 +38,7 @@ namespace Speechify
         public string? Collection { get; set; }
 
         /// <summary>
-        /// A literal id or a `{{path.x}}` / `{{query.x}}` template.
+        /// A literal id, a `{{path.x}}` / `{{query.x}}` template bound from the request, or a `{{user.x}}` claim of the verified end-user token.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("document_id")]
         public string? DocumentId { get; set; }
@@ -58,25 +62,60 @@ namespace Speechify
         public int? Limit { get; set; }
 
         /// <summary>
-        /// The path a `kept` file was published under, for a `file` route.<br/>
-        /// The route answers that file's bytes under the file's own media type<br/>
-        /// - the only route type that does not return JSON - so a page renders<br/>
-        /// and a spreadsheet downloads. Must be a GET.<br/>
+        /// For a `store_aggregate` route, the projected field to group by.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("group_by")]
+        public string? GroupBy { get; set; }
+
+        /// <summary>
+        /// For a `store_aggregate` route, the reductions to answer with; the where clauses bind from the request as on a query.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("metrics")]
+        public global::System.Collections.Generic.IList<global::Speechify.StoreAggregateMetric>? Metrics { get; set; }
+
+        /// <summary>
+        /// The path a `kept` file was published under, for a `file` route on<br/>
+        /// a path without a wildcard. The route answers that file's bytes<br/>
+        /// under the file's own media type - the only route type that does<br/>
+        /// not return JSON - so a page renders and a spreadsheet downloads.<br/>
+        /// Must be a GET.<br/>
         /// A literal path, or a `{{path.x}}` template that replaces the whole<br/>
-        /// value, so one route can serve many files: mount `/{name}` and the<br/>
-        /// URL names the published path. A published path is slash-separated,<br/>
-        /// and the template carries the whole path after its route - a route<br/>
-        /// at `/files/{name}` serves `/files/reports/q3.csv` as well as a file<br/>
-        /// at the top level. A template embedded in a longer path<br/>
-        /// (`a/{{path.x}}.html`) is refused - substitution here replaces the<br/>
-        /// value, it does not interpolate into it.<br/>
-        /// Only a `kept` file is reachable: working material handed to a run<br/>
-        /// cannot be published by pointing a route at it. A path with nothing<br/>
-        /// at it answers `404`, so an artifact can be wired before it is<br/>
-        /// uploaded and replaced without touching the route.
+        /// value and binds one segment of the URL. A template embedded in a<br/>
+        /// longer path (`a/{{path.x}}.html`) is refused - substitution here<br/>
+        /// replaces the value, it does not interpolate into it. To serve many<br/>
+        /// files, or a nested tree, mount a route ending in `*` and use<br/>
+        /// file_root instead.<br/>
+        /// Only a `kept`, workspace-wide file is reachable: working material<br/>
+        /// handed to a run cannot be published by pointing a route at it, and<br/>
+        /// a file uploaded for one person is never served by a route, because<br/>
+        /// a route answers whoever holds the URL. A `{{user.x}}` template may<br/>
+        /// shape the path on a `user_token` API, but the file it reaches is<br/>
+        /// still one the workspace published. A path with nothing at it<br/>
+        /// answers `404`, so an artifact can be wired before it is uploaded<br/>
+        /// and replaced without touching the route.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("file_path")]
         public string? FilePath { get; set; }
+
+        /// <summary>
+        /// For a `file` route whose path ends in `*`: the published-path<br/>
+        /// prefix the tree lives under (`dash` serves `dash/index.html` at<br/>
+        /// `/app/index.html` on a route at `/app/*`). Empty serves every<br/>
+        /// published file under the route. A rebuild that renames the tree's<br/>
+        /// assets touches no route. Refused on a route without the wildcard.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("file_root")]
+        public string? FileRoot { get; set; }
+
+        /// <summary>
+        /// For a tree route: the entry document, relative to file_root, that<br/>
+        /// a bare prefix answers and that an unmatched path with no file<br/>
+        /// extension falls back to, so a client-routed application survives<br/>
+        /// a refresh and a deep link. A missing asset with an extension stays<br/>
+        /// a 404. Omit for a plain file tree.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("file_index")]
+        public string? FileIndex { get; set; }
 
         /// <summary>
         ///
@@ -103,30 +142,53 @@ namespace Speechify
         /// <param name="storeId"></param>
         /// <param name="collection"></param>
         /// <param name="documentId">
-        /// A literal id or a `{{path.x}}` / `{{query.x}}` template.
+        /// A literal id, a `{{path.x}}` / `{{query.x}}` template bound from the request, or a `{{user.x}}` claim of the verified end-user token.
         /// </param>
         /// <param name="where"></param>
         /// <param name="orderBy"></param>
         /// <param name="limit">
         /// Default page size; the consumer's `limit` query parameter overrides it.
         /// </param>
+        /// <param name="groupBy">
+        /// For a `store_aggregate` route, the projected field to group by.
+        /// </param>
+        /// <param name="metrics">
+        /// For a `store_aggregate` route, the reductions to answer with; the where clauses bind from the request as on a query.
+        /// </param>
         /// <param name="filePath">
-        /// The path a `kept` file was published under, for a `file` route.<br/>
-        /// The route answers that file's bytes under the file's own media type<br/>
-        /// - the only route type that does not return JSON - so a page renders<br/>
-        /// and a spreadsheet downloads. Must be a GET.<br/>
+        /// The path a `kept` file was published under, for a `file` route on<br/>
+        /// a path without a wildcard. The route answers that file's bytes<br/>
+        /// under the file's own media type - the only route type that does<br/>
+        /// not return JSON - so a page renders and a spreadsheet downloads.<br/>
+        /// Must be a GET.<br/>
         /// A literal path, or a `{{path.x}}` template that replaces the whole<br/>
-        /// value, so one route can serve many files: mount `/{name}` and the<br/>
-        /// URL names the published path. A published path is slash-separated,<br/>
-        /// and the template carries the whole path after its route - a route<br/>
-        /// at `/files/{name}` serves `/files/reports/q3.csv` as well as a file<br/>
-        /// at the top level. A template embedded in a longer path<br/>
-        /// (`a/{{path.x}}.html`) is refused - substitution here replaces the<br/>
-        /// value, it does not interpolate into it.<br/>
-        /// Only a `kept` file is reachable: working material handed to a run<br/>
-        /// cannot be published by pointing a route at it. A path with nothing<br/>
-        /// at it answers `404`, so an artifact can be wired before it is<br/>
-        /// uploaded and replaced without touching the route.
+        /// value and binds one segment of the URL. A template embedded in a<br/>
+        /// longer path (`a/{{path.x}}.html`) is refused - substitution here<br/>
+        /// replaces the value, it does not interpolate into it. To serve many<br/>
+        /// files, or a nested tree, mount a route ending in `*` and use<br/>
+        /// file_root instead.<br/>
+        /// Only a `kept`, workspace-wide file is reachable: working material<br/>
+        /// handed to a run cannot be published by pointing a route at it, and<br/>
+        /// a file uploaded for one person is never served by a route, because<br/>
+        /// a route answers whoever holds the URL. A `{{user.x}}` template may<br/>
+        /// shape the path on a `user_token` API, but the file it reaches is<br/>
+        /// still one the workspace published. A path with nothing at it<br/>
+        /// answers `404`, so an artifact can be wired before it is uploaded<br/>
+        /// and replaced without touching the route.
+        /// </param>
+        /// <param name="fileRoot">
+        /// For a `file` route whose path ends in `*`: the published-path<br/>
+        /// prefix the tree lives under (`dash` serves `dash/index.html` at<br/>
+        /// `/app/index.html` on a route at `/app/*`). Empty serves every<br/>
+        /// published file under the route. A rebuild that renames the tree's<br/>
+        /// assets touches no route. Refused on a route without the wildcard.
+        /// </param>
+        /// <param name="fileIndex">
+        /// For a tree route: the entry document, relative to file_root, that<br/>
+        /// a bare prefix answers and that an unmatched path with no file<br/>
+        /// extension falls back to, so a client-routed application survives<br/>
+        /// a refresh and a deep link. A missing asset with an extension stays<br/>
+        /// a 404. Omit for a plain file tree.
         /// </param>
         /// <param name="triggerId"></param>
         /// <param name="waitSeconds">
@@ -143,7 +205,11 @@ namespace Speechify
             global::System.Collections.Generic.IList<global::Speechify.HostedApiResolverWhereItems>? where,
             global::Speechify.HostedApiResolverOrderBy? orderBy,
             int? limit,
+            string? groupBy,
+            global::System.Collections.Generic.IList<global::Speechify.StoreAggregateMetric>? metrics,
             string? filePath,
+            string? fileRoot,
+            string? fileIndex,
             string? triggerId,
             int? waitSeconds)
         {
@@ -154,7 +220,11 @@ namespace Speechify
             this.Where = where;
             this.OrderBy = orderBy;
             this.Limit = limit;
+            this.GroupBy = groupBy;
+            this.Metrics = metrics;
             this.FilePath = filePath;
+            this.FileRoot = fileRoot;
+            this.FileIndex = fileIndex;
             this.TriggerId = triggerId;
             this.WaitSeconds = waitSeconds;
         }

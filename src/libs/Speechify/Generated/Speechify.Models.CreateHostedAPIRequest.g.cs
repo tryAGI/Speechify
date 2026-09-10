@@ -48,10 +48,22 @@ namespace Speechify
         public int? DailyRunCap { get; set; }
 
         /// <summary>
+        /// Reads the API may serve from storage per UTC day; 100000 when omitted.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("daily_read_cap")]
+        public int? DailyReadCap { get; set; }
+
+        /// <summary>
         ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("project_id")]
         public string? ProjectId { get; set; }
+
+        /// <summary>
+        /// Register the key set end-user tokens are verified against (an `https` URL on a public host).
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("user_token_jwks_url")]
+        public string? UserTokenJwksUrl { get; set; }
 
         /// <summary>
         /// Additional properties that are not explicitly defined in the schema
@@ -74,7 +86,13 @@ namespace Speechify
         /// <param name="dailyRunCap">
         /// Runs the API may start per UTC day through its run routes; 1000 when omitted.
         /// </param>
+        /// <param name="dailyReadCap">
+        /// Reads the API may serve from storage per UTC day; 100000 when omitted.
+        /// </param>
         /// <param name="projectId"></param>
+        /// <param name="userTokenJwksUrl">
+        /// Register the key set end-user tokens are verified against (an `https` URL on a public host).
+        /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
 #endif
@@ -85,7 +103,9 @@ namespace Speechify
             global::Speechify.CreateHostedApiRequestAuthMode? authMode,
             global::System.Collections.Generic.IList<string>? corsOrigins,
             int? dailyRunCap,
-            string? projectId)
+            int? dailyReadCap,
+            string? projectId,
+            string? userTokenJwksUrl)
         {
             this.Slug = slug ?? throw new global::System.ArgumentNullException(nameof(slug));
             this.Name = name ?? throw new global::System.ArgumentNullException(nameof(name));
@@ -93,7 +113,9 @@ namespace Speechify
             this.AuthMode = authMode;
             this.CorsOrigins = corsOrigins;
             this.DailyRunCap = dailyRunCap;
+            this.DailyReadCap = dailyReadCap;
             this.ProjectId = projectId;
+            this.UserTokenJwksUrl = userTokenJwksUrl;
         }
 
         /// <summary>

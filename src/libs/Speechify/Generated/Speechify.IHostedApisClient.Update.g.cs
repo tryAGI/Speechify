@@ -8,7 +8,9 @@ namespace Speechify
         /// Update Hosted API<br/>
         /// Update a hosted API (merge-patch). Switching to `public` is refused<br/>
         /// while a `run` route exists: an anonymous caller must not start runs<br/>
-        /// that spend the workspace's budget.<br/>
+        /// that spend the workspace's budget. Switching away from `user_token`<br/>
+        /// is refused while a route binds `{{user.*}}`: nothing else supplies<br/>
+        /// a user.<br/>
         /// Dark launch: requires the `hosted_apis_access` entitlement (402 `hosted_apis_not_in_plan` otherwise).
         /// </summary>
         /// <param name="apiId"></param>
@@ -28,7 +30,9 @@ namespace Speechify
         /// Update Hosted API<br/>
         /// Update a hosted API (merge-patch). Switching to `public` is refused<br/>
         /// while a `run` route exists: an anonymous caller must not start runs<br/>
-        /// that spend the workspace's budget.<br/>
+        /// that spend the workspace's budget. Switching away from `user_token`<br/>
+        /// is refused while a route binds `{{user.*}}`: nothing else supplies<br/>
+        /// a user.<br/>
         /// Dark launch: requires the `hosted_apis_access` entitlement (402 `hosted_apis_not_in_plan` otherwise).
         /// </summary>
         /// <param name="apiId"></param>
@@ -48,7 +52,9 @@ namespace Speechify
         /// Update Hosted API<br/>
         /// Update a hosted API (merge-patch). Switching to `public` is refused<br/>
         /// while a `run` route exists: an anonymous caller must not start runs<br/>
-        /// that spend the workspace's budget.<br/>
+        /// that spend the workspace's budget. Switching away from `user_token`<br/>
+        /// is refused while a route binds `{{user.*}}`: nothing else supplies<br/>
+        /// a user.<br/>
         /// Dark launch: requires the `hosted_apis_access` entitlement (402 `hosted_apis_not_in_plan` otherwise).
         /// </summary>
         /// <param name="apiId"></param>
@@ -61,6 +67,10 @@ namespace Speechify
         /// A paused API answers 503 to every consumer request.
         /// </param>
         /// <param name="dailyRunCap"></param>
+        /// <param name="dailyReadCap"></param>
+        /// <param name="userTokenJwksUrl">
+        /// Replace the registered key set; an empty string removes it, after which the signing secret verifies tokens again.
+        /// </param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::System.InvalidOperationException"></exception>
@@ -73,6 +83,8 @@ namespace Speechify
             global::System.Collections.Generic.IList<string>? corsOrigins = default,
             bool? enabled = default,
             int? dailyRunCap = default,
+            int? dailyReadCap = default,
+            string? userTokenJwksUrl = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
     }
