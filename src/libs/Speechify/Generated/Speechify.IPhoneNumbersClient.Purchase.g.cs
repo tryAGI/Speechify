@@ -12,9 +12,15 @@ namespace Speechify
         /// `402 purchased_numbers_not_included`; a plan that has used its full<br/>
         /// included quota returns 422. This is independent of the overall<br/>
         /// 100-number cap. Because the number is a recurring Speechify-borne<br/>
-        /// carrier cost, the workspace must also have a funded balance (a paid<br/>
-        /// plan or a payment method on file, not just trial / granted credits),<br/>
-        /// else the buy is refused with `402 funded_balance_required`.<br/>
+        /// carrier cost, the workspace must also have taken a payment that<br/>
+        /// COLLECTED - a subscription charge or a card top-up - with no invoice<br/>
+        /// past due, else the buy is refused with `402 funded_balance_required`.<br/>
+        /// A plan id with a card merely on file, trial or granted credit, and a<br/>
+        /// raised number allowance do not satisfy it; the refusal message names<br/>
+        /// which condition is missing. Importing a number from your own carrier<br/>
+        /// (`POST /v1/agents/phone-numbers`) does not go through this check. If<br/>
+        /// the payment status cannot be resolved the buy is refused with a<br/>
+        /// retriable `503`, never the 402.<br/>
         /// `e164` must come from a recent `SearchAvailablePhoneNumbers`<br/>
         /// response — carriers reject buys against numbers that are no<br/>
         /// longer in inventory. The returned phone number is wired for<br/>
@@ -46,9 +52,15 @@ namespace Speechify
         /// `402 purchased_numbers_not_included`; a plan that has used its full<br/>
         /// included quota returns 422. This is independent of the overall<br/>
         /// 100-number cap. Because the number is a recurring Speechify-borne<br/>
-        /// carrier cost, the workspace must also have a funded balance (a paid<br/>
-        /// plan or a payment method on file, not just trial / granted credits),<br/>
-        /// else the buy is refused with `402 funded_balance_required`.<br/>
+        /// carrier cost, the workspace must also have taken a payment that<br/>
+        /// COLLECTED - a subscription charge or a card top-up - with no invoice<br/>
+        /// past due, else the buy is refused with `402 funded_balance_required`.<br/>
+        /// A plan id with a card merely on file, trial or granted credit, and a<br/>
+        /// raised number allowance do not satisfy it; the refusal message names<br/>
+        /// which condition is missing. Importing a number from your own carrier<br/>
+        /// (`POST /v1/agents/phone-numbers`) does not go through this check. If<br/>
+        /// the payment status cannot be resolved the buy is refused with a<br/>
+        /// retriable `503`, never the 402.<br/>
         /// `e164` must come from a recent `SearchAvailablePhoneNumbers`<br/>
         /// response — carriers reject buys against numbers that are no<br/>
         /// longer in inventory. The returned phone number is wired for<br/>
@@ -80,9 +92,15 @@ namespace Speechify
         /// `402 purchased_numbers_not_included`; a plan that has used its full<br/>
         /// included quota returns 422. This is independent of the overall<br/>
         /// 100-number cap. Because the number is a recurring Speechify-borne<br/>
-        /// carrier cost, the workspace must also have a funded balance (a paid<br/>
-        /// plan or a payment method on file, not just trial / granted credits),<br/>
-        /// else the buy is refused with `402 funded_balance_required`.<br/>
+        /// carrier cost, the workspace must also have taken a payment that<br/>
+        /// COLLECTED - a subscription charge or a card top-up - with no invoice<br/>
+        /// past due, else the buy is refused with `402 funded_balance_required`.<br/>
+        /// A plan id with a card merely on file, trial or granted credit, and a<br/>
+        /// raised number allowance do not satisfy it; the refusal message names<br/>
+        /// which condition is missing. Importing a number from your own carrier<br/>
+        /// (`POST /v1/agents/phone-numbers`) does not go through this check. If<br/>
+        /// the payment status cannot be resolved the buy is refused with a<br/>
+        /// retriable `503`, never the 402.<br/>
         /// `e164` must come from a recent `SearchAvailablePhoneNumbers`<br/>
         /// response — carriers reject buys against numbers that are no<br/>
         /// longer in inventory. The returned phone number is wired for<br/>
