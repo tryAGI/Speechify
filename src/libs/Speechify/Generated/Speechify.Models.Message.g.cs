@@ -42,6 +42,20 @@ namespace Speechify
         public required string Content { get; set; }
 
         /// <summary>
+        /// Who spoke this turn, in the same vocabulary as the conversation's<br/>
+        /// `caller_identity`. Set on a `user` turn whose channel named a<br/>
+        /// person, and it is the ONLY record of who said what in a shared<br/>
+        /// channel thread - a room has no single caller, so the conversation<br/>
+        /// carries none. A channel-native id is namespaced by its provider<br/>
+        /// (`slack:&lt;team&gt;:&lt;user&gt;`).<br/>
+        /// Always present, and explicitly `null` where nobody was named -<br/>
+        /// including on the agent's own turns, and on a turn whose speaker was<br/>
+        /// later erased at their own request.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("speaker_identity")]
+        public string? SpeakerIdentity { get; set; }
+
+        /// <summary>
         ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("tool_name")]
@@ -94,6 +108,17 @@ namespace Speechify
         /// </param>
         /// <param name="content"></param>
         /// <param name="startedAt"></param>
+        /// <param name="speakerIdentity">
+        /// Who spoke this turn, in the same vocabulary as the conversation's<br/>
+        /// `caller_identity`. Set on a `user` turn whose channel named a<br/>
+        /// person, and it is the ONLY record of who said what in a shared<br/>
+        /// channel thread - a room has no single caller, so the conversation<br/>
+        /// carries none. A channel-native id is namespaced by its provider<br/>
+        /// (`slack:&lt;team&gt;:&lt;user&gt;`).<br/>
+        /// Always present, and explicitly `null` where nobody was named -<br/>
+        /// including on the agent's own turns, and on a turn whose speaker was<br/>
+        /// later erased at their own request.
+        /// </param>
         /// <param name="toolName"></param>
         /// <param name="toolArgs"></param>
         /// <param name="toolResult">
@@ -109,6 +134,7 @@ namespace Speechify
             global::Speechify.MessageRole role,
             string content,
             global::System.DateTime startedAt,
+            string? speakerIdentity,
             string? toolName,
             object? toolArgs,
             object? toolResult,
@@ -118,6 +144,7 @@ namespace Speechify
             this.ConversationId = conversationId ?? throw new global::System.ArgumentNullException(nameof(conversationId));
             this.Role = role;
             this.Content = content ?? throw new global::System.ArgumentNullException(nameof(content));
+            this.SpeakerIdentity = speakerIdentity;
             this.ToolName = toolName;
             this.ToolArgs = toolArgs;
             this.ToolResult = toolResult;

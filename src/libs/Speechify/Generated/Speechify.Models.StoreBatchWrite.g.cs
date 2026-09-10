@@ -17,7 +17,7 @@ namespace Speechify
         public required global::Speechify.StoreBatchWriteOp Op { get; set; }
 
         /// <summary>
-        /// The document id; minted for a `set` without one. `query` and `batch` are reserved.
+        /// The document id; minted for a `set` without one. `query`, `aggregate` and `batch` are reserved.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("id")]
         public string? Id { get; set; }
@@ -39,7 +39,7 @@ namespace Speechify
         /// </summary>
         /// <param name="op"></param>
         /// <param name="id">
-        /// The document id; minted for a `set` without one. `query` and `batch` are reserved.
+        /// The document id; minted for a `set` without one. `query`, `aggregate` and `batch` are reserved.
         /// </param>
         /// <param name="data"></param>
 #if NET7_0_OR_GREATER

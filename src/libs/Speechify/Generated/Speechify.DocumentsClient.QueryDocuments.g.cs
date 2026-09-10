@@ -53,7 +53,9 @@ namespace Speechify
         /// order on one with `order_by`, page with `limit` + `cursor`. Values<br/>
         /// compare with JSON semantics (numbers as numbers, strings lexically, so<br/>
         /// ISO-8601 timestamps order as dates). A read carrying a body, hence a<br/>
-        /// POST on a literal sub-path; `query` and `batch` are reserved document ids.<br/>
+        /// POST on a literal sub-path; `query`, `aggregate` and `batch` are<br/>
+        /// reserved document ids. For a count or a total, `aggregate` answers in<br/>
+        /// one request instead of a page walk.<br/>
         /// Dark launch: requires the `hosted_apis_access` entitlement (402 `hosted_apis_not_in_plan` otherwise).
         /// </summary>
         /// <param name="storeId"></param>
@@ -90,7 +92,9 @@ namespace Speechify
         /// order on one with `order_by`, page with `limit` + `cursor`. Values<br/>
         /// compare with JSON semantics (numbers as numbers, strings lexically, so<br/>
         /// ISO-8601 timestamps order as dates). A read carrying a body, hence a<br/>
-        /// POST on a literal sub-path; `query` and `batch` are reserved document ids.<br/>
+        /// POST on a literal sub-path; `query`, `aggregate` and `batch` are<br/>
+        /// reserved document ids. For a count or a total, `aggregate` answers in<br/>
+        /// one request instead of a page walk.<br/>
         /// Dark launch: requires the `hosted_apis_access` entitlement (402 `hosted_apis_not_in_plan` otherwise).
         /// </summary>
         /// <param name="storeId"></param>
@@ -630,7 +634,9 @@ namespace Speechify
         /// order on one with `order_by`, page with `limit` + `cursor`. Values<br/>
         /// compare with JSON semantics (numbers as numbers, strings lexically, so<br/>
         /// ISO-8601 timestamps order as dates). A read carrying a body, hence a<br/>
-        /// POST on a literal sub-path; `query` and `batch` are reserved document ids.<br/>
+        /// POST on a literal sub-path; `query`, `aggregate` and `batch` are<br/>
+        /// reserved document ids. For a count or a total, `aggregate` answers in<br/>
+        /// one request instead of a page walk.<br/>
         /// Dark launch: requires the `hosted_apis_access` entitlement (402 `hosted_apis_not_in_plan` otherwise).
         /// </summary>
         /// <param name="storeId"></param>

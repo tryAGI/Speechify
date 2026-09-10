@@ -55,7 +55,12 @@ namespace Speechify
         /// <summary>
         /// `consumer_key`: every request presents a `ck_` bearer minted for this<br/>
         /// API. `public`: no credential; only read resolvers may be served, and<br/>
-        /// the per-IP limiter is the only bound.
+        /// the per-IP limiter is the only bound. `user_token`: every request<br/>
+        /// presents a short-lived JWT your backend signed for the calling user<br/>
+        /// (`sub`, `exp` within 24 hours, optional `aud` naming this API),<br/>
+        /// verified against the API's signing secret (HS256) or its registered<br/>
+        /// JWKS URL (RS256 / ES256 / EdDSA). Routes bind the verified claims as<br/>
+        /// `{{user.sub}}` and the response cache is keyed per user.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("auth_mode")]
         [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Speechify.JsonConverters.HostedApiAuthModeJsonConverter))]
@@ -84,10 +89,38 @@ namespace Speechify
         public required int DailyRunCap { get; set; }
 
         /// <summary>
+        /// Reads the API's store, file and run_latest routes may serve from<br/>
+        /// storage per UTC day; the storage ceiling behind a hot path. Always<br/>
+        /// present on a current API; optional on the wire so a reader built<br/>
+        /// before it existed keeps parsing. A<br/>
+        /// response served from the cache is not a read. Past the cap a read<br/>
+        /// route answers 429 `route_read_limit_reached`. Without Redis nothing<br/>
+        /// counts: a public route is paused by the limiter in that state, a<br/>
+        /// keyed or tokened caller passes.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("daily_read_cap")]
+        public int? DailyReadCap { get; set; }
+
+        /// <summary>
         ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("project_id")]
         public string? ProjectId { get; set; }
+
+        /// <summary>
+        /// The key set end-user tokens are verified against when set (an<br/>
+        /// `https` URL on a public host, read on demand and cached briefly).<br/>
+        /// When null, tokens are verified against the API's signing secret.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("user_token_jwks_url")]
+        public string? UserTokenJwksUrl { get; set; }
+
+        /// <summary>
+        /// The masked signing secret end-user tokens are verified against<br/>
+        /// (the rotate-user-token-secret verb mints it); null until minted.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("user_token_secret_hint")]
+        public string? UserTokenSecretHint { get; set; }
 
         /// <summary>
         ///
@@ -123,7 +156,12 @@ namespace Speechify
         /// <param name="authMode">
         /// `consumer_key`: every request presents a `ck_` bearer minted for this<br/>
         /// API. `public`: no credential; only read resolvers may be served, and<br/>
-        /// the per-IP limiter is the only bound.
+        /// the per-IP limiter is the only bound. `user_token`: every request<br/>
+        /// presents a short-lived JWT your backend signed for the calling user<br/>
+        /// (`sub`, `exp` within 24 hours, optional `aud` naming this API),<br/>
+        /// verified against the API's signing secret (HS256) or its registered<br/>
+        /// JWKS URL (RS256 / ES256 / EdDSA). Routes bind the verified claims as<br/>
+        /// `{{user.sub}}` and the response cache is keyed per user.
         /// </param>
         /// <param name="corsOrigins">
         /// Browser origins allowed to call the API (`*` for any). Empty for server-to-server only.
@@ -134,7 +172,26 @@ namespace Speechify
         /// </param>
         /// <param name="createdAt"></param>
         /// <param name="updatedAt"></param>
+        /// <param name="dailyReadCap">
+        /// Reads the API's store, file and run_latest routes may serve from<br/>
+        /// storage per UTC day; the storage ceiling behind a hot path. Always<br/>
+        /// present on a current API; optional on the wire so a reader built<br/>
+        /// before it existed keeps parsing. A<br/>
+        /// response served from the cache is not a read. Past the cap a read<br/>
+        /// route answers 429 `route_read_limit_reached`. Without Redis nothing<br/>
+        /// counts: a public route is paused by the limiter in that state, a<br/>
+        /// keyed or tokened caller passes.
+        /// </param>
         /// <param name="projectId"></param>
+        /// <param name="userTokenJwksUrl">
+        /// The key set end-user tokens are verified against when set (an<br/>
+        /// `https` URL on a public host, read on demand and cached briefly).<br/>
+        /// When null, tokens are verified against the API's signing secret.
+        /// </param>
+        /// <param name="userTokenSecretHint">
+        /// The masked signing secret end-user tokens are verified against<br/>
+        /// (the rotate-user-token-secret verb mints it); null until minted.
+        /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
 #endif
@@ -151,7 +208,10 @@ namespace Speechify
             int dailyRunCap,
             global::System.DateTime createdAt,
             global::System.DateTime updatedAt,
-            string? projectId)
+            int? dailyReadCap,
+            string? projectId,
+            string? userTokenJwksUrl,
+            string? userTokenSecretHint)
         {
             this.Id = id ?? throw new global::System.ArgumentNullException(nameof(id));
             this.Slug = slug ?? throw new global::System.ArgumentNullException(nameof(slug));
@@ -163,7 +223,10 @@ namespace Speechify
             this.CorsOrigins = corsOrigins ?? throw new global::System.ArgumentNullException(nameof(corsOrigins));
             this.Enabled = enabled;
             this.DailyRunCap = dailyRunCap;
+            this.DailyReadCap = dailyReadCap;
             this.ProjectId = projectId;
+            this.UserTokenJwksUrl = userTokenJwksUrl;
+            this.UserTokenSecretHint = userTokenSecretHint;
             this.CreatedAt = createdAt;
             this.UpdatedAt = updatedAt;
         }

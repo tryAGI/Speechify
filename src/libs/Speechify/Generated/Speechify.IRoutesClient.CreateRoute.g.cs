@@ -11,10 +11,16 @@ namespace Speechify
         /// structured output of a schedule trigger's runs; `run` starts a run<br/>
         /// through a webhook trigger per request (POST only, never on a public<br/>
         /// API) and waits up to `wait_seconds` before answering 202 with a<br/>
-        /// handle to poll at `/_runs/{run_id}`. Where-clause values and the<br/>
+        /// handle to poll at `/_runs/{run_id}`; `file` serves one published file,<br/>
+        /// or a whole published tree when the path ends in `*` (`/app/*` with<br/>
+        /// `file_root` and `file_index`). Where-clause values and the<br/>
         /// document id may be `{{query.x}}`, `{{path.x}}` or `{{body.x}}`<br/>
-        /// templates bound from the consumer's request; a clause whose template<br/>
-        /// is absent is skipped.<br/>
+        /// templates bound from the consumer's request, or `{{user.x}}` claims<br/>
+        /// of the verified end-user token on a `user_token` API; a clause whose<br/>
+        /// template is absent is skipped. Two bindings are refused at write<br/>
+        /// time: `{{user.*}}` on an API that does not verify end-user tokens,<br/>
+        /// and a clause on `user_identity` bound from a request template, which<br/>
+        /// would let any caller read any user's rows.<br/>
         /// Dark launch: requires the `hosted_apis_access` entitlement (402 `hosted_apis_not_in_plan` otherwise).
         /// </summary>
         /// <param name="apiId"></param>
@@ -41,10 +47,16 @@ namespace Speechify
         /// structured output of a schedule trigger's runs; `run` starts a run<br/>
         /// through a webhook trigger per request (POST only, never on a public<br/>
         /// API) and waits up to `wait_seconds` before answering 202 with a<br/>
-        /// handle to poll at `/_runs/{run_id}`. Where-clause values and the<br/>
+        /// handle to poll at `/_runs/{run_id}`; `file` serves one published file,<br/>
+        /// or a whole published tree when the path ends in `*` (`/app/*` with<br/>
+        /// `file_root` and `file_index`). Where-clause values and the<br/>
         /// document id may be `{{query.x}}`, `{{path.x}}` or `{{body.x}}`<br/>
-        /// templates bound from the consumer's request; a clause whose template<br/>
-        /// is absent is skipped.<br/>
+        /// templates bound from the consumer's request, or `{{user.x}}` claims<br/>
+        /// of the verified end-user token on a `user_token` API; a clause whose<br/>
+        /// template is absent is skipped. Two bindings are refused at write<br/>
+        /// time: `{{user.*}}` on an API that does not verify end-user tokens,<br/>
+        /// and a clause on `user_identity` bound from a request template, which<br/>
+        /// would let any caller read any user's rows.<br/>
         /// Dark launch: requires the `hosted_apis_access` entitlement (402 `hosted_apis_not_in_plan` otherwise).
         /// </summary>
         /// <param name="apiId"></param>
@@ -71,10 +83,16 @@ namespace Speechify
         /// structured output of a schedule trigger's runs; `run` starts a run<br/>
         /// through a webhook trigger per request (POST only, never on a public<br/>
         /// API) and waits up to `wait_seconds` before answering 202 with a<br/>
-        /// handle to poll at `/_runs/{run_id}`. Where-clause values and the<br/>
+        /// handle to poll at `/_runs/{run_id}`; `file` serves one published file,<br/>
+        /// or a whole published tree when the path ends in `*` (`/app/*` with<br/>
+        /// `file_root` and `file_index`). Where-clause values and the<br/>
         /// document id may be `{{query.x}}`, `{{path.x}}` or `{{body.x}}`<br/>
-        /// templates bound from the consumer's request; a clause whose template<br/>
-        /// is absent is skipped.<br/>
+        /// templates bound from the consumer's request, or `{{user.x}}` claims<br/>
+        /// of the verified end-user token on a `user_token` API; a clause whose<br/>
+        /// template is absent is skipped. Two bindings are refused at write<br/>
+        /// time: `{{user.*}}` on an API that does not verify end-user tokens,<br/>
+        /// and a clause on `user_identity` bound from a request template, which<br/>
+        /// would let any caller read any user's rows.<br/>
         /// Dark launch: requires the `hosted_apis_access` entitlement (402 `hosted_apis_not_in_plan` otherwise).
         /// </summary>
         /// <param name="apiId"></param>
@@ -92,9 +110,13 @@ namespace Speechify
         /// What answers a route. `type` selects the fields that apply:<br/>
         /// `store_query` (store_id, collection, where, order_by, limit),<br/>
         /// `store_document` (store_id, collection, document_id),<br/>
+        /// `store_aggregate` (store_id, collection, where, group_by, metrics:<br/>
+        /// a summary in one request, from the same implementation as the<br/>
+        /// collection's `aggregate` operation),<br/>
         /// `run_latest` (trigger_id of a schedule trigger),<br/>
         /// `run` (trigger_id of a webhook trigger, wait_seconds),<br/>
-        /// `file` (file_path of a published file).
+        /// `file` (file_path of one published file; or, on a route whose path<br/>
+        /// ends in `*`, file_root and file_index for a whole published tree).
         /// </param>
         /// <param name="responseSchema"></param>
         /// <param name="cacheTtlSeconds"></param>

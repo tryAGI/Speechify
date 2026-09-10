@@ -54,6 +54,16 @@ namespace Speechify
         public int? RunsErased { get; set; }
 
         /// <summary>
+        /// Turns in SHARED threads that named this person and no longer do.<br/>
+        /// A room has no single caller, so its conversation cannot be erased<br/>
+        /// on one member's behalf without taking everyone else's words with<br/>
+        /// it; their name comes off their turns instead, leaving the words as<br/>
+        /// unattributable as they were before we recorded who said them.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("speaker_attributions_erased")]
+        public int? SpeakerAttributionsErased { get; set; }
+
+        /// <summary>
         /// Additional properties that are not explicitly defined in the schema
         /// </summary>
         [global::System.Text.Json.Serialization.JsonExtensionData]
@@ -85,6 +95,13 @@ namespace Speechify
         /// status, timings and usage - what the workspace was billed for is<br/>
         /// not the person's to erase.
         /// </param>
+        /// <param name="speakerAttributionsErased">
+        /// Turns in SHARED threads that named this person and no longer do.<br/>
+        /// A room has no single caller, so its conversation cannot be erased<br/>
+        /// on one member's behalf without taking everyone else's words with<br/>
+        /// it; their name comes off their turns instead, leaving the words as<br/>
+        /// unattributable as they were before we recorded who said them.
+        /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
 #endif
@@ -93,13 +110,15 @@ namespace Speechify
             int identifiersPurged,
             int callersPurged,
             int memoriesPurged,
-            int? runsErased)
+            int? runsErased,
+            int? speakerAttributionsErased)
         {
             this.ContactPurged = contactPurged;
             this.IdentifiersPurged = identifiersPurged;
             this.CallersPurged = callersPurged;
             this.MemoriesPurged = memoriesPurged;
             this.RunsErased = runsErased;
+            this.SpeakerAttributionsErased = speakerAttributionsErased;
         }
 
         /// <summary>

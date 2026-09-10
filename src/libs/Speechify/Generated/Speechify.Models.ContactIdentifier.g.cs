@@ -50,6 +50,11 @@ namespace Speechify
         /// - `telephony` - carrier ANI on an inbound call. Trustworthy as a<br/>
         ///   fact about the call and silent about which of your users it is,<br/>
         ///   so it creates a phone-only contact until you say otherwise.<br/>
+        /// - `channel` - the messaging provider a person reached your agent<br/>
+        ///   through. The event naming them was signed with a secret you<br/>
+        ///   installed, so they are authenticated, but the handle names an<br/>
+        ///   account in that provider's workspace rather than a user in your<br/>
+        ///   system, so it creates its own contact until you link it.<br/>
         /// - `unverified` - a self-asserted claim from a public or embedded<br/>
         ///   browser session. Nobody stands behind it, so it never joins a<br/>
         ///   verified contact.
@@ -101,6 +106,11 @@ namespace Speechify
         /// - `telephony` - carrier ANI on an inbound call. Trustworthy as a<br/>
         ///   fact about the call and silent about which of your users it is,<br/>
         ///   so it creates a phone-only contact until you say otherwise.<br/>
+        /// - `channel` - the messaging provider a person reached your agent<br/>
+        ///   through. The event naming them was signed with a secret you<br/>
+        ///   installed, so they are authenticated, but the handle names an<br/>
+        ///   account in that provider's workspace rather than a user in your<br/>
+        ///   system, so it creates its own contact until you link it.<br/>
         /// - `unverified` - a self-asserted claim from a public or embedded<br/>
         ///   browser session. Nobody stands behind it, so it never joins a<br/>
         ///   verified contact.

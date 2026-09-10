@@ -30,14 +30,16 @@ namespace Speechify
             ref string storeId,
             ref string collection,
             ref string documentId,
-            ref string? speechifyVersion);
+            ref string? speechifyVersion,
+            ref string? ifMatch);
         partial void PrepareDeleteDocumentRequest(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpRequestMessage httpRequestMessage,
             string storeId,
             string collection,
             string documentId,
-            string? speechifyVersion);
+            string? speechifyVersion,
+            string? ifMatch);
         partial void ProcessDeleteDocumentResponse(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpResponseMessage httpResponseMessage);
@@ -49,13 +51,15 @@ namespace Speechify
 
         /// <summary>
         /// Delete Document<br/>
-        /// Delete one document.<br/>
+        /// Delete one document. `If-Match` makes the delete conditional on the<br/>
+        /// `revision` you read, so it never removes a version written since.<br/>
         /// Dark launch: requires the `hosted_apis_access` entitlement (402 `hosted_apis_not_in_plan` otherwise).
         /// </summary>
         /// <param name="storeId"></param>
         /// <param name="collection"></param>
         /// <param name="documentId"></param>
         /// <param name="speechifyVersion"></param>
+        /// <param name="ifMatch"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
@@ -64,6 +68,7 @@ namespace Speechify
             string collection,
             string documentId,
             string? speechifyVersion = default,
+            string? ifMatch = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
@@ -72,6 +77,7 @@ namespace Speechify
                 collection: collection,
                 documentId: documentId,
                 speechifyVersion: speechifyVersion,
+                ifMatch: ifMatch,
                 requestOptions: requestOptions,
                 cancellationToken: cancellationToken
             ).ConfigureAwait(false);
@@ -80,13 +86,15 @@ namespace Speechify
         }
         /// <summary>
         /// Delete Document<br/>
-        /// Delete one document.<br/>
+        /// Delete one document. `If-Match` makes the delete conditional on the<br/>
+        /// `revision` you read, so it never removes a version written since.<br/>
         /// Dark launch: requires the `hosted_apis_access` entitlement (402 `hosted_apis_not_in_plan` otherwise).
         /// </summary>
         /// <param name="storeId"></param>
         /// <param name="collection"></param>
         /// <param name="documentId"></param>
         /// <param name="speechifyVersion"></param>
+        /// <param name="ifMatch"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
@@ -95,6 +103,7 @@ namespace Speechify
             string collection,
             string documentId,
             string? speechifyVersion = default,
+            string? ifMatch = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
@@ -105,7 +114,8 @@ namespace Speechify
                 storeId: ref storeId,
                 collection: ref collection,
                 documentId: ref documentId,
-                speechifyVersion: ref speechifyVersion);
+                speechifyVersion: ref speechifyVersion,
+                ifMatch: ref ifMatch);
 
 
             var __authorizations = global::Speechify.EndPointSecurityResolver.ResolveAuthorizations(
@@ -167,6 +177,10 @@ namespace Speechify
             {
                 __httpRequest.Headers.TryAddWithoutValidation("Speechify-Version", speechifyVersion.ToString());
             }
+            if (ifMatch != default)
+            {
+                __httpRequest.Headers.TryAddWithoutValidation("If-Match", ifMatch.ToString());
+            }
 
                 global::Speechify.AutoSDKRequestOptionsSupport.ApplyHeaders(
                     request: __httpRequest,
@@ -182,7 +196,8 @@ namespace Speechify
                     storeId: storeId!,
                     collection: collection!,
                     documentId: documentId!,
-                    speechifyVersion: speechifyVersion);
+                    speechifyVersion: speechifyVersion,
+                    ifMatch: ifMatch);
 
                 return __httpRequest;
             }
@@ -504,6 +519,43 @@ namespace Speechify
                                     innerException: __exception_404,
                                     responseBody: __content_404,
                                     responseObject: __value_404,
+                                    responseHeaders: global::System.Linq.Enumerable.ToDictionary(
+                                        __response.Headers,
+                                        h => h.Key,
+                                        h => h.Value));
+                            }
+                            // The `If-Match` precondition does not hold: the resource changed, or was deleted, after the version the request names. Nothing was written.
+                            if ((int)__response.StatusCode == 412)
+                            {
+                                string? __content_412 = null;
+                                global::System.Exception? __exception_412 = null;
+                                global::Speechify.Error? __value_412 = null;
+                                try
+                                {
+                                    if (__effectiveReadResponseAsString)
+                                    {
+                                        __content_412 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+                                        __value_412 = global::Speechify.Error.FromJson(__content_412, JsonSerializerContext);
+                                    }
+                                    else
+                                    {
+                                        __content_412 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+
+                                        __value_412 = global::Speechify.Error.FromJson(__content_412, JsonSerializerContext);
+                                    }
+                                }
+                                catch (global::System.Exception __ex)
+                                {
+                                    __exception_412 = __ex;
+                                }
+
+
+                                throw global::Speechify.ApiException<global::Speechify.Error>.Create(
+                                    statusCode: __response.StatusCode,
+                                    message: __content_412 ?? __response.ReasonPhrase ?? string.Empty,
+                                    innerException: __exception_412,
+                                    responseBody: __content_412,
+                                    responseObject: __value_412,
                                     responseHeaders: global::System.Linq.Enumerable.ToDictionary(
                                         __response.Headers,
                                         h => h.Key,

@@ -31,6 +31,7 @@ namespace Speechify
             ref string collection,
             ref string documentId,
             ref string? speechifyVersion,
+            ref string? ifMatch,
             global::Speechify.WriteStoreDocumentRequest request);
         partial void PreparePutDocumentRequest(
             global::System.Net.Http.HttpClient httpClient,
@@ -39,6 +40,7 @@ namespace Speechify
             string collection,
             string documentId,
             string? speechifyVersion,
+            string? ifMatch,
             global::Speechify.WriteStoreDocumentRequest request);
         partial void ProcessPutDocumentResponse(
             global::System.Net.Http.HttpClient httpClient,
@@ -56,12 +58,18 @@ namespace Speechify
         /// JSON object of at most 256 KiB; its top-level scalar fields become the<br/>
         /// queryable projection. The reserved ids `query` and `batch` are refused<br/>
         /// (400 `validation_failed`).<br/>
+        /// Writing from a document you read? Send its `ETag` (equivalently its<br/>
+        /// `revision`) in `If-Match` and the write applies only if nothing has<br/>
+        /// changed since,<br/>
+        /// answering 412 instead of overwriting somebody else's edit or bringing a<br/>
+        /// deleted document back.<br/>
         /// Dark launch: requires the `hosted_apis_access` entitlement (402 `hosted_apis_not_in_plan` otherwise).
         /// </summary>
         /// <param name="storeId"></param>
         /// <param name="collection"></param>
         /// <param name="documentId"></param>
         /// <param name="speechifyVersion"></param>
+        /// <param name="ifMatch"></param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -73,6 +81,7 @@ namespace Speechify
 
             global::Speechify.WriteStoreDocumentRequest request,
             string? speechifyVersion = default,
+            string? ifMatch = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
@@ -83,6 +92,7 @@ namespace Speechify
 
                 request: request,
                 speechifyVersion: speechifyVersion,
+                ifMatch: ifMatch,
                 requestOptions: requestOptions,
                 cancellationToken: cancellationToken
             ).ConfigureAwait(false);
@@ -96,12 +106,18 @@ namespace Speechify
         /// JSON object of at most 256 KiB; its top-level scalar fields become the<br/>
         /// queryable projection. The reserved ids `query` and `batch` are refused<br/>
         /// (400 `validation_failed`).<br/>
+        /// Writing from a document you read? Send its `ETag` (equivalently its<br/>
+        /// `revision`) in `If-Match` and the write applies only if nothing has<br/>
+        /// changed since,<br/>
+        /// answering 412 instead of overwriting somebody else's edit or bringing a<br/>
+        /// deleted document back.<br/>
         /// Dark launch: requires the `hosted_apis_access` entitlement (402 `hosted_apis_not_in_plan` otherwise).
         /// </summary>
         /// <param name="storeId"></param>
         /// <param name="collection"></param>
         /// <param name="documentId"></param>
         /// <param name="speechifyVersion"></param>
+        /// <param name="ifMatch"></param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -113,6 +129,7 @@ namespace Speechify
 
             global::Speechify.WriteStoreDocumentRequest request,
             string? speechifyVersion = default,
+            string? ifMatch = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
@@ -126,6 +143,7 @@ namespace Speechify
                 collection: ref collection,
                 documentId: ref documentId,
                 speechifyVersion: ref speechifyVersion,
+                ifMatch: ref ifMatch,
                 request: request);
 
 
@@ -188,6 +206,10 @@ namespace Speechify
             {
                 __httpRequest.Headers.TryAddWithoutValidation("Speechify-Version", speechifyVersion.ToString());
             }
+            if (ifMatch != default)
+            {
+                __httpRequest.Headers.TryAddWithoutValidation("If-Match", ifMatch.ToString());
+            }
 
                             var __httpRequestContentBody = request.ToJson(JsonSerializerContext);
                             var __httpRequestContent = new global::System.Net.Http.StringContent(
@@ -210,6 +232,7 @@ namespace Speechify
                     collection: collection!,
                     documentId: documentId!,
                     speechifyVersion: speechifyVersion,
+                    ifMatch: ifMatch,
                     request: request);
 
                 return __httpRequest;
@@ -574,6 +597,43 @@ namespace Speechify
                                         h => h.Key,
                                         h => h.Value));
                             }
+                            // The `If-Match` precondition does not hold: the resource changed, or was deleted, after the version the request names. Nothing was written.
+                            if ((int)__response.StatusCode == 412)
+                            {
+                                string? __content_412 = null;
+                                global::System.Exception? __exception_412 = null;
+                                global::Speechify.Error? __value_412 = null;
+                                try
+                                {
+                                    if (__effectiveReadResponseAsString)
+                                    {
+                                        __content_412 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+                                        __value_412 = global::Speechify.Error.FromJson(__content_412, JsonSerializerContext);
+                                    }
+                                    else
+                                    {
+                                        __content_412 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+
+                                        __value_412 = global::Speechify.Error.FromJson(__content_412, JsonSerializerContext);
+                                    }
+                                }
+                                catch (global::System.Exception __ex)
+                                {
+                                    __exception_412 = __ex;
+                                }
+
+
+                                throw global::Speechify.ApiException<global::Speechify.Error>.Create(
+                                    statusCode: __response.StatusCode,
+                                    message: __content_412 ?? __response.ReasonPhrase ?? string.Empty,
+                                    innerException: __exception_412,
+                                    responseBody: __content_412,
+                                    responseObject: __value_412,
+                                    responseHeaders: global::System.Linq.Enumerable.ToDictionary(
+                                        __response.Headers,
+                                        h => h.Key,
+                                        h => h.Value));
+                            }
                             // A downstream dependency is degraded or the endpoint is intentionally disabled (e.g. phone-number purchase before ops setup).
                             if ((int)__response.StatusCode == 503)
                             {
@@ -714,12 +774,18 @@ namespace Speechify
         /// JSON object of at most 256 KiB; its top-level scalar fields become the<br/>
         /// queryable projection. The reserved ids `query` and `batch` are refused<br/>
         /// (400 `validation_failed`).<br/>
+        /// Writing from a document you read? Send its `ETag` (equivalently its<br/>
+        /// `revision`) in `If-Match` and the write applies only if nothing has<br/>
+        /// changed since,<br/>
+        /// answering 412 instead of overwriting somebody else's edit or bringing a<br/>
+        /// deleted document back.<br/>
         /// Dark launch: requires the `hosted_apis_access` entitlement (402 `hosted_apis_not_in_plan` otherwise).
         /// </summary>
         /// <param name="storeId"></param>
         /// <param name="collection"></param>
         /// <param name="documentId"></param>
         /// <param name="speechifyVersion"></param>
+        /// <param name="ifMatch"></param>
         /// <param name="id">
         /// On `createDocument`, the id to write at (letters, digits, `_ . - : ~ @ +`, at most 200,<br/>
         /// not the reserved `query` or `batch`); minted when absent. Ignored on `putDocument` /<br/>
@@ -737,6 +803,7 @@ namespace Speechify
             string documentId,
             object data,
             string? speechifyVersion = default,
+            string? ifMatch = default,
             string? id = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
@@ -752,6 +819,7 @@ namespace Speechify
                 collection: collection,
                 documentId: documentId,
                 speechifyVersion: speechifyVersion,
+                ifMatch: ifMatch,
                 request: __request,
                 requestOptions: requestOptions,
                 cancellationToken: cancellationToken).ConfigureAwait(false);
