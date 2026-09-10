@@ -65,7 +65,29 @@ namespace Speechify
         /// quietly shortened.<br/>
         /// Transferring into a queue usually needs longer than 30 seconds,<br/>
         /// because the queue's own rollover never gets the chance to fire.<br/>
-        /// `play_audio` takes `audio_asset_id`.
+        /// `play_audio` takes `audio_asset_id`.<br/>
+        /// `run_code` describes the machine the run's sandbox boots. All five<br/>
+        /// keys are optional, and with none of them set the run gets the<br/>
+        /// platform default: a scratch filesystem on the vendor's base image<br/>
+        /// that reaches nothing. `image` is the base image reference<br/>
+        /// (`registry/name[:tag][@sha256:...]`); a tag is not re-resolved, so<br/>
+        /// moving to a different tag rebuilds the workspace while repushing<br/>
+        /// the same tag does not, and a digest pin is what makes that<br/>
+        /// distinction go away. `setup_command` runs once on a cold boot and<br/>
+        /// must be idempotent, because a rebuild can happen at any phase<br/>
+        /// boundary. `work_dir` is the working directory for that command and<br/>
+        /// for any call that names none, and must be absolute. `env` is<br/>
+        /// non-secret configuration; a key whose name looks like a credential<br/>
+        /// (`token`, `secret`, `api_key`, ...) is refused, because no<br/>
+        /// credential may enter a sandbox. `allowed_domains` is the exact set<br/>
+        /// of hostnames the sandbox may reach, and everything else is blocked;<br/>
+        /// wildcards are refused, since `*.example.com` admits every subdomain<br/>
+        /// anyone can register and does not even cover the apex. Use it to let<br/>
+        /// a program reach hosts you operate or depend on - a package<br/>
+        /// registry, your device farm, your own API. A private image is not<br/>
+        /// supported: pulling one needs a registry credential, so install<br/>
+        /// private dependencies in `setup_command` from a host on your own<br/>
+        /// allowlist instead.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("builtin_config")]
         public object? BuiltinConfig { get; set; }
@@ -121,7 +143,29 @@ namespace Speechify
         /// quietly shortened.<br/>
         /// Transferring into a queue usually needs longer than 30 seconds,<br/>
         /// because the queue's own rollover never gets the chance to fire.<br/>
-        /// `play_audio` takes `audio_asset_id`.
+        /// `play_audio` takes `audio_asset_id`.<br/>
+        /// `run_code` describes the machine the run's sandbox boots. All five<br/>
+        /// keys are optional, and with none of them set the run gets the<br/>
+        /// platform default: a scratch filesystem on the vendor's base image<br/>
+        /// that reaches nothing. `image` is the base image reference<br/>
+        /// (`registry/name[:tag][@sha256:...]`); a tag is not re-resolved, so<br/>
+        /// moving to a different tag rebuilds the workspace while repushing<br/>
+        /// the same tag does not, and a digest pin is what makes that<br/>
+        /// distinction go away. `setup_command` runs once on a cold boot and<br/>
+        /// must be idempotent, because a rebuild can happen at any phase<br/>
+        /// boundary. `work_dir` is the working directory for that command and<br/>
+        /// for any call that names none, and must be absolute. `env` is<br/>
+        /// non-secret configuration; a key whose name looks like a credential<br/>
+        /// (`token`, `secret`, `api_key`, ...) is refused, because no<br/>
+        /// credential may enter a sandbox. `allowed_domains` is the exact set<br/>
+        /// of hostnames the sandbox may reach, and everything else is blocked;<br/>
+        /// wildcards are refused, since `*.example.com` admits every subdomain<br/>
+        /// anyone can register and does not even cover the apex. Use it to let<br/>
+        /// a program reach hosts you operate or depend on - a package<br/>
+        /// registry, your device farm, your own API. A private image is not<br/>
+        /// supported: pulling one needs a registry credential, so install<br/>
+        /// private dependencies in `setup_command` from a host on your own<br/>
+        /// allowlist instead.
         /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]

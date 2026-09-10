@@ -140,6 +140,11 @@ namespace Speechify
         /// <param name="amd">
         /// AMD routing config. Optional on create; omitted means AMD off. See AMDConfig schema.
         /// </param>
+        /// <param name="maxFilesPerConversation">
+        /// How many files a person may hand one conversation on this agent.<br/>
+        /// Omit or null for the platform default of 10; 0 accepts no files.<br/>
+        /// See the field on Agent.
+        /// </param>
         /// <param name="maxCallDurationSeconds">
         /// Hard cap on the wall-clock length of a single call on this<br/>
         /// agent, in seconds. When a call reaches it the agent ends the<br/>
@@ -182,6 +187,7 @@ namespace Speechify
             string? webhookUrl = default,
             string? webhookSecret = default,
             global::Speechify.AMDConfig? amd = default,
+            int? maxFilesPerConversation = default,
             int? maxCallDurationSeconds = default,
             bool? saveAudioRecording = default,
             global::Speechify.AIDisclosure? aiDisclosure = default,
