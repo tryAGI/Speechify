@@ -199,9 +199,13 @@ namespace Speechify
         public object? DynamicVariables { get; set; }
 
         /// <summary>
-        /// Populated only on the list endpoint via a correlated<br/>
-        /// subquery. Zero on single-row reads where the join cost<br/>
-        /// isn't paid.
+        /// Number of turns in this conversation's transcript: the<br/>
+        /// size of the list `GET<br/>
+        /// /v1/agents/conversations/{conversation_id}/messages`<br/>
+        /// returns. Reported identically by the list endpoints, the<br/>
+        /// single read, and the `conversation.completed` webhook's<br/>
+        /// `data.object`. Zero once a conversation is erased, since<br/>
+        /// an erasure withdraws its transcript from every read.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("message_count")]
         [global::System.Text.Json.Serialization.JsonRequired]
@@ -278,9 +282,13 @@ namespace Speechify
         /// </param>
         /// <param name="metadata"></param>
         /// <param name="messageCount">
-        /// Populated only on the list endpoint via a correlated<br/>
-        /// subquery. Zero on single-row reads where the join cost<br/>
-        /// isn't paid.
+        /// Number of turns in this conversation's transcript: the<br/>
+        /// size of the list `GET<br/>
+        /// /v1/agents/conversations/{conversation_id}/messages`<br/>
+        /// returns. Reported identically by the list endpoints, the<br/>
+        /// single read, and the `conversation.completed` webhook's<br/>
+        /// `data.object`. Zero once a conversation is erased, since<br/>
+        /// an erasure withdraws its transcript from every read.
         /// </param>
         /// <param name="startedAt">
         /// Set when the first user participant joins the realtime<br/>

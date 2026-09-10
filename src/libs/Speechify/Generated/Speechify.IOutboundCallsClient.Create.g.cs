@@ -23,10 +23,15 @@ namespace Speechify
         /// for a workspace with several numbers, `caller_id_number`.<br/>
         /// Requires a Twilio or BYOC trunk. LiveKit-native numbers are<br/>
         /// inbound-only.<br/>
-        /// International (non-NANP) destinations require a funded balance - a<br/>
-        /// paid plan or a payment method on file, not just trial / granted<br/>
-        /// credits - and are otherwise refused with<br/>
-        /// `402 funded_balance_required`. Domestic (`+1`) calls are unaffected.
+        /// International (non-NANP) destinations on a Speechify-billed number<br/>
+        /// require a payment that has COLLECTED on the workspace - a subscription<br/>
+        /// charge or a card top-up, with no invoice past due - and are otherwise<br/>
+        /// refused with `402 funded_balance_required`; trial / granted credit and<br/>
+        /// a card merely on file do not satisfy it, and the refusal message names<br/>
+        /// which condition is missing. Domestic (`+1`) calls are unaffected, as<br/>
+        /// are calls placed from a number you imported from your own carrier. If<br/>
+        /// the payment status cannot be resolved the call is refused with a<br/>
+        /// retriable `503`, never the 402.
         /// </summary>
         /// <param name="speechifyVersion"></param>
         /// <param name="idempotencyKey">
@@ -62,10 +67,15 @@ namespace Speechify
         /// for a workspace with several numbers, `caller_id_number`.<br/>
         /// Requires a Twilio or BYOC trunk. LiveKit-native numbers are<br/>
         /// inbound-only.<br/>
-        /// International (non-NANP) destinations require a funded balance - a<br/>
-        /// paid plan or a payment method on file, not just trial / granted<br/>
-        /// credits - and are otherwise refused with<br/>
-        /// `402 funded_balance_required`. Domestic (`+1`) calls are unaffected.
+        /// International (non-NANP) destinations on a Speechify-billed number<br/>
+        /// require a payment that has COLLECTED on the workspace - a subscription<br/>
+        /// charge or a card top-up, with no invoice past due - and are otherwise<br/>
+        /// refused with `402 funded_balance_required`; trial / granted credit and<br/>
+        /// a card merely on file do not satisfy it, and the refusal message names<br/>
+        /// which condition is missing. Domestic (`+1`) calls are unaffected, as<br/>
+        /// are calls placed from a number you imported from your own carrier. If<br/>
+        /// the payment status cannot be resolved the call is refused with a<br/>
+        /// retriable `503`, never the 402.
         /// </summary>
         /// <param name="speechifyVersion"></param>
         /// <param name="idempotencyKey">
@@ -101,10 +111,15 @@ namespace Speechify
         /// for a workspace with several numbers, `caller_id_number`.<br/>
         /// Requires a Twilio or BYOC trunk. LiveKit-native numbers are<br/>
         /// inbound-only.<br/>
-        /// International (non-NANP) destinations require a funded balance - a<br/>
-        /// paid plan or a payment method on file, not just trial / granted<br/>
-        /// credits - and are otherwise refused with<br/>
-        /// `402 funded_balance_required`. Domestic (`+1`) calls are unaffected.
+        /// International (non-NANP) destinations on a Speechify-billed number<br/>
+        /// require a payment that has COLLECTED on the workspace - a subscription<br/>
+        /// charge or a card top-up, with no invoice past due - and are otherwise<br/>
+        /// refused with `402 funded_balance_required`; trial / granted credit and<br/>
+        /// a card merely on file do not satisfy it, and the refusal message names<br/>
+        /// which condition is missing. Domestic (`+1`) calls are unaffected, as<br/>
+        /// are calls placed from a number you imported from your own carrier. If<br/>
+        /// the payment status cannot be resolved the call is refused with a<br/>
+        /// retriable `503`, never the 402.
         /// </summary>
         /// <param name="speechifyVersion"></param>
         /// <param name="idempotencyKey">

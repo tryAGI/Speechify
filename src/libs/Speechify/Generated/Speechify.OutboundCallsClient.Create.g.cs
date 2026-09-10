@@ -64,10 +64,15 @@ namespace Speechify
         /// for a workspace with several numbers, `caller_id_number`.<br/>
         /// Requires a Twilio or BYOC trunk. LiveKit-native numbers are<br/>
         /// inbound-only.<br/>
-        /// International (non-NANP) destinations require a funded balance - a<br/>
-        /// paid plan or a payment method on file, not just trial / granted<br/>
-        /// credits - and are otherwise refused with<br/>
-        /// `402 funded_balance_required`. Domestic (`+1`) calls are unaffected.
+        /// International (non-NANP) destinations on a Speechify-billed number<br/>
+        /// require a payment that has COLLECTED on the workspace - a subscription<br/>
+        /// charge or a card top-up, with no invoice past due - and are otherwise<br/>
+        /// refused with `402 funded_balance_required`; trial / granted credit and<br/>
+        /// a card merely on file do not satisfy it, and the refusal message names<br/>
+        /// which condition is missing. Domestic (`+1`) calls are unaffected, as<br/>
+        /// are calls placed from a number you imported from your own carrier. If<br/>
+        /// the payment status cannot be resolved the call is refused with a<br/>
+        /// retriable `503`, never the 402.
         /// </summary>
         /// <param name="speechifyVersion"></param>
         /// <param name="idempotencyKey">
@@ -115,10 +120,15 @@ namespace Speechify
         /// for a workspace with several numbers, `caller_id_number`.<br/>
         /// Requires a Twilio or BYOC trunk. LiveKit-native numbers are<br/>
         /// inbound-only.<br/>
-        /// International (non-NANP) destinations require a funded balance - a<br/>
-        /// paid plan or a payment method on file, not just trial / granted<br/>
-        /// credits - and are otherwise refused with<br/>
-        /// `402 funded_balance_required`. Domestic (`+1`) calls are unaffected.
+        /// International (non-NANP) destinations on a Speechify-billed number<br/>
+        /// require a payment that has COLLECTED on the workspace - a subscription<br/>
+        /// charge or a card top-up, with no invoice past due - and are otherwise<br/>
+        /// refused with `402 funded_balance_required`; trial / granted credit and<br/>
+        /// a card merely on file do not satisfy it, and the refusal message names<br/>
+        /// which condition is missing. Domestic (`+1`) calls are unaffected, as<br/>
+        /// are calls placed from a number you imported from your own carrier. If<br/>
+        /// the payment status cannot be resolved the call is refused with a<br/>
+        /// retriable `503`, never the 402.
         /// </summary>
         /// <param name="speechifyVersion"></param>
         /// <param name="idempotencyKey">
@@ -668,6 +678,43 @@ namespace Speechify
                                         h => h.Key,
                                         h => h.Value));
                             }
+                            // A downstream dependency is degraded or the endpoint is intentionally disabled (e.g. phone-number purchase before ops setup).
+                            if ((int)__response.StatusCode == 503)
+                            {
+                                string? __content_503 = null;
+                                global::System.Exception? __exception_503 = null;
+                                global::Speechify.Error? __value_503 = null;
+                                try
+                                {
+                                    if (__effectiveReadResponseAsString)
+                                    {
+                                        __content_503 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+                                        __value_503 = global::Speechify.Error.FromJson(__content_503, JsonSerializerContext);
+                                    }
+                                    else
+                                    {
+                                        __content_503 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+
+                                        __value_503 = global::Speechify.Error.FromJson(__content_503, JsonSerializerContext);
+                                    }
+                                }
+                                catch (global::System.Exception __ex)
+                                {
+                                    __exception_503 = __ex;
+                                }
+
+
+                                throw global::Speechify.ApiException<global::Speechify.Error>.Create(
+                                    statusCode: __response.StatusCode,
+                                    message: __content_503 ?? __response.ReasonPhrase ?? string.Empty,
+                                    innerException: __exception_503,
+                                    responseBody: __content_503,
+                                    responseObject: __value_503,
+                                    responseHeaders: global::System.Linq.Enumerable.ToDictionary(
+                                        __response.Headers,
+                                        h => h.Key,
+                                        h => h.Value));
+                            }
 
                             if (__effectiveReadResponseAsString)
                             {
@@ -783,10 +830,15 @@ namespace Speechify
         /// for a workspace with several numbers, `caller_id_number`.<br/>
         /// Requires a Twilio or BYOC trunk. LiveKit-native numbers are<br/>
         /// inbound-only.<br/>
-        /// International (non-NANP) destinations require a funded balance - a<br/>
-        /// paid plan or a payment method on file, not just trial / granted<br/>
-        /// credits - and are otherwise refused with<br/>
-        /// `402 funded_balance_required`. Domestic (`+1`) calls are unaffected.
+        /// International (non-NANP) destinations on a Speechify-billed number<br/>
+        /// require a payment that has COLLECTED on the workspace - a subscription<br/>
+        /// charge or a card top-up, with no invoice past due - and are otherwise<br/>
+        /// refused with `402 funded_balance_required`; trial / granted credit and<br/>
+        /// a card merely on file do not satisfy it, and the refusal message names<br/>
+        /// which condition is missing. Domestic (`+1`) calls are unaffected, as<br/>
+        /// are calls placed from a number you imported from your own carrier. If<br/>
+        /// the payment status cannot be resolved the call is refused with a<br/>
+        /// retriable `503`, never the 402.
         /// </summary>
         /// <param name="speechifyVersion"></param>
         /// <param name="idempotencyKey">

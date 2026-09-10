@@ -192,6 +192,10 @@ namespace Speechify
         /// <summary>
         ///
         /// </summary>
+        ConversationTurnInProgress,
+        /// <summary>
+        ///
+        /// </summary>
         CredentialInUse,
         /// <summary>
         ///
@@ -651,6 +655,7 @@ namespace Speechify
                 ErrorCode.ContactResolverNotFound => "contact_resolver_not_found",
                 ErrorCode.ContentPolicyViolation => "content_policy_violation",
                 ErrorCode.ConversationNotFound => "conversation_not_found",
+                ErrorCode.ConversationTurnInProgress => "conversation_turn_in_progress",
                 ErrorCode.CredentialInUse => "credential_in_use",
                 ErrorCode.CredentialNotFound => "credential_not_found",
                 ErrorCode.CreditPurchaseUnpaid => "credit_purchase_unpaid",
@@ -806,6 +811,7 @@ namespace Speechify
                 "contact_resolver_not_found" => ErrorCode.ContactResolverNotFound,
                 "content_policy_violation" => ErrorCode.ContentPolicyViolation,
                 "conversation_not_found" => ErrorCode.ConversationNotFound,
+                "conversation_turn_in_progress" => ErrorCode.ConversationTurnInProgress,
                 "credential_in_use" => ErrorCode.CredentialInUse,
                 "credential_not_found" => ErrorCode.CredentialNotFound,
                 "credit_purchase_unpaid" => ErrorCode.CreditPurchaseUnpaid,
