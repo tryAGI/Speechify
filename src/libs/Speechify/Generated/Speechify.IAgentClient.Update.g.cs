@@ -119,6 +119,12 @@ namespace Speechify
         /// <param name="amd">
         /// AMD routing config (PATCH-replace, wholesale). Omit to leave the stored config unchanged.
         /// </param>
+        /// <param name="maxFilesPerConversation">
+        /// How many files a person may hand one conversation on this agent.<br/>
+        /// An explicit null resets it to the platform default of 10 - unlike<br/>
+        /// the caps above, 0 is a real setting here (accept no files), so it<br/>
+        /// cannot double as the clear. Omit to leave it unchanged.
+        /// </param>
         /// <param name="maxCallDurationSeconds">
         /// Hard cap on the wall-clock length of a single call on this<br/>
         /// agent, in seconds. When a call reaches it the agent ends the<br/>
@@ -160,6 +166,7 @@ namespace Speechify
             string? webhookUrl = default,
             string? webhookSecret = default,
             global::Speechify.AMDConfig? amd = default,
+            int? maxFilesPerConversation = default,
             int? maxCallDurationSeconds = default,
             bool? saveAudioRecording = default,
             global::Speechify.AIDisclosure? aiDisclosure = default,

@@ -172,6 +172,14 @@ namespace Speechify
         public global::Speechify.AMDConfig? Amd { get; set; }
 
         /// <summary>
+        /// How many files a person may hand one conversation on this agent.<br/>
+        /// Omit or null for the platform default of 10; 0 accepts no files.<br/>
+        /// See the field on Agent.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("max_files_per_conversation")]
+        public int? MaxFilesPerConversation { get; set; }
+
+        /// <summary>
         /// Hard cap on the wall-clock length of a single call on this<br/>
         /// agent, in seconds. When a call reaches it the agent ends the<br/>
         /// call automatically. Voice agents only. Null means no<br/>
@@ -289,6 +297,11 @@ namespace Speechify
         /// <param name="amd">
         /// AMD routing config. Optional on create; omitted means AMD off. See AMDConfig schema.
         /// </param>
+        /// <param name="maxFilesPerConversation">
+        /// How many files a person may hand one conversation on this agent.<br/>
+        /// Omit or null for the platform default of 10; 0 accepts no files.<br/>
+        /// See the field on Agent.
+        /// </param>
         /// <param name="maxCallDurationSeconds">
         /// Hard cap on the wall-clock length of a single call on this<br/>
         /// agent, in seconds. When a call reaches it the agent ends the<br/>
@@ -330,6 +343,7 @@ namespace Speechify
             string? webhookUrl,
             string? webhookSecret,
             global::Speechify.AMDConfig? amd,
+            int? maxFilesPerConversation,
             int? maxCallDurationSeconds,
             bool? saveAudioRecording,
             global::Speechify.AIDisclosure? aiDisclosure)
@@ -357,6 +371,7 @@ namespace Speechify
             this.WebhookUrl = webhookUrl;
             this.WebhookSecret = webhookSecret;
             this.Amd = amd;
+            this.MaxFilesPerConversation = maxFilesPerConversation;
             this.MaxCallDurationSeconds = maxCallDurationSeconds;
             this.SaveAudioRecording = saveAudioRecording;
             this.AiDisclosure = aiDisclosure;

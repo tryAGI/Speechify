@@ -215,6 +215,20 @@ namespace Speechify
         public required global::Speechify.AMDConfig Amd { get; set; }
 
         /// <summary>
+        /// How many files a person may hand ONE conversation on this agent -<br/>
+        /// a picture pasted into a Slack thread, a document dropped in a<br/>
+        /// direct message. It bounds the THREAD rather than any single<br/>
+        /// message: files live in your workspace file drop for a fortnight,<br/>
+        /// and a long-running conversation is where they accumulate.<br/>
+        /// Null means the platform default of 10. 0 means this agent accepts<br/>
+        /// no files at all. When a conversation is full the file is not<br/>
+        /// stored and the agent is told so, naming the cap, so it can say<br/>
+        /// what would work.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("max_files_per_conversation")]
+        public int? MaxFilesPerConversation { get; set; }
+
+        /// <summary>
         /// Hard cap on the wall-clock length of a single call on this<br/>
         /// agent, in seconds. When a call reaches it the agent ends the<br/>
         /// call automatically. Voice agents only. Null means no<br/>
@@ -403,6 +417,17 @@ namespace Speechify
         /// secret itself is write-only — supplied on PATCH and never<br/>
         /// echoed back on reads.
         /// </param>
+        /// <param name="maxFilesPerConversation">
+        /// How many files a person may hand ONE conversation on this agent -<br/>
+        /// a picture pasted into a Slack thread, a document dropped in a<br/>
+        /// direct message. It bounds the THREAD rather than any single<br/>
+        /// message: files live in your workspace file drop for a fortnight,<br/>
+        /// and a long-running conversation is where they accumulate.<br/>
+        /// Null means the platform default of 10. 0 means this agent accepts<br/>
+        /// no files at all. When a conversation is full the file is not<br/>
+        /// stored and the agent is told so, naming the cap, so it can say<br/>
+        /// what would work.
+        /// </param>
         /// <param name="maxCallDurationSeconds">
         /// Hard cap on the wall-clock length of a single call on this<br/>
         /// agent, in seconds. When a call reaches it the agent ends the<br/>
@@ -446,6 +471,7 @@ namespace Speechify
             global::System.Collections.Generic.IList<string>? hostnameAllowlist,
             string? webhookUrl,
             bool? webhookSecretSet,
+            int? maxFilesPerConversation,
             int? maxCallDurationSeconds,
             string? projectId)
         {
@@ -472,6 +498,7 @@ namespace Speechify
             this.WebhookUrl = webhookUrl;
             this.WebhookSecretSet = webhookSecretSet;
             this.Amd = amd ?? throw new global::System.ArgumentNullException(nameof(amd));
+            this.MaxFilesPerConversation = maxFilesPerConversation;
             this.MaxCallDurationSeconds = maxCallDurationSeconds;
             this.SaveAudioRecording = saveAudioRecording;
             this.ProjectId = projectId;

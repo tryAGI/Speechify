@@ -54,6 +54,23 @@ namespace Speechify
         public int? RunsErased { get; set; }
 
         /// <summary>
+        /// Calls and chats scrubbed the way a run is: the row keeps its id,<br/>
+        /// status, timings and billed duration, and loses the person - the<br/>
+        /// identity, the phone numbers, the frozen prompt and variables, and<br/>
+        /// the pointer to any recording.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("conversations_erased")]
+        public int? ConversationsErased { get; set; }
+
+        /// <summary>
+        /// Transcript turns deleted outright. A message is content and nothing<br/>
+        /// else, so unlike its conversation there is nothing on it worth<br/>
+        /// keeping.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("messages_erased")]
+        public int? MessagesErased { get; set; }
+
+        /// <summary>
         /// Turns in SHARED threads that named this person and no longer do.<br/>
         /// A room has no single caller, so its conversation cannot be erased<br/>
         /// on one member's behalf without taking everyone else's words with<br/>
@@ -62,6 +79,15 @@ namespace Speechify
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("speaker_attributions_erased")]
         public int? SpeakerAttributionsErased { get; set; }
+
+        /// <summary>
+        /// Files this person handed a conversation - a picture pasted into a<br/>
+        /// direct message, a document dropped in a thread - now tombstoned in<br/>
+        /// the workspace file drop. The bytes go with the drop's next expiry<br/>
+        /// sweep.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("attached_files_erased")]
+        public long? AttachedFilesErased { get; set; }
 
         /// <summary>
         /// Additional properties that are not explicitly defined in the schema
@@ -95,12 +121,29 @@ namespace Speechify
         /// status, timings and usage - what the workspace was billed for is<br/>
         /// not the person's to erase.
         /// </param>
+        /// <param name="conversationsErased">
+        /// Calls and chats scrubbed the way a run is: the row keeps its id,<br/>
+        /// status, timings and billed duration, and loses the person - the<br/>
+        /// identity, the phone numbers, the frozen prompt and variables, and<br/>
+        /// the pointer to any recording.
+        /// </param>
+        /// <param name="messagesErased">
+        /// Transcript turns deleted outright. A message is content and nothing<br/>
+        /// else, so unlike its conversation there is nothing on it worth<br/>
+        /// keeping.
+        /// </param>
         /// <param name="speakerAttributionsErased">
         /// Turns in SHARED threads that named this person and no longer do.<br/>
         /// A room has no single caller, so its conversation cannot be erased<br/>
         /// on one member's behalf without taking everyone else's words with<br/>
         /// it; their name comes off their turns instead, leaving the words as<br/>
         /// unattributable as they were before we recorded who said them.
+        /// </param>
+        /// <param name="attachedFilesErased">
+        /// Files this person handed a conversation - a picture pasted into a<br/>
+        /// direct message, a document dropped in a thread - now tombstoned in<br/>
+        /// the workspace file drop. The bytes go with the drop's next expiry<br/>
+        /// sweep.
         /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
@@ -111,14 +154,20 @@ namespace Speechify
             int callersPurged,
             int memoriesPurged,
             int? runsErased,
-            int? speakerAttributionsErased)
+            int? conversationsErased,
+            int? messagesErased,
+            int? speakerAttributionsErased,
+            long? attachedFilesErased)
         {
             this.ContactPurged = contactPurged;
             this.IdentifiersPurged = identifiersPurged;
             this.CallersPurged = callersPurged;
             this.MemoriesPurged = memoriesPurged;
             this.RunsErased = runsErased;
+            this.ConversationsErased = conversationsErased;
+            this.MessagesErased = messagesErased;
             this.SpeakerAttributionsErased = speakerAttributionsErased;
+            this.AttachedFilesErased = attachedFilesErased;
         }
 
         /// <summary>
