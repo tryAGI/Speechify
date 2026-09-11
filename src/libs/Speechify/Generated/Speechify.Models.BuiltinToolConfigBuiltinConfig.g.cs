@@ -39,10 +39,10 @@ namespace Speechify
     /// Transferring into a queue usually needs longer than 30 seconds,<br/>
     /// because the queue's own rollover never gets the chance to fire.<br/>
     /// `play_audio` takes `audio_asset_id`.<br/>
-    /// `run_code` describes the machine the run's sandbox boots. All five<br/>
-    /// keys are optional, and with none of them set the run gets the<br/>
-    /// platform default: a scratch filesystem on the vendor's base image<br/>
-    /// that reaches nothing. `image` is the base image reference<br/>
+    /// `run_code` describes the machine the agent's sandbox boots, in a<br/>
+    /// run and on a text or Slack turn alike. All five keys are optional,<br/>
+    /// and with none of them set the agent gets the platform default: a<br/>
+    /// scratch filesystem on the vendor's base image that reaches nothing. `image` is the base image reference<br/>
     /// (`registry/name[:tag][@sha256:...]`); a tag is not re-resolved, so<br/>
     /// moving to a different tag rebuilds the workspace while repushing<br/>
     /// the same tag does not, and a digest pin is what makes that<br/>
