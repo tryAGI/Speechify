@@ -54,10 +54,16 @@ namespace Speechify
         public required global::Speechify.MCPAuth Auth { get; set; }
 
         /// <summary>
-        /// Declares the SERVER slow. Applies to every remote tool the<br/>
-        /// `list_tools` handshake discovers on it — MCP publishes no<br/>
-        /// per-tool latency signal at config time, so this describes the<br/>
-        /// server rather than one of its verbs.
+        /// What a caller hears on a voice call while one of this<br/>
+        /// server's tools runs, and whether a second call to the same<br/>
+        /// tool is refused while the first is in flight. It never<br/>
+        /// changes how long a call may run: a slow server does not get<br/>
+        /// a longer wait by declaring itself slow. On the text channel<br/>
+        /// only `on_duplicate` applies; a durable run ignores the block.<br/>
+        /// Applies to every remote tool the `list_tools` handshake<br/>
+        /// discovers on the server — MCP publishes no per-tool latency<br/>
+        /// signal at config time, so this describes the server rather<br/>
+        /// than one of its verbs.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("long_running")]
         public global::Speechify.LongRunningToolConfig? LongRunning { get; set; }
@@ -105,10 +111,16 @@ namespace Speechify
         /// legacy fallback for servers that haven't migrated yet.
         /// </param>
         /// <param name="longRunning">
-        /// Declares the SERVER slow. Applies to every remote tool the<br/>
-        /// `list_tools` handshake discovers on it — MCP publishes no<br/>
-        /// per-tool latency signal at config time, so this describes the<br/>
-        /// server rather than one of its verbs.
+        /// What a caller hears on a voice call while one of this<br/>
+        /// server's tools runs, and whether a second call to the same<br/>
+        /// tool is refused while the first is in flight. It never<br/>
+        /// changes how long a call may run: a slow server does not get<br/>
+        /// a longer wait by declaring itself slow. On the text channel<br/>
+        /// only `on_duplicate` applies; a durable run ignores the block.<br/>
+        /// Applies to every remote tool the `list_tools` handshake<br/>
+        /// discovers on the server — MCP publishes no per-tool latency<br/>
+        /// signal at config time, so this describes the server rather<br/>
+        /// than one of its verbs.
         /// </param>
         /// <param name="actionClasses">
         /// What each of the server's own tools does, keyed by the remote tool<br/>

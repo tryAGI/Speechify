@@ -69,9 +69,12 @@ namespace Speechify
         public bool? FireAndForget { get; set; }
 
         /// <summary>
-        /// Declares the endpoint slow, so the agent speaks a filler<br/>
-        /// phrase instead of leaving the caller in silence and refuses<br/>
-        /// a duplicate call while one is in flight.<br/>
+        /// What a caller hears on a voice call while this endpoint<br/>
+        /// runs, and whether a second call is refused while the first<br/>
+        /// is in flight. It never changes how long the request may run:<br/>
+        /// that is `timeout_ms`. On the text channel only `on_duplicate`<br/>
+        /// applies, since a turn has no dead air to fill; a durable run<br/>
+        /// ignores the block.<br/>
         /// Cannot be combined with `fire_and_forget`. That path returns<br/>
         /// to the agent before your endpoint answers, so there is no<br/>
         /// wait to fill; saving both is refused rather than storing a<br/>
@@ -118,9 +121,12 @@ namespace Speechify
         /// the conversation. Defaults to false.
         /// </param>
         /// <param name="longRunning">
-        /// Declares the endpoint slow, so the agent speaks a filler<br/>
-        /// phrase instead of leaving the caller in silence and refuses<br/>
-        /// a duplicate call while one is in flight.<br/>
+        /// What a caller hears on a voice call while this endpoint<br/>
+        /// runs, and whether a second call is refused while the first<br/>
+        /// is in flight. It never changes how long the request may run:<br/>
+        /// that is `timeout_ms`. On the text channel only `on_duplicate`<br/>
+        /// applies, since a turn has no dead air to fill; a durable run<br/>
+        /// ignores the block.<br/>
         /// Cannot be combined with `fire_and_forget`. That path returns<br/>
         /// to the agent before your endpoint answers, so there is no<br/>
         /// wait to fill; saving both is refused rather than storing a<br/>
