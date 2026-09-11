@@ -4,9 +4,15 @@
 namespace Speechify
 {
     /// <summary>
-    /// How the agent keeps a live call sane while a slow tool runs.<br/>
-    /// Present means the tool is declared slow; absent keeps the tool's<br/>
-    /// previous behaviour exactly.<br/>
+    /// What a caller hears while a slow tool runs on a voice call, plus<br/>
+    /// a guard against calling the tool twice. Present means the tool is<br/>
+    /// declared slow; absent keeps the tool's previous behaviour exactly.<br/>
+    /// This is a voice-call control. On the text channel only<br/>
+    /// `on_duplicate` applies, since a turn has no dead air to fill. A<br/>
+    /// durable run ignores the whole block: it runs one tool per step,<br/>
+    /// so there is no in-flight call to duplicate and nobody listening<br/>
+    /// for a holding phrase. Nothing here changes how long the tool may<br/>
+    /// run; that is the tool's own timeout.<br/>
     /// The tool still blocks the turn either way: the agent never<br/>
     /// receives a synthetic result while your endpoint is still working,<br/>
     /// so it can only ever speak about a result it actually got.

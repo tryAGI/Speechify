@@ -584,6 +584,10 @@ namespace Speechify
         /// <summary>
         ///
         /// </summary>
+        VoiceAgentsNotInPlan,
+        /// <summary>
+        ///
+        /// </summary>
         VoiceCloningNotIncluded,
         /// <summary>
         ///
@@ -773,6 +777,7 @@ namespace Speechify
                 ErrorCode.UpstreamFailure => "upstream_failure",
                 ErrorCode.ValidationFailed => "validation_failed",
                 ErrorCode.VerificationRequired => "verification_required",
+                ErrorCode.VoiceAgentsNotInPlan => "voice_agents_not_in_plan",
                 ErrorCode.VoiceCloningNotIncluded => "voice_cloning_not_included",
                 ErrorCode.VoiceNotFound => "voice_not_found",
                 ErrorCode.WatermarkAudioUnusable => "watermark_audio_unusable",
@@ -934,6 +939,7 @@ namespace Speechify
                 "upstream_failure" => ErrorCode.UpstreamFailure,
                 "validation_failed" => ErrorCode.ValidationFailed,
                 "verification_required" => ErrorCode.VerificationRequired,
+                "voice_agents_not_in_plan" => ErrorCode.VoiceAgentsNotInPlan,
                 "voice_cloning_not_included" => ErrorCode.VoiceCloningNotIncluded,
                 "voice_not_found" => ErrorCode.VoiceNotFound,
                 "watermark_audio_unusable" => ErrorCode.WatermarkAudioUnusable,

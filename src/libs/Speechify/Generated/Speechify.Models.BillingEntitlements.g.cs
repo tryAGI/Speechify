@@ -161,6 +161,18 @@ namespace Speechify
         public required int TextAgentMonthlyMessageCap { get; set; }
 
         /// <summary>
+        /// Whether the workspace may build voice agents. Voice agents are sold<br/>
+        /// on an enterprise plan rather than self-serve, so no tier grants this<br/>
+        /// and it is enabled per workspace. When false, WRITES to the<br/>
+        /// voice-agent surface return 402 voice_agents_not_in_plan; reads are<br/>
+        /// unaffected, so a workspace never loses sight of what it already<br/>
+        /// built.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("voice_agent_access")]
+        [global::System.Text.Json.Serialization.JsonRequired]
+        public required bool VoiceAgentAccess { get; set; }
+
+        /// <summary>
         /// Whether the workspace may start and read durable async agent runs,<br/>
         /// including the approvals they raise and team runs. When false, those<br/>
         /// endpoints return 402 durable_runs_not_in_plan.
@@ -376,6 +388,14 @@ namespace Speechify
         /// (UTC); 0 means uncapped. Past it a turn returns 402<br/>
         /// text_message_quota_exceeded until the month rolls over.
         /// </param>
+        /// <param name="voiceAgentAccess">
+        /// Whether the workspace may build voice agents. Voice agents are sold<br/>
+        /// on an enterprise plan rather than self-serve, so no tier grants this<br/>
+        /// and it is enabled per workspace. When false, WRITES to the<br/>
+        /// voice-agent surface return 402 voice_agents_not_in_plan; reads are<br/>
+        /// unaffected, so a workspace never loses sight of what it already<br/>
+        /// built.
+        /// </param>
         /// <param name="durableRunsAccess">
         /// Whether the workspace may start and read durable async agent runs,<br/>
         /// including the approvals they raise and team runs. When false, those<br/>
@@ -469,6 +489,7 @@ namespace Speechify
             bool textAgentAccess,
             int textAgentMaxConcurrentConversations,
             int textAgentMonthlyMessageCap,
+            bool voiceAgentAccess,
             bool durableRunsAccess,
             int maxRunTurns,
             bool slackChannelAccess,
@@ -505,6 +526,7 @@ namespace Speechify
             this.TextAgentAccess = textAgentAccess;
             this.TextAgentMaxConcurrentConversations = textAgentMaxConcurrentConversations;
             this.TextAgentMonthlyMessageCap = textAgentMonthlyMessageCap;
+            this.VoiceAgentAccess = voiceAgentAccess;
             this.DurableRunsAccess = durableRunsAccess;
             this.MaxRunTurns = maxRunTurns;
             this.SlackChannelAccess = slackChannelAccess;
