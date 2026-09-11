@@ -26,7 +26,21 @@ namespace Speechify
     /// the same decision: key on this header and refuse to act twice. One<br/>
     /// connector serving both transports dedups on one identifier. The key<br/>
     /// is `&lt;run_id&gt;:&lt;step&gt;`, and `GET /v1/agents/runs/{run_id}` resolves the<br/>
-    /// run, its agent and the person it acts for from the id alone.
+    /// run, its agent and the person it acts for from the id alone.<br/>
+    /// Every request of a tool-call session also carries<br/>
+    /// `Speechify-Conversation-Id`, naming the unit of work on Speechify's<br/>
+    /// side the call belongs to, so you can trace one end to end: we hold<br/>
+    /// the question, your server holds the tool calls, and this is the<br/>
+    /// join. On a voice, text or Slack conversation it is the<br/>
+    /// conversation's `conv_…` id, set once when the session opens so its<br/>
+    /// handshake carries it too, and<br/>
+    /// `GET /v1/agents/conversations/{conversation_id}` resolves it. A<br/>
+    /// durable run has no conversation, so each tool call sends the run's<br/>
+    /// `arun_…` id instead, the same id that prefixes<br/>
+    /// `Speechify-Idempotency-Key`. The prefix says which you were sent.<br/>
+    /// The tool discovery a durable run performs before a step<br/>
+    /// (`initialize` + `tools/list`, no `tools/call`) is the one request<br/>
+    /// without it: its result is reused across runs, so it names no run.
     /// </summary>
     public sealed partial class MCPToolConfig
     {
@@ -52,6 +66,20 @@ namespace Speechify
         [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Speechify.JsonConverters.MCPAuthJsonConverter))]
         [global::System.Text.Json.Serialization.JsonRequired]
         public required global::Speechify.MCPAuth Auth { get; set; }
+
+        /// <summary>
+        /// How long one `tools/call` to this server may take on a durable<br/>
+        /// run, in milliseconds. Defaults to 30000 when omitted. It bounds<br/>
+        /// the call alone: the session handshake (`initialize` +<br/>
+        /// `tools/list`) runs under its own fixed budget first, so a slow<br/>
+        /// cold start is not charged to the call. Set it to what your<br/>
+        /// slowest tool actually takes - a query that legitimately runs 40<br/>
+        /// seconds needs 40000 or more here. Live voice and text sessions<br/>
+        /// are not bounded by it; the worker keeps its transport's own<br/>
+        /// read timeout.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("timeout_ms")]
+        public int? TimeoutMs { get; set; }
 
         /// <summary>
         /// What a caller hears on a voice call while one of this<br/>
@@ -110,6 +138,17 @@ namespace Speechify
         /// MCP transport. `http_streamable` is the default; `sse` is the<br/>
         /// legacy fallback for servers that haven't migrated yet.
         /// </param>
+        /// <param name="timeoutMs">
+        /// How long one `tools/call` to this server may take on a durable<br/>
+        /// run, in milliseconds. Defaults to 30000 when omitted. It bounds<br/>
+        /// the call alone: the session handshake (`initialize` +<br/>
+        /// `tools/list`) runs under its own fixed budget first, so a slow<br/>
+        /// cold start is not charged to the call. Set it to what your<br/>
+        /// slowest tool actually takes - a query that legitimately runs 40<br/>
+        /// seconds needs 40000 or more here. Live voice and text sessions<br/>
+        /// are not bounded by it; the worker keeps its transport's own<br/>
+        /// read timeout.
+        /// </param>
         /// <param name="longRunning">
         /// What a caller hears on a voice call while one of this<br/>
         /// server's tools runs, and whether a second call to the same<br/>
@@ -151,12 +190,14 @@ namespace Speechify
             string endpoint,
             global::Speechify.MCPAuth auth,
             global::Speechify.MCPTransport? transport,
+            int? timeoutMs,
             global::Speechify.LongRunningToolConfig? longRunning,
             global::System.Collections.Generic.Dictionary<string, global::Speechify.ToolActionClass>? actionClasses)
         {
             this.Endpoint = endpoint ?? throw new global::System.ArgumentNullException(nameof(endpoint));
             this.Transport = transport;
             this.Auth = auth;
+            this.TimeoutMs = timeoutMs;
             this.LongRunning = longRunning;
             this.ActionClasses = actionClasses;
         }

@@ -63,6 +63,7 @@ namespace Speechify.JsonConverters
             if (__jsonProps.Contains("long_running.filler_message")) __score2++;
             if (__jsonProps.Contains("long_running.on_duplicate")) __score2++;
             if (__jsonProps.Contains("long_running.wait_audio")) __score2++;
+            if (__jsonProps.Contains("timeout_ms")) __score2++;
             if (__jsonProps.Contains("transport")) __score2++;
             var __bestScore = 0;
             var __bestIndex = -1;

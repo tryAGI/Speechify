@@ -63,6 +63,25 @@ namespace Speechify
         public object? ExtraBody { get; set; }
 
         /// <summary>
+        /// How hard the model thinks before it answers. `none` (the<br/>
+        /// default) answers directly; `low`, `medium` and `high` let the<br/>
+        /// model reason first, which makes harder analytical and<br/>
+        /// multi-step tool work more reliable at the cost of a slower<br/>
+        /// reply. Applies to text conversations, agent tests and runs;<br/>
+        /// a spoken turn never reasons, because the thinking lands ahead<br/>
+        /// of the first word and a caller hears it as silence. Valid only<br/>
+        /// with the `openai` provider (including the platform default) on<br/>
+        /// a model that supports reasoning - see the `reasoning` flag on<br/>
+        /// `GET /v1/agents/llm-models`; rejected with 400 elsewhere, and a<br/>
+        /// custom endpoint takes its reasoning knobs through<br/>
+        /// `extra_body`. While reasoning is on, `temperature` is not<br/>
+        /// applied. Always present on reads.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("reasoning_effort")]
+        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Speechify.JsonConverters.AgentLlmConfigReasoningEffortJsonConverter))]
+        public global::Speechify.AgentLlmConfigReasoningEffort? ReasoningEffort { get; set; }
+
+        /// <summary>
         /// Sampling temperature in the range 0.0-1.0. Defaults to 0.5.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("temperature")]
@@ -110,6 +129,21 @@ namespace Speechify
         /// chat.completions `extra_body` (reasoning / sampling knobs).<br/>
         /// Valid only when `provider` is `custom`.
         /// </param>
+        /// <param name="reasoningEffort">
+        /// How hard the model thinks before it answers. `none` (the<br/>
+        /// default) answers directly; `low`, `medium` and `high` let the<br/>
+        /// model reason first, which makes harder analytical and<br/>
+        /// multi-step tool work more reliable at the cost of a slower<br/>
+        /// reply. Applies to text conversations, agent tests and runs;<br/>
+        /// a spoken turn never reasons, because the thinking lands ahead<br/>
+        /// of the first word and a caller hears it as silence. Valid only<br/>
+        /// with the `openai` provider (including the platform default) on<br/>
+        /// a model that supports reasoning - see the `reasoning` flag on<br/>
+        /// `GET /v1/agents/llm-models`; rejected with 400 elsewhere, and a<br/>
+        /// custom endpoint takes its reasoning knobs through<br/>
+        /// `extra_body`. While reasoning is on, `temperature` is not<br/>
+        /// applied. Always present on reads.
+        /// </param>
         /// <param name="temperature">
         /// Sampling temperature in the range 0.0-1.0. Defaults to 0.5.
         /// </param>
@@ -122,6 +156,7 @@ namespace Speechify
             string? baseUrl,
             string? credentialId,
             object? extraBody,
+            global::Speechify.AgentLlmConfigReasoningEffort? reasoningEffort,
             string? temperature)
         {
             this.Provider = provider;
@@ -129,6 +164,7 @@ namespace Speechify
             this.BaseUrl = baseUrl;
             this.CredentialId = credentialId;
             this.ExtraBody = extraBody;
+            this.ReasoningEffort = reasoningEffort;
             this.Temperature = temperature;
         }
 

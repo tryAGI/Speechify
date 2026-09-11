@@ -89,7 +89,21 @@ namespace Speechify
         /// the same decision: key on this header and refuse to act twice. One<br/>
         /// connector serving both transports dedups on one identifier. The key<br/>
         /// is `&lt;run_id&gt;:&lt;step&gt;`, and `GET /v1/agents/runs/{run_id}` resolves the<br/>
-        /// run, its agent and the person it acts for from the id alone.
+        /// run, its agent and the person it acts for from the id alone.<br/>
+        /// Every request of a tool-call session also carries<br/>
+        /// `Speechify-Conversation-Id`, naming the unit of work on Speechify's<br/>
+        /// side the call belongs to, so you can trace one end to end: we hold<br/>
+        /// the question, your server holds the tool calls, and this is the<br/>
+        /// join. On a voice, text or Slack conversation it is the<br/>
+        /// conversation's `conv_…` id, set once when the session opens so its<br/>
+        /// handshake carries it too, and<br/>
+        /// `GET /v1/agents/conversations/{conversation_id}` resolves it. A<br/>
+        /// durable run has no conversation, so each tool call sends the run's<br/>
+        /// `arun_…` id instead, the same id that prefixes<br/>
+        /// `Speechify-Idempotency-Key`. The prefix says which you were sent.<br/>
+        /// The tool discovery a durable run performs before a step<br/>
+        /// (`initialize` + `tools/list`, no `tools/call`) is the one request<br/>
+        /// without it: its result is reused across runs, so it names no run.
         /// </param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>

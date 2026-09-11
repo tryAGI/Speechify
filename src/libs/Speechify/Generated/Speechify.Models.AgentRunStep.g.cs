@@ -33,8 +33,9 @@ namespace Speechify
         /// The tool a `tool_call` / `observation` step is about.<br/>
         /// It is not always one of your own tools. Platform tools appear under<br/>
         /// their reserved names - `search_knowledge`, `fetch_url`, `run_code`,<br/>
-        /// `web_search`, `generate_image`, `edit_image`, `read_file`,<br/>
-        /// `store_query`, `store_get`, `store_put`, `store_delete` - an<br/>
+        /// `web_search`, `generate_image`, `edit_image`, `render_chart`,<br/>
+        /// `read_file`, `store_query`, `store_get`, `store_put`,<br/>
+        /// `store_delete` - an<br/>
         /// MCP tool appears as<br/>
         /// `&lt;tool_name&gt;__&lt;remote_tool_name&gt;`, and a schema-repair observation<br/>
         /// carries the reserved pseudo-tool `output_schema`. Match against<br/>
@@ -125,8 +126,9 @@ namespace Speechify
         /// The tool a `tool_call` / `observation` step is about.<br/>
         /// It is not always one of your own tools. Platform tools appear under<br/>
         /// their reserved names - `search_knowledge`, `fetch_url`, `run_code`,<br/>
-        /// `web_search`, `generate_image`, `edit_image`, `read_file`,<br/>
-        /// `store_query`, `store_get`, `store_put`, `store_delete` - an<br/>
+        /// `web_search`, `generate_image`, `edit_image`, `render_chart`,<br/>
+        /// `read_file`, `store_query`, `store_get`, `store_put`,<br/>
+        /// `store_delete` - an<br/>
         /// MCP tool appears as<br/>
         /// `&lt;tool_name&gt;__&lt;remote_tool_name&gt;`, and a schema-repair observation<br/>
         /// carries the reserved pseudo-tool `output_schema`. Match against<br/>

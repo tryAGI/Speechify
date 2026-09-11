@@ -105,6 +105,15 @@ namespace Speechify
         public object? LlmExtraBody { get; set; }
 
         /// <summary>
+        /// The reasoning setting configured at conversation start; `none`<br/>
+        /// when off. Records what was configured, not what dispatch served:<br/>
+        /// a spoken turn runs without reasoning regardless.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("reasoning_effort")]
+        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Speechify.JsonConverters.AgentSnapshotReasoningEffortJsonConverter))]
+        public global::Speechify.AgentSnapshotReasoningEffort? ReasoningEffort { get; set; }
+
+        /// <summary>
         ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("voice_id")]
@@ -262,6 +271,11 @@ namespace Speechify
         /// <param name="llmExtraBody">
         /// Extra chat.completions body forwarded verbatim for custom-provider agents; null otherwise.
         /// </param>
+        /// <param name="reasoningEffort">
+        /// The reasoning setting configured at conversation start; `none`<br/>
+        /// when off. Records what was configured, not what dispatch served:<br/>
+        /// a spoken turn runs without reasoning regardless.
+        /// </param>
         /// <param name="voiceId"></param>
         /// <param name="ttsModel">
         /// The TTS model pinned at call start; null means the call ran on<br/>
@@ -328,6 +342,7 @@ namespace Speechify
             string? llmModel,
             string? llmBaseUrl,
             object? llmExtraBody,
+            global::Speechify.AgentSnapshotReasoningEffort? reasoningEffort,
             string? voiceId,
             string? ttsModel,
             string? temperature,
@@ -360,6 +375,7 @@ namespace Speechify
             this.LlmModel = llmModel;
             this.LlmBaseUrl = llmBaseUrl;
             this.LlmExtraBody = llmExtraBody;
+            this.ReasoningEffort = reasoningEffort;
             this.VoiceId = voiceId;
             this.TtsModel = ttsModel;
             this.Temperature = temperature;
