@@ -20,7 +20,7 @@ namespace Speechify
         global::System.Threading.Tasks.Task<global::Speechify.KnowledgeBaseDocument> UploadDocumentAsync(
             string kbId,
 
-            global::Speechify.UploadDocumentRequest request,
+            global::Speechify.KnowledgeBasesUploadDocumentRequest request,
             string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
@@ -40,7 +40,7 @@ namespace Speechify
         global::System.Threading.Tasks.Task<global::Speechify.AutoSDKHttpResponse<global::Speechify.KnowledgeBaseDocument>> UploadDocumentAsResponseAsync(
             string kbId,
 
-            global::Speechify.UploadDocumentRequest request,
+            global::Speechify.KnowledgeBasesUploadDocumentRequest request,
             string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);

@@ -32,7 +32,7 @@ namespace Speechify
         global::System.Threading.Tasks.Task<global::Speechify.AgentTestRun> RunTestAsync(
             string testId,
 
-            global::Speechify.RunTestRequest request,
+            global::Speechify.TestsRunTestRequest request,
             string? speechifyVersion = default,
             string? idempotencyKey = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
@@ -65,7 +65,7 @@ namespace Speechify
         global::System.Threading.Tasks.Task<global::Speechify.AutoSDKHttpResponse<global::Speechify.AgentTestRun>> RunTestAsResponseAsync(
             string testId,
 
-            global::Speechify.RunTestRequest request,
+            global::Speechify.TestsRunTestRequest request,
             string? speechifyVersion = default,
             string? idempotencyKey = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,

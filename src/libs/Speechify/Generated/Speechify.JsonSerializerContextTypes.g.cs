@@ -2941,35 +2941,35 @@ namespace Speechify
         /// <summary>
         ///
         /// </summary>
-        public global::Speechify.CreateRequest? Type727 { get; set; }
+        public global::Speechify.VoicesCreateRequest? Type727 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Speechify.DetectRequest? Type728 { get; set; }
+        public global::Speechify.WatermarkDetectRequest? Type728 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Speechify.VerifyRequest? Type729 { get; set; }
+        public global::Speechify.WatermarkVerifyRequest? Type729 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Speechify.UploadDocumentRequest? Type730 { get; set; }
+        public global::Speechify.KnowledgeBasesUploadDocumentRequest? Type730 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Speechify.UpdateDocumentRequest? Type731 { get; set; }
+        public global::Speechify.KnowledgeBasesUpdateDocumentRequest? Type731 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Speechify.RunTestRequest? Type732 { get; set; }
+        public global::Speechify.TestsRunTestRequest? Type732 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Speechify.UploadRequest? Type733 { get; set; }
+        public global::Speechify.AudioAssetsUploadRequest? Type733 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Speechify.UploadRequest2? Type734 { get; set; }
+        public global::Speechify.FilesUploadRequest? Type734 { get; set; }
 
         /// <summary>
         ///
