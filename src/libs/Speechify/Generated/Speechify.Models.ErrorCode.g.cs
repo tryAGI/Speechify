@@ -188,7 +188,23 @@ namespace Speechify
         /// <summary>
         ///
         /// </summary>
+        ConversationChannelBound,
+        /// <summary>
+        ///
+        /// </summary>
+        ConversationClosed,
+        /// <summary>
+        ///
+        /// </summary>
         ConversationNotFound,
+        /// <summary>
+        ///
+        /// </summary>
+        ConversationNotReachable,
+        /// <summary>
+        ///
+        /// </summary>
+        ConversationPromptNotFound,
         /// <summary>
         ///
         /// </summary>
@@ -209,6 +225,14 @@ namespace Speechify
         ///
         /// </summary>
         CrossProjectReference,
+        /// <summary>
+        ///
+        /// </summary>
+        CustomModelInUse,
+        /// <summary>
+        ///
+        /// </summary>
+        CustomModelNotFound,
         /// <summary>
         ///
         /// </summary>
@@ -678,12 +702,18 @@ namespace Speechify
                 ErrorCode.ContactNotFound => "contact_not_found",
                 ErrorCode.ContactResolverNotFound => "contact_resolver_not_found",
                 ErrorCode.ContentPolicyViolation => "content_policy_violation",
+                ErrorCode.ConversationChannelBound => "conversation_channel_bound",
+                ErrorCode.ConversationClosed => "conversation_closed",
                 ErrorCode.ConversationNotFound => "conversation_not_found",
+                ErrorCode.ConversationNotReachable => "conversation_not_reachable",
+                ErrorCode.ConversationPromptNotFound => "conversation_prompt_not_found",
                 ErrorCode.ConversationTurnInProgress => "conversation_turn_in_progress",
                 ErrorCode.CredentialInUse => "credential_in_use",
                 ErrorCode.CredentialNotFound => "credential_not_found",
                 ErrorCode.CreditPurchaseUnpaid => "credit_purchase_unpaid",
                 ErrorCode.CrossProjectReference => "cross_project_reference",
+                ErrorCode.CustomModelInUse => "custom_model_in_use",
+                ErrorCode.CustomModelNotFound => "custom_model_not_found",
                 ErrorCode.DestinationNotAllowed => "destination_not_allowed",
                 ErrorCode.DurableRunsNotInPlan => "durable_runs_not_in_plan",
                 ErrorCode.FileNotFound => "file_not_found",
@@ -840,12 +870,18 @@ namespace Speechify
                 "contact_not_found" => ErrorCode.ContactNotFound,
                 "contact_resolver_not_found" => ErrorCode.ContactResolverNotFound,
                 "content_policy_violation" => ErrorCode.ContentPolicyViolation,
+                "conversation_channel_bound" => ErrorCode.ConversationChannelBound,
+                "conversation_closed" => ErrorCode.ConversationClosed,
                 "conversation_not_found" => ErrorCode.ConversationNotFound,
+                "conversation_not_reachable" => ErrorCode.ConversationNotReachable,
+                "conversation_prompt_not_found" => ErrorCode.ConversationPromptNotFound,
                 "conversation_turn_in_progress" => ErrorCode.ConversationTurnInProgress,
                 "credential_in_use" => ErrorCode.CredentialInUse,
                 "credential_not_found" => ErrorCode.CredentialNotFound,
                 "credit_purchase_unpaid" => ErrorCode.CreditPurchaseUnpaid,
                 "cross_project_reference" => ErrorCode.CrossProjectReference,
+                "custom_model_in_use" => ErrorCode.CustomModelInUse,
+                "custom_model_not_found" => ErrorCode.CustomModelNotFound,
                 "destination_not_allowed" => ErrorCode.DestinationNotAllowed,
                 "durable_runs_not_in_plan" => ErrorCode.DurableRunsNotInPlan,
                 "file_not_found" => ErrorCode.FileNotFound,

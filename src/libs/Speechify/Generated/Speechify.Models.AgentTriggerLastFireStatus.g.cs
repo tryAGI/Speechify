@@ -8,7 +8,12 @@ namespace Speechify
     /// `failed` with the reason in `last_fire_error`, or `pending` while a<br/>
     /// transient failure waits for its retry. Absent until the trigger has<br/>
     /// fired once. A `failed` trigger stays `failed` until a later fire<br/>
-    /// succeeds; `trigger.fire_failed` is delivered each time.
+    /// succeeds; `trigger.fire_failed` is delivered each time.<br/>
+    /// A standing watch (a trigger with `thread`) settles one step further<br/>
+    /// once its run finishes: `posted` when the run reported and the<br/>
+    /// report reached the thread, `silent` when it concluded there was<br/>
+    /// nothing to report and posted nothing. A watch whose run failed, or<br/>
+    /// whose thread is gone, reads `failed` with the reason.
     /// </summary>
     public enum AgentTriggerLastFireStatus
     {
@@ -24,6 +29,14 @@ namespace Speechify
         ///
         /// </summary>
         Pending,
+        /// <summary>
+        /// `posted` when the run reported and the
+        /// </summary>
+        Posted,
+        /// <summary>
+        ///
+        /// </summary>
+        Silent,
     }
 
     /// <summary>
@@ -41,6 +54,8 @@ namespace Speechify
                 AgentTriggerLastFireStatus.Dispatched => "dispatched",
                 AgentTriggerLastFireStatus.Failed => "failed",
                 AgentTriggerLastFireStatus.Pending => "pending",
+                AgentTriggerLastFireStatus.Posted => "posted",
+                AgentTriggerLastFireStatus.Silent => "silent",
                 _ => throw new global::System.ArgumentOutOfRangeException(nameof(value), value, null),
             };
         }
@@ -54,6 +69,8 @@ namespace Speechify
                 "dispatched" => AgentTriggerLastFireStatus.Dispatched,
                 "failed" => AgentTriggerLastFireStatus.Failed,
                 "pending" => AgentTriggerLastFireStatus.Pending,
+                "posted" => AgentTriggerLastFireStatus.Posted,
+                "silent" => AgentTriggerLastFireStatus.Silent,
                 _ => null,
             };
         }

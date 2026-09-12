@@ -19,6 +19,10 @@ namespace Speechify
         /// <summary>
         ///
         /// </summary>
+        CustomModel,
+        /// <summary>
+        ///
+        /// </summary>
         KnowledgeBase,
         /// <summary>
         ///
@@ -44,6 +48,7 @@ namespace Speechify
             {
                 PromoteAttentionKind.Agent => "agent",
                 PromoteAttentionKind.AudioAsset => "audio_asset",
+                PromoteAttentionKind.CustomModel => "custom_model",
                 PromoteAttentionKind.KnowledgeBase => "knowledge_base",
                 PromoteAttentionKind.Tool => "tool",
                 PromoteAttentionKind.WebhookEndpoint => "webhook_endpoint",
@@ -59,6 +64,7 @@ namespace Speechify
             {
                 "agent" => PromoteAttentionKind.Agent,
                 "audio_asset" => PromoteAttentionKind.AudioAsset,
+                "custom_model" => PromoteAttentionKind.CustomModel,
                 "knowledge_base" => PromoteAttentionKind.KnowledgeBase,
                 "tool" => PromoteAttentionKind.Tool,
                 "webhook_endpoint" => PromoteAttentionKind.WebhookEndpoint,

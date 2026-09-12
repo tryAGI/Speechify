@@ -21,7 +21,7 @@ namespace Speechify
         /// <exception cref="global::Speechify.ApiException"></exception>
         global::System.Threading.Tasks.Task<global::Speechify.GetVoice> CreateAsync(
 
-            global::Speechify.VoicesCreateRequest request,
+            global::Speechify.CreateRequest request,
             string? speechifyVersion = default,
             string? idempotencyKey = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
@@ -43,7 +43,7 @@ namespace Speechify
         /// <exception cref="global::Speechify.ApiException"></exception>
         global::System.Threading.Tasks.Task<global::Speechify.AutoSDKHttpResponse<global::Speechify.GetVoice>> CreateAsResponseAsync(
 
-            global::Speechify.VoicesCreateRequest request,
+            global::Speechify.CreateRequest request,
             string? speechifyVersion = default,
             string? idempotencyKey = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,

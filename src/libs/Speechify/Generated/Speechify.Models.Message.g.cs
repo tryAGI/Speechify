@@ -56,6 +56,20 @@ namespace Speechify
         public string? SpeakerIdentity { get; set; }
 
         /// <summary>
+        /// What started the turn this row belongs to, when it was not a<br/>
+        /// person. `api` marks an agent-initiated turn the workspace's own<br/>
+        /// backend asked for through the conversation prompt endpoint: the<br/>
+        /// `user` row is the instruction that was sent and the `assistant`<br/>
+        /// row is the reply the thread saw unasked. Both rows of such a turn<br/>
+        /// carry it, so a transcript reader or an evaluator can tell an<br/>
+        /// unprompted correction from an answer to a person. Omitted on<br/>
+        /// every turn a person or a channel started.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("initiated_by")]
+        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Speechify.JsonConverters.MessageInitiatedByJsonConverter))]
+        public global::Speechify.MessageInitiatedBy? InitiatedBy { get; set; }
+
+        /// <summary>
         ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("tool_name")]
@@ -119,6 +133,16 @@ namespace Speechify
         /// including on the agent's own turns, and on a turn whose speaker was<br/>
         /// later erased at their own request.
         /// </param>
+        /// <param name="initiatedBy">
+        /// What started the turn this row belongs to, when it was not a<br/>
+        /// person. `api` marks an agent-initiated turn the workspace's own<br/>
+        /// backend asked for through the conversation prompt endpoint: the<br/>
+        /// `user` row is the instruction that was sent and the `assistant`<br/>
+        /// row is the reply the thread saw unasked. Both rows of such a turn<br/>
+        /// carry it, so a transcript reader or an evaluator can tell an<br/>
+        /// unprompted correction from an answer to a person. Omitted on<br/>
+        /// every turn a person or a channel started.
+        /// </param>
         /// <param name="toolName"></param>
         /// <param name="toolArgs"></param>
         /// <param name="toolResult">
@@ -135,6 +159,7 @@ namespace Speechify
             string content,
             global::System.DateTime startedAt,
             string? speakerIdentity,
+            global::Speechify.MessageInitiatedBy? initiatedBy,
             string? toolName,
             object? toolArgs,
             object? toolResult,
@@ -145,6 +170,7 @@ namespace Speechify
             this.Role = role;
             this.Content = content ?? throw new global::System.ArgumentNullException(nameof(content));
             this.SpeakerIdentity = speakerIdentity;
+            this.InitiatedBy = initiatedBy;
             this.ToolName = toolName;
             this.ToolArgs = toolArgs;
             this.ToolResult = toolResult;

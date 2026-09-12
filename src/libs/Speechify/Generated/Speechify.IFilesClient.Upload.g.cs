@@ -38,7 +38,7 @@ namespace Speechify
         /// <exception cref="global::Speechify.ApiException"></exception>
         global::System.Threading.Tasks.Task<global::Speechify.File> UploadAsync(
 
-            global::Speechify.FilesUploadRequest request,
+            global::Speechify.UploadRequest2 request,
             string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
@@ -76,7 +76,7 @@ namespace Speechify
         /// <exception cref="global::Speechify.ApiException"></exception>
         global::System.Threading.Tasks.Task<global::Speechify.AutoSDKHttpResponse<global::Speechify.File>> UploadAsResponseAsync(
 
-            global::Speechify.FilesUploadRequest request,
+            global::Speechify.UploadRequest2 request,
             string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);

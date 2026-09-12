@@ -40,6 +40,12 @@ namespace Speechify
         public int? AudioAssets { get; set; }
 
         /// <summary>
+        ///
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("custom_models")]
+        public int? CustomModels { get; set; }
+
+        /// <summary>
         /// Additional properties that are not explicitly defined in the schema
         /// </summary>
         [global::System.Text.Json.Serialization.JsonExtensionData]
@@ -53,6 +59,7 @@ namespace Speechify
         /// <param name="knowledgeBases"></param>
         /// <param name="tools"></param>
         /// <param name="audioAssets"></param>
+        /// <param name="customModels"></param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
 #endif
@@ -61,13 +68,15 @@ namespace Speechify
             int? agentTests,
             int? knowledgeBases,
             int? tools,
-            int? audioAssets)
+            int? audioAssets,
+            int? customModels)
         {
             this.Agents = agents;
             this.AgentTests = agentTests;
             this.KnowledgeBases = knowledgeBases;
             this.Tools = tools;
             this.AudioAssets = audioAssets;
+            this.CustomModels = customModels;
         }
 
         /// <summary>
