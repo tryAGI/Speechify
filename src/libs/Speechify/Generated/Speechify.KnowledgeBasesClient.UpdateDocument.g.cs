@@ -30,14 +30,14 @@ namespace Speechify
             ref string kbId,
             ref string documentId,
             ref string? speechifyVersion,
-            global::Speechify.UpdateDocumentRequest request);
+            global::Speechify.KnowledgeBasesUpdateDocumentRequest request);
         partial void PrepareUpdateDocumentRequest(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpRequestMessage httpRequestMessage,
             string kbId,
             string documentId,
             string? speechifyVersion,
-            global::Speechify.UpdateDocumentRequest request);
+            global::Speechify.KnowledgeBasesUpdateDocumentRequest request);
         partial void ProcessUpdateDocumentResponse(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpResponseMessage httpResponseMessage);
@@ -66,7 +66,7 @@ namespace Speechify
             string kbId,
             string documentId,
 
-            global::Speechify.UpdateDocumentRequest request,
+            global::Speechify.KnowledgeBasesUpdateDocumentRequest request,
             string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
@@ -102,7 +102,7 @@ namespace Speechify
             string kbId,
             string documentId,
 
-            global::Speechify.UpdateDocumentRequest request,
+            global::Speechify.KnowledgeBasesUpdateDocumentRequest request,
             string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
@@ -654,7 +654,7 @@ namespace Speechify
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
-            var __request = new global::Speechify.UpdateDocumentRequest
+            var __request = new global::Speechify.KnowledgeBasesUpdateDocumentRequest
             {
                 FolderId = folderId,
                 InjectionMode = injectionMode,

@@ -30,14 +30,14 @@ namespace Speechify
             ref string testId,
             ref string? speechifyVersion,
             ref string? idempotencyKey,
-            global::Speechify.RunTestRequest request);
+            global::Speechify.TestsRunTestRequest request);
         partial void PrepareRunTestRequest(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpRequestMessage httpRequestMessage,
             string testId,
             string? speechifyVersion,
             string? idempotencyKey,
-            global::Speechify.RunTestRequest request);
+            global::Speechify.TestsRunTestRequest request);
         partial void ProcessRunTestResponse(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpResponseMessage httpResponseMessage);
@@ -75,7 +75,7 @@ namespace Speechify
         public async global::System.Threading.Tasks.Task<global::Speechify.AgentTestRun> RunTestAsync(
             string testId,
 
-            global::Speechify.RunTestRequest request,
+            global::Speechify.TestsRunTestRequest request,
             string? speechifyVersion = default,
             string? idempotencyKey = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
@@ -121,7 +121,7 @@ namespace Speechify
         public async global::System.Threading.Tasks.Task<global::Speechify.AutoSDKHttpResponse<global::Speechify.AgentTestRun>> RunTestAsResponseAsync(
             string testId,
 
-            global::Speechify.RunTestRequest request,
+            global::Speechify.TestsRunTestRequest request,
             string? speechifyVersion = default,
             string? idempotencyKey = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
@@ -720,7 +720,7 @@ namespace Speechify
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
-            var __request = new global::Speechify.RunTestRequest
+            var __request = new global::Speechify.TestsRunTestRequest
             {
                 AgentId = agentId,
             };

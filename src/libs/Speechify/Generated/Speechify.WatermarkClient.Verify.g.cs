@@ -28,12 +28,12 @@ namespace Speechify
         partial void PrepareVerifyArguments(
             global::System.Net.Http.HttpClient httpClient,
             ref string? speechifyVersion,
-            global::Speechify.VerifyRequest request);
+            global::Speechify.WatermarkVerifyRequest request);
         partial void PrepareVerifyRequest(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpRequestMessage httpRequestMessage,
             string? speechifyVersion,
-            global::Speechify.VerifyRequest request);
+            global::Speechify.WatermarkVerifyRequest request);
         partial void ProcessVerifyResponse(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpResponseMessage httpResponseMessage);
@@ -77,7 +77,7 @@ namespace Speechify
         /// <exception cref="global::Speechify.ApiException"></exception>
         public async global::System.Threading.Tasks.Task<global::Speechify.WatermarkVerificationResponse> VerifyAsync(
 
-            global::Speechify.VerifyRequest request,
+            global::Speechify.WatermarkVerifyRequest request,
             string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
@@ -126,7 +126,7 @@ namespace Speechify
         /// <exception cref="global::Speechify.ApiException"></exception>
         public async global::System.Threading.Tasks.Task<global::Speechify.AutoSDKHttpResponse<global::Speechify.WatermarkVerificationResponse>> VerifyAsResponseAsync(
 
-            global::Speechify.VerifyRequest request,
+            global::Speechify.WatermarkVerifyRequest request,
             string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
@@ -800,7 +800,7 @@ namespace Speechify
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
-            var __request = new global::Speechify.VerifyRequest
+            var __request = new global::Speechify.WatermarkVerifyRequest
             {
                 Audio = audio,
                 Audioname = audioname,
@@ -863,7 +863,7 @@ namespace Speechify
         {
 
             audio = audio ?? throw new global::System.ArgumentNullException(nameof(audio));
-            var request = new global::Speechify.VerifyRequest
+            var request = new global::Speechify.WatermarkVerifyRequest
             {
                 Audio = global::System.Array.Empty<byte>(),
                 Audioname = audioname,
@@ -1529,7 +1529,7 @@ namespace Speechify
         {
 
             audio = audio ?? throw new global::System.ArgumentNullException(nameof(audio));
-            var request = new global::Speechify.VerifyRequest
+            var request = new global::Speechify.WatermarkVerifyRequest
             {
                 Audio = global::System.Array.Empty<byte>(),
                 Audioname = audioname,
