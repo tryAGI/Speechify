@@ -54,5 +54,6 @@ autosdk generate openapi.yaml \
   --clientClassName SpeechifyClient \
   --targetFramework net10.0 \
   --output Generated \
+  --strip-redundant-operation-id-tag-prefixes \
   --exclude-deprecated-operations \
   --security-scheme Http:Header:Bearer
