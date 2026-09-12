@@ -114,6 +114,20 @@ namespace Speechify
         public global::Speechify.AgentSnapshotReasoningEffort? ReasoningEffort { get; set; }
 
         /// <summary>
+        /// The full-duplex model the agent was set to speak through at call<br/>
+        /// start, or empty for an ordinary agent. When set, the caller heard<br/>
+        /// this model's voice and the LLM pair above was the brain behind it.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("duplex_model")]
+        public string? DuplexModel { get; set; }
+
+        /// <summary>
+        /// The duplex model's voice the call opened with; empty when no duplex model was set.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("duplex_voice")]
+        public string? DuplexVoice { get; set; }
+
+        /// <summary>
         ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("voice_id")]
@@ -276,6 +290,14 @@ namespace Speechify
         /// when off. Records what was configured, not what dispatch served:<br/>
         /// a spoken turn runs without reasoning regardless.
         /// </param>
+        /// <param name="duplexModel">
+        /// The full-duplex model the agent was set to speak through at call<br/>
+        /// start, or empty for an ordinary agent. When set, the caller heard<br/>
+        /// this model's voice and the LLM pair above was the brain behind it.
+        /// </param>
+        /// <param name="duplexVoice">
+        /// The duplex model's voice the call opened with; empty when no duplex model was set.
+        /// </param>
         /// <param name="voiceId"></param>
         /// <param name="ttsModel">
         /// The TTS model pinned at call start; null means the call ran on<br/>
@@ -343,6 +365,8 @@ namespace Speechify
             string? llmBaseUrl,
             object? llmExtraBody,
             global::Speechify.AgentSnapshotReasoningEffort? reasoningEffort,
+            string? duplexModel,
+            string? duplexVoice,
             string? voiceId,
             string? ttsModel,
             string? temperature,
@@ -376,6 +400,8 @@ namespace Speechify
             this.LlmBaseUrl = llmBaseUrl;
             this.LlmExtraBody = llmExtraBody;
             this.ReasoningEffort = reasoningEffort;
+            this.DuplexModel = duplexModel;
+            this.DuplexVoice = duplexVoice;
             this.VoiceId = voiceId;
             this.TtsModel = ttsModel;
             this.Temperature = temperature;
