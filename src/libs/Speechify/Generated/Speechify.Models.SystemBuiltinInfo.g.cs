@@ -76,13 +76,33 @@ namespace Speechify
         /// conversation - voice or text - never offers one, so attaching it to<br/>
         /// an agent that only holds conversations leaves it inert. This is NOT<br/>
         /// the same as `execution`: `fetch_url` is `control_plane` and a text<br/>
-        /// turn does run it.<br/>
+        /// turn does run it.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("runs_only")]
+        public bool? RunsOnly { get; set; }
+
+        /// <summary>
+        /// Whether only a live text conversation can execute this built-in -<br/>
+        /// an autonomous run is never offered it. The mirror of `runs_only`,<br/>
+        /// for a capability whose meaning is the conversation it is called<br/>
+        /// from: `create_watch` registers a standing order for the chat<br/>
+        /// thread it is called in.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("turn_only")]
+        public bool? TurnOnly { get; set; }
+
+        /// <summary>
+        /// Whether every call is billed at an outside vendor on top of the<br/>
+        /// plan. Read this rather than inferring it from `default_on`: a<br/>
+        /// built-in can be off by default because turning it on is a<br/>
+        /// decision (`create_watch` commits recurring run spend) without<br/>
+        /// costing anything per call.<br/>
         /// Deliberately not required, so a console deployed ahead of the server<br/>
         /// reads it as absent and simply shows no badge, rather than failing on<br/>
         /// a missing required field.
         /// </summary>
-        [global::System.Text.Json.Serialization.JsonPropertyName("runs_only")]
-        public bool? RunsOnly { get; set; }
+        [global::System.Text.Json.Serialization.JsonPropertyName("priced")]
+        public bool? Priced { get; set; }
 
         /// <summary>
         /// Additional properties that are not explicitly defined in the schema
@@ -131,7 +151,21 @@ namespace Speechify
         /// conversation - voice or text - never offers one, so attaching it to<br/>
         /// an agent that only holds conversations leaves it inert. This is NOT<br/>
         /// the same as `execution`: `fetch_url` is `control_plane` and a text<br/>
-        /// turn does run it.<br/>
+        /// turn does run it.
+        /// </param>
+        /// <param name="turnOnly">
+        /// Whether only a live text conversation can execute this built-in -<br/>
+        /// an autonomous run is never offered it. The mirror of `runs_only`,<br/>
+        /// for a capability whose meaning is the conversation it is called<br/>
+        /// from: `create_watch` registers a standing order for the chat<br/>
+        /// thread it is called in.
+        /// </param>
+        /// <param name="priced">
+        /// Whether every call is billed at an outside vendor on top of the<br/>
+        /// plan. Read this rather than inferring it from `default_on`: a<br/>
+        /// built-in can be off by default because turning it on is a<br/>
+        /// decision (`create_watch` commits recurring run spend) without<br/>
+        /// costing anything per call.<br/>
         /// Deliberately not required, so a console deployed ahead of the server<br/>
         /// reads it as absent and simply shows no badge, rather than failing on<br/>
         /// a missing required field.
@@ -147,7 +181,9 @@ namespace Speechify
             global::Speechify.SystemBuiltinInfoExecution execution,
             bool defaultOn,
             bool voiceOnly,
-            bool? runsOnly)
+            bool? runsOnly,
+            bool? turnOnly,
+            bool? priced)
         {
             this.Name = name ?? throw new global::System.ArgumentNullException(nameof(name));
             this.Label = label ?? throw new global::System.ArgumentNullException(nameof(label));
@@ -157,6 +193,8 @@ namespace Speechify
             this.DefaultOn = defaultOn;
             this.VoiceOnly = voiceOnly;
             this.RunsOnly = runsOnly;
+            this.TurnOnly = turnOnly;
+            this.Priced = priced;
         }
 
         /// <summary>

@@ -28,12 +28,12 @@ namespace Speechify
         partial void PrepareDetectArguments(
             global::System.Net.Http.HttpClient httpClient,
             ref string? speechifyVersion,
-            global::Speechify.WatermarkDetectRequest request);
+            global::Speechify.DetectRequest request);
         partial void PrepareDetectRequest(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpRequestMessage httpRequestMessage,
             string? speechifyVersion,
-            global::Speechify.WatermarkDetectRequest request);
+            global::Speechify.DetectRequest request);
         partial void ProcessDetectResponse(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpResponseMessage httpResponseMessage);
@@ -65,7 +65,7 @@ namespace Speechify
         /// <exception cref="global::Speechify.ApiException"></exception>
         public async global::System.Threading.Tasks.Task<global::Speechify.WatermarkDetectionResponse> DetectAsync(
 
-            global::Speechify.WatermarkDetectRequest request,
+            global::Speechify.DetectRequest request,
             string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
@@ -102,7 +102,7 @@ namespace Speechify
         /// <exception cref="global::Speechify.ApiException"></exception>
         public async global::System.Threading.Tasks.Task<global::Speechify.AutoSDKHttpResponse<global::Speechify.WatermarkDetectionResponse>> DetectAsResponseAsync(
 
-            global::Speechify.WatermarkDetectRequest request,
+            global::Speechify.DetectRequest request,
             string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
@@ -840,7 +840,7 @@ namespace Speechify
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
-            var __request = new global::Speechify.WatermarkDetectRequest
+            var __request = new global::Speechify.DetectRequest
             {
                 Audio = audio,
                 Audioname = audioname,
@@ -893,7 +893,7 @@ namespace Speechify
         {
 
             audio = audio ?? throw new global::System.ArgumentNullException(nameof(audio));
-            var request = new global::Speechify.WatermarkDetectRequest
+            var request = new global::Speechify.DetectRequest
             {
                 Audio = global::System.Array.Empty<byte>(),
                 Audioname = audioname,
@@ -1623,7 +1623,7 @@ namespace Speechify
         {
 
             audio = audio ?? throw new global::System.ArgumentNullException(nameof(audio));
-            var request = new global::Speechify.WatermarkDetectRequest
+            var request = new global::Speechify.DetectRequest
             {
                 Audio = global::System.Array.Empty<byte>(),
                 Audioname = audioname,

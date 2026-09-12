@@ -23,7 +23,7 @@ namespace Speechify
             string kbId,
             string documentId,
 
-            global::Speechify.KnowledgeBasesUpdateDocumentRequest request,
+            global::Speechify.UpdateDocumentRequest request,
             string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
@@ -46,7 +46,7 @@ namespace Speechify
             string kbId,
             string documentId,
 
-            global::Speechify.KnowledgeBasesUpdateDocumentRequest request,
+            global::Speechify.UpdateDocumentRequest request,
             string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);

@@ -58,6 +58,15 @@ namespace Speechify
         public required global::System.Collections.Generic.IList<string> ImportJobs { get; set; }
 
         /// <summary>
+        /// The project-scoped custom models copied into the target so its<br/>
+        /// agents keep running on their own endpoints. A workspace-shared<br/>
+        /// custom model is not copied; the target reaches it as it is.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("custom_models")]
+        [global::System.Text.Json.Serialization.JsonRequired]
+        public required global::System.Collections.Generic.IList<string> CustomModels { get; set; }
+
+        /// <summary>
         /// Additional properties that are not explicitly defined in the schema
         /// </summary>
         [global::System.Text.Json.Serialization.JsonExtensionData]
@@ -75,6 +84,11 @@ namespace Speechify
         /// <param name="importJobs">
         /// The URL re-imports queued in the target's knowledge bases; poll each for completion.
         /// </param>
+        /// <param name="customModels">
+        /// The project-scoped custom models copied into the target so its<br/>
+        /// agents keep running on their own endpoints. A workspace-shared<br/>
+        /// custom model is not copied; the target reaches it as it is.
+        /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
 #endif
@@ -85,7 +99,8 @@ namespace Speechify
             global::System.Collections.Generic.IList<string> audioAssets,
             global::System.Collections.Generic.IList<string> webhookEndpoints,
             global::System.Collections.Generic.IList<string> agentTests,
-            global::System.Collections.Generic.IList<string> importJobs)
+            global::System.Collections.Generic.IList<string> importJobs,
+            global::System.Collections.Generic.IList<string> customModels)
         {
             this.Agents = agents ?? throw new global::System.ArgumentNullException(nameof(agents));
             this.Tools = tools ?? throw new global::System.ArgumentNullException(nameof(tools));
@@ -94,6 +109,7 @@ namespace Speechify
             this.WebhookEndpoints = webhookEndpoints ?? throw new global::System.ArgumentNullException(nameof(webhookEndpoints));
             this.AgentTests = agentTests ?? throw new global::System.ArgumentNullException(nameof(agentTests));
             this.ImportJobs = importJobs ?? throw new global::System.ArgumentNullException(nameof(importJobs));
+            this.CustomModels = customModels ?? throw new global::System.ArgumentNullException(nameof(customModels));
         }
 
         /// <summary>

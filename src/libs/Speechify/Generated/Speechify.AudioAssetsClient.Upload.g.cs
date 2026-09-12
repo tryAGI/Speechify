@@ -28,12 +28,12 @@ namespace Speechify
         partial void PrepareUploadArguments(
             global::System.Net.Http.HttpClient httpClient,
             ref string? speechifyVersion,
-            global::Speechify.AudioAssetsUploadRequest request);
+            global::Speechify.UploadRequest request);
         partial void PrepareUploadRequest(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpRequestMessage httpRequestMessage,
             string? speechifyVersion,
-            global::Speechify.AudioAssetsUploadRequest request);
+            global::Speechify.UploadRequest request);
         partial void ProcessUploadResponse(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpResponseMessage httpResponseMessage);
@@ -61,7 +61,7 @@ namespace Speechify
         /// <exception cref="global::Speechify.ApiException"></exception>
         public async global::System.Threading.Tasks.Task<global::Speechify.AudioAsset> UploadAsync(
 
-            global::Speechify.AudioAssetsUploadRequest request,
+            global::Speechify.UploadRequest request,
             string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
@@ -94,7 +94,7 @@ namespace Speechify
         /// <exception cref="global::Speechify.ApiException"></exception>
         public async global::System.Threading.Tasks.Task<global::Speechify.AutoSDKHttpResponse<global::Speechify.AudioAsset>> UploadAsResponseAsync(
 
-            global::Speechify.AudioAssetsUploadRequest request,
+            global::Speechify.UploadRequest request,
             string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
@@ -616,7 +616,7 @@ namespace Speechify
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
-            var __request = new global::Speechify.AudioAssetsUploadRequest
+            var __request = new global::Speechify.UploadRequest
             {
                 ProjectId = projectId,
                 File = file,
@@ -668,7 +668,7 @@ namespace Speechify
         {
 
             file = file ?? throw new global::System.ArgumentNullException(nameof(file));
-            var request = new global::Speechify.AudioAssetsUploadRequest
+            var request = new global::Speechify.UploadRequest
             {
                 ProjectId = projectId,
                 File = global::System.Array.Empty<byte>(),
@@ -1183,7 +1183,7 @@ namespace Speechify
         {
 
             file = file ?? throw new global::System.ArgumentNullException(nameof(file));
-            var request = new global::Speechify.AudioAssetsUploadRequest
+            var request = new global::Speechify.UploadRequest
             {
                 ProjectId = projectId,
                 File = global::System.Array.Empty<byte>(),

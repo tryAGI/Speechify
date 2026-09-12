@@ -29,13 +29,13 @@ namespace Speechify
             global::System.Net.Http.HttpClient httpClient,
             ref string? speechifyVersion,
             ref string? idempotencyKey,
-            global::Speechify.VoicesCreateRequest request);
+            global::Speechify.CreateRequest request);
         partial void PrepareCreateRequest(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpRequestMessage httpRequestMessage,
             string? speechifyVersion,
             string? idempotencyKey,
-            global::Speechify.VoicesCreateRequest request);
+            global::Speechify.CreateRequest request);
         partial void ProcessCreateResponse(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpResponseMessage httpResponseMessage);
@@ -62,7 +62,7 @@ namespace Speechify
         /// <exception cref="global::Speechify.ApiException"></exception>
         public async global::System.Threading.Tasks.Task<global::Speechify.GetVoice> CreateAsync(
 
-            global::Speechify.VoicesCreateRequest request,
+            global::Speechify.CreateRequest request,
             string? speechifyVersion = default,
             string? idempotencyKey = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
@@ -96,7 +96,7 @@ namespace Speechify
         /// <exception cref="global::Speechify.ApiException"></exception>
         public async global::System.Threading.Tasks.Task<global::Speechify.AutoSDKHttpResponse<global::Speechify.GetVoice>> CreateAsResponseAsync(
 
-            global::Speechify.VoicesCreateRequest request,
+            global::Speechify.CreateRequest request,
             string? speechifyVersion = default,
             string? idempotencyKey = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
@@ -1089,7 +1089,7 @@ namespace Speechify
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
-            var __request = new global::Speechify.VoicesCreateRequest
+            var __request = new global::Speechify.CreateRequest
             {
                 Name = name,
                 Locale = locale,
@@ -1189,7 +1189,7 @@ namespace Speechify
 
             sample = sample ?? throw new global::System.ArgumentNullException(nameof(sample));
             consentRecording = consentRecording ?? throw new global::System.ArgumentNullException(nameof(consentRecording));
-            var request = new global::Speechify.VoicesCreateRequest
+            var request = new global::Speechify.CreateRequest
             {
                 Name = name,
                 Locale = locale,
@@ -2182,7 +2182,7 @@ namespace Speechify
 
             sample = sample ?? throw new global::System.ArgumentNullException(nameof(sample));
             consentRecording = consentRecording ?? throw new global::System.ArgumentNullException(nameof(consentRecording));
-            var request = new global::Speechify.VoicesCreateRequest
+            var request = new global::Speechify.CreateRequest
             {
                 Name = name,
                 Locale = locale,

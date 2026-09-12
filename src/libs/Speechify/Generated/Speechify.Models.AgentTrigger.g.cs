@@ -6,7 +6,14 @@ namespace Speechify
     /// <summary>
     /// An automated start condition bound to a task agent - a `schedule`<br/>
     /// (cron/interval) or a `webhook` (an inbound fire URL) that starts a<br/>
-    /// durable run.
+    /// durable run.<br/>
+    /// A trigger carrying `thread` is a standing watch: a schedule the agent<br/>
+    /// registered from a chat thread on request ("tell me when ..."). Each<br/>
+    /// fire runs the check with the agent's own tools, and the run posts its<br/>
+    /// report into that thread only when it concludes there is something to<br/>
+    /// say; `last_fire_status` reads `posted` or `silent` accordingly. It is<br/>
+    /// listed and deleted here like any trigger, and from the thread it was<br/>
+    /// created in.
     /// </summary>
     public sealed partial class AgentTrigger
     {
@@ -85,7 +92,12 @@ namespace Speechify
         /// `failed` with the reason in `last_fire_error`, or `pending` while a<br/>
         /// transient failure waits for its retry. Absent until the trigger has<br/>
         /// fired once. A `failed` trigger stays `failed` until a later fire<br/>
-        /// succeeds; `trigger.fire_failed` is delivered each time.
+        /// succeeds; `trigger.fire_failed` is delivered each time.<br/>
+        /// A standing watch (a trigger with `thread`) settles one step further<br/>
+        /// once its run finishes: `posted` when the run reported and the<br/>
+        /// report reached the thread, `silent` when it concluded there was<br/>
+        /// nothing to report and posted nothing. A watch whose run failed, or<br/>
+        /// whose thread is gone, reads `failed` with the reason.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("last_fire_status")]
         [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Speechify.JsonConverters.AgentTriggerLastFireStatusJsonConverter))]
@@ -114,6 +126,15 @@ namespace Speechify
         [global::System.Text.Json.Serialization.JsonPropertyName("updated_at")]
         [global::System.Text.Json.Serialization.JsonRequired]
         public required global::System.DateTime UpdatedAt { get; set; }
+
+        /// <summary>
+        /// The chat thread a standing watch was created in and posts into.<br/>
+        /// Present only on a trigger the agent registered from a conversation;<br/>
+        /// it cannot be set or changed through this API - the platform resolves<br/>
+        /// it from the conversation the order was given in.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("thread")]
+        public global::Speechify.TriggerThread? Thread { get; set; }
 
         /// <summary>
         /// The inbound fire URL path for a webhook trigger; prepend the API<br/>
@@ -174,7 +195,12 @@ namespace Speechify
         /// `failed` with the reason in `last_fire_error`, or `pending` while a<br/>
         /// transient failure waits for its retry. Absent until the trigger has<br/>
         /// fired once. A `failed` trigger stays `failed` until a later fire<br/>
-        /// succeeds; `trigger.fire_failed` is delivered each time.
+        /// succeeds; `trigger.fire_failed` is delivered each time.<br/>
+        /// A standing watch (a trigger with `thread`) settles one step further<br/>
+        /// once its run finishes: `posted` when the run reported and the<br/>
+        /// report reached the thread, `silent` when it concluded there was<br/>
+        /// nothing to report and posted nothing. A watch whose run failed, or<br/>
+        /// whose thread is gone, reads `failed` with the reason.
         /// </param>
         /// <param name="lastFireError">
         /// Why the most recent fire did not start a run: the error code a request<br/>
@@ -182,6 +208,12 @@ namespace Speechify
         /// `agent_publish_gate_required: the agent's current configuration has not<br/>
         /// passed the publish gate; publish it and the next fire runs`. Empty when<br/>
         /// the last fire dispatched.
+        /// </param>
+        /// <param name="thread">
+        /// The chat thread a standing watch was created in and posts into.<br/>
+        /// Present only on a trigger the agent registered from a conversation;<br/>
+        /// it cannot be set or changed through this API - the platform resolves<br/>
+        /// it from the conversation the order was given in.
         /// </param>
         /// <param name="firePath">
         /// The inbound fire URL path for a webhook trigger; prepend the API<br/>
@@ -212,6 +244,7 @@ namespace Speechify
             global::System.DateTime? lastFiredAt,
             global::Speechify.AgentTriggerLastFireStatus? lastFireStatus,
             string? lastFireError,
+            global::Speechify.TriggerThread? thread,
             string? firePath,
             string? secret,
             string? secretHint)
@@ -230,6 +263,7 @@ namespace Speechify
             this.LastFireError = lastFireError;
             this.CreatedAt = createdAt;
             this.UpdatedAt = updatedAt;
+            this.Thread = thread;
             this.FirePath = firePath;
             this.Secret = secret;
             this.SecretHint = secretHint;

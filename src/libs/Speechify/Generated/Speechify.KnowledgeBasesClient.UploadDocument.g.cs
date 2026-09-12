@@ -29,13 +29,13 @@ namespace Speechify
             global::System.Net.Http.HttpClient httpClient,
             ref string kbId,
             ref string? speechifyVersion,
-            global::Speechify.KnowledgeBasesUploadDocumentRequest request);
+            global::Speechify.UploadDocumentRequest request);
         partial void PrepareUploadDocumentRequest(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpRequestMessage httpRequestMessage,
             string kbId,
             string? speechifyVersion,
-            global::Speechify.KnowledgeBasesUploadDocumentRequest request);
+            global::Speechify.UploadDocumentRequest request);
         partial void ProcessUploadDocumentResponse(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpResponseMessage httpResponseMessage);
@@ -61,7 +61,7 @@ namespace Speechify
         public async global::System.Threading.Tasks.Task<global::Speechify.KnowledgeBaseDocument> UploadDocumentAsync(
             string kbId,
 
-            global::Speechify.KnowledgeBasesUploadDocumentRequest request,
+            global::Speechify.UploadDocumentRequest request,
             string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
@@ -93,7 +93,7 @@ namespace Speechify
         public async global::System.Threading.Tasks.Task<global::Speechify.AutoSDKHttpResponse<global::Speechify.KnowledgeBaseDocument>> UploadDocumentAsResponseAsync(
             string kbId,
 
-            global::Speechify.KnowledgeBasesUploadDocumentRequest request,
+            global::Speechify.UploadDocumentRequest request,
             string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
@@ -706,7 +706,7 @@ namespace Speechify
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
-            var __request = new global::Speechify.KnowledgeBasesUploadDocumentRequest
+            var __request = new global::Speechify.UploadDocumentRequest
             {
                 File = file,
                 Filename = filename,
@@ -746,7 +746,7 @@ namespace Speechify
         {
 
             file = file ?? throw new global::System.ArgumentNullException(nameof(file));
-            var request = new global::Speechify.KnowledgeBasesUploadDocumentRequest
+            var request = new global::Speechify.UploadDocumentRequest
             {
                 File = global::System.Array.Empty<byte>(),
                 Filename = filename,
@@ -1353,7 +1353,7 @@ namespace Speechify
         {
 
             file = file ?? throw new global::System.ArgumentNullException(nameof(file));
-            var request = new global::Speechify.KnowledgeBasesUploadDocumentRequest
+            var request = new global::Speechify.UploadDocumentRequest
             {
                 File = global::System.Array.Empty<byte>(),
                 Filename = filename,

@@ -38,7 +38,7 @@ namespace Speechify
         /// <exception cref="global::Speechify.ApiException"></exception>
         global::System.Threading.Tasks.Task<global::Speechify.WatermarkVerificationResponse> VerifyAsync(
 
-            global::Speechify.WatermarkVerifyRequest request,
+            global::Speechify.VerifyRequest request,
             string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
@@ -76,7 +76,7 @@ namespace Speechify
         /// <exception cref="global::Speechify.ApiException"></exception>
         global::System.Threading.Tasks.Task<global::Speechify.AutoSDKHttpResponse<global::Speechify.WatermarkVerificationResponse>> VerifyAsResponseAsync(
 
-            global::Speechify.WatermarkVerifyRequest request,
+            global::Speechify.VerifyRequest request,
             string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);

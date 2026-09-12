@@ -28,12 +28,12 @@ namespace Speechify
         partial void PrepareUploadArguments(
             global::System.Net.Http.HttpClient httpClient,
             ref string? speechifyVersion,
-            global::Speechify.FilesUploadRequest request);
+            global::Speechify.UploadRequest2 request);
         partial void PrepareUploadRequest(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpRequestMessage httpRequestMessage,
             string? speechifyVersion,
-            global::Speechify.FilesUploadRequest request);
+            global::Speechify.UploadRequest2 request);
         partial void ProcessUploadResponse(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpResponseMessage httpResponseMessage);
@@ -77,7 +77,7 @@ namespace Speechify
         /// <exception cref="global::Speechify.ApiException"></exception>
         public async global::System.Threading.Tasks.Task<global::Speechify.File> UploadAsync(
 
-            global::Speechify.FilesUploadRequest request,
+            global::Speechify.UploadRequest2 request,
             string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
@@ -126,7 +126,7 @@ namespace Speechify
         /// <exception cref="global::Speechify.ApiException"></exception>
         public async global::System.Threading.Tasks.Task<global::Speechify.AutoSDKHttpResponse<global::Speechify.File>> UploadAsResponseAsync(
 
-            global::Speechify.FilesUploadRequest request,
+            global::Speechify.UploadRequest2 request,
             string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
@@ -905,7 +905,7 @@ namespace Speechify
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
-            var __request = new global::Speechify.FilesUploadRequest
+            var __request = new global::Speechify.UploadRequest2
             {
                 File = file,
                 Filename = filename,
@@ -1007,7 +1007,7 @@ namespace Speechify
         {
 
             file = file ?? throw new global::System.ArgumentNullException(nameof(file));
-            var request = new global::Speechify.FilesUploadRequest
+            var request = new global::Speechify.UploadRequest2
             {
                 File = global::System.Array.Empty<byte>(),
                 Filename = filename,
@@ -1782,7 +1782,7 @@ namespace Speechify
         {
 
             file = file ?? throw new global::System.ArgumentNullException(nameof(file));
-            var request = new global::Speechify.FilesUploadRequest
+            var request = new global::Speechify.UploadRequest2
             {
                 File = global::System.Array.Empty<byte>(),
                 Filename = filename,

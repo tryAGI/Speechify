@@ -151,6 +151,13 @@ namespace Speechify
         public required int Files { get; set; }
 
         /// <summary>
+        /// Number of custom models scoped to the project.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("custom_models")]
+        [global::System.Text.Json.Serialization.JsonRequired]
+        public required int CustomModels { get; set; }
+
+        /// <summary>
         /// Additional properties that are not explicitly defined in the schema
         /// </summary>
         [global::System.Text.Json.Serialization.JsonExtensionData]
@@ -223,6 +230,9 @@ namespace Speechify
         /// their own within a fortnight, so this count falls without<br/>
         /// anyone deleting anything.
         /// </param>
+        /// <param name="customModels">
+        /// Number of custom models scoped to the project.
+        /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
 #endif
@@ -244,7 +254,8 @@ namespace Speechify
             int channelInstances,
             int stores,
             int hostedApis,
-            int files)
+            int files,
+            int customModels)
         {
             this.Agents = agents;
             this.KnowledgeBases = knowledgeBases;
@@ -264,6 +275,7 @@ namespace Speechify
             this.Stores = stores;
             this.HostedApis = hostedApis;
             this.Files = files;
+            this.CustomModels = customModels;
         }
 
         /// <summary>
