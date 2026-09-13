@@ -69,6 +69,18 @@ namespace Speechify
         public global::Speechify.RunStepDelegation? Delegation { get; set; }
 
         /// <summary>
+        /// On an `observation` step: the files the tool call it answers<br/>
+        /// produced, each the object `GET /v1/files/{file_id}` returns. A<br/>
+        /// picture or chart is here the moment it exists, one step after the<br/>
+        /// `tool_call` that asked for it (`source.step` names that call), so a<br/>
+        /// client following the event stream can show it before the run ends.<br/>
+        /// Absent on a step whose call produced nothing, and on every other<br/>
+        /// kind. The run object's `files` is the same set across all steps.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("files")]
+        public global::System.Collections.Generic.IList<global::Speechify.File>? Files { get; set; }
+
+        /// <summary>
         /// Wall-clock the brain spent producing this step.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("duration_ms")]
@@ -153,6 +165,15 @@ namespace Speechify
         /// It appears on BOTH halves of a hand-off, keyed by the same `child_run_id`: the `delegation` step that made it (carrying `depth`), and the later `observation` step that folded the child's result back (carrying `child_status`). Pair them on `child_run_id` to read a sub-goal and its outcome together. The sub-goal and the result themselves are those steps' `content`.<br/>
         /// `child_run_id` is a real run - fetch it with `getRun` (under `agent_id`) for the member's own status, output, and token usage. That is what makes a team run traversable: the parent's timeline links to each member's actual work rather than summarizing it.
         /// </param>
+        /// <param name="files">
+        /// On an `observation` step: the files the tool call it answers<br/>
+        /// produced, each the object `GET /v1/files/{file_id}` returns. A<br/>
+        /// picture or chart is here the moment it exists, one step after the<br/>
+        /// `tool_call` that asked for it (`source.step` names that call), so a<br/>
+        /// client following the event stream can show it before the run ends.<br/>
+        /// Absent on a step whose call produced nothing, and on every other<br/>
+        /// kind. The run object's `files` is the same set across all steps.
+        /// </param>
         /// <param name="durationMs">
         /// Wall-clock the brain spent producing this step.
         /// </param>
@@ -183,6 +204,7 @@ namespace Speechify
             string? tool,
             object? args,
             global::Speechify.RunStepDelegation? delegation,
+            global::System.Collections.Generic.IList<global::Speechify.File>? files,
             int? durationMs,
             string? model,
             int? inputTokens,
@@ -197,6 +219,7 @@ namespace Speechify
             this.Tool = tool;
             this.Args = args;
             this.Delegation = delegation;
+            this.Files = files;
             this.DurationMs = durationMs;
             this.Model = model;
             this.InputTokens = inputTokens;

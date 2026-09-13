@@ -28,12 +28,12 @@ namespace Speechify
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.Error))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(int))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.DateTime))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.V1FilesGetParametersKind), TypeInfoPropertyName = "V1FilesGetParametersKind2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.FileKind), TypeInfoPropertyName = "FileKind2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.FileSource))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.File))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.ListFilesResponse))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Speechify.File>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.V1FilesGetParametersKind), TypeInfoPropertyName = "V1FilesGetParametersKind2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.ListFilesResponse))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.V1FilesPostRequestBodyContentMultipartFormDataSchemaKind), TypeInfoPropertyName = "V1FilesPostRequestBodyContentMultipartFormDataSchemaKind2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.UploadRequest2))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(bool?))]
@@ -41,8 +41,8 @@ namespace Speechify
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.ErrorCode?), TypeInfoPropertyName = "NullableErrorCode2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(int?))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.DateTime?))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.V1FilesGetParametersKind?), TypeInfoPropertyName = "NullableV1FilesGetParametersKind2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.FileKind?), TypeInfoPropertyName = "NullableFileKind2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.V1FilesGetParametersKind?), TypeInfoPropertyName = "NullableV1FilesGetParametersKind2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.V1FilesPostRequestBodyContentMultipartFormDataSchemaKind?), TypeInfoPropertyName = "NullableV1FilesPostRequestBodyContentMultipartFormDataSchemaKind2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.File>))]
     internal sealed partial class FilesSourceGenerationContextChunk0 : global::System.Text.Json.Serialization.JsonSerializerContext
@@ -115,13 +115,13 @@ namespace Speechify
 
                     || typeToConvert == typeof(global::Speechify.ErrorCode?)
 
-                    || typeToConvert == typeof(global::Speechify.V1FilesGetParametersKind)
-
-                    || typeToConvert == typeof(global::Speechify.V1FilesGetParametersKind?)
-
                     || typeToConvert == typeof(global::Speechify.FileKind)
 
                     || typeToConvert == typeof(global::Speechify.FileKind?)
+
+                    || typeToConvert == typeof(global::Speechify.V1FilesGetParametersKind)
+
+                    || typeToConvert == typeof(global::Speechify.V1FilesGetParametersKind?)
 
                     || typeToConvert == typeof(global::Speechify.V1FilesPostRequestBodyContentMultipartFormDataSchemaKind)
 
@@ -142,16 +142,6 @@ namespace Speechify
                     return new global::Speechify.JsonConverters.ErrorCodeNullableJsonConverter();
                 }
 
-                if (typeToConvert == typeof(global::Speechify.V1FilesGetParametersKind))
-                {
-                    return new global::Speechify.JsonConverters.V1FilesGetParametersKindJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Speechify.V1FilesGetParametersKind?))
-                {
-                    return new global::Speechify.JsonConverters.V1FilesGetParametersKindNullableJsonConverter();
-                }
-
                 if (typeToConvert == typeof(global::Speechify.FileKind))
                 {
                     return new global::Speechify.JsonConverters.FileKindJsonConverter();
@@ -160,6 +150,16 @@ namespace Speechify
                 if (typeToConvert == typeof(global::Speechify.FileKind?))
                 {
                     return new global::Speechify.JsonConverters.FileKindNullableJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.V1FilesGetParametersKind))
+                {
+                    return new global::Speechify.JsonConverters.V1FilesGetParametersKindJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.V1FilesGetParametersKind?))
+                {
+                    return new global::Speechify.JsonConverters.V1FilesGetParametersKindNullableJsonConverter();
                 }
 
                 if (typeToConvert == typeof(global::Speechify.V1FilesPostRequestBodyContentMultipartFormDataSchemaKind))

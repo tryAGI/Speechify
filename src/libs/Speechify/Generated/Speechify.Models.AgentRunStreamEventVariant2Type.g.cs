@@ -11,7 +11,7 @@ namespace Speechify
         /// <summary>
         ///
         /// </summary>
-        RunStatusChanged,
+        RunReplyDelta,
     }
 
     /// <summary>
@@ -26,7 +26,7 @@ namespace Speechify
         {
             return value switch
             {
-                AgentRunStreamEventVariant2Type.RunStatusChanged => "run.status.changed",
+                AgentRunStreamEventVariant2Type.RunReplyDelta => "run.reply.delta",
                 _ => throw new global::System.ArgumentOutOfRangeException(nameof(value), value, null),
             };
         }
@@ -37,7 +37,7 @@ namespace Speechify
         {
             return value switch
             {
-                "run.status.changed" => AgentRunStreamEventVariant2Type.RunStatusChanged,
+                "run.reply.delta" => AgentRunStreamEventVariant2Type.RunReplyDelta,
                 _ => null,
             };
         }

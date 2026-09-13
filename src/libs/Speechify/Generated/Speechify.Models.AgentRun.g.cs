@@ -4,7 +4,7 @@
 namespace Speechify
 {
     /// <summary>
-    /// A durable async agent run. Enqueue it, get this handle, follow it with the run event stream (or poll `status`) until terminal. Backed by a durable job, so it survives a deploy.
+    /// A durable async agent run. Enqueue it, get this handle, follow it with the run event stream (or poll `status`) until terminal. Backed by a durable job, so it survives a deploy. What the run made along the way - a generated picture, a rendered chart, a file it kept - is listed under `files`, so an application never has to search the workspace's files for what its own run produced.
     /// </summary>
     public sealed partial class AgentRun
     {
@@ -28,6 +28,25 @@ namespace Speechify
         [global::System.Text.Json.Serialization.JsonPropertyName("agent_id")]
         [global::System.Text.Json.Serialization.JsonRequired]
         public required string AgentId { get; set; }
+
+        /// <summary>
+        /// The files this run's own tool calls produced, in the order they were<br/>
+        /// made: a picture from `generate_image` or `edit_image`, a chart from<br/>
+        /// `render_chart`, a file `run_code` kept, a tool response that was not<br/>
+        /// text. Each is the same object `GET /v1/files/{file_id}` returns, so<br/>
+        /// `content_path` streams the bytes and `source.step` is the journal<br/>
+        /// step of the tool call that made it, with no second lookup.<br/>
+        /// Always present. It grows while the run is going - the event stream<br/>
+        /// carries each file on the step that produced it - and an empty list on<br/>
+        /// a finished run means it produced nothing, never that the files are on<br/>
+        /// another page. A run that failed or was cancelled after making a file<br/>
+        /// still lists it. A file scoped to the run's `user_identity` is listed<br/>
+        /// here and is readable by a run acting for that same person, exactly as<br/>
+        /// under `/v1/files`. A file deleted or expired since is no longer listed.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("files")]
+        [global::System.Text.Json.Serialization.JsonRequired]
+        public required global::System.Collections.Generic.IList<global::Speechify.File> Files { get; set; }
 
         /// <summary>
         /// Lifecycle: `queued` -&gt; `running` -&gt; `succeeded` | `failed` | `canceled` | `expired`. `requires_action` (a pending human approval) and `canceling` are transient. Terminal set: succeeded, failed, canceled, expired.
@@ -121,6 +140,21 @@ namespace Speechify
         /// <param name="agentId">
         /// The agent that ran. On a delegated child this is the member agent, not the manager.
         /// </param>
+        /// <param name="files">
+        /// The files this run's own tool calls produced, in the order they were<br/>
+        /// made: a picture from `generate_image` or `edit_image`, a chart from<br/>
+        /// `render_chart`, a file `run_code` kept, a tool response that was not<br/>
+        /// text. Each is the same object `GET /v1/files/{file_id}` returns, so<br/>
+        /// `content_path` streams the bytes and `source.step` is the journal<br/>
+        /// step of the tool call that made it, with no second lookup.<br/>
+        /// Always present. It grows while the run is going - the event stream<br/>
+        /// carries each file on the step that produced it - and an empty list on<br/>
+        /// a finished run means it produced nothing, never that the files are on<br/>
+        /// another page. A run that failed or was cancelled after making a file<br/>
+        /// still lists it. A file scoped to the run's `user_identity` is listed<br/>
+        /// here and is readable by a run acting for that same person, exactly as<br/>
+        /// under `/v1/files`. A file deleted or expired since is no longer listed.
+        /// </param>
         /// <param name="status">
         /// Lifecycle: `queued` -&gt; `running` -&gt; `succeeded` | `failed` | `canceled` | `expired`. `requires_action` (a pending human approval) and `canceling` are transient. Terminal set: succeeded, failed, canceled, expired.
         /// </param>
@@ -165,6 +199,7 @@ namespace Speechify
         public AgentRun(
             string id,
             string agentId,
+            global::System.Collections.Generic.IList<global::Speechify.File> files,
             global::Speechify.AgentRunStatus status,
             global::Speechify.AgentRunInput input,
             global::System.DateTime createdAt,
@@ -182,6 +217,7 @@ namespace Speechify
             this.ProjectId = projectId;
             this.Id = id ?? throw new global::System.ArgumentNullException(nameof(id));
             this.AgentId = agentId ?? throw new global::System.ArgumentNullException(nameof(agentId));
+            this.Files = files ?? throw new global::System.ArgumentNullException(nameof(files));
             this.Status = status;
             this.Input = input ?? throw new global::System.ArgumentNullException(nameof(input));
             this.Output = output;
