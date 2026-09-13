@@ -9,8 +9,8 @@ namespace Speechify
     /// conversation's channel by. Both telephony directions are<br/>
     /// `voice`; the browser / SDK realtime path is `web`; the message<br/>
     /// API is `text`; a conversation reached over a provider front<br/>
-    /// door names that provider (`slack`) rather than the transport it<br/>
-    /// shares with the message API.
+    /// door names that provider (`slack`, `whatsapp`) rather than the<br/>
+    /// transport it shares with the message API.
     /// </summary>
     public enum ConversationChannel
     {
@@ -30,6 +30,10 @@ namespace Speechify
         ///
         /// </summary>
         Web,
+        /// <summary>
+        ///
+        /// </summary>
+        Whatsapp,
     }
 
     /// <summary>
@@ -48,6 +52,7 @@ namespace Speechify
                 ConversationChannel.Text => "text",
                 ConversationChannel.Voice => "voice",
                 ConversationChannel.Web => "web",
+                ConversationChannel.Whatsapp => "whatsapp",
                 _ => throw new global::System.ArgumentOutOfRangeException(nameof(value), value, null),
             };
         }
@@ -62,6 +67,7 @@ namespace Speechify
                 "text" => ConversationChannel.Text,
                 "voice" => ConversationChannel.Voice,
                 "web" => ConversationChannel.Web,
+                "whatsapp" => ConversationChannel.Whatsapp,
                 _ => null,
             };
         }

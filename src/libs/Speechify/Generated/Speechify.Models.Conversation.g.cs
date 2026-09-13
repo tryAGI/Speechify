@@ -43,7 +43,9 @@ namespace Speechify
         /// A conversation reports the transport it actually ran on:<br/>
         /// `web`, `sip_inbound`, `sip_outbound` or `text`. `phone` is<br/>
         /// selectable when filtering a list and matches calls in either<br/>
-        /// direction; `whatsapp` is reserved and matches nothing today.<br/>
+        /// direction; `whatsapp` is reserved and matches nothing, because a<br/>
+        /// WhatsApp conversation runs on the `text` transport and is told<br/>
+        /// apart by `channel: whatsapp`.<br/>
         /// To tell two conversations on the same transport apart, filter<br/>
         /// or read `channel` instead.
         /// </summary>
@@ -58,8 +60,8 @@ namespace Speechify
         /// conversation's channel by. Both telephony directions are<br/>
         /// `voice`; the browser / SDK realtime path is `web`; the message<br/>
         /// API is `text`; a conversation reached over a provider front<br/>
-        /// door names that provider (`slack`) rather than the transport it<br/>
-        /// shares with the message API.
+        /// door names that provider (`slack`, `whatsapp`) rather than the<br/>
+        /// transport it shares with the message API.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("channel")]
         [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Speechify.JsonConverters.ConversationChannelJsonConverter))]
@@ -301,7 +303,9 @@ namespace Speechify
         /// A conversation reports the transport it actually ran on:<br/>
         /// `web`, `sip_inbound`, `sip_outbound` or `text`. `phone` is<br/>
         /// selectable when filtering a list and matches calls in either<br/>
-        /// direction; `whatsapp` is reserved and matches nothing today.<br/>
+        /// direction; `whatsapp` is reserved and matches nothing, because a<br/>
+        /// WhatsApp conversation runs on the `text` transport and is told<br/>
+        /// apart by `channel: whatsapp`.<br/>
         /// To tell two conversations on the same transport apart, filter<br/>
         /// or read `channel` instead.
         /// </param>
@@ -311,8 +315,8 @@ namespace Speechify
         /// conversation's channel by. Both telephony directions are<br/>
         /// `voice`; the browser / SDK realtime path is `web`; the message<br/>
         /// API is `text`; a conversation reached over a provider front<br/>
-        /// door names that provider (`slack`) rather than the transport it<br/>
-        /// shares with the message API.
+        /// door names that provider (`slack`, `whatsapp`) rather than the<br/>
+        /// transport it shares with the message API.
         /// </param>
         /// <param name="createdAt">
         /// When the conversation row was created (the call was<br/>
