@@ -202,6 +202,15 @@ namespace Speechify
         public required bool SlackChannelAccess { get; set; }
 
         /// <summary>
+        /// Whether the workspace may connect a WhatsApp front door, on a<br/>
+        /// Telnyx number or on its own Meta app. Off on every plan; granted<br/>
+        /// per workspace, and like Slack only alongside `text_agent_access`.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("whatsapp_channel_access")]
+        [global::System.Text.Json.Serialization.JsonRequired]
+        public required bool WhatsappChannelAccess { get; set; }
+
+        /// <summary>
         /// Whether stores and hosted APIs are available. Off on every plan; granted per workspace.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("hosted_apis_access")]
@@ -266,6 +275,13 @@ namespace Speechify
         [global::System.Text.Json.Serialization.JsonPropertyName("phone_sms")]
         [global::System.Text.Json.Serialization.JsonRequired]
         public required bool PhoneSms { get; set; }
+
+        /// <summary>
+        /// Whether WhatsApp on Agent Phone numbers is available (requires the number's WhatsApp Business registration).
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("phone_whatsapp")]
+        [global::System.Text.Json.Serialization.JsonRequired]
+        public required bool PhoneWhatsapp { get; set; }
 
         /// <summary>
         /// Whether zero data retention is enabled for this workspace on the<br/>
@@ -413,6 +429,11 @@ namespace Speechify
         /// runtime and meters as a text message, so `text_agent_access` is<br/>
         /// required alongside it.
         /// </param>
+        /// <param name="whatsappChannelAccess">
+        /// Whether the workspace may connect a WhatsApp front door, on a<br/>
+        /// Telnyx number or on its own Meta app. Off on every plan; granted<br/>
+        /// per workspace, and like Slack only alongside `text_agent_access`.
+        /// </param>
         /// <param name="hostedApisAccess">
         /// Whether stores and hosted APIs are available. Off on every plan; granted per workspace.
         /// </param>
@@ -442,6 +463,9 @@ namespace Speechify
         /// </param>
         /// <param name="phoneSms">
         /// Whether SMS on Agent Phone numbers is available (also requires 10DLC).
+        /// </param>
+        /// <param name="phoneWhatsapp">
+        /// Whether WhatsApp on Agent Phone numbers is available (requires the number's WhatsApp Business registration).
         /// </param>
         /// <param name="zeroDataRetention">
         /// Whether zero data retention is enabled for this workspace on the<br/>
@@ -493,6 +517,7 @@ namespace Speechify
             bool durableRunsAccess,
             int maxRunTurns,
             bool slackChannelAccess,
+            bool whatsappChannelAccess,
             bool hostedApisAccess,
             int maxStoreDocuments,
             long maxStoreBytes,
@@ -502,6 +527,7 @@ namespace Speechify
             bool enterpriseSso,
             bool phoneRelay,
             bool phoneSms,
+            bool phoneWhatsapp,
             bool zeroDataRetention,
             bool voiceCloningConsentExempt,
             int maxManualTopUpUsd,
@@ -530,6 +556,7 @@ namespace Speechify
             this.DurableRunsAccess = durableRunsAccess;
             this.MaxRunTurns = maxRunTurns;
             this.SlackChannelAccess = slackChannelAccess;
+            this.WhatsappChannelAccess = whatsappChannelAccess;
             this.HostedApisAccess = hostedApisAccess;
             this.MaxStoreDocuments = maxStoreDocuments;
             this.MaxStoreBytes = maxStoreBytes;
@@ -539,6 +566,7 @@ namespace Speechify
             this.EnterpriseSso = enterpriseSso;
             this.PhoneRelay = phoneRelay;
             this.PhoneSms = phoneSms;
+            this.PhoneWhatsapp = phoneWhatsapp;
             this.ZeroDataRetention = zeroDataRetention;
             this.VoiceCloningConsentExempt = voiceCloningConsentExempt;
             this.MaxManualTopUpUsd = maxManualTopUpUsd;

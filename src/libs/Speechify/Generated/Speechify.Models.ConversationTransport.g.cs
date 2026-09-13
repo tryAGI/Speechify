@@ -12,7 +12,9 @@ namespace Speechify
     /// A conversation reports the transport it actually ran on:<br/>
     /// `web`, `sip_inbound`, `sip_outbound` or `text`. `phone` is<br/>
     /// selectable when filtering a list and matches calls in either<br/>
-    /// direction; `whatsapp` is reserved and matches nothing today.<br/>
+    /// direction; `whatsapp` is reserved and matches nothing, because a<br/>
+    /// WhatsApp conversation runs on the `text` transport and is told<br/>
+    /// apart by `channel: whatsapp`.<br/>
     /// To tell two conversations on the same transport apart, filter<br/>
     /// or read `channel` instead.
     /// </summary>
@@ -39,7 +41,7 @@ namespace Speechify
         /// </summary>
         Web,
         /// <summary>
-        ///
+        /// whatsapp`.
         /// </summary>
         Whatsapp,
     }
