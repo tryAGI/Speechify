@@ -4,9 +4,12 @@
 namespace Speechify
 {
     /// <summary>
-    /// One uploaded file a run can be handed. The bytes live in Speechify's<br/>
-    /// storage and are read either by an agent inside a run (its `read_file`<br/>
-    /// tool) or over `content_path`; this object is the metadata.
+    /// One file: an upload a run can be handed, or something a run's tool<br/>
+    /// produced - a picture, a chart, a file kept out of the sandbox. The<br/>
+    /// bytes live in Speechify's storage and are read either by an agent<br/>
+    /// inside a run (its `read_file` tool) or over `content_path`; this<br/>
+    /// object is the metadata. A run lists what it produced under its own<br/>
+    /// `files`, so nothing here has to be searched for by `source`.
     /// </summary>
     public sealed partial class File
     {

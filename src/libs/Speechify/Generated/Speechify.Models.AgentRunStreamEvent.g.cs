@@ -59,14 +59,59 @@ namespace Speechify
             : throw new global::System.InvalidOperationException($"Expected union variant 'RunStepAdded' but the value was {ToString()}.");
 
         /// <summary>
+        /// A piece of the text the agent is writing, sent as it is written. `seq`<br/>
+        /// is the journal position the text belongs to and `offset` the number of<br/>
+        /// characters (Unicode code points) of that position's text before this<br/>
+        /// piece; keep one buffer per `seq` and place the piece at its offset. The<br/>
+        /// buffer is closed by a `run.step.added` at the same `seq` (it was the<br/>
+        /// step's `content`) or by `run.ended` (it was the reply, and<br/>
+        /// `output.reply` is the copy to keep). The SSE `id:` records the position<br/>
+        /// reached, so a reconnect through `Last-Event-ID` resumes without<br/>
+        /// replaying text already rendered.
+        /// </summary>
+#if NET6_0_OR_GREATER
+        public global::Speechify.AgentRunStreamEventVariant2? RunReplyDelta { get; init; }
+#else
+        public global::Speechify.AgentRunStreamEventVariant2? RunReplyDelta { get; }
+#endif
+
+        /// <summary>
+        ///
+        /// </summary>
+#if NET6_0_OR_GREATER
+        [global::System.Diagnostics.CodeAnalysis.MemberNotNullWhen(true, nameof(RunReplyDelta))]
+#endif
+        public bool IsRunReplyDelta => RunReplyDelta != null;
+
+        /// <summary>
+        ///
+        /// </summary>
+        public bool TryPickRunReplyDelta(
+#if NET6_0_OR_GREATER
+            [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
+#endif
+            out global::Speechify.AgentRunStreamEventVariant2? value)
+        {
+            value = RunReplyDelta;
+            return IsRunReplyDelta;
+        }
+
+        /// <summary>
+        ///
+        /// </summary>
+        public global::Speechify.AgentRunStreamEventVariant2 PickRunReplyDelta() => IsRunReplyDelta
+            ? RunReplyDelta!
+            : throw new global::System.InvalidOperationException($"Expected union variant 'RunReplyDelta' but the value was {ToString()}.");
+
+        /// <summary>
         /// The run moved to a new status. Not terminal: a run reporting<br/>
         /// `requires_action` is waiting on a human and the stream keeps tailing,<br/>
         /// which is precisely when a client most needs to be told.
         /// </summary>
 #if NET6_0_OR_GREATER
-        public global::Speechify.AgentRunStreamEventVariant2? RunStatusChanged { get; init; }
+        public global::Speechify.AgentRunStreamEventVariant3? RunStatusChanged { get; init; }
 #else
-        public global::Speechify.AgentRunStreamEventVariant2? RunStatusChanged { get; }
+        public global::Speechify.AgentRunStreamEventVariant3? RunStatusChanged { get; }
 #endif
 
         /// <summary>
@@ -84,7 +129,7 @@ namespace Speechify
 #if NET6_0_OR_GREATER
             [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
 #endif
-            out global::Speechify.AgentRunStreamEventVariant2? value)
+            out global::Speechify.AgentRunStreamEventVariant3? value)
         {
             value = RunStatusChanged;
             return IsRunStatusChanged;
@@ -93,7 +138,7 @@ namespace Speechify
         /// <summary>
         ///
         /// </summary>
-        public global::Speechify.AgentRunStreamEventVariant2 PickRunStatusChanged() => IsRunStatusChanged
+        public global::Speechify.AgentRunStreamEventVariant3 PickRunStatusChanged() => IsRunStatusChanged
             ? RunStatusChanged!
             : throw new global::System.InvalidOperationException($"Expected union variant 'RunStatusChanged' but the value was {ToString()}.");
 
@@ -104,9 +149,9 @@ namespace Speechify
         /// request.
         /// </summary>
 #if NET6_0_OR_GREATER
-        public global::Speechify.AgentRunStreamEventVariant3? RunEnded { get; init; }
+        public global::Speechify.AgentRunStreamEventVariant4? RunEnded { get; init; }
 #else
-        public global::Speechify.AgentRunStreamEventVariant3? RunEnded { get; }
+        public global::Speechify.AgentRunStreamEventVariant4? RunEnded { get; }
 #endif
 
         /// <summary>
@@ -124,7 +169,7 @@ namespace Speechify
 #if NET6_0_OR_GREATER
             [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
 #endif
-            out global::Speechify.AgentRunStreamEventVariant3? value)
+            out global::Speechify.AgentRunStreamEventVariant4? value)
         {
             value = RunEnded;
             return IsRunEnded;
@@ -133,7 +178,7 @@ namespace Speechify
         /// <summary>
         ///
         /// </summary>
-        public global::Speechify.AgentRunStreamEventVariant3 PickRunEnded() => IsRunEnded
+        public global::Speechify.AgentRunStreamEventVariant4 PickRunEnded() => IsRunEnded
             ? RunEnded!
             : throw new global::System.InvalidOperationException($"Expected union variant 'RunEnded' but the value was {ToString()}.");
         /// <summary>
@@ -167,20 +212,20 @@ namespace Speechify
         /// <summary>
         ///
         /// </summary>
-        public static implicit operator global::Speechify.AgentRunStreamEventVariant2?(AgentRunStreamEvent @this) => @this.RunStatusChanged;
+        public static implicit operator global::Speechify.AgentRunStreamEventVariant2?(AgentRunStreamEvent @this) => @this.RunReplyDelta;
 
         /// <summary>
         ///
         /// </summary>
         public AgentRunStreamEvent(global::Speechify.AgentRunStreamEventVariant2? value)
         {
-            RunStatusChanged = value;
+            RunReplyDelta = value;
         }
 
         /// <summary>
         ///
         /// </summary>
-        public static AgentRunStreamEvent FromRunStatusChanged(global::Speechify.AgentRunStreamEventVariant2? value) => new AgentRunStreamEvent(value);
+        public static AgentRunStreamEvent FromRunReplyDelta(global::Speechify.AgentRunStreamEventVariant2? value) => new AgentRunStreamEvent(value);
 
         /// <summary>
         ///
@@ -190,12 +235,35 @@ namespace Speechify
         /// <summary>
         ///
         /// </summary>
-        public static implicit operator global::Speechify.AgentRunStreamEventVariant3?(AgentRunStreamEvent @this) => @this.RunEnded;
+        public static implicit operator global::Speechify.AgentRunStreamEventVariant3?(AgentRunStreamEvent @this) => @this.RunStatusChanged;
 
         /// <summary>
         ///
         /// </summary>
         public AgentRunStreamEvent(global::Speechify.AgentRunStreamEventVariant3? value)
+        {
+            RunStatusChanged = value;
+        }
+
+        /// <summary>
+        ///
+        /// </summary>
+        public static AgentRunStreamEvent FromRunStatusChanged(global::Speechify.AgentRunStreamEventVariant3? value) => new AgentRunStreamEvent(value);
+
+        /// <summary>
+        ///
+        /// </summary>
+        public static implicit operator AgentRunStreamEvent(global::Speechify.AgentRunStreamEventVariant4 value) => new AgentRunStreamEvent((global::Speechify.AgentRunStreamEventVariant4?)value);
+
+        /// <summary>
+        ///
+        /// </summary>
+        public static implicit operator global::Speechify.AgentRunStreamEventVariant4?(AgentRunStreamEvent @this) => @this.RunEnded;
+
+        /// <summary>
+        ///
+        /// </summary>
+        public AgentRunStreamEvent(global::Speechify.AgentRunStreamEventVariant4? value)
         {
             RunEnded = value;
         }
@@ -203,7 +271,7 @@ namespace Speechify
         /// <summary>
         ///
         /// </summary>
-        public static AgentRunStreamEvent FromRunEnded(global::Speechify.AgentRunStreamEventVariant3? value) => new AgentRunStreamEvent(value);
+        public static AgentRunStreamEvent FromRunEnded(global::Speechify.AgentRunStreamEventVariant4? value) => new AgentRunStreamEvent(value);
 
         /// <summary>
         ///
@@ -211,13 +279,15 @@ namespace Speechify
         public AgentRunStreamEvent(
             global::Speechify.AgentRunStreamEventDiscriminatorType? type,
             global::Speechify.AgentRunStreamEventVariant1? runStepAdded,
-            global::Speechify.AgentRunStreamEventVariant2? runStatusChanged,
-            global::Speechify.AgentRunStreamEventVariant3? runEnded
+            global::Speechify.AgentRunStreamEventVariant2? runReplyDelta,
+            global::Speechify.AgentRunStreamEventVariant3? runStatusChanged,
+            global::Speechify.AgentRunStreamEventVariant4? runEnded
             )
         {
             Type = type;
 
             RunStepAdded = runStepAdded;
+            RunReplyDelta = runReplyDelta;
             RunStatusChanged = runStatusChanged;
             RunEnded = runEnded;
         }
@@ -228,6 +298,7 @@ namespace Speechify
         public object? Object =>
             RunEnded as object ??
             RunStatusChanged as object ??
+            RunReplyDelta as object ??
             RunStepAdded as object
             ;
 
@@ -236,6 +307,7 @@ namespace Speechify
         /// </summary>
         public override string? ToString() =>
             RunStepAdded?.ToString() ??
+            RunReplyDelta?.ToString() ??
             RunStatusChanged?.ToString() ??
             RunEnded?.ToString()
             ;
@@ -245,7 +317,7 @@ namespace Speechify
         /// </summary>
         public bool Validate()
         {
-            return IsRunStepAdded && !IsRunStatusChanged && !IsRunEnded || !IsRunStepAdded && IsRunStatusChanged && !IsRunEnded || !IsRunStepAdded && !IsRunStatusChanged && IsRunEnded;
+            return IsRunStepAdded && !IsRunReplyDelta && !IsRunStatusChanged && !IsRunEnded || !IsRunStepAdded && IsRunReplyDelta && !IsRunStatusChanged && !IsRunEnded || !IsRunStepAdded && !IsRunReplyDelta && IsRunStatusChanged && !IsRunEnded || !IsRunStepAdded && !IsRunReplyDelta && !IsRunStatusChanged && IsRunEnded;
         }
 
         /// <summary>
@@ -253,8 +325,9 @@ namespace Speechify
         /// </summary>
         public TResult? Match<TResult>(
             global::System.Func<global::Speechify.AgentRunStreamEventVariant1, TResult>? runStepAdded = null,
-            global::System.Func<global::Speechify.AgentRunStreamEventVariant2, TResult>? runStatusChanged = null,
-            global::System.Func<global::Speechify.AgentRunStreamEventVariant3, TResult>? runEnded = null,
+            global::System.Func<global::Speechify.AgentRunStreamEventVariant2, TResult>? runReplyDelta = null,
+            global::System.Func<global::Speechify.AgentRunStreamEventVariant3, TResult>? runStatusChanged = null,
+            global::System.Func<global::Speechify.AgentRunStreamEventVariant4, TResult>? runEnded = null,
             bool validate = true)
         {
             if (validate)
@@ -265,6 +338,10 @@ namespace Speechify
             if (IsRunStepAdded && runStepAdded != null)
             {
                 return runStepAdded(RunStepAdded!);
+            }
+            else if (IsRunReplyDelta && runReplyDelta != null)
+            {
+                return runReplyDelta(RunReplyDelta!);
             }
             else if (IsRunStatusChanged && runStatusChanged != null)
             {
@@ -284,9 +361,11 @@ namespace Speechify
         public void Match(
             global::System.Action<global::Speechify.AgentRunStreamEventVariant1>? runStepAdded = null,
 
-            global::System.Action<global::Speechify.AgentRunStreamEventVariant2>? runStatusChanged = null,
+            global::System.Action<global::Speechify.AgentRunStreamEventVariant2>? runReplyDelta = null,
 
-            global::System.Action<global::Speechify.AgentRunStreamEventVariant3>? runEnded = null,
+            global::System.Action<global::Speechify.AgentRunStreamEventVariant3>? runStatusChanged = null,
+
+            global::System.Action<global::Speechify.AgentRunStreamEventVariant4>? runEnded = null,
             bool validate = true)
         {
             if (validate)
@@ -297,6 +376,10 @@ namespace Speechify
             if (IsRunStepAdded)
             {
                 runStepAdded?.Invoke(RunStepAdded!);
+            }
+            else if (IsRunReplyDelta)
+            {
+                runReplyDelta?.Invoke(RunReplyDelta!);
             }
             else if (IsRunStatusChanged)
             {
@@ -313,8 +396,9 @@ namespace Speechify
         /// </summary>
         public void Switch(
             global::System.Action<global::Speechify.AgentRunStreamEventVariant1>? runStepAdded = null,
-            global::System.Action<global::Speechify.AgentRunStreamEventVariant2>? runStatusChanged = null,
-            global::System.Action<global::Speechify.AgentRunStreamEventVariant3>? runEnded = null,
+            global::System.Action<global::Speechify.AgentRunStreamEventVariant2>? runReplyDelta = null,
+            global::System.Action<global::Speechify.AgentRunStreamEventVariant3>? runStatusChanged = null,
+            global::System.Action<global::Speechify.AgentRunStreamEventVariant4>? runEnded = null,
             bool validate = true)
         {
             if (validate)
@@ -325,6 +409,10 @@ namespace Speechify
             if (IsRunStepAdded)
             {
                 runStepAdded?.Invoke(RunStepAdded!);
+            }
+            else if (IsRunReplyDelta)
+            {
+                runReplyDelta?.Invoke(RunReplyDelta!);
             }
             else if (IsRunStatusChanged)
             {
@@ -345,10 +433,12 @@ namespace Speechify
             {
                 RunStepAdded,
                 typeof(global::Speechify.AgentRunStreamEventVariant1),
-                RunStatusChanged,
+                RunReplyDelta,
                 typeof(global::Speechify.AgentRunStreamEventVariant2),
-                RunEnded,
+                RunStatusChanged,
                 typeof(global::Speechify.AgentRunStreamEventVariant3),
+                RunEnded,
+                typeof(global::Speechify.AgentRunStreamEventVariant4),
             };
             const int offset = unchecked((int)2166136261);
             const int prime = 16777619;
@@ -366,8 +456,9 @@ namespace Speechify
         {
             return
                 global::System.Collections.Generic.EqualityComparer<global::Speechify.AgentRunStreamEventVariant1?>.Default.Equals(RunStepAdded, other.RunStepAdded) &&
-                global::System.Collections.Generic.EqualityComparer<global::Speechify.AgentRunStreamEventVariant2?>.Default.Equals(RunStatusChanged, other.RunStatusChanged) &&
-                global::System.Collections.Generic.EqualityComparer<global::Speechify.AgentRunStreamEventVariant3?>.Default.Equals(RunEnded, other.RunEnded)
+                global::System.Collections.Generic.EqualityComparer<global::Speechify.AgentRunStreamEventVariant2?>.Default.Equals(RunReplyDelta, other.RunReplyDelta) &&
+                global::System.Collections.Generic.EqualityComparer<global::Speechify.AgentRunStreamEventVariant3?>.Default.Equals(RunStatusChanged, other.RunStatusChanged) &&
+                global::System.Collections.Generic.EqualityComparer<global::Speechify.AgentRunStreamEventVariant4?>.Default.Equals(RunEnded, other.RunEnded)
                 ;
         }
 
