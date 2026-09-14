@@ -48,7 +48,8 @@ namespace Speechify
         /// `kind=builtin` tool to an agent). Fetch this at runtime rather<br/>
         /// than maintaining a parallel client-side list; the server is the<br/>
         /// single source of truth for the label and description text a<br/>
-        /// customer sees in the capability picker. Returns<br/>
+        /// customer sees in the capability picker, and for `reach`, where each<br/>
+        /// one executes in this deployment. Returns<br/>
         /// the full set in a single response: bounded by the platform's<br/>
         /// built-in tool-capability registry, so this list is intentionally<br/>
         /// not paginated.
@@ -77,7 +78,8 @@ namespace Speechify
         /// `kind=builtin` tool to an agent). Fetch this at runtime rather<br/>
         /// than maintaining a parallel client-side list; the server is the<br/>
         /// single source of truth for the label and description text a<br/>
-        /// customer sees in the capability picker. Returns<br/>
+        /// customer sees in the capability picker, and for `reach`, where each<br/>
+        /// one executes in this deployment. Returns<br/>
         /// the full set in a single response: bounded by the platform's<br/>
         /// built-in tool-capability registry, so this list is intentionally<br/>
         /// not paginated.

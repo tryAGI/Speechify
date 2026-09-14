@@ -34,7 +34,8 @@ namespace Speechify
         /// project's events. Endpoints have no Default project.<br/>
         /// An event is routed by the project frozen on the row that produced<br/>
         /// it: a conversation's, an API key's, a run's (captured when the run<br/>
-        /// was created, so it does not move if the agent later does). The<br/>
+        /// was created, so it does not move if the agent later does), and for<br/>
+        /// a `project.spend_budget.*` event the project itself. The<br/>
         /// workspace-level events (`batch_call.*`, `workspace.spend_budget.*`,<br/>
         /// `trigger.fire_failed`) belong to no project and reach workspace-wide<br/>
         /// endpoints only, so a scoped endpoint subscribed to those alone is<br/>
@@ -161,7 +162,8 @@ namespace Speechify
         /// project's events. Endpoints have no Default project.<br/>
         /// An event is routed by the project frozen on the row that produced<br/>
         /// it: a conversation's, an API key's, a run's (captured when the run<br/>
-        /// was created, so it does not move if the agent later does). The<br/>
+        /// was created, so it does not move if the agent later does), and for<br/>
+        /// a `project.spend_budget.*` event the project itself. The<br/>
         /// workspace-level events (`batch_call.*`, `workspace.spend_budget.*`,<br/>
         /// `trigger.fire_failed`) belong to no project and reach workspace-wide<br/>
         /// endpoints only, so a scoped endpoint subscribed to those alone is<br/>
