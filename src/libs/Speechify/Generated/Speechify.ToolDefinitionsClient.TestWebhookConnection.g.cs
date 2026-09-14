@@ -55,6 +55,8 @@ namespace Speechify
         /// can recognise the test and skip its real side effect. Pass<br/>
         /// `tool_id` from the edit-form flow so the server signs the probe<br/>
         /// with the tool's stored HMAC secret.<br/>
+        /// Needs the `content.manage` permission, as creating a tool does: the<br/>
+        /// probe signs with a stored tool's secret for the URL in the request.<br/>
         /// A field this endpoint does not define is refused with `400<br/>
         /// validation_failed` naming every unknown field, rather than accepted<br/>
         /// and silently dropped.
@@ -93,6 +95,8 @@ namespace Speechify
         /// can recognise the test and skip its real side effect. Pass<br/>
         /// `tool_id` from the edit-form flow so the server signs the probe<br/>
         /// with the tool's stored HMAC secret.<br/>
+        /// Needs the `content.manage` permission, as creating a tool does: the<br/>
+        /// probe signs with a stored tool's secret for the URL in the request.<br/>
         /// A field this endpoint does not define is refused with `400<br/>
         /// validation_failed` naming every unknown field, rather than accepted<br/>
         /// and silently dropped.
@@ -450,6 +454,43 @@ namespace Speechify
                                         h => h.Key,
                                         h => h.Value));
                             }
+                            // The credential authenticated, but is not authorised for this resource - typically a workspace-role gate (owner / admin required) or a cross-tenant access attempt.
+                            if ((int)__response.StatusCode == 403)
+                            {
+                                string? __content_403 = null;
+                                global::System.Exception? __exception_403 = null;
+                                global::Speechify.Error? __value_403 = null;
+                                try
+                                {
+                                    if (__effectiveReadResponseAsString)
+                                    {
+                                        __content_403 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+                                        __value_403 = global::Speechify.Error.FromJson(__content_403, JsonSerializerContext);
+                                    }
+                                    else
+                                    {
+                                        __content_403 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+
+                                        __value_403 = global::Speechify.Error.FromJson(__content_403, JsonSerializerContext);
+                                    }
+                                }
+                                catch (global::System.Exception __ex)
+                                {
+                                    __exception_403 = __ex;
+                                }
+
+
+                                throw global::Speechify.ApiException<global::Speechify.Error>.Create(
+                                    statusCode: __response.StatusCode,
+                                    message: __content_403 ?? __response.ReasonPhrase ?? string.Empty,
+                                    innerException: __exception_403,
+                                    responseBody: __content_403,
+                                    responseObject: __value_403,
+                                    responseHeaders: global::System.Linq.Enumerable.ToDictionary(
+                                        __response.Headers,
+                                        h => h.Key,
+                                        h => h.Value));
+                            }
 
                             if (__effectiveReadResponseAsString)
                             {
@@ -558,6 +599,8 @@ namespace Speechify
         /// can recognise the test and skip its real side effect. Pass<br/>
         /// `tool_id` from the edit-form flow so the server signs the probe<br/>
         /// with the tool's stored HMAC secret.<br/>
+        /// Needs the `content.manage` permission, as creating a tool does: the<br/>
+        /// probe signs with a stored tool's secret for the URL in the request.<br/>
         /// A field this endpoint does not define is refused with `400<br/>
         /// validation_failed` naming every unknown field, rather than accepted<br/>
         /// and silently dropped.

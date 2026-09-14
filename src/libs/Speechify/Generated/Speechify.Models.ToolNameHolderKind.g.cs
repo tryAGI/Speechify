@@ -23,6 +23,10 @@ namespace Speechify
         /// <summary>
         ///
         /// </summary>
+        Openapi,
+        /// <summary>
+        ///
+        /// </summary>
         Webhook,
     }
 
@@ -41,6 +45,7 @@ namespace Speechify
                 ToolNameHolderKind.Builtin => "builtin",
                 ToolNameHolderKind.Client => "client",
                 ToolNameHolderKind.Mcp => "mcp",
+                ToolNameHolderKind.Openapi => "openapi",
                 ToolNameHolderKind.Webhook => "webhook",
                 _ => throw new global::System.ArgumentOutOfRangeException(nameof(value), value, null),
             };
@@ -55,6 +60,7 @@ namespace Speechify
                 "builtin" => ToolNameHolderKind.Builtin,
                 "client" => ToolNameHolderKind.Client,
                 "mcp" => ToolNameHolderKind.Mcp,
+                "openapi" => ToolNameHolderKind.Openapi,
                 "webhook" => ToolNameHolderKind.Webhook,
                 _ => null,
             };

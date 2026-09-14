@@ -7,8 +7,20 @@ namespace Speechify
         /// <summary>
         /// Create Tool<br/>
         /// Create a tool. For webhook tools, the response includes the HMAC<br/>
-        /// `webhook_secret` exactly once — store it immediately; subsequent<br/>
+        /// `webhook_secret` exactly once - store it immediately; subsequent<br/>
         /// reads return a masked placeholder.<br/>
+        /// An `mcp` or `openapi` tool that authenticates references a vault<br/>
+        /// credential by `auth.credential_id`: create it first with<br/>
+        /// `POST /v1/credentials`. For an `mcp` tool,<br/>
+        /// `POST /v1/agents/tool-definitions/test-mcp-connection` lists the<br/>
+        /// server's tools before you save. For an `openapi` tool, compile the<br/>
+        /// vendor's document with<br/>
+        /// `POST /v1/agents/tool-definitions/import-openapi`, choose and classify<br/>
+        /// the operations the agent needs, preview one with<br/>
+        /// `POST /v1/agents/tool-definitions/test-openapi-call`, then send the<br/>
+        /// chosen operations here. The tool is usable once it is attached to an<br/>
+        /// agent (`PUT /v1/agents/{agent_id}/tools/{tool_id}`) or named in a<br/>
+        /// skill's `tool_ids`.<br/>
         /// A field this endpoint does not define is refused with `400<br/>
         /// validation_failed` naming every unknown field, rather than accepted<br/>
         /// and silently dropped.<br/>
@@ -30,8 +42,20 @@ namespace Speechify
         /// <summary>
         /// Create Tool<br/>
         /// Create a tool. For webhook tools, the response includes the HMAC<br/>
-        /// `webhook_secret` exactly once — store it immediately; subsequent<br/>
+        /// `webhook_secret` exactly once - store it immediately; subsequent<br/>
         /// reads return a masked placeholder.<br/>
+        /// An `mcp` or `openapi` tool that authenticates references a vault<br/>
+        /// credential by `auth.credential_id`: create it first with<br/>
+        /// `POST /v1/credentials`. For an `mcp` tool,<br/>
+        /// `POST /v1/agents/tool-definitions/test-mcp-connection` lists the<br/>
+        /// server's tools before you save. For an `openapi` tool, compile the<br/>
+        /// vendor's document with<br/>
+        /// `POST /v1/agents/tool-definitions/import-openapi`, choose and classify<br/>
+        /// the operations the agent needs, preview one with<br/>
+        /// `POST /v1/agents/tool-definitions/test-openapi-call`, then send the<br/>
+        /// chosen operations here. The tool is usable once it is attached to an<br/>
+        /// agent (`PUT /v1/agents/{agent_id}/tools/{tool_id}`) or named in a<br/>
+        /// skill's `tool_ids`.<br/>
         /// A field this endpoint does not define is refused with `400<br/>
         /// validation_failed` naming every unknown field, rather than accepted<br/>
         /// and silently dropped.<br/>
@@ -53,8 +77,20 @@ namespace Speechify
         /// <summary>
         /// Create Tool<br/>
         /// Create a tool. For webhook tools, the response includes the HMAC<br/>
-        /// `webhook_secret` exactly once — store it immediately; subsequent<br/>
+        /// `webhook_secret` exactly once - store it immediately; subsequent<br/>
         /// reads return a masked placeholder.<br/>
+        /// An `mcp` or `openapi` tool that authenticates references a vault<br/>
+        /// credential by `auth.credential_id`: create it first with<br/>
+        /// `POST /v1/credentials`. For an `mcp` tool,<br/>
+        /// `POST /v1/agents/tool-definitions/test-mcp-connection` lists the<br/>
+        /// server's tools before you save. For an `openapi` tool, compile the<br/>
+        /// vendor's document with<br/>
+        /// `POST /v1/agents/tool-definitions/import-openapi`, choose and classify<br/>
+        /// the operations the agent needs, preview one with<br/>
+        /// `POST /v1/agents/tool-definitions/test-openapi-call`, then send the<br/>
+        /// chosen operations here. The tool is usable once it is attached to an<br/>
+        /// agent (`PUT /v1/agents/{agent_id}/tools/{tool_id}`) or named in a<br/>
+        /// skill's `tool_ids`.<br/>
         /// A field this endpoint does not define is refused with `400<br/>
         /// validation_failed` naming every unknown field, rather than accepted<br/>
         /// and silently dropped.<br/>
@@ -75,14 +111,18 @@ namespace Speechify
         /// - `builtin`: a worker-resident platform capability (e.g. end_call, play_audio), configured per-agent<br/>
         /// - `webhook`: worker signs a payload and POSTs it to your URL<br/>
         /// - `client`:  worker dispatches to the caller's browser/SDK via data channel<br/>
-        /// - `mcp`:     worker connects to a customer-hosted MCP server and proxies tool calls
+        /// - `mcp`:     worker connects to a customer-hosted MCP server and proxies tool calls<br/>
+        /// - `openapi`: a REST API described by its OpenAPI document, pinned to the operations you selected; the control plane executes every call
         /// </param>
         /// <param name="config"></param>
         /// <param name="actionClass">
         /// The impact class. Omit it and the tool's impact is read off its<br/>
         /// shape instead, and keeps tracking it: a `GET` webhook reads, a<br/>
-        /// `POST` webhook reaches outside your team, an MCP or client tool can<br/>
-        /// do anything its author wired.<br/>
+        /// `POST` webhook reaches outside your team, an MCP, client or OpenAPI<br/>
+        /// tool can do anything its author wired.<br/>
+        /// On an OpenAPI tool it is the class of every operation that declares<br/>
+        /// none of its own and is not a GET or HEAD; classify operations one by<br/>
+        /// one with `OpenAPIOperation.action_class` instead of setting it here.<br/>
         /// On an MCP tool it is also the ceiling for what the server may claim<br/>
         /// about its own tools: a class a `tools/list` entry declares under<br/>
         /// `_meta["speechify/action_class"]` is honoured when it is at least<br/>

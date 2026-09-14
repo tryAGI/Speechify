@@ -13,6 +13,8 @@ namespace Speechify
         /// `tool_id` from the edit-form flow when the auth payload carries<br/>
         /// `_set` markers but no plaintext, so the server can hydrate the<br/>
         /// stored secret from the encrypted column before probing.<br/>
+        /// Needs the `content.manage` permission, as creating a tool does: the<br/>
+        /// probe sends a referenced credential to the endpoint in the request.<br/>
         /// A field this endpoint does not define is refused with `400<br/>
         /// validation_failed` naming every unknown field, rather than accepted<br/>
         /// and silently dropped.
@@ -37,6 +39,8 @@ namespace Speechify
         /// `tool_id` from the edit-form flow when the auth payload carries<br/>
         /// `_set` markers but no plaintext, so the server can hydrate the<br/>
         /// stored secret from the encrypted column before probing.<br/>
+        /// Needs the `content.manage` permission, as creating a tool does: the<br/>
+        /// probe sends a referenced credential to the endpoint in the request.<br/>
         /// A field this endpoint does not define is refused with `400<br/>
         /// validation_failed` naming every unknown field, rather than accepted<br/>
         /// and silently dropped.
@@ -61,6 +65,8 @@ namespace Speechify
         /// `tool_id` from the edit-form flow when the auth payload carries<br/>
         /// `_set` markers but no plaintext, so the server can hydrate the<br/>
         /// stored secret from the encrypted column before probing.<br/>
+        /// Needs the `content.manage` permission, as creating a tool does: the<br/>
+        /// probe sends a referenced credential to the endpoint in the request.<br/>
         /// A field this endpoint does not define is refused with `400<br/>
         /// validation_failed` naming every unknown field, rather than accepted<br/>
         /// and silently dropped.

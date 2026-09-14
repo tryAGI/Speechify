@@ -101,6 +101,11 @@ namespace Speechify
         /// <summary>
         ///
         /// </summary>
+        public CredentialsClient Credentials { get; }
+
+        /// <summary>
+        ///
+        /// </summary>
         public DocumentsClient Documents { get; }
 
         /// <summary>

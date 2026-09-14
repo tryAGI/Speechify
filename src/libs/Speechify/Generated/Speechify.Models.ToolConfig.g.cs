@@ -5,7 +5,7 @@
 namespace Speechify
 {
     /// <summary>
-    /// One of `WebhookToolConfig`, `ClientToolConfig`, or `MCPToolConfig` depending on `kind`.
+    /// One of `WebhookToolConfig`, `ClientToolConfig`, `MCPToolConfig` or `OpenAPIToolConfig` depending on `kind`.
     /// </summary>
     public readonly partial struct ToolConfig : global::System.IEquatable<ToolConfig>
     {
@@ -169,6 +169,57 @@ namespace Speechify
         public global::Speechify.MCPToolConfig PickMCPToolConfig() => IsMCPToolConfig
             ? MCPToolConfig!
             : throw new global::System.InvalidOperationException($"Expected union variant 'MCPToolConfig' but the value was {ToString()}.");
+
+        /// <summary>
+        /// Config shape for `kind=openapi`: a REST API described by its OpenAPI<br/>
+        /// document, pinned to the operations you selected. Get the operations<br/>
+        /// from `POST /v1/agents/tool-definitions/import-openapi`, which answers<br/>
+        /// them in exactly this shape, or write them by hand. The document itself<br/>
+        /// is never stored; the compiled operations are, so a vendor rename cannot<br/>
+        /// change a published agent's schemas until you re-import. Each operation<br/>
+        /// is offered to the agent as the function `&lt;tool name&gt;__&lt;operation id&gt;`<br/>
+        /// whose arguments are the operation's params by name plus `body` when it<br/>
+        /// takes one.<br/>
+        /// Speechify's servers make every call, on a durable run, a live voice<br/>
+        /// session, a text conversation and a hosted API `tool` route alike, so<br/>
+        /// the vendor credential never leaves them. `auth` is the same vault<br/>
+        /// reference the `mcp` kind takes; a `bearer` or<br/>
+        /// `oauth2_client_credentials` auth requires `credential_id`, whose<br/>
+        /// credential must be of the matching kind.
+        /// </summary>
+#if NET6_0_OR_GREATER
+        public global::Speechify.OpenAPIToolConfig? OpenAPIToolConfig { get; init; }
+#else
+        public global::Speechify.OpenAPIToolConfig? OpenAPIToolConfig { get; }
+#endif
+
+        /// <summary>
+        ///
+        /// </summary>
+#if NET6_0_OR_GREATER
+        [global::System.Diagnostics.CodeAnalysis.MemberNotNullWhen(true, nameof(OpenAPIToolConfig))]
+#endif
+        public bool IsOpenAPIToolConfig => OpenAPIToolConfig != null;
+
+        /// <summary>
+        ///
+        /// </summary>
+        public bool TryPickOpenAPIToolConfig(
+#if NET6_0_OR_GREATER
+            [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
+#endif
+            out global::Speechify.OpenAPIToolConfig? value)
+        {
+            value = OpenAPIToolConfig;
+            return IsOpenAPIToolConfig;
+        }
+
+        /// <summary>
+        ///
+        /// </summary>
+        public global::Speechify.OpenAPIToolConfig PickOpenAPIToolConfig() => IsOpenAPIToolConfig
+            ? OpenAPIToolConfig!
+            : throw new global::System.InvalidOperationException($"Expected union variant 'OpenAPIToolConfig' but the value was {ToString()}.");
         /// <summary>
         ///
         /// </summary>
@@ -241,21 +292,47 @@ namespace Speechify
         /// <summary>
         ///
         /// </summary>
+        public static implicit operator ToolConfig(global::Speechify.OpenAPIToolConfig value) => new ToolConfig((global::Speechify.OpenAPIToolConfig?)value);
+
+        /// <summary>
+        ///
+        /// </summary>
+        public static implicit operator global::Speechify.OpenAPIToolConfig?(ToolConfig @this) => @this.OpenAPIToolConfig;
+
+        /// <summary>
+        ///
+        /// </summary>
+        public ToolConfig(global::Speechify.OpenAPIToolConfig? value)
+        {
+            OpenAPIToolConfig = value;
+        }
+
+        /// <summary>
+        ///
+        /// </summary>
+        public static ToolConfig FromOpenAPIToolConfig(global::Speechify.OpenAPIToolConfig? value) => new ToolConfig(value);
+
+        /// <summary>
+        ///
+        /// </summary>
         public ToolConfig(
             global::Speechify.WebhookToolConfig? webhookToolConfig,
             global::Speechify.ClientToolConfig? clientToolConfig,
-            global::Speechify.MCPToolConfig? mCPToolConfig
+            global::Speechify.MCPToolConfig? mCPToolConfig,
+            global::Speechify.OpenAPIToolConfig? openAPIToolConfig
             )
         {
             WebhookToolConfig = webhookToolConfig;
             ClientToolConfig = clientToolConfig;
             MCPToolConfig = mCPToolConfig;
+            OpenAPIToolConfig = openAPIToolConfig;
         }
 
         /// <summary>
         ///
         /// </summary>
         public object? Object =>
+            OpenAPIToolConfig as object ??
             MCPToolConfig as object ??
             ClientToolConfig as object ??
             WebhookToolConfig as object
@@ -267,7 +344,8 @@ namespace Speechify
         public override string? ToString() =>
             WebhookToolConfig?.ToString() ??
             ClientToolConfig?.ToString() ??
-            MCPToolConfig?.ToString()
+            MCPToolConfig?.ToString() ??
+            OpenAPIToolConfig?.ToString()
             ;
 
         /// <summary>
@@ -275,7 +353,7 @@ namespace Speechify
         /// </summary>
         public bool Validate()
         {
-            return IsWebhookToolConfig && !IsClientToolConfig && !IsMCPToolConfig || !IsWebhookToolConfig && IsClientToolConfig && !IsMCPToolConfig || !IsWebhookToolConfig && !IsClientToolConfig && IsMCPToolConfig;
+            return IsWebhookToolConfig && !IsClientToolConfig && !IsMCPToolConfig && !IsOpenAPIToolConfig || !IsWebhookToolConfig && IsClientToolConfig && !IsMCPToolConfig && !IsOpenAPIToolConfig || !IsWebhookToolConfig && !IsClientToolConfig && IsMCPToolConfig && !IsOpenAPIToolConfig || !IsWebhookToolConfig && !IsClientToolConfig && !IsMCPToolConfig && IsOpenAPIToolConfig;
         }
 
         /// <summary>
@@ -285,6 +363,7 @@ namespace Speechify
             global::System.Func<global::Speechify.WebhookToolConfig, TResult>? webhookToolConfig = null,
             global::System.Func<global::Speechify.ClientToolConfig, TResult>? clientToolConfig = null,
             global::System.Func<global::Speechify.MCPToolConfig, TResult>? mCPToolConfig = null,
+            global::System.Func<global::Speechify.OpenAPIToolConfig, TResult>? openAPIToolConfig = null,
             bool validate = true)
         {
             if (validate)
@@ -304,6 +383,10 @@ namespace Speechify
             {
                 return mCPToolConfig(MCPToolConfig!);
             }
+            else if (IsOpenAPIToolConfig && openAPIToolConfig != null)
+            {
+                return openAPIToolConfig(OpenAPIToolConfig!);
+            }
 
             return default(TResult);
         }
@@ -317,6 +400,8 @@ namespace Speechify
             global::System.Action<global::Speechify.ClientToolConfig>? clientToolConfig = null,
 
             global::System.Action<global::Speechify.MCPToolConfig>? mCPToolConfig = null,
+
+            global::System.Action<global::Speechify.OpenAPIToolConfig>? openAPIToolConfig = null,
             bool validate = true)
         {
             if (validate)
@@ -335,6 +420,10 @@ namespace Speechify
             else if (IsMCPToolConfig)
             {
                 mCPToolConfig?.Invoke(MCPToolConfig!);
+            }
+            else if (IsOpenAPIToolConfig)
+            {
+                openAPIToolConfig?.Invoke(OpenAPIToolConfig!);
             }
         }
 
@@ -345,6 +434,7 @@ namespace Speechify
             global::System.Action<global::Speechify.WebhookToolConfig>? webhookToolConfig = null,
             global::System.Action<global::Speechify.ClientToolConfig>? clientToolConfig = null,
             global::System.Action<global::Speechify.MCPToolConfig>? mCPToolConfig = null,
+            global::System.Action<global::Speechify.OpenAPIToolConfig>? openAPIToolConfig = null,
             bool validate = true)
         {
             if (validate)
@@ -363,6 +453,10 @@ namespace Speechify
             else if (IsMCPToolConfig)
             {
                 mCPToolConfig?.Invoke(MCPToolConfig!);
+            }
+            else if (IsOpenAPIToolConfig)
+            {
+                openAPIToolConfig?.Invoke(OpenAPIToolConfig!);
             }
         }
 
@@ -379,6 +473,8 @@ namespace Speechify
                 typeof(global::Speechify.ClientToolConfig),
                 MCPToolConfig,
                 typeof(global::Speechify.MCPToolConfig),
+                OpenAPIToolConfig,
+                typeof(global::Speechify.OpenAPIToolConfig),
             };
             const int offset = unchecked((int)2166136261);
             const int prime = 16777619;
@@ -397,7 +493,8 @@ namespace Speechify
             return
                 global::System.Collections.Generic.EqualityComparer<global::Speechify.WebhookToolConfig?>.Default.Equals(WebhookToolConfig, other.WebhookToolConfig) &&
                 global::System.Collections.Generic.EqualityComparer<global::Speechify.ClientToolConfig?>.Default.Equals(ClientToolConfig, other.ClientToolConfig) &&
-                global::System.Collections.Generic.EqualityComparer<global::Speechify.MCPToolConfig?>.Default.Equals(MCPToolConfig, other.MCPToolConfig)
+                global::System.Collections.Generic.EqualityComparer<global::Speechify.MCPToolConfig?>.Default.Equals(MCPToolConfig, other.MCPToolConfig) &&
+                global::System.Collections.Generic.EqualityComparer<global::Speechify.OpenAPIToolConfig?>.Default.Equals(OpenAPIToolConfig, other.OpenAPIToolConfig)
                 ;
         }
 

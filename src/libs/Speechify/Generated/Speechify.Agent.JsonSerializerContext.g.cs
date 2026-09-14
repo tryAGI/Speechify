@@ -164,8 +164,19 @@ namespace Speechify
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.MCPAuthDiscriminator))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.MCPAuthDiscriminatorType), TypeInfoPropertyName = "MCPAuthDiscriminatorType2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.ToolActionClass), TypeInfoPropertyName = "ToolActionClass2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.ToolResponseMapping))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.MCPToolConfig))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.Dictionary<string, global::Speechify.ToolActionClass>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.Dictionary<string, global::Speechify.ToolResponseMapping>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.OpenApiOperationMethod), TypeInfoPropertyName = "OpenApiOperationMethod2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.OpenApiParamIn), TypeInfoPropertyName = "OpenApiParamIn2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.OpenAPIParam))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.OpenApiBodyContentType), TypeInfoPropertyName = "OpenApiBodyContentType2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.OpenAPIBody))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.OpenAPIOperation))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Speechify.OpenAPIParam>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.OpenAPIToolConfig))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Speechify.OpenAPIOperation>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.AgentToolConfig), TypeInfoPropertyName = "AgentToolConfig2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.ToolApprovalClass), TypeInfoPropertyName = "ToolApprovalClass2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.ToolReach), TypeInfoPropertyName = "ToolReach2")]
@@ -263,6 +274,9 @@ namespace Speechify
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.MCPAuthVariant3Type?), TypeInfoPropertyName = "NullableMCPAuthVariant3Type2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.MCPAuthDiscriminatorType?), TypeInfoPropertyName = "NullableMCPAuthDiscriminatorType2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.ToolActionClass?), TypeInfoPropertyName = "NullableToolActionClass2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.OpenApiOperationMethod?), TypeInfoPropertyName = "NullableOpenApiOperationMethod2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.OpenApiParamIn?), TypeInfoPropertyName = "NullableOpenApiParamIn2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.OpenApiBodyContentType?), TypeInfoPropertyName = "NullableOpenApiBodyContentType2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.AgentToolConfig?), TypeInfoPropertyName = "NullableAgentToolConfig2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.ToolApprovalClass?), TypeInfoPropertyName = "NullableToolApprovalClass2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.ToolReach?), TypeInfoPropertyName = "NullableToolReach2")]
@@ -298,6 +312,8 @@ namespace Speechify
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.Memory>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.KnowledgeBase>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.ToolParam>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.OpenAPIParam>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.OpenAPIOperation>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.ToolReach>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.AgentTool>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.SystemBuiltinInfo>))]
@@ -544,6 +560,18 @@ namespace Speechify
                     || typeToConvert == typeof(global::Speechify.ToolActionClass)
 
                     || typeToConvert == typeof(global::Speechify.ToolActionClass?)
+
+                    || typeToConvert == typeof(global::Speechify.OpenApiOperationMethod)
+
+                    || typeToConvert == typeof(global::Speechify.OpenApiOperationMethod?)
+
+                    || typeToConvert == typeof(global::Speechify.OpenApiParamIn)
+
+                    || typeToConvert == typeof(global::Speechify.OpenApiParamIn?)
+
+                    || typeToConvert == typeof(global::Speechify.OpenApiBodyContentType)
+
+                    || typeToConvert == typeof(global::Speechify.OpenApiBodyContentType?)
 
                     || typeToConvert == typeof(global::Speechify.ToolApprovalClass)
 
@@ -1016,6 +1044,36 @@ namespace Speechify
                 if (typeToConvert == typeof(global::Speechify.ToolActionClass?))
                 {
                     return new global::Speechify.JsonConverters.ToolActionClassNullableJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.OpenApiOperationMethod))
+                {
+                    return new global::Speechify.JsonConverters.OpenApiOperationMethodJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.OpenApiOperationMethod?))
+                {
+                    return new global::Speechify.JsonConverters.OpenApiOperationMethodNullableJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.OpenApiParamIn))
+                {
+                    return new global::Speechify.JsonConverters.OpenApiParamInJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.OpenApiParamIn?))
+                {
+                    return new global::Speechify.JsonConverters.OpenApiParamInNullableJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.OpenApiBodyContentType))
+                {
+                    return new global::Speechify.JsonConverters.OpenApiBodyContentTypeJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.OpenApiBodyContentType?))
+                {
+                    return new global::Speechify.JsonConverters.OpenApiBodyContentTypeNullableJsonConverter();
                 }
 
                 if (typeToConvert == typeof(global::Speechify.ToolApprovalClass))

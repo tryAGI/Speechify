@@ -4,8 +4,8 @@
 namespace Speechify
 {
     /// <summary>
-    /// A workspace tool definition: a reusable webhook / client / MCP<br/>
-    /// integration created once and attached to many agents. Built-ins<br/>
+    /// A workspace tool definition: a reusable webhook, client, MCP or<br/>
+    /// OpenAPI integration created once and attached to many agents. Built-ins<br/>
     /// are NOT definitions - they are per-agent (see `AgentTool`).<br/>
     /// **A tool row belongs to exactly one project and is reused only inside<br/>
     /// it.** An attach whose agent and tool sit in different projects is<br/>
@@ -55,7 +55,8 @@ namespace Speechify
         /// - `builtin`: a worker-resident platform capability (e.g. end_call, play_audio), configured per-agent<br/>
         /// - `webhook`: worker signs a payload and POSTs it to your URL<br/>
         /// - `client`:  worker dispatches to the caller's browser/SDK via data channel<br/>
-        /// - `mcp`:     worker connects to a customer-hosted MCP server and proxies tool calls
+        /// - `mcp`:     worker connects to a customer-hosted MCP server and proxies tool calls<br/>
+        /// - `openapi`: a REST API described by its OpenAPI document, pinned to the operations you selected; the control plane executes every call
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("kind")]
         [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Speechify.JsonConverters.ToolKindJsonConverter))]
@@ -63,7 +64,7 @@ namespace Speechify
         public required global::Speechify.ToolKind Kind { get; set; }
 
         /// <summary>
-        /// One of `WebhookToolConfig`, `ClientToolConfig`, or `MCPToolConfig` depending on `kind`.
+        /// One of `WebhookToolConfig`, `ClientToolConfig`, `MCPToolConfig` or `OpenAPIToolConfig` depending on `kind`.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("config")]
         [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Speechify.JsonConverters.ToolConfigJsonConverter))]
@@ -96,9 +97,12 @@ namespace Speechify
         /// <summary>
         /// The impact the tool actually carries: `action_class` when you set<br/>
         /// one, otherwise the class its shape implies (a `GET` webhook reads, a<br/>
-        /// `POST` webhook reaches outside your team, an MCP or client tool can<br/>
-        /// do anything its author wired). Derived on every read, so changing a<br/>
-        /// webhook's method changes this with it. Read-only.
+        /// `POST` webhook reaches outside your team, an MCP, client or OpenAPI<br/>
+        /// tool can do anything its author wired). Derived on every read, so<br/>
+        /// changing a webhook's method changes this with it. Read-only. An<br/>
+        /// OpenAPI tool's operations each carry their own class as well (see<br/>
+        /// `OpenAPIOperation.action_class`); this is the class an operation<br/>
+        /// that declares none, and is not a GET or HEAD, falls back to.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("effective_action_class")]
         [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Speechify.JsonConverters.ToolActionClassJsonConverter))]
@@ -126,7 +130,7 @@ namespace Speechify
         /// <summary>
         /// Where a call to this tool can execute, derived from its `kind`.<br/>
         /// Read-only.<br/>
-        /// A `webhook` or `mcp` tool reaches every surface. A `client` tool<br/>
+        /// A `webhook`, `mcp` or `openapi` tool reaches every surface. A `client` tool<br/>
         /// reaches `voice` only: its call is answered by your own application<br/>
         /// over the live session's data channel, so it needs a realtime<br/>
         /// session your client is connected to. Neither the roomless text<br/>
@@ -171,17 +175,21 @@ namespace Speechify
         /// - `builtin`: a worker-resident platform capability (e.g. end_call, play_audio), configured per-agent<br/>
         /// - `webhook`: worker signs a payload and POSTs it to your URL<br/>
         /// - `client`:  worker dispatches to the caller's browser/SDK via data channel<br/>
-        /// - `mcp`:     worker connects to a customer-hosted MCP server and proxies tool calls
+        /// - `mcp`:     worker connects to a customer-hosted MCP server and proxies tool calls<br/>
+        /// - `openapi`: a REST API described by its OpenAPI document, pinned to the operations you selected; the control plane executes every call
         /// </param>
         /// <param name="config">
-        /// One of `WebhookToolConfig`, `ClientToolConfig`, or `MCPToolConfig` depending on `kind`.
+        /// One of `WebhookToolConfig`, `ClientToolConfig`, `MCPToolConfig` or `OpenAPIToolConfig` depending on `kind`.
         /// </param>
         /// <param name="effectiveActionClass">
         /// The impact the tool actually carries: `action_class` when you set<br/>
         /// one, otherwise the class its shape implies (a `GET` webhook reads, a<br/>
-        /// `POST` webhook reaches outside your team, an MCP or client tool can<br/>
-        /// do anything its author wired). Derived on every read, so changing a<br/>
-        /// webhook's method changes this with it. Read-only.
+        /// `POST` webhook reaches outside your team, an MCP, client or OpenAPI<br/>
+        /// tool can do anything its author wired). Derived on every read, so<br/>
+        /// changing a webhook's method changes this with it. Read-only. An<br/>
+        /// OpenAPI tool's operations each carry their own class as well (see<br/>
+        /// `OpenAPIOperation.action_class`); this is the class an operation<br/>
+        /// that declares none, and is not a GET or HEAD, falls back to.
         /// </param>
         /// <param name="effectiveApproval">
         /// What governs the tool on the autonomous path: `approval` when set,<br/>
@@ -212,7 +220,7 @@ namespace Speechify
         /// <param name="reach">
         /// Where a call to this tool can execute, derived from its `kind`.<br/>
         /// Read-only.<br/>
-        /// A `webhook` or `mcp` tool reaches every surface. A `client` tool<br/>
+        /// A `webhook`, `mcp` or `openapi` tool reaches every surface. A `client` tool<br/>
         /// reaches `voice` only: its call is answered by your own application<br/>
         /// over the live session's data channel, so it needs a realtime<br/>
         /// session your client is connected to. Neither the roomless text<br/>

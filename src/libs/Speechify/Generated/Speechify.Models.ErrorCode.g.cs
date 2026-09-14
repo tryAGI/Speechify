@@ -280,6 +280,10 @@ namespace Speechify
         /// <summary>
         ///
         /// </summary>
+        HostedMcpNotEnabled,
+        /// <summary>
+        ///
+        /// </summary>
         IdempotencyConflict,
         /// <summary>
         ///
@@ -437,6 +441,22 @@ namespace Speechify
         ///
         /// </summary>
         RouteRunTimeout,
+        /// <summary>
+        ///
+        /// </summary>
+        RouteToolNotReadable,
+        /// <summary>
+        ///
+        /// </summary>
+        RouteToolUnavailable,
+        /// <summary>
+        ///
+        /// </summary>
+        RouteUpstreamError,
+        /// <summary>
+        ///
+        /// </summary>
+        RouteUpstreamRateLimited,
         /// <summary>
         ///
         /// </summary>
@@ -725,6 +745,7 @@ namespace Speechify
                 ErrorCode.HostedApiPublicRefused => "hosted_api_public_refused",
                 ErrorCode.HostedApiSlugTaken => "hosted_api_slug_taken",
                 ErrorCode.HostedApisNotInPlan => "hosted_apis_not_in_plan",
+                ErrorCode.HostedMcpNotEnabled => "hosted_mcp_not_enabled",
                 ErrorCode.IdempotencyConflict => "idempotency_conflict",
                 ErrorCode.InsufficientScope => "insufficient_scope",
                 ErrorCode.IntendedUseRequired => "intended_use_required",
@@ -765,6 +786,10 @@ namespace Speechify
                 ErrorCode.RouteRunFailed => "route_run_failed",
                 ErrorCode.RouteRunLimitReached => "route_run_limit_reached",
                 ErrorCode.RouteRunTimeout => "route_run_timeout",
+                ErrorCode.RouteToolNotReadable => "route_tool_not_readable",
+                ErrorCode.RouteToolUnavailable => "route_tool_unavailable",
+                ErrorCode.RouteUpstreamError => "route_upstream_error",
+                ErrorCode.RouteUpstreamRateLimited => "route_upstream_rate_limited",
                 ErrorCode.RouteWriteLimitReached => "route_write_limit_reached",
                 ErrorCode.ServiceAccountLimitReached => "service_account_limit_reached",
                 ErrorCode.ServiceAccountsNotInPlan => "service_accounts_not_in_plan",
@@ -893,6 +918,7 @@ namespace Speechify
                 "hosted_api_public_refused" => ErrorCode.HostedApiPublicRefused,
                 "hosted_api_slug_taken" => ErrorCode.HostedApiSlugTaken,
                 "hosted_apis_not_in_plan" => ErrorCode.HostedApisNotInPlan,
+                "hosted_mcp_not_enabled" => ErrorCode.HostedMcpNotEnabled,
                 "idempotency_conflict" => ErrorCode.IdempotencyConflict,
                 "insufficient_scope" => ErrorCode.InsufficientScope,
                 "intended_use_required" => ErrorCode.IntendedUseRequired,
@@ -933,6 +959,10 @@ namespace Speechify
                 "route_run_failed" => ErrorCode.RouteRunFailed,
                 "route_run_limit_reached" => ErrorCode.RouteRunLimitReached,
                 "route_run_timeout" => ErrorCode.RouteRunTimeout,
+                "route_tool_not_readable" => ErrorCode.RouteToolNotReadable,
+                "route_tool_unavailable" => ErrorCode.RouteToolUnavailable,
+                "route_upstream_error" => ErrorCode.RouteUpstreamError,
+                "route_upstream_rate_limited" => ErrorCode.RouteUpstreamRateLimited,
                 "route_write_limit_reached" => ErrorCode.RouteWriteLimitReached,
                 "service_account_limit_reached" => ErrorCode.ServiceAccountLimitReached,
                 "service_accounts_not_in_plan" => ErrorCode.ServiceAccountsNotInPlan,

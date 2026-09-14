@@ -4,7 +4,10 @@
 namespace Speechify
 {
     /// <summary>
-    /// All fields optional. `kind` is immutable — create a new definition to change it.
+    /// All fields optional. `kind` is immutable - create a new definition to<br/>
+    /// change it. `config` replaces the stored config whole, never merged:<br/>
+    /// send the complete config for the tool's kind, starting from what<br/>
+    /// `GET /v1/agents/tool-definitions/{tool_definition_id}` returns.
     /// </summary>
     public sealed partial class UpdateToolRequest
     {

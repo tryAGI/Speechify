@@ -7,7 +7,12 @@ namespace Speechify
         /// <summary>
         /// Get Hosted API OpenAPI Document<br/>
         /// The OpenAPI 3.1 document describing the hosted API's routes - the same<br/>
-        /// document the API serves to its consumers at `/openapi.json`.<br/>
+        /// document the API serves to its consumers at `/openapi.json`. A `tool`<br/>
+        /// route's request body is the operation's own argument schema. When<br/>
+        /// `mcp_enabled` is on, the document carries an `x-speechify-mcp` object<br/>
+        /// (`url`, `transport: streamable-http`, `description`) naming where an<br/>
+        /// MCP client attaches; the face speaks JSON-RPC, so it is an extension<br/>
+        /// rather than a path.<br/>
         /// Dark launch: requires the `hosted_apis_access` entitlement (402 `hosted_apis_not_in_plan` otherwise).
         /// </summary>
         /// <param name="apiId"></param>
@@ -23,7 +28,12 @@ namespace Speechify
         /// <summary>
         /// Get Hosted API OpenAPI Document<br/>
         /// The OpenAPI 3.1 document describing the hosted API's routes - the same<br/>
-        /// document the API serves to its consumers at `/openapi.json`.<br/>
+        /// document the API serves to its consumers at `/openapi.json`. A `tool`<br/>
+        /// route's request body is the operation's own argument schema. When<br/>
+        /// `mcp_enabled` is on, the document carries an `x-speechify-mcp` object<br/>
+        /// (`url`, `transport: streamable-http`, `description`) naming where an<br/>
+        /// MCP client attaches; the face speaks JSON-RPC, so it is an extension<br/>
+        /// rather than a path.<br/>
         /// Dark launch: requires the `hosted_apis_access` entitlement (402 `hosted_apis_not_in_plan` otherwise).
         /// </summary>
         /// <param name="apiId"></param>

@@ -4,7 +4,7 @@
 namespace Speechify
 {
     /// <summary>
-    /// Audio output format for the streaming endpoint (`POST /v1/audio/stream`), as a `codec_sampleRate_bitrate` string. Same as `AudioOutputFormat` minus the `wav_*` formats: wav is only available on `POST /v1/audio/speech`. `pcm_*` and `ulaw_8000` are headerless raw audio; `pcm_16000` and `ulaw_8000` are the telephony formats Twilio/LiveKit SIP expect.<br/>
+    /// Audio output format for the streaming endpoint (`POST /v1/audio/stream`), as a `codec_sampleRate_bitrate` string. Same as `AudioOutputFormat` minus the `wav_*` formats: wav is only available on `POST /v1/audio/speech`. `pcm_*` and `ulaw_8000` are headerless raw audio; `pcm_16000` and `ulaw_8000` are the telephony formats Twilio/LiveKit SIP expect. From API version `2026-09-30`, `pcm_16000` is 16 kHz audio; a workspace pinned to an earlier version keeps receiving 24 kHz audio for `pcm_16000`, as it always has.<br/>
     /// 160 kbps is the highest bitrate an mp3 can carry at 22.05 and 24 kHz, so `mp3_22050_160` and `mp3_24000_160` are the maximum-fidelity mp3 formats; a request for `mp3_*_192` is encoded at 160 kbps. The two `mp3_*_160` formats are served by the Simba 3 models only.
     /// </summary>
     public enum AudioStreamOutputFormat
@@ -66,7 +66,7 @@ namespace Speechify
         /// </summary>
         Ogg24000,
         /// <summary>
-        /// wav is only available on `POST /v1/audio/speech`. `pcm_*` and `ulaw_8000` are headerless raw audio; `pcm_16000` and `ulaw_8000` are the telephony formats Twilio/LiveKit SIP expect.
+        /// wav is only available on `POST /v1/audio/speech`. `pcm_*` and `ulaw_8000` are headerless raw audio; `pcm_16000` and `ulaw_8000` are the telephony formats Twilio/LiveKit SIP expect. From API version `2026-09-30`, `pcm_16000` is 16 kHz audio; a workspace pinned to an earlier version keeps receiving 24 kHz audio for `pcm_16000`, as it always has.
         /// </summary>
         Pcm16000,
         /// <summary>
@@ -90,7 +90,7 @@ namespace Speechify
         /// </summary>
         Pcm8000,
         /// <summary>
-        /// wav is only available on `POST /v1/audio/speech`. `pcm_*` and `ulaw_8000` are headerless raw audio; `pcm_16000` and `ulaw_8000` are the telephony formats Twilio/LiveKit SIP expect.
+        /// wav is only available on `POST /v1/audio/speech`. `pcm_*` and `ulaw_8000` are headerless raw audio; `pcm_16000` and `ulaw_8000` are the telephony formats Twilio/LiveKit SIP expect. From API version `2026-09-30`, `pcm_16000` is 16 kHz audio; a workspace pinned to an earlier version keeps receiving 24 kHz audio for `pcm_16000`, as it always has.
         /// </summary>
         Ulaw8000,
     }

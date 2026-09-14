@@ -6,7 +6,7 @@ namespace Speechify
     /// <summary>
     /// One thing an agent can do, in the unified per-agent view. Kind<br/>
     /// discriminates a per-agent built-in instance (`builtin`) from an<br/>
-    /// attached workspace tool definition (`webhook`/`client`/`mcp`).<br/>
+    /// attached workspace tool definition (`webhook`/`client`/`mcp`/`openapi`).<br/>
     /// The config is resolved + embedded so consumers never have to fetch<br/>
     /// the backing definition. `id` is a `tool_&lt;...&gt;` for every kind.
     /// </summary>
@@ -24,7 +24,8 @@ namespace Speechify
         /// - `builtin`: a worker-resident platform capability (e.g. end_call, play_audio), configured per-agent<br/>
         /// - `webhook`: worker signs a payload and POSTs it to your URL<br/>
         /// - `client`:  worker dispatches to the caller's browser/SDK via data channel<br/>
-        /// - `mcp`:     worker connects to a customer-hosted MCP server and proxies tool calls
+        /// - `mcp`:     worker connects to a customer-hosted MCP server and proxies tool calls<br/>
+        /// - `openapi`: a REST API described by its OpenAPI document, pinned to the operations you selected; the control plane executes every call
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("kind")]
         [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Speechify.JsonConverters.ToolKindJsonConverter))]
@@ -54,7 +55,7 @@ namespace Speechify
 
         /// <summary>
         /// Provenance: the backing workspace tool definition id for<br/>
-        /// shared kinds (webhook/client/mcp), or `null` for a built-in.<br/>
+        /// shared kinds (webhook/client/mcp/openapi), or `null` for a built-in.<br/>
         /// Non-null ⟺ the tool's config is shared and edited at<br/>
         /// `/v1/agents/tool-definitions/{tool_definition_id}`.
         /// </summary>
@@ -62,7 +63,7 @@ namespace Speechify
         public string? DefinitionId { get; set; }
 
         /// <summary>
-        /// Resolved config - `BuiltinToolConfig`, `WebhookToolConfig`, `ClientToolConfig`, or `MCPToolConfig` depending on `kind`.
+        /// Resolved config - `BuiltinToolConfig`, `WebhookToolConfig`, `ClientToolConfig`, `MCPToolConfig` or `OpenAPIToolConfig` depending on `kind`.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("config")]
         [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Speechify.JsonConverters.AgentToolConfigJsonConverter))]
@@ -152,7 +153,8 @@ namespace Speechify
         /// - `builtin`: a worker-resident platform capability (e.g. end_call, play_audio), configured per-agent<br/>
         /// - `webhook`: worker signs a payload and POSTs it to your URL<br/>
         /// - `client`:  worker dispatches to the caller's browser/SDK via data channel<br/>
-        /// - `mcp`:     worker connects to a customer-hosted MCP server and proxies tool calls
+        /// - `mcp`:     worker connects to a customer-hosted MCP server and proxies tool calls<br/>
+        /// - `openapi`: a REST API described by its OpenAPI document, pinned to the operations you selected; the control plane executes every call
         /// </param>
         /// <param name="name"></param>
         /// <param name="description"></param>
@@ -160,7 +162,7 @@ namespace Speechify
         /// When false the tool is configured but skipped at dispatch.
         /// </param>
         /// <param name="config">
-        /// Resolved config - `BuiltinToolConfig`, `WebhookToolConfig`, `ClientToolConfig`, or `MCPToolConfig` depending on `kind`.
+        /// Resolved config - `BuiltinToolConfig`, `WebhookToolConfig`, `ClientToolConfig`, `MCPToolConfig` or `OpenAPIToolConfig` depending on `kind`.
         /// </param>
         /// <param name="effectiveActionClass">
         /// The impact the tool actually carries, derived from its shape when none was declared.
@@ -169,7 +171,7 @@ namespace Speechify
         /// <param name="updatedAt"></param>
         /// <param name="definitionId">
         /// Provenance: the backing workspace tool definition id for<br/>
-        /// shared kinds (webhook/client/mcp), or `null` for a built-in.<br/>
+        /// shared kinds (webhook/client/mcp/openapi), or `null` for a built-in.<br/>
         /// Non-null ⟺ the tool's config is shared and edited at<br/>
         /// `/v1/agents/tool-definitions/{tool_definition_id}`.
         /// </param>

@@ -8,7 +8,8 @@ namespace Speechify
     /// - `builtin`: a worker-resident platform capability (e.g. end_call, play_audio), configured per-agent<br/>
     /// - `webhook`: worker signs a payload and POSTs it to your URL<br/>
     /// - `client`:  worker dispatches to the caller's browser/SDK via data channel<br/>
-    /// - `mcp`:     worker connects to a customer-hosted MCP server and proxies tool calls
+    /// - `mcp`:     worker connects to a customer-hosted MCP server and proxies tool calls<br/>
+    /// - `openapi`: a REST API described by its OpenAPI document, pinned to the operations you selected; the control plane executes every call
     /// </summary>
     public enum ToolKind
     {
@@ -24,6 +25,10 @@ namespace Speechify
         /// worker connects to a customer-hosted MCP server and proxies tool calls
         /// </summary>
         Mcp,
+        /// <summary>
+        /// a REST API described by its OpenAPI document, pinned to the operations you selected; the control plane executes every call
+        /// </summary>
+        Openapi,
         /// <summary>
         /// worker signs a payload and POSTs it to your URL
         /// </summary>
@@ -45,6 +50,7 @@ namespace Speechify
                 ToolKind.Builtin => "builtin",
                 ToolKind.Client => "client",
                 ToolKind.Mcp => "mcp",
+                ToolKind.Openapi => "openapi",
                 ToolKind.Webhook => "webhook",
                 _ => throw new global::System.ArgumentOutOfRangeException(nameof(value), value, null),
             };
@@ -59,6 +65,7 @@ namespace Speechify
                 "builtin" => ToolKind.Builtin,
                 "client" => ToolKind.Client,
                 "mcp" => ToolKind.Mcp,
+                "openapi" => ToolKind.Openapi,
                 "webhook" => ToolKind.Webhook,
                 _ => null,
             };

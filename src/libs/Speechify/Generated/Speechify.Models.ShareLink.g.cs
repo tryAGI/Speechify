@@ -117,8 +117,8 @@ namespace Speechify
         /// Tools the owner opted this link into, by id — the same<br/>
         /// `tool_…` ids `listAgentTools` returns. Empty means the<br/>
         /// default posture: the agent's built-in call controls and<br/>
-        /// knowledge search only, with no webhook, MCP or transfer tool —<br/>
-        /// a link recipient is a stranger, not the owner's customer.
+        /// knowledge search only, with no webhook, MCP, OpenAPI or transfer<br/>
+        /// tool: a link recipient is a stranger, not the owner's customer.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("allowed_tool_ids")]
         [global::System.Text.Json.Serialization.JsonRequired]
@@ -188,8 +188,8 @@ namespace Speechify
         /// Tools the owner opted this link into, by id — the same<br/>
         /// `tool_…` ids `listAgentTools` returns. Empty means the<br/>
         /// default posture: the agent's built-in call controls and<br/>
-        /// knowledge search only, with no webhook, MCP or transfer tool —<br/>
-        /// a link recipient is a stranger, not the owner's customer.
+        /// knowledge search only, with no webhook, MCP, OpenAPI or transfer<br/>
+        /// tool: a link recipient is a stranger, not the owner's customer.
         /// </param>
         /// <param name="createdAt"></param>
         /// <param name="revokedAt"></param>

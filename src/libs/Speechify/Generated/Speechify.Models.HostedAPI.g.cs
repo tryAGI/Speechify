@@ -39,14 +39,16 @@ namespace Speechify
         public required string BaseUrl { get; set; }
 
         /// <summary>
-        ///
+        /// The API's display name; the server title an MCP client shows when `mcp_enabled` is on.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("name")]
         [global::System.Text.Json.Serialization.JsonRequired]
         public required string Name { get; set; }
 
         /// <summary>
-        ///
+        /// What the API is for. When `mcp_enabled` is on it is also the<br/>
+        /// instructions an MCP client hands its model, so say what the tools<br/>
+        /// are for and when to use them.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("description")]
         [global::System.Text.Json.Serialization.JsonRequired]
@@ -95,9 +97,10 @@ namespace Speechify
         public required int DailyRunCap { get; set; }
 
         /// <summary>
-        /// Reads the API's store, file and run_latest routes may serve from<br/>
-        /// storage per UTC day; the storage ceiling behind a hot path. Always<br/>
-        /// present on a current API; optional on the wire so a reader built<br/>
+        /// Reads the API's store, file, run_latest and tool routes may serve<br/>
+        /// per UTC day; the ceiling behind a hot path, and for a tool route<br/>
+        /// behind the vendor budget its calls draw on. Always present on a<br/>
+        /// current API; optional on the wire so a reader built<br/>
         /// before it existed keeps parsing. A<br/>
         /// response served from the cache is not a read. Past the cap a read<br/>
         /// route answers 429 `route_read_limit_reached`. Without Redis nothing<br/>
@@ -115,6 +118,24 @@ namespace Speechify
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("daily_write_cap")]
         public int? DailyWriteCap { get; set; }
+
+        /// <summary>
+        /// Whether the API also serves its routes as an MCP server at<br/>
+        /// `POST &lt;base_url&gt;/mcp` (streamable HTTP, stateless, POST only): every<br/>
+        /// enabled route except a file route is listed as a tool, named by the<br/>
+        /// route's `name` and described by its `description`, and a call runs<br/>
+        /// under the same audience, consumer keys, per-key limits, daily caps<br/>
+        /// and request log the route has. An MCP client authenticates with the<br/>
+        /// same bearer a plain consumer sends (a `ck_` consumer key, an<br/>
+        /// end-user token, or a Speechify API key on a `workspace` or `owner`<br/>
+        /// API); the API's OpenAPI document names the address under<br/>
+        /// `x-speechify-mcp.url`. Off for a new API, where `/mcp` answers 404<br/>
+        /// `hosted_mcp_not_enabled`; never true on a `public` API (refused<br/>
+        /// with 400 on either switch). Optional on the wire for the same<br/>
+        /// reason as `daily_read_cap`.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("mcp_enabled")]
+        public bool? McpEnabled { get; set; }
 
         /// <summary>
         ///
@@ -166,8 +187,14 @@ namespace Speechify
         /// The public host, `&lt;slug&gt;.&lt;hosted-api domain&gt;`; empty where no domain is configured.
         /// </param>
         /// <param name="baseUrl"></param>
-        /// <param name="name"></param>
-        /// <param name="description"></param>
+        /// <param name="name">
+        /// The API's display name; the server title an MCP client shows when `mcp_enabled` is on.
+        /// </param>
+        /// <param name="description">
+        /// What the API is for. When `mcp_enabled` is on it is also the<br/>
+        /// instructions an MCP client hands its model, so say what the tools<br/>
+        /// are for and when to use them.
+        /// </param>
         /// <param name="authMode">
         /// Who the API answers, narrowest first. `owner`: only the API's owner,<br/>
         /// with their own Speechify API key or console session. `workspace`:<br/>
@@ -194,9 +221,10 @@ namespace Speechify
         /// <param name="createdAt"></param>
         /// <param name="updatedAt"></param>
         /// <param name="dailyReadCap">
-        /// Reads the API's store, file and run_latest routes may serve from<br/>
-        /// storage per UTC day; the storage ceiling behind a hot path. Always<br/>
-        /// present on a current API; optional on the wire so a reader built<br/>
+        /// Reads the API's store, file, run_latest and tool routes may serve<br/>
+        /// per UTC day; the ceiling behind a hot path, and for a tool route<br/>
+        /// behind the vendor budget its calls draw on. Always present on a<br/>
+        /// current API; optional on the wire so a reader built<br/>
         /// before it existed keeps parsing. A<br/>
         /// response served from the cache is not a read. Past the cap a read<br/>
         /// route answers 429 `route_read_limit_reached`. Without Redis nothing<br/>
@@ -208,6 +236,21 @@ namespace Speechify
         /// ceiling behind a leaked key on a write route. Past the cap a write<br/>
         /// route answers 429 `route_write_limit_reached`. Optional on the wire<br/>
         /// for the same reason as `daily_read_cap`.
+        /// </param>
+        /// <param name="mcpEnabled">
+        /// Whether the API also serves its routes as an MCP server at<br/>
+        /// `POST &lt;base_url&gt;/mcp` (streamable HTTP, stateless, POST only): every<br/>
+        /// enabled route except a file route is listed as a tool, named by the<br/>
+        /// route's `name` and described by its `description`, and a call runs<br/>
+        /// under the same audience, consumer keys, per-key limits, daily caps<br/>
+        /// and request log the route has. An MCP client authenticates with the<br/>
+        /// same bearer a plain consumer sends (a `ck_` consumer key, an<br/>
+        /// end-user token, or a Speechify API key on a `workspace` or `owner`<br/>
+        /// API); the API's OpenAPI document names the address under<br/>
+        /// `x-speechify-mcp.url`. Off for a new API, where `/mcp` answers 404<br/>
+        /// `hosted_mcp_not_enabled`; never true on a `public` API (refused<br/>
+        /// with 400 on either switch). Optional on the wire for the same<br/>
+        /// reason as `daily_read_cap`.
         /// </param>
         /// <param name="projectId"></param>
         /// <param name="userTokenJwksUrl">
@@ -237,6 +280,7 @@ namespace Speechify
             global::System.DateTime updatedAt,
             int? dailyReadCap,
             int? dailyWriteCap,
+            bool? mcpEnabled,
             string? projectId,
             string? userTokenJwksUrl,
             string? userTokenSecretHint)
@@ -253,6 +297,7 @@ namespace Speechify
             this.DailyRunCap = dailyRunCap;
             this.DailyReadCap = dailyReadCap;
             this.DailyWriteCap = dailyWriteCap;
+            this.McpEnabled = mcpEnabled;
             this.ProjectId = projectId;
             this.UserTokenJwksUrl = userTokenJwksUrl;
             this.UserTokenSecretHint = userTokenSecretHint;

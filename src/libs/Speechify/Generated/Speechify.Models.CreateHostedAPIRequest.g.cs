@@ -23,7 +23,7 @@ namespace Speechify
         public required string Name { get; set; }
 
         /// <summary>
-        ///
+        /// What the API is for; also the instructions an MCP client hands its model when `mcp_enabled` is on.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("description")]
         public string? Description { get; set; }
@@ -48,7 +48,7 @@ namespace Speechify
         public int? DailyRunCap { get; set; }
 
         /// <summary>
-        /// Reads the API may serve from storage per UTC day; 100000 when omitted.
+        /// Reads the API's store, file, run_latest and tool routes may serve per UTC day; 100000 when omitted.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("daily_read_cap")]
         public int? DailyReadCap { get; set; }
@@ -58,6 +58,14 @@ namespace Speechify
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("daily_write_cap")]
         public int? DailyWriteCap { get; set; }
+
+        /// <summary>
+        /// Serve the routes as an MCP server at `POST &lt;base_url&gt;/mcp` too;<br/>
+        /// false when omitted. Refused with `auth_mode: public` (400<br/>
+        /// `validation_failed` naming `mcp_enabled`).
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("mcp_enabled")]
+        public bool? McpEnabled { get; set; }
 
         /// <summary>
         ///
@@ -84,7 +92,9 @@ namespace Speechify
         /// 3-40 lowercase letters, digits or hyphens; a DNS label, unique on the shared domain; immutable.
         /// </param>
         /// <param name="name"></param>
-        /// <param name="description"></param>
+        /// <param name="description">
+        /// What the API is for; also the instructions an MCP client hands its model when `mcp_enabled` is on.
+        /// </param>
         /// <param name="authMode">
         /// consumer_key when omitted. `public` is refused with 403 `hosted_api_public_refused` where the workspace's policy does not allow internet-facing APIs.
         /// </param>
@@ -93,10 +103,15 @@ namespace Speechify
         /// Runs the API may start per UTC day through its run routes; 1000 when omitted.
         /// </param>
         /// <param name="dailyReadCap">
-        /// Reads the API may serve from storage per UTC day; 100000 when omitted.
+        /// Reads the API's store, file, run_latest and tool routes may serve per UTC day; 100000 when omitted.
         /// </param>
         /// <param name="dailyWriteCap">
         /// Documents the API's write routes may land per UTC day; 10000 when omitted.
+        /// </param>
+        /// <param name="mcpEnabled">
+        /// Serve the routes as an MCP server at `POST &lt;base_url&gt;/mcp` too;<br/>
+        /// false when omitted. Refused with `auth_mode: public` (400<br/>
+        /// `validation_failed` naming `mcp_enabled`).
         /// </param>
         /// <param name="projectId"></param>
         /// <param name="userTokenJwksUrl">
@@ -114,6 +129,7 @@ namespace Speechify
             int? dailyRunCap,
             int? dailyReadCap,
             int? dailyWriteCap,
+            bool? mcpEnabled,
             string? projectId,
             string? userTokenJwksUrl)
         {
@@ -125,6 +141,7 @@ namespace Speechify
             this.DailyRunCap = dailyRunCap;
             this.DailyReadCap = dailyReadCap;
             this.DailyWriteCap = dailyWriteCap;
+            this.McpEnabled = mcpEnabled;
             this.ProjectId = projectId;
             this.UserTokenJwksUrl = userTokenJwksUrl;
         }

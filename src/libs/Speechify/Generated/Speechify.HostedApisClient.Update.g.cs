@@ -54,7 +54,10 @@ namespace Speechify
         /// internet-facing APIs (403 `hosted_api_public_refused`). Switching to a<br/>
         /// mode that names no caller (`consumer_key`, `public`) is refused while<br/>
         /// a route binds `{{user.*}}`: only `user_token`, `workspace` and `owner`<br/>
-        /// supply a person.<br/>
+        /// supply a person. Switching to `public` is also refused while a `tool`<br/>
+        /// route exists (a vendor call spends the workspace's vendor budget) and<br/>
+        /// while `mcp_enabled` is on, and switching the MCP face on is refused on<br/>
+        /// a `public` API (400 `validation_failed` naming `mcp_enabled`).<br/>
         /// Dark launch: requires the `hosted_apis_access` entitlement (402 `hosted_apis_not_in_plan` otherwise).
         /// </summary>
         /// <param name="apiId"></param>
@@ -91,7 +94,10 @@ namespace Speechify
         /// internet-facing APIs (403 `hosted_api_public_refused`). Switching to a<br/>
         /// mode that names no caller (`consumer_key`, `public`) is refused while<br/>
         /// a route binds `{{user.*}}`: only `user_token`, `workspace` and `owner`<br/>
-        /// supply a person.<br/>
+        /// supply a person. Switching to `public` is also refused while a `tool`<br/>
+        /// route exists (a vendor call spends the workspace's vendor budget) and<br/>
+        /// while `mcp_enabled` is on, and switching the MCP face on is refused on<br/>
+        /// a `public` API (400 `validation_failed` naming `mcp_enabled`).<br/>
         /// Dark launch: requires the `hosted_apis_access` entitlement (402 `hosted_apis_not_in_plan` otherwise).
         /// </summary>
         /// <param name="apiId"></param>
@@ -630,13 +636,18 @@ namespace Speechify
         /// internet-facing APIs (403 `hosted_api_public_refused`). Switching to a<br/>
         /// mode that names no caller (`consumer_key`, `public`) is refused while<br/>
         /// a route binds `{{user.*}}`: only `user_token`, `workspace` and `owner`<br/>
-        /// supply a person.<br/>
+        /// supply a person. Switching to `public` is also refused while a `tool`<br/>
+        /// route exists (a vendor call spends the workspace's vendor budget) and<br/>
+        /// while `mcp_enabled` is on, and switching the MCP face on is refused on<br/>
+        /// a `public` API (400 `validation_failed` naming `mcp_enabled`).<br/>
         /// Dark launch: requires the `hosted_apis_access` entitlement (402 `hosted_apis_not_in_plan` otherwise).
         /// </summary>
         /// <param name="apiId"></param>
         /// <param name="speechifyVersion"></param>
         /// <param name="name"></param>
-        /// <param name="description"></param>
+        /// <param name="description">
+        /// What the API is for; also the instructions an MCP client hands its model when `mcp_enabled` is on.
+        /// </param>
         /// <param name="authMode"></param>
         /// <param name="corsOrigins"></param>
         /// <param name="enabled">
@@ -645,6 +656,12 @@ namespace Speechify
         /// <param name="dailyRunCap"></param>
         /// <param name="dailyReadCap"></param>
         /// <param name="dailyWriteCap"></param>
+        /// <param name="mcpEnabled">
+        /// Switch the MCP face at `POST &lt;base_url&gt;/mcp` on or off. Refused with<br/>
+        /// 400 `validation_failed` naming `mcp_enabled` when the API is, or is<br/>
+        /// being made, `public`. Allow up to 15 seconds for the switch, like<br/>
+        /// any route change, to reach every server.
+        /// </param>
         /// <param name="userTokenJwksUrl">
         /// Replace the registered key set; an empty string removes it, after which the signing secret verifies tokens again.
         /// </param>
@@ -662,6 +679,7 @@ namespace Speechify
             int? dailyRunCap = default,
             int? dailyReadCap = default,
             int? dailyWriteCap = default,
+            bool? mcpEnabled = default,
             string? userTokenJwksUrl = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
@@ -676,6 +694,7 @@ namespace Speechify
                 DailyRunCap = dailyRunCap,
                 DailyReadCap = dailyReadCap,
                 DailyWriteCap = dailyWriteCap,
+                McpEnabled = mcpEnabled,
                 UserTokenJwksUrl = userTokenJwksUrl,
             };
 

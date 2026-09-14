@@ -4,7 +4,8 @@
 namespace Speechify
 {
     /// <summary>
-    /// Create a workspace tool definition (webhook / client / mcp only).
+    /// Create a workspace tool definition of kind `webhook`, `client`, `mcp`<br/>
+    /// or `openapi`. Built-ins are added per agent instead.
     /// </summary>
     public sealed partial class CreateToolRequest
     {
@@ -35,7 +36,8 @@ namespace Speechify
         /// - `builtin`: a worker-resident platform capability (e.g. end_call, play_audio), configured per-agent<br/>
         /// - `webhook`: worker signs a payload and POSTs it to your URL<br/>
         /// - `client`:  worker dispatches to the caller's browser/SDK via data channel<br/>
-        /// - `mcp`:     worker connects to a customer-hosted MCP server and proxies tool calls
+        /// - `mcp`:     worker connects to a customer-hosted MCP server and proxies tool calls<br/>
+        /// - `openapi`: a REST API described by its OpenAPI document, pinned to the operations you selected; the control plane executes every call
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("kind")]
         [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Speechify.JsonConverters.ToolKindJsonConverter))]
@@ -53,8 +55,11 @@ namespace Speechify
         /// <summary>
         /// The impact class. Omit it and the tool's impact is read off its<br/>
         /// shape instead, and keeps tracking it: a `GET` webhook reads, a<br/>
-        /// `POST` webhook reaches outside your team, an MCP or client tool can<br/>
-        /// do anything its author wired.<br/>
+        /// `POST` webhook reaches outside your team, an MCP, client or OpenAPI<br/>
+        /// tool can do anything its author wired.<br/>
+        /// On an OpenAPI tool it is the class of every operation that declares<br/>
+        /// none of its own and is not a GET or HEAD; classify operations one by<br/>
+        /// one with `OpenAPIOperation.action_class` instead of setting it here.<br/>
         /// On an MCP tool it is also the ceiling for what the server may claim<br/>
         /// about its own tools: a class a `tools/list` entry declares under<br/>
         /// `_meta["speechify/action_class"]` is honoured when it is at least<br/>
@@ -88,7 +93,8 @@ namespace Speechify
         /// - `builtin`: a worker-resident platform capability (e.g. end_call, play_audio), configured per-agent<br/>
         /// - `webhook`: worker signs a payload and POSTs it to your URL<br/>
         /// - `client`:  worker dispatches to the caller's browser/SDK via data channel<br/>
-        /// - `mcp`:     worker connects to a customer-hosted MCP server and proxies tool calls
+        /// - `mcp`:     worker connects to a customer-hosted MCP server and proxies tool calls<br/>
+        /// - `openapi`: a REST API described by its OpenAPI document, pinned to the operations you selected; the control plane executes every call
         /// </param>
         /// <param name="config"></param>
         /// <param name="projectId">
@@ -99,8 +105,11 @@ namespace Speechify
         /// <param name="actionClass">
         /// The impact class. Omit it and the tool's impact is read off its<br/>
         /// shape instead, and keeps tracking it: a `GET` webhook reads, a<br/>
-        /// `POST` webhook reaches outside your team, an MCP or client tool can<br/>
-        /// do anything its author wired.<br/>
+        /// `POST` webhook reaches outside your team, an MCP, client or OpenAPI<br/>
+        /// tool can do anything its author wired.<br/>
+        /// On an OpenAPI tool it is the class of every operation that declares<br/>
+        /// none of its own and is not a GET or HEAD; classify operations one by<br/>
+        /// one with `OpenAPIOperation.action_class` instead of setting it here.<br/>
         /// On an MCP tool it is also the ceiling for what the server may claim<br/>
         /// about its own tools: a class a `tools/list` entry declares under<br/>
         /// `_meta["speechify/action_class"]` is honoured when it is at least<br/>
