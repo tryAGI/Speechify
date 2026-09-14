@@ -31,7 +31,13 @@ namespace Speechify
         public required string Instructions { get; set; }
 
         /// <summary>
-        ///
+        /// Tool definitions (`tool_...`) the skill contributes to every agent<br/>
+        /// that attaches it, unioned with the agent's own tools: any kind a<br/>
+        /// `POST /v1/agents/tool-definitions` create makes (`webhook`,<br/>
+        /// `client`, `mcp` or `openapi`, where an `openapi` tool contributes<br/>
+        /// each of its operations). The tools do not have to be attached to<br/>
+        /// the agent; an attach is refused with 409 `skill_tool_name_conflict`<br/>
+        /// when one of their names collides with a tool the agent already has.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("tool_ids")]
         public global::System.Collections.Generic.IList<string>? ToolIds { get; set; }
@@ -72,7 +78,15 @@ namespace Speechify
         /// rather than a storage bound.
         /// </param>
         /// <param name="description"></param>
-        /// <param name="toolIds"></param>
+        /// <param name="toolIds">
+        /// Tool definitions (`tool_...`) the skill contributes to every agent<br/>
+        /// that attaches it, unioned with the agent's own tools: any kind a<br/>
+        /// `POST /v1/agents/tool-definitions` create makes (`webhook`,<br/>
+        /// `client`, `mcp` or `openapi`, where an `openapi` tool contributes<br/>
+        /// each of its operations). The tools do not have to be attached to<br/>
+        /// the agent; an attach is refused with 409 `skill_tool_name_conflict`<br/>
+        /// when one of their names collides with a tool the agent already has.
+        /// </param>
         /// <param name="knowledgeBaseIds"></param>
         /// <param name="variables">
         /// Default token values. Keys in the reserved `system__` namespace are refused.

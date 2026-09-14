@@ -6,9 +6,9 @@ namespace Speechify
     {
         /// <summary>
         /// Attach Tool<br/>
-        /// Attach an existing workspace tool definition (webhook / client /<br/>
-        /// MCP) to the agent by its definition id. Idempotent. To create and<br/>
-        /// attach in one step, POST to `/v1/agents/{agent_id}/tools` instead.
+        /// Attach an existing workspace tool definition (webhook, client,<br/>
+        /// MCP or OpenAPI) to the agent by its definition id. Idempotent. To<br/>
+        /// create and attach in one step, POST to `/v1/agents/{agent_id}/tools` instead.
         /// </summary>
         /// <param name="agentId"></param>
         /// <param name="toolId"></param>
@@ -24,9 +24,9 @@ namespace Speechify
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Attach Tool<br/>
-        /// Attach an existing workspace tool definition (webhook / client /<br/>
-        /// MCP) to the agent by its definition id. Idempotent. To create and<br/>
-        /// attach in one step, POST to `/v1/agents/{agent_id}/tools` instead.
+        /// Attach an existing workspace tool definition (webhook, client,<br/>
+        /// MCP or OpenAPI) to the agent by its definition id. Idempotent. To<br/>
+        /// create and attach in one step, POST to `/v1/agents/{agent_id}/tools` instead.
         /// </summary>
         /// <param name="agentId"></param>
         /// <param name="toolId"></param>

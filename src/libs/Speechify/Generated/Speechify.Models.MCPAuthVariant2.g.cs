@@ -4,9 +4,12 @@
 namespace Speechify
 {
     /// <summary>
-    /// Bearer auth for an MCP server. References a workspace credential of<br/>
-    /// kind `bearer` by id; the secret lives in the credentials vault and is<br/>
-    /// resolved server-side at dispatch, never inlined on the tool.
+    /// Bearer auth for an MCP server or an OpenAPI tool's REST API, and for<br/>
+    /// fetching an OpenAPI document behind that auth. References a workspace<br/>
+    /// credential of kind `bearer` by id; its token is sent as<br/>
+    /// `Authorization: Bearer &lt;token&gt;`. The secret lives in the credentials<br/>
+    /// vault and is resolved server-side when a call is made, never inlined<br/>
+    /// on the tool.
     /// </summary>
     public sealed partial class MCPAuthVariant2
     {
@@ -20,7 +23,8 @@ namespace Speechify
         /// <summary>
         /// `cred_&lt;crockford&gt;` id of a `bearer` credential in the workspace<br/>
         /// vault. Create the credential first via `POST /v1/credentials`,<br/>
-        /// then reference it here.
+        /// then reference it here. It must be workspace-shared or in the<br/>
+        /// tool's own project.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("credential_id")]
         [global::System.Text.Json.Serialization.JsonRequired]
@@ -38,7 +42,8 @@ namespace Speechify
         /// <param name="credentialId">
         /// `cred_&lt;crockford&gt;` id of a `bearer` credential in the workspace<br/>
         /// vault. Create the credential first via `POST /v1/credentials`,<br/>
-        /// then reference it here.
+        /// then reference it here. It must be workspace-shared or in the<br/>
+        /// tool's own project.
         /// </param>
         /// <param name="type">
         /// Discriminator value: bearer

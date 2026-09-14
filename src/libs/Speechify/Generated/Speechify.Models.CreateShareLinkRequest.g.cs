@@ -47,8 +47,8 @@ namespace Speechify
         /// <summary>
         /// Tools to opt this link into, by id — the same `tool_…` ids<br/>
         /// `listAgentTools` returns. Omit for the default posture (call<br/>
-        /// controls and knowledge search only). Opting a webhook or MCP<br/>
-        /// tool in lets a stranger drive it, so it is an explicit act<br/>
+        /// controls and knowledge search only). Opting a webhook, MCP or<br/>
+        /// OpenAPI tool in lets a stranger drive it, so it is an explicit act<br/>
         /// rather than something inherited from the agent. Every id must<br/>
         /// name a tool attached to this agent; anything else is a 400.
         /// </summary>
@@ -87,8 +87,8 @@ namespace Speechify
         /// <param name="allowedToolIds">
         /// Tools to opt this link into, by id — the same `tool_…` ids<br/>
         /// `listAgentTools` returns. Omit for the default posture (call<br/>
-        /// controls and knowledge search only). Opting a webhook or MCP<br/>
-        /// tool in lets a stranger drive it, so it is an explicit act<br/>
+        /// controls and knowledge search only). Opting a webhook, MCP or<br/>
+        /// OpenAPI tool in lets a stranger drive it, so it is an explicit act<br/>
         /// rather than something inherited from the agent. Every id must<br/>
         /// name a tool attached to this agent; anything else is a 400.
         /// </param>

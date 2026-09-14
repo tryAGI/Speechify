@@ -7,7 +7,7 @@ namespace Speechify
         /// <summary>
         /// List Agent Tools<br/>
         /// List everything this agent can do: built-in capabilities and<br/>
-        /// attached external tool definitions (webhook / client / MCP) in<br/>
+        /// attached tool definitions (webhook, client, MCP and OpenAPI) in<br/>
         /// one mixed-kind list. Each item carries its resolved config inline.<br/>
         /// Cursor-paginated: omit `cursor` for the first page; walk pages while<br/>
         /// `has_more` is true (default page size 50, max 200).
@@ -31,7 +31,7 @@ namespace Speechify
         /// <summary>
         /// List Agent Tools<br/>
         /// List everything this agent can do: built-in capabilities and<br/>
-        /// attached external tool definitions (webhook / client / MCP) in<br/>
+        /// attached tool definitions (webhook, client, MCP and OpenAPI) in<br/>
         /// one mixed-kind list. Each item carries its resolved config inline.<br/>
         /// Cursor-paginated: omit `cursor` for the first page; walk pages while<br/>
         /// `has_more` is true (default page size 50, max 200).

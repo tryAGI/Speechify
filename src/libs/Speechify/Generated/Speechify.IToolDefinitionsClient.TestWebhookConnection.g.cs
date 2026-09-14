@@ -16,6 +16,8 @@ namespace Speechify
         /// can recognise the test and skip its real side effect. Pass<br/>
         /// `tool_id` from the edit-form flow so the server signs the probe<br/>
         /// with the tool's stored HMAC secret.<br/>
+        /// Needs the `content.manage` permission, as creating a tool does: the<br/>
+        /// probe signs with a stored tool's secret for the URL in the request.<br/>
         /// A field this endpoint does not define is refused with `400<br/>
         /// validation_failed` naming every unknown field, rather than accepted<br/>
         /// and silently dropped.
@@ -43,6 +45,8 @@ namespace Speechify
         /// can recognise the test and skip its real side effect. Pass<br/>
         /// `tool_id` from the edit-form flow so the server signs the probe<br/>
         /// with the tool's stored HMAC secret.<br/>
+        /// Needs the `content.manage` permission, as creating a tool does: the<br/>
+        /// probe signs with a stored tool's secret for the URL in the request.<br/>
         /// A field this endpoint does not define is refused with `400<br/>
         /// validation_failed` naming every unknown field, rather than accepted<br/>
         /// and silently dropped.
@@ -70,6 +74,8 @@ namespace Speechify
         /// can recognise the test and skip its real side effect. Pass<br/>
         /// `tool_id` from the edit-form flow so the server signs the probe<br/>
         /// with the tool's stored HMAC secret.<br/>
+        /// Needs the `content.manage` permission, as creating a tool does: the<br/>
+        /// probe signs with a stored tool's secret for the URL in the request.<br/>
         /// A field this endpoint does not define is refused with `400<br/>
         /// validation_failed` naming every unknown field, rather than accepted<br/>
         /// and silently dropped.

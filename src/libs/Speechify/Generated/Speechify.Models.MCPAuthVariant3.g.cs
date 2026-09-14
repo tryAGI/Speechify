@@ -4,10 +4,14 @@
 namespace Speechify
 {
     /// <summary>
-    /// OAuth2 client-credentials auth for an MCP server. References a<br/>
-    /// workspace credential of kind `oauth2_client_credentials` by id; the<br/>
-    /// token_url / client_id / client_secret / scopes all live in the vault<br/>
-    /// credential and are resolved server-side at dispatch.
+    /// OAuth2 client-credentials auth for an MCP server or an OpenAPI tool's<br/>
+    /// REST API, and for fetching an OpenAPI document behind that auth.<br/>
+    /// References a workspace credential of kind `oauth2_client_credentials`<br/>
+    /// by id. The platform mints an access token from the credential's<br/>
+    /// `token_url`, sends it as `Authorization: Bearer &lt;token&gt;`, and reuses it<br/>
+    /// until it nears expiry; the `token_url`, `client_id`, `client_secret`<br/>
+    /// and `scopes` live in the vault and are resolved server-side, never<br/>
+    /// inlined on the tool.
     /// </summary>
     public sealed partial class MCPAuthVariant3
     {
@@ -20,7 +24,8 @@ namespace Speechify
 
         /// <summary>
         /// `cred_&lt;crockford&gt;` id of an `oauth2_client_credentials` credential<br/>
-        /// in the workspace vault.
+        /// in the workspace vault. Create it first via `POST /v1/credentials`.<br/>
+        /// It must be workspace-shared or in the tool's own project.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("credential_id")]
         [global::System.Text.Json.Serialization.JsonRequired]
@@ -37,7 +42,8 @@ namespace Speechify
         /// </summary>
         /// <param name="credentialId">
         /// `cred_&lt;crockford&gt;` id of an `oauth2_client_credentials` credential<br/>
-        /// in the workspace vault.
+        /// in the workspace vault. Create it first via `POST /v1/credentials`.<br/>
+        /// It must be workspace-shared or in the tool's own project.
         /// </param>
         /// <param name="type">
         /// Discriminator value: oauth2_client_credentials

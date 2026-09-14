@@ -15,7 +15,7 @@ namespace Speechify
         public string? Name { get; set; }
 
         /// <summary>
-        ///
+        /// What the API is for; also the instructions an MCP client hands its model when `mcp_enabled` is on.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("description")]
         public string? Description { get; set; }
@@ -58,6 +58,15 @@ namespace Speechify
         public int? DailyWriteCap { get; set; }
 
         /// <summary>
+        /// Switch the MCP face at `POST &lt;base_url&gt;/mcp` on or off. Refused with<br/>
+        /// 400 `validation_failed` naming `mcp_enabled` when the API is, or is<br/>
+        /// being made, `public`. Allow up to 15 seconds for the switch, like<br/>
+        /// any route change, to reach every server.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("mcp_enabled")]
+        public bool? McpEnabled { get; set; }
+
+        /// <summary>
         /// Replace the registered key set; an empty string removes it, after which the signing secret verifies tokens again.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("user_token_jwks_url")]
@@ -73,7 +82,9 @@ namespace Speechify
         /// Initializes a new instance of the <see cref="UpdateHostedAPIRequest" /> class.
         /// </summary>
         /// <param name="name"></param>
-        /// <param name="description"></param>
+        /// <param name="description">
+        /// What the API is for; also the instructions an MCP client hands its model when `mcp_enabled` is on.
+        /// </param>
         /// <param name="authMode"></param>
         /// <param name="corsOrigins"></param>
         /// <param name="enabled">
@@ -82,6 +93,12 @@ namespace Speechify
         /// <param name="dailyRunCap"></param>
         /// <param name="dailyReadCap"></param>
         /// <param name="dailyWriteCap"></param>
+        /// <param name="mcpEnabled">
+        /// Switch the MCP face at `POST &lt;base_url&gt;/mcp` on or off. Refused with<br/>
+        /// 400 `validation_failed` naming `mcp_enabled` when the API is, or is<br/>
+        /// being made, `public`. Allow up to 15 seconds for the switch, like<br/>
+        /// any route change, to reach every server.
+        /// </param>
         /// <param name="userTokenJwksUrl">
         /// Replace the registered key set; an empty string removes it, after which the signing secret verifies tokens again.
         /// </param>
@@ -97,6 +114,7 @@ namespace Speechify
             int? dailyRunCap,
             int? dailyReadCap,
             int? dailyWriteCap,
+            bool? mcpEnabled,
             string? userTokenJwksUrl)
         {
             this.Name = name;
@@ -107,6 +125,7 @@ namespace Speechify
             this.DailyRunCap = dailyRunCap;
             this.DailyReadCap = dailyReadCap;
             this.DailyWriteCap = dailyWriteCap;
+            this.McpEnabled = mcpEnabled;
             this.UserTokenJwksUrl = userTokenJwksUrl;
         }
 

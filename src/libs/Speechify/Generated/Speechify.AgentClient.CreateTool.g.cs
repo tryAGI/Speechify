@@ -50,12 +50,12 @@ namespace Speechify
         /// Add a tool to the agent. With `kind=builtin` this creates a<br/>
         /// per-agent built-in instance (e.g. `end_call`, `play_audio`); the<br/>
         /// `builtin` capability name comes from `config.builtin`. With<br/>
-        /// `kind=webhook`, `client`, or `mcp` this atomically creates a<br/>
+        /// `kind=webhook`, `client`, `mcp` or `openapi` this atomically creates a<br/>
         /// workspace tool definition AND attaches it to the agent in one<br/>
         /// call. To attach a definition that already exists, use<br/>
         /// `PUT /v1/agents/{agent_id}/tools/{tool_id}` instead.<br/>
-        /// Names are refused two ways: a `webhook` / `client` / `mcp` definition<br/>
-        /// is unique per **project**, a `builtin` is unique per **agent**, and an<br/>
+        /// Names are refused two ways: a `webhook` / `client` / `mcp` /<br/>
+        /// `openapi` definition is unique per **project**, a `builtin` is unique per **agent**, and an<br/>
         /// agent may not carry both under one name. Either refusal is `409<br/>
         /// tool_name_taken` with `error.details.held_by` naming the holder, which<br/>
         /// for a definition is not necessarily attached to this agent.<br/>
@@ -96,12 +96,12 @@ namespace Speechify
         /// Add a tool to the agent. With `kind=builtin` this creates a<br/>
         /// per-agent built-in instance (e.g. `end_call`, `play_audio`); the<br/>
         /// `builtin` capability name comes from `config.builtin`. With<br/>
-        /// `kind=webhook`, `client`, or `mcp` this atomically creates a<br/>
+        /// `kind=webhook`, `client`, `mcp` or `openapi` this atomically creates a<br/>
         /// workspace tool definition AND attaches it to the agent in one<br/>
         /// call. To attach a definition that already exists, use<br/>
         /// `PUT /v1/agents/{agent_id}/tools/{tool_id}` instead.<br/>
-        /// Names are refused two ways: a `webhook` / `client` / `mcp` definition<br/>
-        /// is unique per **project**, a `builtin` is unique per **agent**, and an<br/>
+        /// Names are refused two ways: a `webhook` / `client` / `mcp` /<br/>
+        /// `openapi` definition is unique per **project**, a `builtin` is unique per **agent**, and an<br/>
         /// agent may not carry both under one name. Either refusal is `409<br/>
         /// tool_name_taken` with `error.details.held_by` naming the holder, which<br/>
         /// for a definition is not necessarily attached to this agent.<br/>
@@ -644,12 +644,12 @@ namespace Speechify
         /// Add a tool to the agent. With `kind=builtin` this creates a<br/>
         /// per-agent built-in instance (e.g. `end_call`, `play_audio`); the<br/>
         /// `builtin` capability name comes from `config.builtin`. With<br/>
-        /// `kind=webhook`, `client`, or `mcp` this atomically creates a<br/>
+        /// `kind=webhook`, `client`, `mcp` or `openapi` this atomically creates a<br/>
         /// workspace tool definition AND attaches it to the agent in one<br/>
         /// call. To attach a definition that already exists, use<br/>
         /// `PUT /v1/agents/{agent_id}/tools/{tool_id}` instead.<br/>
-        /// Names are refused two ways: a `webhook` / `client` / `mcp` definition<br/>
-        /// is unique per **project**, a `builtin` is unique per **agent**, and an<br/>
+        /// Names are refused two ways: a `webhook` / `client` / `mcp` /<br/>
+        /// `openapi` definition is unique per **project**, a `builtin` is unique per **agent**, and an<br/>
         /// agent may not carry both under one name. Either refusal is `409<br/>
         /// tool_name_taken` with `error.details.held_by` naming the holder, which<br/>
         /// for a definition is not necessarily attached to this agent.<br/>
@@ -667,7 +667,8 @@ namespace Speechify
         /// - `builtin`: a worker-resident platform capability (e.g. end_call, play_audio), configured per-agent<br/>
         /// - `webhook`: worker signs a payload and POSTs it to your URL<br/>
         /// - `client`:  worker dispatches to the caller's browser/SDK via data channel<br/>
-        /// - `mcp`:     worker connects to a customer-hosted MCP server and proxies tool calls
+        /// - `mcp`:     worker connects to a customer-hosted MCP server and proxies tool calls<br/>
+        /// - `openapi`: a REST API described by its OpenAPI document, pinned to the operations you selected; the control plane executes every call
         /// </param>
         /// <param name="name"></param>
         /// <param name="description"></param>
@@ -676,7 +677,7 @@ namespace Speechify
         /// </param>
         /// <param name="config"></param>
         /// <param name="actionClass">
-        /// The impact class for a shared kind (`webhook`/`client`/`mcp`),<br/>
+        /// The impact class for a shared kind (`webhook`/`client`/`mcp`/`openapi`),<br/>
         /// whose definition is created here. Omitted, the server stamps the<br/>
         /// verb default. Ignored for a built-in, whose class the platform fixes.
         /// </param>

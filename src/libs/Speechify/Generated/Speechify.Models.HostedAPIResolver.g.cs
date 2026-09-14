@@ -18,7 +18,28 @@ namespace Speechify
     /// `run_latest` (trigger_id of a schedule trigger),<br/>
     /// `run` (trigger_id of a webhook trigger, wait_seconds),<br/>
     /// `file` (file_path of one published file; or, on a route whose path<br/>
-    /// ends in `*`, file_root and file_index for a whole published tree).
+    /// ends in `*`, file_root and file_index for a whole published tree),<br/>
+    /// `tool` (tool_id of an `openapi` tool definition and the `operation`<br/>
+    /// on it: the POST body is the operation's arguments, held to its<br/>
+    /// argument schema, and the vendor's answer after the operation's<br/>
+    /// `response` mapping is the response, or `{"text": ...}` when the vendor<br/>
+    /// answered text. Only an operation whose effective class is `read`, on a<br/>
+    /// tool whose `approval` is null or `auto`, may be served, and never on a<br/>
+    /// public API; a route write that names anything else is refused with 400<br/>
+    /// `validation_failed` on `resolver.tool_id`. Because a definition can<br/>
+    /// change after its route is written, every call re-checks it: an<br/>
+    /// operation no longer classified `read`, or a tool whose `approval` is no<br/>
+    /// longer null or `auto`, answers 403 `route_tool_not_readable`; a tool<br/>
+    /// deleted, moved to another project, no longer of kind `openapi` or<br/>
+    /// without the operation answers 409 `route_tool_unavailable`, which no<br/>
+    /// retry clears until the route or the tool is fixed. Arguments that do<br/>
+    /// not fit the schema answer 400 `validation_failed`; the definition's<br/>
+    /// `max_requests_per_minute` and the vendor's own throttle both answer 429<br/>
+    /// `route_upstream_rate_limited` with `Retry-After`; a vendor error<br/>
+    /// answers 502 `route_upstream_error` with the vendor's status in<br/>
+    /// `error.details.upstream_status`, and an unreachable vendor or a<br/>
+    /// credential that no longer resolves answers 502 `route_upstream_error`<br/>
+    /// without it).
     /// </summary>
     public sealed partial class HostedAPIResolver
     {
@@ -147,6 +168,29 @@ namespace Speechify
         public int? WaitSeconds { get; set; }
 
         /// <summary>
+        /// For a `tool` route: the `openapi` tool definition whose operation<br/>
+        /// the route calls, as `POST /v1/agents/tool-definitions` returned<br/>
+        /// it. It must live in the API's project (409<br/>
+        /// `cross_project_reference` otherwise). The route refuses a definition<br/>
+        /// of another kind, an operation whose effective class is not `read`,<br/>
+        /// and a tool whose `approval` is set to anything but `auto`, since a<br/>
+        /// route has nobody to approve a call: set it to null or `auto` first.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("tool_id")]
+        public string? ToolId { get; set; }
+
+        /// <summary>
+        /// For a `tool` route: the operation to call, as the definition's<br/>
+        /// `operations[].id` names it (the same value<br/>
+        /// `POST /v1/agents/tool-definitions/test-openapi-call` takes as<br/>
+        /// `operation`). The route is a POST whose JSON body is the<br/>
+        /// operation's arguments, validated against the argument schema the<br/>
+        /// definition publishes.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("operation")]
+        public string? Operation { get; set; }
+
+        /// <summary>
         /// Additional properties that are not explicitly defined in the schema
         /// </summary>
         [global::System.Text.Json.Serialization.JsonExtensionData]
@@ -219,6 +263,23 @@ namespace Speechify
         /// <param name="waitSeconds">
         /// How long a `run` route waits for the run before answering 202 (default 20; 0 answers 202 at once).
         /// </param>
+        /// <param name="toolId">
+        /// For a `tool` route: the `openapi` tool definition whose operation<br/>
+        /// the route calls, as `POST /v1/agents/tool-definitions` returned<br/>
+        /// it. It must live in the API's project (409<br/>
+        /// `cross_project_reference` otherwise). The route refuses a definition<br/>
+        /// of another kind, an operation whose effective class is not `read`,<br/>
+        /// and a tool whose `approval` is set to anything but `auto`, since a<br/>
+        /// route has nobody to approve a call: set it to null or `auto` first.
+        /// </param>
+        /// <param name="operation">
+        /// For a `tool` route: the operation to call, as the definition's<br/>
+        /// `operations[].id` names it (the same value<br/>
+        /// `POST /v1/agents/tool-definitions/test-openapi-call` takes as<br/>
+        /// `operation`). The route is a POST whose JSON body is the<br/>
+        /// operation's arguments, validated against the argument schema the<br/>
+        /// definition publishes.
+        /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
 #endif
@@ -237,7 +298,9 @@ namespace Speechify
             string? fileRoot,
             string? fileIndex,
             string? triggerId,
-            int? waitSeconds)
+            int? waitSeconds,
+            string? toolId,
+            string? operation)
         {
             this.Type = type;
             this.StoreId = storeId;
@@ -254,6 +317,8 @@ namespace Speechify
             this.FileIndex = fileIndex;
             this.TriggerId = triggerId;
             this.WaitSeconds = waitSeconds;
+            this.ToolId = toolId;
+            this.Operation = operation;
         }
 
         /// <summary>

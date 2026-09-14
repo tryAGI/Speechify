@@ -5,7 +5,11 @@
 namespace Speechify
 {
     /// <summary>
-    /// Discriminated union over `type`.
+    /// How the platform authenticates to an MCP server or an OpenAPI tool's<br/>
+    /// REST API: `none`, `bearer` or `oauth2_client_credentials`, a<br/>
+    /// discriminated union over `type`. Other credential kinds (an API key<br/>
+    /// in a custom header or query parameter, HTTP Basic) are not supported<br/>
+    /// here.
     /// </summary>
     public readonly partial struct MCPAuth : global::System.IEquatable<MCPAuth>
     {
@@ -52,9 +56,12 @@ namespace Speechify
             : throw new global::System.InvalidOperationException($"Expected union variant 'None' but the value was {ToString()}.");
 
         /// <summary>
-        /// Bearer auth for an MCP server. References a workspace credential of<br/>
-        /// kind `bearer` by id; the secret lives in the credentials vault and is<br/>
-        /// resolved server-side at dispatch, never inlined on the tool.
+        /// Bearer auth for an MCP server or an OpenAPI tool's REST API, and for<br/>
+        /// fetching an OpenAPI document behind that auth. References a workspace<br/>
+        /// credential of kind `bearer` by id; its token is sent as<br/>
+        /// `Authorization: Bearer &lt;token&gt;`. The secret lives in the credentials<br/>
+        /// vault and is resolved server-side when a call is made, never inlined<br/>
+        /// on the tool.
         /// </summary>
 #if NET6_0_OR_GREATER
         public global::Speechify.MCPAuthVariant2? Bearer { get; init; }
@@ -91,10 +98,14 @@ namespace Speechify
             : throw new global::System.InvalidOperationException($"Expected union variant 'Bearer' but the value was {ToString()}.");
 
         /// <summary>
-        /// OAuth2 client-credentials auth for an MCP server. References a<br/>
-        /// workspace credential of kind `oauth2_client_credentials` by id; the<br/>
-        /// token_url / client_id / client_secret / scopes all live in the vault<br/>
-        /// credential and are resolved server-side at dispatch.
+        /// OAuth2 client-credentials auth for an MCP server or an OpenAPI tool's<br/>
+        /// REST API, and for fetching an OpenAPI document behind that auth.<br/>
+        /// References a workspace credential of kind `oauth2_client_credentials`<br/>
+        /// by id. The platform mints an access token from the credential's<br/>
+        /// `token_url`, sends it as `Authorization: Bearer &lt;token&gt;`, and reuses it<br/>
+        /// until it nears expiry; the `token_url`, `client_id`, `client_secret`<br/>
+        /// and `scopes` live in the vault and are resolved server-side, never<br/>
+        /// inlined on the tool.
         /// </summary>
 #if NET6_0_OR_GREATER
         public global::Speechify.MCPAuthVariant3? Oauth2ClientCredentials { get; init; }

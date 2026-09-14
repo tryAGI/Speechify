@@ -47,8 +47,12 @@ namespace Speechify
 
         /// <summary>
         /// Update Tool<br/>
-        /// Update a tool. Tool kind is immutable — create a new tool to change<br/>
+        /// Update a tool. Tool kind is immutable - create a new tool to change<br/>
         /// it.<br/>
+        /// `config` replaces the stored config whole; it is never merged. To<br/>
+        /// change one part of it (one `openapi` operation's `response` mapping,<br/>
+        /// say), read the tool with `GET`, edit that part, and send the full<br/>
+        /// config back.<br/>
         /// A field this endpoint does not define is refused with `400<br/>
         /// validation_failed` naming every unknown field, rather than accepted<br/>
         /// and silently dropped.<br/>
@@ -83,8 +87,12 @@ namespace Speechify
         }
         /// <summary>
         /// Update Tool<br/>
-        /// Update a tool. Tool kind is immutable — create a new tool to change<br/>
+        /// Update a tool. Tool kind is immutable - create a new tool to change<br/>
         /// it.<br/>
+        /// `config` replaces the stored config whole; it is never merged. To<br/>
+        /// change one part of it (one `openapi` operation's `response` mapping,<br/>
+        /// say), read the tool with `GET`, edit that part, and send the full<br/>
+        /// config back.<br/>
         /// A field this endpoint does not define is refused with `400<br/>
         /// validation_failed` naming every unknown field, rather than accepted<br/>
         /// and silently dropped.<br/>
@@ -621,8 +629,12 @@ namespace Speechify
         }
         /// <summary>
         /// Update Tool<br/>
-        /// Update a tool. Tool kind is immutable — create a new tool to change<br/>
+        /// Update a tool. Tool kind is immutable - create a new tool to change<br/>
         /// it.<br/>
+        /// `config` replaces the stored config whole; it is never merged. To<br/>
+        /// change one part of it (one `openapi` operation's `response` mapping,<br/>
+        /// say), read the tool with `GET`, edit that part, and send the full<br/>
+        /// config back.<br/>
         /// A field this endpoint does not define is refused with `400<br/>
         /// validation_failed` naming every unknown field, rather than accepted<br/>
         /// and silently dropped.<br/>

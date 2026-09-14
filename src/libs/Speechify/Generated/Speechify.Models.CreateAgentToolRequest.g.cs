@@ -6,7 +6,7 @@ namespace Speechify
     /// <summary>
     /// Add a tool to an agent. With `kind=builtin`, `config` carries a<br/>
     /// `BuiltinToolConfig` and a per-agent built-in instance is created.<br/>
-    /// With `kind=webhook`/`client`/`mcp`, `config` carries that kind's<br/>
+    /// With `kind=webhook`/`client`/`mcp`/`openapi`, `config` carries that kind's<br/>
     /// config and a workspace definition is created AND attached in one<br/>
     /// call.
     /// </summary>
@@ -17,7 +17,8 @@ namespace Speechify
         /// - `builtin`: a worker-resident platform capability (e.g. end_call, play_audio), configured per-agent<br/>
         /// - `webhook`: worker signs a payload and POSTs it to your URL<br/>
         /// - `client`:  worker dispatches to the caller's browser/SDK via data channel<br/>
-        /// - `mcp`:     worker connects to a customer-hosted MCP server and proxies tool calls
+        /// - `mcp`:     worker connects to a customer-hosted MCP server and proxies tool calls<br/>
+        /// - `openapi`: a REST API described by its OpenAPI document, pinned to the operations you selected; the control plane executes every call
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("kind")]
         [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Speechify.JsonConverters.ToolKindJsonConverter))]
@@ -52,7 +53,7 @@ namespace Speechify
         public required global::Speechify.CreateAgentToolRequestConfig Config { get; set; }
 
         /// <summary>
-        /// The impact class for a shared kind (`webhook`/`client`/`mcp`),<br/>
+        /// The impact class for a shared kind (`webhook`/`client`/`mcp`/`openapi`),<br/>
         /// whose definition is created here. Omitted, the server stamps the<br/>
         /// verb default. Ignored for a built-in, whose class the platform fixes.
         /// </summary>
@@ -81,7 +82,8 @@ namespace Speechify
         /// - `builtin`: a worker-resident platform capability (e.g. end_call, play_audio), configured per-agent<br/>
         /// - `webhook`: worker signs a payload and POSTs it to your URL<br/>
         /// - `client`:  worker dispatches to the caller's browser/SDK via data channel<br/>
-        /// - `mcp`:     worker connects to a customer-hosted MCP server and proxies tool calls
+        /// - `mcp`:     worker connects to a customer-hosted MCP server and proxies tool calls<br/>
+        /// - `openapi`: a REST API described by its OpenAPI document, pinned to the operations you selected; the control plane executes every call
         /// </param>
         /// <param name="name"></param>
         /// <param name="config"></param>
@@ -90,7 +92,7 @@ namespace Speechify
         /// Defaults to true on the server when omitted.
         /// </param>
         /// <param name="actionClass">
-        /// The impact class for a shared kind (`webhook`/`client`/`mcp`),<br/>
+        /// The impact class for a shared kind (`webhook`/`client`/`mcp`/`openapi`),<br/>
         /// whose definition is created here. Omitted, the server stamps the<br/>
         /// verb default. Ignored for a built-in, whose class the platform fixes.
         /// </param>

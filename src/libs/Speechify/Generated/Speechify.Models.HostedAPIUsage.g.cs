@@ -16,7 +16,7 @@ namespace Speechify
         public required string Day { get; set; }
 
         /// <summary>
-        /// Reads served from storage today across the API's routes.
+        /// Reads served today across the API's store, file, run_latest and tool routes.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("reads")]
         [global::System.Text.Json.Serialization.JsonRequired]
@@ -84,7 +84,7 @@ namespace Speechify
         /// The UTC day the counters cover, `YYYY-MM-DD`.
         /// </param>
         /// <param name="reads">
-        /// Reads served from storage today across the API's routes.
+        /// Reads served today across the API's store, file, run_latest and tool routes.
         /// </param>
         /// <param name="dailyReadCap"></param>
         /// <param name="runs">

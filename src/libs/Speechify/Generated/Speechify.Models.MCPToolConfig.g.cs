@@ -60,7 +60,11 @@ namespace Speechify
         public global::Speechify.MCPTransport? Transport { get; set; }
 
         /// <summary>
-        /// Discriminated union over `type`.
+        /// How the platform authenticates to an MCP server or an OpenAPI tool's<br/>
+        /// REST API: `none`, `bearer` or `oauth2_client_credentials`, a<br/>
+        /// discriminated union over `type`. Other credential kinds (an API key<br/>
+        /// in a custom header or query parameter, HTTP Basic) are not supported<br/>
+        /// here.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("auth")]
         [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Speechify.JsonConverters.MCPAuthJsonConverter))]
@@ -122,6 +126,17 @@ namespace Speechify
         public global::System.Collections.Generic.Dictionary<string, global::Speechify.ToolActionClass>? ActionClasses { get; set; }
 
         /// <summary>
+        /// What each of the server's tools' JSON results passes through before<br/>
+        /// the agent reads it, keyed by the remote tool name: an item bound, a<br/>
+        /// projection and derived string fields. Applies on durable runs only;<br/>
+        /// a live session's MCP call is made by the worker's own client and<br/>
+        /// never crosses the control plane, so a live agent sees the server's<br/>
+        /// answer as it came. A tool you do not name here is passed through.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("response_mappings")]
+        public global::System.Collections.Generic.Dictionary<string, global::Speechify.ToolResponseMapping>? ResponseMappings { get; set; }
+
+        /// <summary>
         /// Additional properties that are not explicitly defined in the schema
         /// </summary>
         [global::System.Text.Json.Serialization.JsonExtensionData]
@@ -132,7 +147,11 @@ namespace Speechify
         /// </summary>
         /// <param name="endpoint"></param>
         /// <param name="auth">
-        /// Discriminated union over `type`.
+        /// How the platform authenticates to an MCP server or an OpenAPI tool's<br/>
+        /// REST API: `none`, `bearer` or `oauth2_client_credentials`, a<br/>
+        /// discriminated union over `type`. Other credential kinds (an API key<br/>
+        /// in a custom header or query parameter, HTTP Basic) are not supported<br/>
+        /// here.
         /// </param>
         /// <param name="transport">
         /// MCP transport. `http_streamable` is the default; `sse` is the<br/>
@@ -183,6 +202,14 @@ namespace Speechify
         /// server and no entry here. What you declare here beats what the<br/>
         /// server declares.
         /// </param>
+        /// <param name="responseMappings">
+        /// What each of the server's tools' JSON results passes through before<br/>
+        /// the agent reads it, keyed by the remote tool name: an item bound, a<br/>
+        /// projection and derived string fields. Applies on durable runs only;<br/>
+        /// a live session's MCP call is made by the worker's own client and<br/>
+        /// never crosses the control plane, so a live agent sees the server's<br/>
+        /// answer as it came. A tool you do not name here is passed through.
+        /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
 #endif
@@ -192,7 +219,8 @@ namespace Speechify
             global::Speechify.MCPTransport? transport,
             int? timeoutMs,
             global::Speechify.LongRunningToolConfig? longRunning,
-            global::System.Collections.Generic.Dictionary<string, global::Speechify.ToolActionClass>? actionClasses)
+            global::System.Collections.Generic.Dictionary<string, global::Speechify.ToolActionClass>? actionClasses,
+            global::System.Collections.Generic.Dictionary<string, global::Speechify.ToolResponseMapping>? responseMappings)
         {
             this.Endpoint = endpoint ?? throw new global::System.ArgumentNullException(nameof(endpoint));
             this.Transport = transport;
@@ -200,6 +228,7 @@ namespace Speechify
             this.TimeoutMs = timeoutMs;
             this.LongRunning = longRunning;
             this.ActionClasses = actionClasses;
+            this.ResponseMappings = responseMappings;
         }
 
         /// <summary>
