@@ -28,6 +28,7 @@ namespace Speechify
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(int))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<string>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.DateTime))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.ProjectMonthlyBudgetStatus), TypeInfoPropertyName = "ProjectMonthlyBudgetStatus2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.Project))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.ListProjectsResponse))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Speechify.Project>))]
@@ -69,6 +70,7 @@ namespace Speechify
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.ErrorCode?), TypeInfoPropertyName = "NullableErrorCode2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(int?))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.DateTime?))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.ProjectMonthlyBudgetStatus?), TypeInfoPropertyName = "NullableProjectMonthlyBudgetStatus2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.DeleteProjectRequestMode?), TypeInfoPropertyName = "NullableDeleteProjectRequestMode2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.ProjectTeardownBlockerKind?), TypeInfoPropertyName = "NullableProjectTeardownBlockerKind2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.ProjectTeardownBlockerBlocksItems?), TypeInfoPropertyName = "NullableProjectTeardownBlockerBlocksItems2")]
@@ -153,6 +155,10 @@ namespace Speechify
 
                     || typeToConvert == typeof(global::Speechify.ErrorCode?)
 
+                    || typeToConvert == typeof(global::Speechify.ProjectMonthlyBudgetStatus)
+
+                    || typeToConvert == typeof(global::Speechify.ProjectMonthlyBudgetStatus?)
+
                     || typeToConvert == typeof(global::Speechify.DeleteProjectRequestMode)
 
                     || typeToConvert == typeof(global::Speechify.DeleteProjectRequestMode?)
@@ -190,6 +196,16 @@ namespace Speechify
                 if (typeToConvert == typeof(global::Speechify.ErrorCode?))
                 {
                     return new global::Speechify.JsonConverters.ErrorCodeNullableJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.ProjectMonthlyBudgetStatus))
+                {
+                    return new global::Speechify.JsonConverters.ProjectMonthlyBudgetStatusJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.ProjectMonthlyBudgetStatus?))
+                {
+                    return new global::Speechify.JsonConverters.ProjectMonthlyBudgetStatusNullableJsonConverter();
                 }
 
                 if (typeToConvert == typeof(global::Speechify.DeleteProjectRequestMode))

@@ -124,6 +124,30 @@ namespace Speechify
         public double? MonthlySpend { get; set; }
 
         /// <summary>
+        /// Where `monthly_spend` stands against `monthly_budget`, present<br/>
+        /// only when both are: `warning` from 80% of the budget, `reached`<br/>
+        /// once the spend has reached it and new billable work attributed to<br/>
+        /// the project is refused with `402 project_spend_limit_exceeded`,<br/>
+        /// `ok` below 80%. These are the thresholds the<br/>
+        /// `project.spend_budget.warning` and `project.spend_budget.reached`<br/>
+        /// webhook events fire at, so polling this field and subscribing to<br/>
+        /// the events give the same answer.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("monthly_budget_status")]
+        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Speechify.JsonConverters.ProjectMonthlyBudgetStatusJsonConverter))]
+        public global::Speechify.ProjectMonthlyBudgetStatus? MonthlyBudgetStatus { get; set; }
+
+        /// <summary>
+        /// `monthly_budget` minus `monthly_spend` in US dollars, present only<br/>
+        /// when both are. Negative once the spend has passed the budget, by<br/>
+        /// the amount it overshot: enforcement trails billed usage by a<br/>
+        /// couple of minutes, so work already under way can carry a project<br/>
+        /// past its budget.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("monthly_budget_remaining")]
+        public double? MonthlyBudgetRemaining { get; set; }
+
+        /// <summary>
         /// Workspace-scoped project identifier (prefixed external id).
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("id")]
@@ -273,6 +297,23 @@ namespace Speechify
         /// whenever the billing plane answered - regardless of whether a<br/>
         /// spend limit is set.
         /// </param>
+        /// <param name="monthlyBudgetStatus">
+        /// Where `monthly_spend` stands against `monthly_budget`, present<br/>
+        /// only when both are: `warning` from 80% of the budget, `reached`<br/>
+        /// once the spend has reached it and new billable work attributed to<br/>
+        /// the project is refused with `402 project_spend_limit_exceeded`,<br/>
+        /// `ok` below 80%. These are the thresholds the<br/>
+        /// `project.spend_budget.warning` and `project.spend_budget.reached`<br/>
+        /// webhook events fire at, so polling this field and subscribing to<br/>
+        /// the events give the same answer.
+        /// </param>
+        /// <param name="monthlyBudgetRemaining">
+        /// `monthly_budget` minus `monthly_spend` in US dollars, present only<br/>
+        /// when both are. Negative once the spend has passed the budget, by<br/>
+        /// the amount it overshot: enforcement trails billed usage by a<br/>
+        /// couple of minutes, so work already under way can carry a project<br/>
+        /// past its budget.
+        /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
 #endif
@@ -288,7 +329,9 @@ namespace Speechify
             int? maxConcurrentRuns,
             int? maxRequestsPerMinute,
             double? monthlyBudget,
-            double? monthlySpend)
+            double? monthlySpend,
+            global::Speechify.ProjectMonthlyBudgetStatus? monthlyBudgetStatus,
+            double? monthlyBudgetRemaining)
         {
             this.ArchivedAt = archivedAt;
             this.PurgedAt = purgedAt;
@@ -297,6 +340,8 @@ namespace Speechify
             this.MaxRequestsPerMinute = maxRequestsPerMinute;
             this.MonthlyBudget = monthlyBudget;
             this.MonthlySpend = monthlySpend;
+            this.MonthlyBudgetStatus = monthlyBudgetStatus;
+            this.MonthlyBudgetRemaining = monthlyBudgetRemaining;
             this.Id = id ?? throw new global::System.ArgumentNullException(nameof(id));
             this.Name = name ?? throw new global::System.ArgumentNullException(nameof(name));
             this.ResourceCount = resourceCount;

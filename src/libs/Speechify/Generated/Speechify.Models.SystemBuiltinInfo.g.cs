@@ -105,6 +105,23 @@ namespace Speechify
         public bool? Priced { get; set; }
 
         /// <summary>
+        /// The surfaces a call to this built-in actually executes on in this<br/>
+        /// deployment, and the answer to read before relying on one. The flags<br/>
+        /// above say where a built-in could ever work; this says where it does<br/>
+        /// today. A `control_plane` built-in whose vendor is not configured, or<br/>
+        /// whose rollout has not reached a surface, is left out, exactly as it is<br/>
+        /// left out of what that surface offers the model. `text` means at least<br/>
+        /// one text surface runs it: a picture tool, for instance, is offered only<br/>
+        /// in a channel that renders pictures. `default_on` applies only on the<br/>
+        /// surfaces listed here. An empty array means nothing in this deployment<br/>
+        /// executes it.<br/>
+        /// Deliberately not required, so a console deployed ahead of the server<br/>
+        /// reads it as absent, which means no claim rather than "runs nowhere".
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("reach")]
+        public global::System.Collections.Generic.IList<global::Speechify.ToolReach>? Reach { get; set; }
+
+        /// <summary>
         /// Additional properties that are not explicitly defined in the schema
         /// </summary>
         [global::System.Text.Json.Serialization.JsonExtensionData]
@@ -170,6 +187,20 @@ namespace Speechify
         /// reads it as absent and simply shows no badge, rather than failing on<br/>
         /// a missing required field.
         /// </param>
+        /// <param name="reach">
+        /// The surfaces a call to this built-in actually executes on in this<br/>
+        /// deployment, and the answer to read before relying on one. The flags<br/>
+        /// above say where a built-in could ever work; this says where it does<br/>
+        /// today. A `control_plane` built-in whose vendor is not configured, or<br/>
+        /// whose rollout has not reached a surface, is left out, exactly as it is<br/>
+        /// left out of what that surface offers the model. `text` means at least<br/>
+        /// one text surface runs it: a picture tool, for instance, is offered only<br/>
+        /// in a channel that renders pictures. `default_on` applies only on the<br/>
+        /// surfaces listed here. An empty array means nothing in this deployment<br/>
+        /// executes it.<br/>
+        /// Deliberately not required, so a console deployed ahead of the server<br/>
+        /// reads it as absent, which means no claim rather than "runs nowhere".
+        /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
 #endif
@@ -183,7 +214,8 @@ namespace Speechify
             bool voiceOnly,
             bool? runsOnly,
             bool? turnOnly,
-            bool? priced)
+            bool? priced,
+            global::System.Collections.Generic.IList<global::Speechify.ToolReach>? reach)
         {
             this.Name = name ?? throw new global::System.ArgumentNullException(nameof(name));
             this.Label = label ?? throw new global::System.ArgumentNullException(nameof(label));
@@ -195,6 +227,7 @@ namespace Speechify
             this.RunsOnly = runsOnly;
             this.TurnOnly = turnOnly;
             this.Priced = priced;
+            this.Reach = reach;
         }
 
         /// <summary>
