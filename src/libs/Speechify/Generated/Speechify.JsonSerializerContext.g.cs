@@ -739,6 +739,15 @@ namespace Speechify
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Speechify.HostedAPIRoute>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.CreateHostedApiRouteRequestMethod), TypeInfoPropertyName = "CreateHostedApiRouteRequestMethod2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.CreateHostedAPIRouteRequest))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.MountHostedAPIRoutesRequest))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.HostedApiMountToolKind), TypeInfoPropertyName = "HostedApiMountToolKind2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.HostedApiMountOperationAction), TypeInfoPropertyName = "HostedApiMountOperationAction2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.HostedApiMountOperationChangesItems), TypeInfoPropertyName = "HostedApiMountOperationChangesItems2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.HostedAPIMountOperation))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Speechify.HostedApiMountOperationChangesItems>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.HostedAPIMountSummary))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.HostedAPIMount))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Speechify.HostedAPIMountOperation>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.UpdateHostedApiRouteRequestMethod), TypeInfoPropertyName = "UpdateHostedApiRouteRequestMethod2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.UpdateHostedAPIRouteRequest))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.HostedAPIKey))]
@@ -984,6 +993,9 @@ namespace Speechify
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.HostedApiResolverWhereItemsOp?), TypeInfoPropertyName = "NullableHostedApiResolverWhereItemsOp2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.HostedApiResolverOrderByDirection?), TypeInfoPropertyName = "NullableHostedApiResolverOrderByDirection2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.CreateHostedApiRouteRequestMethod?), TypeInfoPropertyName = "NullableCreateHostedApiRouteRequestMethod2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.HostedApiMountToolKind?), TypeInfoPropertyName = "NullableHostedApiMountToolKind2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.HostedApiMountOperationAction?), TypeInfoPropertyName = "NullableHostedApiMountOperationAction2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.HostedApiMountOperationChangesItems?), TypeInfoPropertyName = "NullableHostedApiMountOperationChangesItems2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.UpdateHostedApiRouteRequestMethod?), TypeInfoPropertyName = "NullableUpdateHostedApiRouteRequestMethod2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.ContactIdentifierKind?), TypeInfoPropertyName = "NullableContactIdentifierKind2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.ContactIdentifierAssertedBy?), TypeInfoPropertyName = "NullableContactIdentifierAssertedBy2")]
@@ -1014,18 +1026,6 @@ namespace Speechify
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.EvaluationCriterionVerdict>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.EvaluationCaseVerdict>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.FlowGraphNodesItems>))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.FlowGraphEdgesItems>))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.FlowGraphVariablesItems>))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.PutFlowRequestNodesItems>))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.PutFlowRequestEdgesItems>))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.PutFlowRequestVariablesItems>))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.FlowValidationIssue>))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.FlowVersion>))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.FlowTemplate>))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.FlowGraphInputNodesItems>))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.FlowGraphInputEdgesItems>))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.FlowGraphInputVariablesItems>))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.EvaluationCriterion>))]
     internal sealed partial class SourceGenerationContextChunk1 : global::System.Text.Json.Serialization.JsonSerializerContext
     {
     }
@@ -1038,6 +1038,18 @@ namespace Speechify
         Converters = new global::System.Type[]
         {
         })]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.FlowGraphEdgesItems>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.FlowGraphVariablesItems>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.PutFlowRequestNodesItems>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.PutFlowRequestEdgesItems>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.PutFlowRequestVariablesItems>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.FlowValidationIssue>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.FlowVersion>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.FlowTemplate>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.FlowGraphInputNodesItems>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.FlowGraphInputEdgesItems>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.FlowGraphInputVariablesItems>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.EvaluationCriterion>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.DataCollectionField>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.DynamicVariable>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.SystemVariableDoc>))]
@@ -1129,6 +1141,8 @@ namespace Speechify
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.HostedApiUsageRoutesItems>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.HostedApiResolverWhereItems>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.HostedAPIRoute>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.HostedApiMountOperationChangesItems>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.HostedAPIMountOperation>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.HostedAPIKey>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.ContactIdentifier>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.Contact>))]
@@ -1797,6 +1811,18 @@ namespace Speechify
                     || typeToConvert == typeof(global::Speechify.CreateHostedApiRouteRequestMethod)
 
                     || typeToConvert == typeof(global::Speechify.CreateHostedApiRouteRequestMethod?)
+
+                    || typeToConvert == typeof(global::Speechify.HostedApiMountToolKind)
+
+                    || typeToConvert == typeof(global::Speechify.HostedApiMountToolKind?)
+
+                    || typeToConvert == typeof(global::Speechify.HostedApiMountOperationAction)
+
+                    || typeToConvert == typeof(global::Speechify.HostedApiMountOperationAction?)
+
+                    || typeToConvert == typeof(global::Speechify.HostedApiMountOperationChangesItems)
+
+                    || typeToConvert == typeof(global::Speechify.HostedApiMountOperationChangesItems?)
 
                     || typeToConvert == typeof(global::Speechify.UpdateHostedApiRouteRequestMethod)
 
@@ -3319,6 +3345,36 @@ namespace Speechify
                 if (typeToConvert == typeof(global::Speechify.CreateHostedApiRouteRequestMethod?))
                 {
                     return new global::Speechify.JsonConverters.CreateHostedApiRouteRequestMethodNullableJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.HostedApiMountToolKind))
+                {
+                    return new global::Speechify.JsonConverters.HostedApiMountToolKindJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.HostedApiMountToolKind?))
+                {
+                    return new global::Speechify.JsonConverters.HostedApiMountToolKindNullableJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.HostedApiMountOperationAction))
+                {
+                    return new global::Speechify.JsonConverters.HostedApiMountOperationActionJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.HostedApiMountOperationAction?))
+                {
+                    return new global::Speechify.JsonConverters.HostedApiMountOperationActionNullableJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.HostedApiMountOperationChangesItems))
+                {
+                    return new global::Speechify.JsonConverters.HostedApiMountOperationChangesItemsJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.HostedApiMountOperationChangesItems?))
+                {
+                    return new global::Speechify.JsonConverters.HostedApiMountOperationChangesItemsNullableJsonConverter();
                 }
 
                 if (typeToConvert == typeof(global::Speechify.UpdateHostedApiRouteRequestMethod))

@@ -138,6 +138,14 @@ namespace Speechify
         public bool? McpEnabled { get; set; }
 
         /// <summary>
+        /// The address an MCP client attaches to, `&lt;base_url&gt;/mcp`, while<br/>
+        /// `mcp_enabled` is on; null while it is off. Read it here rather<br/>
+        /// than assembling it.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("mcp_url")]
+        public string? McpUrl { get; set; }
+
+        /// <summary>
         ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("project_id")]
@@ -252,6 +260,11 @@ namespace Speechify
         /// with 400 on either switch). Optional on the wire for the same<br/>
         /// reason as `daily_read_cap`.
         /// </param>
+        /// <param name="mcpUrl">
+        /// The address an MCP client attaches to, `&lt;base_url&gt;/mcp`, while<br/>
+        /// `mcp_enabled` is on; null while it is off. Read it here rather<br/>
+        /// than assembling it.
+        /// </param>
         /// <param name="projectId"></param>
         /// <param name="userTokenJwksUrl">
         /// The key set end-user tokens are verified against when set (an<br/>
@@ -281,6 +294,7 @@ namespace Speechify
             int? dailyReadCap,
             int? dailyWriteCap,
             bool? mcpEnabled,
+            string? mcpUrl,
             string? projectId,
             string? userTokenJwksUrl,
             string? userTokenSecretHint)
@@ -298,6 +312,7 @@ namespace Speechify
             this.DailyReadCap = dailyReadCap;
             this.DailyWriteCap = dailyWriteCap;
             this.McpEnabled = mcpEnabled;
+            this.McpUrl = mcpUrl;
             this.ProjectId = projectId;
             this.UserTokenJwksUrl = userTokenJwksUrl;
             this.UserTokenSecretHint = userTokenSecretHint;

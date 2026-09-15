@@ -3,11 +3,11 @@
 
 namespace Speechify
 {
-    public partial class HostedApisClient
+    public partial class RoutesClient
     {
 
 
-        private static readonly global::Speechify.EndPointSecurityRequirement s_CreateSecurityRequirement0 =
+        private static readonly global::Speechify.EndPointSecurityRequirement s_MountRoutesSecurityRequirement0 =
             new global::Speechify.EndPointSecurityRequirement
             {
                 Authorizations = new global::Speechify.EndPointAuthorizationRequirement[]
@@ -21,52 +21,67 @@ namespace Speechify
                     },
                 },
             };
-        private static readonly global::Speechify.EndPointSecurityRequirement[] s_CreateSecurityRequirements =
+        private static readonly global::Speechify.EndPointSecurityRequirement[] s_MountRoutesSecurityRequirements =
             new global::Speechify.EndPointSecurityRequirement[]
-            {                s_CreateSecurityRequirement0,
+            {                s_MountRoutesSecurityRequirement0,
             };
-        partial void PrepareCreateArguments(
+        partial void PrepareMountRoutesArguments(
             global::System.Net.Http.HttpClient httpClient,
+            ref string apiId,
             ref string? speechifyVersion,
             ref string? idempotencyKey,
-            global::Speechify.CreateHostedAPIRequest request);
-        partial void PrepareCreateRequest(
+            global::Speechify.MountHostedAPIRoutesRequest request);
+        partial void PrepareMountRoutesRequest(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpRequestMessage httpRequestMessage,
+            string apiId,
             string? speechifyVersion,
             string? idempotencyKey,
-            global::Speechify.CreateHostedAPIRequest request);
-        partial void ProcessCreateResponse(
+            global::Speechify.MountHostedAPIRoutesRequest request);
+        partial void ProcessMountRoutesResponse(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpResponseMessage httpResponseMessage);
 
-        partial void ProcessCreateResponseContent(
+        partial void ProcessMountRoutesResponseContent(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpResponseMessage httpResponseMessage,
             ref string content);
 
         /// <summary>
-        /// Create Hosted API<br/>
-        /// Create a hosted API. The slug is a DNS label, globally unique on the<br/>
-        /// shared domain (409 `hosted_api_slug_taken`) and immutable afterwards.<br/>
-        /// `auth_mode` names the audience, narrowest first: `owner`, `workspace`<br/>
-        /// (the platform's own credentials), `user_token` (a JWT your backend<br/>
-        /// signs per user), `consumer_key` (a `ck_` key you mint) or `public`<br/>
-        /// (anyone, reads only). A workspace can refuse `public` as policy (403<br/>
-        /// `hosted_api_public_refused`). Reads, runs and writes are each bounded<br/>
-        /// per UTC day (`daily_read_cap`, `daily_run_cap`, `daily_write_cap`),<br/>
-        /// and an API holds only a share of a server's requests open at once, so<br/>
-        /// a slow upstream behind one API cannot take the capacity others need:<br/>
-        /// past it, a request answers 429 `hosted_api_busy` with `Retry-After`.<br/>
-        /// `mcp_enabled: true` also serves the API's routes as an MCP server at<br/>
-        /// `POST &lt;base_url&gt;/mcp`, so an MCP client (Claude Code, Cursor) attaches<br/>
-        /// to one address and gets them as tools, under the same audience, keys<br/>
-        /// and caps. It is refused with `auth_mode: public`. On that face the<br/>
-        /// API's `name` is the server's title and its `description` is the<br/>
-        /// instructions the client's model reads, so describe what the tools are<br/>
-        /// for.<br/>
+        /// Mount a Connector<br/>
+        /// Publish a connector's operations onto the API in one call: one `tool`<br/>
+        /// route per operation of an `openapi` tool definition, or per tool its<br/>
+        /// `mcp` server lists, named `&lt;name_prefix&gt;__&lt;operation&gt;` at<br/>
+        /// `&lt;path_prefix&gt;/&lt;operation&gt;`, so two connectors' tools stay apart on<br/>
+        /// the MCP face and inside its 64-character tool names.<br/>
+        /// Send `dry_run: true` first. The answer lists every operation with<br/>
+        /// its effective `action_class` and `approval`, whether a route can serve<br/>
+        /// it, and the `action` a mount takes: `create`, `update` (an MCP tool<br/>
+        /// whose input schema changed since its route was written; `changes`<br/>
+        /// names what), `unchanged`, `skip` (with the `reason`: not selected, not<br/>
+        /// a read, not auto-approved, a name or path already taken, or the route<br/>
+        /// cap) or `stale` (a route whose operation the connector no longer<br/>
+        /// offers, or can no longer serve; it is reported and never deleted,<br/>
+        /// since a consumer may still call it). The same call without `dry_run`<br/>
+        /// writes every create and update in one transaction and returns the<br/>
+        /// written `route` on each.<br/>
+        /// Mounting again is the refresh. Every route the API holds for the<br/>
+        /// connector is compared with what it offers now, whatever its name,<br/>
+        /// path or the selection, so an upstream change is seen as a diff before<br/>
+        /// anyone's client sees it. `operations` selects what to create; omit it<br/>
+        /// to create a route for every operation a route can serve. A route an<br/>
+        /// owner renamed or moved keeps its name and path on refresh.<br/>
+        /// The route write's rules apply to every operation: the connector must<br/>
+        /// be in the API's project (409 `cross_project_reference`), an MCP server<br/>
+        /// must be reachable with its credential to be listed (400<br/>
+        /// `validation_failed` on `tool_id` with the server's reason), and a<br/>
+        /// public API mounts nothing. An API holds at most 200 routes; a mount<br/>
+        /// that would pass the cap skips what does not fit. A route changed while<br/>
+        /// the mount was being planned answers 409 `api_route_conflict`; mount<br/>
+        /// again.<br/>
         /// Dark launch: requires the `hosted_apis_access` entitlement (402 `hosted_apis_not_in_plan` otherwise).
         /// </summary>
+        /// <param name="apiId"></param>
         /// <param name="speechifyVersion"></param>
         /// <param name="idempotencyKey">
         /// Optional idempotency key. When omitted, the SDK generates one for this request.
@@ -75,15 +90,17 @@ namespace Speechify
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
-        public async global::System.Threading.Tasks.Task<global::Speechify.HostedAPI> CreateAsync(
+        public async global::System.Threading.Tasks.Task<global::Speechify.HostedAPIMount> MountRoutesAsync(
+            string apiId,
 
-            global::Speechify.CreateHostedAPIRequest request,
+            global::Speechify.MountHostedAPIRoutesRequest request,
             string? speechifyVersion = default,
             string? idempotencyKey = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
-            var __response = await CreateAsResponseAsync(
+            var __response = await MountRoutesAsResponseAsync(
+                apiId: apiId,
 
                 request: request,
                 speechifyVersion: speechifyVersion,
@@ -95,27 +112,40 @@ namespace Speechify
             return __response.Body;
         }
         /// <summary>
-        /// Create Hosted API<br/>
-        /// Create a hosted API. The slug is a DNS label, globally unique on the<br/>
-        /// shared domain (409 `hosted_api_slug_taken`) and immutable afterwards.<br/>
-        /// `auth_mode` names the audience, narrowest first: `owner`, `workspace`<br/>
-        /// (the platform's own credentials), `user_token` (a JWT your backend<br/>
-        /// signs per user), `consumer_key` (a `ck_` key you mint) or `public`<br/>
-        /// (anyone, reads only). A workspace can refuse `public` as policy (403<br/>
-        /// `hosted_api_public_refused`). Reads, runs and writes are each bounded<br/>
-        /// per UTC day (`daily_read_cap`, `daily_run_cap`, `daily_write_cap`),<br/>
-        /// and an API holds only a share of a server's requests open at once, so<br/>
-        /// a slow upstream behind one API cannot take the capacity others need:<br/>
-        /// past it, a request answers 429 `hosted_api_busy` with `Retry-After`.<br/>
-        /// `mcp_enabled: true` also serves the API's routes as an MCP server at<br/>
-        /// `POST &lt;base_url&gt;/mcp`, so an MCP client (Claude Code, Cursor) attaches<br/>
-        /// to one address and gets them as tools, under the same audience, keys<br/>
-        /// and caps. It is refused with `auth_mode: public`. On that face the<br/>
-        /// API's `name` is the server's title and its `description` is the<br/>
-        /// instructions the client's model reads, so describe what the tools are<br/>
-        /// for.<br/>
+        /// Mount a Connector<br/>
+        /// Publish a connector's operations onto the API in one call: one `tool`<br/>
+        /// route per operation of an `openapi` tool definition, or per tool its<br/>
+        /// `mcp` server lists, named `&lt;name_prefix&gt;__&lt;operation&gt;` at<br/>
+        /// `&lt;path_prefix&gt;/&lt;operation&gt;`, so two connectors' tools stay apart on<br/>
+        /// the MCP face and inside its 64-character tool names.<br/>
+        /// Send `dry_run: true` first. The answer lists every operation with<br/>
+        /// its effective `action_class` and `approval`, whether a route can serve<br/>
+        /// it, and the `action` a mount takes: `create`, `update` (an MCP tool<br/>
+        /// whose input schema changed since its route was written; `changes`<br/>
+        /// names what), `unchanged`, `skip` (with the `reason`: not selected, not<br/>
+        /// a read, not auto-approved, a name or path already taken, or the route<br/>
+        /// cap) or `stale` (a route whose operation the connector no longer<br/>
+        /// offers, or can no longer serve; it is reported and never deleted,<br/>
+        /// since a consumer may still call it). The same call without `dry_run`<br/>
+        /// writes every create and update in one transaction and returns the<br/>
+        /// written `route` on each.<br/>
+        /// Mounting again is the refresh. Every route the API holds for the<br/>
+        /// connector is compared with what it offers now, whatever its name,<br/>
+        /// path or the selection, so an upstream change is seen as a diff before<br/>
+        /// anyone's client sees it. `operations` selects what to create; omit it<br/>
+        /// to create a route for every operation a route can serve. A route an<br/>
+        /// owner renamed or moved keeps its name and path on refresh.<br/>
+        /// The route write's rules apply to every operation: the connector must<br/>
+        /// be in the API's project (409 `cross_project_reference`), an MCP server<br/>
+        /// must be reachable with its credential to be listed (400<br/>
+        /// `validation_failed` on `tool_id` with the server's reason), and a<br/>
+        /// public API mounts nothing. An API holds at most 200 routes; a mount<br/>
+        /// that would pass the cap skips what does not fit. A route changed while<br/>
+        /// the mount was being planned answers 409 `api_route_conflict`; mount<br/>
+        /// again.<br/>
         /// Dark launch: requires the `hosted_apis_access` entitlement (402 `hosted_apis_not_in_plan` otherwise).
         /// </summary>
+        /// <param name="apiId"></param>
         /// <param name="speechifyVersion"></param>
         /// <param name="idempotencyKey">
         /// Optional idempotency key. When omitted, the SDK generates one for this request.
@@ -124,9 +154,10 @@ namespace Speechify
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
-        public async global::System.Threading.Tasks.Task<global::Speechify.AutoSDKHttpResponse<global::Speechify.HostedAPI>> CreateAsResponseAsync(
+        public async global::System.Threading.Tasks.Task<global::Speechify.AutoSDKHttpResponse<global::Speechify.HostedAPIMount>> MountRoutesAsResponseAsync(
+            string apiId,
 
-            global::Speechify.CreateHostedAPIRequest request,
+            global::Speechify.MountHostedAPIRoutesRequest request,
             string? speechifyVersion = default,
             string? idempotencyKey = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
@@ -136,8 +167,9 @@ namespace Speechify
 
             PrepareArguments(
                 client: HttpClient);
-            PrepareCreateArguments(
+            PrepareMountRoutesArguments(
                 httpClient: HttpClient,
+                apiId: ref apiId,
                 speechifyVersion: ref speechifyVersion,
                 idempotencyKey: ref idempotencyKey,
                 request: request);
@@ -145,8 +177,8 @@ namespace Speechify
 
             var __authorizations = global::Speechify.EndPointSecurityResolver.ResolveAuthorizations(
                 availableAuthorizations: Authorizations,
-                securityRequirements: s_CreateSecurityRequirements,
-                operationName: "CreateAsync");
+                securityRequirements: s_MountRoutesSecurityRequirements,
+                operationName: "MountRoutesAsync");
 
             using var __timeoutCancellationTokenSource = global::Speechify.AutoSDKRequestOptionsSupport.CreateTimeoutCancellationTokenSource(
                 clientOptions: Options,
@@ -166,7 +198,7 @@ namespace Speechify
             {
 
                             var __pathBuilder = new global::Speechify.PathBuilder(
-                                path: "/v1/apis",
+                                path: $"/v1/apis/{apiId}/routes/mount",
                                 baseUri: HttpClient.BaseAddress);
                             var __path = __pathBuilder.ToString();
                 __path = global::Speechify.AutoSDKRequestOptionsSupport.AppendQueryParameters(
@@ -221,9 +253,10 @@ namespace Speechify
                 PrepareRequest(
                     client: HttpClient,
                     request: __httpRequest);
-                PrepareCreateRequest(
+                PrepareMountRoutesRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
+                    apiId: apiId!,
                     speechifyVersion: speechifyVersion,
                     idempotencyKey: idempotencyKey,
                     request: request);
@@ -243,9 +276,9 @@ namespace Speechify
                     await global::Speechify.AutoSDKRequestOptionsSupport.OnBeforeRequestAsync(
                             clientOptions: Options,
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "Create",
-                                methodName: "CreateAsync",
-                                pathTemplate: "\"/v1/apis\"",
+                                operationId: "MountRoutes",
+                                methodName: "MountRoutesAsync",
+                                pathTemplate: "$\"/v1/apis/{apiId}/routes/mount\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -277,9 +310,9 @@ namespace Speechify
                         await global::Speechify.AutoSDKRequestOptionsSupport.OnAfterErrorAsync(
                             clientOptions: Options,
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "Create",
-                                methodName: "CreateAsync",
-                                pathTemplate: "\"/v1/apis\"",
+                                operationId: "MountRoutes",
+                                methodName: "MountRoutesAsync",
+                                pathTemplate: "$\"/v1/apis/{apiId}/routes/mount\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -318,9 +351,9 @@ namespace Speechify
                         await global::Speechify.AutoSDKRequestOptionsSupport.OnAfterErrorAsync(
                             clientOptions: Options,
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "Create",
-                                methodName: "CreateAsync",
-                                pathTemplate: "\"/v1/apis\"",
+                                operationId: "MountRoutes",
+                                methodName: "MountRoutesAsync",
+                                pathTemplate: "$\"/v1/apis/{apiId}/routes/mount\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -358,7 +391,7 @@ namespace Speechify
                 ProcessResponse(
                     client: HttpClient,
                     response: __response);
-                ProcessCreateResponse(
+                ProcessMountRoutesResponse(
                     httpClient: HttpClient,
                     httpResponseMessage: __response);
                 if (__response.IsSuccessStatusCode)
@@ -366,9 +399,9 @@ namespace Speechify
                     await global::Speechify.AutoSDKRequestOptionsSupport.OnAfterSuccessAsync(
                             clientOptions: Options,
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "Create",
-                                methodName: "CreateAsync",
-                                pathTemplate: "\"/v1/apis\"",
+                                operationId: "MountRoutes",
+                                methodName: "MountRoutesAsync",
+                                pathTemplate: "$\"/v1/apis/{apiId}/routes/mount\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -388,9 +421,9 @@ namespace Speechify
                     await global::Speechify.AutoSDKRequestOptionsSupport.OnAfterErrorAsync(
                             clientOptions: Options,
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "Create",
-                                methodName: "CreateAsync",
-                                pathTemplate: "\"/v1/apis\"",
+                                operationId: "MountRoutes",
+                                methodName: "MountRoutesAsync",
+                                pathTemplate: "$\"/v1/apis/{apiId}/routes/mount\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -603,7 +636,7 @@ namespace Speechify
                                     client: HttpClient,
                                     response: __response,
                                     content: ref __content);
-                                ProcessCreateResponseContent(
+                                ProcessMountRoutesResponseContent(
                                     httpClient: HttpClient,
                                     httpResponseMessage: __response,
                                     content: ref __content);
@@ -612,9 +645,9 @@ namespace Speechify
                                 {
                                     __response.EnsureSuccessStatusCode();
 
-                                    var __value = global::Speechify.HostedAPI.FromJson(__content, JsonSerializerContext) ??
+                                    var __value = global::Speechify.HostedAPIMount.FromJson(__content, JsonSerializerContext) ??
                                         throw new global::System.InvalidOperationException($"Response deserialization failed for \"{__content}\" ");
-                                    return new global::Speechify.AutoSDKHttpResponse<global::Speechify.HostedAPI>(
+                                    return new global::Speechify.AutoSDKHttpResponse<global::Speechify.HostedAPIMount>(
                                         statusCode: __response.StatusCode,
                                         headers: global::Speechify.AutoSDKHttpResponse.CreateHeaders(__response),
                                         requestUri: __response.RequestMessage?.RequestUri,
@@ -644,9 +677,9 @@ namespace Speechify
                 #endif
                                     ).ConfigureAwait(false);
 
-                                    var __value = await global::Speechify.HostedAPI.FromJsonStreamAsync(__content, JsonSerializerContext).ConfigureAwait(false) ??
+                                    var __value = await global::Speechify.HostedAPIMount.FromJsonStreamAsync(__content, JsonSerializerContext).ConfigureAwait(false) ??
                                         throw new global::System.InvalidOperationException("Response deserialization failed.");
-                                    return new global::Speechify.AutoSDKHttpResponse<global::Speechify.HostedAPI>(
+                                    return new global::Speechify.AutoSDKHttpResponse<global::Speechify.HostedAPIMount>(
                                         statusCode: __response.StatusCode,
                                         headers: global::Speechify.AutoSDKHttpResponse.CreateHeaders(__response),
                                         requestUri: __response.RequestMessage?.RequestUri,
@@ -687,96 +720,97 @@ namespace Speechify
             }
         }
         /// <summary>
-        /// Create Hosted API<br/>
-        /// Create a hosted API. The slug is a DNS label, globally unique on the<br/>
-        /// shared domain (409 `hosted_api_slug_taken`) and immutable afterwards.<br/>
-        /// `auth_mode` names the audience, narrowest first: `owner`, `workspace`<br/>
-        /// (the platform's own credentials), `user_token` (a JWT your backend<br/>
-        /// signs per user), `consumer_key` (a `ck_` key you mint) or `public`<br/>
-        /// (anyone, reads only). A workspace can refuse `public` as policy (403<br/>
-        /// `hosted_api_public_refused`). Reads, runs and writes are each bounded<br/>
-        /// per UTC day (`daily_read_cap`, `daily_run_cap`, `daily_write_cap`),<br/>
-        /// and an API holds only a share of a server's requests open at once, so<br/>
-        /// a slow upstream behind one API cannot take the capacity others need:<br/>
-        /// past it, a request answers 429 `hosted_api_busy` with `Retry-After`.<br/>
-        /// `mcp_enabled: true` also serves the API's routes as an MCP server at<br/>
-        /// `POST &lt;base_url&gt;/mcp`, so an MCP client (Claude Code, Cursor) attaches<br/>
-        /// to one address and gets them as tools, under the same audience, keys<br/>
-        /// and caps. It is refused with `auth_mode: public`. On that face the<br/>
-        /// API's `name` is the server's title and its `description` is the<br/>
-        /// instructions the client's model reads, so describe what the tools are<br/>
-        /// for.<br/>
+        /// Mount a Connector<br/>
+        /// Publish a connector's operations onto the API in one call: one `tool`<br/>
+        /// route per operation of an `openapi` tool definition, or per tool its<br/>
+        /// `mcp` server lists, named `&lt;name_prefix&gt;__&lt;operation&gt;` at<br/>
+        /// `&lt;path_prefix&gt;/&lt;operation&gt;`, so two connectors' tools stay apart on<br/>
+        /// the MCP face and inside its 64-character tool names.<br/>
+        /// Send `dry_run: true` first. The answer lists every operation with<br/>
+        /// its effective `action_class` and `approval`, whether a route can serve<br/>
+        /// it, and the `action` a mount takes: `create`, `update` (an MCP tool<br/>
+        /// whose input schema changed since its route was written; `changes`<br/>
+        /// names what), `unchanged`, `skip` (with the `reason`: not selected, not<br/>
+        /// a read, not auto-approved, a name or path already taken, or the route<br/>
+        /// cap) or `stale` (a route whose operation the connector no longer<br/>
+        /// offers, or can no longer serve; it is reported and never deleted,<br/>
+        /// since a consumer may still call it). The same call without `dry_run`<br/>
+        /// writes every create and update in one transaction and returns the<br/>
+        /// written `route` on each.<br/>
+        /// Mounting again is the refresh. Every route the API holds for the<br/>
+        /// connector is compared with what it offers now, whatever its name,<br/>
+        /// path or the selection, so an upstream change is seen as a diff before<br/>
+        /// anyone's client sees it. `operations` selects what to create; omit it<br/>
+        /// to create a route for every operation a route can serve. A route an<br/>
+        /// owner renamed or moved keeps its name and path on refresh.<br/>
+        /// The route write's rules apply to every operation: the connector must<br/>
+        /// be in the API's project (409 `cross_project_reference`), an MCP server<br/>
+        /// must be reachable with its credential to be listed (400<br/>
+        /// `validation_failed` on `tool_id` with the server's reason), and a<br/>
+        /// public API mounts nothing. An API holds at most 200 routes; a mount<br/>
+        /// that would pass the cap skips what does not fit. A route changed while<br/>
+        /// the mount was being planned answers 409 `api_route_conflict`; mount<br/>
+        /// again.<br/>
         /// Dark launch: requires the `hosted_apis_access` entitlement (402 `hosted_apis_not_in_plan` otherwise).
         /// </summary>
+        /// <param name="apiId"></param>
         /// <param name="speechifyVersion"></param>
         /// <param name="idempotencyKey">
         /// Optional idempotency key. When omitted, the SDK generates one for this request.
         /// </param>
-        /// <param name="slug">
-        /// 3-40 lowercase letters, digits or hyphens; a DNS label, unique on the shared domain; immutable.
+        /// <param name="toolId">
+        /// The `openapi` or `mcp` tool definition to mount, in the API's project.
         /// </param>
-        /// <param name="name"></param>
-        /// <param name="description">
-        /// What the API is for; also the instructions an MCP client hands its model when `mcp_enabled` is on.
+        /// <param name="operations">
+        /// The operations to create routes for: openapi operation ids or the<br/>
+        /// MCP server's tool names. Omit to create a route for every operation<br/>
+        /// a route can serve. Naming one the connector does not offer is 400<br/>
+        /// `validation_failed` on `operations[i]`. Existing routes are compared<br/>
+        /// whatever the selection.
         /// </param>
-        /// <param name="authMode">
-        /// consumer_key when omitted. `public` is refused with 403 `hosted_api_public_refused` where the workspace's policy does not allow internet-facing APIs.
+        /// <param name="namePrefix">
+        /// Prefix of each created route's name, `&lt;name_prefix&gt;__&lt;operation&gt;`. Defaults to the tool's name with other characters as `_`.
         /// </param>
-        /// <param name="corsOrigins"></param>
-        /// <param name="dailyRunCap">
-        /// Runs the API may start per UTC day through its run routes; 1000 when omitted.
+        /// <param name="pathPrefix">
+        /// Path each created route sits under, `&lt;path_prefix&gt;/&lt;operation&gt;`; lowercase segments of letters, digits, `.`, `_` or `-`, with no `{param}` or `*`, and not under `/mcp`, `/openapi.json` or `/_runs`. Defaults to `/&lt;name_prefix&gt;` in lowercase.
         /// </param>
-        /// <param name="dailyReadCap">
-        /// Reads the API's store, file, run_latest and tool routes may serve per UTC day; 100000 when omitted.
+        /// <param name="dryRun">
+        /// Answer what the mount would do and write nothing.
         /// </param>
-        /// <param name="dailyWriteCap">
-        /// Documents the API's write routes may land per UTC day; 10000 when omitted.
-        /// </param>
-        /// <param name="mcpEnabled">
-        /// Serve the routes as an MCP server at `POST &lt;base_url&gt;/mcp` too;<br/>
-        /// false when omitted. Refused with `auth_mode: public` (400<br/>
-        /// `validation_failed` naming `mcp_enabled`).
-        /// </param>
-        /// <param name="projectId"></param>
-        /// <param name="userTokenJwksUrl">
-        /// Register the key set end-user tokens are verified against (an `https` URL on a public host).
+        /// <param name="includeWrites">
+        /// Create routes for operations that are not reads too, each with<br/>
+        /// `allow_write: true`. Only an API whose `auth_mode` names a person<br/>
+        /// takes them; the operation's `approval` must still be `auto`.<br/>
+        /// Without it a write is a `skip` that says so.
         /// </param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::System.InvalidOperationException"></exception>
-        public async global::System.Threading.Tasks.Task<global::Speechify.HostedAPI> CreateAsync(
-            string slug,
-            string name,
+        public async global::System.Threading.Tasks.Task<global::Speechify.HostedAPIMount> MountRoutesAsync(
+            string apiId,
+            string toolId,
             string? speechifyVersion = default,
             string? idempotencyKey = default,
-            string? description = default,
-            global::Speechify.CreateHostedApiRequestAuthMode? authMode = default,
-            global::System.Collections.Generic.IList<string>? corsOrigins = default,
-            int? dailyRunCap = default,
-            int? dailyReadCap = default,
-            int? dailyWriteCap = default,
-            bool? mcpEnabled = default,
-            string? projectId = default,
-            string? userTokenJwksUrl = default,
+            global::System.Collections.Generic.IList<string>? operations = default,
+            string? namePrefix = default,
+            string? pathPrefix = default,
+            bool? dryRun = default,
+            bool? includeWrites = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
-            var __request = new global::Speechify.CreateHostedAPIRequest
+            var __request = new global::Speechify.MountHostedAPIRoutesRequest
             {
-                Slug = slug,
-                Name = name,
-                Description = description,
-                AuthMode = authMode,
-                CorsOrigins = corsOrigins,
-                DailyRunCap = dailyRunCap,
-                DailyReadCap = dailyReadCap,
-                DailyWriteCap = dailyWriteCap,
-                McpEnabled = mcpEnabled,
-                ProjectId = projectId,
-                UserTokenJwksUrl = userTokenJwksUrl,
+                ToolId = toolId,
+                Operations = operations,
+                NamePrefix = namePrefix,
+                PathPrefix = pathPrefix,
+                DryRun = dryRun,
+                IncludeWrites = includeWrites,
             };
 
-            return await CreateAsync(
+            return await MountRoutesAsync(
+                apiId: apiId,
                 speechifyVersion: speechifyVersion,
                 idempotencyKey: idempotencyKey,
                 request: __request,

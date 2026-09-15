@@ -25,6 +25,7 @@ namespace Speechify
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(object))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.Error))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(int))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<string>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.DateTime))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.StoreAggregateMetricOp), TypeInfoPropertyName = "StoreAggregateMetricOp2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.StoreAggregateMetric))]
@@ -43,6 +44,15 @@ namespace Speechify
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Speechify.HostedAPIRoute>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.CreateHostedApiRouteRequestMethod), TypeInfoPropertyName = "CreateHostedApiRouteRequestMethod2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.CreateHostedAPIRouteRequest))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.MountHostedAPIRoutesRequest))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.HostedApiMountToolKind), TypeInfoPropertyName = "HostedApiMountToolKind2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.HostedApiMountOperationAction), TypeInfoPropertyName = "HostedApiMountOperationAction2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.HostedApiMountOperationChangesItems), TypeInfoPropertyName = "HostedApiMountOperationChangesItems2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.HostedAPIMountOperation))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Speechify.HostedApiMountOperationChangesItems>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.HostedAPIMountSummary))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.HostedAPIMount))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Speechify.HostedAPIMountOperation>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.UpdateHostedApiRouteRequestMethod), TypeInfoPropertyName = "UpdateHostedApiRouteRequestMethod2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.UpdateHostedAPIRouteRequest))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(bool?))]
@@ -56,10 +66,16 @@ namespace Speechify
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.HostedApiResolverWhereItemsOp?), TypeInfoPropertyName = "NullableHostedApiResolverWhereItemsOp2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.HostedApiResolverOrderByDirection?), TypeInfoPropertyName = "NullableHostedApiResolverOrderByDirection2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.CreateHostedApiRouteRequestMethod?), TypeInfoPropertyName = "NullableCreateHostedApiRouteRequestMethod2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.HostedApiMountToolKind?), TypeInfoPropertyName = "NullableHostedApiMountToolKind2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.HostedApiMountOperationAction?), TypeInfoPropertyName = "NullableHostedApiMountOperationAction2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.HostedApiMountOperationChangesItems?), TypeInfoPropertyName = "NullableHostedApiMountOperationChangesItems2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.UpdateHostedApiRouteRequestMethod?), TypeInfoPropertyName = "NullableUpdateHostedApiRouteRequestMethod2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<string>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.StoreAggregateMetric>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.HostedApiResolverWhereItems>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.HostedAPIRoute>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.HostedApiMountOperationChangesItems>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.HostedAPIMountOperation>))]
     internal sealed partial class RoutesSourceGenerationContextChunk0 : global::System.Text.Json.Serialization.JsonSerializerContext
     {
     }
@@ -158,6 +174,18 @@ namespace Speechify
 
                     || typeToConvert == typeof(global::Speechify.CreateHostedApiRouteRequestMethod?)
 
+                    || typeToConvert == typeof(global::Speechify.HostedApiMountToolKind)
+
+                    || typeToConvert == typeof(global::Speechify.HostedApiMountToolKind?)
+
+                    || typeToConvert == typeof(global::Speechify.HostedApiMountOperationAction)
+
+                    || typeToConvert == typeof(global::Speechify.HostedApiMountOperationAction?)
+
+                    || typeToConvert == typeof(global::Speechify.HostedApiMountOperationChangesItems)
+
+                    || typeToConvert == typeof(global::Speechify.HostedApiMountOperationChangesItems?)
+
                     || typeToConvert == typeof(global::Speechify.UpdateHostedApiRouteRequestMethod)
 
                     || typeToConvert == typeof(global::Speechify.UpdateHostedApiRouteRequestMethod?);
@@ -245,6 +273,36 @@ namespace Speechify
                 if (typeToConvert == typeof(global::Speechify.CreateHostedApiRouteRequestMethod?))
                 {
                     return new global::Speechify.JsonConverters.CreateHostedApiRouteRequestMethodNullableJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.HostedApiMountToolKind))
+                {
+                    return new global::Speechify.JsonConverters.HostedApiMountToolKindJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.HostedApiMountToolKind?))
+                {
+                    return new global::Speechify.JsonConverters.HostedApiMountToolKindNullableJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.HostedApiMountOperationAction))
+                {
+                    return new global::Speechify.JsonConverters.HostedApiMountOperationActionJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.HostedApiMountOperationAction?))
+                {
+                    return new global::Speechify.JsonConverters.HostedApiMountOperationActionNullableJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.HostedApiMountOperationChangesItems))
+                {
+                    return new global::Speechify.JsonConverters.HostedApiMountOperationChangesItemsJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.HostedApiMountOperationChangesItems?))
+                {
+                    return new global::Speechify.JsonConverters.HostedApiMountOperationChangesItemsNullableJsonConverter();
                 }
 
                 if (typeToConvert == typeof(global::Speechify.UpdateHostedApiRouteRequestMethod))

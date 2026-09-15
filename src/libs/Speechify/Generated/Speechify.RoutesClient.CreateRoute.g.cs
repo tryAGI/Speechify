@@ -60,11 +60,13 @@ namespace Speechify
         /// 202 with a handle to poll at `/_runs/{run_id}`; `file` serves one<br/>
         /// published file, or a whole published tree when the path ends in `*`<br/>
         /// (`/app/*` with `file_root` and `file_index`); `tool` calls one read<br/>
-        /// operation of an `openapi` tool definition in the API's project whose<br/>
-        /// `approval` is null or `auto` (POST only, never on a public API, counted<br/>
-        /// against `daily_read_cap`): the<br/>
-        /// consumer's JSON body is the operation's arguments and the vendor's<br/>
-        /// answer, after the operation's `response` mapping, is the response.<br/>
+        /// operation of an `openapi` tool definition, or one tool of an `mcp`<br/>
+        /// tool definition's server, in the API's project whose `approval` is<br/>
+        /// null or `auto` (POST only, never on a public API, counted against<br/>
+        /// `daily_read_cap`): the consumer's JSON body is the arguments and the<br/>
+        /// connector's answer, after the tool's response mapping, is the<br/>
+        /// response. An `mcp` route pins the tool's input schema as<br/>
+        /// `resolver.input_schema` when it is written.<br/>
         /// Where-clause values and<br/>
         /// the document id may be `{{query.x}}`, `{{path.x}}` or `{{body.x}}`<br/>
         /// templates bound from the consumer's request, or `{{user.x}}` claims of<br/>
@@ -131,11 +133,13 @@ namespace Speechify
         /// 202 with a handle to poll at `/_runs/{run_id}`; `file` serves one<br/>
         /// published file, or a whole published tree when the path ends in `*`<br/>
         /// (`/app/*` with `file_root` and `file_index`); `tool` calls one read<br/>
-        /// operation of an `openapi` tool definition in the API's project whose<br/>
-        /// `approval` is null or `auto` (POST only, never on a public API, counted<br/>
-        /// against `daily_read_cap`): the<br/>
-        /// consumer's JSON body is the operation's arguments and the vendor's<br/>
-        /// answer, after the operation's `response` mapping, is the response.<br/>
+        /// operation of an `openapi` tool definition, or one tool of an `mcp`<br/>
+        /// tool definition's server, in the API's project whose `approval` is<br/>
+        /// null or `auto` (POST only, never on a public API, counted against<br/>
+        /// `daily_read_cap`): the consumer's JSON body is the arguments and the<br/>
+        /// connector's answer, after the tool's response mapping, is the<br/>
+        /// response. An `mcp` route pins the tool's input schema as<br/>
+        /// `resolver.input_schema` when it is written.<br/>
         /// Where-clause values and<br/>
         /// the document id may be `{{query.x}}`, `{{path.x}}` or `{{body.x}}`<br/>
         /// templates bound from the consumer's request, or `{{user.x}}` claims of<br/>
@@ -746,11 +750,13 @@ namespace Speechify
         /// 202 with a handle to poll at `/_runs/{run_id}`; `file` serves one<br/>
         /// published file, or a whole published tree when the path ends in `*`<br/>
         /// (`/app/*` with `file_root` and `file_index`); `tool` calls one read<br/>
-        /// operation of an `openapi` tool definition in the API's project whose<br/>
-        /// `approval` is null or `auto` (POST only, never on a public API, counted<br/>
-        /// against `daily_read_cap`): the<br/>
-        /// consumer's JSON body is the operation's arguments and the vendor's<br/>
-        /// answer, after the operation's `response` mapping, is the response.<br/>
+        /// operation of an `openapi` tool definition, or one tool of an `mcp`<br/>
+        /// tool definition's server, in the API's project whose `approval` is<br/>
+        /// null or `auto` (POST only, never on a public API, counted against<br/>
+        /// `daily_read_cap`): the consumer's JSON body is the arguments and the<br/>
+        /// connector's answer, after the tool's response mapping, is the<br/>
+        /// response. An `mcp` route pins the tool's input schema as<br/>
+        /// `resolver.input_schema` when it is written.<br/>
         /// Where-clause values and<br/>
         /// the document id may be `{{query.x}}`, `{{path.x}}` or `{{body.x}}`<br/>
         /// templates bound from the consumer's request, or `{{user.x}}` claims of<br/>
@@ -815,27 +821,47 @@ namespace Speechify
         /// `run` (trigger_id of a webhook trigger, wait_seconds),<br/>
         /// `file` (file_path of one published file; or, on a route whose path<br/>
         /// ends in `*`, file_root and file_index for a whole published tree),<br/>
-        /// `tool` (tool_id of an `openapi` tool definition and the `operation`<br/>
-        /// on it: the POST body is the operation's arguments, held to its<br/>
-        /// argument schema, and the vendor's answer after the operation's<br/>
-        /// `response` mapping is the response, or `{"text": ...}` when the vendor<br/>
-        /// answered text. Only an operation whose effective class is `read`, on a<br/>
-        /// tool whose `approval` is null or `auto`, may be served, and never on a<br/>
-        /// public API; a route write that names anything else is refused with 400<br/>
-        /// `validation_failed` on `resolver.tool_id`. Because a definition can<br/>
-        /// change after its route is written, every call re-checks it: an<br/>
-        /// operation no longer classified `read`, or a tool whose `approval` is no<br/>
-        /// longer null or `auto`, answers 403 `route_tool_not_readable`; a tool<br/>
-        /// deleted, moved to another project, no longer of kind `openapi` or<br/>
-        /// without the operation answers 409 `route_tool_unavailable`, which no<br/>
+        /// `tool` (tool_id of an `openapi` or `mcp` tool definition and the<br/>
+        /// `operation` on it, an openapi operation's id or one of the MCP<br/>
+        /// server's tools by name: the POST body is the arguments, held to their<br/>
+        /// schema, and the connector's answer after the tool's response mapping<br/>
+        /// is the response. An openapi vendor's JSON comes back as it came, or<br/>
+        /// `{"text": ...}` when it answered text; an MCP tool answers its<br/>
+        /// structured content, its text when that text is JSON, `{"text": ...}`<br/>
+        /// for plain text, or `{"content": [...]}` with every block as the server<br/>
+        /// sent it when one is not text. For an `mcp` tool the route write lists<br/>
+        /// the server's tools and pins the chosen tool's input schema on the<br/>
+        /// route as `input_schema`, so the MCP face and every call use the pin<br/>
+        /// and an upstream change reaches no consumer until the route is written<br/>
+        /// again. An operation whose effective class is `read`, on a tool whose<br/>
+        /// `approval` is null or `auto`, may be served on any API but a public<br/>
+        /// one. An operation that is not a read is served only on a route with<br/>
+        /// `allow_write: true`, on an API whose `auth_mode` names a person<br/>
+        /// (`owner`, `workspace` or `user_token`), and still only with an<br/>
+        /// `approval` of null or `auto`: a write through a route acts for the<br/>
+        /// member or end user calling, who is sent to the connector as<br/>
+        /// `Speechify-User-Identity`, a service account is refused, every write<br/>
+        /// counts against `daily_write_cap` (429 `route_write_limit_reached`) and<br/>
+        /// claims the caller's `Idempotency-Key` so a retry replays the first<br/>
+        /// answer. A route write that breaks any of this is refused with 400<br/>
+        /// `validation_failed` on `resolver.tool_id`, `resolver.operation` or<br/>
+        /// `resolver.allow_write`, as is an MCP server that cannot be listed.<br/>
+        /// Because a definition can change after its route is written, every call<br/>
+        /// re-checks it: an operation no longer classified `read` on a route not<br/>
+        /// switched to writes, or a tool whose `approval` is no longer null or<br/>
+        /// `auto`, answers 403 `route_tool_not_readable`; a tool<br/>
+        /// deleted, moved to another project, or without the operation (an MCP<br/>
+        /// server that no longer lists the tool) answers 409<br/>
+        /// `route_tool_unavailable`, which no<br/>
         /// retry clears until the route or the tool is fixed. Arguments that do<br/>
         /// not fit the schema answer 400 `validation_failed`; the definition's<br/>
         /// `max_requests_per_minute` and the vendor's own throttle both answer 429<br/>
         /// `route_upstream_rate_limited` with `Retry-After`; a vendor error<br/>
         /// answers 502 `route_upstream_error` with the vendor's status in<br/>
-        /// `error.details.upstream_status`, and an unreachable vendor or a<br/>
-        /// credential that no longer resolves answers 502 `route_upstream_error`<br/>
-        /// without it).
+        /// `error.details.upstream_status`, an MCP tool that reports an error<br/>
+        /// answers it with the tool's own message in `error.details.tool_error`,<br/>
+        /// and an unreachable vendor or a credential that no longer resolves<br/>
+        /// answers 502 `route_upstream_error` without either).
         /// </param>
         /// <param name="responseSchema"></param>
         /// <param name="cacheTtlSeconds"></param>

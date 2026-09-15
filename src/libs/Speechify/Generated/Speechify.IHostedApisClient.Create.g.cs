@@ -13,7 +13,10 @@ namespace Speechify
         /// signs per user), `consumer_key` (a `ck_` key you mint) or `public`<br/>
         /// (anyone, reads only). A workspace can refuse `public` as policy (403<br/>
         /// `hosted_api_public_refused`). Reads, runs and writes are each bounded<br/>
-        /// per UTC day (`daily_read_cap`, `daily_run_cap`, `daily_write_cap`).<br/>
+        /// per UTC day (`daily_read_cap`, `daily_run_cap`, `daily_write_cap`),<br/>
+        /// and an API holds only a share of a server's requests open at once, so<br/>
+        /// a slow upstream behind one API cannot take the capacity others need:<br/>
+        /// past it, a request answers 429 `hosted_api_busy` with `Retry-After`.<br/>
         /// `mcp_enabled: true` also serves the API's routes as an MCP server at<br/>
         /// `POST &lt;base_url&gt;/mcp`, so an MCP client (Claude Code, Cursor) attaches<br/>
         /// to one address and gets them as tools, under the same audience, keys<br/>
@@ -47,7 +50,10 @@ namespace Speechify
         /// signs per user), `consumer_key` (a `ck_` key you mint) or `public`<br/>
         /// (anyone, reads only). A workspace can refuse `public` as policy (403<br/>
         /// `hosted_api_public_refused`). Reads, runs and writes are each bounded<br/>
-        /// per UTC day (`daily_read_cap`, `daily_run_cap`, `daily_write_cap`).<br/>
+        /// per UTC day (`daily_read_cap`, `daily_run_cap`, `daily_write_cap`),<br/>
+        /// and an API holds only a share of a server's requests open at once, so<br/>
+        /// a slow upstream behind one API cannot take the capacity others need:<br/>
+        /// past it, a request answers 429 `hosted_api_busy` with `Retry-After`.<br/>
         /// `mcp_enabled: true` also serves the API's routes as an MCP server at<br/>
         /// `POST &lt;base_url&gt;/mcp`, so an MCP client (Claude Code, Cursor) attaches<br/>
         /// to one address and gets them as tools, under the same audience, keys<br/>
@@ -81,7 +87,10 @@ namespace Speechify
         /// signs per user), `consumer_key` (a `ck_` key you mint) or `public`<br/>
         /// (anyone, reads only). A workspace can refuse `public` as policy (403<br/>
         /// `hosted_api_public_refused`). Reads, runs and writes are each bounded<br/>
-        /// per UTC day (`daily_read_cap`, `daily_run_cap`, `daily_write_cap`).<br/>
+        /// per UTC day (`daily_read_cap`, `daily_run_cap`, `daily_write_cap`),<br/>
+        /// and an API holds only a share of a server's requests open at once, so<br/>
+        /// a slow upstream behind one API cannot take the capacity others need:<br/>
+        /// past it, a request answers 429 `hosted_api_busy` with `Retry-After`.<br/>
         /// `mcp_enabled: true` also serves the API's routes as an MCP server at<br/>
         /// `POST &lt;base_url&gt;/mcp`, so an MCP client (Claude Code, Cursor) attaches<br/>
         /// to one address and gets them as tools, under the same audience, keys<br/>
