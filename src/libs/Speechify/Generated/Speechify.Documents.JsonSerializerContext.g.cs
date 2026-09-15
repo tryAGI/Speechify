@@ -28,6 +28,9 @@ namespace Speechify
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.Error))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(int))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.DateTime))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.StoreAggregateMetricOp), TypeInfoPropertyName = "StoreAggregateMetricOp2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.StoreAggregateMetric))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Speechify.StoreAggregateMetric>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.StoreDocumentSource))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.StoreDocument))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.QueryStoreDocumentsResponse))]
@@ -39,10 +42,7 @@ namespace Speechify
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.StoreOrderBy))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.StoreDocumentQuery))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Speechify.StoreWhereClause>))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.StoreAggregateMetricOp), TypeInfoPropertyName = "StoreAggregateMetricOp2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.StoreAggregateMetric))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.StoreAggregateQuery))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Speechify.StoreAggregateMetric>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.StoreAggregateGroup))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.Dictionary<string, double?>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.StoreAggregateResponse))]
@@ -61,14 +61,14 @@ namespace Speechify
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.ErrorCode?), TypeInfoPropertyName = "NullableErrorCode2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(int?))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.DateTime?))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.StoreAggregateMetricOp?), TypeInfoPropertyName = "NullableStoreAggregateMetricOp2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.StoreWhereClauseOp?), TypeInfoPropertyName = "NullableStoreWhereClauseOp2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.StoreOrderByDirection?), TypeInfoPropertyName = "NullableStoreOrderByDirection2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.StoreAggregateMetricOp?), TypeInfoPropertyName = "NullableStoreAggregateMetricOp2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.StoreBatchWriteOp?), TypeInfoPropertyName = "NullableStoreBatchWriteOp2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.StoreBatchResultOp?), TypeInfoPropertyName = "NullableStoreBatchResultOp2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.StoreAggregateMetric>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.StoreDocument>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.StoreWhereClause>))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.StoreAggregateMetric>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.StoreAggregateGroup>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.StoreBatchWrite>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.StoreBatchResult>))]
@@ -142,6 +142,10 @@ namespace Speechify
 
                     || typeToConvert == typeof(global::Speechify.ErrorCode?)
 
+                    || typeToConvert == typeof(global::Speechify.StoreAggregateMetricOp)
+
+                    || typeToConvert == typeof(global::Speechify.StoreAggregateMetricOp?)
+
                     || typeToConvert == typeof(global::Speechify.StoreWhereClauseOp)
 
                     || typeToConvert == typeof(global::Speechify.StoreWhereClauseOp?)
@@ -149,10 +153,6 @@ namespace Speechify
                     || typeToConvert == typeof(global::Speechify.StoreOrderByDirection)
 
                     || typeToConvert == typeof(global::Speechify.StoreOrderByDirection?)
-
-                    || typeToConvert == typeof(global::Speechify.StoreAggregateMetricOp)
-
-                    || typeToConvert == typeof(global::Speechify.StoreAggregateMetricOp?)
 
                     || typeToConvert == typeof(global::Speechify.StoreBatchWriteOp)
 
@@ -177,6 +177,16 @@ namespace Speechify
                     return new global::Speechify.JsonConverters.ErrorCodeNullableJsonConverter();
                 }
 
+                if (typeToConvert == typeof(global::Speechify.StoreAggregateMetricOp))
+                {
+                    return new global::Speechify.JsonConverters.StoreAggregateMetricOpJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.StoreAggregateMetricOp?))
+                {
+                    return new global::Speechify.JsonConverters.StoreAggregateMetricOpNullableJsonConverter();
+                }
+
                 if (typeToConvert == typeof(global::Speechify.StoreWhereClauseOp))
                 {
                     return new global::Speechify.JsonConverters.StoreWhereClauseOpJsonConverter();
@@ -195,16 +205,6 @@ namespace Speechify
                 if (typeToConvert == typeof(global::Speechify.StoreOrderByDirection?))
                 {
                     return new global::Speechify.JsonConverters.StoreOrderByDirectionNullableJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Speechify.StoreAggregateMetricOp))
-                {
-                    return new global::Speechify.JsonConverters.StoreAggregateMetricOpJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Speechify.StoreAggregateMetricOp?))
-                {
-                    return new global::Speechify.JsonConverters.StoreAggregateMetricOpNullableJsonConverter();
                 }
 
                 if (typeToConvert == typeof(global::Speechify.StoreBatchWriteOp))

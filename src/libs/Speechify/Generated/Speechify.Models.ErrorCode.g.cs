@@ -348,6 +348,10 @@ namespace Speechify
         /// <summary>
         ///
         /// </summary>
+        MountPlanChanged,
+        /// <summary>
+        ///
+        /// </summary>
         NotFound,
         /// <summary>
         ///
@@ -766,6 +770,7 @@ namespace Speechify
                 ErrorCode.MessageNotFound => "message_not_found",
                 ErrorCode.MethodNotAllowed => "method_not_allowed",
                 ErrorCode.ModelRetired => "model_retired",
+                ErrorCode.MountPlanChanged => "mount_plan_changed",
                 ErrorCode.NotFound => "not_found",
                 ErrorCode.NumberNotSmsCapable => "number_not_sms_capable",
                 ErrorCode.PayloadTooLarge => "payload_too_large",
@@ -940,6 +945,7 @@ namespace Speechify
                 "message_not_found" => ErrorCode.MessageNotFound,
                 "method_not_allowed" => ErrorCode.MethodNotAllowed,
                 "model_retired" => ErrorCode.ModelRetired,
+                "mount_plan_changed" => ErrorCode.MountPlanChanged,
                 "not_found" => ErrorCode.NotFound,
                 "number_not_sms_capable" => ErrorCode.NumberNotSmsCapable,
                 "payload_too_large" => ErrorCode.PayloadTooLarge,
