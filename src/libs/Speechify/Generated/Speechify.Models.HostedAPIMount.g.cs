@@ -66,6 +66,16 @@ namespace Speechify
         public required global::Speechify.HostedAPIMountSummary Summary { get; set; }
 
         /// <summary>
+        /// Names this plan's content: every operation the connector offers and<br/>
+        /// every route the API holds for it, whatever `operations` selects,<br/>
+        /// and nothing that moves without the plan changing. Send it back as<br/>
+        /// the apply's `plan_digest` to write only this plan.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("plan_digest")]
+        [global::System.Text.Json.Serialization.JsonRequired]
+        public required string PlanDigest { get; set; }
+
+        /// <summary>
         /// Additional properties that are not explicitly defined in the schema
         /// </summary>
         [global::System.Text.Json.Serialization.JsonExtensionData]
@@ -84,6 +94,12 @@ namespace Speechify
         /// One entry per operation the connector offers, in its order, then one per stale route whose operation it no longer offers.
         /// </param>
         /// <param name="summary"></param>
+        /// <param name="planDigest">
+        /// Names this plan's content: every operation the connector offers and<br/>
+        /// every route the API holds for it, whatever `operations` selects,<br/>
+        /// and nothing that moves without the plan changing. Send it back as<br/>
+        /// the apply's `plan_digest` to write only this plan.
+        /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
 #endif
@@ -95,7 +111,8 @@ namespace Speechify
             string pathPrefix,
             bool dryRun,
             global::System.Collections.Generic.IList<global::Speechify.HostedAPIMountOperation> operations,
-            global::Speechify.HostedAPIMountSummary summary)
+            global::Speechify.HostedAPIMountSummary summary,
+            string planDigest)
         {
             this.ToolId = toolId ?? throw new global::System.ArgumentNullException(nameof(toolId));
             this.ToolName = toolName ?? throw new global::System.ArgumentNullException(nameof(toolName));
@@ -105,6 +122,7 @@ namespace Speechify
             this.DryRun = dryRun;
             this.Operations = operations ?? throw new global::System.ArgumentNullException(nameof(operations));
             this.Summary = summary ?? throw new global::System.ArgumentNullException(nameof(summary));
+            this.PlanDigest = planDigest ?? throw new global::System.ArgumentNullException(nameof(planDigest));
         }
 
         /// <summary>

@@ -22,6 +22,19 @@ namespace Speechify
         /// since a consumer may still call it). The same call without `dry_run`<br/>
         /// writes every create and update in one transaction and returns the<br/>
         /// written `route` on each.<br/>
+        /// Every answer carries a `plan_digest`. Send the preview's digest with<br/>
+        /// the apply: the apply plans again inside its transaction and writes<br/>
+        /// only when that plan still has the digest, so a tool the server changed<br/>
+        /// or a route edited after you reviewed is never written unseen. When it<br/>
+        /// differs the apply writes nothing and answers 409 `mount_plan_changed`<br/>
+        /// with the current plan, as a dry run answers it, in<br/>
+        /// `error.details.plan`; review that and apply again with its digest,<br/>
+        /// under a new `Idempotency-Key` if you sent one, since a key replays its<br/>
+        /// first answer, this 409 included. The digest covers every operation the<br/>
+        /// connector offers and every route the API holds for it whatever<br/>
+        /// `operations` selects, so a preview of everything and an apply of a<br/>
+        /// selection share one. An apply without it writes whatever the mount<br/>
+        /// plans at that moment.<br/>
         /// Mounting again is the refresh. Every route the API holds for the<br/>
         /// connector is compared with what it offers now, whatever its name,<br/>
         /// path or the selection, so an upstream change is seen as a diff before<br/>
@@ -33,9 +46,9 @@ namespace Speechify
         /// must be reachable with its credential to be listed (400<br/>
         /// `validation_failed` on `tool_id` with the server's reason), and a<br/>
         /// public API mounts nothing. An API holds at most 200 routes; a mount<br/>
-        /// that would pass the cap skips what does not fit. A route changed while<br/>
-        /// the mount was being planned answers 409 `api_route_conflict`; mount<br/>
-        /// again.<br/>
+        /// that would pass the cap skips what does not fit. Without a<br/>
+        /// `plan_digest`, a route changed while the mount was being planned<br/>
+        /// answers 409 `api_route_conflict`; mount again.<br/>
         /// Dark launch: requires the `hosted_apis_access` entitlement (402 `hosted_apis_not_in_plan` otherwise).
         /// </summary>
         /// <param name="apiId"></param>
@@ -73,6 +86,19 @@ namespace Speechify
         /// since a consumer may still call it). The same call without `dry_run`<br/>
         /// writes every create and update in one transaction and returns the<br/>
         /// written `route` on each.<br/>
+        /// Every answer carries a `plan_digest`. Send the preview's digest with<br/>
+        /// the apply: the apply plans again inside its transaction and writes<br/>
+        /// only when that plan still has the digest, so a tool the server changed<br/>
+        /// or a route edited after you reviewed is never written unseen. When it<br/>
+        /// differs the apply writes nothing and answers 409 `mount_plan_changed`<br/>
+        /// with the current plan, as a dry run answers it, in<br/>
+        /// `error.details.plan`; review that and apply again with its digest,<br/>
+        /// under a new `Idempotency-Key` if you sent one, since a key replays its<br/>
+        /// first answer, this 409 included. The digest covers every operation the<br/>
+        /// connector offers and every route the API holds for it whatever<br/>
+        /// `operations` selects, so a preview of everything and an apply of a<br/>
+        /// selection share one. An apply without it writes whatever the mount<br/>
+        /// plans at that moment.<br/>
         /// Mounting again is the refresh. Every route the API holds for the<br/>
         /// connector is compared with what it offers now, whatever its name,<br/>
         /// path or the selection, so an upstream change is seen as a diff before<br/>
@@ -84,9 +110,9 @@ namespace Speechify
         /// must be reachable with its credential to be listed (400<br/>
         /// `validation_failed` on `tool_id` with the server's reason), and a<br/>
         /// public API mounts nothing. An API holds at most 200 routes; a mount<br/>
-        /// that would pass the cap skips what does not fit. A route changed while<br/>
-        /// the mount was being planned answers 409 `api_route_conflict`; mount<br/>
-        /// again.<br/>
+        /// that would pass the cap skips what does not fit. Without a<br/>
+        /// `plan_digest`, a route changed while the mount was being planned<br/>
+        /// answers 409 `api_route_conflict`; mount again.<br/>
         /// Dark launch: requires the `hosted_apis_access` entitlement (402 `hosted_apis_not_in_plan` otherwise).
         /// </summary>
         /// <param name="apiId"></param>
@@ -124,6 +150,19 @@ namespace Speechify
         /// since a consumer may still call it). The same call without `dry_run`<br/>
         /// writes every create and update in one transaction and returns the<br/>
         /// written `route` on each.<br/>
+        /// Every answer carries a `plan_digest`. Send the preview's digest with<br/>
+        /// the apply: the apply plans again inside its transaction and writes<br/>
+        /// only when that plan still has the digest, so a tool the server changed<br/>
+        /// or a route edited after you reviewed is never written unseen. When it<br/>
+        /// differs the apply writes nothing and answers 409 `mount_plan_changed`<br/>
+        /// with the current plan, as a dry run answers it, in<br/>
+        /// `error.details.plan`; review that and apply again with its digest,<br/>
+        /// under a new `Idempotency-Key` if you sent one, since a key replays its<br/>
+        /// first answer, this 409 included. The digest covers every operation the<br/>
+        /// connector offers and every route the API holds for it whatever<br/>
+        /// `operations` selects, so a preview of everything and an apply of a<br/>
+        /// selection share one. An apply without it writes whatever the mount<br/>
+        /// plans at that moment.<br/>
         /// Mounting again is the refresh. Every route the API holds for the<br/>
         /// connector is compared with what it offers now, whatever its name,<br/>
         /// path or the selection, so an upstream change is seen as a diff before<br/>
@@ -135,9 +174,9 @@ namespace Speechify
         /// must be reachable with its credential to be listed (400<br/>
         /// `validation_failed` on `tool_id` with the server's reason), and a<br/>
         /// public API mounts nothing. An API holds at most 200 routes; a mount<br/>
-        /// that would pass the cap skips what does not fit. A route changed while<br/>
-        /// the mount was being planned answers 409 `api_route_conflict`; mount<br/>
-        /// again.<br/>
+        /// that would pass the cap skips what does not fit. Without a<br/>
+        /// `plan_digest`, a route changed while the mount was being planned<br/>
+        /// answers 409 `api_route_conflict`; mount again.<br/>
         /// Dark launch: requires the `hosted_apis_access` entitlement (402 `hosted_apis_not_in_plan` otherwise).
         /// </summary>
         /// <param name="apiId"></param>
@@ -170,6 +209,13 @@ namespace Speechify
         /// takes them; the operation's `approval` must still be `auto`.<br/>
         /// Without it a write is a `skip` that says so.
         /// </param>
+        /// <param name="planDigest">
+        /// The `plan_digest` of the preview you reviewed. The apply writes<br/>
+        /// only while the plan it computes inside its transaction still has<br/>
+        /// this digest, and otherwise writes nothing and answers 409<br/>
+        /// `mount_plan_changed` with the current plan. Omit it to apply what<br/>
+        /// the mount plans now. Refused with `dry_run`.
+        /// </param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::System.InvalidOperationException"></exception>
@@ -183,6 +229,7 @@ namespace Speechify
             string? pathPrefix = default,
             bool? dryRun = default,
             bool? includeWrites = default,
+            string? planDigest = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
     }

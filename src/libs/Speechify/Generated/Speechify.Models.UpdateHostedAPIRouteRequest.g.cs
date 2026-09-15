@@ -91,7 +91,10 @@ namespace Speechify
         /// deleted, moved to another project, or without the operation (an MCP<br/>
         /// server that no longer lists the tool) answers 409<br/>
         /// `route_tool_unavailable`, which no<br/>
-        /// retry clears until the route or the tool is fixed. Arguments that do<br/>
+        /// retry clears until the route or the tool is fixed, and names which<br/>
+        /// of the three happened in `error.details.reason` (`tool_deleted`,<br/>
+        /// `tool_moved`, `operation_removed`). Both refusals carry what the API's<br/>
+        /// owner changes to fix the route in `error.details.fix`. Arguments that do<br/>
         /// not fit the schema answer 400 `validation_failed`; the definition's<br/>
         /// `max_requests_per_minute` and the vendor's own throttle both answer 429<br/>
         /// `route_upstream_rate_limited` with `Retry-After`; a vendor error<br/>
@@ -197,7 +200,10 @@ namespace Speechify
         /// deleted, moved to another project, or without the operation (an MCP<br/>
         /// server that no longer lists the tool) answers 409<br/>
         /// `route_tool_unavailable`, which no<br/>
-        /// retry clears until the route or the tool is fixed. Arguments that do<br/>
+        /// retry clears until the route or the tool is fixed, and names which<br/>
+        /// of the three happened in `error.details.reason` (`tool_deleted`,<br/>
+        /// `tool_moved`, `operation_removed`). Both refusals carry what the API's<br/>
+        /// owner changes to fix the route in `error.details.fix`. Arguments that do<br/>
         /// not fit the schema answer 400 `validation_failed`; the definition's<br/>
         /// `max_requests_per_minute` and the vendor's own throttle both answer 429<br/>
         /// `route_upstream_rate_limited` with `Retry-After`; a vendor error<br/>

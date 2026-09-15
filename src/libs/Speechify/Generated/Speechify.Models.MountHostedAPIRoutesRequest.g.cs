@@ -53,6 +53,16 @@ namespace Speechify
         public bool? IncludeWrites { get; set; }
 
         /// <summary>
+        /// The `plan_digest` of the preview you reviewed. The apply writes<br/>
+        /// only while the plan it computes inside its transaction still has<br/>
+        /// this digest, and otherwise writes nothing and answers 409<br/>
+        /// `mount_plan_changed` with the current plan. Omit it to apply what<br/>
+        /// the mount plans now. Refused with `dry_run`.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("plan_digest")]
+        public string? PlanDigest { get; set; }
+
+        /// <summary>
         /// Additional properties that are not explicitly defined in the schema
         /// </summary>
         [global::System.Text.Json.Serialization.JsonExtensionData]
@@ -86,6 +96,13 @@ namespace Speechify
         /// takes them; the operation's `approval` must still be `auto`.<br/>
         /// Without it a write is a `skip` that says so.
         /// </param>
+        /// <param name="planDigest">
+        /// The `plan_digest` of the preview you reviewed. The apply writes<br/>
+        /// only while the plan it computes inside its transaction still has<br/>
+        /// this digest, and otherwise writes nothing and answers 409<br/>
+        /// `mount_plan_changed` with the current plan. Omit it to apply what<br/>
+        /// the mount plans now. Refused with `dry_run`.
+        /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
 #endif
@@ -95,7 +112,8 @@ namespace Speechify
             string? namePrefix,
             string? pathPrefix,
             bool? dryRun,
-            bool? includeWrites)
+            bool? includeWrites,
+            string? planDigest)
         {
             this.ToolId = toolId ?? throw new global::System.ArgumentNullException(nameof(toolId));
             this.Operations = operations;
@@ -103,6 +121,7 @@ namespace Speechify
             this.PathPrefix = pathPrefix;
             this.DryRun = dryRun;
             this.IncludeWrites = includeWrites;
+            this.PlanDigest = planDigest;
         }
 
         /// <summary>
