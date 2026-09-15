@@ -4,7 +4,7 @@
 namespace Speechify
 {
     /// <summary>
-    /// One iteration of a durable run's plan-act-observe loop, journaled in order. A `plan` step carries the agent's rationale (`content`); a `tool_call` step carries the tool it invoked (`tool`) and its rendered arguments (`args`); an `observation` step carries the tool's result (`content`) and, when the call it answers produced a file, that file (`files`); a `delegation` step carries the sub-goal it handed to a team member (`content`) and the member + child run that took it (`delegation`). The run's final answer is not a step - read it from the run object. Credential-shaped values in `args` and `content` are redacted.
+    /// One iteration of a durable run's plan-act-observe loop, journaled in order. A `plan` step carries the agent's rationale (`content`) and, when it is about to call a tool or asks approval to, that tool (`tool`); a `tool_call` step carries the tool it invoked (`tool`) and its rendered arguments (`args`); an `observation` step carries the tool's result (`content`) and, when the call it answers produced a file, that file (`files`); a `delegation` step carries the sub-goal it handed to a team member (`content`) and the member + child run that took it (`delegation`). The run's final answer is not a step - read it from the run object. Credential-shaped values in `args` and `content` are redacted.
     /// </summary>
     public sealed partial class AgentRunStep
     {
@@ -24,13 +24,16 @@ namespace Speechify
         public required global::Speechify.AgentRunStepKind Kind { get; set; }
 
         /// <summary>
-        /// The step's payload, per kind: a `plan`'s rationale, an `observation`'s result, or a `delegation`'s sub-goal (redacted).
+        /// The step's payload, per kind: a `plan`'s rationale, an `observation`'s result, or a `delegation`'s sub-goal (redacted). A `plan` carries only what the agent wrote, and has no `content` when the agent called a tool without writing anything.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("content")]
         public string? Content { get; set; }
 
         /// <summary>
-        /// The tool a `tool_call` / `observation` step is about.<br/>
+        /// The tool a `plan` / `tool_call` / `observation` step is about.<br/>
+        /// On a `plan` it is the tool the agent is about to call, spelled exactly as<br/>
+        /// the `tool_call` step that follows it, or the tool it is asking approval<br/>
+        /// to call. Render progress from this field rather than from `content`.<br/>
         /// It is not always one of your own tools. Platform tools appear under<br/>
         /// their reserved names - `search_knowledge`, `fetch_url`, `run_code`,<br/>
         /// `web_search`, `generate_image`, `edit_image`, `render_chart`,<br/>
@@ -132,10 +135,13 @@ namespace Speechify
         /// When the step was committed to the journal.
         /// </param>
         /// <param name="content">
-        /// The step's payload, per kind: a `plan`'s rationale, an `observation`'s result, or a `delegation`'s sub-goal (redacted).
+        /// The step's payload, per kind: a `plan`'s rationale, an `observation`'s result, or a `delegation`'s sub-goal (redacted). A `plan` carries only what the agent wrote, and has no `content` when the agent called a tool without writing anything.
         /// </param>
         /// <param name="tool">
-        /// The tool a `tool_call` / `observation` step is about.<br/>
+        /// The tool a `plan` / `tool_call` / `observation` step is about.<br/>
+        /// On a `plan` it is the tool the agent is about to call, spelled exactly as<br/>
+        /// the `tool_call` step that follows it, or the tool it is asking approval<br/>
+        /// to call. Render progress from this field rather than from `content`.<br/>
         /// It is not always one of your own tools. Platform tools appear under<br/>
         /// their reserved names - `search_knowledge`, `fetch_url`, `run_code`,<br/>
         /// `web_search`, `generate_image`, `edit_image`, `render_chart`,<br/>

@@ -34,13 +34,16 @@ namespace Speechify
         public required global::Speechify.AgentRunStepAddedEventKind Kind { get; set; }
 
         /// <summary>
-        /// The step's payload, per kind: a `plan`'s rationale, an `observation`'s result, or a `delegation`'s sub-goal (redacted).
+        /// The step's payload, per kind: a `plan`'s rationale, an `observation`'s result, or a `delegation`'s sub-goal (redacted). A `plan` carries only what the agent wrote, and has no `content` when the agent called a tool without writing anything.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("content")]
         public string? Content { get; set; }
 
         /// <summary>
-        /// The tool a `tool_call` / `observation` step is about.<br/>
+        /// The tool a `plan` / `tool_call` / `observation` step is about.<br/>
+        /// On a `plan` it is the tool the agent is about to call, spelled exactly as<br/>
+        /// the `tool_call` step that follows it, or the tool it is asking approval<br/>
+        /// to call. Render progress from this field rather than from `content`.<br/>
         /// It is not always one of your own tools. Platform tools appear under<br/>
         /// their reserved names - `search_knowledge`, `fetch_url`, `run_code`,<br/>
         /// `web_search`, `generate_image`, `edit_image`, `render_chart`,<br/>
@@ -143,10 +146,13 @@ namespace Speechify
         /// </param>
         /// <param name="type"></param>
         /// <param name="content">
-        /// The step's payload, per kind: a `plan`'s rationale, an `observation`'s result, or a `delegation`'s sub-goal (redacted).
+        /// The step's payload, per kind: a `plan`'s rationale, an `observation`'s result, or a `delegation`'s sub-goal (redacted). A `plan` carries only what the agent wrote, and has no `content` when the agent called a tool without writing anything.
         /// </param>
         /// <param name="tool">
-        /// The tool a `tool_call` / `observation` step is about.<br/>
+        /// The tool a `plan` / `tool_call` / `observation` step is about.<br/>
+        /// On a `plan` it is the tool the agent is about to call, spelled exactly as<br/>
+        /// the `tool_call` step that follows it, or the tool it is asking approval<br/>
+        /// to call. Render progress from this field rather than from `content`.<br/>
         /// It is not always one of your own tools. Platform tools appear under<br/>
         /// their reserved names - `search_knowledge`, `fetch_url`, `run_code`,<br/>
         /// `web_search`, `generate_image`, `edit_image`, `render_chart`,<br/>

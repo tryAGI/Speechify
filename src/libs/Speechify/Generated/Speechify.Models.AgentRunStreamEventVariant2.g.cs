@@ -4,15 +4,14 @@
 namespace Speechify
 {
     /// <summary>
-    /// A piece of the text the agent is writing, sent as it is written. `seq`<br/>
-    /// is the journal position the text belongs to and `offset` the number of<br/>
-    /// characters (Unicode code points) of that position's text before this<br/>
-    /// piece; keep one buffer per `seq` and place the piece at its offset. The<br/>
-    /// buffer is closed by a `run.step.added` at the same `seq` (it was the<br/>
-    /// step's `content`) or by `run.ended` (it was the reply, and<br/>
-    /// `output.reply` is the copy to keep). The SSE `id:` records the position<br/>
-    /// reached, so a reconnect through `Last-Event-ID` resumes without<br/>
-    /// replaying text already rendered.
+    /// A piece of the agent's answer, sent as it is written. It is only ever<br/>
+    /// the answer, never the agent's plan, so appending every piece in order<br/>
+    /// gives the reply. `seq` is the journal position the answer is written at<br/>
+    /// and `offset` the number of characters (Unicode code points) of it<br/>
+    /// before this piece; place the piece at its offset. `run.ended` closes<br/>
+    /// the answer, and its `output.reply` is the copy to keep. The SSE `id:`<br/>
+    /// records the position reached, so a reconnect through `Last-Event-ID`<br/>
+    /// resumes without replaying text already rendered.
     /// </summary>
     public sealed partial class AgentRunStreamEventVariant2
     {
@@ -24,14 +23,14 @@ namespace Speechify
         public global::Speechify.AgentRunStreamEventVariant2Type Type { get; set; }
 
         /// <summary>
-        /// The journal position this text is being written at.
+        /// The journal position the answer is being written at.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("seq")]
         [global::System.Text.Json.Serialization.JsonRequired]
         public required int Seq { get; set; }
 
         /// <summary>
-        /// Characters of this position's text that precede this piece.
+        /// Characters of the answer that precede this piece.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("offset")]
         [global::System.Text.Json.Serialization.JsonRequired]
@@ -54,10 +53,10 @@ namespace Speechify
         /// Initializes a new instance of the <see cref="AgentRunStreamEventVariant2" /> class.
         /// </summary>
         /// <param name="seq">
-        /// The journal position this text is being written at.
+        /// The journal position the answer is being written at.
         /// </param>
         /// <param name="offset">
-        /// Characters of this position's text that precede this piece.
+        /// Characters of the answer that precede this piece.
         /// </param>
         /// <param name="text">
         /// The piece itself, never empty.
