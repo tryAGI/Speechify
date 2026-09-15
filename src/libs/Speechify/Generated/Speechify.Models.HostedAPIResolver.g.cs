@@ -19,27 +19,47 @@ namespace Speechify
     /// `run` (trigger_id of a webhook trigger, wait_seconds),<br/>
     /// `file` (file_path of one published file; or, on a route whose path<br/>
     /// ends in `*`, file_root and file_index for a whole published tree),<br/>
-    /// `tool` (tool_id of an `openapi` tool definition and the `operation`<br/>
-    /// on it: the POST body is the operation's arguments, held to its<br/>
-    /// argument schema, and the vendor's answer after the operation's<br/>
-    /// `response` mapping is the response, or `{"text": ...}` when the vendor<br/>
-    /// answered text. Only an operation whose effective class is `read`, on a<br/>
-    /// tool whose `approval` is null or `auto`, may be served, and never on a<br/>
-    /// public API; a route write that names anything else is refused with 400<br/>
-    /// `validation_failed` on `resolver.tool_id`. Because a definition can<br/>
-    /// change after its route is written, every call re-checks it: an<br/>
-    /// operation no longer classified `read`, or a tool whose `approval` is no<br/>
-    /// longer null or `auto`, answers 403 `route_tool_not_readable`; a tool<br/>
-    /// deleted, moved to another project, no longer of kind `openapi` or<br/>
-    /// without the operation answers 409 `route_tool_unavailable`, which no<br/>
+    /// `tool` (tool_id of an `openapi` or `mcp` tool definition and the<br/>
+    /// `operation` on it, an openapi operation's id or one of the MCP<br/>
+    /// server's tools by name: the POST body is the arguments, held to their<br/>
+    /// schema, and the connector's answer after the tool's response mapping<br/>
+    /// is the response. An openapi vendor's JSON comes back as it came, or<br/>
+    /// `{"text": ...}` when it answered text; an MCP tool answers its<br/>
+    /// structured content, its text when that text is JSON, `{"text": ...}`<br/>
+    /// for plain text, or `{"content": [...]}` with every block as the server<br/>
+    /// sent it when one is not text. For an `mcp` tool the route write lists<br/>
+    /// the server's tools and pins the chosen tool's input schema on the<br/>
+    /// route as `input_schema`, so the MCP face and every call use the pin<br/>
+    /// and an upstream change reaches no consumer until the route is written<br/>
+    /// again. An operation whose effective class is `read`, on a tool whose<br/>
+    /// `approval` is null or `auto`, may be served on any API but a public<br/>
+    /// one. An operation that is not a read is served only on a route with<br/>
+    /// `allow_write: true`, on an API whose `auth_mode` names a person<br/>
+    /// (`owner`, `workspace` or `user_token`), and still only with an<br/>
+    /// `approval` of null or `auto`: a write through a route acts for the<br/>
+    /// member or end user calling, who is sent to the connector as<br/>
+    /// `Speechify-User-Identity`, a service account is refused, every write<br/>
+    /// counts against `daily_write_cap` (429 `route_write_limit_reached`) and<br/>
+    /// claims the caller's `Idempotency-Key` so a retry replays the first<br/>
+    /// answer. A route write that breaks any of this is refused with 400<br/>
+    /// `validation_failed` on `resolver.tool_id`, `resolver.operation` or<br/>
+    /// `resolver.allow_write`, as is an MCP server that cannot be listed.<br/>
+    /// Because a definition can change after its route is written, every call<br/>
+    /// re-checks it: an operation no longer classified `read` on a route not<br/>
+    /// switched to writes, or a tool whose `approval` is no longer null or<br/>
+    /// `auto`, answers 403 `route_tool_not_readable`; a tool<br/>
+    /// deleted, moved to another project, or without the operation (an MCP<br/>
+    /// server that no longer lists the tool) answers 409<br/>
+    /// `route_tool_unavailable`, which no<br/>
     /// retry clears until the route or the tool is fixed. Arguments that do<br/>
     /// not fit the schema answer 400 `validation_failed`; the definition's<br/>
     /// `max_requests_per_minute` and the vendor's own throttle both answer 429<br/>
     /// `route_upstream_rate_limited` with `Retry-After`; a vendor error<br/>
     /// answers 502 `route_upstream_error` with the vendor's status in<br/>
-    /// `error.details.upstream_status`, and an unreachable vendor or a<br/>
-    /// credential that no longer resolves answers 502 `route_upstream_error`<br/>
-    /// without it).
+    /// `error.details.upstream_status`, an MCP tool that reports an error<br/>
+    /// answers it with the tool's own message in `error.details.tool_error`,<br/>
+    /// and an unreachable vendor or a credential that no longer resolves<br/>
+    /// answers 502 `route_upstream_error` without either).
     /// </summary>
     public sealed partial class HostedAPIResolver
     {
@@ -168,9 +188,9 @@ namespace Speechify
         public int? WaitSeconds { get; set; }
 
         /// <summary>
-        /// For a `tool` route: the `openapi` tool definition whose operation<br/>
-        /// the route calls, as `POST /v1/agents/tool-definitions` returned<br/>
-        /// it. It must live in the API's project (409<br/>
+        /// For a `tool` route: the `openapi` or `mcp` tool definition whose<br/>
+        /// operation the route calls, as `POST /v1/agents/tool-definitions`<br/>
+        /// returned it. It must live in the API's project (409<br/>
         /// `cross_project_reference` otherwise). The route refuses a definition<br/>
         /// of another kind, an operation whose effective class is not `read`,<br/>
         /// and a tool whose `approval` is set to anything but `auto`, since a<br/>
@@ -180,15 +200,42 @@ namespace Speechify
         public string? ToolId { get; set; }
 
         /// <summary>
-        /// For a `tool` route: the operation to call, as the definition's<br/>
-        /// `operations[].id` names it (the same value<br/>
+        /// For a `tool` route: the operation to call. On an `openapi` tool it<br/>
+        /// is the definition's `operations[].id` (the same value<br/>
         /// `POST /v1/agents/tool-definitions/test-openapi-call` takes as<br/>
-        /// `operation`). The route is a POST whose JSON body is the<br/>
-        /// operation's arguments, validated against the argument schema the<br/>
-        /// definition publishes.
+        /// `operation`); on an `mcp` tool it is the server's own tool name,<br/>
+        /// as `POST /v1/agents/tool-definitions/test-mcp-connection` lists<br/>
+        /// it. The route is a POST whose JSON body is the arguments, validated<br/>
+        /// against the definition's argument schema for an openapi operation<br/>
+        /// and against `input_schema` for an MCP tool.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("operation")]
         public string? Operation { get; set; }
+
+        /// <summary>
+        /// For a `tool` route: serve an operation that is not a read (refused<br/>
+        /// on an operation that is one). Only on<br/>
+        /// an API whose `auth_mode` is `owner`, `workspace` or `user_token`,<br/>
+        /// and only for an operation whose effective `approval` is `auto`;<br/>
+        /// the API cannot then be switched to `consumer_key` or `public`<br/>
+        /// while the route serves writes. A write acts for the person<br/>
+        /// calling, counts against `daily_write_cap`, and claims<br/>
+        /// `Idempotency-Key`. On the MCP face the tool is not read-only.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("allow_write")]
+        public bool? AllowWrite { get; set; }
+
+        /// <summary>
+        /// For a `tool` route on an `mcp` tool: the MCP tool's input schema<br/>
+        /// as the server listed it when the route was last written, pinned so<br/>
+        /// the MCP face lists it and every call is checked against it without<br/>
+        /// reaching the server. Set by the platform on every write that<br/>
+        /// carries a resolver; a value you send is replaced. Absent on an<br/>
+        /// openapi route, whose schema the definition holds. Write the route<br/>
+        /// again to pick up a schema the server changed.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("input_schema")]
+        public object? InputSchema { get; set; }
 
         /// <summary>
         /// Additional properties that are not explicitly defined in the schema
@@ -264,21 +311,42 @@ namespace Speechify
         /// How long a `run` route waits for the run before answering 202 (default 20; 0 answers 202 at once).
         /// </param>
         /// <param name="toolId">
-        /// For a `tool` route: the `openapi` tool definition whose operation<br/>
-        /// the route calls, as `POST /v1/agents/tool-definitions` returned<br/>
-        /// it. It must live in the API's project (409<br/>
+        /// For a `tool` route: the `openapi` or `mcp` tool definition whose<br/>
+        /// operation the route calls, as `POST /v1/agents/tool-definitions`<br/>
+        /// returned it. It must live in the API's project (409<br/>
         /// `cross_project_reference` otherwise). The route refuses a definition<br/>
         /// of another kind, an operation whose effective class is not `read`,<br/>
         /// and a tool whose `approval` is set to anything but `auto`, since a<br/>
         /// route has nobody to approve a call: set it to null or `auto` first.
         /// </param>
         /// <param name="operation">
-        /// For a `tool` route: the operation to call, as the definition's<br/>
-        /// `operations[].id` names it (the same value<br/>
+        /// For a `tool` route: the operation to call. On an `openapi` tool it<br/>
+        /// is the definition's `operations[].id` (the same value<br/>
         /// `POST /v1/agents/tool-definitions/test-openapi-call` takes as<br/>
-        /// `operation`). The route is a POST whose JSON body is the<br/>
-        /// operation's arguments, validated against the argument schema the<br/>
-        /// definition publishes.
+        /// `operation`); on an `mcp` tool it is the server's own tool name,<br/>
+        /// as `POST /v1/agents/tool-definitions/test-mcp-connection` lists<br/>
+        /// it. The route is a POST whose JSON body is the arguments, validated<br/>
+        /// against the definition's argument schema for an openapi operation<br/>
+        /// and against `input_schema` for an MCP tool.
+        /// </param>
+        /// <param name="allowWrite">
+        /// For a `tool` route: serve an operation that is not a read (refused<br/>
+        /// on an operation that is one). Only on<br/>
+        /// an API whose `auth_mode` is `owner`, `workspace` or `user_token`,<br/>
+        /// and only for an operation whose effective `approval` is `auto`;<br/>
+        /// the API cannot then be switched to `consumer_key` or `public`<br/>
+        /// while the route serves writes. A write acts for the person<br/>
+        /// calling, counts against `daily_write_cap`, and claims<br/>
+        /// `Idempotency-Key`. On the MCP face the tool is not read-only.
+        /// </param>
+        /// <param name="inputSchema">
+        /// For a `tool` route on an `mcp` tool: the MCP tool's input schema<br/>
+        /// as the server listed it when the route was last written, pinned so<br/>
+        /// the MCP face lists it and every call is checked against it without<br/>
+        /// reaching the server. Set by the platform on every write that<br/>
+        /// carries a resolver; a value you send is replaced. Absent on an<br/>
+        /// openapi route, whose schema the definition holds. Write the route<br/>
+        /// again to pick up a schema the server changed.
         /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
@@ -300,7 +368,9 @@ namespace Speechify
             string? triggerId,
             int? waitSeconds,
             string? toolId,
-            string? operation)
+            string? operation,
+            bool? allowWrite,
+            object? inputSchema)
         {
             this.Type = type;
             this.StoreId = storeId;
@@ -319,6 +389,8 @@ namespace Speechify
             this.WaitSeconds = waitSeconds;
             this.ToolId = toolId;
             this.Operation = operation;
+            this.AllowWrite = allowWrite;
+            this.InputSchema = inputSchema;
         }
 
         /// <summary>

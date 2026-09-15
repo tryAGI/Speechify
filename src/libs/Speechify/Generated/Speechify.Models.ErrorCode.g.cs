@@ -264,6 +264,10 @@ namespace Speechify
         /// <summary>
         ///
         /// </summary>
+        HostedApiBusy,
+        /// <summary>
+        ///
+        /// </summary>
         HostedApiNotFound,
         /// <summary>
         ///
@@ -741,6 +745,7 @@ namespace Speechify
                 ErrorCode.FileStorageLimitReached => "file_storage_limit_reached",
                 ErrorCode.Forbidden => "forbidden",
                 ErrorCode.FundedBalanceRequired => "funded_balance_required",
+                ErrorCode.HostedApiBusy => "hosted_api_busy",
                 ErrorCode.HostedApiNotFound => "hosted_api_not_found",
                 ErrorCode.HostedApiPublicRefused => "hosted_api_public_refused",
                 ErrorCode.HostedApiSlugTaken => "hosted_api_slug_taken",
@@ -914,6 +919,7 @@ namespace Speechify
                 "file_storage_limit_reached" => ErrorCode.FileStorageLimitReached,
                 "forbidden" => ErrorCode.Forbidden,
                 "funded_balance_required" => ErrorCode.FundedBalanceRequired,
+                "hosted_api_busy" => ErrorCode.HostedApiBusy,
                 "hosted_api_not_found" => ErrorCode.HostedApiNotFound,
                 "hosted_api_public_refused" => ErrorCode.HostedApiPublicRefused,
                 "hosted_api_slug_taken" => ErrorCode.HostedApiSlugTaken,

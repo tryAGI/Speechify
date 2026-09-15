@@ -86,6 +86,23 @@ namespace Speechify
         public int? TimeoutMs { get; set; }
 
         /// <summary>
+        /// A ceiling on calls to this server per minute across the<br/>
+        /// workspace, so one agent cannot starve the people who share the<br/>
+        /// server's budget. Every call the platform makes to the server,<br/>
+        /// from a durable run or a hosted API `tool` route, draws from one<br/>
+        /// bucket per tool definition. A live voice or text session's MCP<br/>
+        /// calls are made by the worker's own client and are not counted.<br/>
+        /// A durable run past the ceiling gets a `rate_limited` observation<br/>
+        /// carrying `retry_after_seconds`, and a hosted route answers `429<br/>
+        /// route_upstream_rate_limited` with `Retry-After`; neither retries<br/>
+        /// in place.<br/>
+        /// Omitted means unbounded on our side, and your server's own `429`<br/>
+        /// still reaches the caller.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("max_requests_per_minute")]
+        public int? MaxRequestsPerMinute { get; set; }
+
+        /// <summary>
         /// What a caller hears on a voice call while one of this<br/>
         /// server's tools runs, and whether a second call to the same<br/>
         /// tool is refused while the first is in flight. It never<br/>
@@ -128,10 +145,11 @@ namespace Speechify
         /// <summary>
         /// What each of the server's tools' JSON results passes through before<br/>
         /// the agent reads it, keyed by the remote tool name: an item bound, a<br/>
-        /// projection and derived string fields. Applies on durable runs only;<br/>
-        /// a live session's MCP call is made by the worker's own client and<br/>
-        /// never crosses the control plane, so a live agent sees the server's<br/>
-        /// answer as it came. A tool you do not name here is passed through.
+        /// projection and derived string fields. Applies on durable runs and<br/>
+        /// on hosted API `tool` routes; a live session's MCP call is made by<br/>
+        /// the worker's own client and never crosses the control plane, so a<br/>
+        /// live agent sees the server's answer as it came. A tool you do not<br/>
+        /// name here is passed through.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("response_mappings")]
         public global::System.Collections.Generic.Dictionary<string, global::Speechify.ToolResponseMapping>? ResponseMappings { get; set; }
@@ -167,6 +185,20 @@ namespace Speechify
         /// seconds needs 40000 or more here. Live voice and text sessions<br/>
         /// are not bounded by it; the worker keeps its transport's own<br/>
         /// read timeout.
+        /// </param>
+        /// <param name="maxRequestsPerMinute">
+        /// A ceiling on calls to this server per minute across the<br/>
+        /// workspace, so one agent cannot starve the people who share the<br/>
+        /// server's budget. Every call the platform makes to the server,<br/>
+        /// from a durable run or a hosted API `tool` route, draws from one<br/>
+        /// bucket per tool definition. A live voice or text session's MCP<br/>
+        /// calls are made by the worker's own client and are not counted.<br/>
+        /// A durable run past the ceiling gets a `rate_limited` observation<br/>
+        /// carrying `retry_after_seconds`, and a hosted route answers `429<br/>
+        /// route_upstream_rate_limited` with `Retry-After`; neither retries<br/>
+        /// in place.<br/>
+        /// Omitted means unbounded on our side, and your server's own `429`<br/>
+        /// still reaches the caller.
         /// </param>
         /// <param name="longRunning">
         /// What a caller hears on a voice call while one of this<br/>
@@ -205,10 +237,11 @@ namespace Speechify
         /// <param name="responseMappings">
         /// What each of the server's tools' JSON results passes through before<br/>
         /// the agent reads it, keyed by the remote tool name: an item bound, a<br/>
-        /// projection and derived string fields. Applies on durable runs only;<br/>
-        /// a live session's MCP call is made by the worker's own client and<br/>
-        /// never crosses the control plane, so a live agent sees the server's<br/>
-        /// answer as it came. A tool you do not name here is passed through.
+        /// projection and derived string fields. Applies on durable runs and<br/>
+        /// on hosted API `tool` routes; a live session's MCP call is made by<br/>
+        /// the worker's own client and never crosses the control plane, so a<br/>
+        /// live agent sees the server's answer as it came. A tool you do not<br/>
+        /// name here is passed through.
         /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
@@ -218,6 +251,7 @@ namespace Speechify
             global::Speechify.MCPAuth auth,
             global::Speechify.MCPTransport? transport,
             int? timeoutMs,
+            int? maxRequestsPerMinute,
             global::Speechify.LongRunningToolConfig? longRunning,
             global::System.Collections.Generic.Dictionary<string, global::Speechify.ToolActionClass>? actionClasses,
             global::System.Collections.Generic.Dictionary<string, global::Speechify.ToolResponseMapping>? responseMappings)
@@ -226,6 +260,7 @@ namespace Speechify
             this.Transport = transport;
             this.Auth = auth;
             this.TimeoutMs = timeoutMs;
+            this.MaxRequestsPerMinute = maxRequestsPerMinute;
             this.LongRunning = longRunning;
             this.ActionClasses = actionClasses;
             this.ResponseMappings = responseMappings;
