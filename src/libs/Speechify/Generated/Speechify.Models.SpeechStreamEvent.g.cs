@@ -99,7 +99,8 @@ namespace Speechify
         /// <summary>
         /// Terminal event carrying the standard error envelope, emitted when a<br/>
         /// failure happens after the stream has started and the status code is<br/>
-        /// already committed.
+        /// already committed: an upstream fault (`upstream_failure`) or a content<br/>
+        /// policy refusal (`content_policy_violation`).
         /// </summary>
 #if NET6_0_OR_GREATER
         public global::Speechify.SpeechStreamEventVariant3? SpeechError { get; init; }
