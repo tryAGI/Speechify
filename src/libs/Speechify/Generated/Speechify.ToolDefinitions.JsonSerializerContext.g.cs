@@ -82,6 +82,11 @@ namespace Speechify
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.ToolAttachedAgent))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.ListToolAttachedAgentsResponse))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Speechify.ToolAttachedAgent>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.ToolApiRouteMethod), TypeInfoPropertyName = "ToolApiRouteMethod2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.ToolAPIRouteAPI))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.ToolAPIRoute))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.ListToolAPIRoutesResponse))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Speechify.ToolAPIRoute>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.TestMCPConnectionRequest))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.MCPProbeTool))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.McpProbeErrorDetailsStage), TypeInfoPropertyName = "McpProbeErrorDetailsStage2")]
@@ -125,6 +130,7 @@ namespace Speechify
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.ToolConfig?), TypeInfoPropertyName = "NullableToolConfig2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.CreateToolRequestConfig?), TypeInfoPropertyName = "NullableCreateToolRequestConfig2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.UpdateToolRequestConfig?), TypeInfoPropertyName = "NullableUpdateToolRequestConfig2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.ToolApiRouteMethod?), TypeInfoPropertyName = "NullableToolApiRouteMethod2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.McpProbeErrorDetailsStage?), TypeInfoPropertyName = "NullableMcpProbeErrorDetailsStage2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.ImportOpenApiRequestSpec?), TypeInfoPropertyName = "NullableImportOpenApiRequestSpec2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.TestOpenApiCallResultOutcome?), TypeInfoPropertyName = "NullableTestOpenApiCallResultOutcome2")]
@@ -135,6 +141,7 @@ namespace Speechify
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.ToolReach>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.Tool>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.ToolAttachedAgent>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.ToolAPIRoute>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.MCPProbeTool>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.SkippedOpenAPIOperation>))]
     internal sealed partial class ToolDefinitionsSourceGenerationContextChunk0 : global::System.Text.Json.Serialization.JsonSerializerContext
@@ -279,6 +286,10 @@ namespace Speechify
                     || typeToConvert == typeof(global::Speechify.ToolNameHolderKind)
 
                     || typeToConvert == typeof(global::Speechify.ToolNameHolderKind?)
+
+                    || typeToConvert == typeof(global::Speechify.ToolApiRouteMethod)
+
+                    || typeToConvert == typeof(global::Speechify.ToolApiRouteMethod?)
 
                     || typeToConvert == typeof(global::Speechify.McpProbeErrorDetailsStage)
 
@@ -471,6 +482,16 @@ namespace Speechify
                 if (typeToConvert == typeof(global::Speechify.ToolNameHolderKind?))
                 {
                     return new global::Speechify.JsonConverters.ToolNameHolderKindNullableJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.ToolApiRouteMethod))
+                {
+                    return new global::Speechify.JsonConverters.ToolApiRouteMethodJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.ToolApiRouteMethod?))
+                {
+                    return new global::Speechify.JsonConverters.ToolApiRouteMethodNullableJsonConverter();
                 }
 
                 if (typeToConvert == typeof(global::Speechify.McpProbeErrorDetailsStage))

@@ -21,6 +21,7 @@ namespace Speechify
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(bool))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(string))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(long))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(double))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.ErrorCode), TypeInfoPropertyName = "ErrorCode2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.ErrorDetail))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(object))]
@@ -39,18 +40,29 @@ namespace Speechify
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.HostedApiUsageRoutesItems))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.HostedAPIUsage))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Speechify.HostedApiUsageRoutesItems>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.V1ApisApiIdAnalyticsGetParametersGranularity), TypeInfoPropertyName = "V1ApisApiIdAnalyticsGetParametersGranularity2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.RequestAnalyticsTotals))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.RequestAnalyticsBucket))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.RequestTopPath))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.RequestAnalyticsResponse))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Speechify.RequestAnalyticsBucket>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Speechify.RequestTopPath>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.HostedAPIUserTokenSecret))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(bool?))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(long?))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(double?))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.ErrorCode?), TypeInfoPropertyName = "NullableErrorCode2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(int?))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.DateTime?))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.HostedApiAuthMode?), TypeInfoPropertyName = "NullableHostedApiAuthMode2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.CreateHostedApiRequestAuthMode?), TypeInfoPropertyName = "NullableCreateHostedApiRequestAuthMode2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.UpdateHostedApiRequestAuthMode?), TypeInfoPropertyName = "NullableUpdateHostedApiRequestAuthMode2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Speechify.V1ApisApiIdAnalyticsGetParametersGranularity?), TypeInfoPropertyName = "NullableV1ApisApiIdAnalyticsGetParametersGranularity2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<string>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.HostedAPI>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.HostedApiUsageRoutesItems>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.RequestAnalyticsBucket>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Speechify.RequestTopPath>))]
     internal sealed partial class HostedApisSourceGenerationContextChunk0 : global::System.Text.Json.Serialization.JsonSerializerContext
     {
     }
@@ -131,7 +143,11 @@ namespace Speechify
 
                     || typeToConvert == typeof(global::Speechify.UpdateHostedApiRequestAuthMode)
 
-                    || typeToConvert == typeof(global::Speechify.UpdateHostedApiRequestAuthMode?);
+                    || typeToConvert == typeof(global::Speechify.UpdateHostedApiRequestAuthMode?)
+
+                    || typeToConvert == typeof(global::Speechify.V1ApisApiIdAnalyticsGetParametersGranularity)
+
+                    || typeToConvert == typeof(global::Speechify.V1ApisApiIdAnalyticsGetParametersGranularity?);
             }
 
             public override global::System.Text.Json.Serialization.JsonConverter CreateConverter(
@@ -176,6 +192,16 @@ namespace Speechify
                 if (typeToConvert == typeof(global::Speechify.UpdateHostedApiRequestAuthMode?))
                 {
                     return new global::Speechify.JsonConverters.UpdateHostedApiRequestAuthModeNullableJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.V1ApisApiIdAnalyticsGetParametersGranularity))
+                {
+                    return new global::Speechify.JsonConverters.V1ApisApiIdAnalyticsGetParametersGranularityJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Speechify.V1ApisApiIdAnalyticsGetParametersGranularity?))
+                {
+                    return new global::Speechify.JsonConverters.V1ApisApiIdAnalyticsGetParametersGranularityNullableJsonConverter();
                 }
                 throw new global::System.NotSupportedException($"No generated enum converter is registered for '{typeToConvert}'.");
             }

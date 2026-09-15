@@ -7,7 +7,7 @@ namespace Speechify
     {
 
 
-        private static readonly global::Speechify.EndPointSecurityRequirement s_StreamEventsSecurityRequirement0 =
+        private static readonly global::Speechify.EndPointSecurityRequirement s_StreamProjectEventsSecurityRequirement0 =
             new global::Speechify.EndPointSecurityRequirement
             {
                 Authorizations = new global::Speechify.EndPointAuthorizationRequirement[]
@@ -21,118 +21,98 @@ namespace Speechify
                     },
                 },
             };
-        private static readonly global::Speechify.EndPointSecurityRequirement[] s_StreamEventsSecurityRequirements =
+        private static readonly global::Speechify.EndPointSecurityRequirement[] s_StreamProjectEventsSecurityRequirements =
             new global::Speechify.EndPointSecurityRequirement[]
-            {                s_StreamEventsSecurityRequirement0,
+            {                s_StreamProjectEventsSecurityRequirement0,
             };
-        partial void PrepareStreamEventsArguments(
+        partial void PrepareStreamProjectEventsArguments(
             global::System.Net.Http.HttpClient httpClient,
-            ref string agentId,
-            ref string runId,
+            ref string projectId,
             ref string? speechifyVersion);
-        partial void PrepareStreamEventsRequest(
+        partial void PrepareStreamProjectEventsRequest(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpRequestMessage httpRequestMessage,
-            string agentId,
-            string runId,
+            string projectId,
             string? speechifyVersion);
-        partial void ProcessStreamEventsResponse(
+        partial void ProcessStreamProjectEventsResponse(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpResponseMessage httpResponseMessage);
 
         /// <summary>
-        /// Stream Run Events<br/>
-        /// Server-Sent Events stream of a run's progress, so a client can follow<br/>
-        /// a long-running agent instead of polling it.<br/>
-        /// Holds the connection open and tails the run's journal: a<br/>
-        /// `run.step.added` event per step (its `data` is a RunStep object, the<br/>
-        /// same shape List Run Steps returns), a `run.reply.delta` event for each<br/>
-        /// piece of the agent's answer, as it writes it, a<br/>
-        /// `run.status.changed` event when the run's status moves, and a terminal<br/>
-        /// `run.ended` event carrying the final status and, when the run stopped<br/>
-        /// short, its `incomplete_reason`. Consumers must ignore unknown event<br/>
-        /// types.<br/>
-        /// A picture or chart the agent makes arrives before the run ends: the<br/>
-        /// `observation` step for the tool call that made it carries the file<br/>
-        /// under `files`, so a client can show it the moment that step is<br/>
-        /// delivered. `run.ended` lists every file the run produced.<br/>
-        /// A run waiting on a human approval is not terminal: the stream reports<br/>
-        /// `requires_action` and keeps tailing, so the client learns it has<br/>
-        /// something to decide.<br/>
-        /// ## The reply arrives as it is written<br/>
-        /// `run.reply.delta` carries the agent's answer piece by piece, so a chat<br/>
-        /// built on runs shows the answer forming instead of a spinner. It<br/>
-        /// carries the answer and nothing else: what the agent writes on the way<br/>
-        /// to it, such as the plan behind a tool call, never rides this event and<br/>
-        /// reaches the stream only as the `content` of a `run.step.added` plan<br/>
-        /// step. Appending the pieces in order gives the answer, so a piece can be<br/>
-        /// shown the moment it arrives.<br/>
-        /// Each piece names the journal position the answer is written at<br/>
-        /// (`seq`) and how many characters of it precede the piece (`offset`).<br/>
-        /// Append a piece whose `offset` equals what you hold; on any other<br/>
-        /// `offset`, or a different `seq`, cut what you hold to that `offset`<br/>
-        /// first. That only happens after a step was re-executed, and means the<br/>
-        /// earlier text is void. Text is counted in Unicode code points.<br/>
-        /// `run.ended` closes the answer, and its `output.reply` is the<br/>
-        /// authoritative copy: replace what you hold with it. A `run.ended` with<br/>
-        /// no `output` (the run failed, was cancelled, or stopped short) means the<br/>
-        /// answer was abandoned mid-sentence - show it as such or drop it. A<br/>
-        /// client that never subscribes to `run.reply.delta` sees exactly the<br/>
-        /// stream it saw before the event existed.<br/>
-        /// Not every run streams its answer, because not every model says which<br/>
-        /// of its text is the answer while writing it. The platform default<br/>
-        /// model does. An agent on another model or on a custom LLM endpoint, and<br/>
-        /// a run with an `output_schema` (whose answer is not final until it is<br/>
-        /// checked), answers whole: no pieces, and the reply on `run.ended`.<br/>
-        /// Following a run costs nothing beyond the run: the stream is not<br/>
-        /// metered, and its read load is a few small queries per second per<br/>
-        /// subscriber, a little more while the answer is being written.<br/>
+        /// Stream Project Run Events<br/>
+        /// Server-Sent Events stream of every run in one project, so an<br/>
+        /// application learns that work started, stopped for a person or<br/>
+        /// finished without naming a run or an agent, and without polling the<br/>
+        /// run list.<br/>
+        /// Each event carries a run's lifecycle: its `status`, who it acts for<br/>
+        /// (`user_identity`), its `metadata` - including `metadata.trigger`,<br/>
+        /// which says whether a caller, a schedule or a webhook started it - its<br/>
+        /// lineage, and while it waits on a person, the `pending_action` it is<br/>
+        /// asking about. It never carries what the run was asked or what it<br/>
+        /// answered: follow one run with Stream Run Events for its steps and its<br/>
+        /// reply as it is written, or read it with Get Run.<br/>
+        /// ## What arrives<br/>
+        /// On every connection, including a reconnect:<br/>
+        /// 1. `run.updated` for each run in the project that has not finished,<br/>
+        ///    oldest first, so a client that connects late sees the work<br/>
+        ///    already in flight.<br/>
+        /// 2. `runs.synced`, once. Every run that was live when the stream<br/>
+        ///    opened has now been sent: replace the live runs you hold with the<br/>
+        ///    ones this connection sent.<br/>
+        /// After that:<br/>
+        /// - `run.updated` when a run appears, whatever started it, and whenever<br/>
+        ///   its `status` or `pending_action` changes. A run that parks again on<br/>
+        ///   a new action arrives again, carrying the new `pending_action`.<br/>
+        /// - `run.ended` when a run settles (`succeeded`, `failed`, `canceled` or<br/>
+        ///   `expired`). It is the run's last event on this stream.<br/>
+        /// Each event carries the run as it stands, not a change to apply: key<br/>
+        /// what you hold by `id` and replace it. The stream reports where a run<br/>
+        /// is rather than every status it passed through, so a status a run<br/>
+        /// entered and left within about a second may never appear. A delegated<br/>
+        /// child is its own run, with `parent_run_id` set. Ignore event types you<br/>
+        /// do not recognize.<br/>
         /// ## The stream is expected to reconnect<br/>
-        /// **The server closes the connection after 4 minutes whether or not the<br/>
-        /// run has settled**, so a long run spans several connections. Only<br/>
-        /// `run.ended` means the run is over - a closed socket does not. The<br/>
-        /// response opens with `retry: 2000`, so a browser `EventSource`<br/>
-        /// reconnects on its own; a hand-rolled client must do the same.<br/>
-        /// Resume with the standard `Last-Event-ID` header. Step events carry<br/>
-        /// their `seq` as the event id; reply pieces carry the seq of the last<br/>
-        /// step plus the position reached in the text being written, so a<br/>
-        /// reconnect continues exactly where it left off and never replays text<br/>
-        /// the client already rendered. Status events carry no id, and an absent<br/>
-        /// or unparseable `Last-Event-ID` replays the journal from the beginning<br/>
-        /// rather than skipping it. On every connection, including a resume, the<br/>
-        /// server emits one `run.status.changed` carrying the run's current<br/>
-        /// status before it starts tailing. A `: keepalive` comment arrives every<br/>
-        /// 15 seconds so an intermediary does not time the connection out while<br/>
-        /// the agent is thinking.<br/>
-        /// Same read access as List Run Steps, and the same<br/>
+        /// **The server closes the connection after 4 minutes**, and a network<br/>
+        /// drop can close it sooner. The response opens with `retry: 2000`, so a<br/>
+        /// browser `EventSource` reconnects on its own; a hand-rolled client must<br/>
+        /// reconnect and send the id of the last event it received as<br/>
+        /// `Last-Event-ID`. The id is an opaque position: send it back unchanged.<br/>
+        /// A reconnect within 10 minutes is sent a `run.ended` for every run that<br/>
+        /// finished while it was away, so delivery is at least once: a<br/>
+        /// `run.ended` you already hold can arrive again. After a longer absence,<br/>
+        /// a run you held as live that is missing from the snapshot has finished;<br/>
+        /// read it with Get Run. A `: keepalive` comment arrives every 15 seconds<br/>
+        /// so an intermediary does not time the connection out on a quiet<br/>
+        /// project.<br/>
+        /// One connection covers every run in the project, and the stream is not<br/>
+        /// metered: its read load is one small query a second, plus a read of the<br/>
+        /// live runs when it connects.<br/>
+        /// Same read access as List Runs, and the same<br/>
         /// `402 durable_runs_not_in_plan` on a workspace without the grant.
         /// </summary>
-        /// <param name="agentId"></param>
-        /// <param name="runId"></param>
+        /// <param name="projectId"></param>
         /// <param name="speechifyVersion"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
-        public async global::System.Collections.Generic.IAsyncEnumerable<global::Speechify.AgentRunStreamEvent> StreamEventsAsync(
-            string agentId,
-            string runId,
+        public async global::System.Collections.Generic.IAsyncEnumerable<global::Speechify.ProjectRunStreamEvent> StreamProjectEventsAsync(
+            string projectId,
             string? speechifyVersion = default,
             global::Speechify.AutoSDKRequestOptions? requestOptions = default,
             [global::System.Runtime.CompilerServices.EnumeratorCancellation] global::System.Threading.CancellationToken cancellationToken = default)
         {
             PrepareArguments(
                 client: HttpClient);
-            PrepareStreamEventsArguments(
+            PrepareStreamProjectEventsArguments(
                 httpClient: HttpClient,
-                agentId: ref agentId,
-                runId: ref runId,
+                projectId: ref projectId,
                 speechifyVersion: ref speechifyVersion);
 
 
             var __authorizations = global::Speechify.EndPointSecurityResolver.ResolveAuthorizations(
                 availableAuthorizations: Authorizations,
-                securityRequirements: s_StreamEventsSecurityRequirements,
-                operationName: "StreamEventsAsync");
+                securityRequirements: s_StreamProjectEventsSecurityRequirements,
+                operationName: "StreamProjectEventsAsync");
 
             using var __timeoutCancellationTokenSource = global::Speechify.AutoSDKRequestOptionsSupport.CreateTimeoutCancellationTokenSource(
                 clientOptions: Options,
@@ -152,8 +132,11 @@ namespace Speechify
             {
 
                             var __pathBuilder = new global::Speechify.PathBuilder(
-                                path: $"/v1/agents/{agentId}/runs/{runId}/events",
+                                path: "/v1/agents/runs/events",
                                 baseUri: HttpClient.BaseAddress);
+                            __pathBuilder
+                                .AddRequiredParameter("project_id", projectId)
+                                ;
                             var __path = __pathBuilder.ToString();
                 __path = global::Speechify.AutoSDKRequestOptionsSupport.AppendQueryParameters(
                     path: __path,
@@ -197,11 +180,10 @@ namespace Speechify
                 PrepareRequest(
                     client: HttpClient,
                     request: __httpRequest);
-                PrepareStreamEventsRequest(
+                PrepareStreamProjectEventsRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
-                    agentId: agentId!,
-                    runId: runId!,
+                    projectId: projectId!,
                     speechifyVersion: speechifyVersion);
 
                 return __httpRequest;
@@ -219,9 +201,9 @@ namespace Speechify
                     await global::Speechify.AutoSDKRequestOptionsSupport.OnBeforeRequestAsync(
                             clientOptions: Options,
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "StreamEvents",
-                                methodName: "StreamEventsAsync",
-                                pathTemplate: "$\"/v1/agents/{agentId}/runs/{runId}/events\"",
+                                operationId: "StreamProjectEvents",
+                                methodName: "StreamProjectEventsAsync",
+                                pathTemplate: "\"/v1/agents/runs/events\"",
                                 httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -253,9 +235,9 @@ namespace Speechify
                         await global::Speechify.AutoSDKRequestOptionsSupport.OnAfterErrorAsync(
                             clientOptions: Options,
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "StreamEvents",
-                                methodName: "StreamEventsAsync",
-                                pathTemplate: "$\"/v1/agents/{agentId}/runs/{runId}/events\"",
+                                operationId: "StreamProjectEvents",
+                                methodName: "StreamProjectEventsAsync",
+                                pathTemplate: "\"/v1/agents/runs/events\"",
                                 httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -294,9 +276,9 @@ namespace Speechify
                         await global::Speechify.AutoSDKRequestOptionsSupport.OnAfterErrorAsync(
                             clientOptions: Options,
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "StreamEvents",
-                                methodName: "StreamEventsAsync",
-                                pathTemplate: "$\"/v1/agents/{agentId}/runs/{runId}/events\"",
+                                operationId: "StreamProjectEvents",
+                                methodName: "StreamProjectEventsAsync",
+                                pathTemplate: "\"/v1/agents/runs/events\"",
                                 httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -334,7 +316,7 @@ namespace Speechify
                 ProcessResponse(
                     client: HttpClient,
                     response: __response);
-                ProcessStreamEventsResponse(
+                ProcessStreamProjectEventsResponse(
                     httpClient: HttpClient,
                     httpResponseMessage: __response);
                 if (__response.IsSuccessStatusCode)
@@ -342,9 +324,9 @@ namespace Speechify
                     await global::Speechify.AutoSDKRequestOptionsSupport.OnAfterSuccessAsync(
                             clientOptions: Options,
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "StreamEvents",
-                                methodName: "StreamEventsAsync",
-                                pathTemplate: "$\"/v1/agents/{agentId}/runs/{runId}/events\"",
+                                operationId: "StreamProjectEvents",
+                                methodName: "StreamProjectEventsAsync",
+                                pathTemplate: "\"/v1/agents/runs/events\"",
                                 httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -364,9 +346,9 @@ namespace Speechify
                     await global::Speechify.AutoSDKRequestOptionsSupport.OnAfterErrorAsync(
                             clientOptions: Options,
                             context: global::Speechify.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "StreamEvents",
-                                methodName: "StreamEventsAsync",
-                                pathTemplate: "$\"/v1/agents/{agentId}/runs/{runId}/events\"",
+                                operationId: "StreamProjectEvents",
+                                methodName: "StreamProjectEventsAsync",
+                                pathTemplate: "\"/v1/agents/runs/events\"",
                                 httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -427,7 +409,7 @@ namespace Speechify
                                     yield break;
                                 }
 
-                                var __streamedResponse = global::Speechify.AgentRunStreamEvent.FromJson(__content, JsonSerializerContext) ??
+                                var __streamedResponse = global::Speechify.ProjectRunStreamEvent.FromJson(__content, JsonSerializerContext) ??
                                                        throw global::Speechify.ApiException.Create(
                                                            statusCode: __response.StatusCode,
                                                            message: $"Response deserialization failed for \"{__content}\" ",

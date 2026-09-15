@@ -11,7 +11,7 @@ namespace Speechify
         /// Holds the connection open and tails the run's journal: a<br/>
         /// `run.step.added` event per step (its `data` is a RunStep object, the<br/>
         /// same shape List Run Steps returns), a `run.reply.delta` event for each<br/>
-        /// piece of text the agent writes, as it writes it, a<br/>
+        /// piece of the agent's answer, as it writes it, a<br/>
         /// `run.status.changed` event when the run's status moves, and a terminal<br/>
         /// `run.ended` event carrying the final status and, when the run stopped<br/>
         /// short, its `incomplete_reason`. Consumers must ignore unknown event<br/>
@@ -24,28 +24,30 @@ namespace Speechify
         /// `requires_action` and keeps tailing, so the client learns it has<br/>
         /// something to decide.<br/>
         /// ## The reply arrives as it is written<br/>
-        /// `run.reply.delta` carries the agent's text piece by piece, so a chat<br/>
-        /// built on runs shows the answer forming instead of a spinner. Each<br/>
-        /// piece names the journal position it is written at (`seq`) and how<br/>
-        /// many characters of that position's text precede it (`offset`). Keep<br/>
-        /// one buffer per `seq`: append a piece whose `offset` equals what you<br/>
-        /// hold, and on any other `offset` cut the buffer to it first (that only<br/>
-        /// happens after a step was re-executed, and means the earlier text is<br/>
-        /// void). Text is counted in Unicode code points.<br/>
-        /// Which text a buffer turns out to be is settled by the event that<br/>
-        /// closes it. A `run.step.added` at the same `seq` closes it as that<br/>
-        /// step's `content` - the plan of a tool call, which the agent wrote<br/>
-        /// before deciding to act - and the next piece starts a new buffer at a<br/>
-        /// later `seq`. `run.ended` closes the open buffer as the reply, and its<br/>
-        /// `output.reply` is the authoritative copy: replace the buffer with it.<br/>
-        /// A `run.ended` with no `output` (the run failed, was cancelled, or<br/>
-        /// stopped short) means the open buffer was abandoned mid-sentence -<br/>
-        /// show it as such or drop it; it is not an answer. A run parked in<br/>
-        /// `requires_action` never leaves a buffer open, because the text it<br/>
-        /// wrote before parking lands as the plan step first. A client that<br/>
-        /// never subscribes to `run.reply.delta` sees exactly the stream it saw<br/>
-        /// before the event existed. An agent on a custom LLM endpoint answers<br/>
-        /// whole, with no pieces before the step lands.<br/>
+        /// `run.reply.delta` carries the agent's answer piece by piece, so a chat<br/>
+        /// built on runs shows the answer forming instead of a spinner. It<br/>
+        /// carries the answer and nothing else: what the agent writes on the way<br/>
+        /// to it, such as the plan behind a tool call, never rides this event and<br/>
+        /// reaches the stream only as the `content` of a `run.step.added` plan<br/>
+        /// step. Appending the pieces in order gives the answer, so a piece can be<br/>
+        /// shown the moment it arrives.<br/>
+        /// Each piece names the journal position the answer is written at<br/>
+        /// (`seq`) and how many characters of it precede the piece (`offset`).<br/>
+        /// Append a piece whose `offset` equals what you hold; on any other<br/>
+        /// `offset`, or a different `seq`, cut what you hold to that `offset`<br/>
+        /// first. That only happens after a step was re-executed, and means the<br/>
+        /// earlier text is void. Text is counted in Unicode code points.<br/>
+        /// `run.ended` closes the answer, and its `output.reply` is the<br/>
+        /// authoritative copy: replace what you hold with it. A `run.ended` with<br/>
+        /// no `output` (the run failed, was cancelled, or stopped short) means the<br/>
+        /// answer was abandoned mid-sentence - show it as such or drop it. A<br/>
+        /// client that never subscribes to `run.reply.delta` sees exactly the<br/>
+        /// stream it saw before the event existed.<br/>
+        /// Not every run streams its answer, because not every model says which<br/>
+        /// of its text is the answer while writing it. The platform default<br/>
+        /// model does. An agent on another model or on a custom LLM endpoint, and<br/>
+        /// a run with an `output_schema` (whose answer is not final until it is<br/>
+        /// checked), answers whole: no pieces, and the reply on `run.ended`.<br/>
         /// Following a run costs nothing beyond the run: the stream is not<br/>
         /// metered, and its read load is a few small queries per second per<br/>
         /// subscriber, a little more while the answer is being written.<br/>

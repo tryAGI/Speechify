@@ -59,15 +59,14 @@ namespace Speechify
             : throw new global::System.InvalidOperationException($"Expected union variant 'RunStepAdded' but the value was {ToString()}.");
 
         /// <summary>
-        /// A piece of the text the agent is writing, sent as it is written. `seq`<br/>
-        /// is the journal position the text belongs to and `offset` the number of<br/>
-        /// characters (Unicode code points) of that position's text before this<br/>
-        /// piece; keep one buffer per `seq` and place the piece at its offset. The<br/>
-        /// buffer is closed by a `run.step.added` at the same `seq` (it was the<br/>
-        /// step's `content`) or by `run.ended` (it was the reply, and<br/>
-        /// `output.reply` is the copy to keep). The SSE `id:` records the position<br/>
-        /// reached, so a reconnect through `Last-Event-ID` resumes without<br/>
-        /// replaying text already rendered.
+        /// A piece of the agent's answer, sent as it is written. It is only ever<br/>
+        /// the answer, never the agent's plan, so appending every piece in order<br/>
+        /// gives the reply. `seq` is the journal position the answer is written at<br/>
+        /// and `offset` the number of characters (Unicode code points) of it<br/>
+        /// before this piece; place the piece at its offset. `run.ended` closes<br/>
+        /// the answer, and its `output.reply` is the copy to keep. The SSE `id:`<br/>
+        /// records the position reached, so a reconnect through `Last-Event-ID`<br/>
+        /// resumes without replaying text already rendered.
         /// </summary>
 #if NET6_0_OR_GREATER
         public global::Speechify.AgentRunStreamEventVariant2? RunReplyDelta { get; init; }

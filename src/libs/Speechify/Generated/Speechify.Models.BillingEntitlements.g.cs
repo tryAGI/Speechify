@@ -166,7 +166,8 @@ namespace Speechify
         /// and it is enabled per workspace. When false, WRITES to the<br/>
         /// voice-agent surface return 402 voice_agents_not_in_plan; reads are<br/>
         /// unaffected, so a workspace never loses sight of what it already<br/>
-        /// built.
+        /// built. A workspace with hosted_apis_access still writes mcp and<br/>
+        /// openapi tool definitions, the connectors a hosted API mounts.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("voice_agent_access")]
         [global::System.Text.Json.Serialization.JsonRequired]
@@ -410,7 +411,8 @@ namespace Speechify
         /// and it is enabled per workspace. When false, WRITES to the<br/>
         /// voice-agent surface return 402 voice_agents_not_in_plan; reads are<br/>
         /// unaffected, so a workspace never loses sight of what it already<br/>
-        /// built.
+        /// built. A workspace with hosted_apis_access still writes mcp and<br/>
+        /// openapi tool definitions, the connectors a hosted API mounts.
         /// </param>
         /// <param name="durableRunsAccess">
         /// Whether the workspace may start and read durable async agent runs,<br/>
