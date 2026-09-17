@@ -6,8 +6,14 @@ namespace Speechify
     /// <summary>
     /// Who produced the turn: `user` is the caller, `assistant` the AI<br/>
     /// agent, `tool` a tool call, `system` a transcript annotation (such<br/>
-    /// as the take-over window markers), and `operator` a human<br/>
-    /// operator's speech while they have taken the call over.
+    /// as the take-over window markers), `operator` a human<br/>
+    /// operator's speech while they have taken the call over, and<br/>
+    /// `guardrail` a decision one of the agent's guardrails made beside<br/>
+    /// the turn it decided: `content` says what happened and where<br/>
+    /// (blocked, masked, or what would have tripped), `tool_name` is the<br/>
+    /// rail, and `tool_args` carries the seam, the disposition, the<br/>
+    /// severity and the labels that decided it. It never carries the<br/>
+    /// text the rail acted on.
     /// </summary>
     public enum MessageRole
     {
@@ -15,6 +21,10 @@ namespace Speechify
         /// `user` is the caller, `assistant` the AI
         /// </summary>
         Assistant,
+        /// <summary>
+        ///
+        /// </summary>
+        Guardrail,
         /// <summary>
         ///
         /// </summary>
@@ -46,6 +56,7 @@ namespace Speechify
             return value switch
             {
                 MessageRole.Assistant => "assistant",
+                MessageRole.Guardrail => "guardrail",
                 MessageRole.Operator => "operator",
                 MessageRole.System => "system",
                 MessageRole.Tool => "tool",
@@ -61,6 +72,7 @@ namespace Speechify
             return value switch
             {
                 "assistant" => MessageRole.Assistant,
+                "guardrail" => MessageRole.Guardrail,
                 "operator" => MessageRole.Operator,
                 "system" => MessageRole.System,
                 "tool" => MessageRole.Tool,

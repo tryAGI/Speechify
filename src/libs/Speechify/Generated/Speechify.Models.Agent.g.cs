@@ -123,7 +123,12 @@ namespace Speechify
         /// <summary>
         /// Runtime safety controls that are opt-in per agent rather than<br/>
         /// platform defaults, because each one bills work an ordinary call<br/>
-        /// does not do.
+        /// does not do. The policy (mode, fallback line, rails) is stored<br/>
+        /// with the agent and runs on the agent's calls, chat turns,<br/>
+        /// simulations and runs only once the workspace's guardrails<br/>
+        /// capability is granted; until then it is kept, validated and<br/>
+        /// inert. On update each field applies on its own; `rails`, when<br/>
+        /// present, replaces the list whole.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("guardrails")]
         [global::System.Text.Json.Serialization.JsonRequired]
@@ -330,7 +335,12 @@ namespace Speechify
         /// <param name="guardrails">
         /// Runtime safety controls that are opt-in per agent rather than<br/>
         /// platform defaults, because each one bills work an ordinary call<br/>
-        /// does not do.
+        /// does not do. The policy (mode, fallback line, rails) is stored<br/>
+        /// with the agent and runs on the agent's calls, chat turns,<br/>
+        /// simulations and runs only once the workspace's guardrails<br/>
+        /// capability is granted; until then it is kept, validated and<br/>
+        /// inert. On update each field applies on its own; `rails`, when<br/>
+        /// present, replaces the list whole.
         /// </param>
         /// <param name="backgroundNoise">
         /// Optional ambient background-noise bed mixed into the call.

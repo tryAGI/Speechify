@@ -54,6 +54,7 @@ namespace Speechify.JsonConverters
             if (__jsonProps.Contains("timeout_ms")) __score1++;
             if (__jsonProps.Contains("url")) __score1++;
             var __score2 = 0;
+            if (__jsonProps.Contains("after_speech")) __score2++;
             if (__jsonProps.Contains("params")) __score2++;
             if (__jsonProps.Contains("timeout_ms")) __score2++;
             var __score3 = 0;
