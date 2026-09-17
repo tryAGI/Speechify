@@ -81,7 +81,9 @@ namespace Speechify
         };
 
         /// <summary>
-        ///
+        /// Synthesize speech from text (TTS) and future audio capability<br/>
+        /// verbs (transcription, multi-speaker, dubbing). Capability verbs<br/>
+        /// are stateless: input in, audio out, no entity persists.
         /// </summary>
         public AudioClient Audio => new AudioClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
         {
@@ -251,7 +253,9 @@ namespace Speechify
         };
 
         /// <summary>
-        ///
+        /// The catalog of selectable text-to-speech models and their metadata.<br/>
+        /// Static platform reference data consumed when choosing a `model` for<br/>
+        /// synthesis.
         /// </summary>
         public ModelsClient Models => new ModelsClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
         {
@@ -401,7 +405,8 @@ namespace Speechify
         };
 
         /// <summary>
-        ///
+        /// Voice catalog and cloned voice management. Cross-cutting registry<br/>
+        /// consumed by TTS today and by future ASR speaker identification.
         /// </summary>
         public VoicesClient Voices => new VoicesClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
         {

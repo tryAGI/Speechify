@@ -4,6 +4,9 @@
 namespace Speechify
 {
     /// <summary>
+    /// Synthesize speech from text (TTS) and future audio capability<br/>
+    /// verbs (transcription, multi-speaker, dubbing). Capability verbs<br/>
+    /// are stateless: input in, audio out, no entity persists.<br/>
     /// If no httpClient is provided, a new one will be created.<br/>
     /// If no baseUri is provided, the default baseUri from OpenAPI spec will be used.
     /// </summary>

@@ -4,6 +4,9 @@
 namespace Speechify
 {
     /// <summary>
+    /// The catalog of selectable text-to-speech models and their metadata.<br/>
+    /// Static platform reference data consumed when choosing a `model` for<br/>
+    /// synthesis.<br/>
     /// If no httpClient is provided, a new one will be created.<br/>
     /// If no baseUri is provided, the default baseUri from OpenAPI spec will be used.
     /// </summary>
