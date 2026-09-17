@@ -4,6 +4,8 @@
 namespace Speechify
 {
     /// <summary>
+    /// Voice catalog and cloned voice management. Cross-cutting registry<br/>
+    /// consumed by TTS today and by future ASR speaker identification.<br/>
     /// If no httpClient is provided, a new one will be created.<br/>
     /// If no baseUri is provided, the default baseUri from OpenAPI spec will be used.
     /// </summary>
