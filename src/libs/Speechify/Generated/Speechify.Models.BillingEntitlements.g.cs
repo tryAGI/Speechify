@@ -240,6 +240,13 @@ namespace Speechify
         public required bool SkillsAccess { get; set; }
 
         /// <summary>
+        /// Whether an agent's stored guardrails policy is stamped onto its calls, chat turns, simulations and runs. Off on every tier; granted per workspace while the rails are observed on real traffic.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("agent_guardrails")]
+        [global::System.Text.Json.Serialization.JsonRequired]
+        public required bool AgentGuardrails { get; set; }
+
+        /// <summary>
         /// Skills one workspace may hold; 0 means uncapped.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("max_skills")]
@@ -448,6 +455,9 @@ namespace Speechify
         /// <param name="skillsAccess">
         /// Whether the skill catalog and per-agent attachment surface are available.
         /// </param>
+        /// <param name="agentGuardrails">
+        /// Whether an agent's stored guardrails policy is stamped onto its calls, chat turns, simulations and runs. Off on every tier; granted per workspace while the rails are observed on real traffic.
+        /// </param>
         /// <param name="maxSkills">
         /// Skills one workspace may hold; 0 means uncapped.
         /// </param>
@@ -524,6 +534,7 @@ namespace Speechify
             int maxStoreDocuments,
             long maxStoreBytes,
             bool skillsAccess,
+            bool agentGuardrails,
             int maxSkills,
             int maxSkillsPerAgent,
             bool enterpriseSso,
@@ -563,6 +574,7 @@ namespace Speechify
             this.MaxStoreDocuments = maxStoreDocuments;
             this.MaxStoreBytes = maxStoreBytes;
             this.SkillsAccess = skillsAccess;
+            this.AgentGuardrails = agentGuardrails;
             this.MaxSkills = maxSkills;
             this.MaxSkillsPerAgent = maxSkillsPerAgent;
             this.EnterpriseSso = enterpriseSso;
