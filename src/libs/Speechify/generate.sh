@@ -18,9 +18,8 @@ tmp_dir="$(mktemp -d)"
 trap 'rm -rf "$tmp_dir"' EXIT
 
 fetch_spec -fsSL -o "$tmp_dir/api-reference.json" https://docs.speechify.ai/openapi/api-reference.json
-fetch_spec -fsSL -o "$tmp_dir/api-reference-2.json" https://docs.speechify.ai/openapi/api-reference-2.json
-
-python3 - "$tmp_dir/api-reference.json" "$tmp_dir/api-reference-2.json" openapi.yaml <<'PY'
+if fetch_spec -fsSL -o "$tmp_dir/api-reference-2.json" https://docs.speechify.ai/openapi/api-reference-2.json; then
+  python3 - "$tmp_dir/api-reference.json" "$tmp_dir/api-reference-2.json" openapi.yaml <<'PY'
 import json
 import sys
 
@@ -47,6 +46,9 @@ with open(output_path, "w", encoding="utf-8") as file:
     json.dump(merged, file, separators=(",", ":"))
     file.write("\n")
 PY
+else
+  echo "WARNING: Speechify's secondary agents spec is unavailable; regenerating from the pinned merged openapi.yaml."
+fi
 
 rm -rf Generated
 autosdk generate openapi.yaml \
