@@ -48,8 +48,8 @@ namespace Speechify
         /// <summary>
         ///
         /// </summary>
-        public global::Speechify.ReplyConfig PickReplyConfig() => IsReplyConfig
-            ? ReplyConfig!
+        public global::Speechify.ReplyConfig PickReplyConfig() => ReplyConfig is { } value
+            ? value
             : throw new global::System.InvalidOperationException($"Expected union variant 'ReplyConfig' but the value was {ToString()}.");
 
         /// <summary>
@@ -89,8 +89,8 @@ namespace Speechify
         /// <summary>
         ///
         /// </summary>
-        public global::Speechify.ToolCallConfig PickToolCallConfig() => IsToolCallConfig
-            ? ToolCallConfig!
+        public global::Speechify.ToolCallConfig PickToolCallConfig() => ToolCallConfig is { } value
+            ? value
             : throw new global::System.InvalidOperationException($"Expected union variant 'ToolCallConfig' but the value was {ToString()}.");
 
         /// <summary>
@@ -132,8 +132,8 @@ namespace Speechify
         /// <summary>
         ///
         /// </summary>
-        public global::Speechify.SimulationConfig PickSimulationConfig() => IsSimulationConfig
-            ? SimulationConfig!
+        public global::Speechify.SimulationConfig PickSimulationConfig() => SimulationConfig is { } value
+            ? value
             : throw new global::System.InvalidOperationException($"Expected union variant 'SimulationConfig' but the value was {ToString()}.");
         /// <summary>
         ///
@@ -258,17 +258,17 @@ namespace Speechify
                 Validate();
             }
 
-            if (IsReplyConfig && replyConfig != null)
+            if (ReplyConfig is { } __value0 && replyConfig != null)
             {
-                return replyConfig(ReplyConfig!);
+                return replyConfig(__value0);
             }
-            else if (IsToolCallConfig && toolCallConfig != null)
+            else if (ToolCallConfig is { } __value1 && toolCallConfig != null)
             {
-                return toolCallConfig(ToolCallConfig!);
+                return toolCallConfig(__value1);
             }
-            else if (IsSimulationConfig && simulationConfig != null)
+            else if (SimulationConfig is { } __value2 && simulationConfig != null)
             {
-                return simulationConfig(SimulationConfig!);
+                return simulationConfig(__value2);
             }
 
             return default(TResult);
@@ -290,17 +290,17 @@ namespace Speechify
                 Validate();
             }
 
-            if (IsReplyConfig)
+            if (ReplyConfig is { } __value0)
             {
-                replyConfig?.Invoke(ReplyConfig!);
+                replyConfig?.Invoke(__value0);
             }
-            else if (IsToolCallConfig)
+            else if (ToolCallConfig is { } __value1)
             {
-                toolCallConfig?.Invoke(ToolCallConfig!);
+                toolCallConfig?.Invoke(__value1);
             }
-            else if (IsSimulationConfig)
+            else if (SimulationConfig is { } __value2)
             {
-                simulationConfig?.Invoke(SimulationConfig!);
+                simulationConfig?.Invoke(__value2);
             }
         }
 
@@ -318,17 +318,17 @@ namespace Speechify
                 Validate();
             }
 
-            if (IsReplyConfig)
+            if (ReplyConfig is { } __value0)
             {
-                replyConfig?.Invoke(ReplyConfig!);
+                replyConfig?.Invoke(__value0);
             }
-            else if (IsToolCallConfig)
+            else if (ToolCallConfig is { } __value1)
             {
-                toolCallConfig?.Invoke(ToolCallConfig!);
+                toolCallConfig?.Invoke(__value1);
             }
-            else if (IsSimulationConfig)
+            else if (SimulationConfig is { } __value2)
             {
-                simulationConfig?.Invoke(SimulationConfig!);
+                simulationConfig?.Invoke(__value2);
             }
         }
 

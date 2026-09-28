@@ -48,8 +48,8 @@ namespace Speechify
         /// <summary>
         ///
         /// </summary>
-        public global::Speechify.BuiltinToolConfig PickBuiltinToolConfig() => IsBuiltinToolConfig
-            ? BuiltinToolConfig!
+        public global::Speechify.BuiltinToolConfig PickBuiltinToolConfig() => BuiltinToolConfig is { } value
+            ? value
             : throw new global::System.InvalidOperationException($"Expected union variant 'BuiltinToolConfig' but the value was {ToString()}.");
         /// <summary>
         ///
@@ -108,9 +108,9 @@ namespace Speechify
                 Validate();
             }
 
-            if (IsBuiltinToolConfig && builtinToolConfig != null)
+            if (BuiltinToolConfig is { } __value0 && builtinToolConfig != null)
             {
-                return builtinToolConfig(BuiltinToolConfig!);
+                return builtinToolConfig(__value0);
             }
 
             return default(TResult);
@@ -128,9 +128,9 @@ namespace Speechify
                 Validate();
             }
 
-            if (IsBuiltinToolConfig)
+            if (BuiltinToolConfig is { } __value0)
             {
-                builtinToolConfig?.Invoke(BuiltinToolConfig!);
+                builtinToolConfig?.Invoke(__value0);
             }
         }
 
@@ -146,9 +146,9 @@ namespace Speechify
                 Validate();
             }
 
-            if (IsBuiltinToolConfig)
+            if (BuiltinToolConfig is { } __value0)
             {
-                builtinToolConfig?.Invoke(BuiltinToolConfig!);
+                builtinToolConfig?.Invoke(__value0);
             }
         }
 

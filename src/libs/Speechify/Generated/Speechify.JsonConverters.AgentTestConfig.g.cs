@@ -183,19 +183,19 @@ namespace Speechify.JsonConverters
             {
                 var typeInfo = typeInfoResolver.GetTypeInfo(typeof(global::Speechify.ReplyConfig), options) as global::System.Text.Json.Serialization.Metadata.JsonTypeInfo<global::Speechify.ReplyConfig?> ??
                                throw new global::System.InvalidOperationException($"Cannot get type info for {typeof(global::Speechify.ReplyConfig).Name}");
-                global::System.Text.Json.JsonSerializer.Serialize(writer, value.ReplyConfig!, typeInfo);
+                global::System.Text.Json.JsonSerializer.Serialize(writer, value.PickReplyConfig(), typeInfo);
             }
             else if (value.IsToolCallConfig)
             {
                 var typeInfo = typeInfoResolver.GetTypeInfo(typeof(global::Speechify.ToolCallConfig), options) as global::System.Text.Json.Serialization.Metadata.JsonTypeInfo<global::Speechify.ToolCallConfig?> ??
                                throw new global::System.InvalidOperationException($"Cannot get type info for {typeof(global::Speechify.ToolCallConfig).Name}");
-                global::System.Text.Json.JsonSerializer.Serialize(writer, value.ToolCallConfig!, typeInfo);
+                global::System.Text.Json.JsonSerializer.Serialize(writer, value.PickToolCallConfig(), typeInfo);
             }
             else if (value.IsSimulationConfig)
             {
                 var typeInfo = typeInfoResolver.GetTypeInfo(typeof(global::Speechify.SimulationConfig), options) as global::System.Text.Json.Serialization.Metadata.JsonTypeInfo<global::Speechify.SimulationConfig?> ??
                                throw new global::System.InvalidOperationException($"Cannot get type info for {typeof(global::Speechify.SimulationConfig).Name}");
-                global::System.Text.Json.JsonSerializer.Serialize(writer, value.SimulationConfig!, typeInfo);
+                global::System.Text.Json.JsonSerializer.Serialize(writer, value.PickSimulationConfig(), typeInfo);
             }
         }
     }
