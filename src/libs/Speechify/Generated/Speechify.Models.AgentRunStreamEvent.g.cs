@@ -54,8 +54,8 @@ namespace Speechify
         /// <summary>
         ///
         /// </summary>
-        public global::Speechify.AgentRunStreamEventVariant1 PickRunStepAdded() => IsRunStepAdded
-            ? RunStepAdded!
+        public global::Speechify.AgentRunStreamEventVariant1 PickRunStepAdded() => RunStepAdded is { } value
+            ? value
             : throw new global::System.InvalidOperationException($"Expected union variant 'RunStepAdded' but the value was {ToString()}.");
 
         /// <summary>
@@ -98,8 +98,8 @@ namespace Speechify
         /// <summary>
         ///
         /// </summary>
-        public global::Speechify.AgentRunStreamEventVariant2 PickRunReplyDelta() => IsRunReplyDelta
-            ? RunReplyDelta!
+        public global::Speechify.AgentRunStreamEventVariant2 PickRunReplyDelta() => RunReplyDelta is { } value
+            ? value
             : throw new global::System.InvalidOperationException($"Expected union variant 'RunReplyDelta' but the value was {ToString()}.");
 
         /// <summary>
@@ -137,8 +137,8 @@ namespace Speechify
         /// <summary>
         ///
         /// </summary>
-        public global::Speechify.AgentRunStreamEventVariant3 PickRunStatusChanged() => IsRunStatusChanged
-            ? RunStatusChanged!
+        public global::Speechify.AgentRunStreamEventVariant3 PickRunStatusChanged() => RunStatusChanged is { } value
+            ? value
             : throw new global::System.InvalidOperationException($"Expected union variant 'RunStatusChanged' but the value was {ToString()}.");
 
         /// <summary>
@@ -177,8 +177,8 @@ namespace Speechify
         /// <summary>
         ///
         /// </summary>
-        public global::Speechify.AgentRunStreamEventVariant4 PickRunEnded() => IsRunEnded
-            ? RunEnded!
+        public global::Speechify.AgentRunStreamEventVariant4 PickRunEnded() => RunEnded is { } value
+            ? value
             : throw new global::System.InvalidOperationException($"Expected union variant 'RunEnded' but the value was {ToString()}.");
         /// <summary>
         ///
@@ -334,21 +334,21 @@ namespace Speechify
                 Validate();
             }
 
-            if (IsRunStepAdded && runStepAdded != null)
+            if (RunStepAdded is { } __value0 && runStepAdded != null)
             {
-                return runStepAdded(RunStepAdded!);
+                return runStepAdded(__value0);
             }
-            else if (IsRunReplyDelta && runReplyDelta != null)
+            else if (RunReplyDelta is { } __value1 && runReplyDelta != null)
             {
-                return runReplyDelta(RunReplyDelta!);
+                return runReplyDelta(__value1);
             }
-            else if (IsRunStatusChanged && runStatusChanged != null)
+            else if (RunStatusChanged is { } __value2 && runStatusChanged != null)
             {
-                return runStatusChanged(RunStatusChanged!);
+                return runStatusChanged(__value2);
             }
-            else if (IsRunEnded && runEnded != null)
+            else if (RunEnded is { } __value3 && runEnded != null)
             {
-                return runEnded(RunEnded!);
+                return runEnded(__value3);
             }
 
             return default(TResult);
@@ -372,21 +372,21 @@ namespace Speechify
                 Validate();
             }
 
-            if (IsRunStepAdded)
+            if (RunStepAdded is { } __value0)
             {
-                runStepAdded?.Invoke(RunStepAdded!);
+                runStepAdded?.Invoke(__value0);
             }
-            else if (IsRunReplyDelta)
+            else if (RunReplyDelta is { } __value1)
             {
-                runReplyDelta?.Invoke(RunReplyDelta!);
+                runReplyDelta?.Invoke(__value1);
             }
-            else if (IsRunStatusChanged)
+            else if (RunStatusChanged is { } __value2)
             {
-                runStatusChanged?.Invoke(RunStatusChanged!);
+                runStatusChanged?.Invoke(__value2);
             }
-            else if (IsRunEnded)
+            else if (RunEnded is { } __value3)
             {
-                runEnded?.Invoke(RunEnded!);
+                runEnded?.Invoke(__value3);
             }
         }
 
@@ -405,21 +405,21 @@ namespace Speechify
                 Validate();
             }
 
-            if (IsRunStepAdded)
+            if (RunStepAdded is { } __value0)
             {
-                runStepAdded?.Invoke(RunStepAdded!);
+                runStepAdded?.Invoke(__value0);
             }
-            else if (IsRunReplyDelta)
+            else if (RunReplyDelta is { } __value1)
             {
-                runReplyDelta?.Invoke(RunReplyDelta!);
+                runReplyDelta?.Invoke(__value1);
             }
-            else if (IsRunStatusChanged)
+            else if (RunStatusChanged is { } __value2)
             {
-                runStatusChanged?.Invoke(RunStatusChanged!);
+                runStatusChanged?.Invoke(__value2);
             }
-            else if (IsRunEnded)
+            else if (RunEnded is { } __value3)
             {
-                runEnded?.Invoke(RunEnded!);
+                runEnded?.Invoke(__value3);
             }
         }
 

@@ -92,7 +92,7 @@ namespace Speechify.JsonConverters
             {
                 var typeInfo = typeInfoResolver.GetTypeInfo(typeof(global::Speechify.BuiltinToolConfig), options) as global::System.Text.Json.Serialization.Metadata.JsonTypeInfo<global::Speechify.BuiltinToolConfig?> ??
                                throw new global::System.InvalidOperationException($"Cannot get type info for {typeof(global::Speechify.BuiltinToolConfig).Name}");
-                global::System.Text.Json.JsonSerializer.Serialize(writer, value.BuiltinToolConfig!, typeInfo);
+                global::System.Text.Json.JsonSerializer.Serialize(writer, value.PickBuiltinToolConfig(), typeInfo);
             }
         }
     }

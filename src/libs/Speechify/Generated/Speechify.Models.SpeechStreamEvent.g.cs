@@ -54,8 +54,8 @@ namespace Speechify
         /// <summary>
         ///
         /// </summary>
-        public global::Speechify.SpeechStreamEventVariant1 PickSpeechChunk() => IsSpeechChunk
-            ? SpeechChunk!
+        public global::Speechify.SpeechStreamEventVariant1 PickSpeechChunk() => SpeechChunk is { } value
+            ? value
             : throw new global::System.InvalidOperationException($"Expected union variant 'SpeechChunk' but the value was {ToString()}.");
 
         /// <summary>
@@ -92,8 +92,8 @@ namespace Speechify
         /// <summary>
         ///
         /// </summary>
-        public global::Speechify.SpeechStreamEventVariant2 PickSpeechDone() => IsSpeechDone
-            ? SpeechDone!
+        public global::Speechify.SpeechStreamEventVariant2 PickSpeechDone() => SpeechDone is { } value
+            ? value
             : throw new global::System.InvalidOperationException($"Expected union variant 'SpeechDone' but the value was {ToString()}.");
 
         /// <summary>
@@ -132,8 +132,8 @@ namespace Speechify
         /// <summary>
         ///
         /// </summary>
-        public global::Speechify.SpeechStreamEventVariant3 PickSpeechError() => IsSpeechError
-            ? SpeechError!
+        public global::Speechify.SpeechStreamEventVariant3 PickSpeechError() => SpeechError is { } value
+            ? value
             : throw new global::System.InvalidOperationException($"Expected union variant 'SpeechError' but the value was {ToString()}.");
         /// <summary>
         ///
@@ -261,17 +261,17 @@ namespace Speechify
                 Validate();
             }
 
-            if (IsSpeechChunk && speechChunk != null)
+            if (SpeechChunk is { } __value0 && speechChunk != null)
             {
-                return speechChunk(SpeechChunk!);
+                return speechChunk(__value0);
             }
-            else if (IsSpeechDone && speechDone != null)
+            else if (SpeechDone is { } __value1 && speechDone != null)
             {
-                return speechDone(SpeechDone!);
+                return speechDone(__value1);
             }
-            else if (IsSpeechError && speechError != null)
+            else if (SpeechError is { } __value2 && speechError != null)
             {
-                return speechError(SpeechError!);
+                return speechError(__value2);
             }
 
             return default(TResult);
@@ -293,17 +293,17 @@ namespace Speechify
                 Validate();
             }
 
-            if (IsSpeechChunk)
+            if (SpeechChunk is { } __value0)
             {
-                speechChunk?.Invoke(SpeechChunk!);
+                speechChunk?.Invoke(__value0);
             }
-            else if (IsSpeechDone)
+            else if (SpeechDone is { } __value1)
             {
-                speechDone?.Invoke(SpeechDone!);
+                speechDone?.Invoke(__value1);
             }
-            else if (IsSpeechError)
+            else if (SpeechError is { } __value2)
             {
-                speechError?.Invoke(SpeechError!);
+                speechError?.Invoke(__value2);
             }
         }
 
@@ -321,17 +321,17 @@ namespace Speechify
                 Validate();
             }
 
-            if (IsSpeechChunk)
+            if (SpeechChunk is { } __value0)
             {
-                speechChunk?.Invoke(SpeechChunk!);
+                speechChunk?.Invoke(__value0);
             }
-            else if (IsSpeechDone)
+            else if (SpeechDone is { } __value1)
             {
-                speechDone?.Invoke(SpeechDone!);
+                speechDone?.Invoke(__value1);
             }
-            else if (IsSpeechError)
+            else if (SpeechError is { } __value2)
             {
-                speechError?.Invoke(SpeechError!);
+                speechError?.Invoke(__value2);
             }
         }
 

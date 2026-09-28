@@ -43,8 +43,8 @@ namespace Speechify
         /// <summary>
         ///
         /// </summary>
-        public object PickImportOpenApiRequestSpecVariant1() => IsImportOpenApiRequestSpecVariant1
-            ? ImportOpenApiRequestSpecVariant1!
+        public object PickImportOpenApiRequestSpecVariant1() => ImportOpenApiRequestSpecVariant1 is { } value
+            ? value
             : throw new global::System.InvalidOperationException($"Expected union variant 'ImportOpenApiRequestSpecVariant1' but the value was {ToString()}.");
 
         /// <summary>
@@ -80,8 +80,8 @@ namespace Speechify
         /// <summary>
         ///
         /// </summary>
-        public string PickImportOpenApiRequestSpecVariant2() => IsImportOpenApiRequestSpecVariant2
-            ? ImportOpenApiRequestSpecVariant2!
+        public string PickImportOpenApiRequestSpecVariant2() => ImportOpenApiRequestSpecVariant2 is { } value
+            ? value
             : throw new global::System.InvalidOperationException($"Expected union variant 'ImportOpenApiRequestSpecVariant2' but the value was {ToString()}.");
         /// <summary>
         ///
@@ -155,13 +155,13 @@ namespace Speechify
                 Validate();
             }
 
-            if (IsImportOpenApiRequestSpecVariant1 && importOpenApiRequestSpecVariant1 != null)
+            if (ImportOpenApiRequestSpecVariant1 is { } __value0 && importOpenApiRequestSpecVariant1 != null)
             {
-                return importOpenApiRequestSpecVariant1(ImportOpenApiRequestSpecVariant1!);
+                return importOpenApiRequestSpecVariant1(__value0);
             }
-            else if (IsImportOpenApiRequestSpecVariant2 && importOpenApiRequestSpecVariant2 != null)
+            else if (ImportOpenApiRequestSpecVariant2 is { } __value1 && importOpenApiRequestSpecVariant2 != null)
             {
-                return importOpenApiRequestSpecVariant2(ImportOpenApiRequestSpecVariant2!);
+                return importOpenApiRequestSpecVariant2(__value1);
             }
 
             return default(TResult);
@@ -181,13 +181,13 @@ namespace Speechify
                 Validate();
             }
 
-            if (IsImportOpenApiRequestSpecVariant1)
+            if (ImportOpenApiRequestSpecVariant1 is { } __value0)
             {
-                importOpenApiRequestSpecVariant1?.Invoke(ImportOpenApiRequestSpecVariant1!);
+                importOpenApiRequestSpecVariant1?.Invoke(__value0);
             }
-            else if (IsImportOpenApiRequestSpecVariant2)
+            else if (ImportOpenApiRequestSpecVariant2 is { } __value1)
             {
-                importOpenApiRequestSpecVariant2?.Invoke(ImportOpenApiRequestSpecVariant2!);
+                importOpenApiRequestSpecVariant2?.Invoke(__value1);
             }
         }
 
@@ -204,13 +204,13 @@ namespace Speechify
                 Validate();
             }
 
-            if (IsImportOpenApiRequestSpecVariant1)
+            if (ImportOpenApiRequestSpecVariant1 is { } __value0)
             {
-                importOpenApiRequestSpecVariant1?.Invoke(ImportOpenApiRequestSpecVariant1!);
+                importOpenApiRequestSpecVariant1?.Invoke(__value0);
             }
-            else if (IsImportOpenApiRequestSpecVariant2)
+            else if (ImportOpenApiRequestSpecVariant2 is { } __value1)
             {
-                importOpenApiRequestSpecVariant2?.Invoke(ImportOpenApiRequestSpecVariant2!);
+                importOpenApiRequestSpecVariant2?.Invoke(__value1);
             }
         }
 

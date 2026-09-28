@@ -68,19 +68,19 @@ namespace Speechify.JsonConverters
             {
                 var typeInfo = typeInfoResolver.GetTypeInfo(typeof(global::Speechify.SpeechStreamEventVariant1), options) as global::System.Text.Json.Serialization.Metadata.JsonTypeInfo<global::Speechify.SpeechStreamEventVariant1?> ??
                                throw new global::System.InvalidOperationException($"Cannot get type info for {typeof(global::Speechify.SpeechStreamEventVariant1).Name}");
-                global::System.Text.Json.JsonSerializer.Serialize(writer, value.SpeechChunk!, typeInfo);
+                global::System.Text.Json.JsonSerializer.Serialize(writer, value.PickSpeechChunk(), typeInfo);
             }
             else if (value.IsSpeechDone)
             {
                 var typeInfo = typeInfoResolver.GetTypeInfo(typeof(global::Speechify.SpeechStreamEventVariant2), options) as global::System.Text.Json.Serialization.Metadata.JsonTypeInfo<global::Speechify.SpeechStreamEventVariant2?> ??
                                throw new global::System.InvalidOperationException($"Cannot get type info for {typeof(global::Speechify.SpeechStreamEventVariant2).Name}");
-                global::System.Text.Json.JsonSerializer.Serialize(writer, value.SpeechDone!, typeInfo);
+                global::System.Text.Json.JsonSerializer.Serialize(writer, value.PickSpeechDone(), typeInfo);
             }
             else if (value.IsSpeechError)
             {
                 var typeInfo = typeInfoResolver.GetTypeInfo(typeof(global::Speechify.SpeechStreamEventVariant3), options) as global::System.Text.Json.Serialization.Metadata.JsonTypeInfo<global::Speechify.SpeechStreamEventVariant3?> ??
                                throw new global::System.InvalidOperationException($"Cannot get type info for {typeof(global::Speechify.SpeechStreamEventVariant3).Name}");
-                global::System.Text.Json.JsonSerializer.Serialize(writer, value.SpeechError!, typeInfo);
+                global::System.Text.Json.JsonSerializer.Serialize(writer, value.PickSpeechError(), typeInfo);
             }
         }
     }

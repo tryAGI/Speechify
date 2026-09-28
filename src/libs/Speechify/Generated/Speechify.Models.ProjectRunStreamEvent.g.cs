@@ -51,8 +51,8 @@ namespace Speechify
         /// <summary>
         ///
         /// </summary>
-        public global::Speechify.ProjectRunStreamEventVariant1 PickRunUpdated() => IsRunUpdated
-            ? RunUpdated!
+        public global::Speechify.ProjectRunStreamEventVariant1 PickRunUpdated() => RunUpdated is { } value
+            ? value
             : throw new global::System.InvalidOperationException($"Expected union variant 'RunUpdated' but the value was {ToString()}.");
 
         /// <summary>
@@ -89,8 +89,8 @@ namespace Speechify
         /// <summary>
         ///
         /// </summary>
-        public global::Speechify.ProjectRunStreamEventVariant2 PickRunEnded() => IsRunEnded
-            ? RunEnded!
+        public global::Speechify.ProjectRunStreamEventVariant2 PickRunEnded() => RunEnded is { } value
+            ? value
             : throw new global::System.InvalidOperationException($"Expected union variant 'RunEnded' but the value was {ToString()}.");
 
         /// <summary>
@@ -127,8 +127,8 @@ namespace Speechify
         /// <summary>
         ///
         /// </summary>
-        public global::Speechify.ProjectRunStreamEventVariant3 PickRunsSynced() => IsRunsSynced
-            ? RunsSynced!
+        public global::Speechify.ProjectRunStreamEventVariant3 PickRunsSynced() => RunsSynced is { } value
+            ? value
             : throw new global::System.InvalidOperationException($"Expected union variant 'RunsSynced' but the value was {ToString()}.");
         /// <summary>
         ///
@@ -256,17 +256,17 @@ namespace Speechify
                 Validate();
             }
 
-            if (IsRunUpdated && runUpdated != null)
+            if (RunUpdated is { } __value0 && runUpdated != null)
             {
-                return runUpdated(RunUpdated!);
+                return runUpdated(__value0);
             }
-            else if (IsRunEnded && runEnded != null)
+            else if (RunEnded is { } __value1 && runEnded != null)
             {
-                return runEnded(RunEnded!);
+                return runEnded(__value1);
             }
-            else if (IsRunsSynced && runsSynced != null)
+            else if (RunsSynced is { } __value2 && runsSynced != null)
             {
-                return runsSynced(RunsSynced!);
+                return runsSynced(__value2);
             }
 
             return default(TResult);
@@ -288,17 +288,17 @@ namespace Speechify
                 Validate();
             }
 
-            if (IsRunUpdated)
+            if (RunUpdated is { } __value0)
             {
-                runUpdated?.Invoke(RunUpdated!);
+                runUpdated?.Invoke(__value0);
             }
-            else if (IsRunEnded)
+            else if (RunEnded is { } __value1)
             {
-                runEnded?.Invoke(RunEnded!);
+                runEnded?.Invoke(__value1);
             }
-            else if (IsRunsSynced)
+            else if (RunsSynced is { } __value2)
             {
-                runsSynced?.Invoke(RunsSynced!);
+                runsSynced?.Invoke(__value2);
             }
         }
 
@@ -316,17 +316,17 @@ namespace Speechify
                 Validate();
             }
 
-            if (IsRunUpdated)
+            if (RunUpdated is { } __value0)
             {
-                runUpdated?.Invoke(RunUpdated!);
+                runUpdated?.Invoke(__value0);
             }
-            else if (IsRunEnded)
+            else if (RunEnded is { } __value1)
             {
-                runEnded?.Invoke(RunEnded!);
+                runEnded?.Invoke(__value1);
             }
-            else if (IsRunsSynced)
+            else if (RunsSynced is { } __value2)
             {
-                runsSynced?.Invoke(RunsSynced!);
+                runsSynced?.Invoke(__value2);
             }
         }
 

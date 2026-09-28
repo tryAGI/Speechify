@@ -56,8 +56,8 @@ namespace Speechify
         /// <summary>
         ///
         /// </summary>
-        public global::Speechify.WebhookToolConfig PickWebhookToolConfig() => IsWebhookToolConfig
-            ? WebhookToolConfig!
+        public global::Speechify.WebhookToolConfig PickWebhookToolConfig() => WebhookToolConfig is { } value
+            ? value
             : throw new global::System.InvalidOperationException($"Expected union variant 'WebhookToolConfig' but the value was {ToString()}.");
 
         /// <summary>
@@ -93,8 +93,8 @@ namespace Speechify
         /// <summary>
         ///
         /// </summary>
-        public global::Speechify.ClientToolConfig PickClientToolConfig() => IsClientToolConfig
-            ? ClientToolConfig!
+        public global::Speechify.ClientToolConfig PickClientToolConfig() => ClientToolConfig is { } value
+            ? value
             : throw new global::System.InvalidOperationException($"Expected union variant 'ClientToolConfig' but the value was {ToString()}.");
 
         /// <summary>
@@ -166,8 +166,8 @@ namespace Speechify
         /// <summary>
         ///
         /// </summary>
-        public global::Speechify.MCPToolConfig PickMCPToolConfig() => IsMCPToolConfig
-            ? MCPToolConfig!
+        public global::Speechify.MCPToolConfig PickMCPToolConfig() => MCPToolConfig is { } value
+            ? value
             : throw new global::System.InvalidOperationException($"Expected union variant 'MCPToolConfig' but the value was {ToString()}.");
 
         /// <summary>
@@ -217,8 +217,8 @@ namespace Speechify
         /// <summary>
         ///
         /// </summary>
-        public global::Speechify.OpenAPIToolConfig PickOpenAPIToolConfig() => IsOpenAPIToolConfig
-            ? OpenAPIToolConfig!
+        public global::Speechify.OpenAPIToolConfig PickOpenAPIToolConfig() => OpenAPIToolConfig is { } value
+            ? value
             : throw new global::System.InvalidOperationException($"Expected union variant 'OpenAPIToolConfig' but the value was {ToString()}.");
         /// <summary>
         ///
@@ -371,21 +371,21 @@ namespace Speechify
                 Validate();
             }
 
-            if (IsWebhookToolConfig && webhookToolConfig != null)
+            if (WebhookToolConfig is { } __value0 && webhookToolConfig != null)
             {
-                return webhookToolConfig(WebhookToolConfig!);
+                return webhookToolConfig(__value0);
             }
-            else if (IsClientToolConfig && clientToolConfig != null)
+            else if (ClientToolConfig is { } __value1 && clientToolConfig != null)
             {
-                return clientToolConfig(ClientToolConfig!);
+                return clientToolConfig(__value1);
             }
-            else if (IsMCPToolConfig && mCPToolConfig != null)
+            else if (MCPToolConfig is { } __value2 && mCPToolConfig != null)
             {
-                return mCPToolConfig(MCPToolConfig!);
+                return mCPToolConfig(__value2);
             }
-            else if (IsOpenAPIToolConfig && openAPIToolConfig != null)
+            else if (OpenAPIToolConfig is { } __value3 && openAPIToolConfig != null)
             {
-                return openAPIToolConfig(OpenAPIToolConfig!);
+                return openAPIToolConfig(__value3);
             }
 
             return default(TResult);
@@ -409,21 +409,21 @@ namespace Speechify
                 Validate();
             }
 
-            if (IsWebhookToolConfig)
+            if (WebhookToolConfig is { } __value0)
             {
-                webhookToolConfig?.Invoke(WebhookToolConfig!);
+                webhookToolConfig?.Invoke(__value0);
             }
-            else if (IsClientToolConfig)
+            else if (ClientToolConfig is { } __value1)
             {
-                clientToolConfig?.Invoke(ClientToolConfig!);
+                clientToolConfig?.Invoke(__value1);
             }
-            else if (IsMCPToolConfig)
+            else if (MCPToolConfig is { } __value2)
             {
-                mCPToolConfig?.Invoke(MCPToolConfig!);
+                mCPToolConfig?.Invoke(__value2);
             }
-            else if (IsOpenAPIToolConfig)
+            else if (OpenAPIToolConfig is { } __value3)
             {
-                openAPIToolConfig?.Invoke(OpenAPIToolConfig!);
+                openAPIToolConfig?.Invoke(__value3);
             }
         }
 
@@ -442,21 +442,21 @@ namespace Speechify
                 Validate();
             }
 
-            if (IsWebhookToolConfig)
+            if (WebhookToolConfig is { } __value0)
             {
-                webhookToolConfig?.Invoke(WebhookToolConfig!);
+                webhookToolConfig?.Invoke(__value0);
             }
-            else if (IsClientToolConfig)
+            else if (ClientToolConfig is { } __value1)
             {
-                clientToolConfig?.Invoke(ClientToolConfig!);
+                clientToolConfig?.Invoke(__value1);
             }
-            else if (IsMCPToolConfig)
+            else if (MCPToolConfig is { } __value2)
             {
-                mCPToolConfig?.Invoke(MCPToolConfig!);
+                mCPToolConfig?.Invoke(__value2);
             }
-            else if (IsOpenAPIToolConfig)
+            else if (OpenAPIToolConfig is { } __value3)
             {
-                openAPIToolConfig?.Invoke(OpenAPIToolConfig!);
+                openAPIToolConfig?.Invoke(__value3);
             }
         }
 

@@ -68,19 +68,19 @@ namespace Speechify.JsonConverters
             {
                 var typeInfo = typeInfoResolver.GetTypeInfo(typeof(global::Speechify.MCPAuthVariant1), options) as global::System.Text.Json.Serialization.Metadata.JsonTypeInfo<global::Speechify.MCPAuthVariant1?> ??
                                throw new global::System.InvalidOperationException($"Cannot get type info for {typeof(global::Speechify.MCPAuthVariant1).Name}");
-                global::System.Text.Json.JsonSerializer.Serialize(writer, value.None!, typeInfo);
+                global::System.Text.Json.JsonSerializer.Serialize(writer, value.PickNone(), typeInfo);
             }
             else if (value.IsBearer)
             {
                 var typeInfo = typeInfoResolver.GetTypeInfo(typeof(global::Speechify.MCPAuthVariant2), options) as global::System.Text.Json.Serialization.Metadata.JsonTypeInfo<global::Speechify.MCPAuthVariant2?> ??
                                throw new global::System.InvalidOperationException($"Cannot get type info for {typeof(global::Speechify.MCPAuthVariant2).Name}");
-                global::System.Text.Json.JsonSerializer.Serialize(writer, value.Bearer!, typeInfo);
+                global::System.Text.Json.JsonSerializer.Serialize(writer, value.PickBearer(), typeInfo);
             }
             else if (value.IsOauth2ClientCredentials)
             {
                 var typeInfo = typeInfoResolver.GetTypeInfo(typeof(global::Speechify.MCPAuthVariant3), options) as global::System.Text.Json.Serialization.Metadata.JsonTypeInfo<global::Speechify.MCPAuthVariant3?> ??
                                throw new global::System.InvalidOperationException($"Cannot get type info for {typeof(global::Speechify.MCPAuthVariant3).Name}");
-                global::System.Text.Json.JsonSerializer.Serialize(writer, value.Oauth2ClientCredentials!, typeInfo);
+                global::System.Text.Json.JsonSerializer.Serialize(writer, value.PickOauth2ClientCredentials(), typeInfo);
             }
         }
     }

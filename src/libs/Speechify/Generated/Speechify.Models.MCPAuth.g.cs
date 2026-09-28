@@ -51,8 +51,8 @@ namespace Speechify
         /// <summary>
         ///
         /// </summary>
-        public global::Speechify.MCPAuthVariant1 PickNone() => IsNone
-            ? None!
+        public global::Speechify.MCPAuthVariant1 PickNone() => None is { } value
+            ? value
             : throw new global::System.InvalidOperationException($"Expected union variant 'None' but the value was {ToString()}.");
 
         /// <summary>
@@ -93,8 +93,8 @@ namespace Speechify
         /// <summary>
         ///
         /// </summary>
-        public global::Speechify.MCPAuthVariant2 PickBearer() => IsBearer
-            ? Bearer!
+        public global::Speechify.MCPAuthVariant2 PickBearer() => Bearer is { } value
+            ? value
             : throw new global::System.InvalidOperationException($"Expected union variant 'Bearer' but the value was {ToString()}.");
 
         /// <summary>
@@ -137,8 +137,8 @@ namespace Speechify
         /// <summary>
         ///
         /// </summary>
-        public global::Speechify.MCPAuthVariant3 PickOauth2ClientCredentials() => IsOauth2ClientCredentials
-            ? Oauth2ClientCredentials!
+        public global::Speechify.MCPAuthVariant3 PickOauth2ClientCredentials() => Oauth2ClientCredentials is { } value
+            ? value
             : throw new global::System.InvalidOperationException($"Expected union variant 'Oauth2ClientCredentials' but the value was {ToString()}.");
         /// <summary>
         ///
@@ -266,17 +266,17 @@ namespace Speechify
                 Validate();
             }
 
-            if (IsNone && none != null)
+            if (None is { } __value0 && none != null)
             {
-                return none(None!);
+                return none(__value0);
             }
-            else if (IsBearer && bearer != null)
+            else if (Bearer is { } __value1 && bearer != null)
             {
-                return bearer(Bearer!);
+                return bearer(__value1);
             }
-            else if (IsOauth2ClientCredentials && oauth2ClientCredentials != null)
+            else if (Oauth2ClientCredentials is { } __value2 && oauth2ClientCredentials != null)
             {
-                return oauth2ClientCredentials(Oauth2ClientCredentials!);
+                return oauth2ClientCredentials(__value2);
             }
 
             return default(TResult);
@@ -298,17 +298,17 @@ namespace Speechify
                 Validate();
             }
 
-            if (IsNone)
+            if (None is { } __value0)
             {
-                none?.Invoke(None!);
+                none?.Invoke(__value0);
             }
-            else if (IsBearer)
+            else if (Bearer is { } __value1)
             {
-                bearer?.Invoke(Bearer!);
+                bearer?.Invoke(__value1);
             }
-            else if (IsOauth2ClientCredentials)
+            else if (Oauth2ClientCredentials is { } __value2)
             {
-                oauth2ClientCredentials?.Invoke(Oauth2ClientCredentials!);
+                oauth2ClientCredentials?.Invoke(__value2);
             }
         }
 
@@ -326,17 +326,17 @@ namespace Speechify
                 Validate();
             }
 
-            if (IsNone)
+            if (None is { } __value0)
             {
-                none?.Invoke(None!);
+                none?.Invoke(__value0);
             }
-            else if (IsBearer)
+            else if (Bearer is { } __value1)
             {
-                bearer?.Invoke(Bearer!);
+                bearer?.Invoke(__value1);
             }
-            else if (IsOauth2ClientCredentials)
+            else if (Oauth2ClientCredentials is { } __value2)
             {
-                oauth2ClientCredentials?.Invoke(Oauth2ClientCredentials!);
+                oauth2ClientCredentials?.Invoke(__value2);
             }
         }
 

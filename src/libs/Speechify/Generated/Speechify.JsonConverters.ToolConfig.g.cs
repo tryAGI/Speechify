@@ -244,25 +244,25 @@ namespace Speechify.JsonConverters
             {
                 var typeInfo = typeInfoResolver.GetTypeInfo(typeof(global::Speechify.WebhookToolConfig), options) as global::System.Text.Json.Serialization.Metadata.JsonTypeInfo<global::Speechify.WebhookToolConfig?> ??
                                throw new global::System.InvalidOperationException($"Cannot get type info for {typeof(global::Speechify.WebhookToolConfig).Name}");
-                global::System.Text.Json.JsonSerializer.Serialize(writer, value.WebhookToolConfig!, typeInfo);
+                global::System.Text.Json.JsonSerializer.Serialize(writer, value.PickWebhookToolConfig(), typeInfo);
             }
             else if (value.IsClientToolConfig)
             {
                 var typeInfo = typeInfoResolver.GetTypeInfo(typeof(global::Speechify.ClientToolConfig), options) as global::System.Text.Json.Serialization.Metadata.JsonTypeInfo<global::Speechify.ClientToolConfig?> ??
                                throw new global::System.InvalidOperationException($"Cannot get type info for {typeof(global::Speechify.ClientToolConfig).Name}");
-                global::System.Text.Json.JsonSerializer.Serialize(writer, value.ClientToolConfig!, typeInfo);
+                global::System.Text.Json.JsonSerializer.Serialize(writer, value.PickClientToolConfig(), typeInfo);
             }
             else if (value.IsMCPToolConfig)
             {
                 var typeInfo = typeInfoResolver.GetTypeInfo(typeof(global::Speechify.MCPToolConfig), options) as global::System.Text.Json.Serialization.Metadata.JsonTypeInfo<global::Speechify.MCPToolConfig?> ??
                                throw new global::System.InvalidOperationException($"Cannot get type info for {typeof(global::Speechify.MCPToolConfig).Name}");
-                global::System.Text.Json.JsonSerializer.Serialize(writer, value.MCPToolConfig!, typeInfo);
+                global::System.Text.Json.JsonSerializer.Serialize(writer, value.PickMCPToolConfig(), typeInfo);
             }
             else if (value.IsOpenAPIToolConfig)
             {
                 var typeInfo = typeInfoResolver.GetTypeInfo(typeof(global::Speechify.OpenAPIToolConfig), options) as global::System.Text.Json.Serialization.Metadata.JsonTypeInfo<global::Speechify.OpenAPIToolConfig?> ??
                                throw new global::System.InvalidOperationException($"Cannot get type info for {typeof(global::Speechify.OpenAPIToolConfig).Name}");
-                global::System.Text.Json.JsonSerializer.Serialize(writer, value.OpenAPIToolConfig!, typeInfo);
+                global::System.Text.Json.JsonSerializer.Serialize(writer, value.PickOpenAPIToolConfig(), typeInfo);
             }
         }
     }

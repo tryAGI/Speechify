@@ -77,25 +77,25 @@ namespace Speechify.JsonConverters
             {
                 var typeInfo = typeInfoResolver.GetTypeInfo(typeof(global::Speechify.AgentRunStreamEventVariant1), options) as global::System.Text.Json.Serialization.Metadata.JsonTypeInfo<global::Speechify.AgentRunStreamEventVariant1?> ??
                                throw new global::System.InvalidOperationException($"Cannot get type info for {typeof(global::Speechify.AgentRunStreamEventVariant1).Name}");
-                global::System.Text.Json.JsonSerializer.Serialize(writer, value.RunStepAdded!, typeInfo);
+                global::System.Text.Json.JsonSerializer.Serialize(writer, value.PickRunStepAdded(), typeInfo);
             }
             else if (value.IsRunReplyDelta)
             {
                 var typeInfo = typeInfoResolver.GetTypeInfo(typeof(global::Speechify.AgentRunStreamEventVariant2), options) as global::System.Text.Json.Serialization.Metadata.JsonTypeInfo<global::Speechify.AgentRunStreamEventVariant2?> ??
                                throw new global::System.InvalidOperationException($"Cannot get type info for {typeof(global::Speechify.AgentRunStreamEventVariant2).Name}");
-                global::System.Text.Json.JsonSerializer.Serialize(writer, value.RunReplyDelta!, typeInfo);
+                global::System.Text.Json.JsonSerializer.Serialize(writer, value.PickRunReplyDelta(), typeInfo);
             }
             else if (value.IsRunStatusChanged)
             {
                 var typeInfo = typeInfoResolver.GetTypeInfo(typeof(global::Speechify.AgentRunStreamEventVariant3), options) as global::System.Text.Json.Serialization.Metadata.JsonTypeInfo<global::Speechify.AgentRunStreamEventVariant3?> ??
                                throw new global::System.InvalidOperationException($"Cannot get type info for {typeof(global::Speechify.AgentRunStreamEventVariant3).Name}");
-                global::System.Text.Json.JsonSerializer.Serialize(writer, value.RunStatusChanged!, typeInfo);
+                global::System.Text.Json.JsonSerializer.Serialize(writer, value.PickRunStatusChanged(), typeInfo);
             }
             else if (value.IsRunEnded)
             {
                 var typeInfo = typeInfoResolver.GetTypeInfo(typeof(global::Speechify.AgentRunStreamEventVariant4), options) as global::System.Text.Json.Serialization.Metadata.JsonTypeInfo<global::Speechify.AgentRunStreamEventVariant4?> ??
                                throw new global::System.InvalidOperationException($"Cannot get type info for {typeof(global::Speechify.AgentRunStreamEventVariant4).Name}");
-                global::System.Text.Json.JsonSerializer.Serialize(writer, value.RunEnded!, typeInfo);
+                global::System.Text.Json.JsonSerializer.Serialize(writer, value.PickRunEnded(), typeInfo);
             }
         }
     }

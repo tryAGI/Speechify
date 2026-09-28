@@ -68,19 +68,19 @@ namespace Speechify.JsonConverters
             {
                 var typeInfo = typeInfoResolver.GetTypeInfo(typeof(global::Speechify.ProjectRunStreamEventVariant1), options) as global::System.Text.Json.Serialization.Metadata.JsonTypeInfo<global::Speechify.ProjectRunStreamEventVariant1?> ??
                                throw new global::System.InvalidOperationException($"Cannot get type info for {typeof(global::Speechify.ProjectRunStreamEventVariant1).Name}");
-                global::System.Text.Json.JsonSerializer.Serialize(writer, value.RunUpdated!, typeInfo);
+                global::System.Text.Json.JsonSerializer.Serialize(writer, value.PickRunUpdated(), typeInfo);
             }
             else if (value.IsRunEnded)
             {
                 var typeInfo = typeInfoResolver.GetTypeInfo(typeof(global::Speechify.ProjectRunStreamEventVariant2), options) as global::System.Text.Json.Serialization.Metadata.JsonTypeInfo<global::Speechify.ProjectRunStreamEventVariant2?> ??
                                throw new global::System.InvalidOperationException($"Cannot get type info for {typeof(global::Speechify.ProjectRunStreamEventVariant2).Name}");
-                global::System.Text.Json.JsonSerializer.Serialize(writer, value.RunEnded!, typeInfo);
+                global::System.Text.Json.JsonSerializer.Serialize(writer, value.PickRunEnded(), typeInfo);
             }
             else if (value.IsRunsSynced)
             {
                 var typeInfo = typeInfoResolver.GetTypeInfo(typeof(global::Speechify.ProjectRunStreamEventVariant3), options) as global::System.Text.Json.Serialization.Metadata.JsonTypeInfo<global::Speechify.ProjectRunStreamEventVariant3?> ??
                                throw new global::System.InvalidOperationException($"Cannot get type info for {typeof(global::Speechify.ProjectRunStreamEventVariant3).Name}");
-                global::System.Text.Json.JsonSerializer.Serialize(writer, value.RunsSynced!, typeInfo);
+                global::System.Text.Json.JsonSerializer.Serialize(writer, value.PickRunsSynced(), typeInfo);
             }
         }
     }
