@@ -63,6 +63,30 @@ namespace Speechify
         /// <param name="speechifyVersion"></param>
         /// <param name="accept"></param>
         /// <param name="request"></param>
+        /// <returns>The response metadata and an unbuffered body stream. The caller must dispose Body to release the HTTP response.</returns>
+        /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
+        /// <param name="cancellationToken">The token to cancel the operation with</param>
+        /// <exception cref="global::Speechify.ApiException"></exception>
+        global::System.Threading.Tasks.Task<global::Speechify.AutoSDKHttpResponse<global::System.IO.Stream>> StreamAsStreamAsResponseAsync(
+
+            global::Speechify.GetStreamRequest request,
+            string? speechifyVersion = default,
+            global::Speechify.V1AudioStreamPostParametersAccept? accept = default,
+            global::Speechify.AutoSDKRequestOptions? requestOptions = default,
+            global::System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Stream Speech<br/>
+        /// Synthesize speech and stream the audio back as it is generated, for<br/>
+        /// low-latency playback. Set `output_format` in the body for explicit<br/>
+        /// codec/sample-rate/bitrate control (e.g. `pcm_16000` or `ulaw_8000` for<br/>
+        /// telephony), or fall back to the Accept header for the container; the<br/>
+        /// response is raw audio bytes (HTTP chunked). For Base64-encoded audio<br/>
+        /// with speech-mark metadata in a single JSON response, use<br/>
+        /// POST /v1/audio/speech.
+        /// </summary>
+        /// <param name="speechifyVersion"></param>
+        /// <param name="accept"></param>
+        /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Speechify.ApiException"></exception>
